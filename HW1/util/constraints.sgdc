@@ -1,0 +1,2 @@
+current_design rop3_smart
+clock -name clk -period 10 
