@@ -1,0 +1,1 @@
+vcs -f run.f -R -full64 -debug_access+all +v2k 
