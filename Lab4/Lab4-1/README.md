@@ -1,4 +1,4 @@
-# Lab4-1
+# Lab4-1 Verdi
 ## 3-stage pipeline CPU
 ![figure](image/lab4-1.drawio.png)
 
