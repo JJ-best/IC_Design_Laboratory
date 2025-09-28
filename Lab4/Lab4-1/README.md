@@ -1,5 +1,8 @@
 # Lab4-1 Verdi
 ## 3-stage pipeline CPU
+![figure](image/cpu.png)
+
+In this Lab, we only construct two stage. The instruction comes from manual(by testbench), not from IF stage.
 ![figure](image/lab4-1.drawio.png)
 
 ### ID_stage

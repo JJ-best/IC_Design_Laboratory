@@ -1,4 +1,4 @@
-# HW1
+# HW1: Three-input Raster Operations (ROP3) for Computer Graphics
 
 ## Testbench(Part2, Part3)
 ### initial block

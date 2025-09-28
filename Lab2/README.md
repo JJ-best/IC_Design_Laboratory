@@ -1,4 +1,4 @@
-# Lab2
+# Lab2: Verilog Simulator (VCS)
 ## Check syntax error
 ```shell
 vcs -full64 lab2_alu.v 
