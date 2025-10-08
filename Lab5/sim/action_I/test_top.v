@@ -45,7 +45,7 @@ top top_U0(
 // end
 
 initial begin
-	$dumpfile("lab5..vcd");
+	$dumpfile("lab5.vcd");
 	$dumpvars();
 end
 
