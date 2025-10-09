@@ -1,0 +1,83 @@
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Changed wire load model for 'onehot2binary' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_0' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_1' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_2' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_3' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_4' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_5' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_6' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_7' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_8' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_9' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_10' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_11' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_12' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_13' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_14' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_15' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_16' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_17' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_18' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_19' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_20' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_21' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_22' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_23' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_24' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_25' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_26' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_27' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_28' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_29' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_30' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_31' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_33' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_34' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_35' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_36' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_37' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_38' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_39' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_40' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_41' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_42' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_43' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_44' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_45' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_46' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_47' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_48' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_49' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_50' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_51' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_52' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_53' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_54' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_55' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_56' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_57' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_58' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_59' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_60' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_61' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_62' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'RotorA_cell_mydesign_63' from '(none)' to 'Small'. (OPT-170)
+Information: Updating graph... (UID-83)
+Information: Updating design information... (UID-85)
+
+Information: Checking generated_clocks...
+
+Information: Checking loops...
+
+Information: Checking no_input_delay...
+
+Information: Checking unconstrained_endpoints...
+
+Information: Checking pulse_clock_cell_type...
+
+Information: Checking no_driving_cell...
+
+Information: Checking partial_input_delay...
+1

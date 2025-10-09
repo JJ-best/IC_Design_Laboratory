@@ -1,0 +1,237 @@
+ 
+****************************************
+Report : area
+Design : enigma_part1
+Version: R-2020.09-SP5
+Date   : Thu Oct  9 23:46:52 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                         3036
+Number of nets:                          6756
+Number of cells:                         3858
+Number of combinational cells:           3273
+Number of sequential cells:               455
+Number of macros/black boxes:               0
+Number of buf/inv:                        617
+Number of references:                     109
+
+Combinational area:               5860.170131
+Buf/Inv area:                      459.990010
+Noncombinational area:            2504.808056
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                  8364.978187
+Total area:                       8364.978187
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  -------------------------------------------------------
+enigma_part1                      8364.9782    100.0  2186.7480    47.8800  0.0000  enigma_part1
+G_ROTOR_0__G_OTHER_u_cellk          93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_0
+G_ROTOR_0__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_0
+G_ROTOR_10__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_10
+G_ROTOR_10__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_10
+G_ROTOR_11__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_11
+G_ROTOR_11__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_11
+G_ROTOR_12__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_12
+G_ROTOR_12__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_12
+G_ROTOR_13__G_OTHER_u_cellk         92.6820      1.1    53.0100    32.8320  0.0000  RotorA_cell_mydesign_13
+G_ROTOR_13__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_13
+G_ROTOR_14__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_14
+G_ROTOR_14__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_14
+G_ROTOR_15__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_15
+G_ROTOR_15__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_15
+G_ROTOR_16__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_16
+G_ROTOR_16__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_16
+G_ROTOR_17__G_OTHER_u_cellk         92.6820      1.1    53.0100    32.8320  0.0000  RotorA_cell_mydesign_17
+G_ROTOR_17__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_17
+G_ROTOR_18__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_18
+G_ROTOR_18__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_18
+G_ROTOR_19__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_19
+G_ROTOR_19__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_19
+G_ROTOR_1__G_OTHER_u_cellk          95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_1
+G_ROTOR_1__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_1
+G_ROTOR_20__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_20
+G_ROTOR_20__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_20
+G_ROTOR_21__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_21
+G_ROTOR_21__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_21
+G_ROTOR_22__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_22
+G_ROTOR_22__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_22
+G_ROTOR_23__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_23
+G_ROTOR_23__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_23
+G_ROTOR_24__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_24
+G_ROTOR_24__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_24
+G_ROTOR_25__G_OTHER_u_cellk         94.3920      1.1    53.0100    32.8320  0.0000  RotorA_cell_mydesign_25
+G_ROTOR_25__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_25
+G_ROTOR_26__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_26
+G_ROTOR_26__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_26
+G_ROTOR_27__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_27
+G_ROTOR_27__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_27
+G_ROTOR_28__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_28
+G_ROTOR_28__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_28
+G_ROTOR_29__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_29
+G_ROTOR_29__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_29
+G_ROTOR_2__G_OTHER_u_cellk          93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_2
+G_ROTOR_2__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_2
+G_ROTOR_30__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_30
+G_ROTOR_30__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_30
+G_ROTOR_31__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_31
+G_ROTOR_31__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_31
+G_ROTOR_32__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_32
+G_ROTOR_32__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_32
+G_ROTOR_33__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_33
+G_ROTOR_33__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_33
+G_ROTOR_34__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_34
+G_ROTOR_34__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_34
+G_ROTOR_35__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_35
+G_ROTOR_35__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_35
+G_ROTOR_36__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_36
+G_ROTOR_36__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_36
+G_ROTOR_37__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_37
+G_ROTOR_37__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_37
+G_ROTOR_38__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_38
+G_ROTOR_38__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_38
+G_ROTOR_39__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_39
+G_ROTOR_39__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_39
+G_ROTOR_3__G_OTHER_u_cellk          95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_3
+G_ROTOR_3__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_3
+G_ROTOR_40__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_40
+G_ROTOR_40__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_40
+G_ROTOR_41__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_41
+G_ROTOR_41__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_41
+G_ROTOR_42__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_42
+G_ROTOR_42__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_42
+G_ROTOR_43__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_43
+G_ROTOR_43__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_43
+G_ROTOR_44__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_44
+G_ROTOR_44__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_44
+G_ROTOR_45__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_45
+G_ROTOR_45__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_45
+G_ROTOR_46__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_46
+G_ROTOR_46__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_46
+G_ROTOR_47__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_47
+G_ROTOR_47__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_47
+G_ROTOR_48__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_48
+G_ROTOR_48__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_48
+G_ROTOR_49__G_OTHER_u_cellk         92.6820      1.1    53.0100    32.8320  0.0000  RotorA_cell_mydesign_49
+G_ROTOR_49__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_49
+G_ROTOR_4__G_OTHER_u_cellk          93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_4
+G_ROTOR_4__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_4
+G_ROTOR_50__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_50
+G_ROTOR_50__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_50
+G_ROTOR_51__G_OTHER_u_cellk         94.3920      1.1    53.0100    32.8320  0.0000  RotorA_cell_mydesign_51
+G_ROTOR_51__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_51
+G_ROTOR_52__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_52
+G_ROTOR_52__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_52
+G_ROTOR_53__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_53
+G_ROTOR_53__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_53
+G_ROTOR_54__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_54
+G_ROTOR_54__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_54
+G_ROTOR_55__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_55
+G_ROTOR_55__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_55
+G_ROTOR_56__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_56
+G_ROTOR_56__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_56
+G_ROTOR_57__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_57
+G_ROTOR_57__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_57
+G_ROTOR_58__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_58
+G_ROTOR_58__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_58
+G_ROTOR_59__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_59
+G_ROTOR_59__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_59
+G_ROTOR_5__G_OTHER_u_cellk          95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_5
+G_ROTOR_5__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_5
+G_ROTOR_60__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_60
+G_ROTOR_60__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_60
+G_ROTOR_61__G_OTHER_u_cellk         95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_61
+G_ROTOR_61__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_61
+G_ROTOR_62__G_OTHER_u_cellk         93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_62
+G_ROTOR_62__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_62
+G_ROTOR_63__G_FIRST_u_cellk         94.3920      1.1    53.0100    32.8320  0.0000  RotorA_cell_mydesign_63
+G_ROTOR_63__G_FIRST_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_63
+G_ROTOR_6__G_OTHER_u_cellk          95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_6
+G_ROTOR_6__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_6
+G_ROTOR_7__G_OTHER_u_cellk          93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_7
+G_ROTOR_7__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_7
+G_ROTOR_8__G_OTHER_u_cellk          95.0760      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_8
+G_ROTOR_8__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_8
+G_ROTOR_9__G_OTHER_u_cellk          93.3660      1.1    53.6940    32.8320  0.0000  RotorA_cell_mydesign_9
+G_ROTOR_9__G_OTHER_u_cellk/clk_gate_shift_o_reg
+                                     6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_9
+clk_gate_lfsr_reg_reg                8.5500      0.1     3.0780     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_enigma_part1
+encoder                             92.3400      1.1    92.3400     0.0000  0.0000  onehot2binary
+--------------------------------  ---------  -------  ---------  ---------  ------  -------------------------------------------------------
+Total                                                 5860.1701  2504.8081  0.0000
+
+1

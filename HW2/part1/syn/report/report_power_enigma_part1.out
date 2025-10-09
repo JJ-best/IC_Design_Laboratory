@@ -1,0 +1,420 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : enigma_part1
+Version: R-2020.09-SP5
+Date   : Thu Oct  9 23:46:53 2025
+****************************************
+
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+enigma_part1           Large             slow_vdd1v2
+RotorA_cell_mydesign_63
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_62
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_61
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_60
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_59
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_58
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_57
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_56
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_55
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_54
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_53
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_52
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_51
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_50
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_49
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_48
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_47
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_46
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_45
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_44
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_43
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_42
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_41
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_40
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_39
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_38
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_37
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_36
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_35
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_34
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_33
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_32
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_31
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_30
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_29
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_28
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_27
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_26
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_25
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_24
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_23
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_22
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_21
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_20
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_19
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_18
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_17
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_16
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_15
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_14
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_13
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_12
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_11
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_10
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_9 Small             slow_vdd1v2
+RotorA_cell_mydesign_8 Small             slow_vdd1v2
+RotorA_cell_mydesign_7 Small             slow_vdd1v2
+RotorA_cell_mydesign_6 Small             slow_vdd1v2
+RotorA_cell_mydesign_5 Small             slow_vdd1v2
+RotorA_cell_mydesign_4 Small             slow_vdd1v2
+RotorA_cell_mydesign_3 Small             slow_vdd1v2
+RotorA_cell_mydesign_2 Small             slow_vdd1v2
+RotorA_cell_mydesign_1 Small             slow_vdd1v2
+RotorA_cell_mydesign_0 Small             slow_vdd1v2
+onehot2binary          Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_enigma_part1
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_63
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_62
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_61
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_60
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_59
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_58
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_57
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_56
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_55
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_54
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_53
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_52
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_51
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_50
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_49
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_48
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_47
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_46
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_45
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_44
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_43
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_42
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_41
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_40
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_39
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_38
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_37
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_36
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_35
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_34
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_33
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_32
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_31
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_30
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_29
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_28
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_27
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_26
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_25
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_24
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_23
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_22
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_21
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_20
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_19
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_18
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_17
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_16
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_15
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_14
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_13
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_12
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_11
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_10
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_9
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_8
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_7
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_6
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_5
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_4
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_3
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_2
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_1
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_0
+                       Small             slow_vdd1v2
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+enigma_part1                           1.98e-02 6.75e-02 2.21e+05 8.75e-02 100.0
+  encoder (onehot2binary)              2.98e-04 1.08e-03 3.07e+03 1.38e-03   1.6
+  G_ROTOR_0__G_OTHER_u_cellk (RotorA_cell_mydesign_0)
+                                       1.59e-04 5.88e-04 2.40e+03 7.49e-04   0.9
+  G_ROTOR_1__G_OTHER_u_cellk (RotorA_cell_mydesign_1)
+                                       1.67e-04 6.69e-04 2.52e+03 8.39e-04   1.0
+  G_ROTOR_2__G_OTHER_u_cellk (RotorA_cell_mydesign_2)
+                                       1.65e-04 6.12e-04 2.40e+03 7.79e-04   0.9
+  G_ROTOR_3__G_OTHER_u_cellk (RotorA_cell_mydesign_3)
+                                       1.67e-04 6.64e-04 2.52e+03 8.34e-04   1.0
+  G_ROTOR_4__G_OTHER_u_cellk (RotorA_cell_mydesign_4)
+                                       1.68e-04 6.31e-04 2.40e+03 8.02e-04   0.9
+  G_ROTOR_5__G_OTHER_u_cellk (RotorA_cell_mydesign_5)
+                                       1.69e-04 6.70e-04 2.52e+03 8.42e-04   1.0
+  G_ROTOR_6__G_OTHER_u_cellk (RotorA_cell_mydesign_6)
+                                       1.71e-04 6.83e-04 2.52e+03 8.56e-04   1.0
+  G_ROTOR_7__G_OTHER_u_cellk (RotorA_cell_mydesign_7)
+                                       1.69e-04 6.33e-04 2.40e+03 8.03e-04   0.9
+  G_ROTOR_8__G_OTHER_u_cellk (RotorA_cell_mydesign_8)
+                                       1.69e-04 6.67e-04 2.52e+03 8.38e-04   1.0
+  G_ROTOR_9__G_OTHER_u_cellk (RotorA_cell_mydesign_9)
+                                       1.68e-04 6.24e-04 2.40e+03 7.94e-04   0.9
+  G_ROTOR_10__G_OTHER_u_cellk (RotorA_cell_mydesign_10)
+                                       1.70e-04 6.75e-04 2.52e+03 8.47e-04   1.0
+  G_ROTOR_11__G_OTHER_u_cellk (RotorA_cell_mydesign_11)
+                                       1.70e-04 6.39e-04 2.40e+03 8.11e-04   0.9
+  G_ROTOR_12__G_OTHER_u_cellk (RotorA_cell_mydesign_12)
+                                       1.73e-04 6.91e-04 2.52e+03 8.66e-04   1.0
+  G_ROTOR_13__G_OTHER_u_cellk (RotorA_cell_mydesign_13)
+                                       1.53e-04 6.41e-04 2.38e+03 7.96e-04   0.9
+  G_ROTOR_14__G_OTHER_u_cellk (RotorA_cell_mydesign_14)
+                                       1.72e-04 6.84e-04 2.52e+03 8.59e-04   1.0
+  G_ROTOR_15__G_OTHER_u_cellk (RotorA_cell_mydesign_15)
+                                       1.74e-04 6.61e-04 2.40e+03 8.37e-04   1.0
+  G_ROTOR_16__G_OTHER_u_cellk (RotorA_cell_mydesign_16)
+                                       1.75e-04 7.07e-04 2.52e+03 8.85e-04   1.0
+  G_ROTOR_17__G_OTHER_u_cellk (RotorA_cell_mydesign_17)
+                                       1.53e-04 6.42e-04 2.38e+03 7.98e-04   0.9
+  G_ROTOR_18__G_OTHER_u_cellk (RotorA_cell_mydesign_18)
+                                       1.75e-04 6.98e-04 2.52e+03 8.75e-04   1.0
+  G_ROTOR_19__G_OTHER_u_cellk (RotorA_cell_mydesign_19)
+                                       1.74e-04 6.56e-04 2.40e+03 8.32e-04   1.0
+  G_ROTOR_20__G_OTHER_u_cellk (RotorA_cell_mydesign_20)
+                                       1.77e-04 7.15e-04 2.52e+03 8.95e-04   1.0
+  G_ROTOR_21__G_OTHER_u_cellk (RotorA_cell_mydesign_21)
+                                       1.76e-04 7.02e-04 2.52e+03 8.81e-04   1.0
+  G_ROTOR_22__G_OTHER_u_cellk (RotorA_cell_mydesign_22)
+                                       1.78e-04 6.78e-04 2.40e+03 8.58e-04   1.0
+  G_ROTOR_23__G_OTHER_u_cellk (RotorA_cell_mydesign_23)
+                                       1.78e-04 7.15e-04 2.51e+03 8.95e-04   1.0
+  G_ROTOR_24__G_OTHER_u_cellk (RotorA_cell_mydesign_24)
+                                       1.76e-04 6.65e-04 2.40e+03 8.43e-04   1.0
+  G_ROTOR_25__G_OTHER_u_cellk (RotorA_cell_mydesign_25)
+                                       1.59e-04 7.03e-04 2.50e+03 8.64e-04   1.0
+  G_ROTOR_26__G_OTHER_u_cellk (RotorA_cell_mydesign_26)
+                                       1.76e-04 6.64e-04 2.40e+03 8.43e-04   1.0
+  G_ROTOR_27__G_OTHER_u_cellk (RotorA_cell_mydesign_27)
+                                       1.80e-04 7.24e-04 2.52e+03 9.07e-04   1.0
+  G_ROTOR_28__G_OTHER_u_cellk (RotorA_cell_mydesign_28)
+                                       1.80e-04 6.85e-04 2.40e+03 8.67e-04   1.0
+  G_ROTOR_29__G_OTHER_u_cellk (RotorA_cell_mydesign_29)
+                                       1.85e-04 7.51e-04 2.51e+03 9.38e-04   1.1
+  G_ROTOR_30__G_OTHER_u_cellk (RotorA_cell_mydesign_30)
+                                       1.84e-04 7.11e-04 2.39e+03 8.97e-04   1.0
+  G_ROTOR_31__G_OTHER_u_cellk (RotorA_cell_mydesign_31)
+                                       1.87e-04 7.68e-04 2.51e+03 9.58e-04   1.1
+  G_ROTOR_32__G_OTHER_u_cellk (RotorA_cell_mydesign_32)
+                                       1.85e-04 7.13e-04 2.39e+03 9.00e-04   1.0
+  G_ROTOR_33__G_OTHER_u_cellk (RotorA_cell_mydesign_33)
+                                       1.85e-04 7.45e-04 2.51e+03 9.33e-04   1.1
+  G_ROTOR_34__G_OTHER_u_cellk (RotorA_cell_mydesign_34)
+                                       1.85e-04 7.12e-04 2.40e+03 9.00e-04   1.0
+  G_ROTOR_35__G_OTHER_u_cellk (RotorA_cell_mydesign_35)
+                                       1.86e-04 7.54e-04 2.51e+03 9.42e-04   1.1
+  G_ROTOR_36__G_OTHER_u_cellk (RotorA_cell_mydesign_36)
+                                       1.88e-04 7.66e-04 2.51e+03 9.56e-04   1.1
+  G_ROTOR_37__G_OTHER_u_cellk (RotorA_cell_mydesign_37)
+                                       1.89e-04 7.39e-04 2.46e+03 9.30e-04   1.1
+  G_ROTOR_38__G_OTHER_u_cellk (RotorA_cell_mydesign_38)
+                                       1.89e-04 7.73e-04 2.51e+03 9.65e-04   1.1
+  G_ROTOR_39__G_OTHER_u_cellk (RotorA_cell_mydesign_39)
+                                       1.90e-04 7.39e-04 2.39e+03 9.32e-04   1.1
+  G_ROTOR_40__G_OTHER_u_cellk (RotorA_cell_mydesign_40)
+                                       1.92e-04 7.86e-04 2.51e+03 9.81e-04   1.1
+  G_ROTOR_41__G_OTHER_u_cellk (RotorA_cell_mydesign_41)
+                                       1.92e-04 7.44e-04 2.39e+03 9.38e-04   1.1
+  G_ROTOR_42__G_OTHER_u_cellk (RotorA_cell_mydesign_42)
+                                       1.93e-04 7.88e-04 2.51e+03 9.83e-04   1.1
+  G_ROTOR_43__G_OTHER_u_cellk (RotorA_cell_mydesign_43)
+                                       1.93e-04 7.54e-04 2.39e+03 9.49e-04   1.1
+  G_ROTOR_44__G_OTHER_u_cellk (RotorA_cell_mydesign_44)
+                                       1.95e-04 8.04e-04 2.51e+03 1.00e-03   1.1
+  G_ROTOR_45__G_OTHER_u_cellk (RotorA_cell_mydesign_45)
+                                       1.92e-04 7.45e-04 2.39e+03 9.39e-04   1.1
+  G_ROTOR_46__G_OTHER_u_cellk (RotorA_cell_mydesign_46)
+                                       1.93e-04 7.85e-04 2.51e+03 9.81e-04   1.1
+  G_ROTOR_47__G_OTHER_u_cellk (RotorA_cell_mydesign_47)
+                                       1.94e-04 7.61e-04 2.39e+03 9.58e-04   1.1
+  G_ROTOR_48__G_OTHER_u_cellk (RotorA_cell_mydesign_48)
+                                       1.96e-04 8.00e-04 2.51e+03 9.98e-04   1.1
+  G_ROTOR_49__G_OTHER_u_cellk (RotorA_cell_mydesign_49)
+                                       1.77e-04 7.58e-04 2.37e+03 9.38e-04   1.1
+  G_ROTOR_50__G_OTHER_u_cellk (RotorA_cell_mydesign_50)
+                                       1.98e-04 8.16e-04 2.51e+03 1.02e-03   1.2
+  G_ROTOR_51__G_OTHER_u_cellk (RotorA_cell_mydesign_51)
+                                       1.80e-04 8.09e-04 2.49e+03 9.92e-04   1.1
+  G_ROTOR_52__G_OTHER_u_cellk (RotorA_cell_mydesign_52)
+                                       1.98e-04 7.72e-04 2.39e+03 9.72e-04   1.1
+  G_ROTOR_53__G_OTHER_u_cellk (RotorA_cell_mydesign_53)
+                                       2.00e-04 8.29e-04 2.51e+03 1.03e-03   1.2
+  G_ROTOR_54__G_OTHER_u_cellk (RotorA_cell_mydesign_54)
+                                       1.99e-04 7.85e-04 2.39e+03 9.87e-04   1.1
+  G_ROTOR_55__G_OTHER_u_cellk (RotorA_cell_mydesign_55)
+                                       2.01e-04 8.25e-04 2.51e+03 1.03e-03   1.2
+  G_ROTOR_56__G_OTHER_u_cellk (RotorA_cell_mydesign_56)
+                                       2.01e-04 7.87e-04 2.39e+03 9.91e-04   1.1
+  G_ROTOR_57__G_OTHER_u_cellk (RotorA_cell_mydesign_57)
+                                       2.05e-04 8.45e-04 2.51e+03 1.05e-03   1.2
+  G_ROTOR_58__G_OTHER_u_cellk (RotorA_cell_mydesign_58)
+                                       2.04e-04 8.05e-04 2.39e+03 1.01e-03   1.2
+  G_ROTOR_59__G_OTHER_u_cellk (RotorA_cell_mydesign_59)
+                                       2.06e-04 8.52e-04 2.50e+03 1.06e-03   1.2
+  G_ROTOR_60__G_OTHER_u_cellk (RotorA_cell_mydesign_60)
+                                       2.04e-04 8.00e-04 2.39e+03 1.01e-03   1.2
+  G_ROTOR_61__G_OTHER_u_cellk (RotorA_cell_mydesign_61)
+                                       2.01e-04 8.29e-04 2.51e+03 1.03e-03   1.2
+  G_ROTOR_62__G_OTHER_u_cellk (RotorA_cell_mydesign_62)
+                                       1.93e-04 7.53e-04 2.39e+03 9.49e-04   1.1
+  G_ROTOR_63__G_FIRST_u_cellk (RotorA_cell_mydesign_63)
+                                       1.89e-04 8.62e-04 2.49e+03 1.05e-03   1.2
+1

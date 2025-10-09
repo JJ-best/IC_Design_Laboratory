@@ -21,9 +21,9 @@ end
 ```
 |Area | Timing | Cycle | Performence |
 |- |-|-|-|
-|9834|5|1|$2.12 \times 10^{-5}$|
+|9834|5|1|$1.27 \times 10^{-6}$|
 
-$\text{Performence} = \frac{1}{8985\times5.2383}=2.12\times 10^{-5}$
+$\text{Performence} = \frac{1}{\text{Area}\times\text{Timing}\times\text{Cycle}}$
 
 ### fir1_v2
 ```verilog
@@ -51,14 +51,21 @@ end
 ```
 |Area | Timing | Cycle | Performence |
 |- |-|-|-|
-|8985|5.2383|16|$2.12 \times 10^{-5}$|
+|9834|5|1|$1.27 \times 10^{-6}$|
 
-$\text{Performence} = \frac{1}{8985\times5.2383}=2.12\times 10^{-5}$
+$\text{Performence} = \frac{1}{\text{Area}\times\text{Timing}\times\text{Cycle}}$
+
 
 ### fir_pipeline
 ### fir1
 |Area | Timing | Cycle | Performence |
 |- |-|-|-|
-|12499|4.8|18|$2.12 \times 10^{-5}$|
+|12499|4.8|18|$9.26 \times 10^{-7}$|
 
 $\text{Performence} = \frac{1}{8985\times5.2383}=0.52\times 10^{-5}$
+
+### fir_pipeline_v2
+add buffer for multiplier.
+|Area | Timing | Cycle | Performence |
+|- |-|-|-|
+|16196|4.3|19|$ 7.557\times10^{-7}$|

@@ -1,0 +1,33 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : enigma_part1
+Version: R-2020.09-SP5
+Date   : Thu Oct  9 23:46:53 2025
+****************************************
+
+
+   max_delay/setup ('clk' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   code_out[4]                  5.00           6.64 f        -1.64  (VIOLATED)
+   code_out[5]                  5.00           6.63 f        -1.63  (VIOLATED)
+   code_out[2]                  5.00           6.63 f        -1.63  (VIOLATED)
+   code_out[1]                  5.00           6.63 f        -1.63  (VIOLATED)
+   code_out[0]                  5.00           6.63 f        -1.63  (VIOLATED)
+   code_out[3]                  5.00           6.62 f        -1.62  (VIOLATED)
+   code_valid                   5.00           5.26 r        -0.26  (VIOLATED)
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   enigma_part1                 0.00        8364.98       -8364.98  (VIOLATED)
+
+
+1

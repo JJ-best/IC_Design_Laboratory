@@ -1,0 +1,217 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 4
+Design : enigma_part1
+Version: R-2020.09-SP5
+Date   : Thu Oct  9 23:46:52 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: code_in[0] (input port clocked by clk)
+  Endpoint: code_out[4]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  enigma_part1       Large                 slow_vdd1v2
+  onehot2binary      Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    5.00       5.00 r
+  code_in[0] (in)                                         0.01       5.01 r
+  U465/Y (INVXL)                                          0.04       5.05 f
+  U19/Y (NAND2X1)                                         0.07       5.12 r
+  U295/Y (NOR2XL)                                         0.05       5.17 f
+  U80/Y (BUFX2)                                           0.08       5.25 f
+  U252/Y (AOI2BB2XL)                                      0.06       5.31 r
+  U680/Y (NAND4XL)                                        0.14       5.44 f
+  U574/Y (OAI211XL)                                       0.11       5.56 r
+  U222/Y (NAND4XL)                                        0.16       5.71 f
+  U196/Y (XOR2X2)                                         0.17       5.89 r
+  U106/Y (XOR2XL)                                         0.10       5.99 r
+  U105/Y (NOR2XL)                                         0.05       6.04 f
+  U456/Y (NAND2XL)                                        0.05       6.09 r
+  U419/Y (OR2XL)                                          0.06       6.15 r
+  U732/Y (NOR2XL)                                         0.05       6.20 f
+  encoder/onehot_i_53_ (onehot2binary)                    0.00       6.20 f
+  encoder/U40/Y (NOR4XL)                                  0.11       6.32 r
+  encoder/U4/Y (NAND4X1)                                  0.14       6.46 f
+  encoder/U45/Y (NOR3BXL)                                 0.08       6.54 r
+  encoder/U44/Y (NAND2XL)                                 0.06       6.60 f
+  encoder/binary_o[4] (onehot2binary)                     0.00       6.60 f
+  code_out[4] (out)                                       0.04       6.64 f
+  data arrival time                                                  6.64
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  output external delay                                  -5.00       5.00
+  data required time                                                 5.00
+  --------------------------------------------------------------------------
+  data required time                                                 5.00
+  data arrival time                                                 -6.64
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.64
+
+
+  Startpoint: code_in[0] (input port clocked by clk)
+  Endpoint: code_out[5]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  enigma_part1       Large                 slow_vdd1v2
+  onehot2binary      Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    5.00       5.00 r
+  code_in[0] (in)                                         0.01       5.01 r
+  U465/Y (INVXL)                                          0.04       5.05 f
+  U19/Y (NAND2X1)                                         0.07       5.12 r
+  U295/Y (NOR2XL)                                         0.05       5.17 f
+  U80/Y (BUFX2)                                           0.08       5.25 f
+  U252/Y (AOI2BB2XL)                                      0.06       5.31 r
+  U680/Y (NAND4XL)                                        0.14       5.44 f
+  U574/Y (OAI211XL)                                       0.11       5.56 r
+  U222/Y (NAND4XL)                                        0.16       5.71 f
+  U277/Y (CLKXOR2X1)                                      0.18       5.90 r
+  C576/Y (XOR2XL)                                         0.11       6.01 r
+  C575/Y (OR2XL)                                          0.06       6.07 r
+  C574/Y (OR2XL)                                          0.07       6.13 r
+  U33/Y (NOR2BX1)                                         0.07       6.21 f
+  U163/Y (AND2X1)                                         0.07       6.28 f
+  encoder/onehot_i_37_ (onehot2binary)                    0.00       6.28 f
+  encoder/U21/Y (NOR4XL)                                  0.10       6.38 r
+  encoder/U2/Y (NAND4XL)                                  0.12       6.50 f
+  encoder/U51/Y (OR2XL)                                   0.09       6.59 f
+  encoder/binary_o[5] (onehot2binary)                     0.00       6.59 f
+  code_out[5] (out)                                       0.04       6.63 f
+  data arrival time                                                  6.63
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  output external delay                                  -5.00       5.00
+  data required time                                                 5.00
+  --------------------------------------------------------------------------
+  data required time                                                 5.00
+  data arrival time                                                 -6.63
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.63
+
+
+  Startpoint: code_in[0] (input port clocked by clk)
+  Endpoint: code_out[2]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  enigma_part1       Large                 slow_vdd1v2
+  onehot2binary      Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    5.00       5.00 r
+  code_in[0] (in)                                         0.01       5.01 r
+  U465/Y (INVXL)                                          0.04       5.05 f
+  U19/Y (NAND2X1)                                         0.07       5.12 r
+  U295/Y (NOR2XL)                                         0.05       5.17 f
+  U80/Y (BUFX2)                                           0.08       5.25 f
+  U594/Y (AOI22XL)                                        0.07       5.32 r
+  U688/Y (NAND4XL)                                        0.11       5.44 f
+  U534/Y (OAI211XL)                                       0.11       5.55 r
+  U241/Y (NAND4XL)                                        0.17       5.72 f
+  U312/Y (CLKXOR2X1)                                      0.18       5.90 f
+  C481/Y (XOR2XL)                                         0.12       6.02 r
+  U445/Y (NOR2XL)                                         0.05       6.07 f
+  U444/Y (NAND2XL)                                        0.05       6.12 r
+  U255/Y (NOR3XL)                                         0.06       6.19 f
+  encoder/onehot_i_29_ (onehot2binary)                    0.00       6.19 f
+  encoder/U3/Y (NOR4X1)                                   0.14       6.33 r
+  encoder/U23/Y (NAND4XL)                                 0.12       6.45 f
+  encoder/U50/Y (NOR2XL)                                  0.07       6.52 r
+  encoder/U13/Y (NAND3XL)                                 0.07       6.59 f
+  encoder/binary_o[2] (onehot2binary)                     0.00       6.59 f
+  code_out[2] (out)                                       0.04       6.63 f
+  data arrival time                                                  6.63
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  output external delay                                  -5.00       5.00
+  data required time                                                 5.00
+  --------------------------------------------------------------------------
+  data required time                                                 5.00
+  data arrival time                                                 -6.63
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.63
+
+
+  Startpoint: code_in[0] (input port clocked by clk)
+  Endpoint: code_out[1]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  enigma_part1       Large                 slow_vdd1v2
+  onehot2binary      Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    5.00       5.00 r
+  code_in[0] (in)                                         0.01       5.01 r
+  U465/Y (INVXL)                                          0.04       5.05 f
+  U19/Y (NAND2X1)                                         0.07       5.12 r
+  U295/Y (NOR2XL)                                         0.05       5.17 f
+  U80/Y (BUFX2)                                           0.08       5.25 f
+  U252/Y (AOI2BB2XL)                                      0.06       5.31 r
+  U680/Y (NAND4XL)                                        0.14       5.44 f
+  U574/Y (OAI211XL)                                       0.11       5.56 r
+  U222/Y (NAND4XL)                                        0.16       5.71 f
+  U277/Y (CLKXOR2X1)                                      0.18       5.90 r
+  C348/Y (XOR2XL)                                         0.11       6.01 r
+  U396/Y (NOR2XL)                                         0.05       6.06 f
+  U395/Y (NAND2XL)                                        0.05       6.11 r
+  C345/Y (OR2XL)                                          0.07       6.18 r
+  C344/Y (OR2XL)                                          0.07       6.25 r
+  U749/Y (NOR2XL)                                         0.06       6.30 f
+  encoder/onehot_i_18_ (onehot2binary)                    0.00       6.30 f
+  encoder/U36/Y (NOR4XL)                                  0.09       6.39 r
+  encoder/U27/Y (NAND4XL)                                 0.10       6.49 f
+  encoder/U26/Y (OR2XL)                                   0.09       6.59 f
+  encoder/binary_o[1] (onehot2binary)                     0.00       6.59 f
+  code_out[1] (out)                                       0.04       6.63 f
+  data arrival time                                                  6.63
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  output external delay                                  -5.00       5.00
+  data required time                                                 5.00
+  --------------------------------------------------------------------------
+  data required time                                                 5.00
+  data arrival time                                                 -6.63
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.63
+
+
+1
