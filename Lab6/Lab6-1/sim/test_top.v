@@ -43,11 +43,11 @@ top_pipe top_pipe_U0(
 
 initial begin
 `ifdef GATESIM
-	$fsdbDumpfile("lab7_gatesim.fsdb");
+	$fsdbDumpfile("lab6_gatesim.fsdb");
 	$fsdbDumpvars;
 	$sdf_annotate("../syn/netlist/top_pipe_syn.sdf",top_pipe_U0);
 `else
-	$fsdbDumpfile("lab7_presim.fsdb");
+	$fsdbDumpfile("lab6_presim.fsdb");
 	$fsdbDumpvars;
 `endif
 end

@@ -45,6 +45,16 @@ printvar "variable name"; # 輸出變數內容
 echo $"variable name";    # 輸出變數內容
 ```
 
+## Explore design
+| Setting | Original | Without gated clock | With gated clock |
+| - | - | - | - |
+|Timing | 8.7034|9.3128 | 9.3166|
+| Area| 173441| 173727 |149297 |
+| Area(alu)| 1967| 2011| 2020|
+|Power(Dynamic) |3.7703 |3.78 | 0.786|
+|Power(Leakage) | 0.00448| 0.00447| 0.00393|
+|Power(Total) | 3.775|3.785 |0.790 |
+
 ## .synopsys_dc.setup
 ### 一、整體背景
 
@@ -341,3 +351,5 @@ sh mkdir ./$NET_DIR
 
 
 這裡的 <lib_name> 必須是先前用 define_design_lib 定義過的 library 名稱。
+
+

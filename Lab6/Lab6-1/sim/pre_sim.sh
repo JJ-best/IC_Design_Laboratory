@@ -1,0 +1,1 @@
+vcs -f sim_pre.f -R -full64 -debug_access+all +v2k 
