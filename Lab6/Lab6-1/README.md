@@ -46,6 +46,7 @@ echo $"variable name";    # 輸出變數內容
 ```
 
 ## Explore design
+For 10ns period.
 | Setting | Original | Without gated clock | With gated clock |
 | - | - | - | - |
 |Timing | 8.7034|9.3128 | 9.3166|
@@ -54,6 +55,21 @@ echo $"variable name";    # 輸出變數內容
 |Power(Dynamic) |3.7703 |3.78 | 0.786|
 |Power(Leakage) | 0.00448| 0.00447| 0.00393|
 |Power(Total) | 3.775|3.785 |0.790 |
+
+For compress period.
+| Setting | Without gated clock | With gated clock |
+| - | - | - |
+|Timing | 5.3 | 5.1|
+| Area|  174082 |149736 |
+| Area(alu)| 2352.2761 | 2441|
+|Power(Dynamic) |7.1 | 1.538|
+|Power(Leakage) | 0.00448| 0.00394|
+|Power(Total) | 7.137 |1.54 |
+
+合成在優化時，會優先優化 timing, 其次 area。
+report 內的 arrival time 不是最低，只是你設 clk period, 它會優化直到達到，達不到就放棄。
+但不會進一步優化，會先看所設要優化的方向(timing, area, power..., 一般是power, 再來面積)，去優化。
+所以要找到最低 timing, 需要慢慢改 period 壓到他最低。
 
 ## .synopsys_dc.setup
 ### 一、整體背景
