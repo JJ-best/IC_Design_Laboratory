@@ -1,0 +1,2 @@
+current_design enigma_part4
+clock -name clk -period 10 

@@ -1,0 +1,83 @@
+Command: vcs -R +v2k -full64 -f rtl_sim.f +define+ENCRYPT +define+PAT1 +define+PAT_LEN=29 \
+-debug_access+all -l vcs_encrypt_pat1.log
+*** Using c compiler gcc instead of cc ...
+                         Chronologic VCS (TM)
+         Version N-2017.12_Full64 -- Sun Oct 12 02:00:25 2025
+               Copyright (c) 1991-2017 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file './test_enigma_part4.v'
+Parsing design file '../hdl/enigma_part4.v'
+Top Level Modules:
+       test_enigma_part4
+TimeScale is 1 ns / 1 ps
+Starting vcs inline pass...
+3 modules and 0 UDP read.
+recompiling module test_enigma_part4
+	However, due to incremental compilation, only 1 module needs to be compiled. 
+rm -f _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+ld -shared  -o .//../simv.daidir//_csrc0.so objs/amcQw_d.o 
+rm -f _csrc0.so
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv   -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/simv.daidir/ -Wl,-rpath=./simv.daidir/ \
+-Wl,-rpath='$ORIGIN'/simv.daidir//scsim.db.dir  -rdynamic     _28964_archive_1.so \
+_prev_archive_1.so _csrc0.so  SIM_l.o  _csrc0.so     rmapats_mop.o rmapats.o rmar.o \
+rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o          /usr/cad/synopsys/vcs/2017.12/linux64/lib/libzerosoft_rt_stubs.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libvirsim.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/liberrorinf.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libsnpsmalloc.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/libvfs.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libvcsnew.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/libsimprofile.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libuclinative.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/vcs_tls.o \
+-Wl,-whole-archive /usr/cad/synopsys/vcs/2017.12/linux64/lib/libvcsucli.so -Wl,-no-whole-archive \
+_vcs_pli_stub_.o   /usr/cad/synopsys/vcs/2017.12/linux64/lib/vcs_save_restore_new.o \
+/usr/cad/synopsys/verdi/2019.06/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread \
+-ldl 
+../simv up to date
+Command: /home/u110/u110022124/ICLAB/HW2/part4/sim/./simv +v2k +define+ENCRYPT +define+PAT1 +define+PAT_LEN=29 -a vcs_encrypt_pat1.log
+Chronologic VCS simulator copyright 1991-2017
+Contains Synopsys proprietary information.
+Compiler version N-2017.12_Full64; Runtime version N-2017.12_Full64;  Oct 12 02:00 2025
+[PASS]: PAT           0, golden_pat = 33, code_out = 33
+[PASS]: PAT           1, golden_pat = 1d, code_out = 1d
+[PASS]: PAT           2, golden_pat = 0f, code_out = 0f
+[PASS]: PAT           3, golden_pat = 1f, code_out = 1f
+[PASS]: PAT           4, golden_pat = 2c, code_out = 2c
+[PASS]: PAT           5, golden_pat = 3f, code_out = 3f
+[PASS]: PAT           6, golden_pat = 28, code_out = 28
+[PASS]: PAT           7, golden_pat = 15, code_out = 15
+[PASS]: PAT           8, golden_pat = 00, code_out = 00
+[PASS]: PAT           9, golden_pat = 08, code_out = 08
+[PASS]: PAT          10, golden_pat = 17, code_out = 17
+[PASS]: PAT          11, golden_pat = 02, code_out = 02
+[PASS]: PAT          12, golden_pat = 29, code_out = 29
+[PASS]: PAT          13, golden_pat = 34, code_out = 34
+[PASS]: PAT          14, golden_pat = 28, code_out = 28
+[PASS]: PAT          15, golden_pat = 2d, code_out = 2d
+[PASS]: PAT          16, golden_pat = 1a, code_out = 1a
+[PASS]: PAT          17, golden_pat = 3d, code_out = 3d
+[PASS]: PAT          18, golden_pat = 1d, code_out = 1d
+[PASS]: PAT          19, golden_pat = 07, code_out = 07
+[PASS]: PAT          20, golden_pat = 39, code_out = 39
+[PASS]: PAT          21, golden_pat = 1f, code_out = 1f
+[PASS]: PAT          22, golden_pat = 12, code_out = 12
+[PASS]: PAT          23, golden_pat = 38, code_out = 38
+[PASS]: PAT          24, golden_pat = 01, code_out = 01
+[PASS]: PAT          25, golden_pat = 1b, code_out = 1b
+[PASS]: PAT          26, golden_pat = 3f, code_out = 3f
+[PASS]: PAT          27, golden_pat = 1b, code_out = 1b
+[PASS]: PAT          28, golden_pat = 05, code_out = 05
+
+============= Congratulations =============
+             All patterns pass !
+============= Congratulations =============
+
+$finish called from file "./test_enigma_part4.v", line 336.
+$finish at simulation time              1935000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 1935000 ps
+CPU Time:      0.600 seconds;       Data structure size:   0.1Mb
+Sun Oct 12 02:00:30 2025
+CPU time: 1.329 seconds to compile + .527 seconds to elab + .449 seconds to link + .636 seconds in simulation

@@ -36,10 +36,10 @@ generate
   for (k=63; k>=0; k=k-1) begin : G_ROTOR
 	if (k == 63) begin : G_FIRST
 	  RotorA_cell u_cellk (
-      .param1_i(link[ (k+0) & 6'h3f ]), 
-	  .param2_i(link[ (k+1) & 6'h3f ]), 
-	  .param3_i(link[ (k+2) & 6'h3f ]), 
-	  .param4_i(link[ (k+3) & 6'h3f ]), 
+      .param1_i(link[ (k+0) % pRotorA_LEN ]), 
+	  .param2_i(link[ (k+1) % pRotorA_LEN ]), 
+	  .param3_i(link[ (k+2) % pRotorA_LEN ]), 
+	  .param4_i(link[ (k+3) % pRotorA_LEN ]), 
       .shift_i (code_in),
       .load_i  (load),
       .encrypt_i(encrypt),
@@ -50,10 +50,10 @@ generate
     );
 	end else begin : G_OTHER
 	  RotorA_cell u_cellk (
-      .param1_i(link[ (k+0) & 6'h3f ]), 
-	  .param2_i(link[ (k+1) & 6'h3f ]), 
-	  .param3_i(link[ (k+2) & 6'h3f ]), 
-	  .param4_i(link[ (k+3) & 6'h3f ]), 
+      .param1_i(link[ (k+0) % pRotorA_LEN ]), 
+	  .param2_i(link[ (k+1) % pRotorA_LEN ]), 
+	  .param3_i(link[ (k+2) % pRotorA_LEN ]), 
+	  .param4_i(link[ (k+3) % pRotorA_LEN ]), 
       .shift_i (link[k+1]),
       .load_i  (load),
       .encrypt_i(encrypt),
@@ -150,7 +150,7 @@ always @(*) begin
 end
 
 always @(posedge clk) begin
-	if (table_idx == 2'b00) begin
+	if (table_idx == 2'b00 | encrypt_i == 1) begin
 	  shift_o <= reg_i;
 	end else begin
 	  shift_o <= shift_o;

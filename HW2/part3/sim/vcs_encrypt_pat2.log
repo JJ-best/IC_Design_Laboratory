@@ -1,0 +1,165 @@
+Command: vcs -R +v2k -full64 -f rtl_sim.f +define+ENCRYPT +define+PAT2 +define+PAT_LEN=111 \
+-debug_access+all -l vcs_encrypt_pat2.log
+*** Using c compiler gcc instead of cc ...
+                         Chronologic VCS (TM)
+         Version N-2017.12_Full64 -- Sun Oct 12 17:06:54 2025
+               Copyright (c) 1991-2017 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file './test_enigma_part3.v'
+Parsing design file '../hdl/enigma_part3.v'
+Top Level Modules:
+       test_enigma_part3
+TimeScale is 1 ns / 1 ps
+Starting vcs inline pass...
+3 modules and 0 UDP read.
+recompiling module test_enigma_part3
+	However, due to incremental compilation, only 1 module needs to be compiled. 
+rm -f _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+ld -shared  -o .//../simv.daidir//_csrc0.so objs/amcQw_d.o 
+rm -f _csrc0.so
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv   -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/simv.daidir/ -Wl,-rpath=./simv.daidir/ \
+-Wl,-rpath='$ORIGIN'/simv.daidir//scsim.db.dir  -rdynamic     _2409_archive_1.so \
+_prev_archive_1.so _csrc0.so  SIM_l.o  _csrc0.so     rmapats_mop.o rmapats.o rmar.o \
+rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o          /usr/cad/synopsys/vcs/2017.12/linux64/lib/libzerosoft_rt_stubs.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libvirsim.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/liberrorinf.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libsnpsmalloc.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/libvfs.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libvcsnew.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/libsimprofile.so \
+/usr/cad/synopsys/vcs/2017.12/linux64/lib/libuclinative.so /usr/cad/synopsys/vcs/2017.12/linux64/lib/vcs_tls.o \
+-Wl,-whole-archive /usr/cad/synopsys/vcs/2017.12/linux64/lib/libvcsucli.so -Wl,-no-whole-archive \
+_vcs_pli_stub_.o   /usr/cad/synopsys/vcs/2017.12/linux64/lib/vcs_save_restore_new.o \
+/usr/cad/synopsys/verdi/2019.06/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread \
+-ldl 
+../simv up to date
+Command: /home/u110/u110022124/ICLAB/HW2/part3/sim/./simv +v2k +define+ENCRYPT +define+PAT2 +define+PAT_LEN=111 -a vcs_encrypt_pat2.log
+Chronologic VCS simulator copyright 1991-2017
+Contains Synopsys proprietary information.
+Compiler version N-2017.12_Full64; Runtime version N-2017.12_Full64;  Oct 12 17:06 2025
+[PASS]: PAT           0, golden_pat = 0c, code_out = 0c
+[PASS]: PAT           1, golden_pat = 3d, code_out = 3d
+[PASS]: PAT           2, golden_pat = 11, code_out = 11
+[PASS]: PAT           3, golden_pat = 0d, code_out = 0d
+[PASS]: PAT           4, golden_pat = 0d, code_out = 0d
+[PASS]: PAT           5, golden_pat = 0d, code_out = 0d
+[PASS]: PAT           6, golden_pat = 28, code_out = 28
+[PASS]: PAT           7, golden_pat = 1e, code_out = 1e
+[PASS]: PAT           8, golden_pat = 26, code_out = 26
+[PASS]: PAT           9, golden_pat = 16, code_out = 16
+[PASS]: PAT          10, golden_pat = 3f, code_out = 3f
+[PASS]: PAT          11, golden_pat = 3a, code_out = 3a
+[PASS]: PAT          12, golden_pat = 3c, code_out = 3c
+[PASS]: PAT          13, golden_pat = 13, code_out = 13
+[PASS]: PAT          14, golden_pat = 09, code_out = 09
+[PASS]: PAT          15, golden_pat = 29, code_out = 29
+[PASS]: PAT          16, golden_pat = 0f, code_out = 0f
+[PASS]: PAT          17, golden_pat = 09, code_out = 09
+[PASS]: PAT          18, golden_pat = 32, code_out = 32
+[PASS]: PAT          19, golden_pat = 18, code_out = 18
+[PASS]: PAT          20, golden_pat = 25, code_out = 25
+[PASS]: PAT          21, golden_pat = 12, code_out = 12
+[PASS]: PAT          22, golden_pat = 24, code_out = 24
+[PASS]: PAT          23, golden_pat = 1f, code_out = 1f
+[PASS]: PAT          24, golden_pat = 1d, code_out = 1d
+[PASS]: PAT          25, golden_pat = 07, code_out = 07
+[PASS]: PAT          26, golden_pat = 12, code_out = 12
+[PASS]: PAT          27, golden_pat = 30, code_out = 30
+[PASS]: PAT          28, golden_pat = 3b, code_out = 3b
+[PASS]: PAT          29, golden_pat = 13, code_out = 13
+[PASS]: PAT          30, golden_pat = 33, code_out = 33
+[PASS]: PAT          31, golden_pat = 1e, code_out = 1e
+[PASS]: PAT          32, golden_pat = 13, code_out = 13
+[PASS]: PAT          33, golden_pat = 31, code_out = 31
+[PASS]: PAT          34, golden_pat = 0f, code_out = 0f
+[PASS]: PAT          35, golden_pat = 22, code_out = 22
+[PASS]: PAT          36, golden_pat = 1a, code_out = 1a
+[PASS]: PAT          37, golden_pat = 04, code_out = 04
+[PASS]: PAT          38, golden_pat = 22, code_out = 22
+[PASS]: PAT          39, golden_pat = 38, code_out = 38
+[PASS]: PAT          40, golden_pat = 30, code_out = 30
+[PASS]: PAT          41, golden_pat = 1c, code_out = 1c
+[PASS]: PAT          42, golden_pat = 3c, code_out = 3c
+[PASS]: PAT          43, golden_pat = 1a, code_out = 1a
+[PASS]: PAT          44, golden_pat = 0f, code_out = 0f
+[PASS]: PAT          45, golden_pat = 39, code_out = 39
+[PASS]: PAT          46, golden_pat = 2e, code_out = 2e
+[PASS]: PAT          47, golden_pat = 35, code_out = 35
+[PASS]: PAT          48, golden_pat = 09, code_out = 09
+[PASS]: PAT          49, golden_pat = 0c, code_out = 0c
+[PASS]: PAT          50, golden_pat = 1b, code_out = 1b
+[PASS]: PAT          51, golden_pat = 34, code_out = 34
+[PASS]: PAT          52, golden_pat = 1d, code_out = 1d
+[PASS]: PAT          53, golden_pat = 33, code_out = 33
+[PASS]: PAT          54, golden_pat = 2b, code_out = 2b
+[PASS]: PAT          55, golden_pat = 21, code_out = 21
+[PASS]: PAT          56, golden_pat = 29, code_out = 29
+[PASS]: PAT          57, golden_pat = 29, code_out = 29
+[PASS]: PAT          58, golden_pat = 09, code_out = 09
+[PASS]: PAT          59, golden_pat = 04, code_out = 04
+[PASS]: PAT          60, golden_pat = 03, code_out = 03
+[PASS]: PAT          61, golden_pat = 24, code_out = 24
+[PASS]: PAT          62, golden_pat = 0b, code_out = 0b
+[PASS]: PAT          63, golden_pat = 09, code_out = 09
+[PASS]: PAT          64, golden_pat = 14, code_out = 14
+[PASS]: PAT          65, golden_pat = 1d, code_out = 1d
+[PASS]: PAT          66, golden_pat = 09, code_out = 09
+[PASS]: PAT          67, golden_pat = 2b, code_out = 2b
+[PASS]: PAT          68, golden_pat = 3b, code_out = 3b
+[PASS]: PAT          69, golden_pat = 1d, code_out = 1d
+[PASS]: PAT          70, golden_pat = 0a, code_out = 0a
+[PASS]: PAT          71, golden_pat = 13, code_out = 13
+[PASS]: PAT          72, golden_pat = 14, code_out = 14
+[PASS]: PAT          73, golden_pat = 1c, code_out = 1c
+[PASS]: PAT          74, golden_pat = 35, code_out = 35
+[PASS]: PAT          75, golden_pat = 2e, code_out = 2e
+[PASS]: PAT          76, golden_pat = 13, code_out = 13
+[PASS]: PAT          77, golden_pat = 04, code_out = 04
+[PASS]: PAT          78, golden_pat = 0d, code_out = 0d
+[PASS]: PAT          79, golden_pat = 05, code_out = 05
+[PASS]: PAT          80, golden_pat = 11, code_out = 11
+[PASS]: PAT          81, golden_pat = 2c, code_out = 2c
+[PASS]: PAT          82, golden_pat = 36, code_out = 36
+[PASS]: PAT          83, golden_pat = 2e, code_out = 2e
+[PASS]: PAT          84, golden_pat = 04, code_out = 04
+[PASS]: PAT          85, golden_pat = 39, code_out = 39
+[PASS]: PAT          86, golden_pat = 2c, code_out = 2c
+[PASS]: PAT          87, golden_pat = 2b, code_out = 2b
+[PASS]: PAT          88, golden_pat = 17, code_out = 17
+[PASS]: PAT          89, golden_pat = 33, code_out = 33
+[PASS]: PAT          90, golden_pat = 03, code_out = 03
+[PASS]: PAT          91, golden_pat = 07, code_out = 07
+[PASS]: PAT          92, golden_pat = 05, code_out = 05
+[PASS]: PAT          93, golden_pat = 3c, code_out = 3c
+[PASS]: PAT          94, golden_pat = 03, code_out = 03
+[PASS]: PAT          95, golden_pat = 3d, code_out = 3d
+[PASS]: PAT          96, golden_pat = 29, code_out = 29
+[PASS]: PAT          97, golden_pat = 30, code_out = 30
+[PASS]: PAT          98, golden_pat = 17, code_out = 17
+[PASS]: PAT          99, golden_pat = 15, code_out = 15
+[PASS]: PAT         100, golden_pat = 23, code_out = 23
+[PASS]: PAT         101, golden_pat = 26, code_out = 26
+[PASS]: PAT         102, golden_pat = 36, code_out = 36
+[PASS]: PAT         103, golden_pat = 2e, code_out = 2e
+[PASS]: PAT         104, golden_pat = 10, code_out = 10
+[PASS]: PAT         105, golden_pat = 3a, code_out = 3a
+[PASS]: PAT         106, golden_pat = 10, code_out = 10
+[PASS]: PAT         107, golden_pat = 20, code_out = 20
+[PASS]: PAT         108, golden_pat = 35, code_out = 35
+[PASS]: PAT         109, golden_pat = 17, code_out = 17
+[PASS]: PAT         110, golden_pat = 3e, code_out = 3e
+
+============= Congratulations =============
+             All patterns pass !
+============= Congratulations =============
+
+$finish called from file "./test_enigma_part3.v", line 205.
+$finish at simulation time              2115000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 2115000 ps
+CPU Time:      0.530 seconds;       Data structure size:   0.1Mb
+Sun Oct 12 17:06:59 2025
+CPU time: .864 seconds to compile + .499 seconds to elab + .436 seconds to link + .567 seconds in simulation
