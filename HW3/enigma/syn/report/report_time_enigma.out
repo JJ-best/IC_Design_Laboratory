@@ -1,0 +1,102 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : enigma
+Version: R-2020.09-SP5
+Date   : Wed Oct 15 16:40:13 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: plug_forward_o_reg_reg_5_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: plug_inverse_i_reg_reg_1_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  enigma             Large                 slow_vdd1v2
+  onehot2binary_64_mydesign_0
+                     Small                 slow_vdd1v2
+  onehot2binary_64_mydesign_1
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                 0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  plug_forward_o_reg_reg_5_/CK (DFFQXL)                 0.0000     0.0000 r
+  plug_forward_o_reg_reg_5_/Q (DFFQXL)                  0.1067     0.1067 r
+  U3259/Y (INVXL)                                       0.0541     0.1608 f
+  U3270/Y (NAND2XL)                                     0.0467     0.2075 r
+  U2203/Y (NOR2XL)                                      0.0878     0.2953 f
+  U2401/Y (BUFX2)                                       0.1005     0.3958 f
+  U3323/Y (AOI22XL)                                     0.0657     0.4614 r
+  U3327/Y (NAND4XL)                                     0.1273     0.5888 f
+  U3332/Y (AOI22XL)                                     0.1064     0.6952 r
+  U3367/Y (NAND4XL)                                     0.1659     0.8611 f
+  U3473/Y (INVXL)                                       0.0992     0.9603 r
+  U3474/Y (OAI222X1)                                    0.1598     1.1201 f
+  U3077/Y (INVXL)                                       0.0987     1.2188 r
+  U3487/Y (NOR2X1)                                      0.1078     1.3266 f
+  U2495/Y (BUFX2)                                       0.0888     1.4154 f
+  U3586/Y (AOI22XL)                                     0.0655     1.4810 r
+  U3588/Y (NAND4XL)                                     0.1273     1.6083 f
+  U3594/Y (AOI22XL)                                     0.1064     1.7147 r
+  U3628/Y (NAND4XL)                                     0.1521     1.8668 f
+  U3478/Y (XOR2X2)                                      0.1796     2.0464 r
+  U2055/Y (BUFX2)                                       0.0906     2.1370 r
+  U2035/Y (BUFX2)                                       0.0871     2.2241 r
+  U4471/Y (AOI22XL)                                     0.0652     2.2893 f
+  U4472/Y (OAI221XL)                                    0.0721     2.3614 r
+  U4473/Y (AOI21XL)                                     0.0789     2.4402 f
+  U4474/Y (OAI211XL)                                    0.0612     2.5015 r
+  U4475/Y (AOI221XL)                                    0.0721     2.5735 f
+  encoder64_B/onehot_i_30_ (onehot2binary_64_mydesign_0)
+                                                        0.0000     2.5735 f
+  encoder64_B/U26/Y (NOR4XL)                            0.1273     2.7009 r
+  encoder64_B/U27/Y (NAND4XL)                           0.1369     2.8378 f
+  encoder64_B/U34/Y (NOR2BXL)                           0.0778     2.9156 r
+  encoder64_B/U35/Y (NAND2XL)                           0.0643     2.9798 f
+  encoder64_B/binary_o[2] (onehot2binary_64_mydesign_0)
+                                                        0.0000     2.9798 f
+  U3229/Y (AOI22XL)                                     0.0700     3.0498 r
+  U3230/Y (NAND2BXL)                                    0.0826     3.1324 f
+  U2969/Y (AOI2BB1X1)                                   0.1603     3.2927 r
+  U3231/Y (BUFX3)                                       0.1268     3.4195 r
+  U3044/Y (INVXL)                                       0.0496     3.4692 f
+  U3045/Y (INVX1)                                       0.0845     3.5537 r
+  U4312/Y (OAI22XL)                                     0.1017     3.6554 f
+  U4313/Y (AOI221XL)                                    0.1006     3.7561 r
+  U4314/Y (OAI211XL)                                    0.1194     3.8755 f
+  U4315/Y (AOI221XL)                                    0.1149     3.9904 r
+  encoder64_A/onehot_i_47_ (onehot2binary_64_mydesign_1)
+                                                        0.0000     3.9904 r
+  encoder64_A/U23/Y (NOR4XL)                            0.0831     4.0735 f
+  encoder64_A/U12/Y (NAND4XL)                           0.0529     4.1264 r
+  encoder64_A/U18/Y (NOR4BXL)                           0.0416     4.1681 f
+  encoder64_A/U44/Y (NAND2XL)                           0.0356     4.2037 r
+  encoder64_A/binary_o[1] (onehot2binary_64_mydesign_1)
+                                                        0.0000     4.2037 r
+  plug_inverse_i_reg_reg_1_/D (DFFQXL)                  0.0310     4.2347 r
+  data arrival time                                                4.2347
+
+  clock clk (rise edge)                                 4.3000     4.3000
+  clock network delay (ideal)                           0.0000     4.3000
+  plug_inverse_i_reg_reg_1_/CK (DFFQXL)                 0.0000     4.3000 r
+  library setup time                                   -0.0613     4.2387
+  data required time                                               4.2387
+  --------------------------------------------------------------------------
+  data required time                                               4.2387
+  data arrival time                                               -4.2347
+  --------------------------------------------------------------------------
+  slack (MET)                                                      0.0040
+
+
+1

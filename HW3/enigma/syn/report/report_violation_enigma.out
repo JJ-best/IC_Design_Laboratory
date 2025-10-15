@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : enigma
+Version: R-2020.09-SP5
+Date   : Wed Oct 15 16:40:14 2025
+****************************************
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   enigma                       0.00       19561.72       -19561.72 (VIOLATED)
+
+
+1
