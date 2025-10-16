@@ -173,10 +173,25 @@ assign shift_value_t = (crypt_mode_reg == 1'b0)? RotorA_forward_o[1:0] : RotorA_
 // --- inverpath ---
 // bitwise and to detect equality between xor_o and each link[j]
 // generate a one-hot code
+reg [(pData_LEN-1):0]RotorA_inverse_i_reg;
+reg RotorA_inverse_i_valid;
+always @(posedge clk) begin
+  RotorA_inverse_i_reg <= RotorA_inverse_i;
+  RotorA_inverse_i_valid <= plug_forward_valid;
+end
+
+reg [(pData_LEN-1):0]RotorA_reg[0:(pRotorA_LEN-1)];
+integer f;
+always @(posedge clk) begin
+  for (f=0; f<pRotorA_LEN; f=f+1) begin
+    RotorA_reg[f] <= link[f];
+  end
+end
+
 genvar j;
 generate
 	for (j = 0; j < pRotorA_LEN; j = j + 1) begin : GEN_MATCH
-	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i ^ link[j]);
+	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i_reg ^ RotorA_reg[j]);
 	end
 endgenerate
 
@@ -186,7 +201,7 @@ onehot2binary_64 encoder64_A(
 );
 always @(posedge clk) begin
   plug_inverse_i_reg <= plug_inverse_i;
-  plug_inverse_valid <= plug_forward_valid;
+  plug_inverse_valid <= RotorA_inverse_i_valid;
 end
 // --- inverpath ---
 // ----- Rotor A ----- //

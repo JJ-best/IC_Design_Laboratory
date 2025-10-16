@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : enigma
 Version: R-2020.09-SP5
-Date   : Wed Oct 15 16:40:14 2025
+Date   : Thu Oct 16 14:53:10 2025
 ****************************************
 
 
@@ -113,10 +113,6 @@ RotorA_cell_mydesign_22
                        Small             slow_vdd1v2
 RotorA_cell_mydesign_21
                        Small             slow_vdd1v2
-RotorA_cell_mydesign_20
-                       Small             slow_vdd1v2
-RotorA_cell_mydesign_19
-                       Small             slow_vdd1v2
 RotorA_cell_mydesign_18
                        Small             slow_vdd1v2
 RotorA_cell_mydesign_17
@@ -124,8 +120,6 @@ RotorA_cell_mydesign_17
 RotorA_cell_mydesign_16
                        Small             slow_vdd1v2
 RotorA_cell_mydesign_15
-                       Small             slow_vdd1v2
-RotorA_cell_mydesign_14
                        Small             slow_vdd1v2
 RotorA_cell_mydesign_13
                        Small             slow_vdd1v2
@@ -167,17 +161,9 @@ RotorB_cell_mydesign_55
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_54
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_53
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_52
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_51
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_50
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_49
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_48
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_47
                        Small             slow_vdd1v2
@@ -185,25 +171,15 @@ RotorB_cell_mydesign_46
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_45
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_44
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_43
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_42
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_41
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_40
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_39
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_38
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_37
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_36
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_35
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_34
                        Small             slow_vdd1v2
@@ -221,23 +197,15 @@ RotorB_cell_mydesign_28
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_27
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_26
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_25
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_24
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_23
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_22
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_21
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_20
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_19
-                       Small             slow_vdd1v2
-RotorB_cell_mydesign_18
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_17
                        Small             slow_vdd1v2
@@ -247,33 +215,25 @@ RotorB_cell_mydesign_15
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_14
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_13
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_12
                        Small             slow_vdd1v2
 RotorB_cell_mydesign_11
                        Small             slow_vdd1v2
-RotorB_cell_mydesign_10
-                       Small             slow_vdd1v2
 RotorB_cell_mydesign_9 Small             slow_vdd1v2
-RotorB_cell_mydesign_8 Small             slow_vdd1v2
 RotorB_cell_mydesign_7 Small             slow_vdd1v2
-RotorB_cell_mydesign_6 Small             slow_vdd1v2
-RotorB_cell_mydesign_5 Small             slow_vdd1v2
-RotorB_cell_mydesign_4 Small             slow_vdd1v2
-RotorB_cell_mydesign_3 Small             slow_vdd1v2
 RotorB_cell_mydesign_2 Small             slow_vdd1v2
-RotorB_cell_mydesign_1 Small             slow_vdd1v2
 RotorB_cell_mydesign_0 Small             slow_vdd1v2
 onehot2binary_64_mydesign_0
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_21
                        Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_enigma_mydesign_1
-                       Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_63
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_63
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_9
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_enigma_mydesign_1
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_2
                        Small             slow_vdd1v2
@@ -330,8 +290,6 @@ SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_6
 SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_7
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_8
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_9
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_RotorB_cell_mydesign_0_mydesign_10
                        Small             slow_vdd1v2
@@ -565,6 +523,48 @@ SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_61
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_RotorA_cell_mydesign_0_mydesign_62
                        Small             slow_vdd1v2
+RotorB_cell_mydesign_6 Small             slow_vdd1v2
+RotorB_cell_mydesign_19
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_10
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_18
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_22
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_26
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_36
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_53
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_44
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_14
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_19
+                       Small             slow_vdd1v2
+RotorA_cell_mydesign_20
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_1 Small             slow_vdd1v2
+RotorB_cell_mydesign_5 Small             slow_vdd1v2
+RotorB_cell_mydesign_13
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_35
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_37
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_40
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_48
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_50
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_51
+                       Small             slow_vdd1v2
+RotorB_cell_mydesign_3 Small             slow_vdd1v2
+RotorB_cell_mydesign_4 Small             slow_vdd1v2
+RotorB_cell_mydesign_8 Small             slow_vdd1v2
 
 
 Global Operating Voltage = 1.08 
@@ -580,205 +580,205 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-enigma                                    0.118    0.435 5.02e+05    0.553 100.0
+enigma                                    0.144    0.827 5.49e+05    0.971 100.0
   encoder64_B (onehot2binary_64_mydesign_0)
-                                       4.49e-04 1.25e-03 2.58e+03 1.70e-03   0.3
-  U0 (RotorB_cell_mydesign_0)          5.19e-04 3.15e-03 2.71e+03 3.67e-03   0.7
-  U1 (RotorB_cell_mydesign_1)          5.38e-04 3.20e-03 2.69e+03 3.74e-03   0.7
-  U2 (RotorB_cell_mydesign_2)          5.26e-04 3.09e-03 2.71e+03 3.61e-03   0.7
-  U3 (RotorB_cell_mydesign_3)          5.30e-04 3.10e-03 2.71e+03 3.63e-03   0.7
-  U4 (RotorB_cell_mydesign_4)          5.24e-04 3.06e-03 2.71e+03 3.58e-03   0.6
-  U5 (RotorB_cell_mydesign_5)          5.23e-04 3.01e-03 2.69e+03 3.54e-03   0.6
-  U6 (RotorB_cell_mydesign_6)          5.17e-04 3.00e-03 2.71e+03 3.52e-03   0.6
-  U7 (RotorB_cell_mydesign_7)          5.18e-04 2.98e-03 2.71e+03 3.50e-03   0.6
-  U8 (RotorB_cell_mydesign_8)          5.12e-04 3.01e-03 2.71e+03 3.52e-03   0.6
-  U9 (RotorB_cell_mydesign_9)          5.25e-04 3.09e-03 2.71e+03 3.61e-03   0.7
-  U10 (RotorB_cell_mydesign_10)        5.24e-04 3.10e-03 2.71e+03 3.62e-03   0.7
-  U11 (RotorB_cell_mydesign_11)        5.17e-04 3.07e-03 2.67e+03 3.59e-03   0.7
-  U12 (RotorB_cell_mydesign_12)        5.23e-04 3.05e-03 2.71e+03 3.57e-03   0.6
-  U13 (RotorB_cell_mydesign_13)        5.18e-04 3.04e-03 2.71e+03 3.57e-03   0.6
-  U14 (RotorB_cell_mydesign_14)        5.26e-04 3.05e-03 2.69e+03 3.58e-03   0.6
-  U15 (RotorB_cell_mydesign_15)        5.24e-04 3.05e-03 2.71e+03 3.58e-03   0.6
-  U16 (RotorB_cell_mydesign_16)        5.51e-04 3.15e-03 2.71e+03 3.70e-03   0.7
-  U17 (RotorB_cell_mydesign_17)        5.26e-04 3.05e-03 2.71e+03 3.58e-03   0.6
-  U18 (RotorB_cell_mydesign_18)        5.47e-04 3.15e-03 2.71e+03 3.70e-03   0.7
-  U19 (RotorB_cell_mydesign_19)        5.47e-04 3.06e-03 2.71e+03 3.61e-03   0.7
-  U20 (RotorB_cell_mydesign_20)        5.10e-04 2.96e-03 2.69e+03 3.47e-03   0.6
-  U21 (RotorB_cell_mydesign_21)        5.28e-04 3.04e-03 2.69e+03 3.57e-03   0.6
-  U22 (RotorB_cell_mydesign_22)        5.17e-04 2.95e-03 2.69e+03 3.47e-03   0.6
-  U23 (RotorB_cell_mydesign_23)        5.28e-04 3.07e-03 2.71e+03 3.60e-03   0.7
-  U24 (RotorB_cell_mydesign_24)        5.44e-04 3.11e-03 2.71e+03 3.65e-03   0.7
-  U25 (RotorB_cell_mydesign_25)        5.47e-04 3.05e-03 2.69e+03 3.59e-03   0.7
-  U26 (RotorB_cell_mydesign_26)        5.29e-04 3.05e-03 2.65e+03 3.58e-03   0.6
-  U27 (RotorB_cell_mydesign_27)        4.91e-04 3.28e-03 2.69e+03 3.77e-03   0.7
-  U28 (RotorB_cell_mydesign_28)        4.79e-04 3.02e-03 2.68e+03 3.50e-03   0.6
-  U29 (RotorB_cell_mydesign_29)        4.73e-04 3.10e-03 2.69e+03 3.58e-03   0.6
-  U30 (RotorB_cell_mydesign_30)        4.80e-04 3.19e-03 2.67e+03 3.67e-03   0.7
-  U31 (RotorB_cell_mydesign_31)        4.83e-04 3.07e-03 2.69e+03 3.56e-03   0.6
-  U32 (RotorB_cell_mydesign_32)        4.66e-04 3.08e-03 2.70e+03 3.55e-03   0.6
-  U33 (RotorB_cell_mydesign_33)        5.39e-04 3.10e-03 2.71e+03 3.64e-03   0.7
-  U34 (RotorB_cell_mydesign_34)        5.24e-04 3.02e-03 2.71e+03 3.55e-03   0.6
-  U35 (RotorB_cell_mydesign_35)        5.25e-04 3.02e-03 2.69e+03 3.55e-03   0.6
-  U36 (RotorB_cell_mydesign_36)        5.38e-04 2.99e-03 2.69e+03 3.53e-03   0.6
-  U37 (RotorB_cell_mydesign_37)        5.29e-04 3.04e-03 2.71e+03 3.57e-03   0.6
-  U38 (RotorB_cell_mydesign_38)        5.31e-04 3.10e-03 2.71e+03 3.63e-03   0.7
-  U39 (RotorB_cell_mydesign_39)        5.27e-04 3.07e-03 2.71e+03 3.60e-03   0.7
-  U40 (RotorB_cell_mydesign_40)        5.25e-04 3.08e-03 2.71e+03 3.61e-03   0.7
-  U41 (RotorB_cell_mydesign_41)        5.19e-04 3.07e-03 2.67e+03 3.59e-03   0.6
-  U42 (RotorB_cell_mydesign_42)        5.32e-04 3.11e-03 2.71e+03 3.65e-03   0.7
-  U43 (RotorB_cell_mydesign_43)        5.27e-04 3.07e-03 2.71e+03 3.60e-03   0.7
-  U44 (RotorB_cell_mydesign_44)        5.19e-04 2.97e-03 2.69e+03 3.49e-03   0.6
-  U45 (RotorB_cell_mydesign_45)        5.22e-04 2.98e-03 2.69e+03 3.50e-03   0.6
-  U46 (RotorB_cell_mydesign_46)        5.30e-04 3.07e-03 2.69e+03 3.60e-03   0.7
-  U47 (RotorB_cell_mydesign_47)        5.50e-04 3.16e-03 2.71e+03 3.71e-03   0.7
-  U48 (RotorB_cell_mydesign_48)        5.18e-04 3.03e-03 2.69e+03 3.55e-03   0.6
-  U49 (RotorB_cell_mydesign_49)        5.32e-04 3.11e-03 2.71e+03 3.64e-03   0.7
-  U50 (RotorB_cell_mydesign_50)        5.50e-04 3.12e-03 2.71e+03 3.67e-03   0.7
-  U51 (RotorB_cell_mydesign_51)        5.42e-04 3.11e-03 2.71e+03 3.66e-03   0.7
-  U52 (RotorB_cell_mydesign_52)        5.48e-04 3.31e-03 2.71e+03 3.86e-03   0.7
-  U53 (RotorB_cell_mydesign_53)        5.29e-04 3.04e-03 2.71e+03 3.58e-03   0.6
-  U54 (RotorB_cell_mydesign_54)        5.25e-04 3.01e-03 2.69e+03 3.53e-03   0.6
-  U55 (RotorB_cell_mydesign_55)        5.34e-04 3.05e-03 2.69e+03 3.59e-03   0.6
-  U56 (RotorB_cell_mydesign_56)        5.38e-04 3.07e-03 2.65e+03 3.61e-03   0.7
-  U57 (RotorB_cell_mydesign_57)        5.53e-04 3.09e-03 2.71e+03 3.64e-03   0.7
-  U58 (RotorB_cell_mydesign_58)        5.53e-04 3.18e-03 2.71e+03 3.74e-03   0.7
-  U59 (RotorB_cell_mydesign_59)        5.51e-04 3.18e-03 2.71e+03 3.73e-03   0.7
-  U60 (RotorB_cell_mydesign_60)        5.69e-04 3.18e-03 2.70e+03 3.75e-03   0.7
-  U61 (RotorB_cell_mydesign_61)        5.70e-04 3.13e-03 2.68e+03 3.71e-03   0.7
-  U62 (RotorB_cell_mydesign_62)        5.78e-04 3.22e-03 2.70e+03 3.80e-03   0.7
-  U63 (RotorB_cell_mydesign_63)        6.11e-04 3.45e-03 2.68e+03 4.07e-03   0.7
+                                       8.17e-04 2.42e-03 2.57e+03 3.24e-03   0.3
+  U0 (RotorB_cell_mydesign_0)          6.56e-04 4.13e-03 2.67e+03 4.78e-03   0.5
+  U1 (RotorB_cell_mydesign_1)          7.05e-04 4.30e-03 2.69e+03 5.01e-03   0.5
+  U2 (RotorB_cell_mydesign_2)          6.91e-04 4.15e-03 2.69e+03 4.84e-03   0.5
+  U3 (RotorB_cell_mydesign_3)          6.84e-04 4.02e-03 2.69e+03 4.70e-03   0.5
+  U4 (RotorB_cell_mydesign_4)          6.86e-04 4.03e-03 2.69e+03 4.72e-03   0.5
+  U5 (RotorB_cell_mydesign_5)          6.80e-04 4.05e-03 2.71e+03 4.74e-03   0.5
+  U6 (RotorB_cell_mydesign_6)          6.79e-04 4.00e-03 2.69e+03 4.69e-03   0.5
+  U7 (RotorB_cell_mydesign_7)          6.86e-04 4.09e-03 2.71e+03 4.78e-03   0.5
+  U8 (RotorB_cell_mydesign_8)          6.77e-04 4.04e-03 2.69e+03 4.72e-03   0.5
+  U9 (RotorB_cell_mydesign_9)          6.88e-04 4.13e-03 2.65e+03 4.82e-03   0.5
+  U10 (RotorB_cell_mydesign_10)        7.10e-04 4.31e-03 2.69e+03 5.02e-03   0.5
+  U11 (RotorB_cell_mydesign_11)        7.25e-04 4.18e-03 2.71e+03 4.91e-03   0.5
+  U12 (RotorB_cell_mydesign_12)        7.02e-04 4.14e-03 2.69e+03 4.85e-03   0.5
+  U13 (RotorB_cell_mydesign_13)        7.34e-04 4.27e-03 2.71e+03 5.01e-03   0.5
+  U14 (RotorB_cell_mydesign_14)        7.15e-04 4.22e-03 2.67e+03 4.94e-03   0.5
+  U15 (RotorB_cell_mydesign_15)        7.31e-04 4.16e-03 2.67e+03 4.89e-03   0.5
+  U16 (RotorB_cell_mydesign_16)        6.91e-04 4.09e-03 2.69e+03 4.78e-03   0.5
+  U17 (RotorB_cell_mydesign_17)        6.87e-04 4.15e-03 2.71e+03 4.84e-03   0.5
+  U18 (RotorB_cell_mydesign_18)        7.02e-04 4.19e-03 2.69e+03 4.89e-03   0.5
+  U19 (RotorB_cell_mydesign_19)        6.84e-04 3.97e-03 2.69e+03 4.66e-03   0.5
+  U20 (RotorB_cell_mydesign_20)        6.62e-04 4.03e-03 2.69e+03 4.70e-03   0.5
+  U21 (RotorB_cell_mydesign_21)        7.14e-04 4.27e-03 2.71e+03 4.99e-03   0.5
+  U22 (RotorB_cell_mydesign_22)        7.10e-04 4.15e-03 2.69e+03 4.86e-03   0.5
+  U23 (RotorB_cell_mydesign_23)        7.13e-04 4.15e-03 2.69e+03 4.87e-03   0.5
+  U24 (RotorB_cell_mydesign_24)        7.00e-04 4.10e-03 2.69e+03 4.81e-03   0.5
+  U25 (RotorB_cell_mydesign_25)        7.23e-04 4.19e-03 2.71e+03 4.92e-03   0.5
+  U26 (RotorB_cell_mydesign_26)        7.23e-04 4.21e-03 2.71e+03 4.94e-03   0.5
+  U27 (RotorB_cell_mydesign_27)        6.55e-04 4.46e-03 2.69e+03 5.12e-03   0.5
+  U28 (RotorB_cell_mydesign_28)        6.53e-04 4.23e-03 2.67e+03 4.88e-03   0.5
+  U29 (RotorB_cell_mydesign_29)        6.45e-04 4.24e-03 2.65e+03 4.88e-03   0.5
+  U30 (RotorB_cell_mydesign_30)        6.62e-04 4.44e-03 2.63e+03 5.10e-03   0.5
+  U31 (RotorB_cell_mydesign_31)        6.92e-04 4.30e-03 2.69e+03 4.99e-03   0.5
+  U32 (RotorB_cell_mydesign_32)        6.31e-04 4.15e-03 2.69e+03 4.79e-03   0.5
+  U33 (RotorB_cell_mydesign_33)        6.82e-04 4.03e-03 2.71e+03 4.72e-03   0.5
+  U34 (RotorB_cell_mydesign_34)        6.96e-04 4.11e-03 2.69e+03 4.81e-03   0.5
+  U35 (RotorB_cell_mydesign_35)        7.08e-04 4.16e-03 2.69e+03 4.87e-03   0.5
+  U36 (RotorB_cell_mydesign_36)        6.76e-04 3.99e-03 2.69e+03 4.66e-03   0.5
+  U37 (RotorB_cell_mydesign_37)        6.84e-04 4.03e-03 2.69e+03 4.72e-03   0.5
+  U38 (RotorB_cell_mydesign_38)        6.88e-04 4.11e-03 2.69e+03 4.80e-03   0.5
+  U39 (RotorB_cell_mydesign_39)        7.19e-04 4.26e-03 2.71e+03 4.98e-03   0.5
+  U40 (RotorB_cell_mydesign_40)        6.84e-04 4.09e-03 2.71e+03 4.77e-03   0.5
+  U41 (RotorB_cell_mydesign_41)        7.07e-04 4.08e-03 2.69e+03 4.79e-03   0.5
+  U42 (RotorB_cell_mydesign_42)        7.04e-04 4.24e-03 2.69e+03 4.95e-03   0.5
+  U43 (RotorB_cell_mydesign_43)        7.16e-04 4.22e-03 2.71e+03 4.94e-03   0.5
+  U44 (RotorB_cell_mydesign_44)        7.20e-04 4.24e-03 2.67e+03 4.96e-03   0.5
+  U45 (RotorB_cell_mydesign_45)        7.33e-04 4.09e-03 2.65e+03 4.82e-03   0.5
+  U46 (RotorB_cell_mydesign_46)        6.94e-04 4.06e-03 2.71e+03 4.76e-03   0.5
+  U47 (RotorB_cell_mydesign_47)        7.29e-04 4.31e-03 2.71e+03 5.04e-03   0.5
+  U48 (RotorB_cell_mydesign_48)        7.01e-04 4.20e-03 2.71e+03 4.91e-03   0.5
+  U49 (RotorB_cell_mydesign_49)        7.21e-04 4.18e-03 2.71e+03 4.90e-03   0.5
+  U50 (RotorB_cell_mydesign_50)        7.17e-04 4.20e-03 2.71e+03 4.92e-03   0.5
+  U51 (RotorB_cell_mydesign_51)        7.38e-04 4.32e-03 2.71e+03 5.06e-03   0.5
+  U52 (RotorB_cell_mydesign_52)        7.25e-04 4.46e-03 2.71e+03 5.19e-03   0.5
+  U53 (RotorB_cell_mydesign_53)        7.39e-04 4.16e-03 2.71e+03 4.90e-03   0.5
+  U54 (RotorB_cell_mydesign_54)        7.01e-04 4.12e-03 2.71e+03 4.82e-03   0.5
+  U55 (RotorB_cell_mydesign_55)        6.98e-04 4.11e-03 2.71e+03 4.82e-03   0.5
+  U56 (RotorB_cell_mydesign_56)        7.23e-04 4.12e-03 2.67e+03 4.85e-03   0.5
+  U57 (RotorB_cell_mydesign_57)        7.17e-04 4.27e-03 2.69e+03 4.99e-03   0.5
+  U58 (RotorB_cell_mydesign_58)        7.43e-04 4.41e-03 2.71e+03 5.15e-03   0.5
+  U59 (RotorB_cell_mydesign_59)        7.56e-04 4.32e-03 2.67e+03 5.08e-03   0.5
+  U60 (RotorB_cell_mydesign_60)        7.49e-04 4.27e-03 2.70e+03 5.02e-03   0.5
+  U61 (RotorB_cell_mydesign_61)        7.66e-04 4.33e-03 2.70e+03 5.10e-03   0.5
+  U62 (RotorB_cell_mydesign_62)        7.90e-04 4.39e-03 2.70e+03 5.18e-03   0.5
+  U63 (RotorB_cell_mydesign_63)        8.03e-04 4.60e-03 2.70e+03 5.40e-03   0.6
   encoder64_A (onehot2binary_64_mydesign_1)
-                                       1.25e-04 4.56e-04 2.90e+03 5.84e-04   0.1
+                                       1.02e-04 4.09e-04 3.72e+03 5.15e-04   0.1
   G_ROTOR_0__G_OTHER_u_cellk (RotorA_cell_mydesign_0)
-                                       4.49e-04 1.90e-03 2.38e+03 2.35e-03   0.4
+                                       4.64e-04 2.29e-03 2.17e+03 2.75e-03   0.3
   G_ROTOR_1__G_OTHER_u_cellk (RotorA_cell_mydesign_1)
-                                       4.94e-04 1.95e-03 2.49e+03 2.45e-03   0.4
+                                       4.61e-04 2.25e-03 2.17e+03 2.71e-03   0.3
   G_ROTOR_2__G_OTHER_u_cellk (RotorA_cell_mydesign_2)
-                                       4.65e-04 1.87e-03 2.51e+03 2.34e-03   0.4
+                                       4.70e-04 2.32e-03 2.17e+03 2.79e-03   0.3
   G_ROTOR_3__G_OTHER_u_cellk (RotorA_cell_mydesign_3)
-                                       4.63e-04 1.89e-03 2.47e+03 2.35e-03   0.4
+                                       4.61e-04 2.24e-03 2.17e+03 2.71e-03   0.3
   G_ROTOR_4__G_OTHER_u_cellk (RotorA_cell_mydesign_4)
-                                       4.65e-04 1.88e-03 2.47e+03 2.35e-03   0.4
+                                       4.67e-04 2.27e-03 2.17e+03 2.74e-03   0.3
   G_ROTOR_5__G_OTHER_u_cellk (RotorA_cell_mydesign_5)
-                                       4.84e-04 1.91e-03 2.49e+03 2.39e-03   0.4
+                                       4.57e-04 2.25e-03 2.13e+03 2.71e-03   0.3
   G_ROTOR_6__G_OTHER_u_cellk (RotorA_cell_mydesign_6)
-                                       4.66e-04 1.87e-03 2.47e+03 2.34e-03   0.4
+                                       4.72e-04 2.30e-03 2.18e+03 2.77e-03   0.3
   G_ROTOR_7__G_OTHER_u_cellk (RotorA_cell_mydesign_7)
-                                       4.65e-04 1.86e-03 2.51e+03 2.33e-03   0.4
+                                       4.73e-04 2.30e-03 2.28e+03 2.77e-03   0.3
   G_ROTOR_8__G_OTHER_u_cellk (RotorA_cell_mydesign_8)
-                                       4.75e-04 1.88e-03 2.45e+03 2.36e-03   0.4
+                                       4.68e-04 2.25e-03 2.28e+03 2.72e-03   0.3
   G_ROTOR_9__G_OTHER_u_cellk (RotorA_cell_mydesign_9)
-                                       4.95e-04 1.93e-03 2.56e+03 2.43e-03   0.4
+                                       4.65e-04 2.27e-03 2.16e+03 2.74e-03   0.3
   G_ROTOR_10__G_OTHER_u_cellk (RotorA_cell_mydesign_10)
-                                       4.71e-04 1.94e-03 2.43e+03 2.41e-03   0.4
+                                       4.80e-04 2.27e-03 2.18e+03 2.75e-03   0.3
   G_ROTOR_11__G_OTHER_u_cellk (RotorA_cell_mydesign_11)
-                                       4.70e-04 1.89e-03 2.51e+03 2.36e-03   0.4
+                                       4.68e-04 2.25e-03 2.34e+03 2.72e-03   0.3
   G_ROTOR_12__G_OTHER_u_cellk (RotorA_cell_mydesign_12)
-                                       4.85e-04 1.94e-03 2.48e+03 2.43e-03   0.4
+                                       4.64e-04 2.24e-03 2.16e+03 2.71e-03   0.3
   G_ROTOR_13__G_OTHER_u_cellk (RotorA_cell_mydesign_13)
-                                       4.99e-04 1.96e-03 2.57e+03 2.46e-03   0.4
+                                       4.68e-04 2.29e-03 2.16e+03 2.75e-03   0.3
   G_ROTOR_14__G_OTHER_u_cellk (RotorA_cell_mydesign_14)
-                                       4.70e-04 1.92e-03 2.43e+03 2.39e-03   0.4
+                                       4.69e-04 2.29e-03 2.16e+03 2.77e-03   0.3
   G_ROTOR_15__G_OTHER_u_cellk (RotorA_cell_mydesign_15)
-                                       4.87e-04 1.97e-03 2.51e+03 2.46e-03   0.4
+                                       4.72e-04 2.32e-03 2.16e+03 2.80e-03   0.3
   G_ROTOR_16__G_OTHER_u_cellk (RotorA_cell_mydesign_16)
-                                       4.99e-04 1.94e-03 2.51e+03 2.44e-03   0.4
+                                       4.79e-04 2.30e-03 2.19e+03 2.79e-03   0.3
   G_ROTOR_17__G_OTHER_u_cellk (RotorA_cell_mydesign_17)
-                                       4.62e-04 1.83e-03 2.51e+03 2.30e-03   0.4
+                                       4.73e-04 2.33e-03 2.16e+03 2.80e-03   0.3
   G_ROTOR_18__G_OTHER_u_cellk (RotorA_cell_mydesign_18)
-                                       4.57e-04 1.84e-03 2.47e+03 2.30e-03   0.4
+                                       4.70e-04 2.30e-03 2.16e+03 2.77e-03   0.3
   G_ROTOR_19__G_OTHER_u_cellk (RotorA_cell_mydesign_19)
-                                       4.82e-04 1.91e-03 2.52e+03 2.39e-03   0.4
+                                       4.69e-04 2.26e-03 2.16e+03 2.73e-03   0.3
   G_ROTOR_20__G_OTHER_u_cellk (RotorA_cell_mydesign_20)
-                                       4.77e-04 1.87e-03 2.48e+03 2.35e-03   0.4
+                                       4.76e-04 2.33e-03 2.16e+03 2.80e-03   0.3
   G_ROTOR_21__G_OTHER_u_cellk (RotorA_cell_mydesign_21)
-                                       4.60e-04 1.84e-03 2.46e+03 2.30e-03   0.4
+                                       4.66e-04 2.27e-03 2.16e+03 2.74e-03   0.3
   G_ROTOR_22__G_OTHER_u_cellk (RotorA_cell_mydesign_22)
-                                       4.67e-04 1.87e-03 2.50e+03 2.34e-03   0.4
+                                       4.54e-04 2.22e-03 2.12e+03 2.68e-03   0.3
   G_ROTOR_23__G_OTHER_u_cellk (RotorA_cell_mydesign_23)
-                                       4.66e-04 1.83e-03 2.44e+03 2.30e-03   0.4
+                                       4.71e-04 2.30e-03 2.16e+03 2.77e-03   0.3
   G_ROTOR_24__G_OTHER_u_cellk (RotorA_cell_mydesign_24)
-                                       4.87e-04 1.88e-03 2.56e+03 2.37e-03   0.4
+                                       4.65e-04 2.25e-03 2.16e+03 2.72e-03   0.3
   G_ROTOR_25__G_OTHER_u_cellk (RotorA_cell_mydesign_25)
-                                       4.42e-04 1.85e-03 2.37e+03 2.30e-03   0.4
+                                       4.70e-04 2.29e-03 2.12e+03 2.76e-03   0.3
   G_ROTOR_26__G_OTHER_u_cellk (RotorA_cell_mydesign_26)
-                                       4.70e-04 1.88e-03 2.50e+03 2.35e-03   0.4
+                                       4.72e-04 2.31e-03 2.12e+03 2.78e-03   0.3
   G_ROTOR_27__G_OTHER_u_cellk (RotorA_cell_mydesign_27)
-                                       4.77e-04 1.89e-03 2.48e+03 2.37e-03   0.4
+                                       4.78e-04 2.34e-03 2.16e+03 2.82e-03   0.3
   G_ROTOR_28__G_OTHER_u_cellk (RotorA_cell_mydesign_28)
-                                       4.90e-04 1.90e-03 2.56e+03 2.39e-03   0.4
+                                       4.80e-04 2.36e-03 2.16e+03 2.84e-03   0.3
   G_ROTOR_29__G_OTHER_u_cellk (RotorA_cell_mydesign_29)
-                                       4.66e-04 1.90e-03 2.42e+03 2.37e-03   0.4
+                                       4.78e-04 2.35e-03 2.16e+03 2.82e-03   0.3
   G_ROTOR_30__G_OTHER_u_cellk (RotorA_cell_mydesign_30)
-                                       4.79e-04 1.93e-03 2.50e+03 2.41e-03   0.4
+                                       4.87e-04 2.35e-03 2.37e+03 2.84e-03   0.3
   G_ROTOR_31__G_OTHER_u_cellk (RotorA_cell_mydesign_31)
-                                       4.92e-04 1.97e-03 2.48e+03 2.46e-03   0.4
+                                       4.83e-04 2.35e-03 2.16e+03 2.84e-03   0.3
   G_ROTOR_32__G_OTHER_u_cellk (RotorA_cell_mydesign_32)
-                                       4.84e-04 1.94e-03 2.50e+03 2.43e-03   0.4
+                                       4.84e-04 2.36e-03 2.16e+03 2.85e-03   0.3
   G_ROTOR_33__G_OTHER_u_cellk (RotorA_cell_mydesign_33)
-                                       4.79e-04 1.92e-03 2.46e+03 2.40e-03   0.4
+                                       4.74e-04 2.31e-03 2.16e+03 2.78e-03   0.3
   G_ROTOR_34__G_OTHER_u_cellk (RotorA_cell_mydesign_34)
-                                       4.96e-04 1.96e-03 2.51e+03 2.46e-03   0.4
+                                       4.88e-04 2.34e-03 2.20e+03 2.83e-03   0.3
   G_ROTOR_35__G_OTHER_u_cellk (RotorA_cell_mydesign_35)
-                                       4.90e-04 1.91e-03 2.48e+03 2.40e-03   0.4
+                                       4.85e-04 2.35e-03 2.16e+03 2.84e-03   0.3
   G_ROTOR_36__G_OTHER_u_cellk (RotorA_cell_mydesign_36)
-                                       4.79e-04 1.92e-03 2.46e+03 2.40e-03   0.4
+                                       4.84e-04 2.36e-03 2.17e+03 2.84e-03   0.3
   G_ROTOR_37__G_OTHER_u_cellk (RotorA_cell_mydesign_37)
-                                       4.93e-04 2.00e-03 2.50e+03 2.50e-03   0.5
+                                       4.81e-04 2.34e-03 2.16e+03 2.82e-03   0.3
   G_ROTOR_38__G_OTHER_u_cellk (RotorA_cell_mydesign_38)
-                                       4.97e-04 1.98e-03 2.44e+03 2.48e-03   0.4
+                                       4.87e-04 2.37e-03 2.16e+03 2.86e-03   0.3
   G_ROTOR_39__G_OTHER_u_cellk (RotorA_cell_mydesign_39)
-                                       5.04e-04 1.95e-03 2.55e+03 2.46e-03   0.4
+                                       4.86e-04 2.35e-03 2.17e+03 2.83e-03   0.3
   G_ROTOR_40__G_OTHER_u_cellk (RotorA_cell_mydesign_40)
-                                       4.82e-04 1.96e-03 2.42e+03 2.45e-03   0.4
+                                       4.78e-04 2.33e-03 2.12e+03 2.81e-03   0.3
   G_ROTOR_41__G_OTHER_u_cellk (RotorA_cell_mydesign_41)
-                                       4.85e-04 1.96e-03 2.50e+03 2.45e-03   0.4
+                                       4.87e-04 2.40e-03 2.12e+03 2.89e-03   0.3
   G_ROTOR_42__G_OTHER_u_cellk (RotorA_cell_mydesign_42)
-                                       4.93e-04 1.96e-03 2.47e+03 2.45e-03   0.4
+                                       4.91e-04 2.40e-03 2.16e+03 2.90e-03   0.3
   G_ROTOR_43__G_OTHER_u_cellk (RotorA_cell_mydesign_43)
-                                       5.03e-04 1.95e-03 2.55e+03 2.45e-03   0.4
+                                       4.93e-04 2.39e-03 2.25e+03 2.88e-03   0.3
   G_ROTOR_44__G_OTHER_u_cellk (RotorA_cell_mydesign_44)
-                                       4.82e-04 1.98e-03 2.42e+03 2.47e-03   0.4
+                                       4.92e-04 2.40e-03 2.15e+03 2.90e-03   0.3
   G_ROTOR_45__G_OTHER_u_cellk (RotorA_cell_mydesign_45)
-                                       4.90e-04 1.96e-03 2.50e+03 2.46e-03   0.4
+                                       5.15e-04 2.43e-03 2.25e+03 2.95e-03   0.3
   G_ROTOR_46__G_OTHER_u_cellk (RotorA_cell_mydesign_46)
-                                       4.98e-04 1.97e-03 2.49e+03 2.47e-03   0.4
+                                       5.76e-04 2.49e-03 2.63e+03 3.06e-03   0.3
   G_ROTOR_47__G_OTHER_u_cellk (RotorA_cell_mydesign_47)
-                                       4.91e-04 1.95e-03 2.50e+03 2.44e-03   0.4
+                                       5.01e-04 2.43e-03 2.15e+03 2.94e-03   0.3
   G_ROTOR_48__G_OTHER_u_cellk (RotorA_cell_mydesign_48)
-                                       4.89e-04 1.97e-03 2.47e+03 2.46e-03   0.4
+                                       4.97e-04 2.42e-03 2.15e+03 2.92e-03   0.3
   G_ROTOR_49__G_OTHER_u_cellk (RotorA_cell_mydesign_49)
-                                       4.96e-04 2.01e-03 2.46e+03 2.50e-03   0.5
+                                       4.94e-04 2.38e-03 2.17e+03 2.87e-03   0.3
   G_ROTOR_50__G_OTHER_u_cellk (RotorA_cell_mydesign_50)
-                                       5.16e-04 2.05e-03 2.47e+03 2.56e-03   0.5
+                                       4.93e-04 2.43e-03 2.12e+03 2.92e-03   0.3
   G_ROTOR_51__G_OTHER_u_cellk (RotorA_cell_mydesign_51)
-                                       5.11e-04 2.08e-03 2.45e+03 2.59e-03   0.5
+                                       4.98e-04 2.43e-03 2.15e+03 2.93e-03   0.3
   G_ROTOR_52__G_OTHER_u_cellk (RotorA_cell_mydesign_52)
-                                       5.23e-04 2.09e-03 2.52e+03 2.62e-03   0.5
+                                       5.01e-04 2.43e-03 2.15e+03 2.94e-03   0.3
   G_ROTOR_53__G_OTHER_u_cellk (RotorA_cell_mydesign_53)
-                                       5.11e-04 2.04e-03 2.43e+03 2.55e-03   0.5
+                                       5.00e-04 2.43e-03 2.15e+03 2.93e-03   0.3
   G_ROTOR_54__G_OTHER_u_cellk (RotorA_cell_mydesign_54)
-                                       5.24e-04 2.05e-03 2.54e+03 2.58e-03   0.5
+                                       5.11e-04 2.48e-03 2.15e+03 3.00e-03   0.3
   G_ROTOR_55__G_OTHER_u_cellk (RotorA_cell_mydesign_55)
-                                       4.91e-04 2.01e-03 2.41e+03 2.50e-03   0.5
+                                       5.02e-04 2.45e-03 2.11e+03 2.95e-03   0.3
   G_ROTOR_56__G_OTHER_u_cellk (RotorA_cell_mydesign_56)
-                                       5.11e-04 2.08e-03 2.49e+03 2.59e-03   0.5
+                                       5.28e-04 2.51e-03 2.17e+03 3.04e-03   0.3
   G_ROTOR_57__G_OTHER_u_cellk (RotorA_cell_mydesign_57)
-                                       5.14e-04 2.05e-03 2.46e+03 2.56e-03   0.5
+                                       5.19e-04 2.50e-03 2.17e+03 3.02e-03   0.3
   G_ROTOR_58__G_OTHER_u_cellk (RotorA_cell_mydesign_58)
-                                       5.34e-04 2.10e-03 2.54e+03 2.63e-03   0.5
+                                       5.21e-04 2.53e-03 2.15e+03 3.06e-03   0.3
   G_ROTOR_59__G_OTHER_u_cellk (RotorA_cell_mydesign_59)
-                                       5.07e-04 2.08e-03 2.41e+03 2.59e-03   0.5
+                                       5.10e-04 2.51e-03 2.11e+03 3.03e-03   0.3
   G_ROTOR_60__G_OTHER_u_cellk (RotorA_cell_mydesign_60)
-                                       5.34e-04 2.16e-03 2.48e+03 2.69e-03   0.5
+                                       5.61e-04 2.62e-03 2.23e+03 3.18e-03   0.3
   G_ROTOR_61__G_OTHER_u_cellk (RotorA_cell_mydesign_61)
-                                       5.26e-04 2.19e-03 2.40e+03 2.72e-03   0.5
+                                       5.37e-04 2.61e-03 2.14e+03 3.15e-03   0.3
   G_ROTOR_62__G_OTHER_u_cellk (RotorA_cell_mydesign_62)
-                                       5.39e-04 2.15e-03 2.45e+03 2.69e-03   0.5
+                                       5.48e-04 2.63e-03 2.13e+03 3.17e-03   0.3
   G_ROTOR_63__G_FIRST_u_cellk (RotorA_cell_mydesign_63)
-                                       5.84e-04 2.35e-03 2.45e+03 2.94e-03   0.5
+                                       5.93e-04 2.79e-03 2.15e+03 3.38e-03   0.3
   encoder32_o (onehot2binary_32_mydesign_0)
-                                       3.18e-04 6.58e-04 1.29e+03 9.77e-04   0.2
+                                       4.19e-04 8.58e-04 1.26e+03 1.28e-03   0.1
   encoder32_i (onehot2binary_32_mydesign_1)
-                                       1.67e-04 3.09e-04 1.36e+03 4.77e-04   0.1
+                                       2.36e-04 4.32e-04 1.35e+03 6.70e-04   0.1
 1
