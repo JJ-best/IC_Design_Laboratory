@@ -1,0 +1,1 @@
+vcs -f test_dram.f -R -full64 -debug_access+all +v2k 

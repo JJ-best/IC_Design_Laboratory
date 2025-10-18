@@ -1,0 +1,1 @@
+vcs -f test_SRAM.f -R -full64 -debug_access+all +v2k 
