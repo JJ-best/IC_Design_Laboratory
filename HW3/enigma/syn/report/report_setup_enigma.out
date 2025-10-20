@@ -6,15 +6,15 @@ Report : timing
         -max_paths 4
 Design : enigma
 Version: R-2020.09-SP5
-Date   : Thu Oct 16 14:53:08 2025
+Date   : Mon Oct 20 13:36:29 2025
 ****************************************
 
 Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
 Wire Load Model Mode: enclosed
 
-  Startpoint: plug_forward_o_reg_reg_3_
+  Startpoint: plug_forward_o_reg_reg_5_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: G_ROTOR_46__G_OTHER_u_cellk/shift_o_reg_1_
+  Endpoint: RotorA_reg_reg_14_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -24,78 +24,68 @@ Wire Load Model Mode: enclosed
   enigma             Large                 slow_vdd1v2
   onehot2binary_64_mydesign_0
                      Small                 slow_vdd1v2
-  RotorA_cell_mydesign_46
-                     Small                 slow_vdd1v2
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  plug_forward_o_reg_reg_3_/CK (DFFQX1)                   0.00       0.00 r
-  plug_forward_o_reg_reg_3_/Q (DFFQX1)                    0.11       0.11 f
-  U2040/Y (NAND2BX1)                                      0.05       0.16 r
-  U2984/Y (NOR2XL)                                        0.05       0.21 f
-  U2683/Y (BUFX2)                                         0.08       0.30 f
-  U2057/Y (AOI22XL)                                       0.08       0.37 r
-  U3157/Y (NAND4XL)                                       0.14       0.51 f
-  U3158/Y (AOI22XL)                                       0.10       0.61 r
-  U2900/Y (NAND2XL)                                       0.09       0.70 f
-  U2847/Y (NOR2XL)                                        0.07       0.77 r
-  U2671/Y (NAND2BXL)                                      0.07       0.83 f
-  U2899/Y (OAI2BB1XL)                                     0.06       0.89 r
-  U2552/Y (NAND3BXL)                                      0.07       0.96 r
-  U2783/Y (NOR2BXL)                                       0.05       1.01 f
-  U2791/Y (AND2X1)                                        0.08       1.09 f
-  U3284/Y (BUFX3)                                         0.09       1.18 f
-  U3483/Y (AOI22XL)                                       0.07       1.25 r
-  U3487/Y (NAND4XL)                                       0.14       1.39 f
-  U3493/Y (AOI22XL)                                       0.11       1.50 r
-  U4537/Y (NOR2BXL)                                       0.09       1.58 r
-  U4525/Y (NAND2XL)                                       0.07       1.66 f
-  U2806/Y (XNOR2X1)                                       0.15       1.81 r
-  U3607/Y (BUFX2)                                         0.09       1.90 r
-  U2804/Y (XOR2XL)                                        0.10       2.00 r
-  U2778/Y (NOR2XL)                                        0.05       2.05 f
-  U2728/Y (NAND2BXL)                                      0.05       2.10 r
-  U2863/Y (NOR2XL)                                        0.06       2.16 f
-  encoder64_B/onehot_i_59_ (onehot2binary_64_mydesign_0)
-                                                          0.00       2.16 f
-  encoder64_B/U30/Y (NOR4XL)                              0.12       2.28 r
-  encoder64_B/U11/Y (NAND4XL)                             0.14       2.43 f
-  encoder64_B/U40/Y (NAND3BX1)                            0.12       2.54 f
-  encoder64_B/binary_o[1] (onehot2binary_64_mydesign_0)
-                                                          0.00       2.54 f
-  U3650/Y (AOI22XL)                                       0.09       2.63 r
-  U2881/Y (NAND2BXL)                                      0.09       2.72 f
-  U2695/Y (OAI2BB1XL)                                     0.09       2.81 f
-  U4597/Y (BUFX2)                                         0.09       2.90 f
-  G_ROTOR_46__G_OTHER_u_cellk/shift_value_i[0] (RotorA_cell_mydesign_46)
-                                                          0.00       2.90 f
-  G_ROTOR_46__G_OTHER_u_cellk/U21/Y (INVXL)               0.05       2.95 r
-  G_ROTOR_46__G_OTHER_u_cellk/U22/Y (NOR2XL)              0.05       3.00 f
-  G_ROTOR_46__G_OTHER_u_cellk/U9/Y (AND2XL)               0.06       3.06 f
-  G_ROTOR_46__G_OTHER_u_cellk/U4/Y (NOR3XL)               0.07       3.13 r
-  G_ROTOR_46__G_OTHER_u_cellk/U16/Y (OAI211X1)            0.11       3.24 f
-  G_ROTOR_46__G_OTHER_u_cellk/shift_o_reg_1_/D (DFFQXL)
-                                                          0.01       3.24 f
-  data arrival time                                                  3.24
+  plug_forward_o_reg_reg_5_/CK (DFFHQX1)                  0.00       0.00 r
+  plug_forward_o_reg_reg_5_/Q (DFFHQX1)                   0.11       0.11 r
+  U7559/Y (NAND2BXL)                                      0.06       0.16 r
+  U7563/Y (NOR2XL)                                        0.05       0.22 f
+  U7605/Y (BUFX2)                                         0.07       0.29 f
+  U7809/Y (AOI22XL)                                       0.06       0.35 r
+  U7813/Y (NAND4XL)                                       0.14       0.49 f
+  U6356/Y (AO22XL)                                        0.14       0.62 f
+  U6547/Y (OR4XL)                                         0.17       0.79 f
+  U6522/Y (AO22XL)                                        0.09       0.88 f
+  U6530/Y (OR2X1)                                         0.08       0.97 f
+  U7852/Y (NAND2XL)                                       0.04       1.01 r
+  U7853/Y (NOR2XL)                                        0.06       1.06 f
+  U6532/Y (BUFX2)                                         0.08       1.15 f
+  U7868/Y (AOI22XL)                                       0.06       1.21 r
+  U7873/Y (NAND4XL)                                       0.14       1.35 f
+  U7874/Y (AOI22XL)                                       0.10       1.45 r
+  U5624/Y (NAND4XL)                                       0.14       1.59 f
+  U6529/Y (CLKXOR2X1)                                     0.17       1.76 r
+  U8208/Y (BUFX2)                                         0.09       1.85 r
+  U7064/Y (OAI2BB2XL)                                     0.09       1.94 r
+  U5695/Y (AOI221X1)                                      0.10       2.04 f
+  U8230/Y (NAND3BXL)                                      0.07       2.11 r
+  U7116/Y (NOR2BXL)                                       0.06       2.17 f
+  encoder64_B/onehot_i_57_ (onehot2binary_64_mydesign_0)
+                                                          0.00       2.17 f
+  encoder64_B/U30/Y (NOR4XL)                              0.10       2.28 r
+  encoder64_B/U32/Y (NAND4XL)                             0.14       2.41 f
+  encoder64_B/U33/Y (OR2XL)                               0.09       2.50 f
+  encoder64_B/binary_o[5] (onehot2binary_64_mydesign_0)
+                                                          0.00       2.50 f
+  U8231/Y (INVXL)                                         0.05       2.55 r
+  U7239/Y (OAI222X2)                                      0.22       2.77 f
+  U8238/Y (BUFX2)                                         0.12       2.89 f
+  U5610/Y (INVX1)                                         0.06       2.96 r
+  U5637/Y (OAI2BB2XL)                                     0.07       3.03 f
+  U9893/Y (NOR2XL)                                        0.07       3.10 r
+  U9895/Y (NAND2XL)                                       0.07       3.17 f
+  U6999/Y (NOR2BXL)                                       0.06       3.23 r
+  RotorA_reg_reg_14_/D (DFFQXL)                           0.03       3.27 r
+  data arrival time                                                  3.27
 
-  clock clk (rise edge)                                   3.30       3.30
-  clock network delay (ideal)                             0.00       3.30
-  G_ROTOR_46__G_OTHER_u_cellk/shift_o_reg_1_/CK (DFFQXL)
-                                                          0.00       3.30 r
-  library setup time                                     -0.05       3.25
-  data required time                                                 3.25
+  clock clk (rise edge)                                   3.33       3.33
+  clock network delay (ideal)                             0.00       3.33
+  RotorA_reg_reg_14_/CK (DFFQXL)                          0.00       3.33 r
+  library setup time                                     -0.06       3.27
+  data required time                                                 3.27
   --------------------------------------------------------------------------
-  data required time                                                 3.25
-  data arrival time                                                 -3.24
+  data required time                                                 3.27
+  data arrival time                                                 -3.27
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 
 
-  Startpoint: plug_forward_o_reg_reg_3_
+  Startpoint: plug_forward_o_reg_reg_4_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: G_ROTOR_46__G_OTHER_u_cellk/shift_o_reg_0_
+  Endpoint: RotorA_reg_reg_22_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -105,78 +95,70 @@ Wire Load Model Mode: enclosed
   enigma             Large                 slow_vdd1v2
   onehot2binary_64_mydesign_0
                      Small                 slow_vdd1v2
-  RotorA_cell_mydesign_46
-                     Small                 slow_vdd1v2
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  plug_forward_o_reg_reg_3_/CK (DFFQX1)                   0.00       0.00 r
-  plug_forward_o_reg_reg_3_/Q (DFFQX1)                    0.11       0.11 f
-  U2040/Y (NAND2BX1)                                      0.05       0.16 r
-  U2984/Y (NOR2XL)                                        0.05       0.21 f
-  U2683/Y (BUFX2)                                         0.08       0.30 f
-  U2057/Y (AOI22XL)                                       0.08       0.37 r
-  U3157/Y (NAND4XL)                                       0.14       0.51 f
-  U3158/Y (AOI22XL)                                       0.10       0.61 r
-  U2900/Y (NAND2XL)                                       0.09       0.70 f
-  U2847/Y (NOR2XL)                                        0.07       0.77 r
-  U2671/Y (NAND2BXL)                                      0.07       0.83 f
-  U2899/Y (OAI2BB1XL)                                     0.06       0.89 r
-  U2552/Y (NAND3BXL)                                      0.07       0.96 r
-  U2783/Y (NOR2BXL)                                       0.05       1.01 f
-  U2791/Y (AND2X1)                                        0.08       1.09 f
-  U3284/Y (BUFX3)                                         0.09       1.18 f
-  U3483/Y (AOI22XL)                                       0.07       1.25 r
-  U3487/Y (NAND4XL)                                       0.14       1.39 f
-  U3493/Y (AOI22XL)                                       0.11       1.50 r
-  U4537/Y (NOR2BXL)                                       0.09       1.58 r
-  U4525/Y (NAND2XL)                                       0.07       1.66 f
-  U2806/Y (XNOR2X1)                                       0.15       1.81 r
-  U3607/Y (BUFX2)                                         0.09       1.90 r
-  U2804/Y (XOR2XL)                                        0.10       2.00 r
-  U2778/Y (NOR2XL)                                        0.05       2.05 f
-  U2728/Y (NAND2BXL)                                      0.05       2.10 r
-  U2863/Y (NOR2XL)                                        0.06       2.16 f
-  encoder64_B/onehot_i_59_ (onehot2binary_64_mydesign_0)
-                                                          0.00       2.16 f
-  encoder64_B/U30/Y (NOR4XL)                              0.12       2.28 r
-  encoder64_B/U11/Y (NAND4XL)                             0.14       2.43 f
-  encoder64_B/U40/Y (NAND3BX1)                            0.12       2.54 f
-  encoder64_B/binary_o[1] (onehot2binary_64_mydesign_0)
-                                                          0.00       2.54 f
-  U3650/Y (AOI22XL)                                       0.09       2.63 r
-  U2881/Y (NAND2BXL)                                      0.09       2.72 f
-  U2695/Y (OAI2BB1XL)                                     0.09       2.81 f
-  U4597/Y (BUFX2)                                         0.09       2.90 f
-  G_ROTOR_46__G_OTHER_u_cellk/shift_value_i[0] (RotorA_cell_mydesign_46)
-                                                          0.00       2.90 f
-  G_ROTOR_46__G_OTHER_u_cellk/U21/Y (INVXL)               0.05       2.95 r
-  G_ROTOR_46__G_OTHER_u_cellk/U22/Y (NOR2XL)              0.05       3.00 f
-  G_ROTOR_46__G_OTHER_u_cellk/U8/Y (AND2XL)               0.06       3.06 f
-  G_ROTOR_46__G_OTHER_u_cellk/U3/Y (NOR3XL)               0.07       3.13 r
-  G_ROTOR_46__G_OTHER_u_cellk/U17/Y (OAI211X1)            0.11       3.24 f
-  G_ROTOR_46__G_OTHER_u_cellk/shift_o_reg_0_/D (DFFQXL)
-                                                          0.01       3.24 f
-  data arrival time                                                  3.24
+  plug_forward_o_reg_reg_4_/CK (DFFHQX1)                  0.00       0.00 r
+  plug_forward_o_reg_reg_4_/Q (DFFHQX1)                   0.12       0.12 f
+  U7569/Y (NAND2BXL)                                      0.07       0.19 f
+  U7570/Y (NOR2XL)                                        0.07       0.26 r
+  U7571/Y (BUFX2)                                         0.10       0.36 r
+  U7799/Y (AOI22XL)                                       0.09       0.44 f
+  U7802/Y (NAND4XL)                                       0.08       0.52 r
+  U7808/Y (AOI22XL)                                       0.10       0.62 f
+  U6526/Y (NAND2XL)                                       0.07       0.69 r
+  U6520/Y (OR2XL)                                         0.07       0.76 r
+  U6522/Y (AO22XL)                                        0.11       0.88 r
+  U6530/Y (OR2X1)                                         0.07       0.94 r
+  U6531/Y (NAND2BXL)                                      0.06       1.00 r
+  U7856/Y (NOR2XL)                                        0.06       1.06 f
+  U7880/Y (BUFX2)                                         0.08       1.13 f
+  U7950/Y (AOI22XL)                                       0.06       1.19 r
+  U7952/Y (NAND4XL)                                       0.14       1.33 f
+  U7958/Y (AOI22XL)                                       0.11       1.44 r
+  U7970/Y (NAND4XL)                                       0.14       1.58 f
+  U5554/Y (XOR2XL)                                        0.15       1.72 r
+  U8063/Y (INVXL)                                         0.05       1.77 f
+  U8064/Y (BUFX2)                                         0.07       1.85 f
+  U5736/Y (BUFX2)                                         0.07       1.92 f
+  U5425/Y (OA22X1)                                        0.10       2.02 f
+  U6861/Y (NOR2BXL)                                       0.06       2.08 f
+  U10004/Y (NAND3BXL)                                     0.05       2.13 r
+  U10005/Y (AOI21XL)                                      0.06       2.19 f
+  encoder64_B/onehot_i_21_ (onehot2binary_64_mydesign_0)
+                                                          0.00       2.19 f
+  encoder64_B/U14/Y (NOR4XL)                              0.09       2.29 r
+  encoder64_B/U49/Y (NAND4XL)                             0.12       2.41 f
+  encoder64_B/U11/Y (OR2X1)                               0.11       2.52 f
+  encoder64_B/binary_o[0] (onehot2binary_64_mydesign_0)
+                                                          0.00       2.52 f
+  U6509/Y (AOI22XL)                                       0.07       2.59 r
+  U8232/Y (OAI2BB1XL)                                     0.09       2.68 f
+  U6327/Y (AO21X2)                                        0.13       2.81 f
+  U5761/Y (INVX1)                                         0.09       2.90 r
+  U8609/Y (OAI22XL)                                       0.10       3.00 f
+  U5716/Y (AOI221X1)                                      0.12       3.11 r
+  U6997/Y (NOR3BXL)                                       0.11       3.23 r
+  RotorA_reg_reg_22_/D (DFFQXL)                           0.03       3.26 r
+  data arrival time                                                  3.26
 
-  clock clk (rise edge)                                   3.30       3.30
-  clock network delay (ideal)                             0.00       3.30
-  G_ROTOR_46__G_OTHER_u_cellk/shift_o_reg_0_/CK (DFFQXL)
-                                                          0.00       3.30 r
-  library setup time                                     -0.05       3.25
-  data required time                                                 3.25
+  clock clk (rise edge)                                   3.33       3.33
+  clock network delay (ideal)                             0.00       3.33
+  RotorA_reg_reg_22_/CK (DFFQXL)                          0.00       3.33 r
+  library setup time                                     -0.07       3.26
+  data required time                                                 3.26
   --------------------------------------------------------------------------
-  data required time                                                 3.25
-  data arrival time                                                 -3.24
+  data required time                                                 3.26
+  data arrival time                                                 -3.26
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 
 
-  Startpoint: plug_forward_o_reg_reg_3_
+  Startpoint: plug_forward_o_reg_reg_5_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: G_ROTOR_61__G_OTHER_u_cellk/shift_o_reg_1_
+  Endpoint: link_reg_57__3_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -186,77 +168,70 @@ Wire Load Model Mode: enclosed
   enigma             Large                 slow_vdd1v2
   onehot2binary_64_mydesign_0
                      Small                 slow_vdd1v2
-  RotorA_cell_mydesign_61
-                     Small                 slow_vdd1v2
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  plug_forward_o_reg_reg_3_/CK (DFFQX1)                   0.00       0.00 r
-  plug_forward_o_reg_reg_3_/Q (DFFQX1)                    0.11       0.11 f
-  U2040/Y (NAND2BX1)                                      0.05       0.16 r
-  U2984/Y (NOR2XL)                                        0.05       0.21 f
-  U2683/Y (BUFX2)                                         0.08       0.30 f
-  U2057/Y (AOI22XL)                                       0.08       0.37 r
-  U3157/Y (NAND4XL)                                       0.14       0.51 f
-  U3158/Y (AOI22XL)                                       0.10       0.61 r
-  U2900/Y (NAND2XL)                                       0.09       0.70 f
-  U2847/Y (NOR2XL)                                        0.07       0.77 r
-  U2671/Y (NAND2BXL)                                      0.07       0.83 f
-  U2899/Y (OAI2BB1XL)                                     0.06       0.89 r
-  U2552/Y (NAND3BXL)                                      0.07       0.96 r
-  U2783/Y (NOR2BXL)                                       0.05       1.01 f
-  U2791/Y (AND2X1)                                        0.08       1.09 f
-  U3284/Y (BUFX3)                                         0.09       1.18 f
-  U3483/Y (AOI22XL)                                       0.07       1.25 r
-  U3487/Y (NAND4XL)                                       0.14       1.39 f
-  U3493/Y (AOI22XL)                                       0.11       1.50 r
-  U4537/Y (NOR2BXL)                                       0.09       1.58 r
-  U4525/Y (NAND2XL)                                       0.07       1.66 f
-  U2806/Y (XNOR2X1)                                       0.15       1.81 r
-  U3607/Y (BUFX2)                                         0.09       1.90 r
-  U2804/Y (XOR2XL)                                        0.10       2.00 r
-  U2778/Y (NOR2XL)                                        0.05       2.05 f
-  U2728/Y (NAND2BXL)                                      0.05       2.10 r
-  U2863/Y (NOR2XL)                                        0.06       2.16 f
+  plug_forward_o_reg_reg_5_/CK (DFFHQX1)                  0.00       0.00 r
+  plug_forward_o_reg_reg_5_/Q (DFFHQX1)                   0.11       0.11 r
+  U7559/Y (NAND2BXL)                                      0.06       0.16 r
+  U7563/Y (NOR2XL)                                        0.05       0.22 f
+  U7605/Y (BUFX2)                                         0.07       0.29 f
+  U7809/Y (AOI22XL)                                       0.06       0.35 r
+  U7813/Y (NAND4XL)                                       0.14       0.49 f
+  U6356/Y (AO22XL)                                        0.14       0.62 f
+  U6547/Y (OR4XL)                                         0.17       0.79 f
+  U6522/Y (AO22XL)                                        0.09       0.88 f
+  U6530/Y (OR2X1)                                         0.08       0.97 f
+  U7852/Y (NAND2XL)                                       0.04       1.01 r
+  U5573/Y (NOR2BXL)                                       0.06       1.06 f
+  U7036/Y (BUFX2)                                         0.07       1.13 f
+  U7992/Y (AOI22XL)                                       0.05       1.18 r
+  U7995/Y (NAND4XL)                                       0.14       1.32 f
+  U8001/Y (AOI22XL)                                       0.11       1.44 r
+  U8013/Y (NAND4XL)                                       0.13       1.57 f
+  U8014/Y (XOR2XL)                                        0.15       1.72 r
+  U7066/Y (BUFX2)                                         0.08       1.80 r
+  U5476/Y (INVXL)                                         0.05       1.85 f
+  U8300/Y (OAI221XL)                                      0.07       1.92 r
+  U8301/Y (NOR2BXL)                                       0.08       2.00 f
+  U8302/Y (NAND3BXL)                                      0.05       2.05 r
+  U8303/Y (NOR2BXL)                                       0.06       2.11 f
   encoder64_B/onehot_i_59_ (onehot2binary_64_mydesign_0)
-                                                          0.00       2.16 f
-  encoder64_B/U30/Y (NOR4XL)                              0.12       2.28 r
-  encoder64_B/U11/Y (NAND4XL)                             0.14       2.43 f
-  encoder64_B/U40/Y (NAND3BX1)                            0.12       2.54 f
+                                                          0.00       2.11 f
+  encoder64_B/U34/Y (NOR4XL)                              0.10       2.22 r
+  encoder64_B/U13/Y (NAND4XL)                             0.14       2.35 f
+  encoder64_B/U38/Y (NAND3BX1)                            0.12       2.47 f
   encoder64_B/binary_o[1] (onehot2binary_64_mydesign_0)
-                                                          0.00       2.54 f
-  U3650/Y (AOI22XL)                                       0.09       2.63 r
-  U2881/Y (NAND2BXL)                                      0.09       2.72 f
-  U2695/Y (OAI2BB1XL)                                     0.09       2.81 f
-  U4595/Y (BUFX2)                                         0.09       2.90 f
-  G_ROTOR_61__G_OTHER_u_cellk/shift_value_i[0] (RotorA_cell_mydesign_61)
-                                                          0.00       2.90 f
-  G_ROTOR_61__G_OTHER_u_cellk/U5/Y (INVXL)                0.05       2.95 r
-  G_ROTOR_61__G_OTHER_u_cellk/U6/Y (NOR2XL)               0.05       3.00 f
-  G_ROTOR_61__G_OTHER_u_cellk/U25/Y (AOI222XL)            0.11       3.11 r
-  G_ROTOR_61__G_OTHER_u_cellk/U28/Y (OAI211XL)            0.12       3.23 f
-  G_ROTOR_61__G_OTHER_u_cellk/shift_o_reg_1_/D (DFFQXL)
-                                                          0.01       3.24 f
-  data arrival time                                                  3.24
+                                                          0.00       2.47 f
+  U6517/Y (NOR2BXL)                                       0.07       2.54 r
+  U6516/Y (AOI21XL)                                       0.06       2.60 f
+  U6515/Y (AOI22XL)                                       0.08       2.68 r
+  U8188/Y (NAND2XL)                                       0.09       2.77 f
+  U8196/Y (NOR2BXL)                                       0.07       2.84 r
+  U6542/Y (INVX1)                                         0.10       2.94 f
+  U6540/Y (INVXL)                                         0.10       3.04 r
+  U9695/Y (AOI22XL)                                       0.11       3.15 f
+  U9696/Y (OAI211XL)                                      0.07       3.22 r
+  link_reg_57__3_/D (DFFXL)                               0.03       3.26 r
+  data arrival time                                                  3.26
 
-  clock clk (rise edge)                                   3.30       3.30
-  clock network delay (ideal)                             0.00       3.30
-  G_ROTOR_61__G_OTHER_u_cellk/shift_o_reg_1_/CK (DFFQXL)
-                                                          0.00       3.30 r
-  library setup time                                     -0.06       3.24
-  data required time                                                 3.24
+  clock clk (rise edge)                                   3.33       3.33
+  clock network delay (ideal)                             0.00       3.33
+  link_reg_57__3_/CK (DFFXL)                              0.00       3.33 r
+  library setup time                                     -0.07       3.26
+  data required time                                                 3.26
   --------------------------------------------------------------------------
-  data required time                                                 3.24
-  data arrival time                                                 -3.24
+  data required time                                                 3.26
+  data arrival time                                                 -3.26
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 
 
-  Startpoint: plug_forward_o_reg_reg_3_
+  Startpoint: plug_forward_o_reg_reg_5_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: G_ROTOR_61__G_OTHER_u_cellk/shift_o_reg_0_
+  Endpoint: link_reg_49__5_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -266,70 +241,63 @@ Wire Load Model Mode: enclosed
   enigma             Large                 slow_vdd1v2
   onehot2binary_64_mydesign_0
                      Small                 slow_vdd1v2
-  RotorA_cell_mydesign_61
-                     Small                 slow_vdd1v2
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  plug_forward_o_reg_reg_3_/CK (DFFQX1)                   0.00       0.00 r
-  plug_forward_o_reg_reg_3_/Q (DFFQX1)                    0.11       0.11 f
-  U2040/Y (NAND2BX1)                                      0.05       0.16 r
-  U2984/Y (NOR2XL)                                        0.05       0.21 f
-  U2683/Y (BUFX2)                                         0.08       0.30 f
-  U2057/Y (AOI22XL)                                       0.08       0.37 r
-  U3157/Y (NAND4XL)                                       0.14       0.51 f
-  U3158/Y (AOI22XL)                                       0.10       0.61 r
-  U2900/Y (NAND2XL)                                       0.09       0.70 f
-  U2847/Y (NOR2XL)                                        0.07       0.77 r
-  U2671/Y (NAND2BXL)                                      0.07       0.83 f
-  U2899/Y (OAI2BB1XL)                                     0.06       0.89 r
-  U2552/Y (NAND3BXL)                                      0.07       0.96 r
-  U2783/Y (NOR2BXL)                                       0.05       1.01 f
-  U2791/Y (AND2X1)                                        0.08       1.09 f
-  U3284/Y (BUFX3)                                         0.09       1.18 f
-  U3483/Y (AOI22XL)                                       0.07       1.25 r
-  U3487/Y (NAND4XL)                                       0.14       1.39 f
-  U3493/Y (AOI22XL)                                       0.11       1.50 r
-  U4537/Y (NOR2BXL)                                       0.09       1.58 r
-  U4525/Y (NAND2XL)                                       0.07       1.66 f
-  U2806/Y (XNOR2X1)                                       0.15       1.81 r
-  U3607/Y (BUFX2)                                         0.09       1.90 r
-  U2804/Y (XOR2XL)                                        0.10       2.00 r
-  U2778/Y (NOR2XL)                                        0.05       2.05 f
-  U2728/Y (NAND2BXL)                                      0.05       2.10 r
-  U2863/Y (NOR2XL)                                        0.06       2.16 f
+  plug_forward_o_reg_reg_5_/CK (DFFHQX1)                  0.00       0.00 r
+  plug_forward_o_reg_reg_5_/Q (DFFHQX1)                   0.11       0.11 r
+  U7559/Y (NAND2BXL)                                      0.06       0.16 r
+  U7563/Y (NOR2XL)                                        0.05       0.22 f
+  U7605/Y (BUFX2)                                         0.07       0.29 f
+  U7809/Y (AOI22XL)                                       0.06       0.35 r
+  U7813/Y (NAND4XL)                                       0.14       0.49 f
+  U6356/Y (AO22XL)                                        0.14       0.62 f
+  U6547/Y (OR4XL)                                         0.17       0.79 f
+  U6522/Y (AO22XL)                                        0.09       0.88 f
+  U6530/Y (OR2X1)                                         0.08       0.97 f
+  U7852/Y (NAND2XL)                                       0.04       1.01 r
+  U5573/Y (NOR2BXL)                                       0.06       1.06 f
+  U7036/Y (BUFX2)                                         0.07       1.13 f
+  U7992/Y (AOI22XL)                                       0.05       1.18 r
+  U7995/Y (NAND4XL)                                       0.14       1.32 f
+  U8001/Y (AOI22XL)                                       0.11       1.44 r
+  U8013/Y (NAND4XL)                                       0.13       1.57 f
+  U8014/Y (XOR2XL)                                        0.15       1.72 r
+  U7066/Y (BUFX2)                                         0.08       1.80 r
+  U5476/Y (INVXL)                                         0.05       1.85 f
+  U8300/Y (OAI221XL)                                      0.07       1.92 r
+  U8301/Y (NOR2BXL)                                       0.08       2.00 f
+  U8302/Y (NAND3BXL)                                      0.05       2.05 r
+  U8303/Y (NOR2BXL)                                       0.06       2.11 f
   encoder64_B/onehot_i_59_ (onehot2binary_64_mydesign_0)
-                                                          0.00       2.16 f
-  encoder64_B/U30/Y (NOR4XL)                              0.12       2.28 r
-  encoder64_B/U11/Y (NAND4XL)                             0.14       2.43 f
-  encoder64_B/U40/Y (NAND3BX1)                            0.12       2.54 f
+                                                          0.00       2.11 f
+  encoder64_B/U34/Y (NOR4XL)                              0.10       2.22 r
+  encoder64_B/U13/Y (NAND4XL)                             0.14       2.35 f
+  encoder64_B/U38/Y (NAND3BX1)                            0.12       2.47 f
   encoder64_B/binary_o[1] (onehot2binary_64_mydesign_0)
-                                                          0.00       2.54 f
-  U3650/Y (AOI22XL)                                       0.09       2.63 r
-  U2881/Y (NAND2BXL)                                      0.09       2.72 f
-  U2695/Y (OAI2BB1XL)                                     0.09       2.81 f
-  U4595/Y (BUFX2)                                         0.09       2.90 f
-  G_ROTOR_61__G_OTHER_u_cellk/shift_value_i[0] (RotorA_cell_mydesign_61)
-                                                          0.00       2.90 f
-  G_ROTOR_61__G_OTHER_u_cellk/U5/Y (INVXL)                0.05       2.95 r
-  G_ROTOR_61__G_OTHER_u_cellk/U6/Y (NOR2XL)               0.05       3.00 f
-  G_ROTOR_61__G_OTHER_u_cellk/U29/Y (AOI222XL)            0.11       3.11 r
-  G_ROTOR_61__G_OTHER_u_cellk/U32/Y (OAI211XL)            0.12       3.23 f
-  G_ROTOR_61__G_OTHER_u_cellk/shift_o_reg_0_/D (DFFQXL)
-                                                          0.01       3.24 f
-  data arrival time                                                  3.24
+                                                          0.00       2.47 f
+  U6517/Y (NOR2BXL)                                       0.07       2.54 r
+  U6516/Y (AOI21XL)                                       0.06       2.60 f
+  U6515/Y (AOI22XL)                                       0.08       2.68 r
+  U8188/Y (NAND2XL)                                       0.09       2.77 f
+  U8196/Y (NOR2BXL)                                       0.07       2.84 r
+  U6542/Y (INVX1)                                         0.10       2.94 f
+  U6540/Y (INVXL)                                         0.10       3.04 r
+  U10601/Y (AOI22XL)                                      0.11       3.15 f
+  U10603/Y (OAI211XL)                                     0.07       3.22 r
+  link_reg_49__5_/D (DFFXL)                               0.03       3.26 r
+  data arrival time                                                  3.26
 
-  clock clk (rise edge)                                   3.30       3.30
-  clock network delay (ideal)                             0.00       3.30
-  G_ROTOR_61__G_OTHER_u_cellk/shift_o_reg_0_/CK (DFFQXL)
-                                                          0.00       3.30 r
-  library setup time                                     -0.06       3.24
-  data required time                                                 3.24
+  clock clk (rise edge)                                   3.33       3.33
+  clock network delay (ideal)                             0.00       3.33
+  link_reg_49__5_/CK (DFFXL)                              0.00       3.33 r
+  library setup time                                     -0.07       3.26
+  data required time                                                 3.26
   --------------------------------------------------------------------------
-  data required time                                                 3.24
-  data arrival time                                                 -3.24
+  data required time                                                 3.26
+  data arrival time                                                 -3.26
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 

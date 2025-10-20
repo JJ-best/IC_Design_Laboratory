@@ -2,7 +2,9 @@
 //  Note:          Use only for teaching materials of IC Design Lab, NTHU.
 //  Copyright: (c) 2025 Vision Circuits and Systems Lab, NTHU, Taiwan. ALL Rights Reserved.
 //==================================================================================================
-
+// Arthor: Jesse
+// Version10: write plugboard mux as case, flatten rotorA, rotorB, write mux by case
+// Area = 17683 Timing = 3.3
 
 module enigma(clk, srst_n, load, encrypt, crypt_mode, table_idx, code_in, code_out, code_valid);
 input clk;         // clock 
@@ -27,7 +29,7 @@ localparam pData_LEN = 6;
 reg [(pData_LEN-1):0] plugboard_reg [0:(pPLUG_LEN-1)];
 wire [(pPLUG_LEN-1):0]plug_xor_i;
 wire [(pPLUG_LEN-1):0]plug_xor_o;
-wire [(pData_LEN-1):0]plug_forward_o;
+reg [(pData_LEN-1):0]plug_forward_o;
 reg [(pData_LEN-1):0]plug_forward_o_reg;
 wire [(pData_LEN-1):0]plug_inverse_i;
 reg [(pData_LEN-1):0]plug_inverse_i_reg;
@@ -39,10 +41,14 @@ wire plug_forward_valid_i; // encoder valid
 wire plug_forward_valid_o;
 reg plug_forward_valid; //pipeline valid
 reg plug_inverse_valid;
+
+reg [(pData_LEN-1):0] plug_rd_i; // plugboard_reg[plug_pair_i]
+reg [(pData_LEN-1):0] plug_rd_o; // plugboard_reg[plug_pair_o]
+
 // ----- Rotor A declare -----//
-wire [(pData_LEN-1):0] link [0:(pRotorA_LEN-1)];
+reg [(pData_LEN-1):0] link [0:(pRotorA_LEN-1)];
 wire [1:0] shift_value_t;
-wire [(pData_LEN-1):0] RotorA_forward_o;
+reg [(pData_LEN-1):0] RotorA_forward_o;
 reg [(pData_LEN-1):0] RotorA_inverse_i;
 // ----- bitswitch declare -----//
 reg [1:0]mode_bitswitch;
@@ -88,20 +94,75 @@ generate
 	  assign  plug_xor_i[m] = ~|(code_in_reg ^ plugboard_reg[m]);
 	end
 endgenerate
-genvar l;
-generate
-	for (l = 31; l >= 0; l = l - 1) begin : GEN_PLUG_OUT
-	  assign  plug_xor_o[l] = ~|(plug_inverse_i_reg ^ plugboard_reg[l]);
-	end
-endgenerate
 
-onehot2binary_32 encoder32_i(
-	.onehot_i(plug_xor_i),
-	.binary_o(plug_mux_sel_i),
-	.valid_o(plug_forward_valid_i)
-);
+// onehot2binary_32 encoder32_i(
+// 	.onehot_i(plug_xor_i),
+// 	.binary_o(plug_mux_sel_i),
+// 	.valid_o(plug_forward_valid_i)
+// );
+// === inline encoder32_i ===
+assign plug_forward_valid_i = |plug_xor_i;
+
+assign plug_mux_sel_i[4] = |plug_xor_i[31:16];
+assign plug_mux_sel_i[3] = |{ plug_xor_i[31:24], plug_xor_i[15:8] };
+assign plug_mux_sel_i[2] = |{ plug_xor_i[31:28], plug_xor_i[23:20],
+                              plug_xor_i[15:12], plug_xor_i[7:4] };
+assign plug_mux_sel_i[1] = |{ plug_xor_i[31:30], plug_xor_i[27:26],
+                              plug_xor_i[23:22], plug_xor_i[19:18],
+                              plug_xor_i[15:14], plug_xor_i[11:10],
+                              plug_xor_i[7:6],   plug_xor_i[3:2] };
+assign plug_mux_sel_i[0] = |{ plug_xor_i[31], plug_xor_i[29], plug_xor_i[27], plug_xor_i[25],
+                              plug_xor_i[23], plug_xor_i[21], plug_xor_i[19], plug_xor_i[17],
+                              plug_xor_i[15], plug_xor_i[13], plug_xor_i[11], plug_xor_i[9],
+                              plug_xor_i[7],  plug_xor_i[5],  plug_xor_i[3],  plug_xor_i[1] };
+
 assign plug_pair_i = plug_mux_sel_i ^ 5'b00001;
-assign plug_forward_o = (plug_forward_valid_i)? plugboard_reg[plug_pair_i] : code_in_reg;
+// --- plugboard read by index (input side) with case ---
+always @(*) begin : PLUGBOARD_READ_I
+  case (plug_pair_i) // synopsys full_case parallel_case
+    5'd0 :  plug_rd_i = plugboard_reg[0 ];
+    5'd1 :  plug_rd_i = plugboard_reg[1 ];
+    5'd2 :  plug_rd_i = plugboard_reg[2 ];
+    5'd3 :  plug_rd_i = plugboard_reg[3 ];
+    5'd4 :  plug_rd_i = plugboard_reg[4 ];
+    5'd5 :  plug_rd_i = plugboard_reg[5 ];
+    5'd6 :  plug_rd_i = plugboard_reg[6 ];
+    5'd7 :  plug_rd_i = plugboard_reg[7 ];
+    5'd8 :  plug_rd_i = plugboard_reg[8 ];
+    5'd9 :  plug_rd_i = plugboard_reg[9 ];
+    5'd10:  plug_rd_i = plugboard_reg[10];
+    5'd11:  plug_rd_i = plugboard_reg[11];
+    5'd12:  plug_rd_i = plugboard_reg[12];
+    5'd13:  plug_rd_i = plugboard_reg[13];
+    5'd14:  plug_rd_i = plugboard_reg[14];
+    5'd15:  plug_rd_i = plugboard_reg[15];
+    5'd16:  plug_rd_i = plugboard_reg[16];
+    5'd17:  plug_rd_i = plugboard_reg[17];
+    5'd18:  plug_rd_i = plugboard_reg[18];
+    5'd19:  plug_rd_i = plugboard_reg[19];
+    5'd20:  plug_rd_i = plugboard_reg[20];
+    5'd21:  plug_rd_i = plugboard_reg[21];
+    5'd22:  plug_rd_i = plugboard_reg[22];
+    5'd23:  plug_rd_i = plugboard_reg[23];
+    5'd24:  plug_rd_i = plugboard_reg[24];
+    5'd25:  plug_rd_i = plugboard_reg[25];
+    5'd26:  plug_rd_i = plugboard_reg[26];
+    5'd27:  plug_rd_i = plugboard_reg[27];
+    5'd28:  plug_rd_i = plugboard_reg[28];
+    5'd29:  plug_rd_i = plugboard_reg[29];
+    5'd30:  plug_rd_i = plugboard_reg[30];
+    5'd31:  plug_rd_i = plugboard_reg[31];
+  endcase
+end
+
+always @(*) begin : PLUG_FWD_MUX
+  case (plug_forward_valid_i) // synopsys full_case parallel_case
+    1'b1: plug_forward_o = plug_rd_i;
+    1'b0: plug_forward_o = code_in_reg;
+  endcase
+end
+
+// assign plug_forward_o = (plug_forward_valid_i)? plugboard_reg[plug_pair_i] : code_in_reg;
 // plug forward out pipeline
 
 always @(posedge clk) begin
@@ -109,94 +170,270 @@ always @(posedge clk) begin
   plug_forward_valid <= encrypt_reg;
 end
 
+// inverse path
+genvar l;
+generate
+	for (l = 31; l >= 0; l = l - 1) begin : GEN_PLUG_OUT
+	  assign  plug_xor_o[l] = ~|(plug_inverse_i_reg ^ plugboard_reg[l]);
+	end
+endgenerate
 
-onehot2binary_32 encoder32_o(
-	.onehot_i(plug_xor_o),
-	.binary_o(plug_mux_sel_o),
-	.valid_o(plug_forward_valid_o)
-);
+// onehot2binary_32 encoder32_o(
+// 	.onehot_i(plug_xor_o),
+// 	.binary_o(plug_mux_sel_o),
+// 	.valid_o(plug_forward_valid_o)
+// );
+
+// === inline encoder32_o ===
+assign plug_forward_valid_o = |plug_xor_o;
+
+assign plug_mux_sel_o[4] = |plug_xor_o[31:16];
+assign plug_mux_sel_o[3] = |{ plug_xor_o[31:24], plug_xor_o[15:8] };
+assign plug_mux_sel_o[2] = |{ plug_xor_o[31:28], plug_xor_o[23:20],
+                              plug_xor_o[15:12], plug_xor_o[7:4] };
+assign plug_mux_sel_o[1] = |{ plug_xor_o[31:30], plug_xor_o[27:26],
+                              plug_xor_o[23:22], plug_xor_o[19:18],
+                              plug_xor_o[15:14], plug_xor_o[11:10],
+                              plug_xor_o[7:6],   plug_xor_o[3:2] };
+assign plug_mux_sel_o[0] = |{ plug_xor_o[31], plug_xor_o[29], plug_xor_o[27], plug_xor_o[25],
+                              plug_xor_o[23], plug_xor_o[21], plug_xor_o[19], plug_xor_o[17],
+                              plug_xor_o[15], plug_xor_o[13], plug_xor_o[11], plug_xor_o[9],
+                              plug_xor_o[7],  plug_xor_o[5],  plug_xor_o[3],  plug_xor_o[1] };
+
+
 assign plug_pair_o = plug_mux_sel_o ^ 5'b00001; // this may be optimize by other method
 
 
 
 // plug inverse in pipeline
-
+// --- plugboard read by index (output side) with case ---
+always @(*) begin : PLUGBOARD_READ_O
+  case (plug_pair_o) // synopsys full_case parallel_case
+    5'd0 :  plug_rd_o = plugboard_reg[0 ];
+    5'd1 :  plug_rd_o = plugboard_reg[1 ];
+    5'd2 :  plug_rd_o = plugboard_reg[2 ];
+    5'd3 :  plug_rd_o = plugboard_reg[3 ];
+    5'd4 :  plug_rd_o = plugboard_reg[4 ];
+    5'd5 :  plug_rd_o = plugboard_reg[5 ];
+    5'd6 :  plug_rd_o = plugboard_reg[6 ];
+    5'd7 :  plug_rd_o = plugboard_reg[7 ];
+    5'd8 :  plug_rd_o = plugboard_reg[8 ];
+    5'd9 :  plug_rd_o = plugboard_reg[9 ];
+    5'd10:  plug_rd_o = plugboard_reg[10];
+    5'd11:  plug_rd_o = plugboard_reg[11];
+    5'd12:  plug_rd_o = plugboard_reg[12];
+    5'd13:  plug_rd_o = plugboard_reg[13];
+    5'd14:  plug_rd_o = plugboard_reg[14];
+    5'd15:  plug_rd_o = plugboard_reg[15];
+    5'd16:  plug_rd_o = plugboard_reg[16];
+    5'd17:  plug_rd_o = plugboard_reg[17];
+    5'd18:  plug_rd_o = plugboard_reg[18];
+    5'd19:  plug_rd_o = plugboard_reg[19];
+    5'd20:  plug_rd_o = plugboard_reg[20];
+    5'd21:  plug_rd_o = plugboard_reg[21];
+    5'd22:  plug_rd_o = plugboard_reg[22];
+    5'd23:  plug_rd_o = plugboard_reg[23];
+    5'd24:  plug_rd_o = plugboard_reg[24];
+    5'd25:  plug_rd_o = plugboard_reg[25];
+    5'd26:  plug_rd_o = plugboard_reg[26];
+    5'd27:  plug_rd_o = plugboard_reg[27];
+    5'd28:  plug_rd_o = plugboard_reg[28];
+    5'd29:  plug_rd_o = plugboard_reg[29];
+    5'd30:  plug_rd_o = plugboard_reg[30];
+    5'd31:  plug_rd_o = plugboard_reg[31];
+  endcase
+end
 // output buffer
 always @(posedge clk) begin
-  code_out <= (plug_forward_valid_o)? plugboard_reg[plug_pair_o] : plug_inverse_i_reg;
+  case (plug_forward_valid_o) // synopsys full_case parallel_case
+    1'b1: code_out <= plug_rd_o;
+    1'b0: code_out <= plug_inverse_i_reg;
+  endcase
   code_valid <= plug_inverse_valid;
 end
+
+
+// always @(posedge clk) begin
+//   code_out <= (plug_forward_valid_o)? plugboard_reg[plug_pair_o] : plug_inverse_i_reg;
+//   code_valid <= plug_inverse_valid;
+// end
 // ----- plugboard ----- //
 
 
 // ----- Rotor A ----- //
+// per-stage signals declared OUTSIDE generate
+wire [(pData_LEN-1):0] param1   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] param2   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] param3   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] param4   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] shift_i  [0:(pRotorA_LEN-1)];
+reg [(pData_LEN-1):0] shift_mux[0:(pRotorA_LEN-1)];
+reg [(pData_LEN-1):0] reg_i    [0:(pRotorA_LEN-1)];
+
 genvar k;
 generate
-  for (k=63; k>=0; k=k-1) begin : G_ROTOR
-	if (k == 63) begin : G_FIRST
-	  RotorA_cell u_cellk (
-      .param1_i(link[ (k+0) % pRotorA_LEN ]), 
-	  .param2_i(link[ (k+1) % pRotorA_LEN ]), 
-	  .param3_i(link[ (k+2) % pRotorA_LEN ]), 
-	  .param4_i(link[ (k+3) % pRotorA_LEN ]), 
-      .shift_i (code_in_reg),
-      .load_i  (load_reg),
-      .encrypt_i(plug_forward_valid),
-      .clk     (clk),
-      .shift_value_i(shift_value_t),  
-	  .table_idx(table_idx_reg),
-      .shift_o (link[k])
-    );
-	end else begin : G_OTHER
-	  RotorA_cell u_cellk (
-      .param1_i(link[ (k+0) % pRotorA_LEN ]), 
-	  .param2_i(link[ (k+1) % pRotorA_LEN ]), 
-	  .param3_i(link[ (k+2) % pRotorA_LEN ]), 
-	  .param4_i(link[ (k+3) % pRotorA_LEN ]), 
-      .shift_i (link[k+1]),
-      .load_i  (load_reg),
-      .encrypt_i(plug_forward_valid),
-      .clk     (clk),
-      .shift_value_i(shift_value_t),  
-	  .table_idx(table_idx_reg),
-      .shift_o (link[k])
-    );
+  for (k = 63; k >= 0; k = k - 1) begin : G_ROTORA_FLAT
+
+    assign param1[k] = link[(k+0) % pRotorA_LEN];
+    assign param2[k] = link[(k+1) % pRotorA_LEN];
+    assign param3[k] = link[(k+2) % pRotorA_LEN];
+    assign param4[k] = link[(k+3) % pRotorA_LEN];
+
+    if (k == 63) begin : G_FIRST
+      assign shift_i[k] = code_in_reg;
+    end else begin : G_OTHER
+      assign shift_i[k] = link[k+1];
+    end
+
+	always @(*) begin
+		case (shift_value_t) // synopsys parallel_case
+		2'b00: begin
+		  shift_mux[k] = param1[k];
+		end
+		2'b01: begin
+		  shift_mux[k] = param2[k];
+		end
+		2'b10: begin
+		  shift_mux[k] = param3[k];
+		end
+		2'b11: begin
+		  shift_mux[k] = param4[k];
+		end
+		endcase
 	end
+
+	always @(*) begin
+		case ({load_reg, plug_forward_valid}) // synopsys parallel_case
+		2'b01: begin
+		  reg_i[k] = shift_mux[k];
+		end
+		2'b10: begin
+		  reg_i[k] = shift_i[k];
+		end
+		default: begin
+		  reg_i[k] = link[k];
+		end	
+		endcase
+	end
+
+    always @(posedge clk) begin
+      if (table_idx_reg == 2'b00 || plug_forward_valid) begin
+        link[k] <= reg_i[k];
+      end
+    end
   end
 endgenerate
 
 // this mux may use other optimize method for synthesis.
-assign RotorA_forward_o = link[plug_forward_o_reg];
+always @(*) begin : RotorA_MUX
+    case (plug_forward_o_reg) // synopsys parallel_case full_case
+        6'd0 : RotorA_forward_o = link[0];
+        6'd1 : RotorA_forward_o = link[1];
+        6'd2 : RotorA_forward_o = link[2];
+        6'd3 : RotorA_forward_o = link[3];
+        6'd4 : RotorA_forward_o = link[4];
+        6'd5 : RotorA_forward_o = link[5];
+        6'd6 : RotorA_forward_o = link[6];
+        6'd7 : RotorA_forward_o = link[7];
+        6'd8 : RotorA_forward_o = link[8];
+        6'd9 : RotorA_forward_o = link[9];
+        6'd10: RotorA_forward_o = link[10];
+        6'd11: RotorA_forward_o = link[11];
+        6'd12: RotorA_forward_o = link[12];
+        6'd13: RotorA_forward_o = link[13];
+        6'd14: RotorA_forward_o = link[14];
+        6'd15: RotorA_forward_o = link[15];
+        6'd16: RotorA_forward_o = link[16];
+        6'd17: RotorA_forward_o = link[17];
+        6'd18: RotorA_forward_o = link[18];
+        6'd19: RotorA_forward_o = link[19];
+        6'd20: RotorA_forward_o = link[20];
+        6'd21: RotorA_forward_o = link[21];
+        6'd22: RotorA_forward_o = link[22];
+        6'd23: RotorA_forward_o = link[23];
+        6'd24: RotorA_forward_o = link[24];
+        6'd25: RotorA_forward_o = link[25];
+        6'd26: RotorA_forward_o = link[26];
+        6'd27: RotorA_forward_o = link[27];
+        6'd28: RotorA_forward_o = link[28];
+        6'd29: RotorA_forward_o = link[29];
+        6'd30: RotorA_forward_o = link[30];
+        6'd31: RotorA_forward_o = link[31];
+        6'd32: RotorA_forward_o = link[32];
+        6'd33: RotorA_forward_o = link[33];
+        6'd34: RotorA_forward_o = link[34];
+        6'd35: RotorA_forward_o = link[35];
+        6'd36: RotorA_forward_o = link[36];
+        6'd37: RotorA_forward_o = link[37];
+        6'd38: RotorA_forward_o = link[38];
+        6'd39: RotorA_forward_o = link[39];
+        6'd40: RotorA_forward_o = link[40];
+        6'd41: RotorA_forward_o = link[41];
+        6'd42: RotorA_forward_o = link[42];
+        6'd43: RotorA_forward_o = link[43];
+        6'd44: RotorA_forward_o = link[44];
+        6'd45: RotorA_forward_o = link[45];
+        6'd46: RotorA_forward_o = link[46];
+        6'd47: RotorA_forward_o = link[47];
+        6'd48: RotorA_forward_o = link[48];
+        6'd49: RotorA_forward_o = link[49];
+        6'd50: RotorA_forward_o = link[50];
+        6'd51: RotorA_forward_o = link[51];
+        6'd52: RotorA_forward_o = link[52];
+        6'd53: RotorA_forward_o = link[53];
+        6'd54: RotorA_forward_o = link[54];
+        6'd55: RotorA_forward_o = link[55];
+        6'd56: RotorA_forward_o = link[56];
+        6'd57: RotorA_forward_o = link[57];
+        6'd58: RotorA_forward_o = link[58];
+        6'd59: RotorA_forward_o = link[59];
+        6'd60: RotorA_forward_o = link[60];
+        6'd61: RotorA_forward_o = link[61];
+        6'd62: RotorA_forward_o = link[62];
+        6'd63: RotorA_forward_o = link[63];
+    endcase
+end
+
+// assign RotorA_forward_o = link[plug_forward_o_reg];
 
 assign shift_value_t = (crypt_mode_reg == 1'b0)? RotorA_forward_o[1:0] : RotorA_inverse_i[1:0];
 
 // --- inverpath ---
 // bitwise and to detect equality between xor_o and each link[j]
 // generate a one-hot code
-reg [(pData_LEN-1):0]RotorA_inverse_i_reg;
+
+//reg [(pData_LEN-1):0]RotorA_inverse_i_reg;
 reg RotorA_inverse_i_valid;
 always @(posedge clk) begin
-  RotorA_inverse_i_reg <= RotorA_inverse_i;
+  //RotorA_inverse_i_reg <= RotorA_inverse_i;
   RotorA_inverse_i_valid <= plug_forward_valid;
 end
 
-reg [(pData_LEN-1):0]RotorA_reg[0:(pRotorA_LEN-1)];
+// reg [(pData_LEN-1):0]RotorA_reg[0:(pRotorA_LEN-1)];
+// integer f;
+// always @(posedge clk) begin
+//   for (f=0; f<pRotorA_LEN; f=f+1) begin
+//     RotorA_reg[f] <= link[f];
+//   end
+// end
+
+reg [(pRotorA_LEN-1):0]RotorA_reg;
 integer f;
 always @(posedge clk) begin
   for (f=0; f<pRotorA_LEN; f=f+1) begin
-    RotorA_reg[f] <= link[f];
+    RotorA_reg[f] <= bitwise_and_o[f];
   end
 end
 
 genvar j;
 generate
 	for (j = 0; j < pRotorA_LEN; j = j + 1) begin : GEN_MATCH
-	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i_reg ^ RotorA_reg[j]);
+	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i ^ link[j]);
 	end
 endgenerate
 
 onehot2binary_64 encoder64_A(
-	.onehot_i(bitwise_and_o),
+	.onehot_i(RotorA_reg),
 	.binary_o(plug_inverse_i)
 );
 always @(posedge clk) begin
@@ -221,7 +458,7 @@ assign mode_bitswitch_next[1:0] = (crypt_mode_reg == 1'b0)? bitswitch_forward_o[
 
 
 always @(*) begin
-	case (mode_bitswitch)
+	case (mode_bitswitch) // synopsys parallel_case 
 	2'b00: begin
 	  bitswitch_forward_o[(pData_LEN-1):0] = ~RotorA_forward_o[(pData_LEN-1):0];
 	  RotorA_inverse_i[(pData_LEN-1):0] = ~bitswitch_inverse_i[(pData_LEN-1):0];
@@ -247,605 +484,240 @@ end
 // ----- Rotor B -----//
 wire [(pData_LEN-1):0] RotorB_forward_o;
 wire [(pData_LEN-1):0] RotorB_inverse_i;
-wire [(pData_LEN-1):0] RotorB_reg [0:(pRotorA_LEN-1)];
+reg  [(pData_LEN-1):0] RotorB_reg [0:(pRotorA_LEN-1)];
 wire [1:0] shift_value_b;
 wire [(pRotorA_LEN-1):0] bitwise_and_b;
-wire [(pData_LEN-1):0] RotorB_mux [0:(pRotorA_LEN-1)];
-RotorB_cell U63(
-	.param1_i(RotorB_reg[63]), .param2_i(RotorB_reg[62]),
-	.param3_i(RotorB_reg[61]), .param4_i(RotorB_reg[60]),
-	.shift_i(code_in_reg),
-	.load_i(load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-	.shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-	.mux_i(RotorB_mux[33]), .shift_o(RotorB_reg[63]), .mux_o(RotorB_mux[63])
-);
+reg [(pData_LEN-1):0] RotorB_mux [0:(pRotorA_LEN-1)];
+// ---- RotorB flatten: per-stage signals (declare OUTSIDE generate) ----
+wire [(pData_LEN-1):0] RB_param1   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] RB_param2   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] RB_param3   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] RB_param4   [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] RB_shift_i  [0:(pRotorA_LEN-1)];
+reg [(pData_LEN-1):0] RB_reg_i    [0:(pRotorA_LEN-1)];
+// RotorB_mux 已存在於原始碼中：wire [(pData_LEN-1):0] RotorB_mux [0:(pRotorA_LEN-1)];
+wire [(pData_LEN-1):0] RB_mux_i    [0:(pRotorA_LEN-1)];  // 每段的 mux_i（由你原本 Uxx 的連線表指定）
+// ---- RotorB mux_i wiring table (exactly the same as your instances) ----
+assign RB_mux_i[63] = RotorB_mux[33];
+assign RB_mux_i[62] = RotorB_mux[0 ];
+assign RB_mux_i[61] = RotorB_mux[20];
+assign RB_mux_i[60] = RotorB_mux[41];
 
-RotorB_cell U62(
-	.param1_i(RotorB_reg[62]), .param2_i(RotorB_reg[63]),
-	.param3_i(RotorB_reg[60]), .param4_i(RotorB_reg[61]),
-	.shift_i(RotorB_reg[63]),
-	.load_i(load_reg), .encrypt_i(plug_forward_valid), .clk(clk), 
-	.shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-	.mux_i(RotorB_mux[0]), .shift_o(RotorB_reg[62]), .mux_o(RotorB_mux[62])
-);
+assign RB_mux_i[59] = RotorB_mux[27];
+assign RB_mux_i[58] = RotorB_mux[31];
+assign RB_mux_i[57] = RotorB_mux[45];
+assign RB_mux_i[56] = RotorB_mux[12];
 
-RotorB_cell U61(
-	.param1_i(RotorB_reg[61]), .param2_i(RotorB_reg[60]),
-	.param3_i(RotorB_reg[63]), .param4_i(RotorB_reg[62]),
-	.shift_i(RotorB_reg[62]),
-	.load_i(load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-	.shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-	.mux_i(RotorB_mux[20]), .shift_o(RotorB_reg[61]), .mux_o(RotorB_mux[61])
-);
+assign RB_mux_i[55] = RotorB_mux[7 ];
+assign RB_mux_i[54] = RotorB_mux[37];
+assign RB_mux_i[53] = RotorB_mux[1 ];
+assign RB_mux_i[52] = RotorB_mux[62];
 
-RotorB_cell U60(
-	.param1_i(RotorB_reg[60]), .param2_i(RotorB_reg[61]),
-	.param3_i(RotorB_reg[62]), .param4_i(RotorB_reg[63]),
-	.shift_i(RotorB_reg[61]),
-	.load_i(load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-	.shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-	.mux_i(RotorB_mux[41]), .shift_o(RotorB_reg[60]), .mux_o(RotorB_mux[60])
-);
+assign RB_mux_i[51] = RotorB_mux[52];
+assign RB_mux_i[50] = RotorB_mux[35];
+assign RB_mux_i[49] = RotorB_mux[19];
+assign RB_mux_i[48] = RotorB_mux[50];
 
-// group top = 59
-RotorB_cell U59(
-  .param1_i(RotorB_reg[59]), .param2_i(RotorB_reg[58]),
-  .param3_i(RotorB_reg[57]), .param4_i(RotorB_reg[56]),
-  .shift_i (RotorB_reg[60]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[27]), .shift_o(RotorB_reg[59]), .mux_o(RotorB_mux[59])
-);
+assign RB_mux_i[47] = RotorB_mux[59];
+assign RB_mux_i[46] = RotorB_mux[36];
+assign RB_mux_i[45] = RotorB_mux[4 ];
+assign RB_mux_i[44] = RotorB_mux[15];
 
-RotorB_cell U58(
-  .param1_i(RotorB_reg[58]), .param2_i(RotorB_reg[59]),
-  .param3_i(RotorB_reg[56]), .param4_i(RotorB_reg[57]),
-  .shift_i (RotorB_reg[59]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[31]), .shift_o(RotorB_reg[58]), .mux_o(RotorB_mux[58])
-);
+assign RB_mux_i[43] = RotorB_mux[11];
+assign RB_mux_i[42] = RotorB_mux[30];
+assign RB_mux_i[41] = RotorB_mux[39];
+assign RB_mux_i[40] = RotorB_mux[51];
 
-RotorB_cell U57(
-  .param1_i(RotorB_reg[57]), .param2_i(RotorB_reg[56]),
-  .param3_i(RotorB_reg[59]), .param4_i(RotorB_reg[58]),
-  .shift_i (RotorB_reg[58]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[45]), .shift_o(RotorB_reg[57]), .mux_o(RotorB_mux[57])
-);
+assign RB_mux_i[39] = RotorB_mux[46];
+assign RB_mux_i[38] = RotorB_mux[53];
+assign RB_mux_i[37] = RotorB_mux[3 ];
+assign RB_mux_i[36] = RotorB_mux[5 ];
 
-RotorB_cell U56(
-  .param1_i(RotorB_reg[56]), .param2_i(RotorB_reg[57]),
-  .param3_i(RotorB_reg[58]), .param4_i(RotorB_reg[59]),
-  .shift_i (RotorB_reg[57]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[12]), .shift_o(RotorB_reg[56]), .mux_o(RotorB_mux[56])
-);
+assign RB_mux_i[35] = RotorB_mux[44];
+assign RB_mux_i[34] = RotorB_mux[9 ];
+assign RB_mux_i[33] = RotorB_mux[16];
+assign RB_mux_i[32] = RotorB_mux[49];
 
-// group top = 55
-RotorB_cell U55(
-  .param1_i(RotorB_reg[55]), .param2_i(RotorB_reg[54]),
-  .param3_i(RotorB_reg[53]), .param4_i(RotorB_reg[52]),
-  .shift_i (RotorB_reg[56]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[7]), .shift_o(RotorB_reg[55]), .mux_o(RotorB_mux[55])
-);
+assign RB_mux_i[31] = RotorB_mux[55];
+assign RB_mux_i[30] = RotorB_mux[60];
+assign RB_mux_i[29] = RotorB_mux[34];
+assign RB_mux_i[28] = RotorB_mux[14];
 
-RotorB_cell U54(
-  .param1_i(RotorB_reg[54]), .param2_i(RotorB_reg[55]),
-  .param3_i(RotorB_reg[52]), .param4_i(RotorB_reg[53]),
-  .shift_i (RotorB_reg[55]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[37]), .shift_o(RotorB_reg[54]), .mux_o(RotorB_mux[54])
-);
+assign RB_mux_i[27] = RotorB_mux[63];
+assign RB_mux_i[26] = RotorB_mux[32];
+assign RB_mux_i[25] = RotorB_mux[2 ];
+assign RB_mux_i[24] = RotorB_mux[54];
 
-RotorB_cell U53(
-  .param1_i(RotorB_reg[53]), .param2_i(RotorB_reg[52]),
-  .param3_i(RotorB_reg[55]), .param4_i(RotorB_reg[54]),
-  .shift_i (RotorB_reg[54]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[1]), .shift_o(RotorB_reg[53]), .mux_o(RotorB_mux[53])
-);
+assign RB_mux_i[23] = RotorB_mux[40];
+assign RB_mux_i[22] = RotorB_mux[8 ];
+assign RB_mux_i[21] = RotorB_mux[47];
+assign RB_mux_i[20] = RotorB_mux[22];
 
-RotorB_cell U52(
-  .param1_i(RotorB_reg[52]), .param2_i(RotorB_reg[53]),
-  .param3_i(RotorB_reg[54]), .param4_i(RotorB_reg[55]),
-  .shift_i (RotorB_reg[53]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[62]), .shift_o(RotorB_reg[52]), .mux_o(RotorB_mux[52])
-);
+assign RB_mux_i[19] = RotorB_mux[6 ];
+assign RB_mux_i[18] = RotorB_mux[57];
+assign RB_mux_i[17] = RotorB_mux[13];
+assign RB_mux_i[16] = RotorB_mux[26];
 
-// group top = 51
-RotorB_cell U51(
-  .param1_i(RotorB_reg[51]), .param2_i(RotorB_reg[50]),
-  .param3_i(RotorB_reg[49]), .param4_i(RotorB_reg[48]),
-  .shift_i (RotorB_reg[52]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[52]), .shift_o(RotorB_reg[51]), .mux_o(RotorB_mux[51])
-);
+assign RB_mux_i[15] = RotorB_mux[38];
+assign RB_mux_i[14] = RotorB_mux[18];
+assign RB_mux_i[13] = RotorB_mux[29];
+assign RB_mux_i[12] = RotorB_mux[21];
 
-RotorB_cell U50(
-  .param1_i(RotorB_reg[50]), .param2_i(RotorB_reg[51]),
-  .param3_i(RotorB_reg[48]), .param4_i(RotorB_reg[49]),
-  .shift_i (RotorB_reg[51]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[35]), .shift_o(RotorB_reg[50]), .mux_o(RotorB_mux[50])
-);
+assign RB_mux_i[11] = RotorB_mux[24];
+assign RB_mux_i[10] = RotorB_mux[58];
+assign RB_mux_i[9 ] = RotorB_mux[28];
+assign RB_mux_i[8 ] = RotorB_mux[10];
 
-RotorB_cell U49(
-  .param1_i(RotorB_reg[49]), .param2_i(RotorB_reg[48]),
-  .param3_i(RotorB_reg[51]), .param4_i(RotorB_reg[50]),
-  .shift_i (RotorB_reg[50]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[19]), .shift_o(RotorB_reg[49]), .mux_o(RotorB_mux[49])
-);
+assign RB_mux_i[7 ] = RotorB_mux[43];
+assign RB_mux_i[6 ] = RotorB_mux[23];
+assign RB_mux_i[5 ] = RotorB_mux[48];
+assign RB_mux_i[4 ] = RotorB_mux[42];
 
-RotorB_cell U48(
-  .param1_i(RotorB_reg[48]), .param2_i(RotorB_reg[49]),
-  .param3_i(RotorB_reg[50]), .param4_i(RotorB_reg[51]),
-  .shift_i (RotorB_reg[49]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[50]), .shift_o(RotorB_reg[48]), .mux_o(RotorB_mux[48])
-);
+assign RB_mux_i[3 ] = RotorB_mux[17];
+assign RB_mux_i[2 ] = RotorB_mux[25];
+assign RB_mux_i[1 ] = RotorB_mux[61];
+assign RB_mux_i[0 ] = RotorB_mux[56];
+// ----- Rotor B (FLATTENED) -----//
+// 參數多工器：等價於 RotorB_cell 的 comb mux_o
+// 觀察到你的 Uxx 皆為 param1..4 = {k, k^1, k^2, k^3} 對應的 RotorB_reg
+genvar bk;
+generate
+  for (bk = 63; bk >= 0; bk = bk - 1) begin : G_ROTORB_FLAT
+    // ---- param1..4：依照你 Uxx 的群組規則（每 4 筆一組，top=4n+3）----
+    if ((bk % 4) == 3) begin : GP3
+      assign RB_param1[bk] = RotorB_reg[bk    ];
+      assign RB_param2[bk] = RotorB_reg[bk-1  ];
+      assign RB_param3[bk] = RotorB_reg[bk-2  ];
+      assign RB_param4[bk] = RotorB_reg[bk-3  ];
+    end else if ((bk % 4) == 2) begin : GP2
+      assign RB_param1[bk] = RotorB_reg[bk    ];
+      assign RB_param2[bk] = RotorB_reg[bk+1  ];
+      assign RB_param3[bk] = RotorB_reg[bk-2  ];
+      assign RB_param4[bk] = RotorB_reg[bk-1  ];
+    end else if ((bk % 4) == 1) begin : GP1
+      assign RB_param1[bk] = RotorB_reg[bk    ];
+      assign RB_param2[bk] = RotorB_reg[bk-1  ];
+      assign RB_param3[bk] = RotorB_reg[bk+2  ];
+      assign RB_param4[bk] = RotorB_reg[bk+1  ];
+    end else begin : GP0 // (bk % 4) == 0
+      assign RB_param1[bk] = RotorB_reg[bk    ];
+      assign RB_param2[bk] = RotorB_reg[bk+1  ];
+      assign RB_param3[bk] = RotorB_reg[bk+2  ];
+      assign RB_param4[bk] = RotorB_reg[bk+3  ];
+    end
 
-// group top = 47
-RotorB_cell U47(
-  .param1_i(RotorB_reg[47]), .param2_i(RotorB_reg[46]),
-  .param3_i(RotorB_reg[45]), .param4_i(RotorB_reg[44]),
-  .shift_i (RotorB_reg[48]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[59]), .shift_o(RotorB_reg[47]), .mux_o(RotorB_mux[47])
-);
+    // ---- mux_o：用 parallel_case，對應你 submodule 裡的 always@(*) case ----
+    always @(*) begin
+      case (shift_value_b) // synopsys parallel_case
+        2'b00: RotorB_mux[bk] = RB_param1[bk];
+        2'b01: RotorB_mux[bk] = RB_param2[bk];
+        2'b10: RotorB_mux[bk] = RB_param3[bk];
+        2'b11: RotorB_mux[bk] = RB_param4[bk];
+      endcase
+    end
 
-RotorB_cell U46(
-  .param1_i(RotorB_reg[46]), .param2_i(RotorB_reg[47]),
-  .param3_i(RotorB_reg[44]), .param4_i(RotorB_reg[45]),
-  .shift_i (RotorB_reg[47]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[36]), .shift_o(RotorB_reg[46]), .mux_o(RotorB_mux[46])
-);
+    // ---- shift_i：第 63 段吃 code_in_reg，其餘吃下一段（與你原本一致、不越界）----
+    if (bk == 63) begin : G_FIRST
+      assign RB_shift_i[bk] = code_in_reg;
+    end else begin : G_OTHER
+      assign RB_shift_i[bk] = RotorB_reg[bk+1];
+    end
 
-RotorB_cell U45(
-  .param1_i(RotorB_reg[45]), .param2_i(RotorB_reg[44]),
-  .param3_i(RotorB_reg[47]), .param4_i(RotorB_reg[46]),
-  .shift_i (RotorB_reg[46]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[4]), .shift_o(RotorB_reg[45]), .mux_o(RotorB_mux[45])
-);
+    // ---- reg_i：用 parallel_case 寫成你 submodule 的 {load,encrypt} 邏輯 ----
+    always @(*) begin
+      case ({load_reg, plug_forward_valid}) // synopsys parallel_case
+        2'b01: RB_reg_i[bk] = RB_mux_i[bk];
+        2'b10: RB_reg_i[bk] = RB_shift_i[bk];
+        default: RB_reg_i[bk] = RotorB_reg[bk];
+      endcase
+    end
 
-RotorB_cell U44(
-  .param1_i(RotorB_reg[44]), .param2_i(RotorB_reg[45]),
-  .param3_i(RotorB_reg[46]), .param4_i(RotorB_reg[47]),
-  .shift_i (RotorB_reg[45]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[15]), .shift_o(RotorB_reg[44]), .mux_o(RotorB_mux[44])
-);
+    // ---- 時序寫入：與你原本完全相同 ----
+    always @(posedge clk) begin
+      if (table_idx_reg == 2'b10 || plug_forward_valid == 1'b1) begin
+        RotorB_reg[bk] <= RB_reg_i[bk];
+      end
+    end
+  end
+endgenerate
+// ----- Rotor B (FLATTENED) -----//
 
-// group top = 43
-RotorB_cell U43(
-  .param1_i(RotorB_reg[43]), .param2_i(RotorB_reg[42]),
-  .param3_i(RotorB_reg[41]), .param4_i(RotorB_reg[40]),
-  .shift_i (RotorB_reg[44]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[11]), .shift_o(RotorB_reg[43]), .mux_o(RotorB_mux[43])
-);
-
-RotorB_cell U42(
-  .param1_i(RotorB_reg[42]), .param2_i(RotorB_reg[43]),
-  .param3_i(RotorB_reg[40]), .param4_i(RotorB_reg[41]),
-  .shift_i (RotorB_reg[43]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[30]), .shift_o(RotorB_reg[42]), .mux_o(RotorB_mux[42])
-);
-
-RotorB_cell U41(
-  .param1_i(RotorB_reg[41]), .param2_i(RotorB_reg[40]),
-  .param3_i(RotorB_reg[43]), .param4_i(RotorB_reg[42]),
-  .shift_i (RotorB_reg[42]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[39]), .shift_o(RotorB_reg[41]), .mux_o(RotorB_mux[41])
-);
-
-RotorB_cell U40(
-  .param1_i(RotorB_reg[40]), .param2_i(RotorB_reg[41]),
-  .param3_i(RotorB_reg[42]), .param4_i(RotorB_reg[43]),
-  .shift_i (RotorB_reg[41]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[51]), .shift_o(RotorB_reg[40]), .mux_o(RotorB_mux[40])
-);
-
-// group top = 39
-RotorB_cell U39(
-  .param1_i(RotorB_reg[39]), .param2_i(RotorB_reg[38]),
-  .param3_i(RotorB_reg[37]), .param4_i(RotorB_reg[36]),
-  .shift_i (RotorB_reg[40]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[46]), .shift_o(RotorB_reg[39]), .mux_o(RotorB_mux[39])
-);
-
-RotorB_cell U38(
-  .param1_i(RotorB_reg[38]), .param2_i(RotorB_reg[39]),
-  .param3_i(RotorB_reg[36]), .param4_i(RotorB_reg[37]),
-  .shift_i (RotorB_reg[39]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[53]), .shift_o(RotorB_reg[38]), .mux_o(RotorB_mux[38])
-);
-
-RotorB_cell U37(
-  .param1_i(RotorB_reg[37]), .param2_i(RotorB_reg[36]),
-  .param3_i(RotorB_reg[39]), .param4_i(RotorB_reg[38]),
-  .shift_i (RotorB_reg[38]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[3]), .shift_o(RotorB_reg[37]), .mux_o(RotorB_mux[37])
-);
-
-RotorB_cell U36(
-  .param1_i(RotorB_reg[36]), .param2_i(RotorB_reg[37]),
-  .param3_i(RotorB_reg[38]), .param4_i(RotorB_reg[39]),
-  .shift_i (RotorB_reg[37]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[5]), .shift_o(RotorB_reg[36]), .mux_o(RotorB_mux[36])
-);
-
-// group top = 35
-RotorB_cell U35(
-  .param1_i(RotorB_reg[35]), .param2_i(RotorB_reg[34]),
-  .param3_i(RotorB_reg[33]), .param4_i(RotorB_reg[32]),
-  .shift_i (RotorB_reg[36]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[44]), .shift_o(RotorB_reg[35]), .mux_o(RotorB_mux[35])
-);
-
-RotorB_cell U34(
-  .param1_i(RotorB_reg[34]), .param2_i(RotorB_reg[35]),
-  .param3_i(RotorB_reg[32]), .param4_i(RotorB_reg[33]),
-  .shift_i (RotorB_reg[35]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[9]), .shift_o(RotorB_reg[34]), .mux_o(RotorB_mux[34])
-);
-
-RotorB_cell U33(
-  .param1_i(RotorB_reg[33]), .param2_i(RotorB_reg[32]),
-  .param3_i(RotorB_reg[35]), .param4_i(RotorB_reg[34]),
-  .shift_i (RotorB_reg[34]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[16]), .shift_o(RotorB_reg[33]), .mux_o(RotorB_mux[33])
-);
-
-RotorB_cell U32(
-  .param1_i(RotorB_reg[32]), .param2_i(RotorB_reg[33]),
-  .param3_i(RotorB_reg[34]), .param4_i(RotorB_reg[35]),
-  .shift_i (RotorB_reg[33]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[49]), .shift_o(RotorB_reg[32]), .mux_o(RotorB_mux[32])
-);
-
-// group top = 31
-RotorB_cell U31(
-  .param1_i(RotorB_reg[31]), .param2_i(RotorB_reg[30]),
-  .param3_i(RotorB_reg[29]), .param4_i(RotorB_reg[28]),
-  .shift_i (RotorB_reg[32]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[55]), .shift_o(RotorB_reg[31]), .mux_o(RotorB_mux[31])
-);
-
-RotorB_cell U30(
-  .param1_i(RotorB_reg[30]), .param2_i(RotorB_reg[31]),
-  .param3_i(RotorB_reg[28]), .param4_i(RotorB_reg[29]),
-  .shift_i (RotorB_reg[31]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[60]), .shift_o(RotorB_reg[30]), .mux_o(RotorB_mux[30])
-);
-
-RotorB_cell U29(
-  .param1_i(RotorB_reg[29]), .param2_i(RotorB_reg[28]),
-  .param3_i(RotorB_reg[31]), .param4_i(RotorB_reg[30]),
-  .shift_i (RotorB_reg[30]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[34]), .shift_o(RotorB_reg[29]), .mux_o(RotorB_mux[29])
-);
-
-RotorB_cell U28(
-  .param1_i(RotorB_reg[28]), .param2_i(RotorB_reg[29]),
-  .param3_i(RotorB_reg[30]), .param4_i(RotorB_reg[31]),
-  .shift_i (RotorB_reg[29]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[14]), .shift_o(RotorB_reg[28]), .mux_o(RotorB_mux[28])
-);
-
-// group top = 27
-RotorB_cell U27(
-  .param1_i(RotorB_reg[27]), .param2_i(RotorB_reg[26]),
-  .param3_i(RotorB_reg[25]), .param4_i(RotorB_reg[24]),
-  .shift_i (RotorB_reg[28]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[63]), .shift_o(RotorB_reg[27]), .mux_o(RotorB_mux[27])
-);
-
-RotorB_cell U26(
-  .param1_i(RotorB_reg[26]), .param2_i(RotorB_reg[27]),
-  .param3_i(RotorB_reg[24]), .param4_i(RotorB_reg[25]),
-  .shift_i (RotorB_reg[27]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[32]), .shift_o(RotorB_reg[26]), .mux_o(RotorB_mux[26])
-);
-
-RotorB_cell U25(
-  .param1_i(RotorB_reg[25]), .param2_i(RotorB_reg[24]),
-  .param3_i(RotorB_reg[27]), .param4_i(RotorB_reg[26]),
-  .shift_i (RotorB_reg[26]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[2]), .shift_o(RotorB_reg[25]), .mux_o(RotorB_mux[25])
-);
-
-RotorB_cell U24(
-  .param1_i(RotorB_reg[24]), .param2_i(RotorB_reg[25]),
-  .param3_i(RotorB_reg[26]), .param4_i(RotorB_reg[27]),
-  .shift_i (RotorB_reg[25]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[54]), .shift_o(RotorB_reg[24]), .mux_o(RotorB_mux[24])
-);
-
-// group top = 23
-RotorB_cell U23(
-  .param1_i(RotorB_reg[23]), .param2_i(RotorB_reg[22]),
-  .param3_i(RotorB_reg[21]), .param4_i(RotorB_reg[20]),
-  .shift_i (RotorB_reg[24]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[40]), .shift_o(RotorB_reg[23]), .mux_o(RotorB_mux[23])
-);
-
-RotorB_cell U22(
-  .param1_i(RotorB_reg[22]), .param2_i(RotorB_reg[23]),
-  .param3_i(RotorB_reg[20]), .param4_i(RotorB_reg[21]),
-  .shift_i (RotorB_reg[23]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[8]), .shift_o(RotorB_reg[22]), .mux_o(RotorB_mux[22])
-);
-
-RotorB_cell U21(
-  .param1_i(RotorB_reg[21]), .param2_i(RotorB_reg[20]),
-  .param3_i(RotorB_reg[23]), .param4_i(RotorB_reg[22]),
-  .shift_i (RotorB_reg[22]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[47]), .shift_o(RotorB_reg[21]), .mux_o(RotorB_mux[21])
-);
-
-RotorB_cell U20(
-  .param1_i(RotorB_reg[20]), .param2_i(RotorB_reg[21]),
-  .param3_i(RotorB_reg[22]), .param4_i(RotorB_reg[23]),
-  .shift_i (RotorB_reg[21]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[22]), .shift_o(RotorB_reg[20]), .mux_o(RotorB_mux[20])
-);
-
-// group top = 19
-RotorB_cell U19(
-  .param1_i(RotorB_reg[19]), .param2_i(RotorB_reg[18]),
-  .param3_i(RotorB_reg[17]), .param4_i(RotorB_reg[16]),
-  .shift_i (RotorB_reg[20]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[6]), .shift_o(RotorB_reg[19]), .mux_o(RotorB_mux[19])
-);
-
-RotorB_cell U18(
-  .param1_i(RotorB_reg[18]), .param2_i(RotorB_reg[19]),
-  .param3_i(RotorB_reg[16]), .param4_i(RotorB_reg[17]),
-  .shift_i (RotorB_reg[19]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[57]), .shift_o(RotorB_reg[18]), .mux_o(RotorB_mux[18])
-);
-
-RotorB_cell U17(
-  .param1_i(RotorB_reg[17]), .param2_i(RotorB_reg[16]),
-  .param3_i(RotorB_reg[19]), .param4_i(RotorB_reg[18]),
-  .shift_i (RotorB_reg[18]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[13]), .shift_o(RotorB_reg[17]), .mux_o(RotorB_mux[17])
-);
-
-RotorB_cell U16(
-  .param1_i(RotorB_reg[16]), .param2_i(RotorB_reg[17]),
-  .param3_i(RotorB_reg[18]), .param4_i(RotorB_reg[19]),
-  .shift_i (RotorB_reg[17]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[26]), .shift_o(RotorB_reg[16]), .mux_o(RotorB_mux[16])
-);
-
-// group top = 15
-RotorB_cell U15(
-  .param1_i(RotorB_reg[15]), .param2_i(RotorB_reg[14]),
-  .param3_i(RotorB_reg[13]), .param4_i(RotorB_reg[12]),
-  .shift_i (RotorB_reg[16]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[38]), .shift_o(RotorB_reg[15]), .mux_o(RotorB_mux[15])
-);
-
-RotorB_cell U14(
-  .param1_i(RotorB_reg[14]), .param2_i(RotorB_reg[15]),
-  .param3_i(RotorB_reg[12]), .param4_i(RotorB_reg[13]),
-  .shift_i (RotorB_reg[15]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[18]), .shift_o(RotorB_reg[14]), .mux_o(RotorB_mux[14])
-);
-
-RotorB_cell U13(
-  .param1_i(RotorB_reg[13]), .param2_i(RotorB_reg[12]),
-  .param3_i(RotorB_reg[15]), .param4_i(RotorB_reg[14]),
-  .shift_i (RotorB_reg[14]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[29]), .shift_o(RotorB_reg[13]), .mux_o(RotorB_mux[13])
-);
-
-RotorB_cell U12(
-  .param1_i(RotorB_reg[12]), .param2_i(RotorB_reg[13]),
-  .param3_i(RotorB_reg[14]), .param4_i(RotorB_reg[15]),
-  .shift_i (RotorB_reg[13]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[21]), .shift_o(RotorB_reg[12]), .mux_o(RotorB_mux[12])
-);
-
-// group top = 11
-RotorB_cell U11(
-  .param1_i(RotorB_reg[11]), .param2_i(RotorB_reg[10]),
-  .param3_i(RotorB_reg[9 ]), .param4_i(RotorB_reg[8 ]),
-  .shift_i (RotorB_reg[12]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[24]), .shift_o(RotorB_reg[11]), .mux_o(RotorB_mux[11])
-);
-
-RotorB_cell U10(
-  .param1_i(RotorB_reg[10]), .param2_i(RotorB_reg[11]),
-  .param3_i(RotorB_reg[8 ]), .param4_i(RotorB_reg[9 ]),
-  .shift_i (RotorB_reg[11]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[58]), .shift_o(RotorB_reg[10]), .mux_o(RotorB_mux[10])
-);
-
-RotorB_cell U9(
-  .param1_i(RotorB_reg[9 ]), .param2_i(RotorB_reg[8 ]),
-  .param3_i(RotorB_reg[11]), .param4_i(RotorB_reg[10]),
-  .shift_i (RotorB_reg[10]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[28]), .shift_o(RotorB_reg[9]), .mux_o(RotorB_mux[9])
-);
-
-RotorB_cell U8(
-  .param1_i(RotorB_reg[8 ]), .param2_i(RotorB_reg[9 ]),
-  .param3_i(RotorB_reg[10]), .param4_i(RotorB_reg[11]),
-  .shift_i (RotorB_reg[9]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[10]), .shift_o(RotorB_reg[8]), .mux_o(RotorB_mux[8])
-);
-
-// group top = 7
-RotorB_cell U7(
-  .param1_i(RotorB_reg[7 ]), .param2_i(RotorB_reg[6 ]),
-  .param3_i(RotorB_reg[5 ]), .param4_i(RotorB_reg[4 ]),
-  .shift_i (RotorB_reg[8]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[43]), .shift_o(RotorB_reg[7]), .mux_o(RotorB_mux[7])
-);
-
-RotorB_cell U6(
-  .param1_i(RotorB_reg[6 ]), .param2_i(RotorB_reg[7 ]),
-  .param3_i(RotorB_reg[4 ]), .param4_i(RotorB_reg[5 ]),
-  .shift_i (RotorB_reg[7]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[23]), .shift_o(RotorB_reg[6]), .mux_o(RotorB_mux[6])
-);
-
-RotorB_cell U5(
-  .param1_i(RotorB_reg[5 ]), .param2_i(RotorB_reg[4 ]),
-  .param3_i(RotorB_reg[7 ]), .param4_i(RotorB_reg[6 ]),
-  .shift_i (RotorB_reg[6]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[48]), .shift_o(RotorB_reg[5]), .mux_o(RotorB_mux[5])
-);
-
-RotorB_cell U4(
-  .param1_i(RotorB_reg[4 ]), .param2_i(RotorB_reg[5 ]),
-  .param3_i(RotorB_reg[6 ]), .param4_i(RotorB_reg[7 ]),
-  .shift_i (RotorB_reg[5]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[42]), .shift_o(RotorB_reg[4]), .mux_o(RotorB_mux[4])
-);
-
-// group top = 3
-RotorB_cell U3(
-  .param1_i(RotorB_reg[3 ]), .param2_i(RotorB_reg[2 ]),
-  .param3_i(RotorB_reg[1 ]), .param4_i(RotorB_reg[0 ]),
-  .shift_i (RotorB_reg[4]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[17]), .shift_o(RotorB_reg[3]), .mux_o(RotorB_mux[3])
-);
-
-RotorB_cell U2(
-  .param1_i(RotorB_reg[2 ]), .param2_i(RotorB_reg[3 ]),
-  .param3_i(RotorB_reg[0 ]), .param4_i(RotorB_reg[1 ]),
-  .shift_i (RotorB_reg[3]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[25]), .shift_o(RotorB_reg[2]), .mux_o(RotorB_mux[2])
-);
-
-RotorB_cell U1(
-  .param1_i(RotorB_reg[1 ]), .param2_i(RotorB_reg[0 ]),
-  .param3_i(RotorB_reg[3 ]), .param4_i(RotorB_reg[2 ]),
-  .shift_i (RotorB_reg[2]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[61]), .shift_o(RotorB_reg[1]), .mux_o(RotorB_mux[1])
-);
-
-RotorB_cell U0(
-  .param1_i(RotorB_reg[0 ]), .param2_i(RotorB_reg[1 ]),
-  .param3_i(RotorB_reg[2 ]), .param4_i(RotorB_reg[3 ]),
-  .shift_i (RotorB_reg[1]),
-  .load_i  (load_reg), .encrypt_i(plug_forward_valid), .clk(clk),
-  .shift_value_i(shift_value_b), .table_idx(table_idx_reg),
-  .mux_i(RotorB_mux[56]), .shift_o(RotorB_reg[0]), .mux_o(RotorB_mux[0])
-);
 
 
 
 // this mux may use other optimize method for synthesis.
 assign RotorB_forward_o = RotorB_reg[bitswitch_forward_o];
+
+
+// always @(*) begin : RotorB_MUX
+//     case (bitswitch_forward_o) // synopsys parallel_case full_case
+//         6'd0 : RotorB_forward_o = RotorB_reg[0];
+//         6'd1 : RotorB_forward_o = RotorB_reg[1];
+//         6'd2 : RotorB_forward_o = RotorB_reg[2];
+//         6'd3 : RotorB_forward_o = RotorB_reg[3];
+//         6'd4 : RotorB_forward_o = RotorB_reg[4];
+//         6'd5 : RotorB_forward_o = RotorB_reg[5];
+//         6'd6 : RotorB_forward_o = RotorB_reg[6];
+//         6'd7 : RotorB_forward_o = RotorB_reg[7];
+//         6'd8 : RotorB_forward_o = RotorB_reg[8];
+//         6'd9 : RotorB_forward_o = RotorB_reg[9];
+//         6'd10: RotorB_forward_o = RotorB_reg[10];
+//         6'd11: RotorB_forward_o = RotorB_reg[11];
+//         6'd12: RotorB_forward_o = RotorB_reg[12];
+//         6'd13: RotorB_forward_o = RotorB_reg[13];
+//         6'd14: RotorB_forward_o = RotorB_reg[14];
+//         6'd15: RotorB_forward_o = RotorB_reg[15];
+//         6'd16: RotorB_forward_o = RotorB_reg[16];
+//         6'd17: RotorB_forward_o = RotorB_reg[17];
+//         6'd18: RotorB_forward_o = RotorB_reg[18];
+//         6'd19: RotorB_forward_o = RotorB_reg[19];
+//         6'd20: RotorB_forward_o = RotorB_reg[20];
+//         6'd21: RotorB_forward_o = RotorB_reg[21];
+//         6'd22: RotorB_forward_o = RotorB_reg[22];
+//         6'd23: RotorB_forward_o = RotorB_reg[23];
+//         6'd24: RotorB_forward_o = RotorB_reg[24];
+//         6'd25: RotorB_forward_o = RotorB_reg[25];
+//         6'd26: RotorB_forward_o = RotorB_reg[26];
+//         6'd27: RotorB_forward_o = RotorB_reg[27];
+//         6'd28: RotorB_forward_o = RotorB_reg[28];
+//         6'd29: RotorB_forward_o = RotorB_reg[29];
+//         6'd30: RotorB_forward_o = RotorB_reg[30];
+//         6'd31: RotorB_forward_o = RotorB_reg[31];
+//         6'd32: RotorB_forward_o = RotorB_reg[32];
+//         6'd33: RotorB_forward_o = RotorB_reg[33];
+//         6'd34: RotorB_forward_o = RotorB_reg[34];
+//         6'd35: RotorB_forward_o = RotorB_reg[35];
+//         6'd36: RotorB_forward_o = RotorB_reg[36];
+//         6'd37: RotorB_forward_o = RotorB_reg[37];
+//         6'd38: RotorB_forward_o = RotorB_reg[38];
+//         6'd39: RotorB_forward_o = RotorB_reg[39];
+//         6'd40: RotorB_forward_o = RotorB_reg[40];
+//         6'd41: RotorB_forward_o = RotorB_reg[41];
+//         6'd42: RotorB_forward_o = RotorB_reg[42];
+//         6'd43: RotorB_forward_o = RotorB_reg[43];
+//         6'd44: RotorB_forward_o = RotorB_reg[44];
+//         6'd45: RotorB_forward_o = RotorB_reg[45];
+//         6'd46: RotorB_forward_o = RotorB_reg[46];
+//         6'd47: RotorB_forward_o = RotorB_reg[47];
+//         6'd48: RotorB_forward_o = RotorB_reg[48];
+//         6'd49: RotorB_forward_o = RotorB_reg[49];
+//         6'd50: RotorB_forward_o = RotorB_reg[50];
+//         6'd51: RotorB_forward_o = RotorB_reg[51];
+//         6'd52: RotorB_forward_o = RotorB_reg[52];
+//         6'd53: RotorB_forward_o = RotorB_reg[53];
+//         6'd54: RotorB_forward_o = RotorB_reg[54];
+//         6'd55: RotorB_forward_o = RotorB_reg[55];
+//         6'd56: RotorB_forward_o = RotorB_reg[56];
+//         6'd57: RotorB_forward_o = RotorB_reg[57];
+//         6'd58: RotorB_forward_o = RotorB_reg[58];
+//         6'd59: RotorB_forward_o = RotorB_reg[59];
+//         6'd60: RotorB_forward_o = RotorB_reg[60];
+//         6'd61: RotorB_forward_o = RotorB_reg[61];
+//         6'd62: RotorB_forward_o = RotorB_reg[62];
+//         6'd63: RotorB_forward_o = RotorB_reg[63];
+//     endcase
+// end
+
 
 assign shift_value_b = (crypt_mode_reg == 1'b0)? RotorB_forward_o[1:0] : RotorB_inverse_i[1:0];
 
@@ -881,6 +753,9 @@ always @(posedge clk) begin
 	  lfsr_reg <= lfsr_reg;
 	end
 end
+// always @(negedge clk) begin
+//   xor_o <= lfsr_reg ^ RotorB_forward_o;
+// end
 assign xor_o = lfsr_reg ^ RotorB_forward_o;
 assign RotorB_inverse_i = xor_o;
 // ----- XOR ----- //
@@ -888,100 +763,100 @@ assign RotorB_inverse_i = xor_o;
 endmodule
 
 
-// ----- Rotor A submodule -----//
-module RotorA_cell # (
-	parameter pData_LEN = 6
-)(
-	input wire [(pData_LEN-1):0] param1_i,
-	input wire [(pData_LEN-1):0] param2_i,
-	input wire [(pData_LEN-1):0] param3_i,
-	input wire [(pData_LEN-1):0] param4_i,
-	input wire [(pData_LEN-1):0] shift_i, // previous stage output
-	input load_i,
-	input encrypt_i,
-	input clk,
-	input [1:0]shift_value_i,
-	input [1:0]table_idx,
-	output reg [(pData_LEN-1):0] shift_o
-);
+// // ----- Rotor A submodule -----//
+// module RotorA_cell # (
+// 	parameter pData_LEN = 6
+// )(
+// 	input wire [(pData_LEN-1):0] param1_i,
+// 	input wire [(pData_LEN-1):0] param2_i,
+// 	input wire [(pData_LEN-1):0] param3_i,
+// 	input wire [(pData_LEN-1):0] param4_i,
+// 	input wire [(pData_LEN-1):0] shift_i, // previous stage output
+// 	input load_i,
+// 	input encrypt_i,
+// 	input clk,
+// 	input [1:0]shift_value_i,
+// 	input [1:0]table_idx,
+// 	output reg [(pData_LEN-1):0] shift_o
+// );
 
-reg [(pData_LEN-1):0] shift_mux;
-always @(*) begin
-	case (shift_value_i) // synopsys parallel_case
-	2'b00: shift_mux = param1_i;
-	2'b01: shift_mux = param2_i;
-	2'b10: shift_mux = param3_i;
-	2'b11: shift_mux = param4_i;
-	endcase
-end
+// reg [(pData_LEN-1):0] shift_mux;
+// always @(*) begin
+// 	case (shift_value_i) // synopsys parallel_case
+// 	2'b00: shift_mux = param1_i;
+// 	2'b01: shift_mux = param2_i;
+// 	2'b10: shift_mux = param3_i;
+// 	2'b11: shift_mux = param4_i;
+// 	endcase
+// end
 
-reg [(pData_LEN-1):0] reg_i;
-always @(*) begin
-	case ({load_i, encrypt_i}) // synopsys parallel_case
-	2'b01: reg_i = shift_mux;
-	2'b10: reg_i = shift_i;
-	default: reg_i = shift_o;
-	endcase
-end
+// reg [(pData_LEN-1):0] reg_i;
+// always @(*) begin
+// 	case ({load_i, encrypt_i}) // synopsys parallel_case
+// 	2'b01: reg_i = shift_mux;
+// 	2'b10: reg_i = shift_i;
+// 	default: reg_i = shift_o;
+// 	endcase
+// end
 
-always @(posedge clk) begin
-	if (table_idx == 2'b00 || encrypt_i == 1) begin
-	  shift_o <= reg_i;
-	end else begin
-	  shift_o <= shift_o;
-	end
+// always @(posedge clk) begin
+// 	if (table_idx == 2'b00 || encrypt_i == 1) begin
+// 	  shift_o <= reg_i;
+// 	end else begin
+// 	  shift_o <= shift_o;
+// 	end
 	
-end
+// end
 
-endmodule
+// endmodule
 
-// ----- Rotor B submodule -----//
-module RotorB_cell # (
-	parameter pData_LEN = 6
-)(
-	input wire [(pData_LEN-1):0] param1_i,
-	input wire [(pData_LEN-1):0] param2_i,
-	input wire [(pData_LEN-1):0] param3_i,
-	input wire [(pData_LEN-1):0] param4_i,
-	input wire [(pData_LEN-1):0] shift_i, // previous stage output
-	input load_i,
-	input encrypt_i,
-	input clk,
-	input [1:0]shift_value_i,
-	input [1:0]table_idx,
-	input [(pData_LEN-1):0] mux_i,
-	output reg [(pData_LEN-1):0] shift_o,
-	output reg [(pData_LEN-1):0] mux_o
-);
+// // ----- Rotor B submodule -----//
+// module RotorB_cell # (
+// 	parameter pData_LEN = 6
+// )(
+// 	input wire [(pData_LEN-1):0] param1_i,
+// 	input wire [(pData_LEN-1):0] param2_i,
+// 	input wire [(pData_LEN-1):0] param3_i,
+// 	input wire [(pData_LEN-1):0] param4_i,
+// 	input wire [(pData_LEN-1):0] shift_i, // previous stage output
+// 	input load_i,
+// 	input encrypt_i,
+// 	input clk,
+// 	input [1:0]shift_value_i,
+// 	input [1:0]table_idx,
+// 	input [(pData_LEN-1):0] mux_i,
+// 	output reg [(pData_LEN-1):0] shift_o,
+// 	output reg [(pData_LEN-1):0] mux_o
+// );
 
-always @(*) begin
-	case (shift_value_i) // synopsys parallel_case
-	2'b00: mux_o = param1_i;
-	2'b01: mux_o = param2_i;
-	2'b10: mux_o = param3_i;
-	2'b11: mux_o = param4_i;
-	endcase
-end
+// always @(*) begin
+// 	case (shift_value_i) // synopsys parallel_case
+// 	2'b00: mux_o = param1_i;
+// 	2'b01: mux_o = param2_i;
+// 	2'b10: mux_o = param3_i;
+// 	2'b11: mux_o = param4_i;
+// 	endcase
+// end
 
-reg [(pData_LEN-1):0] reg_i;
-always @(*) begin
-	case ({load_i, encrypt_i}) // synopsys parallel_case
-	2'b01: reg_i = mux_i;
-	2'b10: reg_i = shift_i;
-	default: reg_i = shift_o;
-	endcase
-end
+// reg [(pData_LEN-1):0] reg_i;
+// always @(*) begin
+// 	case ({load_i, encrypt_i}) // synopsys parallel_case
+// 	2'b01: reg_i = mux_i;
+// 	2'b10: reg_i = shift_i;
+// 	default: reg_i = shift_o;
+// 	endcase
+// end
 
-always @(posedge clk) begin
-	if (table_idx == 2'b10 || encrypt_i == 1) begin
-	  shift_o <= reg_i;
-	end else begin
-	  shift_o <= shift_o;
-	end
+// always @(posedge clk) begin
+// 	if (table_idx == 2'b10 || encrypt_i == 1) begin
+// 	  shift_o <= reg_i;
+// 	end else begin
+// 	  shift_o <= shift_o;
+// 	end
 	
-end
+// end
 
-endmodule
+// endmodule
 
 // ----- one-hot to binary encoder ----- //
 module onehot2binary_64 #(
