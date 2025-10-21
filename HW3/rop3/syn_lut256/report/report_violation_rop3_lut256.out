@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : rop3_lut256
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:27:21 2025
+****************************************
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   rop3_lut256                  0.00        2545.16       -2545.16  (VIOLATED)
+
+
+1

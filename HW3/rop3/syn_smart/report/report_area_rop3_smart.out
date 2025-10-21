@@ -1,0 +1,43 @@
+ 
+****************************************
+Report : area
+Design : rop3_smart
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:29:27 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                          176
+Number of nets:                           879
+Number of cells:                          736
+Number of combinational cells:            561
+Number of sequential cells:               175
+Number of macros/black boxes:               0
+Number of buf/inv:                         64
+Number of references:                      20
+
+Combinational area:               1183.662026
+Buf/Inv area:                       64.296001
+Noncombinational area:             957.600021
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                  2141.262048
+Total area:                       2141.262048
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ---------
+rop3_smart                        2141.2620    100.0  1183.6620   957.6000  0.0000  rop3_smart
+--------------------------------  ---------  -------  ---------  ---------  ------  ---------
+Total                                                 1183.6620   957.6000  0.0000
+
+1

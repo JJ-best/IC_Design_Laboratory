@@ -1,0 +1,43 @@
+ 
+****************************************
+Report : area
+Design : rop3_lut256
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:27:21 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                          176
+Number of nets:                          1087
+Number of cells:                          944
+Number of combinational cells:            769
+Number of sequential cells:               175
+Number of macros/black boxes:               0
+Number of buf/inv:                        140
+Number of references:                      35
+
+Combinational area:               1510.956034
+Buf/Inv area:                      123.462003
+Noncombinational area:            1034.208023
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                  2545.164057
+Total area:                       2545.164057
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ---------
+rop3_lut256                       2545.1641    100.0  1510.9560  1034.2080  0.0000  rop3_lut256
+--------------------------------  ---------  -------  ---------  ---------  ------  ---------
+Total                                                 1510.9560  1034.2080  0.0000
+
+1

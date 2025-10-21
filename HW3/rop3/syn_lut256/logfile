@@ -1,0 +1,601 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version R-2020.09-SP5 for linux64 - Apr 23, 2021 
+
+                    Copyright (c) 1988 - 2021 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+# Multi-core for fast synthesis
+set CORES 16
+16
+set_host_options -max_cores $CORES
+Warning: You requested 16 cores. However, the host ws42 only has 8 available cores. The tool will ignore the request and use -max_cores 8. (UIO-230)
+1
+report_host_options
+****************************************
+Report : host_options
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:24:42 2025
+****************************************
+
+Max_cores: 8
+
+1
+# set your TOPLEVEL here
+set TOPLEVEL "rop3_lut256"
+rop3_lut256
+# change your timing constraint here
+set TEST_CYCLE 1.8
+1.8
+# source each script (0_readfile ~ 3_report)
+source -echo -verbose 0_readfile.tcl 
+set TOP_DIR $TOPLEVEL
+rop3_lut256
+set RPT_DIR report
+report
+set NET_DIR netlist
+netlist
+sh rm -rf ./$TOP_DIR
+sh rm -rf ./$RPT_DIR
+sh rm -rf ./$NET_DIR
+sh mkdir ./$TOP_DIR
+sh mkdir ./$RPT_DIR
+sh mkdir ./$NET_DIR
+# define a lib path here
+define_design_lib $TOPLEVEL -path ./$TOPLEVEL 
+1
+# Read Design File (add your files here)
+set HDL_DIR "../hdl" 
+../hdl
+# put all your HDL here
+analyze -format verilog -library $TOPLEVEL [list     $HDL_DIR/rop3_lut256.v ]
+Running PRESTO HDLC
+Compiling source file ../hdl/rop3_lut256.v
+Presto compilation completed successfully.
+Loading db file '/usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db'
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb'
+1
+# elaborate your design
+elaborate $TOPLEVEL -architecture verilog -library $TOPLEVEL 
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/gtech.db'
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/standard.sldb'
+  Loading link library 'slow_vdd1v2'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Statistics for case statements in always block at line 46 in file
+	'../hdl/rop3_lut256.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            47            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 177 in file
+	'../hdl/rop3_lut256.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           178            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine rop3_lut256 line 29 in file
+		'../hdl/rop3_lut256.v'.
+================================================================================
+|    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================
+| stage1_din_valid_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    stage1_din_reg    | Flip-flop |  128  |  Y  | N  | N  | N  | N  | N  | N  |
+|    stage1_sel_reg    | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+|   stage1_mode_reg    | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+================================================================================
+
+Inferred memory devices in process
+	in routine rop3_lut256 line 440 in file
+		'../hdl/rop3_lut256.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   dout_valid_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     result_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | Y  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (rop3_lut256)
+Elaborated 1 design.
+Current design is now 'rop3_lut256'.
+1
+# Solve Multiple Instance
+set uniquify_naming_style "%s_mydesign_%d" 
+%s_mydesign_%d
+uniquify 
+1
+# link the design
+current_design $TOPLEVEL 
+Current design is 'rop3_lut256'.
+{rop3_lut256}
+link
+
+  Linking design 'rop3_lut256'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  rop3_lut256                 /home/u110/u110022124/ICLAB/EE4292_HW3/rop3/syn_lut256/rop3_lut256.db
+  slow_vdd1v2 (library)       /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db
+  dw_foundation.sldb (library) /usr/cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb
+
+1
+1
+source -echo -verbose 1_setting.tcl
+# Setting Design and I/O Environment
+set_operating_conditions -library slow_vdd1v2 PVT_1P08V_125C 
+Using operating conditions 'PVT_1P08V_125C' found in library 'slow_vdd1v2'.
+1
+# Assume outputs go to DFF and inputs also come from DFF
+set_driving_cell -library slow_vdd1v2 -lib_cell DFFHQX1 -pin {Q} [all_inputs]  
+1
+set_load [load_of "slow_vdd1v2/DFFHQX1/D"] [all_outputs] 
+1
+# Setting wireload model
+set_wire_load_mode enclosed 
+1
+set_wire_load_model -name "Large" $TOPLEVEL 
+1
+# Setting Timing Constraints
+###  ceate your clock here
+create_clock -name clk -period $TEST_CYCLE  [get_ports clk]
+1
+###  set clock constrain
+set_ideal_network       [get_ports clk]
+1
+set_dont_touch_network  [all_clocks]
+1
+# I/O delay should depend on the real enironment. Here only shows an example of setting
+set_input_delay  [expr $TEST_CYCLE/2.0] -clock clk [remove_from_collection [all_inputs] [get_ports clk]] 
+1
+set_output_delay [expr $TEST_CYCLE/2.0] -clock clk [all_outputs] 
+1
+# Setting DRC Constraint
+# Defensive setting: default fanout_load 1.0 and our target max fanout # 20 => 1.0*20 = 20.0
+# max_transition and max_capacitance are given in the cell library
+set_max_fanout 20.0 $TOPLEVEL
+1
+# Area Constraint
+set_max_area        0
+1
+1
+source -echo -verbose 2_compile.tcl 
+# Before synthesis settings
+set case_analysis_with_logic_constants true
+true
+set_fix_multiple_port_nets -feedthroughs -outputs -constants -buffer_constants
+1
+# Check design
+check_design > ./$RPT_DIR/check_design.log
+check_timing > ./$RPT_DIR/check_timing.log
+set_clock_gating_style -max_fanout 10
+
+Current clock gating style....
+Sequential cell: latch
+Minimum bank bitwidth: 3
+Minimum bank bitwidth for enhanced clock gating: 6
+Maximum fanout: 10
+Setup time for clock gate: 0.000000
+Hold time for clock gate: 0.000000
+Clock gating circuitry (positive edge): and
+Clock gating circuitry (negative edge): or
+ Note: inverter between clock gating circuitry 
+       and (negative edge) register clock pin.
+Control point insertion: none
+Control signal for control point: scan_enable
+Observation point insertion: false
+Observation logic depth: 5
+1
+# Synthesis all design (using : compile_ultra)
+compile_ultra -gate_clock -exact_map -no_autoungroup -no_seq_output_inversion -no_boundary_optimization
+Warning: The value of variable 'compile_preserve_subdesign_interfaces' has been changed to true because '-no_boundary_optimization' is used. (OPT-133)
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 8 cores. (OPT-1500)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | R-2020.09-DWBB_202009.5 |     *     |
+| Licensed DW Building Blocks        | R-2020.09-DWBB_202009.5 |     *     |
+============================================================================
+
+  Simplifying Design 'rop3_lut256'
+
+Loaded alib file './alib-52/slow_vdd1v2_basicCells_wl.db.alib'
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'rop3_lut256'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO' in the library 'slow_vdd1v2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'slow_vdd1v2' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Performing clock-gating on design rop3_lut256. (PWR-730)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:35    3191.5      0.01       0.0       0.0                           139899.1719
+    0:00:35    3191.5      0.01       0.0       0.0                           139899.1719
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:36    2583.8      0.12       0.9       0.0                           64460.2656
+    0:00:37    2592.7      0.00       0.0       4.0                           64720.4375
+    0:00:37    2592.7      0.00       0.0       4.0                           64720.4375
+    0:00:37    2592.7      0.00       0.0       4.0                           64720.4375
+    0:00:37    2580.7      0.00       0.0       4.0                           64550.4688
+    0:00:37    2580.7      0.00       0.0       4.0                           64550.4688
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:00:38    2581.4      0.00       0.0       4.0                           64039.0078
+    0:00:38    2581.4      0.00       0.0       4.0                           64039.0078
+    0:00:38    2581.4      0.00       0.0       4.0                           64039.0078
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+
+
+  Beginning Design Rule Fixing  (max_fanout)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:38    2581.4      0.00       0.0       4.0                           64022.9102
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+    0:00:38    2583.1      0.00       0.0       0.0                           64155.5273
+    0:00:38    2583.1      0.00       0.0       0.0                           64155.5273
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:38    2583.1      0.00       0.0       0.0                           64155.5273
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:38    2554.7      0.00       0.0       0.0                           56594.7578
+    0:00:39    2528.4      0.00       0.0       0.0                           59173.6172
+    0:00:39    2528.4      0.00       0.0       0.0                           59173.6172
+    0:00:39    2528.4      0.00       0.0       0.0                           59173.6172
+    0:00:39    2528.4      0.00       0.0       0.0                           59173.6172
+    0:00:39    2541.7      0.00       0.0       0.0                           57884.3359
+    0:00:39    2541.7      0.00       0.0       0.0                           57884.3359
+    0:00:39    2541.7      0.00       0.0       0.0                           57884.3359
+    0:00:39    2541.7      0.00       0.0       0.0                           57884.3359
+    0:00:39    2541.7      0.00       0.0       0.0                           57884.3359
+    0:00:39    2541.7      0.00       0.0       0.0                           57884.3359
+    0:00:39    2533.2      0.00       0.0       0.0                           58157.1602
+Loading db file '/usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+compile_ultra -incremental -exact_map -no_autoungroup -no_seq_output_inversion -no_boundary_optimization
+Warning: The value of variable 'compile_preserve_subdesign_interfaces' has been changed to true because '-no_boundary_optimization' is used. (OPT-133)
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 8 cores. (OPT-1500)
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO' in the library 'slow_vdd1v2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'slow_vdd1v2' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+  Global Optimization (Phase 51)
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:02    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2533.2      0.00       0.0       0.0                           58157.1602
+    0:00:03    2545.2      0.00       0.0       0.0                           57051.2070
+    0:00:03    2545.2      0.00       0.0       0.0                           57051.2070
+    0:00:03    2545.2      0.00       0.0       0.0                           57051.2070
+    0:00:03    2545.2      0.00       0.0       0.0                           57051.2070
+Loading db file '/usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+# Remove dummy ports
+remove_unconnected_ports [get_cells -hierarchical *]
+1
+remove_unconnected_ports [get_cells -hierarchical *] -blast_buses
+1
+1
+source -echo -verbose 3_report.tcl 
+###-----------------------------Naming Rules----------------------------
+set bus_inference_style {%s[%d]}
+%s[%d]
+set bus_naming_style {%s[%d]}
+%s[%d]
+set hdlout_internal_busses true
+true
+change_names -rules verilog -hierarchy
+1
+define_name_rules name_rule -allowed {a-z A-Z 0-9 _} -max_length 255 -type cell
+1
+define_name_rules name_rule -allowed {a-z A-Z 0-9 _[]} -max_length 255 -type net
+1
+define_name_rules name_rule -map {{"\\*cell\\*" "cell"}}
+1
+define_name_rules name_rule -case_insensitive
+1
+change_names -hierarchy -rules name_rule
+1
+###--------------------------Netlist-related------------------------------------
+write -format ddc     -hierarchy -output ./netlist/${TOPLEVEL}_syn.ddc
+Writing ddc file './netlist/rop3_lut256_syn.ddc'.
+1
+write -format verilog -hierarchy -output ./netlist/${TOPLEVEL}_syn.v
+Writing verilog file '/home/u110/u110022124/ICLAB/EE4292_HW3/rop3/syn_lut256/netlist/rop3_lut256_syn.v'.
+1
+write_sdf -version 1.0  -context verilog ./netlist/${TOPLEVEL}_syn.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/home/u110/u110022124/ICLAB/EE4292_HW3/rop3/syn_lut256/netlist/rop3_lut256_syn.sdf'. (WT-3)
+Information: Updating design information... (UID-85)
+1
+write_sdc ./netlist/${TOPLEVEL}_syn.sdc
+1
+write_saif -output ./netlist/${TOPLEVEL}_syn.saif 
+Information: Writing backward SAIF information to file './netlist/rop3_lut256_syn.saif'. (PWR-458)
+1
+###---------------------------Syntheis result reports----------------------------
+# ===== Timing report =====
+report_timing -delay min -max_paths 4 > ./report/report_hold_${TOPLEVEL}.out
+report_timing -delay max -max_paths 4 > ./report/report_setup_${TOPLEVEL}.out
+report_timing -path full -delay max -max_paths 1 -nworst 1 -significant_digits 4 > ./report/report_time_${TOPLEVEL}.out
+# ===== Area report =====
+report_area -hier  > ./report/report_area_${TOPLEVEL}.out
+# ===== Power report =====
+report_power -hier > ./report/report_power_${TOPLEVEL}.out
+# ===== violations =====
+report_constraint -all_violators > ./report/report_violation_${TOPLEVEL}.out
+# ===== resources =====
+report_resources -hierarchy > ./report/report_resources_${TOPLEVEL}.out
+exit
+
+Memory usage for this session 246 Mbytes.
+Memory usage for this session including child processes 445 Mbytes.
+CPU usage for this session 69 seconds ( 0.02 hours ).
+Elapsed time for this session 208 seconds ( 0.06 hours ).
+
+Thank you...

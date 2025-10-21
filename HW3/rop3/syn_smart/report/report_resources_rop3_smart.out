@@ -1,0 +1,120 @@
+ 
+****************************************
+Report : resources
+Design : rop3_smart
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:29:27 2025
+****************************************
+
+
+Resource Report for this hierarchy in file ../hdl/rop3_smart.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| ash_4          | DW_leftsh      | A_width=8  | sll_183 (rop3_smart.v:183) |
+|                |                | SH_width=3 |                            |
+| ash_5          | DW_leftsh      | A_width=8  | sll_183_I2 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_6          | DW_leftsh      | A_width=8  | sll_183_I3 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_7          | DW_leftsh      | A_width=8  | sll_183_I4 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_8          | DW_leftsh      | A_width=8  | sll_183_I5 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_9          | DW_leftsh      | A_width=8  | sll_183_I6 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_10         | DW_leftsh      | A_width=8  | sll_183_I7 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_11         | DW_leftsh      | A_width=8  | sll_183_I8 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_12         | DW_leftsh      | A_width=8  | sll_183_I9 (rop3_smart.v:183) |
+              |                | SH_width=3 |                            |
+| ash_13         | DW_leftsh      | A_width=8  | sll_183_I10 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_14         | DW_leftsh      | A_width=8  | sll_183_I11 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_15         | DW_leftsh      | A_width=8  | sll_183_I12 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_16         | DW_leftsh      | A_width=8  | sll_183_I13 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_17         | DW_leftsh      | A_width=8  | sll_183_I14 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_18         | DW_leftsh      | A_width=8  | sll_183_I15 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_19         | DW_leftsh      | A_width=8  | sll_183_I16 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_20         | DW_leftsh      | A_width=8  | sll_183_I17 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_21         | DW_leftsh      | A_width=8  | sll_183_I18 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_22         | DW_leftsh      | A_width=8  | sll_183_I19 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_23         | DW_leftsh      | A_width=8  | sll_183_I20 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_24         | DW_leftsh      | A_width=8  | sll_183_I21 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_25         | DW_leftsh      | A_width=8  | sll_183_I22 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_26         | DW_leftsh      | A_width=8  | sll_183_I23 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_27         | DW_leftsh      | A_width=8  | sll_183_I24 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_28         | DW_leftsh      | A_width=8  | sll_183_I25 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_29         | DW_leftsh      | A_width=8  | sll_183_I26 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_30         | DW_leftsh      | A_width=8  | sll_183_I27 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_31         | DW_leftsh      | A_width=8  | sll_183_I28 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_32         | DW_leftsh      | A_width=8  | sll_183_I29 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_33         | DW_leftsh      | A_width=8  | sll_183_I30 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_34         | DW_leftsh      | A_width=8  | sll_183_I31 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+| ash_35         | DW_leftsh      | A_width=8  | sll_183_I32 (rop3_smart.v:183) |
+             |                | SH_width=3 |                            |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| ash_4              | DW_leftsh        | astr (area)        |                |
+| ash_5              | DW_leftsh        | astr (area)        |                |
+| ash_6              | DW_leftsh        | astr (area)        |                |
+| ash_7              | DW_leftsh        | astr (area)        |                |
+| ash_8              | DW_leftsh        | astr (area)        |                |
+| ash_9              | DW_leftsh        | astr (area)        |                |
+| ash_10             | DW_leftsh        | astr (area)        |                |
+| ash_11             | DW_leftsh        | astr (area)        |                |
+| ash_12             | DW_leftsh        | astr (area)        |                |
+| ash_13             | DW_leftsh        | astr (area)        |                |
+| ash_14             | DW_leftsh        | astr (area)        |                |
+| ash_15             | DW_leftsh        | astr (area)        |                |
+| ash_16             | DW_leftsh        | astr (area)        |                |
+| ash_17             | DW_leftsh        | astr (area)        |                |
+| ash_18             | DW_leftsh        | astr (area)        |                |
+| ash_19             | DW_leftsh        | astr (area)        |                |
+| ash_20             | DW_leftsh        | astr (area)        |                |
+| ash_21             | DW_leftsh        | astr (area)        |                |
+| ash_22             | DW_leftsh        | astr (area)        |                |
+| ash_23             | DW_leftsh        | astr (area)        |                |
+| ash_24             | DW_leftsh        | astr (area)        |                |
+| ash_25             | DW_leftsh        | astr (area)        |                |
+| ash_26             | DW_leftsh        | astr (area)        |                |
+| ash_27             | DW_leftsh        | astr (area)        |                |
+| ash_28             | DW_leftsh        | astr (area)        |                |
+| ash_29             | DW_leftsh        | astr (area)        |                |
+| ash_30             | DW_leftsh        | astr (area)        |                |
+| ash_31             | DW_leftsh        | astr (area)        |                |
+| ash_32             | DW_leftsh        | astr (area)        |                |
+| ash_33             | DW_leftsh        | astr (area)        |                |
+| ash_34             | DW_leftsh        | astr (area)        |                |
+| ash_35             | DW_leftsh        | astr (area)        |                |
+===============================================================================
+
+1

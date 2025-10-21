@@ -1,0 +1,60 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : rop3_lut256
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:27:21 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: stage1_sel_reg_4_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_0_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_lut256        Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  stage1_sel_reg_4_/CK (DFFQXL)          0.0000     0.0000 r
+  stage1_sel_reg_4_/Q (DFFQXL)           0.1098     0.1098 r
+  U1466/Y (INVX1)                        0.0945     0.2043 f
+  U1719/Y (BUFX2)                        0.1001     0.3045 f
+  U1545/Y (NOR2XL)                       0.0739     0.3784 r
+  U1529/Y (NOR2BXL)                      0.2000     0.5784 r
+  U1721/Y (BUFX2)                        0.1602     0.7386 r
+  U1754/Y (NAND2BXL)                     0.0744     0.8130 f
+  U1757/Y (OAI211X1)                     0.1468     0.9597 r
+  U1554/Y (AO22XL)                       0.1500     1.1097 r
+  U1800/Y (NOR2XL)                       0.0499     1.1596 f
+  U1801/Y (OAI21XL)                      0.0491     1.2087 r
+  U1546/Y (AO21XL)                       0.0883     1.2970 r
+  U1505/Y (MX4XL)                        0.1863     1.4833 r
+  U1586/Y (MX2XL)                        0.1070     1.5903 r
+  result_reg_0_/RN (DFFTRXL)             0.0310     1.6213 r
+  data arrival time                                 1.6213
+
+  clock clk (rise edge)                  1.8000     1.8000
+  clock network delay (ideal)            0.0000     1.8000
+  result_reg_0_/CK (DFFTRXL)             0.0000     1.8000 r
+  library setup time                    -0.0947     1.7053
+  data required time                                1.7053
+  -----------------------------------------------------------
+  data required time                                1.7053
+  data arrival time                                -1.6213
+  -----------------------------------------------------------
+  slack (MET)                                       0.0840
+
+
+1

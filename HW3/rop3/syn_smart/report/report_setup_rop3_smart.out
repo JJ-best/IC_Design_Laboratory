@@ -1,0 +1,191 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 4
+Design : rop3_smart
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:29:27 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: stage1_sel_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_8_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_smart         Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_sel_reg_2_/CK (DFFQXL)            0.00       0.00 r
+  stage1_sel_reg_2_/Q (DFFQXL)             0.10       0.10 r
+  U892/Y (INVXL)                           0.07       0.17 f
+  U1009/Y (NAND2XL)                        0.06       0.23 r
+  U1020/Y (INVXL)                          0.07       0.30 f
+  U1013/Y (NAND2XL)                        0.05       0.35 r
+  U1012/Y (NOR2XL)                         0.06       0.41 f
+  U833/Y (AOI221XL)                        0.10       0.51 r
+  U1219/Y (OAI32X1)                        0.20       0.71 f
+  U1200/Y (BUFX2)                          0.12       0.84 f
+  U1108/Y (AOI22XL)                        0.07       0.90 r
+  U884/Y (OAI211XL)                        0.19       1.09 f
+  U1274/Y (MXI2XL)                         0.12       1.22 f
+  U1045/Y (MXI4XL)                         0.17       1.38 r
+  result_reg_8_/D (DFFQXL)                 0.03       1.42 r
+  data arrival time                                   1.42
+
+  clock clk (rise edge)                    1.80       1.80
+  clock network delay (ideal)              0.00       1.80
+  result_reg_8_/CK (DFFQXL)                0.00       1.80 r
+  library setup time                      -0.06       1.74
+  data required time                                  1.74
+  -----------------------------------------------------------
+  data required time                                  1.74
+  data arrival time                                  -1.42
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+  Startpoint: stage1_sel_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_7_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_smart         Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_sel_reg_2_/CK (DFFQXL)            0.00       0.00 r
+  stage1_sel_reg_2_/Q (DFFQXL)             0.10       0.10 r
+  U892/Y (INVXL)                           0.07       0.17 f
+  U1009/Y (NAND2XL)                        0.06       0.23 r
+  U1020/Y (INVXL)                          0.07       0.30 f
+  U1013/Y (NAND2XL)                        0.05       0.35 r
+  U1012/Y (NOR2XL)                         0.06       0.41 f
+  U833/Y (AOI221XL)                        0.10       0.51 r
+  U1219/Y (OAI32X1)                        0.20       0.71 f
+  U1200/Y (BUFX2)                          0.12       0.84 f
+  U1109/Y (AOI22XL)                        0.07       0.90 r
+  U886/Y (OAI211XL)                        0.19       1.09 f
+  U1269/Y (MXI2XL)                         0.12       1.22 f
+  U1043/Y (MXI4XL)                         0.17       1.38 r
+  result_reg_7_/D (DFFQXL)                 0.03       1.42 r
+  data arrival time                                   1.42
+
+  clock clk (rise edge)                    1.80       1.80
+  clock network delay (ideal)              0.00       1.80
+  result_reg_7_/CK (DFFQXL)                0.00       1.80 r
+  library setup time                      -0.06       1.74
+  data required time                                  1.74
+  -----------------------------------------------------------
+  data required time                                  1.74
+  data arrival time                                  -1.42
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+  Startpoint: stage1_sel_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_6_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_smart         Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_sel_reg_2_/CK (DFFQXL)            0.00       0.00 r
+  stage1_sel_reg_2_/Q (DFFQXL)             0.10       0.10 r
+  U892/Y (INVXL)                           0.07       0.17 f
+  U1009/Y (NAND2XL)                        0.06       0.23 r
+  U1020/Y (INVXL)                          0.07       0.30 f
+  U1013/Y (NAND2XL)                        0.05       0.35 r
+  U1012/Y (NOR2XL)                         0.06       0.41 f
+  U833/Y (AOI221XL)                        0.10       0.51 r
+  U1219/Y (OAI32X1)                        0.20       0.71 f
+  U1200/Y (BUFX2)                          0.12       0.84 f
+  U875/Y (AOI22XL)                         0.07       0.90 r
+  U887/Y (OAI211XL)                        0.19       1.09 f
+  U1263/Y (MXI2XL)                         0.12       1.22 f
+  U1041/Y (MXI4XL)                         0.17       1.38 r
+  result_reg_6_/D (DFFQXL)                 0.03       1.42 r
+  data arrival time                                   1.42
+
+  clock clk (rise edge)                    1.80       1.80
+  clock network delay (ideal)              0.00       1.80
+  result_reg_6_/CK (DFFQXL)                0.00       1.80 r
+  library setup time                      -0.06       1.74
+  data required time                                  1.74
+  -----------------------------------------------------------
+  data required time                                  1.74
+  data arrival time                                  -1.42
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+  Startpoint: stage1_sel_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_18_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_smart         Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_sel_reg_2_/CK (DFFQXL)            0.00       0.00 r
+  stage1_sel_reg_2_/Q (DFFQXL)             0.10       0.10 r
+  U892/Y (INVXL)                           0.07       0.17 f
+  U1009/Y (NAND2XL)                        0.06       0.23 r
+  U1020/Y (INVXL)                          0.07       0.30 f
+  U1013/Y (NAND2XL)                        0.05       0.35 r
+  U1012/Y (NOR2XL)                         0.06       0.41 f
+  U833/Y (AOI221XL)                        0.10       0.51 r
+  U1219/Y (OAI32X1)                        0.20       0.71 f
+  U1200/Y (BUFX2)                          0.12       0.84 f
+  U1106/Y (AOI22XL)                        0.07       0.90 r
+  U843/Y (OAI211XL)                        0.19       1.09 f
+  U1326/Y (MXI2XL)                         0.12       1.22 f
+  U1066/Y (MXI4XL)                         0.17       1.38 r
+  result_reg_18_/D (DFFQXL)                0.03       1.41 r
+  data arrival time                                   1.41
+
+  clock clk (rise edge)                    1.80       1.80
+  clock network delay (ideal)              0.00       1.80
+  result_reg_18_/CK (DFFQXL)               0.00       1.80 r
+  library setup time                      -0.06       1.74
+  data required time                                  1.74
+  -----------------------------------------------------------
+  data required time                                  1.74
+  data arrival time                                  -1.41
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+1

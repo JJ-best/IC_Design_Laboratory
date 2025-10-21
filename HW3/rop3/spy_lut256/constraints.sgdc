@@ -1,0 +1,2 @@
+current_design rop3_lut256
+clock -name clk -period 10 

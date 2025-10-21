@@ -1,0 +1,149 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : rop3_lut256
+Version: R-2020.09-SP5
+Date   : Tue Oct 21 13:27:21 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: stage1_din_valid_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_valid_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_lut256        Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_din_valid_reg/CK (DFFQXL)         0.00       0.00 r
+  stage1_din_valid_reg/Q (DFFQXL)          0.10       0.10 f
+  dout_valid_reg/D (DFFQXL)                0.03       0.13 f
+  data arrival time                                   0.13
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  dout_valid_reg/CK (DFFQXL)               0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.13
+  -----------------------------------------------------------
+  slack (MET)                                         0.13
+
+
+  Startpoint: stage1_mode_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_2_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_lut256        Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_mode_reg_2_/CK (DFFQXL)           0.00       0.00 r
+  stage1_mode_reg_2_/Q (DFFQXL)            0.10       0.10 r
+  U1538/Y (NOR4XL)                         0.03       0.13 f
+  U1774/Y (NAND2XL)                        0.09       0.22 r
+  result_reg_2_/D (DFFTRXL)                0.02       0.23 r
+  data arrival time                                   0.23
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  result_reg_2_/CK (DFFTRXL)               0.00       0.00 r
+  library hold time                       -0.10      -0.10
+  data required time                                 -0.10
+  -----------------------------------------------------------
+  data required time                                 -0.10
+  data arrival time                                  -0.23
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+  Startpoint: stage1_mode_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_1_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_lut256        Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_mode_reg_2_/CK (DFFQXL)           0.00       0.00 r
+  stage1_mode_reg_2_/Q (DFFQXL)            0.10       0.10 r
+  U1538/Y (NOR4XL)                         0.03       0.13 f
+  U1774/Y (NAND2XL)                        0.09       0.22 r
+  result_reg_1_/D (DFFTRXL)                0.02       0.23 r
+  data arrival time                                   0.23
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  result_reg_1_/CK (DFFTRXL)               0.00       0.00 r
+  library hold time                       -0.10      -0.10
+  data required time                                 -0.10
+  -----------------------------------------------------------
+  data required time                                 -0.10
+  data arrival time                                  -0.23
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+  Startpoint: stage1_mode_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: result_reg_0_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rop3_lut256        Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  stage1_mode_reg_2_/CK (DFFQXL)           0.00       0.00 r
+  stage1_mode_reg_2_/Q (DFFQXL)            0.10       0.10 r
+  U1538/Y (NOR4XL)                         0.03       0.13 f
+  U1774/Y (NAND2XL)                        0.09       0.22 r
+  result_reg_0_/D (DFFTRXL)                0.02       0.23 r
+  data arrival time                                   0.23
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  result_reg_0_/CK (DFFTRXL)               0.00       0.00 r
+  library hold time                       -0.10      -0.10
+  data required time                                 -0.10
+  -----------------------------------------------------------
+  data required time                                 -0.10
+  data arrival time                                  -0.23
+  -----------------------------------------------------------
+  slack (MET)                                         0.33
+
+
+1
