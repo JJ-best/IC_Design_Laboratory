@@ -1,4 +1,12 @@
 # HW3: Logic synthesis for rop3 and enigma
+
+## Performance
+Rank: 23 / 76
+| Area | Timing | Performance |
+| ---- | ------ | ----------- |
+| 14883.15 | 3.55 | 52835 |
+
+
 ## Synthesis skills
 ### 1. synopsys parallel case
 If we use MUX in our design by case, remember to use synopsys parallel case, this would reduce the datapath timing when synthesis.
@@ -48,7 +56,51 @@ always @(*) begin : RotorA_MUX
 end
 ```
 ### 2. module flatten
+Faltten the module into the top module will reduce many area. (~20%)
 
+### 3. Adder
+Use mux-based adder(-0.1ns) or carry look ahead adder(-0.1ns) to improve timing. 
+
+### 4. srst
+Don't add pipeline register for rst, load, table_idx, the synthesis will view it as mux-FF.
+```verilog
+// rst FF
+always @(posedge clk) begin
+  if (!srst_n) begin
+    RotorA_addr_shift <= 0;
+  end else if (plug_forward_valid) begin
+    RotorA_addr_shift <= RotorA_addr_shift_next;
+  end 
+end
+
+// mux based FF (worse timing)
+always @(posedge clk) begin
+  if (!srst_n_reg) begin
+    RotorA_addr_shift <= 0;
+  end else if (plug_forward_valid) begin
+    RotorA_addr_shift <= RotorA_addr_shift_next;
+  end 
+end
+```
+
+### 5. Equal
+Dont write `==`, write same logic my `~|(^)`.
+```verilog
+genvar j;
+generate
+	for (j = 0; j < pRotorA_LEN; j = j + 1) begin : GEN_MATCH
+	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i_reg ^ link[j]);
+	end
+endgenerate
+
+// timing slow 0.01ns
+genvar j;
+generate
+	for (j = 0; j < pRotorA_LEN; j = j + 1) begin : GEN_MATCH
+	  assign bitwise_and_o[j] = (RotorA_inverse_i_reg == link[j]);
+	end
+endgenerate
+```
 
 ## waveform
 ### 1. pure combinational 

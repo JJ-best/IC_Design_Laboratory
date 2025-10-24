@@ -1,328 +1,185 @@
+//==================================================================================================
+//  Note:          Use only for teaching materials of IC Design Lab, NTHU.
+//  Copyright: (c) 2025 Vision Circuits and Systems Lab, NTHU, Taiwan. ALL Rights Reserved.
+//==================================================================================================
+
+
+// ************************** do not modify *************************
+
 `timescale 1ns/1ps
 `define CYCLE 10
-`define END_CYCLE 10000
-`define PAT_LEN 29
+`define END_CYCLE 100000
 
 module test_enigma();
-localparam DAT_LEN = 6;
-localparam ROT_LEN = 64;
-localparam PLUG_LEN = 32;
 
-`ifdef ENCRYPT
-  localparam C_MODE = 1'b0;
-`elsif DECRYPT
-  localparam C_MODE = 1'b1;
-`else
-  localparam C_MODE = 1'bx; 
-  initial begin
-    $display("ERROR: Must define +define+ENCRYPT or +define+DECRYPT");
-    $finish; 
-  end
-`endif
 // ************************** enigma instantiation *************************
-reg clk;
-reg srst_n;
-reg load;
-reg encrypt;
-reg crypt_mode;
-reg [1:0]table_idx;
-reg [(DAT_LEN-1):0]code_in;
-wire [(DAT_LEN-1):0]code_out;
+reg  clk;
+reg  srst_n;
+reg  load;
+reg  encrypt;
+reg  crypt_mode;        // 0: ENCRYPT, 1: DECRYPT
+reg  [2-1:0] table_idx; // 2'b00: rotorA, 2'b01: plugboard, 2'b10 rotorB
+reg  [6-1:0] code_in;   // 
+wire [6-1:0] code_out;
 wire code_valid;
 
+reg [6-1:0] rotorA     [0:64-1];
+reg [6-1:0] rotorB     [0:64-1];
+reg [6-1:0] plugboard [0:32-1];
+reg [6-1:0] plaintext  [0:`PAT_LEN-1];
+reg [6-1:0] ciphertext [0:`PAT_LEN-1];
+reg [6-1:0] code_out_recorded [0:`PAT_LEN-1];
+
+integer i, j;
+// *******************************************************************************
+
 enigma u_enigma(
-        // input 
     .clk(clk),
     .srst_n(srst_n),
-    .load(load), // load parameter of rotor if load == 1
+    .load(load),
     .encrypt(encrypt),
     .crypt_mode(crypt_mode),
-    .table_idx(table_idx), // configuration destination
-    .code_in(code_in),   // input data
-    // output 
-    .code_out(code_out),  // output data
-    .code_valid(code_valid) // output valid
-);
-// *******************************************************************************/
-
-
+    .table_idx(table_idx),
+    .code_in(code_in),
+    .code_out(code_out),
+    .code_valid(code_valid));
 
 // ********************************** Waveform ***********************************
 // Not neccessary 
 // Dump waveform if you need it
-initial begin
-	$dumpfile("hw2_part4.vcd");
-	$dumpvars();
-end
-// *******************************************************************************/
-
-
+// initial
+// begin
+//     $fsdbDumpfile("HW3.fsdb");
+//     $fsdbDumpvars("+mda");
+// end
+// *******************************************************************************
 
 // ******** Read rotor and pattern from pat/ and rotor/ with $readmemh() *********
-reg [(DAT_LEN-1) : 0] plain_text [0 : (`PAT_LEN - 1)];
-reg [(DAT_LEN-1) : 0] cipher_text [0 : (`PAT_LEN - 1)];
-reg [(DAT_LEN-1) : 0] golden_pat [0 : (`PAT_LEN - 1)];
-reg [(DAT_LEN-1) : 0] rotorA_text [0 : (ROT_LEN-1)];
-reg [(DAT_LEN-1) : 0] rotorB_text [0 : (ROT_LEN-1)];
-reg [(DAT_LEN-1) : 0] plug_text [0 : (PLUG_LEN-1)];
-
-`ifdef PAT1
 initial begin
-    $readmemh("pat/plaintexts1.dat", plain_text);
-    $readmemh("pat/ciphertexts1.dat", cipher_text);
-    $readmemh("rotor/rotorA.dat", rotorA_text);
-    $readmemh("rotor/rotorB.dat", rotorB_text);
+    $readmemh("./rotor/rotorA.dat", rotorA);
+    $readmemh("./rotor/rotorB.dat", rotorB);
+    $readmemh("./rotor/plugboard.dat", plugboard);
+    `ifdef PAT1
+        $readmemh("./pat/plaintexts1.dat", plaintext);
+        $readmemh("./pat/ciphertexts1.dat", ciphertext);
+    `elsif PAT2
+        $readmemh("./pat/plaintexts2.dat", plaintext);
+        $readmemh("./pat/ciphertexts2.dat", ciphertext);
+    `else
+        $readmemh("./pat/plaintexts3.dat", plaintext);
+        $readmemh("./pat/ciphertexts3.dat", ciphertext);
+    `endif
 end
-`elsif PAT2
-initial begin
-    $readmemh("pat/plaintexts2.dat", plain_text);
-    $readmemh("pat/ciphertexts2.dat", cipher_text);
-    $readmemh("rotor/rotorA.dat", rotorA_text);
-    $readmemh("rotor/rotorB.dat", rotorB_text);
-end
-`elsif PAT3
-initial begin
-    $readmemh("pat/plaintexts3.dat", plain_text);
-    $readmemh("pat/ciphertexts3.dat", cipher_text);
-    $readmemh("rotor/rotorA.dat", rotorA_text);
-    $readmemh("rotor/rotorB.dat", rotorB_text);
-end
-`else
-  initial begin
-    $display("ERROR: Must define +define+PAT1 or +define+PAT2 or +define+PAT3 for part4");
-    $finish;
-  end
-`endif
+// *******************************************************************************
 
-// load plugboard data
-integer p;
-initial begin
-  $readmemh("rotor/plugboard.dat", plug_text);
-  // for (p=0; p<PLUG_LEN; p=p+2)
-  //   $display("[plug] pair %0d : %02h <-> %02h", p/2, plug_text[p], plug_text[p+1]);
-end
-
-// load golden data
-integer k;
-initial begin
-    for (k = 0; k < `PAT_LEN; k = k + 1) begin
-        if (C_MODE == 0) begin
-          golden_pat[k] = cipher_text[k];
-        end else if (C_MODE) begin
-          golden_pat[k] = plain_text[k];
-        end else begin
-          golden_pat[k] = 6'b11_1111;
-        end
-    end
-end
-// *******************************************************************************/
-
-
-// ********************************** ASCII***************************************/
-reg [8*128-1:0] ascii_path;
-reg [7:0] ascii_lut [0:63]; 
-reg [7:0] ch;
-`ifdef ASCII
-  integer fd_ascii;
-  
-  initial begin
-
-  `ifdef PAT1
-      ascii_path = "./result/plaintexts1_ascii.dat";
-  `elsif PAT2
-      ascii_path = "./result/plaintexts2_ascii.dat";
-  `elsif PAT3
-      ascii_path = "./result/plaintexts3_ascii.dat";
-  `else
-      $display("ERROR: Must define PAT1/2/3 when ASCII is enabled");
-      $finish;
-  `endif
-  ascii_lut[6'h00] = "a";
-  ascii_lut[6'h01] = "b";
-  ascii_lut[6'h02] = "c";
-  ascii_lut[6'h03] = "d";
-  ascii_lut[6'h04] = "e";
-  ascii_lut[6'h05] = "f";
-  ascii_lut[6'h06] = "g";
-  ascii_lut[6'h07] = "h";
-  ascii_lut[6'h08] = "i";
-  ascii_lut[6'h09] = "j";
-  ascii_lut[6'h0A] = "k";
-  ascii_lut[6'h0B] = "l";
-  ascii_lut[6'h0C] = "m";
-  ascii_lut[6'h0D] = "n";
-  ascii_lut[6'h0E] = "o";
-  ascii_lut[6'h0F] = "p";
-  ascii_lut[6'h10] = "q";
-  ascii_lut[6'h11] = "r";
-  ascii_lut[6'h12] = "s";
-  ascii_lut[6'h13] = "t";
-  ascii_lut[6'h14] = "u";
-  ascii_lut[6'h15] = "v";
-  ascii_lut[6'h16] = "w";
-  ascii_lut[6'h17] = "x";
-  ascii_lut[6'h18] = "y";
-  ascii_lut[6'h19] = "z";
-  ascii_lut[6'h1A] = 8'h20;   // space
-  ascii_lut[6'h1B] = "!";
-  ascii_lut[6'h1C] = ",";
-  ascii_lut[6'h1D] = "-";
-  ascii_lut[6'h1E] = ".";
-  ascii_lut[6'h1F] = "\n";
-  ascii_lut[6'h20] = "A";
-  ascii_lut[6'h21] = "B";
-  ascii_lut[6'h22] = "C";
-  ascii_lut[6'h23] = "D";
-  ascii_lut[6'h24] = "E";
-  ascii_lut[6'h25] = "F";
-  ascii_lut[6'h26] = "G";
-  ascii_lut[6'h27] = "H";
-  ascii_lut[6'h28] = "I";
-  ascii_lut[6'h29] = "J";
-  ascii_lut[6'h2A] = "K";
-  ascii_lut[6'h2B] = "L";
-  ascii_lut[6'h2C] = "M";
-  ascii_lut[6'h2D] = "N";
-  ascii_lut[6'h2E] = "O";
-  ascii_lut[6'h2F] = "P";
-  ascii_lut[6'h30] = "Q";
-  ascii_lut[6'h31] = "R";
-  ascii_lut[6'h32] = "S";
-  ascii_lut[6'h33] = "T";
-  ascii_lut[6'h34] = "U";
-  ascii_lut[6'h35] = "V";
-  ascii_lut[6'h36] = "W";
-  ascii_lut[6'h37] = "X";
-  ascii_lut[6'h38] = "Y";
-  ascii_lut[6'h39] = "Z";
-  ascii_lut[6'h3A] = ":";
-  ascii_lut[6'h3B] = "#";
-  ascii_lut[6'h3C] = ";";
-  ascii_lut[6'h3D] = "_";
-  ascii_lut[6'h3E] = "+";
-  ascii_lut[6'h3F] = "&";
-
-
-  fd_ascii = $fopen(ascii_path, "w");
-    if (fd_ascii == 0) begin
-      $display("ERROR: cannot open ASCII output file: %0s", ascii_path);
-      $finish;
-    end
-  end
-
-  always @(posedge clk) begin
-    if (encrypt && (crypt_mode==1'b1) && code_valid) begin
-      ch = ascii_lut[code_out];  
-      $fwrite(fd_ascii, "%s", ch);
-    end
-  end
-`endif
-
-
-
-
-initial begin
-	$dumpfile("hw2_part4.vcd");
-	$dumpvars();
-end
-// *******************************************************************************/
 
 
 // ****************************** clock generation *******************************
-always #(`CYCLE/2) clk = ~clk;
-// *******************************************************************************/
+initial begin
+    clk = 0;
+    while(1)
+    #(`CYCLE/2) clk = ~clk;
+end
+// *******************************************************************************
 
 
 
 // ********************************* feed input **********************************
-// reset -> load rotor -> encrpyt/decrypt
-integer i;
-initial begin
-    // ----- reset ----- //
-    clk <= 0;
-    srst_n <= 1;
-    load <= 0;
-    encrypt <= 0;
-    crypt_mode <= C_MODE;
-    table_idx <= 3;
-    code_in <= 0;
-    @(posedge clk);
-    srst_n <= 0;
-    // ----- load rotor -----//
-    @(posedge clk);
-    srst_n <= 1;
-    @(posedge clk);
+// reset -> load rotor -> feed code
+initial
+begin
+    srst_n = 1;
+    `ifdef ENCRYPT
+        crypt_mode = 0;
+    `elsif DECRYPT
+        crypt_mode = 1;
+    `endif
+    load = 0;
+    table_idx = 2'b11;
 
-    load <= 1;
-    encrypt <= 0;
-    table_idx <= 0;
-    for (i = 0; i < ROT_LEN; i = i + 1) begin
-      code_in <= rotorA_text[i];
-      @(posedge clk);
+    code_in = 0;
+    encrypt = 0;    // load rotor, plugboard
+
+    #(`CYCLE) 
+    @(negedge clk) srst_n = 0;
+
+    #(`CYCLE)
+    @(negedge clk) srst_n = 1;
+
+    #(`CYCLE)
+    @(negedge clk)
+    load = 1;
+
+    // Load rotorA
+    table_idx = 2'b00;
+    for (i = 0; i < 64; i = i + 1)
+    begin
+        code_in = rotorA[i][5:0];
+        @(negedge clk);
     end
-    // ----- load plugboard ----- //
-    load <= 1;
-    encrypt <= 0;
-    table_idx <= 1;
-    for (i = 0; i < PLUG_LEN; i = i + 1) begin
-      code_in <= plug_text[i]; 
-    @(posedge clk);
+
+    // Load plugboard
+    table_idx = 2'b01;
+    for (i = 0; i < 32; i = i + 1)
+    begin
+        code_in = plugboard[i][5:0];
+        @(negedge clk);
     end
-    // ----- load Rotor B ----- //
-    load <= 1;
-    encrypt <= 0;
-    table_idx <= 2'b10;
-    for (i = 0; i < ROT_LEN; i = i + 1) begin
-      code_in <= rotorB_text[i]; 
-    @(posedge clk);
+
+    // Load rotorB
+    table_idx = 2'b10;
+    for (i = 0; i < 64; i = i + 1)
+    begin
+        code_in = rotorB[i][5:0];
+        @(negedge clk);
     end
-    // ----- encrypt / decrypt ----- //
-    load <= 0;
-    encrypt <= 0;
-    table_idx <= 3;
-    @(posedge clk);
-    load <= 0;
-    encrypt <= 1;
-    for (i = 0; i < `PAT_LEN; i = i + 1) begin
-      if (crypt_mode == 0) begin
-        code_in <= plain_text[i];
-      end else if (crypt_mode == 1) begin
-        code_in <= cipher_text[i];
-      end else begin
-        code_in <= 0;
-      end
-      @(posedge clk);
+
+    load = 0;
+    table_idx = 2'b11;
+    for (i = 0; i < `PAT_LEN; i = i + 1)
+    begin
+        @(negedge clk);
+        `ifdef ENCRYPT
+            code_in = plaintext[i][5:0];
+        `else
+            code_in = ciphertext[i][5:0];
+        `endif
+        encrypt = 1;
     end
+
+    @(negedge clk)
+    encrypt = 0;
 end
-// *******************************************************************************/
+// *******************************************************************************
 
-// ******************************** check output ********************************
-/* If code_out is incorrect, print it is wrong and finish the simulation */
-/* If code_out is correct for each pattern, print
-============= Congratulations =============
-             All patterns pass !
-============= Congratulations =============
-and finish the simulation
-*/
+// ******************************** check output  ********************************
+
+integer plaintext_ascii;
+reg [8-1:0] ascii_out;
+
 integer pat_error;
-integer j;
+reg [5:0] ans;
+
 initial begin
     pat_error = 0;
-
-    wait(srst_n == 0);
-    wait(srst_n == 1);
-    wait(load == 0 && encrypt == 1);
-    @(posedge clk); // a little confuse about this cycle
-    while (!code_valid) @(posedge clk);
-        
+    wait(encrypt === 1);
+    wait(code_valid === 1);
     for (j = 0; j < `PAT_LEN; j = j + 1) begin
-      if (golden_pat[j] === code_out) begin
-        $display("[PASS]: PAT %d, golden_pat = %h, code_out = %h", j, golden_pat[j], code_out);
-      end else begin
-        $display("[FAIL]: PAT %d, golden_pat = %h, code_out = %h", j, golden_pat[j], code_out);
-        pat_error = pat_error + 1;
-      end
-      @(posedge clk);
+        
+        @(negedge clk)
+
+        `ifdef ENCRYPT
+            ans = ciphertext[j][5:0];
+        `else
+            ans = plaintext[j][5:0];
+        `endif
+        
+        code_out_recorded[j] = code_out;
+        if (code_out !== ans) begin
+            pat_error = pat_error + 1;
+            $display("code_out = %h, ans = %h", code_out, ans);
+        end
+        // 
     end
 
     if (pat_error === 0) begin
@@ -330,11 +187,189 @@ initial begin
         $display("             All patterns pass !");
         $display("============= Congratulations =============\n");
     end
+
     `ifdef ASCII
-      if (fd_ascii) $fclose(fd_ascii);
+    // ******************************  Write ASCII code  ******************************
+    // * Steps:
+    // * 1. Convert decrypted code (6-bit) to ASCII format (8-bit)
+    // *    Example 6'h00 ('a' in this assignment) -> 8'h61  ('a' in ASCII format)
+    // * 2. Use $fopen() and $fwrite() to write the result to ./result
+        `ifdef DECRYPT
+            `ifdef PAT1
+                plaintext_ascii = $fopen("./result/plaintexts1_ascii.dat");
+            `elsif PAT2
+                plaintext_ascii = $fopen("./result/plaintexts2_ascii.dat");
+            `elsif PAT3
+                plaintext_ascii = $fopen("./result/plaintexts3_ascii.dat");
+            `endif
+
+            for (i = 0; i < `PAT_LEN; i = i + 1)
+            begin
+                EnigmaCodetoASCII(code_out_recorded[i], ascii_out);
+                $fwrite(plaintext_ascii, "%c", ascii_out);
+            end
+        `endif
+    // *******************************************************************************
     `endif
+
+    #(`CYCLE) 
+    @(negedge clk);
     $finish;
 end
-// ******************************************************************************
+// *******************************************************************************
+
+
+// ******************************** Time out **** ********************************
+initial
+begin
+    #(`CYCLE * `END_CYCLE);
+    $display("\n===================================================");
+    $display("      Error!!! Simulation time is too long...      ");
+    $display("   There might be something wrong in your code.    ");
+    $display("===================================================\n");
+    $finish;
+end
+// *******************************************************************************
+
+
+task EnigmaCodetoASCII;
+  input [6-1:0] eingmacode;
+  output [8-1:0] ascii_out;
+  reg [8-1:0] ascii_out;
+
+  begin
+    case(eingmacode)
+      6'h00:
+        ascii_out = 8'h61; //'a'
+      6'h01:
+        ascii_out = 8'h62; //'b'
+      6'h02:
+        ascii_out = 8'h63; //'c'
+      6'h03:
+        ascii_out = 8'h64; //'d'
+      6'h04:
+        ascii_out = 8'h65; //'e'
+      6'h05:
+        ascii_out = 8'h66; //'f'
+      6'h06:
+        ascii_out = 8'h67; //'g'
+      6'h07:
+        ascii_out = 8'h68; //'h'
+      6'h08:
+        ascii_out = 8'h69; //'i'
+      6'h09:
+        ascii_out = 8'h6a; //'j'
+      6'h0a:
+        ascii_out = 8'h6b; //'k'
+      6'h0b:
+        ascii_out = 8'h6c; //'l'
+      6'h0c:
+        ascii_out = 8'h6d; //'m'
+      6'h0d:
+        ascii_out = 8'h6e; //'n'
+      6'h0e:
+        ascii_out = 8'h6f; //'o'
+      6'h0f:
+        ascii_out = 8'h70; //'p'
+      6'h10:
+        ascii_out = 8'h71; //'q'
+      6'h11:
+        ascii_out = 8'h72; //'r'
+      6'h12:
+        ascii_out = 8'h73; //'s'
+      6'h13:
+        ascii_out = 8'h74; //'t'
+      6'h14:
+        ascii_out = 8'h75; //'u'
+      6'h15:
+        ascii_out = 8'h76; //'v'
+      6'h16:
+        ascii_out = 8'h77; //'w'
+      6'h17:
+        ascii_out = 8'h78; //'x'
+      6'h18:
+        ascii_out = 8'h79; //'y'
+      6'h19:
+        ascii_out = 8'h7a; //'z'
+      6'h1a:
+        ascii_out = 8'h20; //' '
+      6'h1b:
+        ascii_out = 8'h3f; //'?'
+      6'h1c:
+        ascii_out = 8'h2c; //','
+      6'h1d:
+        ascii_out = 8'h2d; //'-'
+      6'h1e:
+        ascii_out = 8'h2e; //'.'
+      6'h1f:
+        ascii_out = 8'h0a; //'\n' (change line)
+      6'h20:
+        ascii_out = 8'h41; //'A'
+      6'h21:
+        ascii_out = 8'h42; //'B'
+      6'h22:
+        ascii_out = 8'h43; //'C'
+      6'h23:
+        ascii_out = 8'h44; //'D'
+      6'h24:
+        ascii_out = 8'h45; //'E'
+      6'h25:
+        ascii_out = 8'h46; //'F'
+      6'h26:
+        ascii_out = 8'h47; //'G'
+      6'h27:
+        ascii_out = 8'h48; //'H'
+      6'h28:
+        ascii_out = 8'h49; //'I'
+      6'h29:
+        ascii_out = 8'h4a; //'J'
+      6'h2a:
+        ascii_out = 8'h4b; //'K'
+      6'h2b:
+        ascii_out = 8'h4c; //'L'
+      6'h2c:
+        ascii_out = 8'h4d; //'M'
+      6'h2d:
+        ascii_out = 8'h4e; //'N'
+      6'h2e:
+        ascii_out = 8'h4f; //'O'
+      6'h2f:
+        ascii_out = 8'h50; //'P'
+      6'h30:
+        ascii_out = 8'h51; //'Q'
+      6'h31:
+        ascii_out = 8'h52; //'R'
+      6'h32:
+        ascii_out = 8'h53; //'S'
+      6'h33:
+        ascii_out = 8'h54; //'T'
+      6'h34:
+        ascii_out = 8'h55; //'U'
+      6'h35:
+        ascii_out = 8'h56; //'V'
+      6'h36:
+        ascii_out = 8'h57; //'W'
+      6'h37:
+        ascii_out = 8'h58; //'X'
+      6'h38:
+        ascii_out = 8'h59; //'Y'
+      6'h39:
+        ascii_out = 8'h5a; //'Z'
+      6'h3a:
+        ascii_out = 8'h3a; //':'
+      6'h3b:
+        ascii_out = 8'h23; //'#'
+      6'h3c:
+        ascii_out = 8'h3b; //';'
+      6'h3d:
+        ascii_out = 8'h5f; //'_'
+      6'h3e:
+        ascii_out = 8'h2b; //'+'
+      6'h3f:
+        ascii_out = 8'h26; //'&'
+    endcase
+  end
+endtask
+
 
 endmodule

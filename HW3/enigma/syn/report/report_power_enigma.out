@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : enigma
 Version: R-2020.09-SP5
-Date   : Mon Oct 20 13:36:30 2025
+Date   : Thu Oct 23 23:41:36 2025
 ****************************************
 
 
@@ -29,9 +29,9 @@ onehot2binary_64_mydesign_0
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_0
                        Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_enigma_mydesign_98
+SNPS_CLOCK_GATE_HIGH_enigma_mydesign_99
                        Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_enigma_mydesign_40
+SNPS_CLOCK_GATE_HIGH_enigma_mydesign_98
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_1
                        Small             slow_vdd1v2
@@ -110,6 +110,8 @@ SNPS_CLOCK_GATE_HIGH_enigma_mydesign_37
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_38
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_39
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_enigma_mydesign_40
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_enigma_mydesign_41
                        Small             slow_vdd1v2
@@ -240,9 +242,9 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-enigma                                    0.122    0.497 4.34e+05    0.619 100.0
+enigma                                    0.104    0.380 3.76e+05    0.484 100.0
   encoder64_B (onehot2binary_64_mydesign_0)
-                                       1.09e-03 2.64e-03 2.84e+03 3.74e-03   0.6
+                                       8.65e-04 2.94e-03 2.69e+03 3.81e-03   0.8
   encoder64_A (onehot2binary_64_mydesign_1)
-                                       1.24e-04 4.30e-04 2.94e+03 5.57e-04   0.1
+                                       4.26e-04 1.02e-03 3.24e+03 1.45e-03   0.3
 1

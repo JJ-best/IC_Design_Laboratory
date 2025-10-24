@@ -2,7 +2,7 @@
 set TOPLEVEL "enigma"
 
 # Change your timing constraint here
-set TEST_CYCLE 15.0
+set TEST_CYCLE 3.55
 
 source -echo -verbose 0_readfile.tcl 
 source -echo -verbose 1_setting.tcl 

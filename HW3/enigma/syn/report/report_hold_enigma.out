@@ -6,15 +6,15 @@ Report : timing
         -max_paths 4
 Design : enigma
 Version: R-2020.09-SP5
-Date   : Mon Oct 20 13:36:29 2025
+Date   : Thu Oct 23 23:41:35 2025
 ****************************************
 
 Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
 Wire Load Model Mode: enclosed
 
-  Startpoint: clk_gate_RotorB_reg_reg_5_/latch
+  Startpoint: clk_gate_RotorA_addr_shift_reg/latch
               (negative level-sensitive latch clocked by clk)
-  Endpoint: clk_gate_RotorB_reg_reg_5_/main_gate
+  Endpoint: clk_gate_RotorA_addr_shift_reg/main_gate
             (gating element for clock clk)
   Path Group: clk
   Path Type: min
@@ -22,26 +22,26 @@ Wire Load Model Mode: enclosed
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   enigma             Large                 slow_vdd1v2
-  SNPS_CLOCK_GATE_HIGH_enigma_mydesign_4
+  SNPS_CLOCK_GATE_HIGH_enigma_mydesign_41
                      Small                 slow_vdd1v2
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_5_/latch/GN (TLATNXL)           0.00       1.66 f
-  clk_gate_RotorB_reg_reg_5_/latch/Q (TLATNXL)            0.11       1.78 r
-  clk_gate_RotorB_reg_reg_5_/main_gate/A (AND2XL)         0.01       1.79 r
-  data arrival time                                                  1.79
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorA_addr_shift_reg/latch/GN (TLATNXL)       0.00       1.77 f
+  clk_gate_RotorA_addr_shift_reg/latch/Q (TLATNXL)        0.11       1.89 r
+  clk_gate_RotorA_addr_shift_reg/main_gate/A (AND2XL)     0.01       1.90 r
+  data arrival time                                                  1.90
 
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_5_/main_gate/B (AND2XL)         0.00       1.66 f
-  clock gating hold time                                  0.00       1.66
-  data required time                                                 1.66
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorA_addr_shift_reg/main_gate/B (AND2XL)     0.00       1.77 f
+  clock gating hold time                                  0.00       1.77
+  data required time                                                 1.77
   --------------------------------------------------------------------------
-  data required time                                                 1.66
-  data arrival time                                                 -1.79
+  data required time                                                 1.77
+  data arrival time                                                 -1.90
   --------------------------------------------------------------------------
   slack (MET)                                                        0.12
 
@@ -61,21 +61,21 @@ Wire Load Model Mode: enclosed
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_4_/latch/GN (TLATNXL)           0.00       1.66 f
-  clk_gate_RotorB_reg_reg_4_/latch/Q (TLATNXL)            0.11       1.78 r
-  clk_gate_RotorB_reg_reg_4_/main_gate/A (AND2XL)         0.01       1.79 r
-  data arrival time                                                  1.79
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorB_reg_reg_4_/latch/GN (TLATNXL)           0.00       1.77 f
+  clk_gate_RotorB_reg_reg_4_/latch/Q (TLATNXL)            0.11       1.89 r
+  clk_gate_RotorB_reg_reg_4_/main_gate/A (AND2XL)         0.01       1.90 r
+  data arrival time                                                  1.90
 
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_4_/main_gate/B (AND2XL)         0.00       1.66 f
-  clock gating hold time                                  0.00       1.66
-  data required time                                                 1.66
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorB_reg_reg_4_/main_gate/B (AND2XL)         0.00       1.77 f
+  clock gating hold time                                  0.00       1.77
+  data required time                                                 1.77
   --------------------------------------------------------------------------
-  data required time                                                 1.66
-  data arrival time                                                 -1.79
+  data required time                                                 1.77
+  data arrival time                                                 -1.90
   --------------------------------------------------------------------------
   slack (MET)                                                        0.12
 
@@ -95,21 +95,21 @@ Wire Load Model Mode: enclosed
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_2_/latch/GN (TLATNXL)           0.00       1.66 f
-  clk_gate_RotorB_reg_reg_2_/latch/Q (TLATNXL)            0.11       1.78 r
-  clk_gate_RotorB_reg_reg_2_/main_gate/A (AND2XL)         0.01       1.79 r
-  data arrival time                                                  1.79
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorB_reg_reg_2_/latch/GN (TLATNXL)           0.00       1.77 f
+  clk_gate_RotorB_reg_reg_2_/latch/Q (TLATNXL)            0.11       1.89 r
+  clk_gate_RotorB_reg_reg_2_/main_gate/A (AND2XL)         0.01       1.90 r
+  data arrival time                                                  1.90
 
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_2_/main_gate/B (AND2XL)         0.00       1.66 f
-  clock gating hold time                                  0.00       1.66
-  data required time                                                 1.66
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorB_reg_reg_2_/main_gate/B (AND2XL)         0.00       1.77 f
+  clock gating hold time                                  0.00       1.77
+  data required time                                                 1.77
   --------------------------------------------------------------------------
-  data required time                                                 1.66
-  data arrival time                                                 -1.79
+  data required time                                                 1.77
+  data arrival time                                                 -1.90
   --------------------------------------------------------------------------
   slack (MET)                                                        0.12
 
@@ -129,21 +129,21 @@ Wire Load Model Mode: enclosed
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_1_/latch/GN (TLATNXL)           0.00       1.66 f
-  clk_gate_RotorB_reg_reg_1_/latch/Q (TLATNXL)            0.11       1.78 r
-  clk_gate_RotorB_reg_reg_1_/main_gate/A (AND2XL)         0.01       1.79 r
-  data arrival time                                                  1.79
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorB_reg_reg_1_/latch/GN (TLATNXL)           0.00       1.77 f
+  clk_gate_RotorB_reg_reg_1_/latch/Q (TLATNXL)            0.11       1.89 r
+  clk_gate_RotorB_reg_reg_1_/main_gate/A (AND2XL)         0.01       1.90 r
+  data arrival time                                                  1.90
 
-  clock clk (fall edge)                                   1.66       1.66
-  clock network delay (ideal)                             0.00       1.66
-  clk_gate_RotorB_reg_reg_1_/main_gate/B (AND2XL)         0.00       1.66 f
-  clock gating hold time                                  0.00       1.66
-  data required time                                                 1.66
+  clock clk (fall edge)                                   1.77       1.77
+  clock network delay (ideal)                             0.00       1.77
+  clk_gate_RotorB_reg_reg_1_/main_gate/B (AND2XL)         0.00       1.77 f
+  clock gating hold time                                  0.00       1.77
+  data required time                                                 1.77
   --------------------------------------------------------------------------
-  data required time                                                 1.66
-  data arrival time                                                 -1.79
+  data required time                                                 1.77
+  data arrival time                                                 -1.90
   --------------------------------------------------------------------------
   slack (MET)                                                        0.12
 

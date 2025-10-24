@@ -2,9 +2,8 @@
 //  Note:          Use only for teaching materials of IC Design Lab, NTHU.
 //  Copyright: (c) 2025 Vision Circuits and Systems Lab, NTHU, Taiwan. ALL Rights Reserved.
 //==================================================================================================
-// Version21: don't pipeline the load, table_idx to reduce timing
-// clear v20
-// area 14883 time=3.55 performance=52834
+// Version14: rotorA_adder_v2 area=15488.5 time=3.71 Performance=57462
+
 module enigma(clk, srst_n, load, encrypt, crypt_mode, table_idx, code_in, code_out, code_valid);
 input clk;         // clock 
 input srst_n;      // synchronous reset (active low)
@@ -40,16 +39,11 @@ wire plug_forward_valid_i; // encoder valid
 wire plug_forward_valid_o;
 reg plug_forward_valid; //pipeline valid
 reg plug_inverse_valid;
-reg plug_valid_1cyc;
 // ----- Rotor A declare -----//
 reg [(pData_LEN-1):0] link [0:(pRotorA_LEN-1)];
-reg [1:0] shift_value_t;
+wire [1:0] shift_value_t;
 reg [(pData_LEN-1):0] RotorA_forward_o;
 reg [(pData_LEN-1):0] RotorA_inverse_i;
-reg [(pData_LEN-1):0] RotorA_addr;
-reg [(pData_LEN-1):0] RotorA_addr_shift;
-reg [(pData_LEN-1):0] RotorA_addr_inverse_shift;
-wire [5:0] RotorA_addr_shift_next;
 // ----- bitswitch declare -----//
 reg [1:0]mode_bitswitch;
 wire [1:0]mode_bitswitch_next;
@@ -68,12 +62,12 @@ reg crypt_mode_reg;
 reg [1:0]table_idx_reg;
 reg [5:0]code_in_reg;
 always @(posedge clk) begin
-  //srst_n_reg <= srst_n;
-  //load_reg <= load;
+  srst_n_reg <= srst_n;
+  load_reg <= load;
   encrypt_reg <=encrypt;
   crypt_mode_reg <= crypt_mode;
-  //table_idx_reg <= table_idx;
- code_in_reg <= code_in;
+  table_idx_reg <= table_idx;
+  code_in_reg <= code_in;
 end
 // ----- input buffer ----- //
 
@@ -82,9 +76,9 @@ integer i;
 always @(posedge clk) begin
 	for (i=31; i>=0; i=i-1) begin
 		if (i == 31) begin
-		  plugboard_reg[i] <= (load == 1 && table_idx == 2'b01)? code_in : plugboard_reg[i];
+		  plugboard_reg[i] <= (load_reg == 1 && table_idx_reg == 2'b01)? code_in_reg : plugboard_reg[i];
 		end else begin
-		  plugboard_reg[i] <= (load == 1 && table_idx == 2'b01)? plugboard_reg[i+1] : plugboard_reg[i];
+		  plugboard_reg[i] <= (load_reg == 1 && table_idx_reg == 2'b01)? plugboard_reg[i+1] : plugboard_reg[i];
 		end
 	end
 end
@@ -95,6 +89,11 @@ generate
 	end
 endgenerate
 
+// onehot2binary_32 encoder32_i(
+// 	.onehot_i(plug_xor_i),
+// 	.binary_o(plug_mux_sel_i),
+// 	.valid_o(plug_forward_valid_i)
+// );
 // === inline onehot to binary encoder32_i ===
 assign plug_forward_valid_i = |plug_xor_i;
 
@@ -115,50 +114,8 @@ assign plug_pair_i = plug_mux_sel_i ^ 5'b00001;
 assign plug_forward_o = (plug_forward_valid_i)? plugboard_reg[plug_pair_i] : code_in_reg;
 // plug forward out pipeline
 
-
-
-wire [(pData_LEN-1):0] plug_add;
-assign plug_add = (plug_valid_1cyc)? RotorA_addr_shift_next: RotorA_addr_shift;
-
-// === CLA for plug_forward_o_reg ===
-wire [5:0] a_plug = plug_forward_o;     
-wire [5:0] b_plug = plug_add;        
-wire       cin_plug = 1'b0;           
-wire [5:0] p_plug;
-wire [5:0] g_plug;
-wire c1_plug;
-wire c2_plug;
-wire c3_plug;
-wire c4_plug;
-wire c5_plug;
-wire c6_plug;
-wire [5:0] sum_plug_cla;
-
-// Propagate / Generate
-assign p_plug = a_plug ^ b_plug;
-assign g_plug = a_plug & b_plug;
-
-// Look-ahead carries (c0=cin=0)
-assign c1_plug = g_plug[0];
-assign c2_plug = g_plug[1] | (p_plug[1] & g_plug[0]);
-assign c3_plug = g_plug[2] | (p_plug[2] & g_plug[1]) | (p_plug[2] & p_plug[1] & g_plug[0]);
-assign c4_plug = g_plug[3] | (p_plug[3] & g_plug[2])
-                        | (p_plug[3] & p_plug[2] & g_plug[1])
-                        | (p_plug[3] & p_plug[2] & p_plug[1] & g_plug[0]);
-assign c5_plug = g_plug[4] | (p_plug[4] & g_plug[3])
-                        | (p_plug[4] & p_plug[3] & g_plug[2])
-                        | (p_plug[4] & p_plug[3] & p_plug[2] & g_plug[1])
-                        | (p_plug[4] & p_plug[3] & p_plug[2] & p_plug[1] & g_plug[0]);
-
-assign sum_plug_cla[0] = p_plug[0] ^ cin_plug;      // = a0 ^ b0
-assign sum_plug_cla[1] = p_plug[1] ^ c1_plug;
-assign sum_plug_cla[2] = p_plug[2] ^ c2_plug;
-assign sum_plug_cla[3] = p_plug[3] ^ c3_plug;
-assign sum_plug_cla[4] = p_plug[4] ^ c4_plug;
-assign sum_plug_cla[5] = p_plug[5] ^ c5_plug;
-
 always @(posedge clk) begin
-  plug_forward_o_reg <= sum_plug_cla;
+  plug_forward_o_reg <= plug_forward_o;
   plug_forward_valid <= encrypt_reg;
 end
 
@@ -169,6 +126,12 @@ generate
 	  assign  plug_xor_o[l] = ~|(plug_inverse_i_reg ^ plugboard_reg[l]);
 	end
 endgenerate
+
+// onehot2binary_32 encoder32_o(
+// 	.onehot_i(plug_xor_o),
+// 	.binary_o(plug_mux_sel_o),
+// 	.valid_o(plug_forward_valid_o)
+// );
 
 // === inline onehot to binary encoder32_o ===
 assign plug_forward_valid_o = |plug_xor_o;
@@ -188,6 +151,8 @@ assign plug_mux_sel_o[0] = |{ plug_xor_o[31], plug_xor_o[29], plug_xor_o[27], pl
 
 
 assign plug_pair_o = plug_mux_sel_o ^ 5'b00001; // this may be optimize by other method
+
+
 
 // plug inverse in pipeline
 
@@ -214,13 +179,13 @@ generate
   for (k = 63; k >= 0; k = k - 1) begin : G_ROTORA_FLAT
 
     if (k == 63) begin : G_FIRST
-      assign shift_i[k] = code_in;
+      assign shift_i[k] = code_in_reg;
     end else begin : G_OTHER
       assign shift_i[k] = link[k+1];
     end
 
     always @(posedge clk) begin
-      if (table_idx == 2'b00 && load) begin
+      if (table_idx_reg == 2'b00 && load_reg) begin
         link[k] <= shift_i[k];
       end
     end
@@ -228,35 +193,66 @@ generate
 endgenerate
 
 // ----- address generator ----- //
-
+reg [(pData_LEN-1):0] RotorA_addr;
+reg [(pData_LEN-1):0] RotorA_addr_shift;
+reg [(pData_LEN-1):0] RotorA_addr_inverse_shift;
+// === Fast adder for (6b + 2b) with modulo 64 ===
 wire [1:0] a_lo = RotorA_addr_shift[1:0];
 wire [3:0] a_hi = RotorA_addr_shift[5:2];
 
+// 低 2 位：真加法（+ shift_value_t ∈ {0,1,2,3}）
 wire [2:0] sum_lo3 = {1'b0, a_lo} + {1'b0, shift_value_t};  // {c2, s1, s0}
 wire       c2      = sum_lo3[2];
 wire [1:0] s_lo    = sum_lo3[1:0];
 
+// 高 4 位：carry-select（同時計算 +0 與 +1）
 wire [4:0] sum_hi0 = {1'b0, a_hi} + 5'd0; // +0
 wire [4:0] sum_hi1 = {1'b0, a_hi} + 5'd1; // +1
 wire [3:0] s_hi    = c2 ? sum_hi1[3:0] : sum_hi0[3:0];
 
-assign RotorA_addr_shift_next = {s_hi, s_lo}; // already modulo-64
+// 組合新值（模 64）：丟棄第 6 位的進位自然就是 mod 64
+wire [5:0] RotorA_addr_shift_next = {s_hi, s_lo}; // already modulo-64
 
 always @(posedge clk) begin
-  if (!srst_n) begin
+  if (!srst_n_reg) begin
     RotorA_addr_shift <= 0;
   end else if (plug_forward_valid) begin
     RotorA_addr_shift <= RotorA_addr_shift_next;
   end 
 end
 
+// v2
+// always @(posedge clk) begin
+//   if (!srst_n_reg) begin
+//     RotorA_addr_shift <= 0;
+//   end else if (plug_forward_valid) begin
+//     RotorA_addr_shift <= RotorA_addr_shift_next;
+//   end else begin
+//     RotorA_addr_shift <= RotorA_addr_shift;
+//   end
+// end
+
+// v1
+// always @(posedge clk) begin
+//   if (!srst_n_reg) begin
+//     RotorA_addr_shift <= 0;
+//   end else if (plug_forward_valid) begin
+//     RotorA_addr_shift <= RotorA_addr_shift + {4'b0, shift_value_t};
+//   end else begin
+//     RotorA_addr_shift <= RotorA_addr_shift;
+//   end
+// end
 always @(posedge clk) begin
   RotorA_addr_inverse_shift <= RotorA_addr_shift;
 end
 
+always @(*) begin
+  RotorA_addr = plug_forward_o_reg + RotorA_addr_shift;
+end
+
 // this mux may use other optimize method for synthesis.
 always @(*) begin : RotorA_MUX
-    case (plug_forward_o_reg) // synopsys parallel_case full_case
+    case (RotorA_addr) // synopsys parallel_case full_case
         6'd0 : RotorA_forward_o = link[0];
         6'd1 : RotorA_forward_o = link[1];
         6'd2 : RotorA_forward_o = link[2];
@@ -326,33 +322,44 @@ end
 
 // assign RotorA_forward_o = link[plug_forward_o_reg];
 
-always @(posedge clk) begin
-  plug_valid_1cyc <= encrypt_reg;
-end
-//assign shift_value_t = (crypt_mode == 1'b0)? RotorA_forward_o[1:0] : RotorA_inverse_i[1:0];
-always @(*) begin
-  shift_value_t = (crypt_mode_reg == 1'b0)? RotorA_forward_o[1:0] : RotorA_inverse_i[1:0];
-end
+assign shift_value_t = (crypt_mode_reg == 1'b0)? RotorA_forward_o[1:0] : RotorA_inverse_i[1:0];
+
 // --- inverpath ---
 // bitwise and to detect equality between xor_o and each link[j]
 // generate a one-hot code
 
-reg [(pData_LEN-1):0]RotorA_inverse_i_reg;
+//reg [(pData_LEN-1):0]RotorA_inverse_i_reg;
 reg RotorA_inverse_i_valid;
 always @(posedge clk) begin
-  RotorA_inverse_i_reg <= RotorA_inverse_i;
+  //RotorA_inverse_i_reg <= RotorA_inverse_i;
   RotorA_inverse_i_valid <= plug_forward_valid;
+end
+
+// reg [(pData_LEN-1):0]RotorA_reg[0:(pRotorA_LEN-1)];
+// integer f;
+// always @(posedge clk) begin
+//   for (f=0; f<pRotorA_LEN; f=f+1) begin
+//     RotorA_reg[f] <= link[f];
+//   end
+// end
+
+reg [(pRotorA_LEN-1):0]RotorA_reg;
+integer f;
+always @(posedge clk) begin
+  for (f=0; f<pRotorA_LEN; f=f+1) begin
+    RotorA_reg[f] <= bitwise_and_o[f];
+  end
 end
 
 genvar j;
 generate
 	for (j = 0; j < pRotorA_LEN; j = j + 1) begin : GEN_MATCH
-	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i_reg ^ link[j]);
+	  assign bitwise_and_o[j] = ~|(RotorA_inverse_i ^ link[j]);
 	end
 endgenerate
 
 onehot2binary_64 encoder64_A(
-	.onehot_i(bitwise_and_o),
+	.onehot_i(RotorA_reg),
 	.binary_o(plug_inverse_i)
 );
 always @(posedge clk) begin
@@ -365,7 +372,7 @@ end
 
 // ----- Bit switching ----- //
 always @(posedge clk) begin
-	if (!srst_n) begin
+	if (!srst_n_reg) begin
 	  mode_bitswitch <= 0; 
 	end else if (plug_forward_valid) begin
 	  mode_bitswitch <= mode_bitswitch_next;
@@ -531,13 +538,13 @@ generate
     end
 
     if (bk == 63) begin : G_FIRST
-      assign RB_shift_i[bk] = code_in;
+      assign RB_shift_i[bk] = code_in_reg;
     end else begin : G_OTHER
       assign RB_shift_i[bk] = RotorB_reg[bk+1];
     end
 
     always @(*) begin
-      case ({load, plug_forward_valid}) // synopsys parallel_case full_case
+      case ({load_reg, plug_forward_valid}) // synopsys parallel_case full_case
         2'b01: RB_reg_i[bk] = RB_mux_i[bk];
         2'b10: RB_reg_i[bk] = RB_shift_i[bk];
         default : RB_reg_i[bk] = RotorB_reg[bk];
@@ -545,7 +552,7 @@ generate
     end
 
     always @(posedge clk) begin
-      if (table_idx == 2'b10 || plug_forward_valid == 1'b1) begin
+      if (table_idx_reg == 2'b10 || plug_forward_valid == 1'b1) begin
         RotorB_reg[bk] <= RB_reg_i[bk];
       end
     end
@@ -553,8 +560,82 @@ generate
 endgenerate
 // ----- Rotor B (FLATTENED) -----//
 
+
+
+
 // this mux may use other optimize method for synthesis.
 assign RotorB_forward_o = RotorB_reg[bitswitch_forward_o];
+
+
+// always @(*) begin : RotorB_MUX
+//     case (bitswitch_forward_o) // synopsys parallel_case full_case
+//         6'd0 : RotorB_forward_o = RotorB_reg[0];
+//         6'd1 : RotorB_forward_o = RotorB_reg[1];
+//         6'd2 : RotorB_forward_o = RotorB_reg[2];
+//         6'd3 : RotorB_forward_o = RotorB_reg[3];
+//         6'd4 : RotorB_forward_o = RotorB_reg[4];
+//         6'd5 : RotorB_forward_o = RotorB_reg[5];
+//         6'd6 : RotorB_forward_o = RotorB_reg[6];
+//         6'd7 : RotorB_forward_o = RotorB_reg[7];
+//         6'd8 : RotorB_forward_o = RotorB_reg[8];
+//         6'd9 : RotorB_forward_o = RotorB_reg[9];
+//         6'd10: RotorB_forward_o = RotorB_reg[10];
+//         6'd11: RotorB_forward_o = RotorB_reg[11];
+//         6'd12: RotorB_forward_o = RotorB_reg[12];
+//         6'd13: RotorB_forward_o = RotorB_reg[13];
+//         6'd14: RotorB_forward_o = RotorB_reg[14];
+//         6'd15: RotorB_forward_o = RotorB_reg[15];
+//         6'd16: RotorB_forward_o = RotorB_reg[16];
+//         6'd17: RotorB_forward_o = RotorB_reg[17];
+//         6'd18: RotorB_forward_o = RotorB_reg[18];
+//         6'd19: RotorB_forward_o = RotorB_reg[19];
+//         6'd20: RotorB_forward_o = RotorB_reg[20];
+//         6'd21: RotorB_forward_o = RotorB_reg[21];
+//         6'd22: RotorB_forward_o = RotorB_reg[22];
+//         6'd23: RotorB_forward_o = RotorB_reg[23];
+//         6'd24: RotorB_forward_o = RotorB_reg[24];
+//         6'd25: RotorB_forward_o = RotorB_reg[25];
+//         6'd26: RotorB_forward_o = RotorB_reg[26];
+//         6'd27: RotorB_forward_o = RotorB_reg[27];
+//         6'd28: RotorB_forward_o = RotorB_reg[28];
+//         6'd29: RotorB_forward_o = RotorB_reg[29];
+//         6'd30: RotorB_forward_o = RotorB_reg[30];
+//         6'd31: RotorB_forward_o = RotorB_reg[31];
+//         6'd32: RotorB_forward_o = RotorB_reg[32];
+//         6'd33: RotorB_forward_o = RotorB_reg[33];
+//         6'd34: RotorB_forward_o = RotorB_reg[34];
+//         6'd35: RotorB_forward_o = RotorB_reg[35];
+//         6'd36: RotorB_forward_o = RotorB_reg[36];
+//         6'd37: RotorB_forward_o = RotorB_reg[37];
+//         6'd38: RotorB_forward_o = RotorB_reg[38];
+//         6'd39: RotorB_forward_o = RotorB_reg[39];
+//         6'd40: RotorB_forward_o = RotorB_reg[40];
+//         6'd41: RotorB_forward_o = RotorB_reg[41];
+//         6'd42: RotorB_forward_o = RotorB_reg[42];
+//         6'd43: RotorB_forward_o = RotorB_reg[43];
+//         6'd44: RotorB_forward_o = RotorB_reg[44];
+//         6'd45: RotorB_forward_o = RotorB_reg[45];
+//         6'd46: RotorB_forward_o = RotorB_reg[46];
+//         6'd47: RotorB_forward_o = RotorB_reg[47];
+//         6'd48: RotorB_forward_o = RotorB_reg[48];
+//         6'd49: RotorB_forward_o = RotorB_reg[49];
+//         6'd50: RotorB_forward_o = RotorB_reg[50];
+//         6'd51: RotorB_forward_o = RotorB_reg[51];
+//         6'd52: RotorB_forward_o = RotorB_reg[52];
+//         6'd53: RotorB_forward_o = RotorB_reg[53];
+//         6'd54: RotorB_forward_o = RotorB_reg[54];
+//         6'd55: RotorB_forward_o = RotorB_reg[55];
+//         6'd56: RotorB_forward_o = RotorB_reg[56];
+//         6'd57: RotorB_forward_o = RotorB_reg[57];
+//         6'd58: RotorB_forward_o = RotorB_reg[58];
+//         6'd59: RotorB_forward_o = RotorB_reg[59];
+//         6'd60: RotorB_forward_o = RotorB_reg[60];
+//         6'd61: RotorB_forward_o = RotorB_reg[61];
+//         6'd62: RotorB_forward_o = RotorB_reg[62];
+//         6'd63: RotorB_forward_o = RotorB_reg[63];
+//     endcase
+// end
+
 
 assign shift_value_b = (crypt_mode_reg == 1'b0)? RotorB_forward_o[1:0] : RotorB_inverse_i[1:0];
 
@@ -577,7 +658,7 @@ onehot2binary_64 encoder64_B(
 
 // ----- XOR ----- //
 always @(posedge clk) begin
-	if (!srst_n) begin
+	if (!srst_n_reg) begin
 	  lfsr_reg <=  6'b00_0001;
 	end else if (plug_forward_valid) begin
 	  lfsr_reg[5] <= lfsr_reg[4];
@@ -590,12 +671,110 @@ always @(posedge clk) begin
 	  lfsr_reg <= lfsr_reg;
 	end
 end
-
+// always @(negedge clk) begin
+//   xor_o <= lfsr_reg ^ RotorB_forward_o;
+// end
 assign xor_o = lfsr_reg ^ RotorB_forward_o;
 assign RotorB_inverse_i = xor_o;
 // ----- XOR ----- //
 
 endmodule
+
+
+// // ----- Rotor A submodule -----//
+// module RotorA_cell # (
+// 	parameter pData_LEN = 6
+// )(
+// 	input wire [(pData_LEN-1):0] param1_i,
+// 	input wire [(pData_LEN-1):0] param2_i,
+// 	input wire [(pData_LEN-1):0] param3_i,
+// 	input wire [(pData_LEN-1):0] param4_i,
+// 	input wire [(pData_LEN-1):0] shift_i, // previous stage output
+// 	input load_i,
+// 	input encrypt_i,
+// 	input clk,
+// 	input [1:0]shift_value_i,
+// 	input [1:0]table_idx,
+// 	output reg [(pData_LEN-1):0] shift_o
+// );
+
+// reg [(pData_LEN-1):0] shift_mux;
+// always @(*) begin
+// 	case (shift_value_i) // synopsys parallel_case
+// 	2'b00: shift_mux = param1_i;
+// 	2'b01: shift_mux = param2_i;
+// 	2'b10: shift_mux = param3_i;
+// 	2'b11: shift_mux = param4_i;
+// 	endcase
+// end
+
+// reg [(pData_LEN-1):0] reg_i;
+// always @(*) begin
+// 	case ({load_i, encrypt_i}) // synopsys parallel_case
+// 	2'b01: reg_i = shift_mux;
+// 	2'b10: reg_i = shift_i;
+// 	default: reg_i = shift_o;
+// 	endcase
+// end
+
+// always @(posedge clk) begin
+// 	if (table_idx == 2'b00 || encrypt_i == 1) begin
+// 	  shift_o <= reg_i;
+// 	end else begin
+// 	  shift_o <= shift_o;
+// 	end
+	
+// end
+
+// endmodule
+
+// // ----- Rotor B submodule -----//
+// module RotorB_cell # (
+// 	parameter pData_LEN = 6
+// )(
+// 	input wire [(pData_LEN-1):0] param1_i,
+// 	input wire [(pData_LEN-1):0] param2_i,
+// 	input wire [(pData_LEN-1):0] param3_i,
+// 	input wire [(pData_LEN-1):0] param4_i,
+// 	input wire [(pData_LEN-1):0] shift_i, // previous stage output
+// 	input load_i,
+// 	input encrypt_i,
+// 	input clk,
+// 	input [1:0]shift_value_i,
+// 	input [1:0]table_idx,
+// 	input [(pData_LEN-1):0] mux_i,
+// 	output reg [(pData_LEN-1):0] shift_o,
+// 	output reg [(pData_LEN-1):0] mux_o
+// );
+
+// always @(*) begin
+// 	case (shift_value_i) // synopsys parallel_case
+// 	2'b00: mux_o = param1_i;
+// 	2'b01: mux_o = param2_i;
+// 	2'b10: mux_o = param3_i;
+// 	2'b11: mux_o = param4_i;
+// 	endcase
+// end
+
+// reg [(pData_LEN-1):0] reg_i;
+// always @(*) begin
+// 	case ({load_i, encrypt_i}) // synopsys parallel_case
+// 	2'b01: reg_i = mux_i;
+// 	2'b10: reg_i = shift_i;
+// 	default: reg_i = shift_o;
+// 	endcase
+// end
+
+// always @(posedge clk) begin
+// 	if (table_idx == 2'b10 || encrypt_i == 1) begin
+// 	  shift_o <= reg_i;
+// 	end else begin
+// 	  shift_o <= shift_o;
+// 	end
+	
+// end
+
+// endmodule
 
 // ----- one-hot to binary encoder ----- //
 module onehot2binary_64 #(
@@ -632,4 +811,32 @@ assign binary_o[0] = |{ onehot_i[63], onehot_i[61], onehot_i[59], onehot_i[57],
 
 endmodule
 
+// ----- one-hot to binary encoder ----- //
+module onehot2binary_32 (
+  input  [31:0] onehot_i,
+  output [4:0]  binary_o,
+  output        valid_o
+);
+
+assign valid_o   = |onehot_i;
+
+// MSB
+assign binary_o[4] = |onehot_i[31:16];
+
+assign binary_o[3] = |{ onehot_i[31:24], onehot_i[15:8] };
+
+assign binary_o[2] = |{ onehot_i[31:28], onehot_i[23:20],
+                        onehot_i[15:12], onehot_i[7:4] };
+
+assign binary_o[1] = |{ onehot_i[31:30], onehot_i[27:26],
+                        onehot_i[23:22], onehot_i[19:18],
+                        onehot_i[15:14], onehot_i[11:10],
+                        onehot_i[7:6],   onehot_i[3:2] };
+
+assign binary_o[0] = |{ onehot_i[31], onehot_i[29], onehot_i[27], onehot_i[25],
+                        onehot_i[23], onehot_i[21], onehot_i[19], onehot_i[17],
+                        onehot_i[15], onehot_i[13], onehot_i[11], onehot_i[9],
+                        onehot_i[7],  onehot_i[5],  onehot_i[3],  onehot_i[1] };
+
+endmodule
 
