@@ -1,0 +1,542 @@
+Pattern information:
+
+pat_000:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "nthu.edu.tw"
+
+
+pat_001:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "google.com.tw"
+
+
+pat_002:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "youtube.com"
+
+
+pat_003:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "facebook.com"
+
+
+pat_004:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "instagram.com"
+
+
+pat_005:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "x.com"
+
+
+pat_006:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "wikipedia.org"
+
+
+pat_007:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "amazon.com"
+
+
+pat_008:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "linkedin.com"
+
+
+pat_009:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "office.com"
+
+
+pat_010:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "netflix.com"
+
+
+pat_011:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "microsoft.com"
+
+
+pat_012:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "twitch.tv"
+
+
+pat_013:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "weather.com"
+
+
+pat_014:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "openai.com"
+
+
+pat_015:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "chatgpt.com"
+
+
+pat_016:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "ebay.com"
+
+
+pat_017:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "gmail.com"
+
+
+pat_018:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "github.com"
+
+
+pat_019:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "stackoverflow.com"
+
+
+pat_020:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "medium.com"
+
+
+pat_021:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "nytimes.com"
+
+
+pat_022:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "bing.com"
+
+
+pat_023:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "outlook.com"
+
+
+pat_024:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "imgur.com"
+
+
+pat_025:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "meta.com"
+
+
+pat_026:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "intel.com"
+
+
+pat_027:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "amd.com"
+
+
+pat_028:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "nvidia.com"
+
+
+pat_029:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "tesla.com"
+
+
+pat_030:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "cloudflare.com"
+
+
+pat_031:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "arm.com"
+
+
+pat_032:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "No ecc in HW4"
+
+
+pat_033:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "nthuee"
+
+
+pat_034:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "IC Design Lab"
+
+
+pat_035:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "HW4 is not easy"
+
+
+pat_036:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "HW4 is easy"
+
+
+pat_037:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "QR code version 1"
+
+
+pat_038:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "I love verilog"
+
+
+pat_039:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "I love rtl"
+
+
+pat_040:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "@(posedge clk)"
+
+
+pat_041:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "Hello World"
+
+
+pat_042:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "ICLAB is fun"
+
+
+pat_043:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "ICLAB_2025"
+
+
+pat_044:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "design compiler"
+
+
+pat_045:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "vcs"
+
+
+pat_046:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "spyglass"
+
+
+pat_047:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "synopsys"
+
+
+pat_048:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "cadence"
+
+
+pat_049:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "siemens"
+
+
+pat_050:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "verilog"
+
+
+pat_051:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "digital circuit"
+
+
+pat_052:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "testbench"
+
+
+pat_053:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "rtl"
+
+
+pat_054:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "SoC"
+
+
+pat_055:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "sram"
+
+
+pat_056:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "logic gate"
+
+
+pat_057:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "a"
+
+
+pat_058:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "password"
+
+
+pat_059:
+Total number of qr code: 1
+	qr code #0:
+		position: (0, 0)
+		rotation: 0
+		scale: 1x
+		word: "text"
+
+

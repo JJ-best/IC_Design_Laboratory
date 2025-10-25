@@ -1,0 +1,99 @@
+ 
+****************************************
+Report : area
+Design : fir1_parallel
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:14:57 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                          301
+Number of nets:                          8856
+Number of cells:                         5782
+Number of combinational cells:           5083
+Number of sequential cells:               643
+Number of macros/black boxes:               0
+Number of buf/inv:                        779
+Number of references:                     113
+
+Combinational area:              19407.132433
+Buf/Inv area:                      610.128014
+Noncombinational area:            4132.728092
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 23539.860525
+Total area:                      23539.860525
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-  Black-
+                                  Total       Total    national    national   boxes   Design
+--------------------------------  ----------  -------  ----------  ---------  ------  ----------------------------------------------
+fir1_parallel                     23539.8605    100.0  19330.5244  3826.2961  0.0000  fir1_parallel
+clk_gate_cnt_reg                      6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_0
+clk_gate_pipe1_reg_0_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_55
+clk_gate_pipe1_reg_0__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_54
+clk_gate_pipe1_reg_0__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_53
+clk_gate_pipe1_reg_0__2               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_52
+clk_gate_pipe1_reg_1_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_51
+clk_gate_pipe1_reg_1__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_50
+clk_gate_pipe1_reg_1__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_49
+clk_gate_pipe1_reg_2_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_48
+clk_gate_pipe1_reg_2__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_47
+clk_gate_pipe1_reg_2__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_46
+clk_gate_pipe1_reg_3_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_45
+clk_gate_pipe1_reg_3__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_44
+clk_gate_pipe1_reg_3__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_43
+clk_gate_pipe1_reg_4_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_42
+clk_gate_pipe1_reg_4__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_41
+clk_gate_pipe1_reg_4__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_40
+clk_gate_pipe1_reg_5_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_39
+clk_gate_pipe1_reg_5__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_38
+clk_gate_pipe1_reg_5__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_37
+clk_gate_pipe1_reg_5__2               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_36
+clk_gate_pipe1_reg_6_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_35
+clk_gate_pipe1_reg_6__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_34
+clk_gate_pipe1_reg_6__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_33
+clk_gate_pipe1_reg_7_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_32
+clk_gate_pipe1_reg_7__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_31
+clk_gate_pipe1_reg_7__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_30
+clk_gate_pipe2_reg_0_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_29
+clk_gate_pipe2_reg_0__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_28
+clk_gate_pipe2_reg_0__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_27
+clk_gate_pipe2_reg_1_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_26
+clk_gate_pipe2_reg_1__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_25
+clk_gate_pipe2_reg_1__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_24
+clk_gate_pipe2_reg_2_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_23
+clk_gate_pipe2_reg_2__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_22
+clk_gate_pipe2_reg_2__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_21
+clk_gate_pipe2_reg_2__2               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_20
+clk_gate_pipe2_reg_3_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_19
+clk_gate_pipe2_reg_3__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_18
+clk_gate_pipe2_reg_3__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_17
+clk_gate_pipe2_reg_4_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_16
+clk_gate_pipe2_reg_4__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_15
+clk_gate_pipe2_reg_4__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_14
+clk_gate_pipe2_reg_5_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_13
+clk_gate_pipe2_reg_5__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_12
+clk_gate_pipe2_reg_5__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_11
+clk_gate_pipe2_reg_6_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_10
+clk_gate_pipe2_reg_6__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_9
+clk_gate_pipe2_reg_6__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_8
+clk_gate_pipe2_reg_7_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_7
+clk_gate_pipe2_reg_7__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_6
+clk_gate_pipe2_reg_7__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_5
+clk_gate_pipe2_reg_7__2               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_4
+clk_gate_pipe2_reg_8_                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_3
+clk_gate_pipe2_reg_8__0               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_2
+clk_gate_pipe2_reg_8__1               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_parallel_mydesign_1
+--------------------------------  ----------  -------  ----------  ---------  ------  ----------------------------------------------
+Total                                                  19407.1324  4132.7281  0.0000
+
+1

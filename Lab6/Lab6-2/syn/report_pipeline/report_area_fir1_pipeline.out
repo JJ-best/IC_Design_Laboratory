@@ -1,0 +1,44 @@
+ 
+****************************************
+Report : area
+Design : fir1_pipeline
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:54:46 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                           72
+Number of nets:                          5666
+Number of cells:                         4341
+Number of combinational cells:           3673
+Number of sequential cells:               667
+Number of macros/black boxes:               0
+Number of buf/inv:                        770
+Number of references:                      51
+
+Combinational area:              11152.620249
+Buf/Inv area:                      564.642013
+Noncombinational area:            4192.578094
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 15345.198342
+Total area:                      15345.198342
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-  Black-
+                                  Total       Total    national    national   boxes   Design
+--------------------------------  ----------  -------  ----------  ---------  ------  ----------------------------------
+fir1_pipeline                     15345.1983    100.0  11151.2522  4187.1061  0.0000  fir1_pipeline
+clk_gate_cnt_reg                      6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1_pipeline
+--------------------------------  ----------  -------  ----------  ---------  ------  ----------------------------------
+Total                                                  11152.6202  4192.5781  0.0000
+
+1

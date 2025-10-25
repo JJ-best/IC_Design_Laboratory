@@ -1,0 +1,145 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : fir1_pipeline
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:54:46 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: clk_gate_cnt_reg/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_cnt_reg/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1_pipeline      Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_fir1_pipeline
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   1.25       1.25
+  clock network delay (ideal)                             0.00       1.25
+  clk_gate_cnt_reg/latch/GN (TLATNXL)                     0.00       1.25 f
+  clk_gate_cnt_reg/latch/Q (TLATNXL)                      0.11       1.36 r
+  clk_gate_cnt_reg/main_gate/A (AND2XL)                   0.01       1.37 r
+  data arrival time                                                  1.37
+
+  clock clk (fall edge)                                   1.25       1.25
+  clock network delay (ideal)                             0.00       1.25
+  clk_gate_cnt_reg/main_gate/B (AND2XL)                   0.00       1.25 f
+  clock gating hold time                                  0.00       1.25
+  data required time                                                 1.25
+  --------------------------------------------------------------------------
+  data required time                                                 1.25
+  data arrival time                                                 -1.37
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: DFF_reg_reg_0__19_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: DFF_reg_6__19_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1_pipeline      Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_reg_reg_0__19_/CK (DFFRHQX1)         0.00       0.00 r
+  DFF_reg_reg_0__19_/Q (DFFRHQX1)          0.11       0.11 f
+  DFF_reg_6__19_/D (DFFRX1)                0.03       0.14 f
+  data arrival time                                   0.14
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_reg_6__19_/CK (DFFRX1)               0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.14
+  -----------------------------------------------------------
+  slack (MET)                                         0.14
+
+
+  Startpoint: DFF_reg_reg_0__9_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: DFF_reg_6__9_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1_pipeline      Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_reg_reg_0__9_/CK (DFFRHQX1)          0.00       0.00 r
+  DFF_reg_reg_0__9_/Q (DFFRHQX1)           0.11       0.11 f
+  DFF_reg_6__9_/D (DFFRX1)                 0.03       0.14 f
+  data arrival time                                   0.14
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_reg_6__9_/CK (DFFRX1)                0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.14
+  -----------------------------------------------------------
+  slack (MET)                                         0.14
+
+
+  Startpoint: DFF_reg_reg_0__8_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: DFF_reg_6__8_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1_pipeline      Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_reg_reg_0__8_/CK (DFFRHQX1)          0.00       0.00 r
+  DFF_reg_reg_0__8_/Q (DFFRHQX1)           0.11       0.11 f
+  DFF_reg_6__8_/D (DFFRX1)                 0.03       0.14 f
+  data arrival time                                   0.14
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  DFF_reg_6__8_/CK (DFFRX1)                0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.14
+  -----------------------------------------------------------
+  slack (MET)                                         0.14
+
+
+1

@@ -1,0 +1,51 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09-SP5
+Date:        Sat Oct 25 16:57:52 2025
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     31
+    Shorted outputs (LINT-31)                                      15
+    Constant outputs (LINT-52)                                     16
+
+Cells                                                               2
+    Cells do not drive (LINT-1)                                     2
+--------------------------------------------------------------------------------
+
+Warning: In design 'fir1', cell 'C6435' does not drive any nets. (LINT-1)
+Warning: In design 'fir1', cell 'C6439' does not drive any nets. (LINT-1)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[16]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[17]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[18]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[19]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[20]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[21]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[22]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[23]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[24]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[25]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[26]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[27]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[28]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[29]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to output port 'y[30]'. (LINT-31)
+Warning: In design 'fir1', output port 'y[31]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[30]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[29]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[28]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[27]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[26]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[25]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[24]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[23]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[22]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[21]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[20]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[19]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[18]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[17]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'fir1', output port 'y[16]' is connected directly to 'logic 0'. (LINT-52)
+1

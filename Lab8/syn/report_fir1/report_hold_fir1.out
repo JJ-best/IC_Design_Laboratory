@@ -1,0 +1,151 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : fir1
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 16:58:32 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: clk_gate_DFF_reg_0_/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_DFF_reg_0_/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_fir1_mydesign_52
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0_/latch/GN (TLATNXL)                  0.00       1.13 f
+  clk_gate_DFF_reg_0_/latch/Q (TLATNXL)                   0.11       1.25 r
+  clk_gate_DFF_reg_0_/main_gate/A (AND2XL)                0.01       1.26 r
+  data arrival time                                                  1.26
+
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0_/main_gate/B (AND2XL)                0.00       1.13 f
+  clock gating hold time                                  0.00       1.13
+  data required time                                                 1.13
+  --------------------------------------------------------------------------
+  data required time                                                 1.13
+  data arrival time                                                 -1.26
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: clk_gate_DFF_reg_0__0/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_DFF_reg_0__0/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_fir1_mydesign_51
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0__0/latch/GN (TLATNXL)                0.00       1.13 f
+  clk_gate_DFF_reg_0__0/latch/Q (TLATNXL)                 0.11       1.25 r
+  clk_gate_DFF_reg_0__0/main_gate/A (AND2XL)              0.01       1.26 r
+  data arrival time                                                  1.26
+
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0__0/main_gate/B (AND2XL)              0.00       1.13 f
+  clock gating hold time                                  0.00       1.13
+  data required time                                                 1.13
+  --------------------------------------------------------------------------
+  data required time                                                 1.13
+  data arrival time                                                 -1.26
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: clk_gate_DFF_reg_0__1/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_DFF_reg_0__1/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_fir1_mydesign_50
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0__1/latch/GN (TLATNXL)                0.00       1.13 f
+  clk_gate_DFF_reg_0__1/latch/Q (TLATNXL)                 0.11       1.25 r
+  clk_gate_DFF_reg_0__1/main_gate/A (AND2XL)              0.01       1.26 r
+  data arrival time                                                  1.26
+
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0__1/main_gate/B (AND2XL)              0.00       1.13 f
+  clock gating hold time                                  0.00       1.13
+  data required time                                                 1.13
+  --------------------------------------------------------------------------
+  data required time                                                 1.13
+  data arrival time                                                 -1.26
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: clk_gate_DFF_reg_0__2/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_DFF_reg_0__2/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_fir1_mydesign_49
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0__2/latch/GN (TLATNXL)                0.00       1.13 f
+  clk_gate_DFF_reg_0__2/latch/Q (TLATNXL)                 0.11       1.25 r
+  clk_gate_DFF_reg_0__2/main_gate/A (AND2XL)              0.01       1.26 r
+  data arrival time                                                  1.26
+
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_DFF_reg_0__2/main_gate/B (AND2XL)              0.00       1.13 f
+  clock gating hold time                                  0.00       1.13
+  data required time                                                 1.13
+  --------------------------------------------------------------------------
+  data required time                                                 1.13
+  data arrival time                                                 -1.26
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+1

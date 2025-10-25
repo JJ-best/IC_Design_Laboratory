@@ -1,0 +1,68 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fir1_parallel
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:14:57 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: pipe1_reg_1__10_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: y0_reg_13_ (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1_parallel      Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  pipe1_reg_1__10_/CK (DFFRHQX2)         0.0000     0.0000 r
+  pipe1_reg_1__10_/Q (DFFRHQX2)          0.1621     0.1621 r
+  U488/Y (INVX2)                         0.1039     0.2660 f
+  U2893/S (ADDFX1)                       0.2273     0.4933 r
+  U2950/CO (ADDFX1)                      0.2245     0.7178 r
+  U2948/S (ADDFX1)                       0.2815     0.9993 f
+  U719/S (ADDFX1)                        0.2354     1.2347 r
+  U3031/S (ADDFXL)                       0.2732     1.5079 f
+  U1215/Y (XOR3XL)                       0.2104     1.7183 r
+  U1214/Y (XOR3XL)                       0.2056     1.9239 r
+  U1222/Y (XOR2XL)                       0.1126     2.0365 r
+  U3100/Y (OR2XL)                        0.0566     2.0931 r
+  U3197/Y (AOI21XL)                      0.0780     2.1711 f
+  U3199/Y (OAI21XL)                      0.0823     2.2534 r
+  U3200/Y (AOI21XL)                      0.0900     2.3433 f
+  U3201/Y (OAI21XL)                      0.0803     2.4237 r
+  U3203/Y (AOI21XL)                      0.0905     2.5141 f
+  U2062/Y (OAI21XL)                      0.0867     2.6008 r
+  U2100/Y (AOI21XL)                      0.0965     2.6973 f
+  U1445/Y (NAND2XL)                      0.0602     2.7574 r
+  U1444/Y (NAND2XL)                      0.0765     2.8339 f
+  U360/Y (NAND2X1)                       0.0773     2.9112 r
+  U2035/Y (AOI21XL)                      0.0768     2.9880 f
+  U2256/Y (XOR2XL)                       0.1227     3.1107 r
+  y0_reg_13_/D (DFFQXL)                  0.0310     3.1417 r
+  data arrival time                                 3.1417
+
+  clock clk (rise edge)                  3.2000     3.2000
+  clock network delay (ideal)            0.0000     3.2000
+  y0_reg_13_/CK (DFFQXL)                 0.0000     3.2000 r
+  library setup time                    -0.0583     3.1417
+  data required time                                3.1417
+  -----------------------------------------------------------
+  data required time                                3.1417
+  data arrival time                                -3.1417
+  -----------------------------------------------------------
+  slack (MET)                                       0.0000
+
+
+1

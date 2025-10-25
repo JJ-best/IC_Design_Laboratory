@@ -19,11 +19,6 @@ always @* begin
   end
 end
 ```
-|Area | Timing | Cycle | Performence |
-|- |-|-|-|
-|9834|5|1|$1.27 \times 10^{-6}$|
-
-$\text{Performence} = \frac{1}{\text{Area}\times\text{Timing}\times\text{Cycle}}$
 
 ### fir1_v2
 ```verilog
@@ -49,23 +44,13 @@ always @* begin
   y_n = pipe_wire[14];
 end
 ```
-|Area | Timing | Cycle | Performence |
-|- |-|-|-|
-|9834|5|1|$1.27 \times 10^{-6}$|
-
-$\text{Performence} = \frac{1}{\text{Area}\times\text{Timing}\times\text{Cycle}}$
+fir_v1 and fir_v2 have same performance.
 
 
-### fir_pipeline
-### fir1
-|Area | Timing | Cycle | Performence |
-|- |-|-|-|
-|12499|4.8|18|$9.26 \times 10^{-7}$|
 
-$\text{Performence} = \frac{1}{8985\times5.2383}=0.52\times 10^{-5}$
+## Performance Comparison
 
-### fir_pipeline_v2
-add buffer for multiplier.
-|Area | Timing | Cycle | Performence |
-|- |-|-|-|
-|16196|4.3|19|$ 7.557\times10^{-7}$|
+| Module | Area | Timing | Cycles(#) | Performance |
+| ------ | ---- | ------ | --------- | ----------- |
+| direct | 12912|3.3 | 1005 | $ 2.34\times 10^{-8}$ | 
+| pipeline |15345 | 2.5| 1007| $2.58\times 10^{-8}$| 

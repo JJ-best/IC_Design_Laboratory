@@ -1,0 +1,44 @@
+ 
+****************************************
+Report : area
+Design : fir1
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:48:45 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                           72
+Number of nets:                          4635
+Number of cells:                         3098
+Number of combinational cells:           2560
+Number of sequential cells:               537
+Number of macros/black boxes:               0
+Number of buf/inv:                        560
+Number of references:                      44
+
+Combinational area:               9552.744213
+Buf/Inv area:                      403.560009
+Noncombinational area:            3359.808075
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 12912.552288
+Total area:                      12912.552288
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area           Local cell area
+                                  -------------------  ---------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-     Noncombi-  Black-
+                                  Total       Total    national   national   boxes   Design
+--------------------------------  ----------  -------  ---------  ---------  ------  -------------------------
+fir1                              12912.5523    100.0  9551.3762  3354.3361  0.0000  fir1
+clk_gate_cnt_reg                      6.8400      0.1     1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_fir1
+--------------------------------  ----------  -------  ---------  ---------  ------  -------------------------
+Total                                                  9552.7442  3359.8081  0.0000
+
+1

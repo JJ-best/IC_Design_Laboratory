@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : fir1_pipeline
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:54:46 2025
+****************************************
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   fir1_pipeline                0.00       15345.20       -15345.20 (VIOLATED)
+
+
+1

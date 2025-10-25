@@ -2,13 +2,12 @@
 set TOPLEVEL "fir1"
 
 # change your timing constraint here
-set TEST_CYCLE 10
+# 4*0.8=3.2 (20% timing margin for 250MHz clock)
+set TEST_CYCLE 3
 
-# source each script (0_readfile ~ 3_report)
 source -echo -verbose 0_readfile.tcl 
-source -echo -verbose 1_setting.tcl
+source -echo -verbose 1_setting.tcl 
 source -echo -verbose 2_compile.tcl 
 source -echo -verbose 3_report.tcl 
 
 exit
-

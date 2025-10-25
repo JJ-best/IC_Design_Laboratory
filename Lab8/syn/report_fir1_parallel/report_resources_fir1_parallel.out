@@ -1,0 +1,154 @@
+ 
+****************************************
+Report : resources
+Design : fir1_parallel
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:14:58 2025
+****************************************
+
+
+Resource Report for this hierarchy in file ../hdl/fir1_parallel.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_4        | DW01_inc       | width=6    | add_66 (fir1_parallel.v:66) |
+| DP_OP_117J1_122_6236            |            |                            |
+|                | DP_OP_117J1_122_6236 |      |                            |
+=============================================================================
+
+Datapath Report for DP_OP_117J1_122_6236
+==============================================================================
+| Cell                 | Contained Operations                                |
+==============================================================================
+| DP_OP_117J1_122_6236 | mult_151 (fir1_parallel.v:151)                      |
+|                      | add_187 (fir1_parallel.v:187)                       |
+|                      | add_187_2 (fir1_parallel.v:187)                     |
+|                      | add_187_3 (fir1_parallel.v:187)                     |
+|                      | add_187_4 (fir1_parallel.v:187)                     |
+|                      | add_187_5 (fir1_parallel.v:187)                     |
+|                      | add_187_6 (fir1_parallel.v:187)                     |
+|                      | add_187_7 (fir1_parallel.v:187)                     |
+|                      | add_187_8 (fir1_parallel.v:187)                     |
+|                      | add_187_9 (fir1_parallel.v:187)                     |
+|                      | add_187_10 (fir1_parallel.v:187)                    |
+|                      | add_187_11 (fir1_parallel.v:187)                    |
+|                      | add_187_12 (fir1_parallel.v:187)                    |
+|                      | add_187_13 (fir1_parallel.v:187)                    |
+|                      | add_187_14 (fir1_parallel.v:187)                    |
+|                      | add_187_15 (fir1_parallel.v:187)                    |
+|                      | mult_152 (fir1_parallel.v:152)                      |
+|                      | mult_153 (fir1_parallel.v:153)                      |
+|                      | mult_154 (fir1_parallel.v:154)                      |
+|                      | mult_155 (fir1_parallel.v:155)                      |
+|                      | mult_172 (fir1_parallel.v:172)                      |
+|                      | add_190 (fir1_parallel.v:190)                       |
+|                      | add_190_2 (fir1_parallel.v:190)                     |
+|                      | add_190_3 (fir1_parallel.v:190)                     |
+|                      | add_190_4 (fir1_parallel.v:190)                     |
+|                      | add_190_5 (fir1_parallel.v:190)                     |
+|                      | add_190_6 (fir1_parallel.v:190)                     |
+|                      | add_190_7 (fir1_parallel.v:190)                     |
+|                      | add_190_8 (fir1_parallel.v:190)                     |
+|                      | add_190_9 (fir1_parallel.v:190)                     |
+|                      | add_190_10 (fir1_parallel.v:190)                    |
+|                      | add_190_11 (fir1_parallel.v:190)                    |
+|                      | add_190_12 (fir1_parallel.v:190)                    |
+|                      | add_190_13 (fir1_parallel.v:190)                    |
+|                      | add_190_14 (fir1_parallel.v:190)                    |
+|                      | add_190_15 (fir1_parallel.v:190)                    |
+|                      | mult_169 (fir1_parallel.v:169)                      |
+|                      | mult_170 (fir1_parallel.v:170)                      |
+|                      | mult_171 (fir1_parallel.v:171)                      |
+|                      | mult_173 (fir1_parallel.v:173)                      |
+|                      | mult_174 (fir1_parallel.v:174)                      |
+|                      | mult_175 (fir1_parallel.v:175)                      |
+|                      | mult_176 (fir1_parallel.v:176)                      |
+|                      | mult_178 (fir1_parallel.v:178)                      |
+|                      | mult_179 (fir1_parallel.v:179)                      |
+|                      | mult_180 (fir1_parallel.v:180)                      |
+|                      | mult_181 (fir1_parallel.v:181)                      |
+|                      | mult_182 (fir1_parallel.v:182)                      |
+|                      | mult_183 (fir1_parallel.v:183)                      |
+|                      | mult_184 (fir1_parallel.v:184)                      |
+|                      | mult_185 (fir1_parallel.v:185)                      |
+|                      | mult_156 (fir1_parallel.v:156)                      |
+|                      | mult_157 (fir1_parallel.v:157)                      |
+|                      | mult_158 (fir1_parallel.v:158)                      |
+|                      | mult_160 (fir1_parallel.v:160)                      |
+|                      | mult_161 (fir1_parallel.v:161)                      |
+|                      | mult_162 (fir1_parallel.v:162)                      |
+|                      | mult_163 (fir1_parallel.v:163)                      |
+|                      | mult_164 (fir1_parallel.v:164)                      |
+|                      | mult_165 (fir1_parallel.v:165)                      |
+|                      | mult_166 (fir1_parallel.v:166)                      |
+|                      | mult_167 (fir1_parallel.v:167)                      |
+==============================================================================
+
+==============================================================================
+|       |      | Data     |       |                                          |
+| Var   | Type | Class    | Width | Expression                               |
+==============================================================================
+| I1    | PI   | Unsigned | 32    |                                          |
+| I2    | PI   | Unsigned | 32    |                                          |
+| I3    | PI   | Unsigned | 32    |                                          |
+| I4    | PI   | Unsigned | 32    |                                          |
+| I5    | PI   | Unsigned | 32    |                                          |
+| I6    | PI   | Unsigned | 32    |                                          |
+| I7    | PI   | Unsigned | 32    |                                          |
+| I8    | PI   | Unsigned | 32    |                                          |
+| I9    | PI   | Unsigned | 32    |                                          |
+| I10   | PI   | Unsigned | 32    |                                          |
+| I11   | PI   | Unsigned | 32    |                                          |
+| I12   | PI   | Unsigned | 32    |                                          |
+| I13   | PI   | Unsigned | 32    |                                          |
+| I14   | PI   | Unsigned | 32    |                                          |
+| I15   | PI   | Unsigned | 32    |                                          |
+| I16   | PI   | Unsigned | 32    |                                          |
+| I17   | PI   | Unsigned | 32    |                                          |
+| T4    | IFO  | Signed   | 32    | I1 * $signed(9'b101100011) (fir1_parallel.v:151) |
+| T5    | IFO  | Signed   | 32    | I2 * $signed(10'b1001110001) (fir1_parallel.v:152) |
+| T6    | IFO  | Unsigned | 32    | I3 * $unsigned(12'b110110001010) (fir1_parallel.v:153) |
+| T7    | IFO  | Signed   | 32    | I4 * $signed(12'b100000111101) (fir1_parallel.v:154) |
+| T8    | IFO  | Unsigned | 32    | I5 * $unsigned(16'b1000111111111001) ( fir1_parallel.v:155 fir1_parallel.v:172 ) |
+| T9    | IFO  | Signed   | 32    | I6 * $signed(14'b10111000111100) (fir1_parallel.v:156) |
+| T10   | IFO  | Signed   | 32    | I7 * $signed(11'b10010111010) (fir1_parallel.v:157) |
+| T11   | IFO  | Unsigned | 32    | I8 * $unsigned(9'b101111100) (fir1_parallel.v:158) |
+| T12   | IFO  | Unsigned | 32    | I10 * $unsigned(9'b101111100) (fir1_parallel.v:160) |
+| T13   | IFO  | Signed   | 32    | I11 * $signed(11'b10010111010) (fir1_parallel.v:161) |
+| T14   | IFO  | Signed   | 32    | I12 * $signed(14'b10111000111100) (fir1_parallel.v:162) |
+| T15   | IFO  | Unsigned | 32    | I13 * $unsigned(16'b1000111111111001) (fir1_parallel.v:163) |
+| T16   | IFO  | Signed   | 32    | I14 * $signed(12'b100000111101) (fir1_parallel.v:164) |
+| T17   | IFO  | Unsigned | 32    | I15 * $unsigned(12'b110110001010) (fir1_parallel.v:165) |
+| T18   | IFO  | Signed   | 32    | I16 * $signed(10'b1001110001) (fir1_parallel.v:166) |
+| T19   | IFO  | Signed   | 32    | I17 * $signed(9'b101100011) (fir1_parallel.v:167) |
+| T20   | IFO  | Unsigned | 32    | I2 * $unsigned(9'b101111100) (fir1_parallel.v:169) |
+| T21   | IFO  | Signed   | 32    | I3 * $signed(11'b10010111010) (fir1_parallel.v:170) |
+| T22   | IFO  | Signed   | 32    | I4 * $signed(14'b10111000111100) (fir1_parallel.v:171) |
+| T24   | IFO  | Signed   | 32    | I6 * $signed(12'b100000111101) (fir1_parallel.v:173) |
+| T25   | IFO  | Unsigned | 32    | I7 * $unsigned(12'b110110001010) (fir1_parallel.v:174) |
+| T26   | IFO  | Signed   | 32    | I8 * $signed(10'b1001110001) (fir1_parallel.v:175) |
+| T27   | IFO  | Signed   | 32    | I9 * $signed(9'b101100011) (fir1_parallel.v:176) |
+| T28   | IFO  | Signed   | 32    | I10 * $signed(9'b101100011) (fir1_parallel.v:178) |
+| T29   | IFO  | Signed   | 32    | I11 * $signed(10'b1001110001) (fir1_parallel.v:179) |
+| T30   | IFO  | Unsigned | 32    | I12 * $unsigned(12'b110110001010) (fir1_parallel.v:180) |
+| T31   | IFO  | Signed   | 32    | I13 * $signed(12'b100000111101) (fir1_parallel.v:181) |
+| T32   | IFO  | Unsigned | 32    | I14 * $unsigned(16'b1000111111111001) (fir1_parallel.v:182) |
+| T33   | IFO  | Signed   | 32    | I15 * $signed(14'b10111000111100) (fir1_parallel.v:183) |
+| T34   | IFO  | Signed   | 32    | I16 * $signed(11'b10010111010) (fir1_parallel.v:184) |
+| T35   | IFO  | Unsigned | 32    | I17 * $unsigned(9'b101111100) (fir1_parallel.v:185) |
+| O1    | PO   | Unsigned | 32    | T4 + T5 + T6 + T7 + T8 + T9 + T10 + T11 + T12 + T13 + T14 + T15 + T16 + T17 + T18 + T19 (fir1_parallel.v:187) |
+| O2    | PO   | Unsigned | 32    | T20 + T21 + T22 + T8 + T24 + T25 + T26 + T27 + T28 + T29 + T30 + T31 + T32 + T33 + T34 + T35 (fir1_parallel.v:190) |
+==============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_4            | DW01_inc         | apparch (area)     |                |
+| DP_OP_117J1_122_6236                  |                    |                |
+|                    | DP_OP_117J1_122_6236 | str (area,speed)                |
+===============================================================================
+
+1

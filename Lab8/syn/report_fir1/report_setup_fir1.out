@@ -1,0 +1,179 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 4
+Design : fir1
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 16:58:32 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: enable (input port clocked by clk)
+  Endpoint: clk_gate_cnt_reg/latch
+            (negative level-sensitive latch clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 f
+  enable (in)                                             0.01       2.01 f
+  U935/Y (INVXL)                                          0.04       2.05 r
+  U1622/Y (NAND2XL)                                       0.05       2.10 f
+  clk_gate_cnt_reg/EN (SNPS_CLOCK_GATE_HIGH_fir1_mydesign_0)
+                                                          0.00       2.10 f
+  clk_gate_cnt_reg/latch/D (TLATNXL)                      0.03       2.13 f
+  data arrival time                                                  2.13
+
+  clock clk (fall edge)                                   1.13       1.13
+  clock network delay (ideal)                             0.00       1.13
+  clk_gate_cnt_reg/latch/GN (TLATNXL)                     0.00       1.13 f
+  time borrowed from endpoint                             0.99       2.13
+  data required time                                                 2.13
+  --------------------------------------------------------------------------
+  data required time                                                 2.13
+  data arrival time                                                 -2.13
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+  Time Borrowing Information
+  --------------------------------------------------------------
+  clk nominal pulse width                                 1.13   
+  library setup time                                     -0.04   
+  --------------------------------------------------------------
+  max time borrow                                         1.09   
+  actual time borrow                                      0.99   
+  --------------------------------------------------------------
+
+
+  Startpoint: y_reg_reg_11_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: y_reg_reg_31_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  y_reg_reg_11_/CK (DFFRHQX1)              0.00       0.00 r
+  y_reg_reg_11_/Q (DFFRHQX1)               0.13       0.13 r
+  U1414/CO (ADDHXL)                        0.12       0.25 r
+  U1401/Y (NAND2BXL)                       0.06       0.31 f
+  U1402/Y (NAND2XL)                        0.06       0.37 r
+  U1403/Y (NAND2XL)                        0.06       0.43 f
+  U1404/Y (NAND2XL)                        0.07       0.50 r
+  U1405/CO (ADDFX1)                        0.21       0.71 r
+  U1432/Y (XOR3XL)                         0.20       0.91 f
+  U1537/Y (NAND2XL)                        0.04       0.95 r
+  U1538/Y (INVXL)                          0.04       1.00 f
+  U978/Y (AOI21XL)                         0.06       1.06 r
+  U977/Y (OAI21XL)                         0.07       1.14 f
+  U1539/Y (AOI21XL)                        0.08       1.21 r
+  U1544/Y (OAI21XL)                        0.08       1.30 f
+  U937/Y (NOR2XL)                          0.06       1.36 r
+  U929/Y (AOI2BB2XL)                       0.10       1.46 r
+  U928/Y (OAI21XL)                         0.09       1.56 f
+  U1546/Y (OAI2BB1X1)                      0.08       1.64 f
+  U974/Y (NAND2XL)                         0.05       1.69 r
+  U911/Y (NAND2XL)                         0.09       1.77 f
+  U1547/Y (NAND2BXL)                       0.07       1.84 r
+  U561/Y (NAND3BX1)                        0.13       1.96 f
+  U968/Y (NAND2BXL)                        0.06       2.03 r
+  U967/Y (NAND2XL)                         0.07       2.09 f
+  U966/Y (NOR2XL)                          0.06       2.16 r
+  y_reg_reg_31_/D (DFFRHQX1)               0.04       2.20 r
+  data arrival time                                   2.20
+
+  clock clk (rise edge)                    2.27       2.27
+  clock network delay (ideal)              0.00       2.27
+  y_reg_reg_31_/CK (DFFRHQX1)              0.00       2.27 r
+  library setup time                      -0.07       2.20
+  data required time                                  2.20
+  -----------------------------------------------------------
+  data required time                                  2.20
+  data arrival time                                  -2.20
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+  Startpoint: enable (input port clocked by clk)
+  Endpoint: cnt_reg_3_ (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     2.00       2.00 r
+  enable (in)                              0.01       2.01 r
+  U549/Y (AOI21XL)                         0.08       2.09 f
+  U932/Y (AOI2BB1XL)                       0.07       2.17 r
+  cnt_reg_3_/D (DFFRX1)                    0.03       2.20 r
+  data arrival time                                   2.20
+
+  clock clk (rise edge)                    2.27       2.27
+  clock network delay (ideal)              0.00       2.27
+  cnt_reg_3_/CK (DFFRX1)                   0.00       2.27 r
+  library setup time                      -0.07       2.20
+  data required time                                  2.20
+  -----------------------------------------------------------
+  data required time                                  2.20
+  data arrival time                                  -2.20
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+  Startpoint: enable (input port clocked by clk)
+  Endpoint: cnt_reg_2_ (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1               Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     2.00       2.00 r
+  enable (in)                              0.01       2.01 r
+  U549/Y (AOI21XL)                         0.08       2.09 f
+  U931/Y (NOR2XL)                          0.07       2.16 r
+  cnt_reg_2_/D (DFFRX1)                    0.03       2.19 r
+  data arrival time                                   2.19
+
+  clock clk (rise edge)                    2.27       2.27
+  clock network delay (ideal)              0.00       2.27
+  cnt_reg_2_/CK (DFFRX1)                   0.00       2.27 r
+  library setup time                      -0.07       2.20
+  data required time                                  2.20
+  -----------------------------------------------------------
+  data required time                                  2.20
+  data arrival time                                  -2.19
+  -----------------------------------------------------------
+  slack (MET)                                         0.01
+
+
+1

@@ -1,0 +1,33 @@
+********** Example **********
+----- Student -----  
+  Student ID: 123456789
+  Name: 王小明
+
+----- Simulation -----
+  Passed Pattern Rank: A, B, C, D
+
+----- Synthesis PI (fill this part iff you pass all ranks) -----
+  A(Total cell area): 4000
+  T(Cycle time): 3.0
+  C(Total cycles): 1000000 (with pattern rank A)
+  PI(AxTxC): 1.20E+16
+  
+----- Note -----
+  If you have any extra information you'd like to mention.
+
+
+********** Fill your result here **********
+----- Student -----  
+  Student ID: ???
+  Name: ???
+
+----- Simulation -----
+  Passed Pattern Rank: ???
+
+----- Synthesis PI (fill this part iff you pass all ranks)-----
+  A(Total cell area): ???
+  T(Cycle time): ???
+  C(Total cycles): ??? (with pattern rank A)
+  PI(AxTxC): ???
+  
+ ----- Note -----

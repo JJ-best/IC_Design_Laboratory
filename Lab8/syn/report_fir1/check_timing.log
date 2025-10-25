@@ -1,0 +1,105 @@
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Changed wire load model for 'alt1' from '(none)' to 'Large'. (OPT-170)
+Information: Changed wire load model for 'apparch' from '(none)' to 'Large'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width6' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_6_1_6' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width6' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_6_1_6' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*MULT_UNS_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Updating design information... (UID-85)
+Warning: Design 'fir1' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+
+Information: Checking generated_clocks...
+
+Information: Checking loops...
+
+Information: Checking no_input_delay...
+
+Information: Checking unconstrained_endpoints...
+
+Warning: The following end-points are not constrained for maximum delay.
+
+End point
+---------------
+sel_data_reg[0]/data_in
+sel_data_reg[1]/data_in
+sel_data_reg[2]/data_in
+sel_data_reg[3]/data_in
+sel_data_reg[4]/data_in
+sel_data_reg[5]/data_in
+sel_data_reg[6]/data_in
+sel_data_reg[7]/data_in
+sel_data_reg[8]/data_in
+sel_data_reg[9]/data_in
+sel_data_reg[10]/data_in
+sel_data_reg[11]/data_in
+sel_data_reg[12]/data_in
+sel_data_reg[13]/data_in
+sel_data_reg[14]/data_in
+sel_data_reg[15]/data_in
+sel_data_reg[16]/data_in
+sel_data_reg[17]/data_in
+sel_data_reg[18]/data_in
+sel_data_reg[19]/data_in
+sel_data_reg[20]/data_in
+sel_data_reg[21]/data_in
+sel_data_reg[22]/data_in
+sel_data_reg[23]/data_in
+sel_data_reg[24]/data_in
+sel_data_reg[25]/data_in
+sel_data_reg[26]/data_in
+sel_data_reg[27]/data_in
+sel_data_reg[28]/data_in
+sel_data_reg[29]/data_in
+sel_data_reg[30]/data_in
+sel_data_reg[31]/data_in
+sel_param_reg[0]/data_in
+sel_param_reg[1]/data_in
+sel_param_reg[2]/data_in
+sel_param_reg[3]/data_in
+sel_param_reg[4]/data_in
+sel_param_reg[5]/data_in
+sel_param_reg[6]/data_in
+sel_param_reg[7]/data_in
+sel_param_reg[8]/data_in
+sel_param_reg[9]/data_in
+sel_param_reg[10]/data_in
+sel_param_reg[11]/data_in
+sel_param_reg[12]/data_in
+sel_param_reg[13]/data_in
+sel_param_reg[14]/data_in
+sel_param_reg[15]/data_in
+sel_param_reg[16]/data_in
+sel_param_reg[17]/data_in
+sel_param_reg[18]/data_in
+sel_param_reg[19]/data_in
+sel_param_reg[20]/data_in
+sel_param_reg[21]/data_in
+sel_param_reg[22]/data_in
+sel_param_reg[23]/data_in
+sel_param_reg[24]/data_in
+sel_param_reg[25]/data_in
+sel_param_reg[26]/data_in
+sel_param_reg[27]/data_in
+sel_param_reg[28]/data_in
+sel_param_reg[29]/data_in
+sel_param_reg[30]/data_in
+sel_param_reg[31]/data_in
+state_n_reg[0]/data_in
+state_n_reg[1]/data_in
+state_reg[0]/next_state
+state_reg[1]/next_state
+state_reg[2]/next_state
+state_reg[3]/next_state
+state_reg[4]/next_state
+state_reg[5]/next_state
+
+Information: Checking pulse_clock_cell_type...
+
+Information: Checking no_driving_cell...
+
+Information: Checking partial_input_delay...
+1

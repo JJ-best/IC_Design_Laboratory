@@ -1,0 +1,91 @@
+ 
+****************************************
+Report : resources
+Design : fir1
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:48:46 2025
+****************************************
+
+
+Resource Report for this hierarchy in file ../hdl/fir1.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_3        | DW01_inc       | width=6    | add_60 (fir1.v:60)         |
+| DP_OP_66J1_122_4528             |            |                            |
+|                | DP_OP_66J1_122_4528 |       |                            |
+=============================================================================
+
+Datapath Report for DP_OP_66J1_122_4528
+==============================================================================
+| Cell                 | Contained Operations                                |
+==============================================================================
+| DP_OP_66J1_122_4528  | mult_159 (fir1.v:159) add_159 (fir1.v:159)          |
+|                      | add_160 (fir1.v:160) add_161 (fir1.v:161)           |
+|                      | add_162 (fir1.v:162) add_163 (fir1.v:163)           |
+|                      | add_165 (fir1.v:165) add_166 (fir1.v:166)           |
+|                      | add_167 (fir1.v:167) add_168 (fir1.v:168)           |
+|                      | add_169 (fir1.v:169) add_171 (fir1.v:171)           |
+|                      | add_172 (fir1.v:172) add_173 (fir1.v:173)           |
+|                      | add_174 (fir1.v:174) add_175 (fir1.v:175)           |
+|                      | mult_159_2 (fir1.v:159) mult_160 (fir1.v:160)       |
+|                      | mult_161 (fir1.v:161) mult_162 (fir1.v:162)         |
+|                      | mult_163 (fir1.v:163) mult_165 (fir1.v:165)         |
+|                      | mult_166 (fir1.v:166) mult_167 (fir1.v:167)         |
+|                      | mult_168 (fir1.v:168) mult_169 (fir1.v:169)         |
+|                      | mult_171 (fir1.v:171) mult_172 (fir1.v:172)         |
+|                      | mult_173 (fir1.v:173) mult_174 (fir1.v:174)         |
+|                      | mult_175 (fir1.v:175)                               |
+==============================================================================
+
+==============================================================================
+|       |      | Data     |       |                                          |
+| Var   | Type | Class    | Width | Expression                               |
+==============================================================================
+| I1    | PI   | Unsigned | 32    |                                          |
+| I2    | PI   | Unsigned | 32    |                                          |
+| I3    | PI   | Unsigned | 32    |                                          |
+| I4    | PI   | Unsigned | 32    |                                          |
+| I5    | PI   | Unsigned | 32    |                                          |
+| I6    | PI   | Unsigned | 32    |                                          |
+| I7    | PI   | Unsigned | 32    |                                          |
+| I8    | PI   | Unsigned | 32    |                                          |
+| I9    | PI   | Unsigned | 32    |                                          |
+| I10   | PI   | Unsigned | 32    |                                          |
+| I11   | PI   | Unsigned | 32    |                                          |
+| I12   | PI   | Unsigned | 32    |                                          |
+| I13   | PI   | Unsigned | 32    |                                          |
+| I14   | PI   | Unsigned | 32    |                                          |
+| I15   | PI   | Unsigned | 32    |                                          |
+| I16   | PI   | Unsigned | 32    |                                          |
+| T3    | IFO  | Signed   | 32    | I1 * $signed(9'b101100011) (fir1.v:159)  |
+| T4    | IFO  | Unsigned | 32    | I2 * $unsigned(9'b101111100) (fir1.v:159) |
+| T6    | IFO  | Signed   | 32    | I3 * $signed(10'b1001110001) (fir1.v:160) |
+| T8    | IFO  | Signed   | 32    | I4 * $signed(11'b10010111010) (fir1.v:161) |
+| T10   | IFO  | Unsigned | 32    | I5 * $unsigned(12'b110110001010) (fir1.v:162) |
+| T12   | IFO  | Signed   | 32    | I6 * $signed(14'b10111000111100) (fir1.v:163) |
+| T14   | IFO  | Signed   | 32    | I7 * $signed(12'b100000111101) (fir1.v:165) |
+| T16   | IFO  | Unsigned | 32    | I8 * $unsigned(16'b1000111111111001) (fir1.v:166) |
+| T18   | IFO  | Unsigned | 32    | I9 * $unsigned(16'b1000111111111001) (fir1.v:167) |
+| T20   | IFO  | Signed   | 32    | I10 * $signed(12'b100000111101) (fir1.v:168) |
+| T22   | IFO  | Signed   | 32    | I11 * $signed(14'b10111000111100) (fir1.v:169) |
+| T24   | IFO  | Unsigned | 32    | I12 * $unsigned(12'b110110001010) (fir1.v:171) |
+| T26   | IFO  | Signed   | 32    | I13 * $signed(11'b10010111010) (fir1.v:172) |
+| T28   | IFO  | Signed   | 32    | I14 * $signed(10'b1001110001) (fir1.v:173) |
+| T30   | IFO  | Unsigned | 32    | I15 * $unsigned(9'b101111100) (fir1.v:174) |
+| T32   | IFO  | Signed   | 32    | I16 * $signed(9'b101100011) (fir1.v:175) |
+| O1    | PO   | Unsigned | 32    | T3 + T4 + T6 + T8 + T10 + T12 + T14 + T16 + T18 + T20 + T22 + T24 + T26 + T28 + T30 + T32 ( fir1.v:159 fir1.v:160 fir1.v:161 fir1.v:162 fir1.v:163 fir1.v:165 fir1.v:166 fir1.v:167 fir1.v:168 fir1.v:169 fir1.v:171 fir1.v:172 fir1.v:173 fir1.v:174 fir1.v:175 ) |
+==============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_3            | DW01_inc         | apparch (area)     |                |
+| DP_OP_66J1_122_4528                   |                    |                |
+|                    | DP_OP_66J1_122_4528 | str (area,speed)                 |
+===============================================================================
+
+1

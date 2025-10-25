@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fir1_pipeline
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:54:46 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: rst_n (input port clocked by clk)
+  Endpoint: clk_gate_cnt_reg/latch
+            (negative level-sensitive latch clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fir1_pipeline      Large                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                 0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  input external delay                                  2.0000     2.0000 r
+  rst_n (in)                                            0.0340     2.0340 r
+  U2374/Y (NAND2XL)                                     0.0749     2.1089 f
+  clk_gate_cnt_reg/EN (SNPS_CLOCK_GATE_HIGH_fir1_pipeline)
+                                                        0.0000     2.1089 f
+  clk_gate_cnt_reg/latch/D (TLATNXL)                    0.0275     2.1364 f
+  data arrival time                                                2.1364
+
+  clock clk (fall edge)                                 1.2500     1.2500
+  clock network delay (ideal)                           0.0000     1.2500
+  clk_gate_cnt_reg/latch/GN (TLATNXL)                   0.0000     1.2500 f
+  time borrowed from endpoint                           0.8864     2.1364
+  data required time                                               2.1364
+  --------------------------------------------------------------------------
+  data required time                                               2.1364
+  data arrival time                                               -2.1364
+  --------------------------------------------------------------------------
+  slack (MET)                                                      0.0000
+
+  Time Borrowing Information
+  --------------------------------------------------------------
+  clk nominal pulse width                               1.2500   
+  library setup time                                   -0.0417   
+  --------------------------------------------------------------
+  max time borrow                                       1.2083   
+  actual time borrow                                    0.8864   
+  --------------------------------------------------------------
+
+
+1

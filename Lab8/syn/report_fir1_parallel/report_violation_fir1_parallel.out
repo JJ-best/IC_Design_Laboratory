@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : fir1_parallel
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:14:58 2025
+****************************************
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   fir1_parallel                0.00       23539.86       -23539.86 (VIOLATED)
+
+
+1

@@ -1,0 +1,142 @@
+ 
+****************************************
+Report : resources
+Design : fir1_pipeline
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 17:54:47 2025
+****************************************
+
+
+Resource Report for this hierarchy in file ../hdl/fir1_pipeline.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_3        | DW01_inc       | width=6    | add_61 (fir1_pipeline.v:61) |
+| DP_OP_66J1_122_7407             |            |                            |
+|                | DP_OP_66J1_122_7407 |       |                            |
+| DP_OP_67J1_123_7407             |            |                            |
+|                | DP_OP_67J1_123_7407 |       |                            |
+| DP_OP_68J1_124_7407             |            |                            |
+|                | DP_OP_68J1_124_7407 |       |                            |
+=============================================================================
+
+Datapath Report for DP_OP_66J1_122_7407
+==============================================================================
+| Cell                 | Contained Operations                                |
+==============================================================================
+| DP_OP_66J1_122_7407  | mult_178 (fir1_pipeline.v:178)                      |
+|                      | add_178 (fir1_pipeline.v:178)                       |
+|                      | add_179 (fir1_pipeline.v:179)                       |
+|                      | add_180 (fir1_pipeline.v:180)                       |
+|                      | add_181 (fir1_pipeline.v:181)                       |
+|                      | add_182 (fir1_pipeline.v:182)                       |
+|                      | mult_178_2 (fir1_pipeline.v:178)                    |
+|                      | mult_179 (fir1_pipeline.v:179)                      |
+|                      | mult_180 (fir1_pipeline.v:180)                      |
+|                      | mult_181 (fir1_pipeline.v:181)                      |
+|                      | mult_182 (fir1_pipeline.v:182)                      |
+==============================================================================
+
+==============================================================================
+|       |      | Data     |       |                                          |
+| Var   | Type | Class    | Width | Expression                               |
+==============================================================================
+| I1    | PI   | Unsigned | 32    |                                          |
+| I2    | PI   | Unsigned | 32    |                                          |
+| I3    | PI   | Unsigned | 32    |                                          |
+| I4    | PI   | Unsigned | 32    |                                          |
+| I5    | PI   | Unsigned | 32    |                                          |
+| I6    | PI   | Unsigned | 32    |                                          |
+| T3    | IFO  | Signed   | 32    | I1 * $signed(9'b101100011) (fir1_pipeline.v:178) |
+| T4    | IFO  | Unsigned | 32    | I2 * $unsigned(9'b101111100) (fir1_pipeline.v:178) |
+| T6    | IFO  | Signed   | 32    | I3 * $signed(10'b1001110001) (fir1_pipeline.v:179) |
+| T8    | IFO  | Signed   | 32    | I4 * $signed(11'b10010111010) (fir1_pipeline.v:180) |
+| T10   | IFO  | Unsigned | 32    | I5 * $unsigned(12'b110110001010) (fir1_pipeline.v:181) |
+| T12   | IFO  | Signed   | 32    | I6 * $signed(14'b10111000111100) (fir1_pipeline.v:182) |
+| O1    | PO   | Unsigned | 32    | T3 + T4 + T6 + T8 + T10 + T12 ( fir1_pipeline.v:178 fir1_pipeline.v:179 fir1_pipeline.v:180 fir1_pipeline.v:181 fir1_pipeline.v:182 ) |
+==============================================================================
+
+Datapath Report for DP_OP_67J1_123_7407
+==============================================================================
+| Cell                 | Contained Operations                                |
+==============================================================================
+| DP_OP_67J1_123_7407  | mult_184 (fir1_pipeline.v:184)                      |
+|                      | add_184 (fir1_pipeline.v:184)                       |
+|                      | add_185 (fir1_pipeline.v:185)                       |
+|                      | add_186 (fir1_pipeline.v:186)                       |
+|                      | add_187 (fir1_pipeline.v:187)                       |
+|                      | add_188 (fir1_pipeline.v:188)                       |
+|                      | mult_185 (fir1_pipeline.v:185)                      |
+|                      | mult_186 (fir1_pipeline.v:186)                      |
+|                      | mult_187 (fir1_pipeline.v:187)                      |
+|                      | mult_188 (fir1_pipeline.v:188)                      |
+==============================================================================
+
+==============================================================================
+|       |      | Data     |       |                                          |
+| Var   | Type | Class    | Width | Expression                               |
+==============================================================================
+| I1    | PI   | Unsigned | 32    |                                          |
+| I2    | PI   | Unsigned | 32    |                                          |
+| I3    | PI   | Unsigned | 32    |                                          |
+| I4    | PI   | Unsigned | 32    |                                          |
+| I5    | PI   | Unsigned | 32    |                                          |
+| I6    | PI   | Unsigned | 32    |                                          |
+| T14   | IFO  | Signed   | 32    | I1 * $signed(12'b100000111101) (fir1_pipeline.v:184) |
+| T16   | IFO  | Unsigned | 32    | I3 * $unsigned(16'b1000111111111001) (fir1_pipeline.v:185) |
+| T18   | IFO  | Unsigned | 32    | I4 * $unsigned(16'b1000111111111001) (fir1_pipeline.v:186) |
+| T20   | IFO  | Signed   | 32    | I5 * $signed(12'b100000111101) (fir1_pipeline.v:187) |
+| T22   | IFO  | Signed   | 32    | I6 * $signed(14'b10111000111100) (fir1_pipeline.v:188) |
+| O1    | PO   | Unsigned | 32    | I2 + T14 + T16 + T18 + T20 + T22 ( fir1_pipeline.v:184 fir1_pipeline.v:185 fir1_pipeline.v:186 fir1_pipeline.v:187 fir1_pipeline.v:188 ) |
+==============================================================================
+
+Datapath Report for DP_OP_68J1_124_7407
+==============================================================================
+| Cell                 | Contained Operations                                |
+==============================================================================
+| DP_OP_68J1_124_7407  | mult_190 (fir1_pipeline.v:190)                      |
+|                      | add_190 (fir1_pipeline.v:190)                       |
+|                      | add_191 (fir1_pipeline.v:191)                       |
+|                      | add_192 (fir1_pipeline.v:192)                       |
+|                      | add_193 (fir1_pipeline.v:193)                       |
+|                      | add_194 (fir1_pipeline.v:194)                       |
+|                      | mult_191 (fir1_pipeline.v:191)                      |
+|                      | mult_192 (fir1_pipeline.v:192)                      |
+|                      | mult_193 (fir1_pipeline.v:193)                      |
+|                      | mult_194 (fir1_pipeline.v:194)                      |
+==============================================================================
+
+==============================================================================
+|       |      | Data     |       |                                          |
+| Var   | Type | Class    | Width | Expression                               |
+==============================================================================
+| I1    | PI   | Unsigned | 32    |                                          |
+| I2    | PI   | Unsigned | 32    |                                          |
+| I3    | PI   | Unsigned | 32    |                                          |
+| I4    | PI   | Unsigned | 32    |                                          |
+| I5    | PI   | Unsigned | 32    |                                          |
+| I6    | PI   | Unsigned | 32    |                                          |
+| T24   | IFO  | Unsigned | 32    | I1 * $unsigned(12'b110110001010) (fir1_pipeline.v:190) |
+| T26   | IFO  | Signed   | 32    | I3 * $signed(11'b10010111010) (fir1_pipeline.v:191) |
+| T28   | IFO  | Signed   | 32    | I4 * $signed(10'b1001110001) (fir1_pipeline.v:192) |
+| T30   | IFO  | Unsigned | 32    | I5 * $unsigned(9'b101111100) (fir1_pipeline.v:193) |
+| T32   | IFO  | Signed   | 32    | I6 * $signed(9'b101100011) (fir1_pipeline.v:194) |
+| O1    | PO   | Unsigned | 32    | I2 + T24 + T26 + T28 + T30 + T32 ( fir1_pipeline.v:190 fir1_pipeline.v:191 fir1_pipeline.v:192 fir1_pipeline.v:193 fir1_pipeline.v:194 ) |
+==============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_3            | DW01_inc         | apparch (area)     |                |
+| DP_OP_66J1_122_7407                   |                    |                |
+|                    | DP_OP_66J1_122_7407 | str (area,speed)                 |
+| DP_OP_67J1_123_7407                   |                    |                |
+|                    | DP_OP_67J1_123_7407 | str (area,speed)                 |
+| DP_OP_68J1_124_7407                   |                    |                |
+|                    | DP_OP_68J1_124_7407 | str (area,speed)                 |
+===============================================================================
+
+1

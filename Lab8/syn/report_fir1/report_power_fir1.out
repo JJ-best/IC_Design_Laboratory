@@ -1,0 +1,148 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : fir1
+Version: R-2020.09-SP5
+Date   : Sat Oct 25 16:58:32 2025
+****************************************
+
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+fir1                   Large             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_0
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_52
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_1
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_2
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_3
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_4
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_5
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_6
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_7
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_8
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_9
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_10
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_11
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_12
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_13
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_14
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_15
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_16
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_17
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_18
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_19
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_20
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_21
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_22
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_23
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_24
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_25
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_26
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_27
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_28
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_29
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_30
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_31
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_32
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_33
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_34
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_35
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_36
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_37
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_38
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_39
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_40
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_41
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_42
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_43
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_44
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_45
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_46
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_47
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_48
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_49
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_50
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_fir1_mydesign_51
+                       Small             slow_vdd1v2
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+fir1                                      0.136    1.236 2.36e+05    1.372 100.0
+1
