@@ -23,8 +23,26 @@ $ \text{Performance} = \frac{1}{A\times T \times C} $
 
 The performance of parallel architecture is better.
 
+one_add_mul use the minimum resource.
+
+parallel has the better throughput and cycle.
+
+pipeline have better timing.
+
 ### Part1 waveform
 ![figure](image/lab8_1_wave.png)
 
 ### PArt2 waveform
 ![figure](image/lab8_2_wave.png)
+
+## 4. Resource report
+
+### parallel
+code 32 mul, 30 add.
+datapath report 32 mul, 30 add.
+no resource sharing.
+
+### one_add_mul
+code 1 mul, 1 add.
+datapath report 1 mul, 1 add.
+no resource sharing

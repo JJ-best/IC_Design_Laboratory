@@ -82,8 +82,8 @@ in this assignment, you can refer to ISO 8859-1 code to see the value of each
 character**. 
 
 The last four bits of codeword 0 and the first four bits of codeword 1 
-indicates the text length encoded in this QR Code. You should first determine the 
-text length to decide how many characters should be decoded. 
+indicates the **text length** encoded in this QR Code. You should first determine the 
+text length to **decide how many characters should be decoded**. 
 
 For the rest of the data codewords, the last 4 bits of the current codeword and the first four bits of the 
 next codeword will form a text data. Once decoding a text data, you can put it to 
@@ -91,3 +91,19 @@ the output port `[7:0] decode_text` and set the output port `valid` to high. The
 testbench will check the output text when the output valid is high. 
 
 ![figure](image/codeword.png)
+
+![figure](image/iso.png)
+
+### 7. Testbench
+
+```verilog
+`define golden_num_filepath "./golden/golden_num_rank_A.dat"    // number of qrcode in this pattern
+`define golden_len_filepath "./golden/golden_length_rank_A.dat" // text length of qrcode
+`define golden_loc_filepath "./golden/golden_loc_rank_A.dat"    // identify which qrcode
+`define golden_text_filepath "./golden/golden_text_rank_A.dat"  // identify the text in qrcode
+```
+
+### 8. Summary
+
+Workflow:
+Specify the qrcode(location and rotation) -> Demask the qrcode -> Decode the data
