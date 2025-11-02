@@ -307,8 +307,9 @@ reg [6:0] sram_dat15_y;
 
 reg [1:0] check_bound_cnt;
 reg [1:0] check_bound_cnt_n;
-reg [5:0] global_word_idx;
+reg [4:0] global_word_idx;
 reg [2:0] local_word_idx;  // 6 word per decode
+reg [4:0] data_len;
 // ===== declare ===== //
 
 // ===== finite state machine ===== //
@@ -356,7 +357,11 @@ always @(*) begin
       state_n = DECODE;
     end
     DECODE: begin
-      state_n = state;
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        state_n = FIND;
+      end else begin
+        state_n = DECODE;
+      end
     end
     default : begin
       state_n = FIND;
@@ -396,17 +401,19 @@ always @(*) begin
   end
 end
 
-reg [9:0] finish_cnt;
-assign sram_raddr = addr;
-assign finish = (finish_cnt == 250)? 1 :0 ;
 
-always @(posedge clk) begin
-  if (!srst_n) begin
-    finish_cnt <= 0;
-  end else begin
-    finish_cnt <= finish_cnt + 1;
-  end
-end
+assign sram_raddr = addr;
+assign finish = (addr == 1023);
+// reg [9:0] finish_cnt;
+// assign finish = (finish_cnt == 250)? 1 :0 ;
+
+// always @(posedge clk) begin
+//   if (!srst_n) begin
+//     finish_cnt <= 0;
+//   end else begin
+//     finish_cnt <= finish_cnt + 1;
+//   end
+// end
 // ===== finite state machine ===== //
 
 // ===== rotation finite state machine ===== //
@@ -1606,6 +1613,9 @@ always @(*) begin
       if (local_word_idx == 3'd5) begin
         decode_state_n = DECODE_SWAP1_UP;
         decode_addr = sram_raddr_jump1;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        decode_addr = addr_pointer;
+        decode_state_n = DECODE_IDLE;
       end else begin
         decode_addr = sram_raddr;
         decode_state_n = DECODE_DECODE1;
@@ -2417,7 +2427,7 @@ reg       decode_valid_r;
 
 reg [7:0] decode_text_n2;
 reg       decode_valid_n2;
-reg [4:0] data_len;
+
 
 assign decode_text = decode_text_n2;
 assign valid       = decode_valid_r;
@@ -2435,7 +2445,7 @@ always @(posedge clk) begin
     data_len        <= 0;
   end else if (in_decode_pop) begin
     decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
-    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1)? 0 : 1; // first word the length
+    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
     local_word_idx <= (local_word_idx == 3'd5)? 0 : local_word_idx + 3'd1;
     global_word_idx   <= global_word_idx + 6'd1;
 
