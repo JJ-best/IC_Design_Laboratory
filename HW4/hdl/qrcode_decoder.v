@@ -1252,22 +1252,22 @@ always @* begin
     end
     // 4: ((i/2) + (j/3)) % 2 == 0
     3'd4: begin
-      mask_cond0  = ((((j0_sym  >> 1) + (i0_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond1  = ((((j1_sym  >> 1) + (i1_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond2  = ((((j2_sym  >> 1) + (i2_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond3  = ((((j3_sym  >> 1) + (i3_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond4  = ((((j4_sym  >> 1) + (i4_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond5  = ((((j5_sym  >> 1) + (i5_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond6  = ((((j6_sym  >> 1) + (i6_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond7  = ((((j7_sym  >> 1) + (i7_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond8  = ((((j8_sym  >> 1) + (i8_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond9  = ((((j9_sym  >> 1) + (i9_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond10 = ((((j10_sym >> 1) + (i10_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond11 = ((((j11_sym >> 1) + (i11_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond12 = ((((j12_sym >> 1) + (i12_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond13 = ((((j13_sym >> 1) + (i13_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond14 = ((((j14_sym >> 1) + (i14_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond15 = ((((j15_sym >> 1) + (i15_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond0  = ((((i0_sym  >> 1) + (j0_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond1  = ((((i1_sym  >> 1) + (j1_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond2  = ((((i2_sym  >> 1) + (j2_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond3  = ((((i3_sym  >> 1) + (j3_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond4  = ((((i4_sym  >> 1) + (j4_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond5  = ((((i5_sym  >> 1) + (j5_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond6  = ((((i6_sym  >> 1) + (j6_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond7  = ((((i7_sym  >> 1) + (j7_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond8  = ((((i8_sym  >> 1) + (j8_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond9  = ((((i9_sym  >> 1) + (j9_sym  / 3)) & 1'b1) == 1'b0);
+      mask_cond10 = ((((i10_sym >> 1) + (j10_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond11 = ((((i11_sym >> 1) + (j11_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond12 = ((((i12_sym >> 1) + (j12_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond13 = ((((i13_sym >> 1) + (j13_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond14 = ((((i14_sym >> 1) + (j14_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond15 = ((((i15_sym >> 1) + (j15_sym / 3)) & 1'b1) == 1'b0);
     end
     // 5: (i*j)%2 + (i*j)%3 == 0  <=> even(p) && (p%3==0)
     3'd5: begin
