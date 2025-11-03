@@ -146,9 +146,22 @@ reg rot_right;
 
 reg [3:0]pos_x_onehot;
 reg [3:0]pos_y_onehot;
+
 reg [1:0]pos_x_binary;
 reg [1:0]pos_y_binary;
-
+reg [9:0]addr_finder;
+reg [6:0]loc_x_finder; // addr_finder[4:0] * 4
+reg [6:0]loc_y_finder; // addr_finder[9:5] * 4
+reg [6:0]loc_x_rot0;
+reg [6:0]loc_y_rot0;
+reg [6:0]loc_x_rot90;
+reg [6:0]loc_y_rot90;
+reg [6:0]loc_x_rot180;
+reg [6:0]loc_y_rot180;
+reg [6:0]loc_x_rot270;
+reg [6:0]loc_y_rot270; // 32 = 100000
+reg [6:0]loc_x_n;
+reg [6:0]loc_y_n;
 // mask
 reg [4:0]loc_x_mask_block_addr_start;
 reg [4:0]loc_y_mask_block_addr_start;
@@ -260,8 +273,9 @@ localparam DECODE_IDLE = 3'd0;
 localparam DECODE_SWAP1_UP = 3'd1;// swap read the block
 localparam DECODE_SWAP2_UP = 3'd2;// jump to next row block
 localparam DECODE_JUMP2 = 3'd3;// jump to next block region
-localparam DECODE_DECODE1 = 3'd4;
-localparam DECODE_DECODE2 = 3'd5;
+localparam DECODE_DECODE1 = 3'd4; // region 1 word 0-11
+localparam DECODE_DECODE2 = 3'd5; // region 2 word 12-14
+localparam DECODE_DECODE3 = 3'd6; // region 3 word 15-18
 wire rot0_bound1_check;
 wire rot90_bound1_check;
 wire rot180_bound1_check;
@@ -308,8 +322,42 @@ reg [6:0] sram_dat15_y;
 reg [1:0] check_bound_cnt;
 reg [1:0] check_bound_cnt_n;
 reg [4:0] global_word_idx;
-reg [2:0] local_word_idx;  // 6 word per decode
+reg [3:0] local_word_idx;  // 6 word per decode
 reg [4:0] data_len;
+
+// ----- region2 decode data ----- //
+reg line0_dat;
+reg line1_dat;
+reg line2_dat;
+reg line3_dat;
+reg line4_dat;
+reg line5_dat;
+reg line6_dat;
+reg line7_dat;
+reg line8_dat;
+reg line9_dat;
+reg line10_dat;
+reg line11_dat;
+reg line12_dat;
+reg line13_dat;
+reg line14_dat;
+reg line15_dat;
+reg shift0_en;
+reg shift1_en;
+reg shift2_en;
+reg shift3_en;
+reg shift4_en;
+reg shift5_en;
+reg shift6_en;
+reg shift7_en;
+reg shift8_en;
+reg shift9_en;
+reg shift10_en;
+reg shift11_en;
+reg shift12_en;
+reg shift13_en;
+reg shift14_en;
+reg shift15_en;
 // ===== declare ===== //
 
 // ===== finite state machine ===== //
@@ -514,22 +562,39 @@ always @(posedge clk) begin
   end 
   else if (state == DECODE) begin // fifo
   // we need to define rptr and wptr later
-    line0 [fifo_wptr0 ] <= sram_rdata[0 ] ^ mask_cond0 ;
-    line1 [fifo_wptr1 ] <= sram_rdata[1 ] ^ mask_cond1 ;
-    line2 [fifo_wptr2 ] <= sram_rdata[2 ] ^ mask_cond2 ;
-    line3 [fifo_wptr3 ] <= sram_rdata[3 ] ^ mask_cond3 ;
-    line4 [fifo_wptr4 ] <= sram_rdata[4 ] ^ mask_cond4 ;
-    line5 [fifo_wptr5 ] <= sram_rdata[5 ] ^ mask_cond5 ;
-    line6 [fifo_wptr6 ] <= sram_rdata[6 ] ^ mask_cond6 ;
-    line7 [fifo_wptr7 ] <= sram_rdata[7 ] ^ mask_cond7 ;
-    line8 [fifo_wptr8 ] <= sram_rdata[8 ] ^ mask_cond8 ;
-    line9 [fifo_wptr9 ] <= sram_rdata[9 ] ^ mask_cond9 ;
-    line10[fifo_wptr10] <= sram_rdata[10] ^ mask_cond10;
-    line11[fifo_wptr11] <= sram_rdata[11] ^ mask_cond11;
-    line12[fifo_wptr12] <= sram_rdata[12] ^ mask_cond12;
-    line13[fifo_wptr13] <= sram_rdata[13] ^ mask_cond13;
-    line14[fifo_wptr14] <= sram_rdata[14] ^ mask_cond14;
-    line15[fifo_wptr15] <= sram_rdata[15] ^ mask_cond15;
+    line0 [fifo_wptr0 ] <= line0_dat;
+    line1 [fifo_wptr1 ] <= line1_dat;
+    line2 [fifo_wptr2 ] <= line2_dat;
+    line3 [fifo_wptr3 ] <= line3_dat;
+    line4 [fifo_wptr4 ] <= line4_dat;
+    line5 [fifo_wptr5 ] <= line5_dat;
+    line6 [fifo_wptr6 ] <= line6_dat;
+    line7 [fifo_wptr7 ] <= line7_dat;
+    line8 [fifo_wptr8 ] <= line8_dat;
+    line9 [fifo_wptr9 ] <= line9_dat;
+    line10[fifo_wptr10] <= line10_dat;
+    line11[fifo_wptr11] <= line11_dat;
+    line12[fifo_wptr12] <= line12_dat;
+    line13[fifo_wptr13] <= line13_dat;
+    line14[fifo_wptr14] <= line14_dat;
+    line15[fifo_wptr15] <= line15_dat;
+
+    // line0 [fifo_wptr0 ] <= sram_rdata[0 ] ^ mask_cond0 ;
+    // line1 [fifo_wptr1 ] <= sram_rdata[1 ] ^ mask_cond1 ;
+    // line2 [fifo_wptr2 ] <= sram_rdata[2 ] ^ mask_cond2 ;
+    // line3 [fifo_wptr3 ] <= sram_rdata[3 ] ^ mask_cond3 ;
+    // line4 [fifo_wptr4 ] <= sram_rdata[4 ] ^ mask_cond4 ;
+    // line5 [fifo_wptr5 ] <= sram_rdata[5 ] ^ mask_cond5 ;
+    // line6 [fifo_wptr6 ] <= sram_rdata[6 ] ^ mask_cond6 ;
+    // line7 [fifo_wptr7 ] <= sram_rdata[7 ] ^ mask_cond7 ;
+    // line8 [fifo_wptr8 ] <= sram_rdata[8 ] ^ mask_cond8 ;
+    // line9 [fifo_wptr9 ] <= sram_rdata[9 ] ^ mask_cond9 ;
+    // line10[fifo_wptr10] <= sram_rdata[10] ^ mask_cond10;
+    // line11[fifo_wptr11] <= sram_rdata[11] ^ mask_cond11;
+    // line12[fifo_wptr12] <= sram_rdata[12] ^ mask_cond12;
+    // line13[fifo_wptr13] <= sram_rdata[13] ^ mask_cond13;
+    // line14[fifo_wptr14] <= sram_rdata[14] ^ mask_cond14;
+    // line15[fifo_wptr15] <= sram_rdata[15] ^ mask_cond15;
 
     // line0 [fifo_wptr0 ] <= sram_rdata[0 ];
     // line1 [fifo_wptr1 ] <= sram_rdata[1 ];
@@ -602,6 +667,243 @@ always @(*) begin
              line12[0], line13[0], line14[0], line15[0]};
 end
 
+// ----- region 2 decode data ----- //
+// if lower than the loc_finder, use these data, else sram_rdata[i]
+
+
+// 1. 需要增加該line的wptr
+// 2. 需要判斷是否低於finder
+  // 記得改上面fifo
+  // only for decodestate SWAP2
+wire demask_data0;
+wire demask_data1;
+wire demask_data2;
+wire demask_data3;
+wire demask_data4;
+wire demask_data5;
+wire demask_data6;
+wire demask_data7;
+wire demask_data8;
+wire demask_data9;
+wire demask_data10;
+wire demask_data11;
+wire demask_data12;
+wire demask_data13;
+wire demask_data14;
+wire demask_data15;
+assign demask_data0 = sram_rdata[0] ^ mask_cond0;
+assign demask_data1 = sram_rdata[1] ^ mask_cond1;
+assign demask_data2 = sram_rdata[2] ^ mask_cond2;
+assign demask_data3 = sram_rdata[3] ^ mask_cond3;
+assign demask_data4 = sram_rdata[4] ^ mask_cond4;
+assign demask_data5 = sram_rdata[5] ^ mask_cond5;
+assign demask_data6 = sram_rdata[6] ^ mask_cond6;
+assign demask_data7 = sram_rdata[7] ^ mask_cond7;
+assign demask_data8 = sram_rdata[8] ^ mask_cond8;
+assign demask_data9 = sram_rdata[9] ^ mask_cond9;
+assign demask_data10 = sram_rdata[10] ^ mask_cond10;
+assign demask_data11 = sram_rdata[11] ^ mask_cond11;
+assign demask_data12 = sram_rdata[12] ^ mask_cond12;
+assign demask_data13 = sram_rdata[13] ^ mask_cond13;
+assign demask_data14 = sram_rdata[14] ^ mask_cond14;
+assign demask_data15 = sram_rdata[15] ^ mask_cond15;
+
+always @(*) begin
+  case (rot_state)
+    ROT_0: begin
+      shift0_en  = (sram_dat0_y  > loc_y_finder);
+      shift1_en  = (sram_dat1_y  > loc_y_finder);
+      shift2_en  = (sram_dat2_y  > loc_y_finder);
+      shift3_en  = (sram_dat3_y  > loc_y_finder);
+      shift4_en  = (sram_dat4_y  > loc_y_finder);
+      shift5_en  = (sram_dat5_y  > loc_y_finder);
+      shift6_en  = (sram_dat6_y  > loc_y_finder);
+      shift7_en  = (sram_dat7_y  > loc_y_finder);
+      shift8_en  = (sram_dat8_y  > loc_y_finder);
+      shift9_en  = (sram_dat9_y  > loc_y_finder);
+      shift10_en = (sram_dat10_y > loc_y_finder);
+      shift11_en = (sram_dat11_y > loc_y_finder);
+      shift12_en = (sram_dat12_y > loc_y_finder);
+      shift13_en = (sram_dat13_y > loc_y_finder);
+      shift14_en = (sram_dat14_y > loc_y_finder);
+      shift15_en = (sram_dat15_y > loc_y_finder);
+    end
+    ROT_90: begin
+      
+      shift0_en  = (sram_dat0_x  > loc_x_finder + 6);
+      shift1_en  = (sram_dat1_x  > loc_x_finder + 6);
+      shift2_en  = (sram_dat2_x  > loc_x_finder + 6);
+      shift3_en  = (sram_dat3_x  > loc_x_finder + 6);
+      shift4_en  = (sram_dat4_x  > loc_x_finder + 6);
+      shift5_en  = (sram_dat5_x  > loc_x_finder + 6);
+      shift6_en  = (sram_dat6_x  > loc_x_finder + 6);
+      shift7_en  = (sram_dat7_x  > loc_x_finder + 6);
+      shift8_en  = (sram_dat8_x  > loc_x_finder + 6);
+      shift9_en  = (sram_dat9_x  > loc_x_finder + 6);
+      shift10_en = (sram_dat10_x > loc_x_finder + 6);
+      shift11_en = (sram_dat11_x > loc_x_finder + 6);
+      shift12_en = (sram_dat12_x > loc_x_finder + 6);
+      shift13_en = (sram_dat13_x > loc_x_finder + 6);
+      shift14_en = (sram_dat14_x > loc_x_finder + 6);
+      shift15_en = (sram_dat15_x > loc_x_finder + 6);
+    end
+    ROT_180: begin
+            shift0_en  = (sram_dat0_y  < loc_y_finder);
+      shift1_en  = (sram_dat1_y  < loc_y_finder);
+      shift2_en  = (sram_dat2_y  < loc_y_finder);
+      shift3_en  = (sram_dat3_y  < loc_y_finder);
+      shift4_en  = (sram_dat4_y  < loc_y_finder);
+      shift5_en  = (sram_dat5_y  < loc_y_finder);
+      shift6_en  = (sram_dat6_y  < loc_y_finder);
+      shift7_en  = (sram_dat7_y  < loc_y_finder);
+      shift8_en  = (sram_dat8_y  < loc_y_finder);
+      shift9_en  = (sram_dat9_y  < loc_y_finder);
+      shift10_en = (sram_dat10_y < loc_y_finder);
+      shift11_en = (sram_dat11_y < loc_y_finder);
+      shift12_en = (sram_dat12_y < loc_y_finder);
+      shift13_en = (sram_dat13_y < loc_y_finder);
+      shift14_en = (sram_dat14_y < loc_y_finder);
+      shift15_en = (sram_dat15_y < loc_y_finder);
+    end
+    ROT_270: begin
+            shift0_en  = (sram_dat0_x  < loc_x_finder + 14);
+      shift1_en  = (sram_dat1_x  < loc_x_finder + 14);
+      shift2_en  = (sram_dat2_x  < loc_x_finder + 14);
+      shift3_en  = (sram_dat3_x  < loc_x_finder + 14);
+      shift4_en  = (sram_dat4_x  < loc_x_finder + 14);
+      shift5_en  = (sram_dat5_x  < loc_x_finder + 14);
+      shift6_en  = (sram_dat6_x  < loc_x_finder + 14);
+      shift7_en  = (sram_dat7_x  < loc_x_finder + 14);
+      shift8_en  = (sram_dat8_x  < loc_x_finder + 14);
+      shift9_en  = (sram_dat9_x  < loc_x_finder + 14);
+      shift10_en = (sram_dat10_x < loc_x_finder + 14);
+      shift11_en = (sram_dat11_x < loc_x_finder + 14);
+      shift12_en = (sram_dat12_x < loc_x_finder + 14);
+      shift13_en = (sram_dat13_x < loc_x_finder + 14);
+      shift14_en = (sram_dat14_x < loc_x_finder + 14);
+      shift15_en = (sram_dat15_x < loc_x_finder + 14);
+    end
+    default: begin
+      shift0_en  = 0;
+      shift1_en  = 0;
+      shift2_en  = 0;
+      shift3_en  = 0;
+      shift4_en  = 0;
+      shift5_en  = 0;
+      shift6_en  = 0;
+      shift7_en  = 0;
+      shift8_en  = 0;
+      shift9_en  = 0;
+      shift10_en = 0;
+      shift11_en = 0;
+      shift12_en = 0;
+      shift13_en = 0;
+      shift14_en = 0;
+      shift15_en = 0;
+    end
+
+  endcase
+end
+
+always @(*) begin
+  case (rot_state)
+    ROT_0: begin
+      line0_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data0;
+      line1_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data1;
+      line2_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data2; 
+      line3_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data3;
+      line4_dat  = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data4;
+      line5_dat  = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data5;
+      line6_dat  = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data6;
+      line7_dat  = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data7;
+      line8_dat  = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data8;
+      line9_dat  = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data9;
+      line10_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data10;
+      line11_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data11;
+      line12_dat = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data12;
+      line13_dat = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data13;
+      line14_dat = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data14;
+      line15_dat = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data15;
+    end
+    ROT_90: begin
+      line0_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data0;
+      line1_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data1;
+      line2_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data2;
+      line3_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data3;
+      line4_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data4;
+      line5_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data5;
+      line6_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data6;
+      line7_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data7;
+      line8_dat  = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data8;
+      line9_dat  = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data9;
+      line10_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data10;
+      line11_dat = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data11;
+      line12_dat = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data12;
+      line13_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data13;
+      line14_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data14;
+      line15_dat = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data15;
+    end
+    ROT_180: begin
+      line0_dat  = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data0;
+      line1_dat  = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data1;
+      line2_dat  = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data2;
+      line3_dat  = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data3;
+      line4_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data4;
+      line5_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data5;
+      line6_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data6;
+      line7_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data7;
+      line8_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data8;
+      line9_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data9;
+      line10_dat = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data10;
+      line11_dat = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data11;
+      line12_dat = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data12;
+      line13_dat = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data13;
+      line14_dat = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data14;
+      line15_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data15;
+    end
+    ROT_270: begin
+      line0_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data0;
+      line1_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data1;
+      line2_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data2;
+      line3_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data3;
+      line4_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data4;
+      line5_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data5;
+      line6_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data6;
+      line7_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data7;
+      line8_dat  = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data8;
+      line9_dat  = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data9;
+      line10_dat = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data10;
+      line11_dat = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data11;
+      line12_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data12;
+      line13_dat = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data13;
+      line14_dat = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data14;
+      line15_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data15;
+    end
+    default: begin
+      line0_dat  = demask_data0;
+      line1_dat  = demask_data1;
+      line2_dat  = demask_data2;
+      line3_dat  = demask_data3;
+      line4_dat  = demask_data4;
+      line5_dat  = demask_data5;
+      line6_dat  = demask_data6;
+      line7_dat  = demask_data7;
+      line8_dat  = demask_data8;
+      line9_dat  = demask_data9;
+      line10_dat = demask_data10;
+      line11_dat = demask_data11;
+      line12_dat = demask_data12;
+      line13_dat = demask_data13;
+      line14_dat = demask_data14;
+      line15_dat = demask_data15;
+
+
+    end    
+  endcase
+end
+
+
+// ----- region 2 decode data ----- //
 reg check_row_11_21_zero;
 reg check_row_12_21_zero;
 reg check_row_13_21_zero;
@@ -778,19 +1080,7 @@ always @(posedge clk) begin
   end
 end
 
-reg [9:0]addr_finder;
-reg [6:0]loc_x_finder; // addr_finder[4:0] * 4
-reg [6:0]loc_y_finder; // addr_finder[9:5] * 4
-reg [6:0]loc_x_rot0;
-reg [6:0]loc_y_rot0;
-reg [6:0]loc_x_rot90;
-reg [6:0]loc_y_rot90;
-reg [6:0]loc_x_rot180;
-reg [6:0]loc_y_rot180;
-reg [6:0]loc_x_rot270;
-reg [6:0]loc_y_rot270; // 32 = 100000
-reg [6:0]loc_x_n;
-reg [6:0]loc_y_n;
+
 always @(*) begin
   addr_finder = addr_pointer - 6;
   loc_x_finder = {3'b0, addr_finder[4:0], 2'b0} + pos_x_binary_reg;
@@ -1583,12 +1873,12 @@ always @(*) begin
       end
     end
     DECODE_SWAP1_UP: begin
-      if (check_bound_cnt_n == 2) begin
+      if (jump1) begin
+        decode_addr = corner5_block_addr;
+        decode_state_n = DECODE_DECODE2;
+      end else if (check_bound_cnt_n == 2) begin
         decode_addr = sram_raddr; // do not enable write fifo
         decode_state_n = DECODE_DECODE1;
-      end else if (jump1) begin // jump to next block region
-        decode_addr = corner5_block_addr;
-        decode_state_n = DECODE_SWAP2_UP;
       end else if (bound1_check) begin
         decode_addr = sram_raddr_jump1;
         decode_state_n = DECODE_SWAP1_UP; // some confuse, write = decode_state may cause error
@@ -1599,8 +1889,8 @@ always @(*) begin
     end
     DECODE_SWAP2_UP: begin
       if (jump2) begin
-        decode_addr = 0; // tmp
-        decode_state_n = DECODE_IDLE;
+        decode_addr = sram_raddr; // tmp
+        decode_state_n = DECODE_DECODE3;
       end else if (bound2_check) begin
         decode_addr = corner7_block_addr;
         decode_state_n = DECODE_SWAP2_UP;
@@ -1609,7 +1899,7 @@ always @(*) begin
         decode_state_n = DECODE_SWAP2_UP;
       end
     end
-    DECODE_DECODE1: begin
+    DECODE_DECODE1: begin // decode 6+6 word of region1
       if (local_word_idx == 3'd5) begin
         decode_state_n = DECODE_SWAP1_UP;
         decode_addr = sram_raddr_jump1;
@@ -1619,6 +1909,28 @@ always @(*) begin
       end else begin
         decode_addr = sram_raddr;
         decode_state_n = DECODE_DECODE1;
+      end
+    end
+    DECODE_DECODE2: begin // decode the remain 8 word of region1
+    // add some code here like DECODE_DECODE_1
+      if (local_word_idx == 8) begin // need to clear the wptr, rptr, line?
+        decode_state_n = DECODE_SWAP2_UP;
+        decode_addr = corner5_block_addr;
+      end else begin
+        decode_addr = sram_raddr;
+        decode_state_n = DECODE_DECODE2;
+      end
+    end
+    DECODE_DECODE3: begin // decode the 4 word of region2
+      if (local_word_idx == 3'd4) begin
+        decode_state_n = DECODE_IDLE;
+        decode_addr = addr_pointer;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        decode_addr = addr_pointer;
+        decode_state_n = DECODE_IDLE;
+      end else begin
+        decode_addr = sram_raddr;
+        decode_state_n = DECODE_DECODE3;
       end
     end
     default: begin
@@ -1889,7 +2201,547 @@ always @(*) begin
     dat15_en = (sram_dat15_x <= region1_right_x) && (sram_dat15_x >= region1_left_x)
            && (sram_dat15_y <= region1_up_y)    && (sram_dat15_y >= region1_down_y);
   end else if (decode_state == DECODE_SWAP2_UP) begin // DECODE_DECODE2
-    dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+  // wptr controlle, dat_en control the increment of write pointer
+  case (rot_state)
+    ROT_0: begin
+      // data enable mapping for shift condition
+      // |0 |1 |2 |3 |     |12|13|14|15|
+      // |4 |5 |6 |7 |     |0 |1 |2 |3 |
+      // |8 |9 |10|11| --> |4 |5 |6 |7 |
+      // |12|13|14|15|     |8 |9 |10|11|
+      if (shift0_en) begin
+        dat12_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+                && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end else begin
+        dat12_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+                && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y) && (sram_dat12_y != loc_y_finder + 1);
+      end
+
+      if (shift1_en) begin
+        dat13_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+                && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end else begin
+        dat13_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+                && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y) && (sram_dat13_y != loc_y_finder + 1);
+      end
+
+      if (shift2_en) begin
+        dat14_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+                && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end else begin
+        dat14_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+                && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y) && (sram_dat14_y != loc_y_finder + 1);
+      end
+
+      if (shift3_en) begin
+        dat15_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+                && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end else begin
+        dat15_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+                && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y) && (sram_dat15_y != loc_y_finder + 1);
+      end
+
+      if (shift4_en) begin
+        dat0_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end else begin
+        dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y) && (sram_dat0_y != loc_y_finder + 1);
+      end
+
+      if (shift5_en) begin
+        dat1_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end else begin
+        dat1_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y) && (sram_dat1_y != loc_y_finder + 1);
+      end
+
+      if (shift6_en) begin
+        dat2_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end else begin
+        dat2_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y) && (sram_dat2_y != loc_y_finder + 1);
+      end
+
+      if (shift7_en) begin
+        dat3_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end else begin
+        dat3_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y) && (sram_dat3_y != loc_y_finder + 1);
+      end
+
+      if (shift8_en) begin
+        dat4_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end else begin
+        dat4_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y) && (sram_dat4_y != loc_y_finder + 1);
+      end
+
+      if (shift9_en) begin
+        dat5_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end else begin
+        dat5_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y) && (sram_dat5_y != loc_y_finder + 1);
+      end
+
+      if (shift10_en) begin
+        dat6_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end else begin
+        dat6_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y) && (sram_dat6_y != loc_y_finder + 1);
+      end
+
+      if (shift11_en) begin
+        dat7_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end else begin
+        dat7_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y) && (sram_dat7_y != loc_y_finder + 1);
+      end
+
+      if (shift12_en) begin
+        dat8_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end else begin
+        dat8_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y) && (sram_dat8_y != loc_y_finder + 1);
+      end
+
+      if (shift13_en) begin
+        dat9_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end else begin
+        dat9_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y) && (sram_dat9_y != loc_y_finder + 1);
+      end
+
+      if (shift14_en) begin
+        dat10_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+                && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end else begin
+        dat10_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+                && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y) && (sram_dat10_y != loc_y_finder + 1);
+      end
+
+      if (shift15_en) begin
+        dat11_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+                && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end else begin
+        dat11_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+                && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y) && (sram_dat11_y != loc_y_finder + 1);
+      end
+    end
+    ROT_90: begin
+      // 這裡還有些條件沒有加上去
+      // data enable mapping for shift condition
+      // |0 |1 |2 |3 |     |3 |0 |1 |2 |
+      // |4 |5 |6 |7 |     |7 |4 |5 |6 |
+      // |8 |9 |10|11| --> |11|8 |9 |10|
+      // |12|13|14|15|     |15|12|13|14|
+      if (shift0_en) begin
+        dat3_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end else begin
+        dat3_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end
+
+      if (shift1_en) begin
+        dat0_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end else begin
+        dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end
+
+      if (shift2_en) begin
+        dat1_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end else begin
+        dat1_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end
+
+      if (shift3_en) begin
+        dat2_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end else begin
+        dat2_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end
+
+      if (shift4_en) begin
+        dat7_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end else begin
+        dat7_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end
+
+      if (shift5_en) begin
+        dat4_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end else begin
+        dat4_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end
+
+      if (shift6_en) begin
+        dat5_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end else begin
+        dat5_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end
+
+      if (shift7_en) begin
+        dat6_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end else begin
+        dat6_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end
+
+      if (shift8_en) begin
+        dat11_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end else begin
+        dat11_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end
+
+      if (shift9_en) begin
+        dat8_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end else begin
+        dat8_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end
+
+      if (shift10_en) begin
+        dat9_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end else begin
+        dat9_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end
+
+      if (shift11_en) begin
+        dat10_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end else begin
+        dat10_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end
+
+      if (shift12_en) begin
+        dat15_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end else begin
+        dat15_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+               && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end
+
+      if (shift13_en) begin
+        dat12_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end else begin
+        dat12_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end
+
+      if (shift14_en) begin
+        dat13_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+               && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end else begin
+        dat13_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end
+
+      if (shift15_en) begin
+        dat14_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+               && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end else begin
+        dat14_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+               && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end
+    end
+    ROT_180: begin
+      // data enable mapping for shift condition
+      // |0 |1 |2 |3 |     |4 |5 |6 |7 |
+      // |4 |5 |6 |7 |     |8 |9 |10|11|
+      // |8 |9 |10|11| --> |12|13|14|15|
+      // |12|13|14|15|     |0 |1 |2 |3 |
+      if (shift0_en) begin
+        dat4_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end else begin
+        dat4_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end
+
+      if (shift1_en) begin
+        dat5_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end else begin
+        dat5_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end
+
+      if (shift2_en) begin
+        dat6_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end else begin
+        dat6_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end
+
+      if (shift3_en) begin
+        dat7_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end else begin
+        dat7_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end
+
+      if (shift4_en) begin
+        dat8_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end else begin
+        dat8_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end
+
+      if (shift5_en) begin
+        dat9_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end else begin
+        dat9_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end
+
+      if (shift6_en) begin
+        dat10_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end else begin
+        dat10_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end
+
+      if (shift7_en) begin
+        dat11_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end else begin
+        dat11_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end
+
+      if (shift8_en) begin
+        dat12_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end else begin
+        dat12_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end
+
+      if (shift9_en) begin
+        dat13_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end else begin
+        dat13_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end
+
+      if (shift10_en) begin
+        dat14_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end else begin
+        dat14_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+               && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end
+
+      if (shift11_en) begin
+        dat15_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end else begin
+        dat15_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+               && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end
+
+      if (shift12_en) begin
+        dat0_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end else begin
+        dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end
+
+      if (shift13_en) begin
+        dat1_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end else begin
+        dat1_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end
+
+      if (shift14_en) begin
+        dat2_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+               && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end else begin
+        dat2_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end
+
+      if (shift15_en) begin
+        dat3_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+               && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end else begin
+        dat3_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end
+    end
+    ROT_270: begin
+      // data enable mapping for shift condition
+      // |0 |1 |2 |3 |     |1 |2 |3 |0 |
+      // |4 |5 |6 |7 |     |5 |6 |7 |4 |
+      // |8 |9 |10|11| --> |9 |10|11|8 |
+      // |12|13|14|15|     |13|14|15|12|
+      if (shift0_en) begin
+        dat1_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end else begin
+        dat1_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end
+
+      if (shift1_en) begin
+        dat2_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
+      end else begin
+        dat2_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end
+
+      if (shift2_en) begin
+        dat3_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
+               && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y);
+      end else begin
+        dat3_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end
+
+      if (shift3_en) begin
+        dat0_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
+               && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y);
+      end else begin
+        dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
+               && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
+      end
+
+      if (shift4_en) begin
+        dat5_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end else begin
+        dat5_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end
+
+      if (shift5_en) begin
+        dat6_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
+               && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y);
+      end else begin
+        dat6_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end
+
+      if (shift6_en) begin
+        dat7_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
+               && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y);
+      end else begin
+        dat7_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end
+
+      if (shift7_en) begin
+        dat4_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
+               && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y);
+      end else begin
+        dat4_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
+               && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y);
+      end
+
+      if (shift8_en) begin
+        dat9_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end else begin
+        dat9_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end
+
+      if (shift9_en) begin
+        dat10_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
+               && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y);
+      end else begin
+        dat10_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end
+
+      if (shift10_en) begin
+        dat11_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
+               && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y);
+      end else begin
+        dat11_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end
+
+      if (shift11_en) begin
+        dat8_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
+               && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y);
+      end else begin
+        dat8_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
+               && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y);
+      end
+
+      if (shift12_en) begin
+        dat13_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end else begin
+        dat13_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end
+
+      if (shift13_en) begin
+        dat14_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
+               && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y);
+      end else begin
+        dat14_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+               && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end
+
+      if (shift14_en) begin
+        dat15_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
+               && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
+      end else begin
+        dat15_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+               && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end
+
+      if (shift15_en) begin
+        dat12_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
+               && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+      end else begin
+        dat12_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
+               && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y);
+      end
+    end
+    default: begin
+      dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
            && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y);
     dat1_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
            && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
@@ -1921,6 +2773,8 @@ always @(*) begin
            && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y);
     dat15_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
            && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y);
+    end
+  endcase
   end else begin
     dat0_en = 0;
     dat1_en = 0;
@@ -1975,10 +2829,12 @@ end
 wire [3:0] decode_type;
 // didnt implement rotation
 assign decode_type = {loc_y[1:0], loc_x[1:0]};
+
+// ----- region 1 ----- //
 // 1 word is 8 bit
 // 2 type , each decode we read 6 word, read by rptr to fifo
-// word 0, 1, 2, 6, 7, 8, 12, 13, 14, 15, 16on line7, 4, 11, 8, 15, 12, 3, 0
-// word 3, 4, 5, 9, 10, 11, 17, 18 on line1, 2, 13, 14, 9, 10, 5, 6
+// word 0, 1, 2, 6, 7, 8, 12, 13, 14on line7, 4, 11, 8, 15, 12, 3, 0
+// word 3, 4, 5, 9, 10, 11 on line1, 2, 13, 14, 9, 10, 5, 6
 // |line0 |line1 |line2 |line3 |
 // |line4 |line5 |line6 |line7 |
 // |line8 |line9 |line10|line11|
@@ -2014,9 +2870,7 @@ localparam type00_B7 = 4'd6;
 
 wire [1:0] ty = decode_type[3:2];
 wire [1:0] tx = decode_type[1:0];
-
-
-
+// select how to read the fifo to decode data
 wire [3:0] A_sel0 = { (type00_A0[3:2] + ty), (type00_A0[1:0] + tx) };
 wire [3:0] A_sel1 = { (type00_A1[3:2] + ty), (type00_A1[1:0] + tx) };
 wire [3:0] A_sel2 = { (type00_A2[3:2] + ty), (type00_A2[1:0] + tx) };
@@ -2070,13 +2924,12 @@ wire [3:0] B_sel7 = { (type00_B7[3:2] + ty), (type00_B7[1:0] + tx) };
 // |5 |2' |3' |4 |
 // |7 |0' |1' |6 |
 
-// Type A word: 0, 1, 2, 6, 7, 8, 12, 13, 14, 15, 16
-// Type B word: 3, 4, 5, 9, 10, 11, 17, 18
+// Type A word: 0, 1, 2, 6, 7, 8, 12, 13, 14
+// Type B word: 3, 4, 5, 9, 10, 11
 wire use_A_now =
   (global_word_idx==6'd0 ) | (global_word_idx==6'd1 ) | (global_word_idx==6'd2 ) |
   (global_word_idx==6'd6 ) | (global_word_idx==6'd7 ) | (global_word_idx==6'd8 ) |
-  (global_word_idx==6'd12) | (global_word_idx==6'd13) | (global_word_idx==6'd14) |
-  (global_word_idx==6'd15) | (global_word_idx==6'd16);
+  (global_word_idx==6'd12) | (global_word_idx==6'd13) | (global_word_idx==6'd14);
 
 wire [3:0] sel_line0 = use_A_now ? A_sel0 : B_sel0;
 wire [3:0] sel_line1 = use_A_now ? A_sel1 : B_sel1;
@@ -2087,6 +2940,78 @@ wire [3:0] sel_line5 = use_A_now ? A_sel5 : B_sel5;
 wire [3:0] sel_line6 = use_A_now ? A_sel6 : B_sel6;
 wire [3:0] sel_line7 = use_A_now ? A_sel7 : B_sel7;
 
+// ----- region 2 ----- //
+// (0, 0)
+// 1 word is 8 bit
+// 2 type , each decode we read 6 word, read by rptr to fifo
+// word 15, 16 = {line12, line15, line8, line11, line4, line7, line0, line3};
+// word 17, 18 = {line2, line1, line6, line5, line10, line9, line14, line13};
+// |line0 |line1 |line2 |line3 |
+// |line4 |line5 |line6 |line7 |
+// |line8 |line9 |line10|line11|
+// |line12|line13|line14|line15|
+
+// type (0, 0) = (y, x)
+// |1 |6' |7' |0 |
+// |3 |4' |5' |2 |
+// |5 |2' |3' |4 |
+// |7 |0' |1' |6 |
+localparam [3:0] type00_R2A0 = 4'd3;
+localparam [3:0] type00_R2A1 = 4'd0;
+localparam [3:0] type00_R2A2 = 4'd7;
+localparam [3:0] type00_R2A3 = 4'd4;
+localparam [3:0] type00_R2A4 = 4'd11;
+localparam [3:0] type00_R2A5 = 4'd8;
+localparam [3:0] type00_R2A6 = 4'd15;
+localparam [3:0] type00_R2A7 = 4'd12;
+
+localparam [3:0] type00_R2B0 = 4'd13;
+localparam [3:0] type00_R2B1 = 4'd14;
+localparam [3:0] type00_R2B2 = 4'd9;
+localparam [3:0] type00_R2B3 = 4'd10;
+localparam [3:0] type00_R2B4 = 4'd5;
+localparam [3:0] type00_R2B5 = 4'd6;
+localparam [3:0] type00_R2B6 = 4'd1;
+localparam [3:0] type00_R2B7 = 4'd2;
+
+wire [3:0] R2A_sel0 = { (type00_R2A0[3:2] + ty), (type00_R2A0[1:0] + tx) };
+wire [3:0] R2A_sel1 = { (type00_R2A1[3:2] + ty), (type00_R2A1[1:0] + tx) };
+wire [3:0] R2A_sel2 = { (type00_R2A2[3:2] + ty), (type00_R2A2[1:0] + tx) };
+wire [3:0] R2A_sel3 = { (type00_R2A3[3:2] + ty), (type00_R2A3[1:0] + tx) };
+wire [3:0] R2A_sel4 = { (type00_R2A4[3:2] + ty), (type00_R2A4[1:0] + tx) };
+wire [3:0] R2A_sel5 = { (type00_R2A5[3:2] + ty), (type00_R2A5[1:0] + tx) };
+wire [3:0] R2A_sel6 = { (type00_R2A6[3:2] + ty), (type00_R2A6[1:0] + tx) };
+wire [3:0] R2A_sel7 = { (type00_R2A7[3:2] + ty), (type00_R2A7[1:0] + tx) };
+
+wire [3:0] R2B_sel0 = { (type00_R2B0[3:2] + ty), (type00_R2B0[1:0] + tx) };
+wire [3:0] R2B_sel1 = { (type00_R2B1[3:2] + ty), (type00_R2B1[1:0] + tx) };
+wire [3:0] R2B_sel2 = { (type00_R2B2[3:2] + ty), (type00_R2B2[1:0] + tx) };
+wire [3:0] R2B_sel3 = { (type00_R2B3[3:2] + ty), (type00_R2B3[1:0] + tx) };
+wire [3:0] R2B_sel4 = { (type00_R2B4[3:2] + ty), (type00_R2B4[1:0] + tx) };
+wire [3:0] R2B_sel5 = { (type00_R2B5[3:2] + ty), (type00_R2B5[1:0] + tx) };
+wire [3:0] R2B_sel6 = { (type00_R2B6[3:2] + ty), (type00_R2B6[1:0] + tx) };
+wire [3:0] R2B_sel7 = { (type00_R2B7[3:2] + ty), (type00_R2B7[1:0] + tx) };
+
+wire use_A_now_r2 = (global_word_idx==5'd15) | (global_word_idx==5'd16);
+
+wire [3:0] R2_sel_line0 = use_A_now_r2 ? R2A_sel0 : R2B_sel0;
+wire [3:0] R2_sel_line1 = use_A_now_r2 ? R2A_sel1 : R2B_sel1;
+wire [3:0] R2_sel_line2 = use_A_now_r2 ? R2A_sel2 : R2B_sel2;
+wire [3:0] R2_sel_line3 = use_A_now_r2 ? R2A_sel3 : R2B_sel3;
+wire [3:0] R2_sel_line4 = use_A_now_r2 ? R2A_sel4 : R2B_sel4;
+wire [3:0] R2_sel_line5 = use_A_now_r2 ? R2A_sel5 : R2B_sel5;
+wire [3:0] R2_sel_line6 = use_A_now_r2 ? R2A_sel6 : R2B_sel6;
+wire [3:0] R2_sel_line7 = use_A_now_r2 ? R2A_sel7 : R2B_sel7;
+
+// select how to read the fifo to decode data
+wire [3:0] sel_line0_final = (decode_state==DECODE_DECODE3) ? R2_sel_line0 : sel_line0;
+wire [3:0] sel_line1_final = (decode_state==DECODE_DECODE3) ? R2_sel_line1 : sel_line1;
+wire [3:0] sel_line2_final = (decode_state==DECODE_DECODE3) ? R2_sel_line2 : sel_line2;
+wire [3:0] sel_line3_final = (decode_state==DECODE_DECODE3) ? R2_sel_line3 : sel_line3;
+wire [3:0] sel_line4_final = (decode_state==DECODE_DECODE3) ? R2_sel_line4 : sel_line4;
+wire [3:0] sel_line5_final = (decode_state==DECODE_DECODE3) ? R2_sel_line5 : sel_line5;
+wire [3:0] sel_line6_final = (decode_state==DECODE_DECODE3) ? R2_sel_line6 : sel_line6;
+wire [3:0] sel_line7_final = (decode_state==DECODE_DECODE3) ? R2_sel_line7 : sel_line7;
 // ---- read pointers ----
 reg [3:0] fifo_rptr0,  fifo_rptr1,  fifo_rptr2,  fifo_rptr3;
 reg [3:0] fifo_rptr4,  fifo_rptr5,  fifo_rptr6,  fifo_rptr7;
@@ -2098,24 +3023,61 @@ reg [3:0] fifo_rptr4_n,  fifo_rptr5_n,  fifo_rptr6_n,  fifo_rptr7_n;
 reg [3:0] fifo_rptr8_n,  fifo_rptr9_n,  fifo_rptr10_n, fifo_rptr11_n;
 reg [3:0] fifo_rptr12_n, fifo_rptr13_n, fifo_rptr14_n, fifo_rptr15_n;
 
-wire in_decode_pop = (state==DECODE) && (decode_state==DECODE_DECODE1);
-wire rd0_en  = in_decode_pop && ((sel_line0==4'd0)||(sel_line1==4'd0)||(sel_line2==4'd0)||(sel_line3==4'd0)||(sel_line4==4'd0)||(sel_line5==4'd0)||(sel_line6==4'd0)||(sel_line7==4'd0));
-wire rd1_en  = in_decode_pop && ((sel_line0==4'd1)||(sel_line1==4'd1)||(sel_line2==4'd1)||(sel_line3==4'd1)||(sel_line4==4'd1)||(sel_line5==4'd1)||(sel_line6==4'd1)||(sel_line7==4'd1));
-wire rd2_en  = in_decode_pop && ((sel_line0==4'd2)||(sel_line1==4'd2)||(sel_line2==4'd2)||(sel_line3==4'd2)||(sel_line4==4'd2)||(sel_line5==4'd2)||(sel_line6==4'd2)||(sel_line7==4'd2));
-wire rd3_en  = in_decode_pop && ((sel_line0==4'd3)||(sel_line1==4'd3)||(sel_line2==4'd3)||(sel_line3==4'd3)||(sel_line4==4'd3)||(sel_line5==4'd3)||(sel_line6==4'd3)||(sel_line7==4'd3));
-wire rd4_en  = in_decode_pop && ((sel_line0==4'd4)||(sel_line1==4'd4)||(sel_line2==4'd4)||(sel_line3==4'd4)||(sel_line4==4'd4)||(sel_line5==4'd4)||(sel_line6==4'd4)||(sel_line7==4'd4));
-wire rd5_en  = in_decode_pop && ((sel_line0==4'd5)||(sel_line1==4'd5)||(sel_line2==4'd5)||(sel_line3==4'd5)||(sel_line4==4'd5)||(sel_line5==4'd5)||(sel_line6==4'd5)||(sel_line7==4'd5));
-wire rd6_en  = in_decode_pop && ((sel_line0==4'd6)||(sel_line1==4'd6)||(sel_line2==4'd6)||(sel_line3==4'd6)||(sel_line4==4'd6)||(sel_line5==4'd6)||(sel_line6==4'd6)||(sel_line7==4'd6));
-wire rd7_en  = in_decode_pop && ((sel_line0==4'd7)||(sel_line1==4'd7)||(sel_line2==4'd7)||(sel_line3==4'd7)||(sel_line4==4'd7)||(sel_line5==4'd7)||(sel_line6==4'd7)||(sel_line7==4'd7));
-wire rd8_en  = in_decode_pop && ((sel_line0==4'd8)||(sel_line1==4'd8)||(sel_line2==4'd8)||(sel_line3==4'd8)||(sel_line4==4'd8)||(sel_line5==4'd8)||(sel_line6==4'd8)||(sel_line7==4'd8));
-wire rd9_en  = in_decode_pop && ((sel_line0==4'd9)||(sel_line1==4'd9)||(sel_line2==4'd9)||(sel_line3==4'd9)||(sel_line4==4'd9)||(sel_line5==4'd9)||(sel_line6==4'd9)||(sel_line7==4'd9));
-wire rd10_en = in_decode_pop && ((sel_line0==4'd10)||(sel_line1==4'd10)||(sel_line2==4'd10)||(sel_line3==4'd10)||(sel_line4==4'd10)||(sel_line5==4'd10)||(sel_line6==4'd10)||(sel_line7==4'd10));
-wire rd11_en = in_decode_pop && ((sel_line0==4'd11)||(sel_line1==4'd11)||(sel_line2==4'd11)||(sel_line3==4'd11)||(sel_line4==4'd11)||(sel_line5==4'd11)||(sel_line6==4'd11)||(sel_line7==4'd11));
-wire rd12_en = in_decode_pop && ((sel_line0==4'd12)||(sel_line1==4'd12)||(sel_line2==4'd12)||(sel_line3==4'd12)||(sel_line4==4'd12)||(sel_line5==4'd12)||(sel_line6==4'd12)||(sel_line7==4'd12));
-wire rd13_en = in_decode_pop && ((sel_line0==4'd13)||(sel_line1==4'd13)||(sel_line2==4'd13)||(sel_line3==4'd13)||(sel_line4==4'd13)||(sel_line5==4'd13)||(sel_line6==4'd13)||(sel_line7==4'd13));
-wire rd14_en = in_decode_pop && ((sel_line0==4'd14)||(sel_line1==4'd14)||(sel_line2==4'd14)||(sel_line3==4'd14)||(sel_line4==4'd14)||(sel_line5==4'd14)||(sel_line6==4'd14)||(sel_line7==4'd14));
-wire rd15_en = in_decode_pop && ((sel_line0==4'd15)||(sel_line1==4'd15)||(sel_line2==4'd15)||(sel_line3==4'd15)||(sel_line4==4'd15)||(sel_line5==4'd15)||(sel_line6==4'd15)||(sel_line7==4'd15));
+wire in_decode_pop  = (state==DECODE) && (decode_state==DECODE_DECODE1);
+wire in_decode_pop2 = (state==DECODE) && (decode_state==DECODE_DECODE2);
+wire in_decode_pop3 = (state==DECODE) && (decode_state==DECODE_DECODE3);
+wire in_decode_pop_control = in_decode_pop | in_decode_pop2 | in_decode_pop3;
 
+wire hit_line0  = (sel_line0_final==4'd0 )|(sel_line1_final==4'd0 )|(sel_line2_final==4'd0 )|(sel_line3_final==4'd0 )|
+                  (sel_line4_final==4'd0 )|(sel_line5_final==4'd0 )|(sel_line6_final==4'd0 )|(sel_line7_final==4'd0 );
+wire hit_line1  = (sel_line0_final==4'd1 )|(sel_line1_final==4'd1 )|(sel_line2_final==4'd1 )|(sel_line3_final==4'd1 )|
+                  (sel_line4_final==4'd1 )|(sel_line5_final==4'd1 )|(sel_line6_final==4'd1 )|(sel_line7_final==4'd1 );
+wire hit_line2  = (sel_line0_final==4'd2 )|(sel_line1_final==4'd2 )|(sel_line2_final==4'd2 )|(sel_line3_final==4'd2 )|
+                  (sel_line4_final==4'd2 )|(sel_line5_final==4'd2 )|(sel_line6_final==4'd2 )|(sel_line7_final==4'd2 );
+wire hit_line3  = (sel_line0_final==4'd3 )|(sel_line1_final==4'd3 )|(sel_line2_final==4'd3 )|(sel_line3_final==4'd3 )|
+                  (sel_line4_final==4'd3 )|(sel_line5_final==4'd3 )|(sel_line6_final==4'd3 )|(sel_line7_final==4'd3 );
+wire hit_line4  = (sel_line0_final==4'd4 )|(sel_line1_final==4'd4 )|(sel_line2_final==4'd4 )|(sel_line3_final==4'd4 )|
+                  (sel_line4_final==4'd4 )|(sel_line5_final==4'd4 )|(sel_line6_final==4'd4 )|(sel_line7_final==4'd4 );
+wire hit_line5  = (sel_line0_final==4'd5 )|(sel_line1_final==4'd5 )|(sel_line2_final==4'd5 )|(sel_line3_final==4'd5 )|
+                  (sel_line4_final==4'd5 )|(sel_line5_final==4'd5 )|(sel_line6_final==4'd5 )|(sel_line7_final==4'd5 );
+wire hit_line6  = (sel_line0_final==4'd6 )|(sel_line1_final==4'd6 )|(sel_line2_final==4'd6 )|(sel_line3_final==4'd6 )|
+                  (sel_line4_final==4'd6 )|(sel_line5_final==4'd6 )|(sel_line6_final==4'd6 )|(sel_line7_final==4'd6 );
+wire hit_line7  = (sel_line0_final==4'd7 )|(sel_line1_final==4'd7 )|(sel_line2_final==4'd7 )|(sel_line3_final==4'd7 )|
+                  (sel_line4_final==4'd7 )|(sel_line5_final==4'd7 )|(sel_line6_final==4'd7 )|(sel_line7_final==4'd7 );
+wire hit_line8  = (sel_line0_final==4'd8 )|(sel_line1_final==4'd8 )|(sel_line2_final==4'd8 )|(sel_line3_final==4'd8 )|
+                  (sel_line4_final==4'd8 )|(sel_line5_final==4'd8 )|(sel_line6_final==4'd8 )|(sel_line7_final==4'd8 );
+wire hit_line9  = (sel_line0_final==4'd9 )|(sel_line1_final==4'd9 )|(sel_line2_final==4'd9 )|(sel_line3_final==4'd9 )|
+                  (sel_line4_final==4'd9 )|(sel_line5_final==4'd9 )|(sel_line6_final==4'd9 )|(sel_line7_final==4'd9 );
+wire hit_line10 = (sel_line0_final==4'd10)|(sel_line1_final==4'd10)|(sel_line2_final==4'd10)|(sel_line3_final==4'd10)|
+                  (sel_line4_final==4'd10)|(sel_line5_final==4'd10)|(sel_line6_final==4'd10)|(sel_line7_final==4'd10);
+wire hit_line11 = (sel_line0_final==4'd11)|(sel_line1_final==4'd11)|(sel_line2_final==4'd11)|(sel_line3_final==4'd11)|
+                  (sel_line4_final==4'd11)|(sel_line5_final==4'd11)|(sel_line6_final==4'd11)|(sel_line7_final==4'd11);
+wire hit_line12 = (sel_line0_final==4'd12)|(sel_line1_final==4'd12)|(sel_line2_final==4'd12)|(sel_line3_final==4'd12)|
+                  (sel_line4_final==4'd12)|(sel_line5_final==4'd12)|(sel_line6_final==4'd12)|(sel_line7_final==4'd12);
+wire hit_line13 = (sel_line0_final==4'd13)|(sel_line1_final==4'd13)|(sel_line2_final==4'd13)|(sel_line3_final==4'd13)|
+                  (sel_line4_final==4'd13)|(sel_line5_final==4'd13)|(sel_line6_final==4'd13)|(sel_line7_final==4'd13);
+wire hit_line14 = (sel_line0_final==4'd14)|(sel_line1_final==4'd14)|(sel_line2_final==4'd14)|(sel_line3_final==4'd14)|
+                  (sel_line4_final==4'd14)|(sel_line5_final==4'd14)|(sel_line6_final==4'd14)|(sel_line7_final==4'd14);
+wire hit_line15 = (sel_line0_final==4'd15)|(sel_line1_final==4'd15)|(sel_line2_final==4'd15)|(sel_line3_final==4'd15)|
+                  (sel_line4_final==4'd15)|(sel_line5_final==4'd15)|(sel_line6_final==4'd15)|(sel_line7_final==4'd15);
+
+// read ptr enable
+wire rd0_en  = in_decode_pop_control && hit_line0;
+wire rd1_en  = in_decode_pop_control && hit_line1;
+wire rd2_en  = in_decode_pop_control && hit_line2;
+wire rd3_en  = in_decode_pop_control && hit_line3;
+wire rd4_en  = in_decode_pop_control && hit_line4;
+wire rd5_en  = in_decode_pop_control && hit_line5;
+wire rd6_en  = in_decode_pop_control && hit_line6;
+wire rd7_en  = in_decode_pop_control && hit_line7;
+wire rd8_en  = in_decode_pop_control && hit_line8;
+wire rd9_en  = in_decode_pop_control && hit_line9;
+wire rd10_en = in_decode_pop_control && hit_line10;
+wire rd11_en = in_decode_pop_control && hit_line11;
+wire rd12_en = in_decode_pop_control && hit_line12;
+wire rd13_en = in_decode_pop_control && hit_line13;
+wire rd14_en = in_decode_pop_control && hit_line14;
+wire rd15_en = in_decode_pop_control && hit_line15;
 
 always @(*) begin
   fifo_rptr0_n  = rd0_en  ? ((fifo_rptr0  == shift_reg_depth-1) ? 4'd0 : (fifo_rptr0  + 4'd1)) : fifo_rptr0;
@@ -2160,13 +3122,14 @@ always @(posedge clk) begin
   end
 end
 
+// Region 1
 // The Type b rptr need to be 2, 1, 0, 5, 4, 3, 8, 7, 6, ....
 reg  [1:0] b_mod3;           // 0 -> +2, 1 -> +0, 2 -> -2
 wire       use_B_now = ~use_A_now;
 always @(posedge clk or negedge srst_n) begin
   if (!srst_n) begin
     b_mod3 <= 2'd0;
-  end else if (in_decode_pop && use_B_now) begin
+  end else if (in_decode_pop_control && use_B_now) begin
     b_mod3 <= (b_mod3==2'd2) ? 2'd0 : (b_mod3 + 2'd1);
   end
 end
@@ -2223,29 +3186,133 @@ wire [3:0] map13 = (b_mod3==2'd0) ? inc2_13 : ((b_mod3==2'd1) ? fifo_rptr13 : de
 wire [3:0] map14 = (b_mod3==2'd0) ? inc2_14 : ((b_mod3==2'd1) ? fifo_rptr14 : dec2_14);
 wire [3:0] map15 = (b_mod3==2'd0) ? inc2_15 : ((b_mod3==2'd1) ? fifo_rptr15 : dec2_15);
 
-wire [3:0] raddr0  = use_A_now ? fifo_rptr0  : map0 ;
-wire [3:0] raddr1  = use_A_now ? fifo_rptr1  : map1 ;
-wire [3:0] raddr2  = use_A_now ? fifo_rptr2  : map2 ;
-wire [3:0] raddr3  = use_A_now ? fifo_rptr3  : map3 ;
-wire [3:0] raddr4  = use_A_now ? fifo_rptr4  : map4 ;
-wire [3:0] raddr5  = use_A_now ? fifo_rptr5  : map5 ;
-wire [3:0] raddr6  = use_A_now ? fifo_rptr6  : map6 ;
-wire [3:0] raddr7  = use_A_now ? fifo_rptr7  : map7 ;
-wire [3:0] raddr8  = use_A_now ? fifo_rptr8  : map8 ;
-wire [3:0] raddr9  = use_A_now ? fifo_rptr9  : map9 ;
-wire [3:0] raddr10 = use_A_now ? fifo_rptr10 : map10;
-wire [3:0] raddr11 = use_A_now ? fifo_rptr11 : map11;
-wire [3:0] raddr12 = use_A_now ? fifo_rptr12 : map12;
-wire [3:0] raddr13 = use_A_now ? fifo_rptr13 : map13;
-wire [3:0] raddr14 = use_A_now ? fifo_rptr14 : map14;
-wire [3:0] raddr15 = use_A_now ? fifo_rptr15 : map15;
+// Region 2
+// Typr B should be 1, 0, 3, 2, 5, 4..
+reg  c_mod2;           // 0 -> +1, 1 -> -1
+wire       use_B_now_r2 = ~use_A_now_r2;
+always @(posedge clk or negedge srst_n) begin
+  if (!srst_n) begin
+    c_mod2 <= 0;
+  end else if (in_decode_pop3 && use_B_now_r2) begin
+    c_mod2 <= ~c_mod2;
+  end
+end
+wire [3:0] inc1_0  = fifo_rptr0  + 4'd1;
+wire [3:0] inc1_1  = fifo_rptr1  + 4'd1;
+wire [3:0] inc1_2  = fifo_rptr2  + 4'd1;
+wire [3:0] inc1_3  = fifo_rptr3  + 4'd1;
+wire [3:0] inc1_4  = fifo_rptr4  + 4'd1;
+wire [3:0] inc1_5  = fifo_rptr5  + 4'd1;
+wire [3:0] inc1_6  = fifo_rptr6  + 4'd1;
+wire [3:0] inc1_7  = fifo_rptr7  + 4'd1;
+wire [3:0] inc1_8  = fifo_rptr8  + 4'd1;
+wire [3:0] inc1_9  = fifo_rptr9  + 4'd1;
+wire [3:0] inc1_10 = fifo_rptr10 + 4'd1;
+wire [3:0] inc1_11 = fifo_rptr11 + 4'd1;
+wire [3:0] inc1_12 = fifo_rptr12 + 4'd1;
+wire [3:0] inc1_13 = fifo_rptr13 + 4'd1;
+wire [3:0] inc1_14 = fifo_rptr14 + 4'd1;
+wire [3:0] inc1_15 = fifo_rptr15 + 4'd1;
+
+wire [3:0] dec1_0  = fifo_rptr0  - 4'd1;
+wire [3:0] dec1_1  = fifo_rptr1  - 4'd1;
+wire [3:0] dec1_2  = fifo_rptr2  - 4'd1;
+wire [3:0] dec1_3  = fifo_rptr3  - 4'd1;
+wire [3:0] dec1_4  = fifo_rptr4  - 4'd1;
+wire [3:0] dec1_5  = fifo_rptr5  - 4'd1;
+wire [3:0] dec1_6  = fifo_rptr6  - 4'd1;
+wire [3:0] dec1_7  = fifo_rptr7  - 4'd1;
+wire [3:0] dec1_8  = fifo_rptr8  - 4'd1;
+wire [3:0] dec1_9  = fifo_rptr9  - 4'd1;
+wire [3:0] dec1_10 = fifo_rptr10 - 4'd1;
+wire [3:0] dec1_11 = fifo_rptr11 - 4'd1;
+wire [3:0] dec1_12 = fifo_rptr12 - 4'd1;
+wire [3:0] dec1_13 = fifo_rptr13 - 4'd1;
+wire [3:0] dec1_14 = fifo_rptr14 - 4'd1;
+wire [3:0] dec1_15 = fifo_rptr15 - 4'd1;
+
+wire [3:0] map0r2  = (c_mod2==0)? inc1_0 : dec1_0;
+wire [3:0] map1r2  = (c_mod2==0)? inc1_1 : dec1_1;
+wire [3:0] map2r2  = (c_mod2==0)? inc1_2 : dec1_2;
+wire [3:0] map3r2  = (c_mod2==0)? inc1_3 : dec1_3;
+wire [3:0] map4r2  = (c_mod2==0)? inc1_4 : dec1_4;
+wire [3:0] map5r2  = (c_mod2==0)? inc1_5 : dec1_5;
+wire [3:0] map6r2  = (c_mod2==0)? inc1_6 : dec1_6;
+wire [3:0] map7r2  = (c_mod2==0)? inc1_7 : dec1_7;
+wire [3:0] map8r2  = (c_mod2==0)? inc1_8 : dec1_8;
+wire [3:0] map9r2  = (c_mod2==0)? inc1_9 : dec1_9;
+wire [3:0] map10r2 = (c_mod2==0)? inc1_10 : dec1_10;
+wire [3:0] map11r2 = (c_mod2==0)? inc1_11 : dec1_11;
+wire [3:0] map12r2 = (c_mod2==0)? inc1_12 : dec1_12;
+wire [3:0] map13r2 = (c_mod2==0)? inc1_13 : dec1_13;
+wire [3:0] map14r2 = (c_mod2==0)? inc1_14 : dec1_14;
+wire [3:0] map15r2 = (c_mod2==0)? inc1_15 : dec1_15;
+
+
+// read ptr
+reg [3:0] raddr0;
+reg [3:0] raddr1;
+reg [3:0] raddr2;
+reg [3:0] raddr3;
+reg [3:0] raddr4;
+reg [3:0] raddr5;
+reg [3:0] raddr6;
+reg [3:0] raddr7;
+reg [3:0] raddr8;
+reg [3:0] raddr9;
+reg [3:0] raddr10;
+reg [3:0] raddr11;
+reg [3:0] raddr12;
+reg [3:0] raddr13;
+reg [3:0] raddr14;
+reg [3:0] raddr15;
+
+
+
+always @(*) begin
+  if (decode_state == DECODE_DECODE1 || decode_state == DECODE_DECODE2) begin
+    raddr0  = use_A_now ? fifo_rptr0  : map0 ;
+    raddr1  = use_A_now ? fifo_rptr1  : map1 ;
+    raddr2  = use_A_now ? fifo_rptr2  : map2 ;
+    raddr3  = use_A_now ? fifo_rptr3  : map3 ;
+    raddr4  = use_A_now ? fifo_rptr4  : map4 ;
+    raddr5  = use_A_now ? fifo_rptr5  : map5 ;
+    raddr6  = use_A_now ? fifo_rptr6  : map6 ;
+    raddr7  = use_A_now ? fifo_rptr7  : map7 ;
+    raddr8  = use_A_now ? fifo_rptr8  : map8 ;
+    raddr9  = use_A_now ? fifo_rptr9  : map9 ;
+    raddr10 = use_A_now ? fifo_rptr10 : map10;
+    raddr11 = use_A_now ? fifo_rptr11 : map11;
+    raddr12 = use_A_now ? fifo_rptr12 : map12;
+    raddr13 = use_A_now ? fifo_rptr13 : map13;
+    raddr14 = use_A_now ? fifo_rptr14 : map14;
+    raddr15 = use_A_now ? fifo_rptr15 : map15;
+  end else if (decode_state == DECODE_DECODE3) begin
+    raddr0  = use_A_now_r2 ? fifo_rptr0  : map0r2 ;
+    raddr1  = use_A_now_r2 ? fifo_rptr1  : map1r2 ;
+    raddr2  = use_A_now_r2 ? fifo_rptr2  : map2r2 ;
+    raddr3  = use_A_now_r2 ? fifo_rptr3  : map3r2 ;
+    raddr4  = use_A_now_r2 ? fifo_rptr4  : map4r2 ;
+    raddr5  = use_A_now_r2 ? fifo_rptr5  : map5r2 ;
+    raddr6  = use_A_now_r2 ? fifo_rptr6  : map6r2 ;
+    raddr7  = use_A_now_r2 ? fifo_rptr7  : map7r2 ;
+    raddr8  = use_A_now_r2 ? fifo_rptr8  : map8r2 ;
+    raddr9  = use_A_now_r2 ? fifo_rptr9  : map9r2 ;
+    raddr10 = use_A_now_r2 ? fifo_rptr10 : map10r2;
+    raddr11 = use_A_now_r2 ? fifo_rptr11 : map11r2;
+    raddr12 = use_A_now_r2 ? fifo_rptr12 : map12r2;
+    raddr13 = use_A_now_r2 ? fifo_rptr13 : map13r2;
+    raddr14 = use_A_now_r2 ? fifo_rptr14 : map14r2;
+    raddr15 = use_A_now_r2 ? fifo_rptr15 : map15r2;
+  end
+end
 
 // output text
 reg bit0_sel, bit1_sel, bit2_sel, bit3_sel, bit4_sel, bit5_sel, bit6_sel, bit7_sel;
 
 // sel_line0 -> bit0_sel
 always @(*) begin
-  case (sel_line0)
+  case (sel_line0_final)
     4'd0:  bit0_sel = line0 [raddr0 ];
     4'd1:  bit0_sel = line1 [raddr1 ];
     4'd2:  bit0_sel = line2 [raddr2 ];
@@ -2268,7 +3335,7 @@ end
 
 // sel_line1 -> bit1_sel
 always @(*) begin
-  case (sel_line1)
+  case (sel_line1_final)
     4'd0:  bit1_sel = line0 [raddr0 ];
     4'd1:  bit1_sel = line1 [raddr1 ];
     4'd2:  bit1_sel = line2 [raddr2 ];
@@ -2290,7 +3357,7 @@ always @(*) begin
 end
 
 always @(*) begin
-  case (sel_line2)
+  case (sel_line2_final)
     4'd0:  bit2_sel = line0 [raddr0 ];
     4'd1:  bit2_sel = line1 [raddr1 ];
     4'd2:  bit2_sel = line2 [raddr2 ];
@@ -2312,7 +3379,7 @@ always @(*) begin
 end
 
 always @(*) begin
-  case (sel_line3)
+  case (sel_line3_final)
     4'd0:  bit3_sel = line0 [raddr0 ];
     4'd1:  bit3_sel = line1 [raddr1 ];
     4'd2:  bit3_sel = line2 [raddr2 ];
@@ -2334,7 +3401,7 @@ always @(*) begin
 end
 
 always @(*) begin
-  case (sel_line4)
+  case (sel_line4_final)
     4'd0:  bit4_sel = line0 [raddr0 ];
     4'd1:  bit4_sel = line1 [raddr1 ];
     4'd2:  bit4_sel = line2 [raddr2 ];
@@ -2356,7 +3423,7 @@ always @(*) begin
 end
 
 always @(*) begin
-  case (sel_line5)
+  case (sel_line5_final)
     4'd0:  bit5_sel = line0 [raddr0 ];
     4'd1:  bit5_sel = line1 [raddr1 ];
     4'd2:  bit5_sel = line2 [raddr2 ];
@@ -2378,7 +3445,7 @@ always @(*) begin
 end
 
 always @(*) begin
-  case (sel_line6)
+  case (sel_line6_final)
     4'd0:  bit6_sel = line0 [raddr0 ];
     4'd1:  bit6_sel = line1 [raddr1 ];
     4'd2:  bit6_sel = line2 [raddr2 ];
@@ -2400,7 +3467,7 @@ always @(*) begin
 end
 
 always @(*) begin
-  case (sel_line7)
+  case (sel_line7_final)
     4'd0:  bit7_sel = line0 [raddr0 ];
     4'd1:  bit7_sel = line1 [raddr1 ];
     4'd2:  bit7_sel = line2 [raddr2 ];
@@ -2447,6 +3514,24 @@ always @(posedge clk) begin
     decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
     decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
     local_word_idx <= (local_word_idx == 3'd5)? 0 : local_word_idx + 3'd1;
+    global_word_idx   <= global_word_idx + 6'd1;
+
+    decode_text_n2 <= {decode_text_r[3:0], bit7_sel, bit6_sel, bit5_sel, bit4_sel};
+    //decode_valid_n2 <= decode_valid_r;
+    data_len <= (global_word_idx == 2)? decode_text_n2 : data_len;
+  end else if (in_decode_pop2) begin
+    decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
+    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
+    local_word_idx <= (local_word_idx == 8)? 0 : local_word_idx + 3'd1;
+    global_word_idx   <= global_word_idx + 6'd1;
+
+    decode_text_n2 <= {decode_text_r[3:0], bit7_sel, bit6_sel, bit5_sel, bit4_sel};
+    //decode_valid_n2 <= decode_valid_r;
+    data_len <= (global_word_idx == 2)? decode_text_n2 : data_len;
+  end else if (in_decode_pop3) begin
+    decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
+    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
+    local_word_idx <= (local_word_idx == 4)? 0 : local_word_idx + 3'd1;
     global_word_idx   <= global_word_idx + 6'd1;
 
     decode_text_n2 <= {decode_text_r[3:0], bit7_sel, bit6_sel, bit5_sel, bit4_sel};
