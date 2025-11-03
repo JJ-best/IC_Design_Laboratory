@@ -2857,16 +2857,14 @@ assign decode_type = {loc_y[1:0], loc_x[1:0]};
 // |line8 |line9 |line10|line11|
 // |line12|line13|line14|line15|
 
-
+// rotation 0
 // type (0, 0) = (y, x)
 // |7 |0' |1' |6 |
 // |1 |6' |7' |0 |
 // |3 |4' |5' |2 |
 // |5 |2' |3' |4 |
-
 // 8-bit word A: {line0, line3, line12, line15, line8, line11, line4, line7}
 // 8-bit word B: {line6, line5, line10, line9, line14, line13, line2, line1}
-
 localparam type00_A0 = 4'd7;
 localparam type00_A1 = 4'd4;
 localparam type00_A2 = 4'd11;
@@ -2884,95 +2882,113 @@ localparam type00_B4 = 4'd9;
 localparam type00_B5 = 4'd10;
 localparam type00_B6 = 4'd5;
 localparam type00_B7 = 4'd6;
+// ===== rotation region 1===== //
+// rotation 90
+// type (0, 0) = (y, x)
+// |7  |1  |3  |5  |
+// |6  |0  |2  |4  |
+// |1' |7' |5' |3' |
+// |0' |6' |4' |2' |
+// 8-bit word A: {line0, line4, line3, line7, line2, line6, line1, line5}
+// 8-bit word B: {line9, line13, line10, line14, line11, line15, line8, line12}
+localparam type90_A0 = 4'd5;
+localparam type90_A1 = 4'd1;
+localparam type90_A2 = 4'd6;
+localparam type90_A3 = 4'd2;
+localparam type90_A4 = 4'd7;
+localparam type90_A5 = 4'd3;
+localparam type90_A6 = 4'd4;
+localparam type90_A7 = 4'd0;
+
+localparam type90_B0 = 4'd12;
+localparam type90_B1 = 4'd8;
+localparam type90_B2 = 4'd15;
+localparam type90_B3 = 4'd11;
+localparam type90_B4 = 4'd14;
+localparam type90_B5 = 4'd10;
+localparam type90_B6 = 4'd13;
+localparam type90_B7 = 4'd9;
+// rotation 180
+// type (0, 0) = (y, x)
+// |7  |6  |1' |0' |
+// |5  |4  |3' |2' |
+// |3  |2  |5' |4' |
+// |1  |0  |7' |6' |
+// 8-bit word A: {line0, line1, line4, line5, line8, line9, line12, line13}
+// 8-bit word B: {line3, line2, line7, line6, line11, line10, line15, line14}
+localparam type180_A0 = 4'd13;
+localparam type180_A1 = 4'd12;
+localparam type180_A2 = 4'd9;
+localparam type180_A3 = 4'd8;
+localparam type180_A4 = 4'd5;
+localparam type180_A5 = 4'd4;
+localparam type180_A6 = 4'd1;
+localparam type180_A7 = 4'd0;
+
+localparam type180_B0 = 4'd14;
+localparam type180_B1 = 4'd15;
+localparam type180_B2 = 4'd10;
+localparam type180_B3 = 4'd11;
+localparam type180_B4 = 4'd6;
+localparam type180_B5 = 4'd7;
+localparam type180_B6 = 4'd2;
+localparam type180_B7 = 4'd3;
+
+// rotation 270
+// type (0, 0) = (y, x)
+// |1' |3' |5' |7' |
+// |6  |4  |2  |0  |
+// |7  |5  |3  |1  |
+// |0' |2' |4' |6' |
+// 8-bit word A: {line8, line14, line9, line5, line10, line6, line11, line7}
+// 8-bit word B: {line3, line15, line2, line14, line1, line13, line0, line12}
+localparam type270_A0 = 4'd7;
+localparam type270_A1 = 4'd11;
+localparam type270_A2 = 4'd6;
+localparam type270_A3 = 4'd10;
+localparam type270_A4 = 4'd5;
+localparam type270_A5 = 4'd9;
+localparam type270_A6 = 4'd14;
+localparam type270_A7 = 4'd8;
+
+localparam type270_B0 = 4'd12;
+localparam type270_B1 = 4'd0;
+localparam type270_B2 = 4'd13;
+localparam type270_B3 = 4'd1;
+localparam type270_B4 = 4'd14;
+localparam type270_B5 = 4'd2;
+localparam type270_B6 = 4'd15;
+localparam type270_B7 = 4'd3;
 
 wire [1:0] ty = decode_type[3:2];
 wire [1:0] tx = decode_type[1:0];
-// select how to read the fifo to decode data
-wire [3:0] A_sel0 = { (type00_A0[3:2] + ty), (type00_A0[1:0] + tx) };
-wire [3:0] A_sel1 = { (type00_A1[3:2] + ty), (type00_A1[1:0] + tx) };
-wire [3:0] A_sel2 = { (type00_A2[3:2] + ty), (type00_A2[1:0] + tx) };
-wire [3:0] A_sel3 = { (type00_A3[3:2] + ty), (type00_A3[1:0] + tx) };
-wire [3:0] A_sel4 = { (type00_A4[3:2] + ty), (type00_A4[1:0] + tx) };
-wire [3:0] A_sel5 = { (type00_A5[3:2] + ty), (type00_A5[1:0] + tx) };
-wire [3:0] A_sel6 = { (type00_A6[3:2] + ty), (type00_A6[1:0] + tx) };
-wire [3:0] A_sel7 = { (type00_A7[3:2] + ty), (type00_A7[1:0] + tx) };
 
-wire [3:0] B_sel0 = { (type00_B0[3:2] + ty), (type00_B0[1:0] + tx) };
-wire [3:0] B_sel1 = { (type00_B1[3:2] + ty), (type00_B1[1:0] + tx) };
-wire [3:0] B_sel2 = { (type00_B2[3:2] + ty), (type00_B2[1:0] + tx) };
-wire [3:0] B_sel3 = { (type00_B3[3:2] + ty), (type00_B3[1:0] + tx) };
-wire [3:0] B_sel4 = { (type00_B4[3:2] + ty), (type00_B4[1:0] + tx) };
-wire [3:0] B_sel5 = { (type00_B5[3:2] + ty), (type00_B5[1:0] + tx) };
-wire [3:0] B_sel6 = { (type00_B6[3:2] + ty), (type00_B6[1:0] + tx) };
-wire [3:0] B_sel7 = { (type00_B7[3:2] + ty), (type00_B7[1:0] + tx) };
-// type (0, 1)
-// |6 |7 |0' |1' |
-// |0 |1 |6' |7' |
-// |2 |3 |4' |5' |
-// |4 |5 |2' |3' |
+reg [3:0] base_A0, base_A1, base_A2, base_A3, base_A4, base_A5, base_A6, base_A7;
+reg [3:0] base_B0, base_B1, base_B2, base_B3, base_B4, base_B5, base_B6, base_B7;
+reg [3:0] base_R2A0, base_R2A1, base_R2A2, base_R2A3, base_R2A4, base_R2A5, base_R2A6, base_R2A7;
+reg [3:0] base_R2B0, base_R2B1, base_R2B2, base_R2B3, base_R2B4, base_R2B5, base_R2B6, base_R2B7;
 
-// type (0, 2)
-// |1' |6 |7 |0' |
-// |7' |0 |1 |6' |
-// |5' |2 |3 |4' |
-// |3' |4 |5 |2' |
 
-// type (0, 3)
-// |1' |6 |7 |0' |
-// |7' |0 |1 |6' |
-// |5' |2 |3 |4' |
-// |3' |4 |5 |2' |
-
-// type (1, 0) = (y, x)
-// |5 |2' |3' |4 |
-// |7 |0' |1' |6 |
-// |1 |6' |7' |0 |
-// |3 |4' |5' |2 |
-
-// type (2, 0) = (y, x)
-// |3 |4' |5' |2 |
-// |5 |2' |3' |4 |
-// |7 |0' |1' |6 |
-// |1 |6' |7' |0 |
-
-// type (3, 0) = (y, x)
-// |1 |6' |7' |0 |
-// |3 |4' |5' |2 |
-// |5 |2' |3' |4 |
-// |7 |0' |1' |6 |
-
-// Type A word: 0, 1, 2, 6, 7, 8, 12, 13, 14
-// Type B word: 3, 4, 5, 9, 10, 11
-wire use_A_now =
-  (global_word_idx==6'd0 ) | (global_word_idx==6'd1 ) | (global_word_idx==6'd2 ) |
-  (global_word_idx==6'd6 ) | (global_word_idx==6'd7 ) | (global_word_idx==6'd8 ) |
-  (global_word_idx==6'd12) | (global_word_idx==6'd13) | (global_word_idx==6'd14);
-
-wire [3:0] sel_line0 = use_A_now ? A_sel0 : B_sel0;
-wire [3:0] sel_line1 = use_A_now ? A_sel1 : B_sel1;
-wire [3:0] sel_line2 = use_A_now ? A_sel2 : B_sel2;
-wire [3:0] sel_line3 = use_A_now ? A_sel3 : B_sel3;
-wire [3:0] sel_line4 = use_A_now ? A_sel4 : B_sel4;
-wire [3:0] sel_line5 = use_A_now ? A_sel5 : B_sel5;
-wire [3:0] sel_line6 = use_A_now ? A_sel6 : B_sel6;
-wire [3:0] sel_line7 = use_A_now ? A_sel7 : B_sel7;
 
 // ----- region 2 ----- //
 // (0, 0)
 // 1 word is 8 bit
 // 2 type , each decode we read 6 word, read by rptr to fifo
-// word 15, 16 = {line12, line15, line8, line11, line4, line7, line0, line3};
-// word 17, 18 = {line2, line1, line6, line5, line10, line9, line14, line13};
+// WordA: word 15, 16 = {line12, line15, line8, line11, line4, line7, line0, line3};
+// WordB: word 17, 18 = {line2, line1, line6, line5, line10, line9, line14, line13};
 // |line0 |line1 |line2 |line3 |
 // |line4 |line5 |line6 |line7 |
 // |line8 |line9 |line10|line11|
 // |line12|line13|line14|line15|
 
+// rotation 0
 // type (0, 0) = (y, x)
 // |1 |6' |7' |0 |
 // |3 |4' |5' |2 |
 // |5 |2' |3' |4 |
 // |7 |0' |1' |6 |
+// word 15, 16 = {line12, line15, line8, line11, line4, line7, line0, line3};
+// word 17, 18 = {line2, line1, line6, line5, line10, line9, line14, line13};
 localparam [3:0] type00_R2A0 = 4'd3;
 localparam [3:0] type00_R2A1 = 4'd0;
 localparam [3:0] type00_R2A2 = 4'd7;
@@ -2990,24 +3006,137 @@ localparam [3:0] type00_R2B4 = 4'd5;
 localparam [3:0] type00_R2B5 = 4'd6;
 localparam [3:0] type00_R2B6 = 4'd1;
 localparam [3:0] type00_R2B7 = 4'd2;
+// rotation 90
+// type (0, 0) = (y, x)
+// |1  |3  |5  |7  |
+// |0  |2  |4  |6  |
+// |7' |5' |3' |1' |
+// |6' |4' |2' |0' |
+// word 15, 16 = {line3, line7, line2, line6, line1, line5, line0, line4};
+// word 17, 18 = {line8, line12, line9, line13, line10, line14, line11, line15};
+localparam [3:0] type90_R2A0 = 4'd4;
+localparam [3:0] type90_R2A1 = 4'd0;
+localparam [3:0] type90_R2A2 = 4'd5;
+localparam [3:0] type90_R2A3 = 4'd1;
+localparam [3:0] type90_R2A4 = 4'd6;
+localparam [3:0] type90_R2A5 = 4'd2;
+localparam [3:0] type90_R2A6 = 4'd7;
+localparam [3:0] type90_R2A7 = 4'd3;
 
-wire [3:0] R2A_sel0 = { (type00_R2A0[3:2] + ty), (type00_R2A0[1:0] + tx) };
-wire [3:0] R2A_sel1 = { (type00_R2A1[3:2] + ty), (type00_R2A1[1:0] + tx) };
-wire [3:0] R2A_sel2 = { (type00_R2A2[3:2] + ty), (type00_R2A2[1:0] + tx) };
-wire [3:0] R2A_sel3 = { (type00_R2A3[3:2] + ty), (type00_R2A3[1:0] + tx) };
-wire [3:0] R2A_sel4 = { (type00_R2A4[3:2] + ty), (type00_R2A4[1:0] + tx) };
-wire [3:0] R2A_sel5 = { (type00_R2A5[3:2] + ty), (type00_R2A5[1:0] + tx) };
-wire [3:0] R2A_sel6 = { (type00_R2A6[3:2] + ty), (type00_R2A6[1:0] + tx) };
-wire [3:0] R2A_sel7 = { (type00_R2A7[3:2] + ty), (type00_R2A7[1:0] + tx) };
+localparam [3:0] type90_R2B0 = 4'd15;
+localparam [3:0] type90_R2B1 = 4'd11;
+localparam [3:0] type90_R2B2 = 4'd14;
+localparam [3:0] type90_R2B3 = 4'd10;
+localparam [3:0] type90_R2B4 = 4'd13;
+localparam [3:0] type90_R2B5 = 4'd9;
+localparam [3:0] type90_R2B6 = 4'd12;
+localparam [3:0] type90_R2B7 = 4'd8;
+// rotation 180
+// type (0, 0) = (y, x)
+// |1  |0  |7' |6' |
+// |7  |6  |1' |0' |
+// |5  |4  |3' |2' |
+// |3  |2  |5' |4' |
+// word 15, 16 = {line4, line5, line8, line9, line12, line13, line0, line1};
+// word 17, 18 = {line2, line3, line14, line15, line10, line11, line6, line7};
+localparam [3:0] type180_R2A0 = 4'd1;
+localparam [3:0] type180_R2A1 = 4'd0;
+localparam [3:0] type180_R2A2 = 4'd13;
+localparam [3:0] type180_R2A3 = 4'd12;
+localparam [3:0] type180_R2A4 = 4'd9;
+localparam [3:0] type180_R2A5 = 4'd8;
+localparam [3:0] type180_R2A6 = 4'd5;
+localparam [3:0] type180_R2A7 = 4'd4;
 
-wire [3:0] R2B_sel0 = { (type00_R2B0[3:2] + ty), (type00_R2B0[1:0] + tx) };
-wire [3:0] R2B_sel1 = { (type00_R2B1[3:2] + ty), (type00_R2B1[1:0] + tx) };
-wire [3:0] R2B_sel2 = { (type00_R2B2[3:2] + ty), (type00_R2B2[1:0] + tx) };
-wire [3:0] R2B_sel3 = { (type00_R2B3[3:2] + ty), (type00_R2B3[1:0] + tx) };
-wire [3:0] R2B_sel4 = { (type00_R2B4[3:2] + ty), (type00_R2B4[1:0] + tx) };
-wire [3:0] R2B_sel5 = { (type00_R2B5[3:2] + ty), (type00_R2B5[1:0] + tx) };
-wire [3:0] R2B_sel6 = { (type00_R2B6[3:2] + ty), (type00_R2B6[1:0] + tx) };
-wire [3:0] R2B_sel7 = { (type00_R2B7[3:2] + ty), (type00_R2B7[1:0] + tx) };
+localparam [3:0] type180_R2B0 = 4'd7;
+localparam [3:0] type180_R2B1 = 4'd6;
+localparam [3:0] type180_R2B2 = 4'd11;
+localparam [3:0] type180_R2B3 = 4'd10;
+localparam [3:0] type180_R2B4 = 4'd15;
+localparam [3:0] type180_R2B5 = 4'd14;
+localparam [3:0] type180_R2B6 = 4'd3;
+localparam [3:0] type180_R2B7 = 4'd2;
+// rotation 270
+// type (0, 0) = (y, x)
+// |7' |1' |3' |5' |
+// |0  |6  |4  |2  |
+// |1  |7  |5  |3  |
+// |6' |0' |2' |4' |
+// word 15, 16 = {line9, line5, line10, line6, line11, line7, line8, line4};
+// word 17, 18 = {line0, line12, line3, line15, line2, line14, line1, line13};
+localparam [3:0] type270_R2A0 = 4'd4;
+localparam [3:0] type270_R2A1 = 4'd8;
+localparam [3:0] type270_R2A2 = 4'd7;
+localparam [3:0] type270_R2A3 = 4'd11;
+localparam [3:0] type270_R2A4 = 4'd6;
+localparam [3:0] type270_R2A5 = 4'd10;
+localparam [3:0] type270_R2A6 = 4'd5;
+localparam [3:0] type270_R2A7 = 4'd9;
+
+localparam [3:0] type270_R2B0 = 4'd13;
+localparam [3:0] type270_R2B1 = 4'd1;
+localparam [3:0] type270_R2B2 = 4'd14;
+localparam [3:0] type270_R2B3 = 4'd2;
+localparam [3:0] type270_R2B4 = 4'd15;
+localparam [3:0] type270_R2B5 = 4'd3;
+localparam [3:0] type270_R2B6 = 4'd12;
+localparam [3:0] type270_R2B7 = 4'd0;
+
+// ----- region 1 ----- //
+wire [3:0] A_sel0 = { (base_A0[3:2] + ty), (base_A0[1:0] + tx) };
+wire [3:0] A_sel1 = { (base_A1[3:2] + ty), (base_A1[1:0] + tx) };
+wire [3:0] A_sel2 = { (base_A2[3:2] + ty), (base_A2[1:0] + tx) };
+wire [3:0] A_sel3 = { (base_A3[3:2] + ty), (base_A3[1:0] + tx) };
+wire [3:0] A_sel4 = { (base_A4[3:2] + ty), (base_A4[1:0] + tx) };
+wire [3:0] A_sel5 = { (base_A5[3:2] + ty), (base_A5[1:0] + tx) };
+wire [3:0] A_sel6 = { (base_A6[3:2] + ty), (base_A6[1:0] + tx) };
+wire [3:0] A_sel7 = { (base_A7[3:2] + ty), (base_A7[1:0] + tx) };
+
+wire [3:0] B_sel0 = { (base_B0[3:2] + ty), (base_B0[1:0] + tx) };
+wire [3:0] B_sel1 = { (base_B1[3:2] + ty), (base_B1[1:0] + tx) };
+wire [3:0] B_sel2 = { (base_B2[3:2] + ty), (base_B2[1:0] + tx) };
+wire [3:0] B_sel3 = { (base_B3[3:2] + ty), (base_B3[1:0] + tx) };
+wire [3:0] B_sel4 = { (base_B4[3:2] + ty), (base_B4[1:0] + tx) };
+wire [3:0] B_sel5 = { (base_B5[3:2] + ty), (base_B5[1:0] + tx) };
+wire [3:0] B_sel6 = { (base_B6[3:2] + ty), (base_B6[1:0] + tx) };
+wire [3:0] B_sel7 = { (base_B7[3:2] + ty), (base_B7[1:0] + tx) };
+
+
+// Type A word: 0, 1, 2, 6, 7, 8, 12, 13, 14
+// Type B word: 3, 4, 5, 9, 10, 11
+wire use_A_now =
+  (global_word_idx==6'd0 ) | (global_word_idx==6'd1 ) | (global_word_idx==6'd2 ) |
+  (global_word_idx==6'd6 ) | (global_word_idx==6'd7 ) | (global_word_idx==6'd8 ) |
+  (global_word_idx==6'd12) | (global_word_idx==6'd13) | (global_word_idx==6'd14);
+
+wire [3:0] sel_line0 = use_A_now ? A_sel0 : B_sel0;
+wire [3:0] sel_line1 = use_A_now ? A_sel1 : B_sel1;
+wire [3:0] sel_line2 = use_A_now ? A_sel2 : B_sel2;
+wire [3:0] sel_line3 = use_A_now ? A_sel3 : B_sel3;
+wire [3:0] sel_line4 = use_A_now ? A_sel4 : B_sel4;
+wire [3:0] sel_line5 = use_A_now ? A_sel5 : B_sel5;
+wire [3:0] sel_line6 = use_A_now ? A_sel6 : B_sel6;
+wire [3:0] sel_line7 = use_A_now ? A_sel7 : B_sel7;
+// ----- region 1 ----- //
+
+// ----- region 2 ----- //
+wire [3:0] R2A_sel0 = { (base_R2A0[3:2] + ty), (base_R2A0[1:0] + tx) };
+wire [3:0] R2A_sel1 = { (base_R2A1[3:2] + ty), (base_R2A1[1:0] + tx) };
+wire [3:0] R2A_sel2 = { (base_R2A2[3:2] + ty), (base_R2A2[1:0] + tx) };
+wire [3:0] R2A_sel3 = { (base_R2A3[3:2] + ty), (base_R2A3[1:0] + tx) };
+wire [3:0] R2A_sel4 = { (base_R2A4[3:2] + ty), (base_R2A4[1:0] + tx) };
+wire [3:0] R2A_sel5 = { (base_R2A5[3:2] + ty), (base_R2A5[1:0] + tx) };
+wire [3:0] R2A_sel6 = { (base_R2A6[3:2] + ty), (base_R2A6[1:0] + tx) };
+wire [3:0] R2A_sel7 = { (base_R2A7[3:2] + ty), (base_R2A7[1:0] + tx) };
+
+wire [3:0] R2B_sel0 = { (base_R2B0[3:2] + ty), (base_R2B0[1:0] + tx) };
+wire [3:0] R2B_sel1 = { (base_R2B1[3:2] + ty), (base_R2B1[1:0] + tx) };
+wire [3:0] R2B_sel2 = { (base_R2B2[3:2] + ty), (base_R2B2[1:0] + tx) };
+wire [3:0] R2B_sel3 = { (base_R2B3[3:2] + ty), (base_R2B3[1:0] + tx) };
+wire [3:0] R2B_sel4 = { (base_R2B4[3:2] + ty), (base_R2B4[1:0] + tx) };
+wire [3:0] R2B_sel5 = { (base_R2B5[3:2] + ty), (base_R2B5[1:0] + tx) };
+wire [3:0] R2B_sel6 = { (base_R2B6[3:2] + ty), (base_R2B6[1:0] + tx) };
+wire [3:0] R2B_sel7 = { (base_R2B7[3:2] + ty), (base_R2B7[1:0] + tx) };
 
 wire use_A_now_r2 = (global_word_idx==5'd15) | (global_word_idx==5'd16);
 
@@ -3019,6 +3148,79 @@ wire [3:0] R2_sel_line4 = use_A_now_r2 ? R2A_sel4 : R2B_sel4;
 wire [3:0] R2_sel_line5 = use_A_now_r2 ? R2A_sel5 : R2B_sel5;
 wire [3:0] R2_sel_line6 = use_A_now_r2 ? R2A_sel6 : R2B_sel6;
 wire [3:0] R2_sel_line7 = use_A_now_r2 ? R2A_sel7 : R2B_sel7;
+// ----- region 2 ----- //
+
+always @(*) begin
+  case (rot_state)
+    ROT_0: begin
+      base_A0 = type00_A0; base_A1 = type00_A1; base_A2 = type00_A2; base_A3 = type00_A3;
+      base_A4 = type00_A4; base_A5 = type00_A5; base_A6 = type00_A6; base_A7 = type00_A7;
+
+      base_B0 = type00_B0; base_B1 = type00_B1; base_B2 = type00_B2; base_B3 = type00_B3;
+      base_B4 = type00_B4; base_B5 = type00_B5; base_B6 = type00_B6; base_B7 = type00_B7;
+
+      base_R2A0 = type00_R2A0; base_R2A1 = type00_R2A1; base_R2A2 = type00_R2A2; base_R2A3 = type00_R2A3;
+      base_R2A4 = type00_R2A4; base_R2A5 = type00_R2A5; base_R2A6 = type00_R2A6; base_R2A7 = type00_R2A7;
+
+      base_R2B0 = type00_R2B0; base_R2B1 = type00_R2B1; base_R2B2 = type00_R2B2; base_R2B3 = type00_R2B3;
+      base_R2B4 = type00_R2B4; base_R2B5 = type00_R2B5; base_R2B6 = type00_R2B6; base_R2B7 = type00_R2B7;
+    end
+    ROT_90: begin
+      base_A0 = type90_A0; base_A1 = type90_A1; base_A2 = type90_A2; base_A3 = type90_A3;
+      base_A4 = type90_A4; base_A5 = type90_A5; base_A6 = type90_A6; base_A7 = type90_A7;
+
+      base_B0 = type90_B0; base_B1 = type90_B1; base_B2 = type90_B2; base_B3 = type90_B3;
+      base_B4 = type90_B4; base_B5 = type90_B5; base_B6 = type90_B6; base_B7 = type90_B7;
+
+      base_R2A0 = type90_R2A0; base_R2A1 = type90_R2A1; base_R2A2 = type90_R2A2; base_R2A3 = type90_R2A3;
+      base_R2A4 = type90_R2A4; base_R2A5 = type90_R2A5; base_R2A6 = type90_R2A6; base_R2A7 = type90_R2A7;
+
+      base_R2B0 = type90_R2B0; base_R2B1 = type90_R2B1; base_R2B2 = type90_R2B2; base_R2B3 = type90_R2B3;
+      base_R2B4 = type90_R2B4; base_R2B5 = type90_R2B5; base_R2B6 = type90_R2B6; base_R2B7 = type90_R2B7;
+    end
+    ROT_180: begin
+      base_A0 = type180_A0; base_A1 = type180_A1; base_A2 = type180_A2; base_A3 = type180_A3;
+      base_A4 = type180_A4; base_A5 = type180_A5; base_A6 = type180_A6; base_A7 = type180_A7;
+
+      base_B0 = type180_B0; base_B1 = type180_B1; base_B2 = type180_B2; base_B3 = type180_B3;
+      base_B4 = type180_B4; base_B5 = type180_B5; base_B6 = type180_B6; base_B7 = type180_B7;
+
+      base_R2A0 = type180_R2A0; base_R2A1 = type180_R2A1; base_R2A2 = type180_R2A2; base_R2A3 = type180_R2A3;
+      base_R2A4 = type180_R2A4; base_R2A5 = type180_R2A5; base_R2A6 = type180_R2A6; base_R2A7 = type180_R2A7;
+
+      base_R2B0 = type180_R2B0; base_R2B1 = type180_R2B1; base_R2B2 = type180_R2B2; base_R2B3 = type180_R2B3;
+      base_R2B4 = type180_R2B4; base_R2B5 = type180_R2B5; base_R2B6 = type180_R2B6; base_R2B7 = type180_R2B7;
+    end
+    ROT_270: begin
+      base_A0 = type270_A0; base_A1 = type270_A1; base_A2 = type270_A2; base_A3 = type270_A3;
+      base_A4 = type270_A4; base_A5 = type270_A5; base_A6 = type270_A6; base_A7 = type270_A7;
+
+      base_B0 = type270_B0; base_B1 = type270_B1; base_B2 = type270_B2; base_B3 = type270_B3;
+      base_B4 = type270_B4; base_B5 = type270_B5; base_B6 = type270_B6; base_B7 = type270_B7;
+
+      base_R2A0 = type270_R2A0; base_R2A1 = type270_R2A1; base_R2A2 = type270_R2A2; base_R2A3 = type270_R2A3;
+      base_R2A4 = type270_R2A4; base_R2A5 = type270_R2A5; base_R2A6 = type270_R2A6; base_R2A7 = type270_R2A7;
+
+      base_R2B0 = type270_R2B0; base_R2B1 = type270_R2B1; base_R2B2 = type270_R2B2; base_R2B3 = type270_R2B3;
+      base_R2B4 = type270_R2B4; base_R2B5 = type270_R2B5; base_R2B6 = type270_R2B6; base_R2B7 = type270_R2B7;
+    end
+    default: begin
+      base_A0 = type00_A0; base_A1 = type00_A1; base_A2 = type00_A2; base_A3 = type00_A3;
+      base_A4 = type00_A4; base_A5 = type00_A5; base_A6 = type00_A6; base_A7 = type00_A7;
+
+      base_B0 = type00_B0; base_B1 = type00_B1; base_B2 = type00_B2; base_B3 = type00_B3;
+      base_B4 = type00_B4; base_B5 = type00_B5; base_B6 = type00_B6; base_B7 = type00_B7;
+
+      base_R2A0 = type00_R2A0; base_R2A1 = type00_R2A1; base_R2A2 = type00_R2A2; base_R2A3 = type00_R2A3;
+      base_R2A4 = type00_R2A4; base_R2A5 = type00_R2A5; base_R2A6 = type00_R2A6; base_R2A7 = type00_R2A7;
+      
+      base_R2B0 = type00_R2B0; base_R2B1 = type00_R2B1; base_R2B2 = type00_R2B2; base_R2B3 = type00_R2B3;
+      base_R2B4 = type00_R2B4; base_R2B5 = type00_R2B5; base_R2B6 = type00_R2B6; base_R2B7 = type00_R2B7;
+    end
+  endcase
+end
+
+
 
 // select how to read the fifo to decode data
 wire [3:0] sel_line0_final = (decode_state==DECODE_DECODE3) ? R2_sel_line0 : sel_line0;
