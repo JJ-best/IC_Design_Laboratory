@@ -442,7 +442,7 @@ always @(*) begin
     end else if (down_direction) begin
       addr_n = addr - 6 + 96;
     end else begin
-      addr_n = 0; // debug
+      addr_n = addr;
     end
   end else if (state == MASK1) begin
     addr_n = mask_block1_addr;
