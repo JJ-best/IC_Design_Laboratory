@@ -21,7 +21,12 @@ localparam qrcode_find1_direction = 21'b1000001_0000000_1000001; // middle 7-bit
 localparam qrcode_find1_7bitzero = 7'b0000000;
 localparam qrcode_find1_rotation = 7'b1011101;
 localparam qrcode_find1_rot_double_check = 7'b1000001;
+
 localparam qrcode_find2 = 42'b1111111_1111111_00110011001100_1111111_1111111;
+localparam qrcode_find2_direction = 42'b1100000_0000011_0000000_0000000_1100000_0000011;
+localparam qrcode_find2_14bitzero = 14'b0000000_0000000;
+localparam qrcode_find2_rotation = 14'b1100111_1110011;
+localparam qrcode_find2_rot_double_check = 14'b1100000_0000011;
 // 42x42 qrcode need to match 1111111_1111111_00110011001100_1111111_1111111 in two line
 
 // 2. Demask
@@ -116,6 +121,26 @@ reg check_row41_21_direction;
 reg check_row42_21_direction;
 reg check_row43_21_direction;
 reg check_row44_21_direction;
+
+reg check_row_11_21_zero;
+reg check_row_12_21_zero;
+reg check_row_13_21_zero;
+reg check_row_14_21_zero;
+
+reg check_row_21_21_zero;
+reg check_row_22_21_zero;
+reg check_row_23_21_zero;
+reg check_row_24_21_zero;
+
+reg check_row_31_21_zero;
+reg check_row_32_21_zero;
+reg check_row_33_21_zero;
+reg check_row_34_21_zero;
+
+reg check_row_41_21_zero;
+reg check_row_42_21_zero;
+reg check_row_43_21_zero;
+reg check_row_44_21_zero;
 
 reg check; // if any row match qrcode_find1
 
@@ -480,18 +505,6 @@ always @(posedge clk) begin
   end
 end 
 
-
-
-// reg [9:0] finish_cnt;
-// assign finish = (finish_cnt == 250)? 1 :0 ;
-
-// always @(posedge clk) begin
-//   if (!srst_n) begin
-//     finish_cnt <= 0;
-//   end else begin
-//     finish_cnt <= finish_cnt + 1;
-//   end
-// end
 // ===== finite state machine ===== //
 
 // ===== rotation finite state machine ===== //
@@ -698,6 +711,8 @@ always @(*) begin
              line12[1], line13[1], line14[1], line15[1],
              line12[0], line13[0], line14[0], line15[0]};
 end
+
+
 
 // ----- region 2 decode data ----- //
 // if lower than the loc_finder, use these data, else sram_rdata[i]
@@ -932,29 +947,9 @@ always @(*) begin
     end    
   endcase
 end
-
-
 // ----- region 2 decode data ----- //
-reg check_row_11_21_zero;
-reg check_row_12_21_zero;
-reg check_row_13_21_zero;
-reg check_row_14_21_zero;
 
-reg check_row_21_21_zero;
-reg check_row_22_21_zero;
-reg check_row_23_21_zero;
-reg check_row_24_21_zero;
-
-reg check_row_31_21_zero;
-reg check_row_32_21_zero;
-reg check_row_33_21_zero;
-reg check_row_34_21_zero;
-
-reg check_row_41_21_zero;
-reg check_row_42_21_zero;
-reg check_row_43_21_zero;
-reg check_row_44_21_zero;
-
+// ----- check pos and rot----- //
 // finder pattern position check, and determine the qrcode direction
 always @(*) begin
   check_row11_21 = ~|(row1_21[23:3] ^ qrcode_find1);
@@ -1881,61 +1876,6 @@ always @(*) begin
   corner7_block_addr = {loc_y_decode_corner7_addr[6:2], loc_x_decode_corner7_addr[6:2]};
   corner8_block_addr = {loc_y_decode_corner8_addr[6:2], loc_x_decode_corner8_addr[6:2]};
 end
-
-// reg [4:0]block_bound_1_2;
-// reg [4:0]block_bound_1_3;
-// reg [4:0]block_bound_5_6;
-// reg [4:0]block_bound_5_7;
-// always @(*) begin
-//   case (rot_state)
-//   ROT_0: begin
-//     block_bound_2_4 = corner4_block_addr[9:5]; // > y addr
-//     block_bound_3_4 = corner4_block_addr[4:0]; // > x addr
-//     block_bound_1_3 = corner1_block_addr[9:5]; // < y addr
-//     block_bound_1_2 = corner1_block_addr[4:0]; // < x addr
-
-//     block_bound_6_8 = corner8_block_addr[9:5]; // > y addr
-//     block_bound_7_8 = corner8_block_addr[4:0]; // > x addr
-//     block_bound_5_6 = corner5_block_addr[4:0]; // < x addr
-//     block_bound_5_7 = corner5_block_addr[9:5]; // < y addr
-//   end
-//   ROT_90: begin
-//     block_bound_2_4 = corner4_block_addr[4:0]; // > x addr
-//     block_bound_3_4 = corner4_block_addr[9:5]; // < y addr
-//     block_bound_1_3 = corner1_block_addr[4:0]; // < x addr
-//     block_bound_1_2 = corner1_block_addr[9:5]; // > y addr
-
-//     block_bound_6_8 = corner8_block_addr[4:0]; // > x addr
-//     block_bound_5_6 = corner5_block_addr[4:0]; // < x addr
-//     block_bound_5_7 = corner5_block_addr[9:5]; // > y addr
-//     block_bound_7_8 = corner8_block_addr[9:5]; // < y addr
-//   end
-//   ROT_180: begin
-//     block_bound_2_4 = corner2_block_addr[9:5]; // < y addr
-//     block_bound_3_4 = corner3_block_addr[4:0]; // < x addr
-//     block_bound_1_3 = corner1_block_addr[9:5]; // < y addr
-//     block_bound_1_2 = corner1_block_addr[4:0]; // < x addr
-
-//     block_bound_6_8 = corner6_block_addr[9:5]; // < y addr
-//     block_bound_7_8 = corner7_block_addr[4:0]; // < x addr    
-//   end
-//   ROT_270: begin
-//     block_bound_2_4 = corner2_block_addr[4:0]; // < x addr
-//     block_bound_3_4 = corner3_block_addr[9:5]; // > y addr
-//     block_bound_6_8 = corner6_block_addr[4:0]; // < x addr
-//     block_bound_7_8 = corner7_block_addr[9:5]; // > y addr
-//   end
-//   default: begin
-//     block_bound_2_4 = 0;
-//     block_bound_3_4 = 0;
-//     block_bound_6_8 = 0;
-//     block_bound_7_8 = 0;
-//   end
-//   endcase
-// end
-// decode block address generator
-
-
 
 assign rot0_bound1_check   = (rot_state == ROT_0) && (sram_raddr[9:5] == corner2_block_addr[9:5]);   // y addr
 assign rot90_bound1_check  = (rot_state == ROT_90) && (sram_raddr[4:0] == corner2_block_addr[4:0]);  // x addr
