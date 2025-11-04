@@ -521,16 +521,32 @@ always @(*) begin
       end
     end
     ROT_0: begin //3
-      rot_state_n = rot_state;
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        rot_state_n = ROT_IDLE;
+      end else begin
+        rot_state_n = ROT_0;
+      end
     end
     ROT_90: begin //4
-      rot_state_n = rot_state;
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        rot_state_n = ROT_IDLE;
+      end else begin
+        rot_state_n = ROT_90;
+      end
     end
     ROT_180: begin // 5
-      rot_state_n = rot_state;
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        rot_state_n = ROT_IDLE;
+      end else begin
+        rot_state_n = ROT_180;
+      end
     end
     ROT_270: begin // 6
-      rot_state_n = rot_state;
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        rot_state_n = ROT_IDLE;
+      end else begin
+        rot_state_n = ROT_270;
+      end
     end
     default : begin
       rot_state_n = ROT_IDLE;
@@ -1183,8 +1199,8 @@ always @(*) begin
     loc_y_n = loc_y_rot270;
   end
   default: begin
-    loc_x_n = 2;
-    loc_y_n = 2;
+    loc_x_n = 0;
+    loc_y_n = 0;
   end
   endcase
 end
@@ -2064,8 +2080,10 @@ assign sram_raddr_jump1 = {sram_raddr_h_jump1, sram_raddr_l_jump1};
 always @(posedge clk) begin
   if (!srst_n) begin
     check_bound_cnt <= 0;
-  end else begin
+  end else if (state == DECODE) begin
     check_bound_cnt <= check_bound_cnt_n;
+  end else begin
+    check_bound_cnt <= 0;
   end
 end
 
@@ -3474,6 +3492,8 @@ always @(posedge clk or negedge srst_n) begin
     b_mod3 <= 2'd0;
   end else if (in_decode_pop_control && use_B_now) begin
     b_mod3 <= (b_mod3==2'd2) ? 2'd0 : (b_mod3 + 2'd1);
+  end else begin
+    b_mod3 <= 0;
   end
 end
 
@@ -3538,6 +3558,8 @@ always @(posedge clk or negedge srst_n) begin
     c_mod2 <= 0;
   end else if (in_decode_pop3 && use_B_now_r2) begin
     c_mod2 <= ~c_mod2;
+  end else begin
+    c_mod2 <= 0;
   end
 end
 wire [3:0] inc1_0  = fifo_rptr0  + 4'd1;
@@ -3880,10 +3902,19 @@ always @(posedge clk) begin
     decode_text_n2 <= {decode_text_r[3:0], bit7_sel, bit6_sel, bit5_sel, bit4_sel};
     //decode_valid_n2 <= decode_valid_r;
     data_len <= (global_word_idx == 2)? decode_text_n2 : data_len;
-  end else if ((state!=DECODE) || (decode_state!=DECODE_DECODE1)) begin
-    decode_valid_r <= 1'b0;
-    //decode_valid_n2 <= 0;
+  end else if (state == DECODE && decode_state != DECODE_DECODE1) begin
+    decode_valid_r <= 0;
     data_len <= data_len;
+    global_word_idx <= global_word_idx;
+    local_word_idx <= local_word_idx;
+    decode_text_r <= decode_text_r;
+    decode_text_n2 <= decode_text_n2;
+  end else begin
+    global_word_idx <= 0;
+    local_word_idx <= 0;
+    data_len <= 0;
+    decode_text_r <= 0;
+    decode_text_n2 <= 0;
   end
 end
 
