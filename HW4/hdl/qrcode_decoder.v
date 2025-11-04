@@ -20,6 +20,7 @@ localparam qrcode_find1 = 21'b1111111_0101010_1111111;
 localparam qrcode_find1_direction = 21'b1000001_0000000_1000001; // middle 7-bit is dont care
 localparam qrcode_find1_7bitzero = 7'b0000000;
 localparam qrcode_find1_rotation = 7'b1011101;
+localparam qrcode_find1_rot_double_check = 7'b1000001;
 localparam qrcode_find2 = 42'b1111111_1111111_00110011001100_1111111_1111111;
 // 42x42 qrcode need to match 1111111_1111111_00110011001100_1111111_1111111 in two line
 
@@ -274,8 +275,8 @@ localparam DECODE_SWAP1_UP = 3'd1;// swap read the block
 localparam DECODE_SWAP2_UP = 3'd2;// jump to next row block
 localparam DECODE_JUMP2 = 3'd3;// jump to next block region
 localparam DECODE_DECODE1 = 3'd4; // region 1 word 0-11
-localparam DECODE_DECODE2 = 3'd5; // region 2 word 12-14
-localparam DECODE_DECODE3 = 3'd6; // region 3 word 15-18
+localparam DECODE_DECODE2 = 3'd5; // region 1 word 12-14
+localparam DECODE_DECODE3 = 3'd6; // region 2 word 15-18
 wire rot0_bound1_check;
 wire rot90_bound1_check;
 wire rot180_bound1_check;
@@ -729,7 +730,6 @@ always @(*) begin
       shift15_en = (sram_dat15_y > loc_y_finder);
     end
     ROT_90: begin
-      
       shift0_en  = (sram_dat0_x  > loc_x_finder + 6);
       shift1_en  = (sram_dat1_x  > loc_x_finder + 6);
       shift2_en  = (sram_dat2_x  > loc_x_finder + 6);
@@ -748,7 +748,7 @@ always @(*) begin
       shift15_en = (sram_dat15_x > loc_x_finder + 6);
     end
     ROT_180: begin
-            shift0_en  = (sram_dat0_y  < loc_y_finder);
+      shift0_en  = (sram_dat0_y  < loc_y_finder);
       shift1_en  = (sram_dat1_y  < loc_y_finder);
       shift2_en  = (sram_dat2_y  < loc_y_finder);
       shift3_en  = (sram_dat3_y  < loc_y_finder);
@@ -1020,6 +1020,7 @@ always @(*) begin
 end
 
 // find rotation: check 1011101 pattern position
+// find rotation double check: check 1000001 pattern position
 // chech the rotation for 21x21 
 reg check_rot13_21;
 reg check_rot14_21;
@@ -1904,7 +1905,10 @@ always @(*) begin
       end
     end
     DECODE_SWAP2_UP: begin
-      if (jump2) begin
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        decode_addr = addr_pointer;
+        decode_state_n = DECODE_IDLE;
+      end else if (jump2) begin
         decode_addr = sram_raddr; // tmp
         decode_state_n = DECODE_DECODE3;
       end else if (bound2_check) begin
@@ -1929,7 +1933,10 @@ always @(*) begin
     end
     DECODE_DECODE2: begin // decode the remain 8 word of region1
     // add some code here like DECODE_DECODE_1
-      if (local_word_idx == 8) begin // need to clear the wptr, rptr, line?
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        decode_addr = addr_pointer;
+        decode_state_n = DECODE_IDLE;
+      end else if (local_word_idx == 8) begin // need to clear the wptr, rptr, line?
         decode_state_n = DECODE_SWAP2_UP;
         decode_addr = corner5_block_addr;
       end else begin
@@ -2915,7 +2922,7 @@ localparam type90_B7 = 4'd9;
 // |3  |2  |5' |4' |
 // |1  |0  |7' |6' |
 // 8-bit word A: {line0, line1, line4, line5, line8, line9, line12, line13}
-// 8-bit word B: {line3, line2, line7, line6, line11, line10, line15, line14}
+// 8-bit word B: {line14, line15, line10, line11, line6, line7, line2, line3}
 localparam type180_A0 = 4'd13;
 localparam type180_A1 = 4'd12;
 localparam type180_A2 = 4'd9;
@@ -2925,14 +2932,14 @@ localparam type180_A5 = 4'd4;
 localparam type180_A6 = 4'd1;
 localparam type180_A7 = 4'd0;
 
-localparam type180_B0 = 4'd14;
-localparam type180_B1 = 4'd15;
-localparam type180_B2 = 4'd10;
-localparam type180_B3 = 4'd11;
-localparam type180_B4 = 4'd6;
-localparam type180_B5 = 4'd7;
-localparam type180_B6 = 4'd2;
-localparam type180_B7 = 4'd3;
+localparam type180_B0 = 4'd3;
+localparam type180_B1 = 4'd2;
+localparam type180_B2 = 4'd7;
+localparam type180_B3 = 4'd6;
+localparam type180_B4 = 4'd11;
+localparam type180_B5 = 4'd10;
+localparam type180_B6 = 4'd15;
+localparam type180_B7 = 4'd14;
 
 // rotation 270
 // type (0, 0) = (y, x)
