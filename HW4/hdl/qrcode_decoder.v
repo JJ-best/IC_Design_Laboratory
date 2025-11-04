@@ -75,7 +75,8 @@ reg [(12*block_size-1):0] row4_42;
 
 reg up_direction;   // find the other one finder pattern from up direction
 reg down_direction; // find the other one finder pattern from down direction
-
+reg [3:0] rot_cnt;
+reg [3:0] rot_cnt_n;
 reg check_row11_21;
 reg check_row12_21;
 reg check_row13_21;
@@ -389,7 +390,9 @@ always @(*) begin
       end
     end
     CHECK: begin // check rotation
-      if (check_rot) begin
+      if (rot_cnt == 8) begin
+        state_n = FIND;
+      end else if (check_rot) begin
         state_n = MASK1;
       end else begin
         state_n = CHECK;
@@ -431,7 +434,9 @@ always @(posedge clk) begin
   end
 end
 always @(*) begin
-  if (check) begin // rotation state
+  if (rot_cnt == 8) begin // if didnt find rotation in 8 cycle
+    addr_n = addr_pointer;
+  end else if (check) begin // rotation state
     if (up_direction) begin
       addr_n = addr - 6 - 96;
     end else if (down_direction) begin
@@ -468,13 +473,13 @@ assign finish = (addr == 1023);
 // ===== rotation finite state machine ===== //
 reg [2:0]rot_state;
 reg [2:0]rot_state_n;
-localparam ROT_IDLE = 3'b000;
-localparam ROT_UP   = 3'b001;
-localparam ROT_DOWN = 3'b010;
-localparam ROT_0    = 3'b011;
-localparam ROT_90   = 3'b100;
-localparam ROT_180  = 3'b101;
-localparam ROT_270  = 3'b110;
+localparam ROT_IDLE = 3'd0;
+localparam ROT_UP   = 3'd1;
+localparam ROT_DOWN = 3'd2;
+localparam ROT_0    = 3'd3;
+localparam ROT_90   = 3'd4;
+localparam ROT_180  = 3'd5;
+localparam ROT_270  = 3'd6;
 always @(posedge clk) begin
   if (!srst_n) begin
     rot_state <= ROT_IDLE;
@@ -494,7 +499,9 @@ always @(*) begin
       end
     end
     ROT_UP: begin //1
-      if (rot_left & check_rot) begin
+      if (rot_cnt == 8) begin
+        rot_state_n = ROT_IDLE;
+      end else if (rot_left & check_rot) begin
         rot_state_n = ROT_90;
       end else if (rot_right & check_rot) begin
         rot_state_n = ROT_180;
@@ -503,7 +510,9 @@ always @(*) begin
       end
     end
     ROT_DOWN: begin //2
-      if (rot_left & check_rot) begin
+      if (rot_cnt == 8) begin
+        rot_state_n = ROT_IDLE;
+      end else if (rot_left & check_rot) begin
         rot_state_n = ROT_0;
       end else if (rot_right & check_rot) begin
         rot_state_n = ROT_270;
@@ -529,6 +538,22 @@ always @(*) begin
       
   endcase
 end
+
+// if jump to the up or down state, neet to find rotation in 8 cycle, 
+// else, jump back to rot_idle, addr = addr_pointer, state = find
+
+// 8 cycle counter
+
+always @(posedge clk) begin
+  if (!srst_n) begin
+    rot_cnt <= 0;
+  end else if (state == CHECK) begin
+    rot_cnt <= rot_cnt + 1;
+  end else begin
+    rot_cnt <= 0;
+  end
+end
+
 // ===== rotation finite state machine ===== //
 
 // ===== find position and rotation ===== //
@@ -579,40 +604,6 @@ always @(posedge clk) begin
     line13[fifo_wptr13] <= line13_dat;
     line14[fifo_wptr14] <= line14_dat;
     line15[fifo_wptr15] <= line15_dat;
-
-    // line0 [fifo_wptr0 ] <= sram_rdata[0 ] ^ mask_cond0 ;
-    // line1 [fifo_wptr1 ] <= sram_rdata[1 ] ^ mask_cond1 ;
-    // line2 [fifo_wptr2 ] <= sram_rdata[2 ] ^ mask_cond2 ;
-    // line3 [fifo_wptr3 ] <= sram_rdata[3 ] ^ mask_cond3 ;
-    // line4 [fifo_wptr4 ] <= sram_rdata[4 ] ^ mask_cond4 ;
-    // line5 [fifo_wptr5 ] <= sram_rdata[5 ] ^ mask_cond5 ;
-    // line6 [fifo_wptr6 ] <= sram_rdata[6 ] ^ mask_cond6 ;
-    // line7 [fifo_wptr7 ] <= sram_rdata[7 ] ^ mask_cond7 ;
-    // line8 [fifo_wptr8 ] <= sram_rdata[8 ] ^ mask_cond8 ;
-    // line9 [fifo_wptr9 ] <= sram_rdata[9 ] ^ mask_cond9 ;
-    // line10[fifo_wptr10] <= sram_rdata[10] ^ mask_cond10;
-    // line11[fifo_wptr11] <= sram_rdata[11] ^ mask_cond11;
-    // line12[fifo_wptr12] <= sram_rdata[12] ^ mask_cond12;
-    // line13[fifo_wptr13] <= sram_rdata[13] ^ mask_cond13;
-    // line14[fifo_wptr14] <= sram_rdata[14] ^ mask_cond14;
-    // line15[fifo_wptr15] <= sram_rdata[15] ^ mask_cond15;
-
-    // line0 [fifo_wptr0 ] <= sram_rdata[0 ];
-    // line1 [fifo_wptr1 ] <= sram_rdata[1 ];
-    // line2 [fifo_wptr2 ] <= sram_rdata[2 ];
-    // line3 [fifo_wptr3 ] <= sram_rdata[3 ];
-    // line4 [fifo_wptr4 ] <= sram_rdata[4 ];
-    // line5 [fifo_wptr5 ] <= sram_rdata[5 ];
-    // line6 [fifo_wptr6 ] <= sram_rdata[6 ];
-    // line7 [fifo_wptr7 ] <= sram_rdata[7 ];
-    // line8 [fifo_wptr8 ] <= sram_rdata[8 ];
-    // line9 [fifo_wptr9 ] <= sram_rdata[9 ];
-    // line10[fifo_wptr10] <= sram_rdata[10];
-    // line11[fifo_wptr11] <= sram_rdata[11];
-    // line12[fifo_wptr12] <= sram_rdata[12];
-    // line13[fifo_wptr13] <= sram_rdata[13];
-    // line14[fifo_wptr14] <= sram_rdata[14];
-    // line15[fifo_wptr15] <= sram_rdata[15];
   end 
   else if (state != IDLE) begin
     line0[(shift_reg_depth-1):0]  <= {line0[(shift_reg_depth-2):0],  sram_rdata[0]};
@@ -930,7 +921,7 @@ always @(*) begin
   check_row12_21 = ~|(row1_21[22:2] ^ qrcode_find1);
   check_row13_21 = ~|(row1_21[21:1] ^ qrcode_find1);
   check_row14_21 = ~|(row1_21[20:0] ^ qrcode_find1);
-  check_row11_21_direction = ~|({row1_21[23:17] ^ qrcode_find1_direction[20:14], // 1011101_xxxxxxx_1011101
+  check_row11_21_direction = ~|({row1_21[23:17] ^ qrcode_find1_direction[20:14], // 21'b1000001_xxxxxxx_1000001
                                  row1_21[9:3]   ^ qrcode_find1_direction[6:0]});
   check_row12_21_direction = ~|({row1_21[22:16] ^ qrcode_find1_direction[20:14],
                                  row1_21[8:2]   ^ qrcode_find1_direction[6:0]});
@@ -1257,7 +1248,7 @@ always @(*) begin
   mask_block1_addr = {loc_y_mask_block_addr_start, loc_x_mask_block_addr_start};
   mask_block2_addr = {loc_y_mask_block_addr_end, loc_x_mask_block_addr_end};
   
-  mask_2cyc = | (loc_x_mask_block_addr_start ^ loc_x_mask_block_addr_end); 
+  mask_2cyc = | (mask_block1_addr ^ mask_block2_addr); 
   // if euqal than false, only need one cycle
 end
 
@@ -1330,19 +1321,19 @@ always @(*) begin
     ROT_180: begin
       case (loc_x_mask_inblock_addr_start) 
       0: begin
-        mask_id_n1 = {2'b0, row_sel[3]};
-        mask_id_n2 = {row_sel[1], row_sel[0], mask_id[0]};
+        mask_id_n1 = {row_sel[3], 2'b0};
+        mask_id_n2 = {mask_id[2], row_sel[0], row_sel[1]};
       end
       1: begin
-        mask_id_n1 = {1'b0, row_sel[3], row_sel[2]};
-        mask_id_n2 = {row_sel[0], mask_id[1], mask_id[0]};
+        mask_id_n1 = {row_sel[2], row_sel[3], 1'b0};
+        mask_id_n2 = {mask_id[2], mask_id[1], row_sel[0]};
       end
       2: begin
-        mask_id_n1 = {row_sel[3], row_sel[2], row_sel[1]};
+        mask_id_n1 = {row_sel[1], row_sel[2], row_sel[3]};
         mask_id_n2 = mask_id;
       end
       3: begin
-        mask_id_n1 = {row_sel[2], row_sel[1], row_sel[0]};
+        mask_id_n1 = {row_sel[0], row_sel[1], row_sel[2]};
         mask_id_n2 = mask_id;
       end
       endcase
