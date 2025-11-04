@@ -2998,29 +2998,29 @@ localparam type180_B7 = 4'd14;
 
 // rotation 270
 // type (0, 0) = (y, x)
-// |1' |3' |5' |7' |
-// |6  |4  |2  |0  |
 // |7  |5  |3  |1  |
 // |0' |2' |4' |6' |
-// 8-bit word A: {line8, line14, line9, line5, line10, line6, line11, line7}
-// 8-bit word B: {line3, line15, line2, line14, line1, line13, line0, line12}
-localparam type270_A0 = 4'd7;
-localparam type270_A1 = 4'd11;
-localparam type270_A2 = 4'd6;
-localparam type270_A3 = 4'd10;
-localparam type270_A4 = 4'd5;
-localparam type270_A5 = 4'd9;
-localparam type270_A6 = 4'd14;
-localparam type270_A7 = 4'd8;
+// |1' |3' |5' |7' |
+// |6  |4  |2  |0  |
+// 8-bit word A: {line0, line12, line1, line13, line2, line14, line3, line15}
+// 8-bit word B: {line11, line7, line10, line6, line9, line5, line8, line4}
+localparam type270_A0 = 4'd15;
+localparam type270_A1 = 4'd3;
+localparam type270_A2 = 4'd14;
+localparam type270_A3 = 4'd2;
+localparam type270_A4 = 4'd13;
+localparam type270_A5 = 4'd1;
+localparam type270_A6 = 4'd12;
+localparam type270_A7 = 4'd0;
 
-localparam type270_B0 = 4'd12;
-localparam type270_B1 = 4'd0;
-localparam type270_B2 = 4'd13;
-localparam type270_B3 = 4'd1;
-localparam type270_B4 = 4'd14;
-localparam type270_B5 = 4'd2;
-localparam type270_B6 = 4'd15;
-localparam type270_B7 = 4'd3;
+localparam type270_B0 = 4'd4;
+localparam type270_B1 = 4'd8;
+localparam type270_B2 = 4'd5;
+localparam type270_B3 = 4'd9;
+localparam type270_B4 = 4'd6;
+localparam type270_B5 = 4'd10;
+localparam type270_B6 = 4'd7;
+localparam type270_B7 = 4'd11;
 
 wire [1:0] ty = decode_type[3:2];
 wire [1:0] tx = decode_type[1:0];
@@ -3120,29 +3120,29 @@ localparam [3:0] type180_R2B6 = 4'd3;
 localparam [3:0] type180_R2B7 = 4'd2;
 // rotation 270
 // type (0, 0) = (y, x)
-// |7' |1' |3' |5' |
-// |0  |6  |4  |2  |
 // |1  |7  |5  |3  |
 // |6' |0' |2' |4' |
-// word 15, 16 = {line9, line5, line10, line6, line11, line7, line8, line4};
-// word 17, 18 = {line0, line12, line3, line15, line2, line14, line1, line13};
-localparam [3:0] type270_R2A0 = 4'd4;
-localparam [3:0] type270_R2A1 = 4'd8;
-localparam [3:0] type270_R2A2 = 4'd7;
-localparam [3:0] type270_R2A3 = 4'd11;
-localparam [3:0] type270_R2A4 = 4'd6;
-localparam [3:0] type270_R2A5 = 4'd10;
-localparam [3:0] type270_R2A6 = 4'd5;
-localparam [3:0] type270_R2A7 = 4'd9;
+// |7' |1' |3' |5' |
+// |0  |6  |4  |2  |
+// word 15, 16 = {line1, line13, line2, line14, line3, line15, line0, line12};
+// word 17, 18 = {line8, line4, line11, line7, line10, line6, line9, line5};
+localparam [3:0] type270_R2A0 = 4'd12;
+localparam [3:0] type270_R2A1 = 4'd0;
+localparam [3:0] type270_R2A2 = 4'd15;
+localparam [3:0] type270_R2A3 = 4'd3;
+localparam [3:0] type270_R2A4 = 4'd14;
+localparam [3:0] type270_R2A5 = 4'd2;
+localparam [3:0] type270_R2A6 = 4'd13;
+localparam [3:0] type270_R2A7 = 4'd1;
 
-localparam [3:0] type270_R2B0 = 4'd13;
-localparam [3:0] type270_R2B1 = 4'd1;
-localparam [3:0] type270_R2B2 = 4'd14;
-localparam [3:0] type270_R2B3 = 4'd2;
-localparam [3:0] type270_R2B4 = 4'd15;
-localparam [3:0] type270_R2B5 = 4'd3;
-localparam [3:0] type270_R2B6 = 4'd12;
-localparam [3:0] type270_R2B7 = 4'd0;
+localparam [3:0] type270_R2B0 = 4'd5;
+localparam [3:0] type270_R2B1 = 4'd9;
+localparam [3:0] type270_R2B2 = 4'd6;
+localparam [3:0] type270_R2B3 = 4'd10;
+localparam [3:0] type270_R2B4 = 4'd7;
+localparam [3:0] type270_R2B5 = 4'd11;
+localparam [3:0] type270_R2B6 = 4'd4;
+localparam [3:0] type270_R2B7 = 4'd8;
 
 // ----- region 1 ----- //
 wire [3:0] A_sel0 = { (base_A0[3:2] + ty), (base_A0[1:0] + tx) };
