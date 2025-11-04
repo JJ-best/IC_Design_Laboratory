@@ -1109,10 +1109,12 @@ always @(*) begin
 
   rot_left = (check_rot1 | check_rot2 | check_rot3 | check_rot4) &&
              (check_zero1_21 && check_zero2_21 && check_zero3_21 && check_zero4_21);
+  rot_right = (check_rot1 | check_rot2 | check_rot3 | check_rot4) && 
+              ((!check_zero1_21) | (!check_zero2_21) | (!check_zero3_21) | (!check_zero4_21));
   // rot_left = (check_rot1 & check_zero1_21) | (check_rot2 & check_zero2_21) | 
   //            (check_rot3 & check_zero3_21) | (check_rot4 & check_zero4_21);
-  rot_right = (check_rot1 & !check_zero1_21) | (check_rot2 & !check_zero2_21) | 
-             (check_rot3 & !check_zero3_21) | (check_rot4 & !check_zero4_21);
+  // rot_right = (check_rot1 & !check_zero1_21) | (check_rot2 & !check_zero2_21) | 
+  //            (check_rot3 & !check_zero3_21) | (check_rot4 & !check_zero4_21);
 end
 
 always @(*) begin
