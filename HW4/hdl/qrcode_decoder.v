@@ -2613,7 +2613,7 @@ always @(*) begin
 
       if (shift1_en) begin
         dat5_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
-               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y) && (sram_dat1_y != loc_y - 7);
+               && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
       end else begin
         dat5_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
                && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y) 
