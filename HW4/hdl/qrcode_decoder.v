@@ -1940,7 +1940,10 @@ always @(*) begin
       end
     end
     DECODE_SWAP1_UP: begin
-      if (jump1) begin
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        decode_addr = addr_pointer;
+        decode_state_n = DECODE_IDLE;
+      end else if (jump1) begin
         decode_addr = corner5_block_addr;
         decode_state_n = DECODE_DECODE2;
       end else if (check_bound_cnt_n == 2) begin
@@ -2590,7 +2593,7 @@ always @(*) begin
       end else begin
         dat4_en = (sram_dat4_x <= region2_right_x) && (sram_dat4_x >= region2_left_x)
                && (sram_dat4_y <= region2_up_y)    && (sram_dat4_y >= region2_down_y) 
-               && (sram_dat4_y != loc_y - 7)       && (sram_dat4_y != loc_y - 8);
+               && (sram_dat4_y != loc_y - 7)       && (sram_dat4_y != loc_y - 8) && (sram_dat4_y != loc_y - 6);
       end
 
       if (shift1_en) begin
@@ -2599,7 +2602,7 @@ always @(*) begin
       end else begin
         dat5_en = (sram_dat5_x <= region2_right_x) && (sram_dat5_x >= region2_left_x)
                && (sram_dat5_y <= region2_up_y)    && (sram_dat5_y >= region2_down_y) 
-               && (sram_dat5_y != loc_y - 7)       && (sram_dat5_y != loc_y - 8);
+               && (sram_dat5_y != loc_y - 7)       && (sram_dat5_y != loc_y - 8) && (sram_dat5_y != loc_y - 6);
       end
 
       if (shift2_en) begin
@@ -2608,7 +2611,7 @@ always @(*) begin
       end else begin
         dat6_en = (sram_dat6_x <= region2_right_x) && (sram_dat6_x >= region2_left_x)
                && (sram_dat6_y <= region2_up_y)    && (sram_dat6_y >= region2_down_y) 
-               && (sram_dat6_y != loc_y - 7)       && (sram_dat6_y != loc_y - 8);
+               && (sram_dat6_y != loc_y - 7)       && (sram_dat6_y != loc_y - 8) && (sram_dat6_y != loc_y - 6);
       end
 
       if (shift3_en) begin
@@ -2617,7 +2620,7 @@ always @(*) begin
       end else begin
         dat7_en = (sram_dat7_x <= region2_right_x) && (sram_dat7_x >= region2_left_x)
                && (sram_dat7_y <= region2_up_y)    && (sram_dat7_y >= region2_down_y) 
-               && (sram_dat7_y != loc_y - 7)       && (sram_dat7_y != loc_y - 8);
+               && (sram_dat7_y != loc_y - 7)       && (sram_dat7_y != loc_y - 8) && (sram_dat7_y != loc_y - 6);
       end
 
       if (shift4_en) begin
@@ -2626,7 +2629,7 @@ always @(*) begin
       end else begin
         dat8_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
                && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y) 
-               && (sram_dat8_y != loc_y - 7)       && (sram_dat8_y != loc_y - 8);
+               && (sram_dat8_y != loc_y - 7)       && (sram_dat8_y != loc_y - 8) && (sram_dat8_y != loc_y - 6);
       end
 
       if (shift5_en) begin
@@ -2635,7 +2638,7 @@ always @(*) begin
       end else begin
         dat9_en = (sram_dat9_x <= region2_right_x) && (sram_dat9_x >= region2_left_x)
                && (sram_dat9_y <= region2_up_y)    && (sram_dat9_y >= region2_down_y) 
-               && (sram_dat9_y != loc_y - 7)       && (sram_dat9_y != loc_y - 8);
+               && (sram_dat9_y != loc_y - 7)       && (sram_dat9_y != loc_y - 8) && (sram_dat9_y != loc_y - 6);
       end
 
       if (shift6_en) begin
@@ -2644,7 +2647,7 @@ always @(*) begin
       end else begin
         dat10_en = (sram_dat10_x <= region2_right_x) && (sram_dat10_x >= region2_left_x)
                && (sram_dat10_y <= region2_up_y)    && (sram_dat10_y >= region2_down_y) 
-               && (sram_dat10_y != loc_y - 7)       && (sram_dat10_y != loc_y - 8);
+               && (sram_dat10_y != loc_y - 7)       && (sram_dat10_y != loc_y - 8) && (sram_dat10_y != loc_y - 6);
       end
 
       if (shift7_en) begin
@@ -2653,7 +2656,7 @@ always @(*) begin
       end else begin
         dat11_en = (sram_dat11_x <= region2_right_x) && (sram_dat11_x >= region2_left_x)
                && (sram_dat11_y <= region2_up_y)    && (sram_dat11_y >= region2_down_y) 
-               && (sram_dat11_y != loc_y - 7)       && (sram_dat11_y != loc_y - 8);
+               && (sram_dat11_y != loc_y - 7)       && (sram_dat11_y != loc_y - 8) && (sram_dat11_y != loc_y - 6);
       end
 
       if (shift8_en) begin
@@ -2662,7 +2665,7 @@ always @(*) begin
       end else begin
         dat12_en = (sram_dat12_x <= region2_right_x) && (sram_dat12_x >= region2_left_x)
                && (sram_dat12_y <= region2_up_y)    && (sram_dat12_y >= region2_down_y) 
-               && (sram_dat12_y != loc_y - 7)       && (sram_dat12_y != loc_y - 8);
+               && (sram_dat12_y != loc_y - 7)       && (sram_dat12_y != loc_y - 8) && (sram_dat12_y != loc_y - 6);
       end
 
       if (shift9_en) begin
@@ -2671,7 +2674,7 @@ always @(*) begin
       end else begin
         dat13_en = (sram_dat13_x <= region2_right_x) && (sram_dat13_x >= region2_left_x)
                && (sram_dat13_y <= region2_up_y)    && (sram_dat13_y >= region2_down_y) 
-               && (sram_dat13_y != loc_y - 7)       && (sram_dat13_y != loc_y - 8);
+               && (sram_dat13_y != loc_y - 7)       && (sram_dat13_y != loc_y - 8) && (sram_dat13_y != loc_y - 6);
       end
 
       if (shift10_en) begin
@@ -2680,7 +2683,7 @@ always @(*) begin
       end else begin
         dat14_en = (sram_dat14_x <= region2_right_x) && (sram_dat14_x >= region2_left_x)
                && (sram_dat14_y <= region2_up_y)    && (sram_dat14_y >= region2_down_y) 
-               && (sram_dat14_y != loc_y - 7)       && (sram_dat14_y != loc_y - 8);
+               && (sram_dat14_y != loc_y - 7)       && (sram_dat14_y != loc_y - 8) && (sram_dat14_y != loc_y - 6);
       end
 
       if (shift11_en) begin
@@ -2689,7 +2692,7 @@ always @(*) begin
       end else begin
         dat15_en = (sram_dat15_x <= region2_right_x) && (sram_dat15_x >= region2_left_x)
                && (sram_dat15_y <= region2_up_y)    && (sram_dat15_y >= region2_down_y) 
-               && (sram_dat15_y != loc_y - 7)       && (sram_dat15_y != loc_y - 8);
+               && (sram_dat15_y != loc_y - 7)       && (sram_dat15_y != loc_y - 8) && (sram_dat15_y != loc_y - 6);
       end
 
       if (shift12_en) begin
@@ -2698,7 +2701,7 @@ always @(*) begin
       end else begin
         dat0_en = (sram_dat0_x <= region2_right_x) && (sram_dat0_x >= region2_left_x)
                && (sram_dat0_y <= region2_up_y)    && (sram_dat0_y >= region2_down_y) 
-               && (sram_dat0_y != loc_y - 7)       && (sram_dat0_y != loc_y - 8);
+               && (sram_dat0_y != loc_y - 7)       && (sram_dat0_y != loc_y - 8) && (sram_dat0_y != loc_y - 6);
       end
 
       if (shift13_en) begin
@@ -2707,7 +2710,7 @@ always @(*) begin
       end else begin
         dat1_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
                && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y) 
-               && (sram_dat1_y != loc_y - 7)       && (sram_dat1_y != loc_y - 8);
+               && (sram_dat1_y != loc_y - 7)       && (sram_dat1_y != loc_y - 8) && (sram_dat1_y != loc_y - 6);
       end
 
       if (shift14_en) begin
@@ -2716,7 +2719,7 @@ always @(*) begin
       end else begin
         dat2_en = (sram_dat2_x <= region2_right_x) && (sram_dat2_x >= region2_left_x)
                && (sram_dat2_y <= region2_up_y)    && (sram_dat2_y >= region2_down_y) 
-               && (sram_dat2_y != loc_y - 7)       && (sram_dat2_y != loc_y - 8);
+               && (sram_dat2_y != loc_y - 7)       && (sram_dat2_y != loc_y - 8) && (sram_dat2_y != loc_y - 6);
       end
 
       if (shift15_en) begin
@@ -2725,7 +2728,7 @@ always @(*) begin
       end else begin
         dat3_en = (sram_dat3_x <= region2_right_x) && (sram_dat3_x >= region2_left_x)
                && (sram_dat3_y <= region2_up_y)    && (sram_dat3_y >= region2_down_y) 
-               && (sram_dat3_y != loc_y - 7)       && (sram_dat3_y != loc_y - 8);
+               && (sram_dat3_y != loc_y - 7)       && (sram_dat3_y != loc_y - 8) && (sram_dat3_y != loc_y - 6);
       end
     end
     ROT_270: begin
