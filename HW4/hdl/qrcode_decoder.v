@@ -1968,12 +1968,12 @@ always @(*) begin
       end
     end
     DECODE_DECODE1: begin // decode 6+6 word of region1
-      if (local_word_idx == 3'd5) begin
-        decode_state_n = DECODE_SWAP1_UP;
-        decode_addr = sram_raddr_jump1;
-      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         decode_addr = addr_pointer;
         decode_state_n = DECODE_IDLE;
+      end else if (local_word_idx == 3'd5) begin
+        decode_state_n = DECODE_SWAP1_UP;
+        decode_addr = sram_raddr_jump1;
       end else begin
         decode_addr = sram_raddr;
         decode_state_n = DECODE_DECODE1;
