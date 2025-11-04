@@ -455,9 +455,33 @@ always @(*) begin
   end
 end
 
+reg [4:0] finish_cnt ;
+reg finish_flag;
 
 assign sram_raddr = addr;
-assign finish = (addr == 1023);
+assign finish = (finish_cnt == 30);
+// start cnt up to 30 if addr == 1023
+always @(posedge clk) begin
+  if (!srst_n) begin
+    finish_flag <= 0;
+  end else if (addr == 1023) begin
+    finish_flag <= 1;
+  end else begin
+    finish_flag <= finish_flag;
+  end
+end 
+always @(posedge clk) begin
+  if (!srst_n) begin
+    finish_cnt <= 0;
+  end else if (finish_flag) begin
+    finish_cnt <= finish_cnt + 1;
+  end else begin
+    finish_cnt <= finish_cnt;
+  end
+end 
+
+
+
 // reg [9:0] finish_cnt;
 // assign finish = (finish_cnt == 250)? 1 :0 ;
 
