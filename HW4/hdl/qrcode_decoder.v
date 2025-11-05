@@ -2284,111 +2284,111 @@ always @(*) begin
   case (rot_state)
   ROT_0: begin
     // ----- region 1 ----- //
-    loc_x_decode_corner1_addr = loc_x + 20;
-    loc_y_decode_corner1_addr = loc_y + 20;
+    loc_x_decode_corner1_addr = (!large_qrcode_flag)? loc_x + 20: loc_x + 41;
+    loc_y_decode_corner1_addr = (!large_qrcode_flag)? loc_y + 20: loc_y + 41;
 
-    loc_x_decode_corner2_addr = loc_x + 20;
-    loc_y_decode_corner2_addr = loc_y + 9;
+    loc_x_decode_corner2_addr = (!large_qrcode_flag)? loc_x + 20: loc_x + 41;
+    loc_y_decode_corner2_addr = (!large_qrcode_flag)? loc_y + 9: loc_y + 18;
 
-    loc_x_decode_corner3_addr = loc_x + 11;
-    loc_y_decode_corner3_addr = loc_y + 20;
+    loc_x_decode_corner3_addr = (!large_qrcode_flag)? loc_x + 11: loc_x + 22;
+    loc_y_decode_corner3_addr = (!large_qrcode_flag)? loc_y + 20: loc_x + 41;
 
-    loc_x_decode_corner4_addr = loc_x + 11;
-    loc_y_decode_corner4_addr = loc_y + 9;
+    loc_x_decode_corner4_addr = (!large_qrcode_flag)? loc_x + 11: loc_x + 22;
+    loc_y_decode_corner4_addr = (!large_qrcode_flag)? loc_y + 9: loc_y + 18;
 
     // ----- region 2 ----- //
-    loc_x_decode_corner5_addr = loc_x + 12;
-    loc_y_decode_corner5_addr = loc_y + 8;
+    loc_x_decode_corner5_addr = (!large_qrcode_flag)? loc_x + 12: loc_x + 25;
+    loc_y_decode_corner5_addr = (!large_qrcode_flag)? loc_y + 8: loc_y + 17;
 
-    loc_x_decode_corner6_addr = loc_x + 12;
-    loc_y_decode_corner6_addr = loc_y;
+    loc_x_decode_corner6_addr = (!large_qrcode_flag)? loc_x + 12: loc_x + 25;
+    loc_y_decode_corner6_addr = (!large_qrcode_flag)? loc_y: loc_y + 0;
 
-    loc_x_decode_corner7_addr = loc_x + 9;
-    loc_y_decode_corner7_addr = loc_y + 8;
+    loc_x_decode_corner7_addr = (!large_qrcode_flag)? loc_x + 9: loc_x + 18;
+    loc_y_decode_corner7_addr = (!large_qrcode_flag)? loc_y + 8: loc_y + 17;
 
-    loc_x_decode_corner8_addr = loc_x + 9;
-    loc_y_decode_corner8_addr = loc_y;
+    loc_x_decode_corner8_addr = (!large_qrcode_flag)? loc_x + 9: loc_x + 18;
+    loc_y_decode_corner8_addr = (!large_qrcode_flag)? loc_y: loc_y + 0;
   end
   ROT_90: begin
     // ----- region 1 ----- //
-    loc_x_decode_corner1_addr = loc_x + 20;
-    loc_y_decode_corner1_addr = loc_y - 20;
+    loc_x_decode_corner1_addr = (!large_qrcode_flag)? loc_x + 20: loc_x + 41;
+    loc_y_decode_corner1_addr = (!large_qrcode_flag)? loc_y - 20: loc_y - 41;
 
-    loc_x_decode_corner2_addr = loc_x + 9;
-    loc_y_decode_corner2_addr = loc_y - 20;
+    loc_x_decode_corner2_addr = (!large_qrcode_flag)? loc_x + 9: loc_x + 18;
+    loc_y_decode_corner2_addr = (!large_qrcode_flag)? loc_y - 20: loc_y -41;
 
-    loc_x_decode_corner3_addr = loc_x + 20;
-    loc_y_decode_corner3_addr = loc_y - 11;
+    loc_x_decode_corner3_addr = (!large_qrcode_flag)? loc_x + 20: loc_x + 41;
+    loc_y_decode_corner3_addr = (!large_qrcode_flag)? loc_y - 11: loc_y - 22;
 
-    loc_x_decode_corner4_addr = loc_x + 9;
-    loc_y_decode_corner4_addr = loc_y - 11;
+    loc_x_decode_corner4_addr = (!large_qrcode_flag)? loc_x + 9: loc_x + 18;
+    loc_y_decode_corner4_addr = (!large_qrcode_flag)? loc_y - 11: loc_y - 22;
 
     // ----- region 2 ----- //
-    loc_x_decode_corner5_addr = loc_x + 8;
-    loc_y_decode_corner5_addr = loc_y - 12;
+    loc_x_decode_corner5_addr = (!large_qrcode_flag)? loc_x + 8: loc_x + 17;
+    loc_y_decode_corner5_addr = (!large_qrcode_flag)? loc_y - 12: loc_y -25;
 
-    loc_x_decode_corner6_addr = loc_x;
-    loc_y_decode_corner6_addr = loc_y - 12;
+    loc_x_decode_corner6_addr = (!large_qrcode_flag)? loc_x: loc_x;
+    loc_y_decode_corner6_addr = (!large_qrcode_flag)? loc_y - 12: loc_y - 25;
 
-    loc_x_decode_corner7_addr = loc_x + 8;
-    loc_y_decode_corner7_addr = loc_y - 9;
+    loc_x_decode_corner7_addr = (!large_qrcode_flag)? loc_x + 8: loc_x + 17;
+    loc_y_decode_corner7_addr = (!large_qrcode_flag)? loc_y - 9: loc_y - 18;
 
-    loc_x_decode_corner8_addr = loc_x;
-    loc_y_decode_corner8_addr = loc_y - 9;
+    loc_x_decode_corner8_addr = (!large_qrcode_flag)? loc_x: loc_x;
+    loc_y_decode_corner8_addr = (!large_qrcode_flag)? loc_y - 9: loc_y - 18;
   end
   ROT_180: begin
     // ----- region 1 ----- //
-    loc_x_decode_corner1_addr = loc_x - 20;
-    loc_y_decode_corner1_addr = loc_y - 20;
+    loc_x_decode_corner1_addr = (!large_qrcode_flag)? loc_x - 20: loc_x - 41;
+    loc_y_decode_corner1_addr = (!large_qrcode_flag)? loc_y - 20: loc_y - 41;
 
-    loc_x_decode_corner2_addr = loc_x - 20;
-    loc_y_decode_corner2_addr = loc_y - 9;
+    loc_x_decode_corner2_addr = (!large_qrcode_flag)? loc_x - 20: loc_x - 41;
+    loc_y_decode_corner2_addr = (!large_qrcode_flag)? loc_y - 9: loc_y - 18;
 
-    loc_x_decode_corner3_addr = loc_x - 11;
-    loc_y_decode_corner3_addr = loc_y - 20;
+    loc_x_decode_corner3_addr = (!large_qrcode_flag)? loc_x - 11: loc_x - 22;
+    loc_y_decode_corner3_addr = (!large_qrcode_flag)? loc_y - 20: loc_y - 41;
 
-    loc_x_decode_corner4_addr = loc_x - 11;
-    loc_y_decode_corner4_addr = loc_y - 9;
+    loc_x_decode_corner4_addr = (!large_qrcode_flag)? loc_x - 11: loc_x - 22;
+    loc_y_decode_corner4_addr = (!large_qrcode_flag)? loc_y - 9: loc_y - 18;
 
     // ----- region 2 ----- //
-    loc_x_decode_corner5_addr = loc_x - 12;
-    loc_y_decode_corner5_addr = loc_y - 8;
+    loc_x_decode_corner5_addr = (!large_qrcode_flag)? loc_x - 12: loc_x - 25;
+    loc_y_decode_corner5_addr = (!large_qrcode_flag)? loc_y - 8: loc_y - 17;
 
-    loc_x_decode_corner6_addr = loc_x - 12;
-    loc_y_decode_corner6_addr = loc_y;
+    loc_x_decode_corner6_addr = (!large_qrcode_flag)? loc_x - 12: loc_x - 25;
+    loc_y_decode_corner6_addr = (!large_qrcode_flag)? loc_y: loc_y;
 
-    loc_x_decode_corner7_addr = loc_x - 9;
-    loc_y_decode_corner7_addr = loc_y - 8;
+    loc_x_decode_corner7_addr = (!large_qrcode_flag)? loc_x - 9: loc_x - 18;
+    loc_y_decode_corner7_addr = (!large_qrcode_flag)? loc_y - 8: loc_y - 17;
 
-    loc_x_decode_corner8_addr = loc_x - 9;
-    loc_y_decode_corner8_addr = loc_y;
+    loc_x_decode_corner8_addr = (!large_qrcode_flag)? loc_x - 9: loc_x - 18;
+    loc_y_decode_corner8_addr = (!large_qrcode_flag)? loc_y: loc_y;
   end
   ROT_270: begin
     // ----- region 1 ----- //
-    loc_x_decode_corner1_addr = loc_x - 20;
-    loc_y_decode_corner1_addr = loc_y + 20;
+    loc_x_decode_corner1_addr = (!large_qrcode_flag)? loc_x - 20: loc_x - 41;
+    loc_y_decode_corner1_addr = (!large_qrcode_flag)? loc_y + 20: loc_x + 41;
 
-    loc_x_decode_corner2_addr = loc_x - 9;
-    loc_y_decode_corner2_addr = loc_y + 20;
+    loc_x_decode_corner2_addr = (!large_qrcode_flag)? loc_x - 9: loc_x - 18;
+    loc_y_decode_corner2_addr = (!large_qrcode_flag)? loc_y + 20: loc_y + 41;
 
-    loc_x_decode_corner3_addr = loc_x - 20;
-    loc_y_decode_corner3_addr = loc_y + 11;
+    loc_x_decode_corner3_addr = (!large_qrcode_flag)? loc_x - 20: loc_x - 41;
+    loc_y_decode_corner3_addr = (!large_qrcode_flag)? loc_y + 11: loc_y + 22;
 
-    loc_x_decode_corner4_addr = loc_x - 9;
-    loc_y_decode_corner4_addr = loc_y + 11;
+    loc_x_decode_corner4_addr = (!large_qrcode_flag)? loc_x - 9: loc_x - 18;
+    loc_y_decode_corner4_addr = (!large_qrcode_flag)? loc_y + 11: loc_y + 22;
 
     // ----- region 2 ----- //
-    loc_x_decode_corner5_addr = loc_x - 8;
-    loc_y_decode_corner5_addr = loc_y + 12;
+    loc_x_decode_corner5_addr = (!large_qrcode_flag)? loc_x - 8: loc_x - 17;
+    loc_y_decode_corner5_addr = (!large_qrcode_flag)? loc_y + 12: loc_y + 25;
 
-    loc_x_decode_corner6_addr = loc_x;
-    loc_y_decode_corner6_addr = loc_y + 12;
+    loc_x_decode_corner6_addr = (!large_qrcode_flag)? loc_x: loc_x;
+    loc_y_decode_corner6_addr = (!large_qrcode_flag)? loc_y + 12: loc_y + 25;
 
-    loc_x_decode_corner7_addr = loc_x - 8;
-    loc_y_decode_corner7_addr = loc_y + 9;
+    loc_x_decode_corner7_addr = (!large_qrcode_flag)? loc_x - 8: loc_x - 17;
+    loc_y_decode_corner7_addr = (!large_qrcode_flag)? loc_y + 9: loc_y + 18;
 
-    loc_x_decode_corner8_addr = loc_x;
-    loc_y_decode_corner8_addr = loc_y + 9;
+    loc_x_decode_corner8_addr = (!large_qrcode_flag)? loc_x: loc_x;
+    loc_y_decode_corner8_addr = (!large_qrcode_flag)? loc_y + 9: loc_y + 18;
   end
   default: begin
     loc_x_decode_corner1_addr = loc_x;
@@ -2614,30 +2614,6 @@ always @(*) begin
   end
 end
 
-// decode data coordinate
-reg [7:0] block1_region_x[0:9];
-reg [7:0] block1_region_y[0:11];
-reg [7:0] block2_region_x[0:3];
-reg [7:0] block2_region_y[0:7];
-
-integer a;
-integer b;
-integer c;
-integer d;
-always @(*) begin
-  for (a=0; a<9; a=a+1) begin
-    block1_region_x[a] = loc_x + 11 + a;
-  end
-  for (b=0; b<11; b=b+1) begin
-    block1_region_y[b] = loc_y + 9 + b;
-  end
-  for (c=0; c<3; c=c+1) begin
-    block2_region_x[c] = loc_x + 9 + c;
-  end
-  for (d=0; d<7; d=d+1) begin
-    block2_region_y[d] = loc_y + 0 + d;
-  end
-end
 // bit enable
 
 
