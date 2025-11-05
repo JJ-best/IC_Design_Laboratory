@@ -513,6 +513,8 @@ always @(*) begin
     CHECK_42: begin
       if (rot_cnt == 14) begin
         state_n = FIND;
+      end else if (check_rot42) begin
+        state_n = MASK1;
       end else begin
         state_n = CHECK_42;
       end
@@ -1574,6 +1576,20 @@ always @(*) begin
 
 end
 
+// ----- 42x42 qrcode flag ----- //
+reg large_qrcode_flag;
+always @(posedge clk) begin
+  if (!srst_n) begin
+    large_qrcode_flag <= 0;
+  end else if (check_rot42 && state == CHECK_42) begin 
+    large_qrcode_flag <= 1;
+  end else if (state == FIND) begin
+    large_qrcode_flag <= 0;
+  end else begin
+    large_qrcode_flag <= large_qrcode_flag;
+  end
+end
+
 // find the finder pattern position to find locx locy
 reg [3:0] pos_x_onehot_42;
 reg [3:0] pos_y_onehot_42; 
@@ -1706,7 +1722,7 @@ reg [6:0]loc_y_rot270_42;
 always @(*) begin
   // need to fix for 42x42 qrcode
   addr_finder = addr_pointer - 5;
-  addr_finder_42 = addr_pointer - 11; // some condition may need to - 11, fix latter
+  addr_finder_42 = addr_pointer - 11; // some condition may need to - 10, fix latter
 
   loc_x_finder = {3'b0, addr_finder[4:0], 2'b0} + pos_x_binary_reg;
   loc_y_finder = {3'b0, addr_finder[9:5], 2'b0} + pos_y_binary_reg;
@@ -1779,28 +1795,28 @@ reg [3:0]mask_inblock_addr3;
 always @(*) begin
   case (rot_state) // bit address
   ROT_0: begin
-    loc_x_mask_start = loc_x + 2;
-    loc_y_mask_start = loc_y + 8;
-    loc_x_mask_end   = loc_x + 4;
-    loc_y_mask_end   = loc_y + 8;
+    loc_x_mask_start = (!large_qrcode_flag)? loc_x + 2: loc_x + 5;
+    loc_y_mask_start = (!large_qrcode_flag)? loc_y + 8: loc_y + 16;
+    loc_x_mask_end   = (!large_qrcode_flag)? loc_x + 4: loc_x + 8;
+    loc_y_mask_end   = (!large_qrcode_flag)? loc_y + 8: loc_y + 16;
   end 
   ROT_90: begin
-    loc_x_mask_start = loc_x + 8;
-    loc_y_mask_start = loc_y - 2;
-    loc_x_mask_end   = loc_x + 8;
-    loc_y_mask_end   = loc_y - 4;
+    loc_x_mask_start = (!large_qrcode_flag)? loc_x + 8: loc_x + 16;
+    loc_y_mask_start = (!large_qrcode_flag)? loc_y - 2: loc_y - 5;
+    loc_x_mask_end   = (!large_qrcode_flag)? loc_x + 8: loc_x + 16;
+    loc_y_mask_end   = (!large_qrcode_flag)? loc_y - 4: loc_y - 8;
   end
   ROT_180: begin
-    loc_x_mask_start = loc_x - 2;
-    loc_y_mask_start = loc_y - 8;
-    loc_x_mask_end   = loc_x - 4;
-    loc_y_mask_end   = loc_y - 8;
+    loc_x_mask_start = (!large_qrcode_flag)? loc_x - 2: loc_x - 5;
+    loc_y_mask_start = (!large_qrcode_flag)? loc_y - 8: loc_y - 16;
+    loc_x_mask_end   = (!large_qrcode_flag)? loc_x - 4: loc_x - 8;
+    loc_y_mask_end   = (!large_qrcode_flag)? loc_y - 8: loc_y - 16;
   end
   ROT_270: begin
-    loc_x_mask_start = loc_x - 8;
-    loc_y_mask_start = loc_y + 2;
-    loc_x_mask_end   = loc_x - 8;
-    loc_y_mask_end   = loc_y + 4;
+    loc_x_mask_start = (!large_qrcode_flag)? loc_x - 8: loc_x - 16;
+    loc_y_mask_start = (!large_qrcode_flag)? loc_y + 2: loc_y + 5;
+    loc_x_mask_end   = (!large_qrcode_flag)? loc_x - 8: loc_x - 16;
+    loc_y_mask_end   = (!large_qrcode_flag)? loc_y + 4: loc_y + 8;
   end
   default: begin
     loc_x_mask_start = 0;
@@ -1857,80 +1873,80 @@ always @(*) begin
     ROT_0: begin
       case (loc_x_mask_inblock_addr_start)
       0: begin // all mask in same block
-        mask_id_n1 = row_sel[3:1];
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? row_sel[3:1]: {row_sel[3], row_sel[2], row_sel[0]};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: mask_id;
       end
       1: begin // all mask in same block
-        mask_id_n1 = row_sel[2:0];
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? row_sel[2:0]: {row_sel[2], row_sel[1], 1'b0}; 
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: {mask_id[2], mask_id[1], row_sel[3]};
       end
       2: begin // mask in diff block
-        mask_id_n1 = {row_sel[1:0], 1'b0};
-        mask_id_n2 = {mask_id[2:1], row_sel[3]};
+        mask_id_n1 = (!large_qrcode_flag)? {row_sel[1:0], 1'b0}: {row_sel[1], row_sel[0], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2:1], row_sel[3]}: {mask_id[2], mask_id[1], row_sel[2]};
       end
       3: begin // mask in diff block
-        mask_id_n1 = {row_sel[0], 2'b0};
-        mask_id_n2 = {mask_id[2], row_sel[3:2]};
+        mask_id_n1 = (!large_qrcode_flag)? {row_sel[0], 2'b0}: {row_sel[0], 2'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2], row_sel[3:2]}: {mask_id[2], row_sel[2], row_sel[1]};
       end 
       endcase
     end
     ROT_90: begin
       case (loc_y_mask_inblock_addr_start)
       0: begin
-        mask_id_n1 = {col_sel[0], 2'b0};
-        mask_id_n2 = {mask_id[2], col_sel[3:2]};
+        mask_id_n1 = (!large_qrcode_flag)? {col_sel[0], 2'b0}: {col_sel[0], 2'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2], col_sel[3:2]}: {mask_id[2], col_sel[2], col_sel[1]};
       end
       1: begin
-        mask_id_n1 = {col_sel[1:0], 1'b0};
-        mask_id_n2 = {mask_id[2:1], col_sel[3]};
+        mask_id_n1 = (!large_qrcode_flag)? {col_sel[1:0], 1'b0}: {col_sel[1], col_sel[0], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2:1], col_sel[3]}: {mask_id[2], mask_id[1], col_sel[2]};
       end
       2: begin
-        mask_id_n1 = col_sel[2:0];
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? col_sel[2:0]: {col_sel[2], col_sel[1], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: {mask_id[2], mask_id[1], col_sel[3]};
       end
       3: begin
-        mask_id_n1 = col_sel[3:1];
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? col_sel[3:1]: {col_sel[3], col_sel[2], col_sel[0]};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: mask_id;
       end
       endcase
     end
     ROT_180: begin
       case (loc_x_mask_inblock_addr_start) 
       0: begin
-        mask_id_n1 = {row_sel[3], 2'b0};
-        mask_id_n2 = {mask_id[2], row_sel[0], row_sel[1]};
+        mask_id_n1 = (!large_qrcode_flag)? {row_sel[3], 2'b0}: {row_sel[3], 2'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2], row_sel[0], row_sel[1]}: {mask_id[2], row_sel[1], row_sel[2]};
       end
       1: begin
-        mask_id_n1 = {row_sel[2], row_sel[3], 1'b0};
-        mask_id_n2 = {mask_id[2], mask_id[1], row_sel[0]};
+        mask_id_n1 = (!large_qrcode_flag)? {row_sel[2], row_sel[3], 1'b0}: {row_sel[2], row_sel[3], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2], mask_id[1], row_sel[0]}: {mask_id[2], mask_id[1], row_sel[1]};
       end
       2: begin
-        mask_id_n1 = {row_sel[1], row_sel[2], row_sel[3]};
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? {row_sel[1], row_sel[2], row_sel[3]}: {row_sel[1], row_sel[2], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: {mask_id[2], mask_id[1], row_sel[0]};
       end
       3: begin
-        mask_id_n1 = {row_sel[0], row_sel[1], row_sel[2]};
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? {row_sel[0], row_sel[1], row_sel[2]}: {row_sel[0], row_sel[1], row_sel[3]};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: mask_id;
       end
       endcase
     end
     ROT_270: begin
       case (loc_y_mask_inblock_addr_start)
       0: begin
-        mask_id_n1 = {col_sel[0], col_sel[1], col_sel[2]};
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? {col_sel[0], col_sel[1], col_sel[2]}: {col_sel[0], col_sel[1], col_sel[3]};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: mask_id;
       end
       1: begin
-        mask_id_n1 = {col_sel[1], col_sel[2], col_sel[3]};
-        mask_id_n2 = mask_id;
+        mask_id_n1 = (!large_qrcode_flag)? {col_sel[1], col_sel[2], col_sel[3]}: {col_sel[1], col_sel[2], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? mask_id: {mask_id[2], mask_id[1], col_sel[0]};
       end
       2: begin
-        mask_id_n1 = {col_sel[2], col_sel[3], 1'b0};
-        mask_id_n2 = {mask_id[2:1], col_sel[0]};
+        mask_id_n1 = (!large_qrcode_flag)? {col_sel[2], col_sel[3], 1'b0}: {col_sel[2], col_sel[3], 1'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2:1], col_sel[0]}: {mask_id[2], mask_id[1], col_sel[1]};
       end
       3: begin
-        mask_id_n1 = {col_sel[3], 2'b0};
-        mask_id_n2 = {mask_id[2], col_sel[0], col_sel[1]};
+        mask_id_n1 = (!large_qrcode_flag)? {col_sel[3], 2'b0}: {col_sel[3], 2'b0};
+        mask_id_n2 = (!large_qrcode_flag)? {mask_id[2], col_sel[0], col_sel[1]}: {mask_id[2], col_sel[1], col_sel[2]};
       end
       endcase
     end
