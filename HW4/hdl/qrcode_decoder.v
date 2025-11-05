@@ -80,6 +80,8 @@ reg [(12*block_size-1):0] row4_42;
 
 reg up_direction;   // find the other one finder pattern from up direction
 reg down_direction; // find the other one finder pattern from down direction
+reg up_direction_42;
+reg down_direction_42;
 reg [3:0] rot_cnt;
 reg [3:0] rot_cnt_n;
 reg check_row11_21;
@@ -143,6 +145,7 @@ reg check_row_43_21_zero;
 reg check_row_44_21_zero;
 
 reg check; // if any row match qrcode_find1
+reg check_42; // if any row match qrcode_find2
 
 // find rotation
 // row1
@@ -166,10 +169,74 @@ reg check_rot42_21;
 reg check_rot4;
 reg check_zero4_21;
 
-reg check_rot; // check the rotation flag
+// ----- 42x42 qrcode ----- //
+reg check_row11_42;
+reg check_row12_42;
+reg check_row13_42;
+reg check_row14_42;
 
+reg check_row21_42;
+reg check_row22_42;
+reg check_row23_42;
+reg check_row24_42;
+
+reg check_row31_42;
+reg check_row32_42;
+reg check_row33_42;
+reg check_row34_42;
+
+reg check_row41_42;
+reg check_row42_42;
+reg check_row43_42;
+reg check_row44_42;
+
+reg check_row11_42_direction;
+reg check_row12_42_direction;
+reg check_row13_42_direction;
+reg check_row14_42_direction;
+
+reg check_row21_42_direction;
+reg check_row22_42_direction;
+reg check_row23_42_direction;
+reg check_row24_42_direction;
+
+reg check_row31_42_direction;
+reg check_row32_42_direction;
+reg check_row33_42_direction;
+reg check_row34_42_direction;
+
+reg check_row41_42_direction;
+reg check_row42_42_direction;
+reg check_row43_42_direction;
+reg check_row44_42_direction;
+
+reg check_row_11_42_zero;
+reg check_row_12_42_zero;
+reg check_row_13_42_zero;
+reg check_row_14_42_zero;
+
+reg check_row_21_42_zero;
+reg check_row_22_42_zero;
+reg check_row_23_42_zero;
+reg check_row_24_42_zero;
+
+reg check_row_31_42_zero;
+reg check_row_32_42_zero;
+reg check_row_33_42_zero;
+reg check_row_34_42_zero;
+
+reg check_row_41_42_zero;
+reg check_row_42_42_zero;
+reg check_row_43_42_zero;
+reg check_row_44_42_zero;
+// ----- 42x42 qrcode ----- //
+
+reg check_rot; // check the rotation flag
+reg check_rot42;
 reg rot_left;
 reg rot_right;
+reg rot_left42;
+reg rot_right42;
 
 reg [3:0]pos_x_onehot;
 reg [3:0]pos_y_onehot;
@@ -712,7 +779,61 @@ always @(*) begin
              line12[0], line13[0], line14[0], line15[0]};
 end
 
+//row word 48 bit
+// add here
+always @(*) begin
+  row1_42 = {line0[11], line1[11], line2[11], line3[11],
+             line0[10], line1[10], line2[10], line3[10],
+             line0[9],  line1[9],  line2[9],  line3[9],
+             line0[8],  line1[8],  line2[8],  line3[8],
+             line0[7],  line1[7],  line2[7],  line3[7],
+             line0[6],  line1[6],  line2[6],  line3[6],
+             line0[5],  line1[5],  line2[5],  line3[5],
+             line0[4],  line1[4],  line2[4],  line3[4],
+             line0[3],  line1[3],  line2[3],  line3[3],
+             line0[2],  line1[2],  line2[2],  line3[2],
+             line0[1],  line1[1],  line2[1],  line3[1],
+             line0[0],  line1[0],  line2[0],  line3[0]};
 
+  row2_42 = {line4[11], line5[11], line6[11], line7[11],
+             line4[10], line5[10], line6[10], line7[10],
+             line4[9],  line5[9],  line6[9],  line7[9],
+             line4[8],  line5[8],  line6[8],  line7[8],
+             line4[7],  line5[7],  line6[7],  line7[7],
+             line4[6],  line5[6],  line6[6],  line7[6],
+             line4[5],  line5[5],  line6[5],  line7[5],
+             line4[4],  line5[4],  line6[4],  line7[4],
+             line4[3],  line5[3],  line6[3],  line7[3],
+             line4[2],  line5[2],  line6[2],  line7[2],
+             line4[1],  line5[1],  line6[1],  line7[1],
+             line4[0],  line5[0],  line6[0],  line7[0]};
+
+  row3_42 = {line8[11],  line9[11],  line10[11], line11[11],
+             line8[10],  line9[10],  line10[10], line11[10],
+             line8[9],   line9[9],   line10[9],  line11[9],
+             line8[8],   line9[8],   line10[8],  line11[8],
+             line8[7],   line9[7],   line10[7],  line11[7],
+             line8[6],   line9[6],   line10[6],  line11[6],
+             line8[5],   line9[5],   line10[5],  line11[5],
+             line8[4],   line9[4],   line10[4],  line11[4],
+             line8[3],   line9[3],   line10[3],  line11[3],
+             line8[2],   line9[2],   line10[2],  line11[2],
+             line8[1],   line9[1],   line10[1],  line11[1],
+             line8[0],   line9[0],   line10[0],  line11[0]};
+
+  row4_42 = {line12[11], line13[11], line14[11], line15[11],
+             line12[10], line13[10], line14[10], line15[10],
+             line12[9],  line13[9],  line14[9],  line15[9],
+             line12[8],  line13[8],  line14[8],  line15[8],
+             line12[7],  line13[7],  line14[7],  line15[7],
+             line12[6],  line13[6],  line14[6],  line15[6],
+             line12[5],  line13[5],  line14[5],  line15[5],
+             line12[4],  line13[4],  line14[4],  line15[4],
+             line12[3],  line13[3],  line14[3],  line15[3],
+             line12[2],  line13[2],  line14[2],  line15[2],
+             line12[1],  line13[1],  line14[1],  line15[1],
+             line12[0],  line13[0],  line14[0],  line15[0]};
+end
 
 // ----- region 2 decode data ----- //
 // if lower than the loc_finder, use these data, else sram_rdata[i]
@@ -1021,10 +1142,122 @@ always @(*) begin
   check_row44_21_direction = ~|({row4_21[20:14] ^ qrcode_find1_direction[20:14],
                                  row4_21[6:0]   ^ qrcode_find1_direction[6:0]});
 
+
+    // ----- 42x42 finder pattern check ----- //
+  check_row11_42 = ~|(row1_42[47:6] ^ qrcode_find2);
+  check_row12_42 = ~|(row1_42[46:5] ^ qrcode_find2);
+  check_row13_42 = ~|(row1_42[45:4] ^ qrcode_find2);
+  check_row14_42 = ~|(row1_42[44:3] ^ qrcode_find2);
+  check_row11_42_direction = ~|({row1_42[47:34] ^ qrcode_find2_direction[41:28],
+                                 row1_42[19:6]  ^ qrcode_find2_direction[13:0]});
+  check_row12_42_direction = ~|({row1_42[46:33] ^ qrcode_find2_direction[41:28],
+                                 row1_42[18:5]  ^ qrcode_find2_direction[13:0]});
+  check_row13_42_direction = ~|({row1_42[45:32] ^ qrcode_find2_direction[41:28],
+                                 row1_42[17:4]  ^ qrcode_find2_direction[13:0]});
+  check_row14_42_direction = ~|({row1_42[44:31] ^ qrcode_find2_direction[41:28],
+                                 row1_42[16:3]  ^ qrcode_find2_direction[13:0]});
+  check_row_11_42_zero = ~|({row1_42[47:34] ^ qrcode_find2_14bitzero,
+                             row1_42[19:6]  ^ qrcode_find2_14bitzero});
+  check_row_12_42_zero = ~|({row1_42[46:33] ^ qrcode_find2_14bitzero,
+                             row1_42[18:5]  ^ qrcode_find2_14bitzero});
+  check_row_13_42_zero = ~|({row1_42[45:32] ^ qrcode_find2_14bitzero,
+                             row1_42[17:4]  ^ qrcode_find2_14bitzero});
+  check_row_14_42_zero = ~|({row1_42[44:31] ^ qrcode_find2_14bitzero,
+                             row1_42[16:3]  ^ qrcode_find2_14bitzero});
+
+  check_row21_42 = ~|(row2_42[47:6] ^ qrcode_find2);
+  check_row22_42 = ~|(row2_42[46:5] ^ qrcode_find2);
+  check_row23_42 = ~|(row2_42[45:4] ^ qrcode_find2);
+  check_row24_42 = ~|(row2_42[44:3] ^ qrcode_find2);
+  check_row21_42_direction = ~|({row2_42[47:34] ^ qrcode_find2_direction[41:28],
+                                 row2_42[19:6]  ^ qrcode_find2_direction[13:0]});
+  check_row22_42_direction = ~|({row2_42[46:33] ^ qrcode_find2_direction[41:28],
+                                 row2_42[18:5]  ^ qrcode_find2_direction[13:0]});
+  check_row23_42_direction = ~|({row2_42[45:32] ^ qrcode_find2_direction[41:28],
+                                 row2_42[17:4]  ^ qrcode_find2_direction[13:0]});
+  check_row24_42_direction = ~|({row2_42[44:31] ^ qrcode_find2_direction[41:28],
+                                 row2_42[16:3]  ^ qrcode_find2_direction[13:0]});
+  check_row_21_42_zero = ~|({row2_42[47:34] ^ qrcode_find2_14bitzero,
+                             row2_42[19:6]  ^ qrcode_find2_14bitzero});
+  check_row_22_42_zero = ~|({row2_42[46:33] ^ qrcode_find2_14bitzero,
+                             row2_42[18:5]  ^ qrcode_find2_14bitzero});
+  check_row_23_42_zero = ~|({row2_42[45:32] ^ qrcode_find2_14bitzero,
+                             row2_42[17:4]  ^ qrcode_find2_14bitzero});
+  check_row_24_42_zero = ~|({row2_42[44:31] ^ qrcode_find2_14bitzero,
+                             row2_42[16:3]  ^ qrcode_find2_14bitzero});
+
+  check_row31_42 = ~|(row3_42[47:6] ^ qrcode_find2);
+  check_row32_42 = ~|(row3_42[46:5] ^ qrcode_find2);
+  check_row33_42 = ~|(row3_42[45:4] ^ qrcode_find2);
+  check_row34_42 = ~|(row3_42[44:3] ^ qrcode_find2);
+  check_row31_42_direction = ~|({row3_42[47:34] ^ qrcode_find2_direction[41:28],
+                                 row3_42[19:6]  ^ qrcode_find2_direction[13:0]});
+  check_row32_42_direction = ~|({row3_42[46:33] ^ qrcode_find2_direction[41:28],
+                                 row3_42[18:5]  ^ qrcode_find2_direction[13:0]});
+  check_row33_42_direction = ~|({row3_42[45:32] ^ qrcode_find2_direction[41:28],
+                                 row3_42[17:4]  ^ qrcode_find2_direction[13:0]});
+  check_row34_42_direction = ~|({row3_42[44:31] ^ qrcode_find2_direction[41:28],
+                                 row3_42[16:3]  ^ qrcode_find2_direction[13:0]});
+  check_row_31_42_zero = ~|({row3_42[47:34] ^ qrcode_find2_14bitzero,
+                             row3_42[19:6]  ^ qrcode_find2_14bitzero});
+  check_row_32_42_zero = ~|({row3_42[46:33] ^ qrcode_find2_14bitzero,
+                             row3_42[18:5]  ^ qrcode_find2_14bitzero});
+  check_row_33_42_zero = ~|({row3_42[45:32] ^ qrcode_find2_14bitzero,
+                             row3_42[17:4]  ^ qrcode_find2_14bitzero});
+  check_row_34_42_zero = ~|({row3_42[44:31] ^ qrcode_find2_14bitzero,
+                             row3_42[16:3]  ^ qrcode_find2_14bitzero});
+
+  check_row41_42 = ~|(row4_42[47:6] ^ qrcode_find2);
+  check_row42_42 = ~|(row4_42[46:5] ^ qrcode_find2);
+  check_row43_42 = ~|(row4_42[45:4] ^ qrcode_find2);
+  check_row44_42 = ~|(row4_42[44:3] ^ qrcode_find2);
+  check_row41_42_direction = ~|({row4_42[47:34] ^ qrcode_find2_direction[41:28],
+                                 row4_42[19:6]  ^ qrcode_find2_direction[13:0]});
+  check_row42_42_direction = ~|({row4_42[46:33] ^ qrcode_find2_direction[41:28],
+                                 row4_42[18:5]  ^ qrcode_find2_direction[13:0]});
+  check_row43_42_direction = ~|({row4_42[45:32] ^ qrcode_find2_direction[41:28],
+                                 row4_42[17:4]  ^ qrcode_find2_direction[13:0]});
+  check_row44_42_direction = ~|({row4_42[44:31] ^ qrcode_find2_direction[41:28],
+                                 row4_42[16:3]  ^ qrcode_find2_direction[13:0]});
+  check_row_41_42_zero = ~|({row4_42[47:34] ^ qrcode_find2_14bitzero,
+                             row4_42[19:6]  ^ qrcode_find2_14bitzero});
+  check_row_42_42_zero = ~|({row4_42[46:33] ^ qrcode_find2_14bitzero,
+                             row4_42[18:5]  ^ qrcode_find2_14bitzero});
+  check_row_43_42_zero = ~|({row4_42[45:32] ^ qrcode_find2_14bitzero,
+                             row4_42[17:4]  ^ qrcode_find2_14bitzero});
+  check_row_44_42_zero = ~|({row4_42[44:31] ^ qrcode_find2_14bitzero,
+                             row4_42[16:3]  ^ qrcode_find2_14bitzero});
+
+// jump to check rotation
   check = check_row11_21 | check_row12_21 | check_row13_21 | check_row14_21 |
           check_row21_21 | check_row22_21 | check_row23_21 | check_row24_21 | 
           check_row31_21 | check_row32_21 | check_row33_21 | check_row34_21 | 
           check_row41_21 | check_row42_21 | check_row43_21 | check_row44_21;
+
+  check_42 = (check_row11_42 & check_row21_42) | (check_row11_42_direction & check_row21_42 & check_row31_42) |
+             (check_row21_42_direction & check_row31_42 & check_row41_42) | (check_row31_42_direction & check_row41_42) | 
+             (check_row11_42 & check_row21_42_direction) | (check_row21_42 & check_row31_42_direction) |
+             (check_row31_42 & check_row41_42_direction) | 
+
+             (check_row12_42 & check_row22_42) | (check_row12_42_direction & check_row22_42 & check_row32_42) |
+             (check_row22_42_direction & check_row32_42 & check_row42_42) | (check_row32_42_direction & check_row42_42) | 
+             (check_row12_42 & check_row22_42_direction) | (check_row22_42 & check_row32_42_direction) |
+             (check_row32_42 & check_row42_42_direction) |
+
+             (check_row13_42 & check_row23_42) | (check_row13_42_direction & check_row23_42 & check_row33_42) |
+             (check_row23_42_direction & check_row33_42 & check_row43_42) | (check_row33_42_direction & check_row43_42) | 
+             (check_row13_42 & check_row23_42_direction) | (check_row23_42 & check_row33_42_direction) |
+             (check_row33_42 & check_row43_42_direction) |
+
+             (check_row14_42 & check_row24_42) | (check_row14_42_direction & check_row24_42 & check_row34_42) |
+             (check_row24_42_direction & check_row34_42 & check_row44_42) | (check_row34_42_direction & check_row44_42) | 
+             (check_row14_42 & check_row24_42_direction) | (check_row24_42 & check_row34_42_direction) |
+             (check_row34_42 & check_row44_42_direction);
+
+  // check_42 = check_row11_42 | check_row12_42 | check_row13_42 | check_row14_42 |
+  //            check_row21_42 | check_row22_42 | check_row23_42 | check_row24_42 |
+  //            check_row31_42 | check_row32_42 | check_row33_42 | check_row34_42 |
+  //            check_row41_42 | check_row42_42 | check_row43_42 | check_row44_42;
 
   down_direction = (check_row_21_21_zero & check_row11_21) | (check_row_22_21_zero & check_row12_21) |
                    (check_row_23_21_zero & check_row13_21) | (check_row_24_21_zero & check_row14_21) |
@@ -1043,6 +1276,24 @@ always @(*) begin
                  (check_row33_21 & check_row43_21_direction) | (check_row34_21 & check_row44_21_direction) |
                  (check_row41_21 & check_row_31_21_zero) | (check_row42_21 & check_row_32_21_zero) |
                  (check_row43_21 & check_row_33_21_zero) | (check_row44_21 & check_row_34_21_zero);
+
+  down_direction_42 = (check_row11_42 & check_row21_42) | (check_row21_42 & check_row11_42_direction) |
+                      (check_row31_42 & check_row21_42_direction) | (check_row41_42 & check_row31_42_direction)|
+                      (check_row12_42 & check_row22_42) | (check_row22_42 & check_row12_42_direction) |
+                      (check_row32_42 & check_row22_42_direction) | (check_row42_42 & check_row32_42_direction)|
+                      (check_row13_42 & check_row23_42) | (check_row23_42 & check_row13_42_direction) |
+                      (check_row33_42 & check_row23_42_direction) | (check_row43_42 & check_row33_42_direction)|
+                      (check_row14_42 & check_row24_42) | (check_row24_42 & check_row14_42_direction) |
+                      (check_row34_42 & check_row24_42_direction) | (check_row44_42 & check_row34_42_direction);
+
+  up_direction_42 = (check_row11_42 & check_row21_42_direction) | (check_row21_42 & check_row31_42_direction) |
+                    (check_row31_42 & check_row41_42_direction) | (check_row_31_42_zero & check_row41_42) |
+                    (check_row12_42 & check_row22_42_direction) | (check_row22_42 & check_row32_42_direction) |
+                    (check_row32_42 & check_row42_42_direction) | (check_row_32_42_zero & check_row42_42) |
+                    (check_row13_42 & check_row23_42_direction) | (check_row23_42 & check_row33_42_direction) |
+                    (check_row33_42 & check_row43_42_direction) | (check_row_33_42_zero & check_row43_42) |
+                    (check_row14_42 & check_row24_42_direction) | (check_row24_42 & check_row34_42_direction) |
+                    (check_row34_42 & check_row44_42_direction) | (check_row_34_42_zero & check_row44_42);
 end
 
 // find rotation: check 1011101 pattern position
@@ -1076,11 +1327,62 @@ reg check_rot42_21_d;
 reg check_rot43_21_d;
 reg check_rot44_21_d;
 
+// ----- 42x42 qrcode ----- //
+reg check_rot11_42;
+reg check_rot12_42;
+reg check_rot13_42;
+reg check_rot14_42;
+reg check_rot21_42;
+reg check_rot22_42;
+reg check_rot23_42;
+reg check_rot24_42;
+reg check_rot31_42;
+reg check_rot32_42;
+reg check_rot33_42;
+reg check_rot34_42;
+reg check_rot41_42;
+reg check_rot42_42;
+reg check_rot43_42;
+reg check_rot44_42;
+
+reg check_rot11_42_d;
+reg check_rot12_42_d;
+reg check_rot13_42_d;
+reg check_rot14_42_d;
+reg check_rot21_42_d;
+reg check_rot22_42_d;
+reg check_rot23_42_d;
+reg check_rot24_42_d;
+reg check_rot31_42_d;
+reg check_rot32_42_d;
+reg check_rot33_42_d;
+reg check_rot34_42_d;
+reg check_rot41_42_d;
+reg check_rot42_42_d;
+reg check_rot43_42_d;
+reg check_rot44_42_d;
+
+reg check_rot1_42;
+reg check_rot2_42;
+reg check_rot3_42;
+reg check_rot4_42;
+
+reg check_zero1_42;
+reg check_zero2_42;
+reg check_zero3_42;
+reg check_zero4_42;
 
 reg check_rot_col1;
 reg check_rot_col2;
 reg check_rot_col3;
 reg check_rot_col4;
+
+reg check_rot_col1_42;
+reg check_rot_col2_42;
+reg check_rot_col3_42;
+reg check_rot_col4_42;
+
+// remember implement for 42x42 qrcode
 always @(*) begin
   check_rot11_21 = ~|(row1_21[6:0] ^ qrcode_find1_rotation); // row1_21 == 1011101
   check_rot12_21 = ~|(row1_21[7:1] ^ qrcode_find1_rotation);
@@ -1139,13 +1441,84 @@ always @(*) begin
                    (check_rot34_21 & check_rot44_21_d) | (check_rot14_21_d & check_rot24_21) |
                    (check_rot24_21_d & check_rot34_21) | (check_rot34_21_d & check_rot44_21);
 
+    // ----- 42x42 rotation check -----
+  check_rot11_42 = ~|(row1_42[13:0] ^ qrcode_find2_rotation);// 1100111_1110011
+  check_rot12_42 = ~|(row1_42[14:1] ^ qrcode_find2_rotation);
+  check_rot13_42 = ~|(row1_42[15:2] ^ qrcode_find2_rotation);
+  check_rot14_42 = ~|(row1_42[16:3] ^ qrcode_find2_rotation);
+  check_rot11_42_d = ~|(row1_42[13:0] ^ qrcode_find2_rot_double_check);// 1100000_0000011
+  check_rot12_42_d = ~|(row1_42[14:1] ^ qrcode_find2_rot_double_check);
+  check_rot13_42_d = ~|(row1_42[15:2] ^ qrcode_find2_rot_double_check);
+  check_rot14_42_d = ~|(row1_42[16:3] ^ qrcode_find2_rot_double_check);
+  check_rot1_42 = check_rot11_42 | check_rot12_42 | check_rot13_42 | check_rot14_42;
+  check_zero1_42 = ~|row1_42[47:20];
+
+  check_rot21_42 = ~|(row2_42[13:0] ^ qrcode_find2_rotation);
+  check_rot22_42 = ~|(row2_42[14:1] ^ qrcode_find2_rotation);
+  check_rot23_42 = ~|(row2_42[15:2] ^ qrcode_find2_rotation);
+  check_rot24_42 = ~|(row2_42[16:3] ^ qrcode_find2_rotation);
+  check_rot21_42_d = ~|(row2_42[13:0] ^ qrcode_find2_rot_double_check);
+  check_rot22_42_d = ~|(row2_42[14:1] ^ qrcode_find2_rot_double_check);
+  check_rot23_42_d = ~|(row2_42[15:2] ^ qrcode_find2_rot_double_check);
+  check_rot24_42_d = ~|(row2_42[16:3] ^ qrcode_find2_rot_double_check);
+  check_rot2_42 = check_rot21_42 | check_rot22_42 | check_rot23_42 | check_rot24_42;
+  check_zero2_42 = ~|row2_42[47:20];
+
+  check_rot31_42 = ~|(row3_42[13:0] ^ qrcode_find2_rotation);
+  check_rot32_42 = ~|(row3_42[14:1] ^ qrcode_find2_rotation);
+  check_rot33_42 = ~|(row3_42[15:2] ^ qrcode_find2_rotation);
+  check_rot34_42 = ~|(row3_42[16:3] ^ qrcode_find2_rotation);
+  check_rot31_42_d = ~|(row3_42[13:0] ^ qrcode_find2_rot_double_check);
+  check_rot32_42_d = ~|(row3_42[14:1] ^ qrcode_find2_rot_double_check);
+  check_rot33_42_d = ~|(row3_42[15:2] ^ qrcode_find2_rot_double_check);
+  check_rot34_42_d = ~|(row3_42[16:3] ^ qrcode_find2_rot_double_check);
+  check_rot3_42 = check_rot31_42 | check_rot32_42 | check_rot33_42 | check_rot34_42;
+  check_zero3_42 = ~|row3_42[47:20];
+
+  check_rot41_42 = ~|(row4_42[13:0] ^ qrcode_find2_rotation);
+  check_rot42_42 = ~|(row4_42[14:1] ^ qrcode_find2_rotation);
+  check_rot43_42 = ~|(row4_42[15:2] ^ qrcode_find2_rotation);
+  check_rot44_42 = ~|(row4_42[16:3] ^ qrcode_find2_rotation);
+  check_rot41_42_d = ~|(row4_42[13:0] ^ qrcode_find2_rot_double_check);
+  check_rot42_42_d = ~|(row4_42[14:1] ^ qrcode_find2_rot_double_check);
+  check_rot43_42_d = ~|(row4_42[15:2] ^ qrcode_find2_rot_double_check);
+  check_rot44_42_d = ~|(row4_42[16:3] ^ qrcode_find2_rot_double_check);
+  check_rot4_42 = check_rot41_42 | check_rot42_42 | check_rot43_42 | check_rot44_42;
+  check_zero4_42 = ~|row4_42[47:20];
+// need to add rot_col for 42x42 qrcode
+
+  check_rot_col1_42 = (check_rot21_42 & check_rot31_42) | (check_rot31_42 & check_rot41_42_d) |
+                      (check_rot21_42 & check_rot31_42_d) | (check_rot11_42 & check_rot21_42_d) | 
+                      (check_rot11_42_d & check_rot21_42) | (check_rot21_42_d & check_rot31_42) |
+                      (check_rot31_42_d & (check_rot41_42));
+  check_rot_col2_42 = (check_rot22_42 & check_rot32_42) | (check_rot32_42 & check_rot42_42_d) |
+                      (check_rot22_42 & check_rot32_42_d) | (check_rot12_42 & check_rot22_42_d) | 
+                      (check_rot12_42_d & check_rot22_42) | (check_rot22_42_d & check_rot32_42) |
+                      (check_rot32_42_d & (check_rot42_42));
+  check_rot_col3_42 = (check_rot23_42 & check_rot33_42) | (check_rot33_42 & check_rot43_42_d) |
+                      (check_rot23_42 & check_rot33_42_d) | (check_rot13_42 & check_rot23_42_d) | 
+                      (check_rot13_42_d & check_rot23_42) | (check_rot23_42_d & check_rot33_42) |
+                      (check_rot33_42_d & (check_rot43_42));
+  check_rot_col4_42 = (check_rot24_42 & check_rot34_42) | (check_rot34_42 & check_rot44_42_d) |
+                      (check_rot24_42 & check_rot34_42_d) | (check_rot14_42 & check_rot24_42_d) | 
+                      (check_rot14_42_d & check_rot24_42) | (check_rot24_42_d & check_rot34_42) |
+                      (check_rot34_42_d & (check_rot44_42));
+ 
+
   check_rot = (check_rot_col1 | check_rot_col2 | check_rot_col3 | check_rot_col4) && (rot_left | rot_right);
-  // check_rot = check_rot1 | check_rot2 | check_rot3 | check_rot4;
+
+  check_rot42 = (check_rot_col1_42 | check_rot_col2_42 | check_rot_col3_42 | check_rot_col4_42);
+
 
   rot_left = (check_rot1 | check_rot2 | check_rot3 | check_rot4) &&
              (check_zero1_21 && check_zero2_21 && check_zero3_21 && check_zero4_21);
   rot_right = (check_rot1 | check_rot2 | check_rot3 | check_rot4) && 
               ((!check_zero1_21) | (!check_zero2_21) | (!check_zero3_21) | (!check_zero4_21));
+
+  rot_left42 = (check_rot1_42 | check_rot2_42 | check_rot3_42 | check_rot4_42) && 
+               (check_zero1_42 && check_zero2_42 && check_zero3_42 && check_zero4_42);
+  rot_right42 = (check_rot1_42 | check_rot2_42 | check_rot3_42 | check_rot4_42) && 
+              ((!check_zero1_42) | (!check_zero2_42) | (!check_zero3_42) | (!check_zero4_42));
 
 end
 
