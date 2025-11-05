@@ -230,6 +230,8 @@ reg check_row_41_42_zero;
 reg check_row_42_42_zero;
 reg check_row_43_42_zero;
 reg check_row_44_42_zero;
+
+reg large_qrcode_flag;
 // ----- 42x42 qrcode ----- //
 
 reg check_rot; // check the rotation flag
@@ -296,6 +298,57 @@ reg [6:0] i12_sym; reg [6:0] j12_sym;
 reg [6:0] i13_sym; reg [6:0] j13_sym;
 reg [6:0] i14_sym; reg [6:0] j14_sym;
 reg [6:0] i15_sym; reg [6:0] j15_sym;
+
+wire [6:0] i0_mask;  wire [6:0] j0_mask;
+wire [6:0] i1_mask;  wire [6:0] j1_mask;
+wire [6:0] i2_mask;  wire [6:0] j2_mask;
+wire [6:0] i3_mask;  wire [6:0] j3_mask;
+wire [6:0] i4_mask;  wire [6:0] j4_mask;
+wire [6:0] i5_mask;  wire [6:0] j5_mask;
+wire [6:0] i6_mask;  wire [6:0] j6_mask;
+wire [6:0] i7_mask;  wire [6:0] j7_mask;
+wire [6:0] i8_mask;  wire [6:0] j8_mask;
+wire [6:0] i9_mask;  wire [6:0] j9_mask;
+wire [6:0] i10_mask; wire [6:0] j10_mask;
+wire [6:0] i11_mask; wire [6:0] j11_mask;
+wire [6:0] i12_mask; wire [6:0] j12_mask;
+wire [6:0] i13_mask; wire [6:0] j13_mask;
+wire [6:0] i14_mask; wire [6:0] j14_mask;
+wire [6:0] i15_mask; wire [6:0] j15_mask;
+
+assign i0_mask  = (large_qrcode_flag)? {1'b0, i0_sym[6:1]}   : i0_sym;
+assign i1_mask  = (large_qrcode_flag)? {1'b0, i1_sym[6:1]}   : i1_sym;
+assign i2_mask  = (large_qrcode_flag)? {1'b0, i2_sym[6:1]}   : i2_sym;
+assign i3_mask  = (large_qrcode_flag)? {1'b0, i3_sym[6:1]}   : i3_sym;
+assign i4_mask  = (large_qrcode_flag)? {1'b0, i4_sym[6:1]}   : i4_sym;
+assign i5_mask  = (large_qrcode_flag)? {1'b0, i5_sym[6:1]}   : i5_sym;
+assign i6_mask  = (large_qrcode_flag)? {1'b0, i6_sym[6:1]}   : i6_sym;
+assign i7_mask  = (large_qrcode_flag)? {1'b0, i7_sym[6:1]}   : i7_sym;
+assign i8_mask  = (large_qrcode_flag)? {1'b0, i8_sym[6:1]}   : i8_sym;
+assign i9_mask  = (large_qrcode_flag)? {1'b0, i9_sym[6:1]}   : i9_sym;
+assign i10_mask = (large_qrcode_flag)? {1'b0, i10_sym[6:1]}  : i10_sym;
+assign i11_mask = (large_qrcode_flag)? {1'b0, i11_sym[6:1]}  : i11_sym;
+assign i12_mask = (large_qrcode_flag)? {1'b0, i12_sym[6:1]}  : i12_sym;
+assign i13_mask = (large_qrcode_flag)? {1'b0, i13_sym[6:1]}  : i13_sym;
+assign i14_mask = (large_qrcode_flag)? {1'b0, i14_sym[6:1]}  : i14_sym;
+assign i15_mask = (large_qrcode_flag)? {1'b0, i15_sym[6:1]}  : i15_sym;
+
+assign j0_mask  = (large_qrcode_flag)? {1'b0, j0_sym[6:1]}   : j0_sym;
+assign j1_mask  = (large_qrcode_flag)? {1'b0, j1_sym[6:1]}   : j1_sym;
+assign j2_mask  = (large_qrcode_flag)? {1'b0, j2_sym[6:1]}   : j2_sym;
+assign j3_mask  = (large_qrcode_flag)? {1'b0, j3_sym[6:1]}   : j3_sym;
+assign j4_mask  = (large_qrcode_flag)? {1'b0, j4_sym[6:1]}   : j4_sym;
+assign j5_mask  = (large_qrcode_flag)? {1'b0, j5_sym[6:1]}   : j5_sym;
+assign j6_mask  = (large_qrcode_flag)? {1'b0, j6_sym[6:1]}   : j6_sym;
+assign j7_mask  = (large_qrcode_flag)? {1'b0, j7_sym[6:1]}   : j7_sym;
+assign j8_mask  = (large_qrcode_flag)? {1'b0, j8_sym[6:1]}   : j8_sym;
+assign j9_mask  = (large_qrcode_flag)? {1'b0, j9_sym[6:1]}   : j9_sym;
+assign j10_mask = (large_qrcode_flag)? {1'b0, j10_sym[6:1]}  : j10_sym;
+assign j11_mask = (large_qrcode_flag)? {1'b0, j11_sym[6:1]}  : j11_sym;
+assign j12_mask = (large_qrcode_flag)? {1'b0, j12_sym[6:1]}  : j12_sym;
+assign j13_mask = (large_qrcode_flag)? {1'b0, j13_sym[6:1]}  : j13_sym;
+assign j14_mask = (large_qrcode_flag)? {1'b0, j14_sym[6:1]}  : j14_sym;
+assign j15_mask = (large_qrcode_flag)? {1'b0, j15_sym[6:1]}  : j15_sym;
 wire [13:0] p0,  p1,  p2,  p3,  p4,  p5,  p6,  p7,  p8,  p9,  p10, p11, p12, p13, p14, p15;
 wire [1:0]  p0m3,p1m3,p2m3,p3m3,p4m3,p5m3,p6m3,p7m3,p8m3,p9m3,p10m3,p11m3,p12m3,p13m3,p14m3,p15m3;
 reg        mask_cond0;
@@ -1577,7 +1630,7 @@ always @(*) begin
 end
 
 // ----- 42x42 qrcode flag ----- //
-reg large_qrcode_flag;
+
 always @(posedge clk) begin
   if (!srst_n) begin
     large_qrcode_flag <= 0;
@@ -2080,22 +2133,22 @@ always @* begin
   endcase
 end
 
-assign p0  = i0_sym  * j0_sym;
-assign p1  = i1_sym  * j1_sym;
-assign p2  = i2_sym  * j2_sym;
-assign p3  = i3_sym  * j3_sym;
-assign p4  = i4_sym  * j4_sym;
-assign p5  = i5_sym  * j5_sym;
-assign p6  = i6_sym  * j6_sym;
-assign p7  = i7_sym  * j7_sym;
-assign p8  = i8_sym  * j8_sym;
-assign p9  = i9_sym  * j9_sym;
-assign p10 = i10_sym * j10_sym;
-assign p11 = i11_sym * j11_sym;
-assign p12 = i12_sym * j12_sym;
-assign p13 = i13_sym * j13_sym;
-assign p14 = i14_sym * j14_sym;
-assign p15 = i15_sym * j15_sym;
+assign p0  = i0_mask  * j0_mask;
+assign p1  = i1_mask  * j1_mask;
+assign p2  = i2_mask  * j2_mask;
+assign p3  = i3_mask  * j3_mask;
+assign p4  = i4_mask  * j4_mask;
+assign p5  = i5_mask  * j5_mask;
+assign p6  = i6_mask  * j6_mask;
+assign p7  = i7_mask  * j7_mask;
+assign p8  = i8_mask  * j8_mask;
+assign p9  = i9_mask  * j9_mask;
+assign p10 = i10_mask * j10_mask;
+assign p11 = i11_mask * j11_mask;
+assign p12 = i12_mask * j12_mask;
+assign p13 = i13_mask * j13_mask;
+assign p14 = i14_mask * j14_mask;
+assign p15 = i15_mask * j15_mask;
 
 assign p0m3  = p0  % 3;
 assign p1m3  = p1  % 3;
@@ -2121,98 +2174,98 @@ always @* begin
   case (real_mask_id)
     // 0: (i + j) % 2 == 0
     3'd0: begin
-      mask_cond0  = (((i0_sym  ^ j0_sym ) & 1'b1) == 1'b0);
-      mask_cond1  = (((i1_sym  ^ j1_sym ) & 1'b1) == 1'b0);
-      mask_cond2  = (((i2_sym  ^ j2_sym ) & 1'b1) == 1'b0);
-      mask_cond3  = (((i3_sym  ^ j3_sym ) & 1'b1) == 1'b0);
-      mask_cond4  = (((i4_sym  ^ j4_sym ) & 1'b1) == 1'b0);
-      mask_cond5  = (((i5_sym  ^ j5_sym ) & 1'b1) == 1'b0);
-      mask_cond6  = (((i6_sym  ^ j6_sym ) & 1'b1) == 1'b0);
-      mask_cond7  = (((i7_sym  ^ j7_sym ) & 1'b1) == 1'b0);
-      mask_cond8  = (((i8_sym  ^ j8_sym ) & 1'b1) == 1'b0);
-      mask_cond9  = (((i9_sym  ^ j9_sym ) & 1'b1) == 1'b0);
-      mask_cond10 = (((i10_sym ^ j10_sym) & 1'b1) == 1'b0);
-      mask_cond11 = (((i11_sym ^ j11_sym) & 1'b1) == 1'b0);
-      mask_cond12 = (((i12_sym ^ j12_sym) & 1'b1) == 1'b0);
-      mask_cond13 = (((i13_sym ^ j13_sym) & 1'b1) == 1'b0);
-      mask_cond14 = (((i14_sym ^ j14_sym) & 1'b1) == 1'b0);
-      mask_cond15 = (((i15_sym ^ j15_sym) & 1'b1) == 1'b0);
+      mask_cond0  = (((i0_mask  ^ j0_mask ) & 1'b1) == 1'b0);
+      mask_cond1  = (((i1_mask  ^ j1_mask ) & 1'b1) == 1'b0);
+      mask_cond2  = (((i2_mask  ^ j2_mask ) & 1'b1) == 1'b0);
+      mask_cond3  = (((i3_mask  ^ j3_mask ) & 1'b1) == 1'b0);
+      mask_cond4  = (((i4_mask  ^ j4_mask ) & 1'b1) == 1'b0);
+      mask_cond5  = (((i5_mask  ^ j5_mask ) & 1'b1) == 1'b0);
+      mask_cond6  = (((i6_mask  ^ j6_mask ) & 1'b1) == 1'b0);
+      mask_cond7  = (((i7_mask  ^ j7_mask ) & 1'b1) == 1'b0);
+      mask_cond8  = (((i8_mask  ^ j8_mask ) & 1'b1) == 1'b0);
+      mask_cond9  = (((i9_mask  ^ j9_mask ) & 1'b1) == 1'b0);
+      mask_cond10 = (((i10_mask ^ j10_mask) & 1'b1) == 1'b0);
+      mask_cond11 = (((i11_mask ^ j11_mask) & 1'b1) == 1'b0);
+      mask_cond12 = (((i12_mask ^ j12_mask) & 1'b1) == 1'b0);
+      mask_cond13 = (((i13_mask ^ j13_mask) & 1'b1) == 1'b0);
+      mask_cond14 = (((i14_mask ^ j14_mask) & 1'b1) == 1'b0);
+      mask_cond15 = (((i15_mask ^ j15_mask) & 1'b1) == 1'b0);
     end
     // 1: i % 2 == 0
     3'd1: begin
-      mask_cond0  = (i0_sym[0]  == 1'b0);
-      mask_cond1  = (i1_sym[0]  == 1'b0);
-      mask_cond2  = (i2_sym[0]  == 1'b0);
-      mask_cond3  = (i3_sym[0]  == 1'b0);
-      mask_cond4  = (i4_sym[0]  == 1'b0);
-      mask_cond5  = (i5_sym[0]  == 1'b0);
-      mask_cond6  = (i6_sym[0]  == 1'b0);
-      mask_cond7  = (i7_sym[0]  == 1'b0);
-      mask_cond8  = (i8_sym[0]  == 1'b0);
-      mask_cond9  = (i9_sym[0]  == 1'b0);
-      mask_cond10 = (i10_sym[0] == 1'b0);
-      mask_cond11 = (i11_sym[0] == 1'b0);
-      mask_cond12 = (i12_sym[0] == 1'b0);
-      mask_cond13 = (i13_sym[0] == 1'b0);
-      mask_cond14 = (i14_sym[0] == 1'b0);
-      mask_cond15 = (i15_sym[0] == 1'b0);
+      mask_cond0  = (i0_mask[0]  == 1'b0);
+      mask_cond1  = (i1_mask[0]  == 1'b0);
+      mask_cond2  = (i2_mask[0]  == 1'b0);
+      mask_cond3  = (i3_mask[0]  == 1'b0);
+      mask_cond4  = (i4_mask[0]  == 1'b0);
+      mask_cond5  = (i5_mask[0]  == 1'b0);
+      mask_cond6  = (i6_mask[0]  == 1'b0);
+      mask_cond7  = (i7_mask[0]  == 1'b0);
+      mask_cond8  = (i8_mask[0]  == 1'b0);
+      mask_cond9  = (i9_mask[0]  == 1'b0);
+      mask_cond10 = (i10_mask[0] == 1'b0);
+      mask_cond11 = (i11_mask[0] == 1'b0);
+      mask_cond12 = (i12_mask[0] == 1'b0);
+      mask_cond13 = (i13_mask[0] == 1'b0);
+      mask_cond14 = (i14_mask[0] == 1'b0);
+      mask_cond15 = (i15_mask[0] == 1'b0);
     end
     // 2: j % 3 == 0
     3'd2: begin
-      mask_cond0  = ((j0_sym  % 3) == 0);
-      mask_cond1  = ((j1_sym  % 3) == 0);
-      mask_cond2  = ((j2_sym  % 3) == 0);
-      mask_cond3  = ((j3_sym  % 3) == 0);
-      mask_cond4  = ((j4_sym  % 3) == 0);
-      mask_cond5  = ((j5_sym  % 3) == 0);
-      mask_cond6  = ((j6_sym  % 3) == 0);
-      mask_cond7  = ((j7_sym  % 3) == 0);
-      mask_cond8  = ((j8_sym  % 3) == 0);
-      mask_cond9  = ((j9_sym  % 3) == 0);
-      mask_cond10 = ((j10_sym % 3) == 0);
-      mask_cond11 = ((j11_sym % 3) == 0);
-      mask_cond12 = ((j12_sym % 3) == 0);
-      mask_cond13 = ((j13_sym % 3) == 0);
-      mask_cond14 = ((j14_sym % 3) == 0);
-      mask_cond15 = ((j15_sym % 3) == 0);
+      mask_cond0  = ((j0_mask  % 3) == 0);
+      mask_cond1  = ((j1_mask  % 3) == 0);
+      mask_cond2  = ((j2_mask  % 3) == 0);
+      mask_cond3  = ((j3_mask  % 3) == 0);
+      mask_cond4  = ((j4_mask  % 3) == 0);
+      mask_cond5  = ((j5_mask  % 3) == 0);
+      mask_cond6  = ((j6_mask  % 3) == 0);
+      mask_cond7  = ((j7_mask  % 3) == 0);
+      mask_cond8  = ((j8_mask  % 3) == 0);
+      mask_cond9  = ((j9_mask  % 3) == 0);
+      mask_cond10 = ((j10_mask % 3) == 0);
+      mask_cond11 = ((j11_mask % 3) == 0);
+      mask_cond12 = ((j12_mask % 3) == 0);
+      mask_cond13 = ((j13_mask % 3) == 0);
+      mask_cond14 = ((j14_mask % 3) == 0);
+      mask_cond15 = ((j15_mask % 3) == 0);
     end
     // 3: (i + j) % 3 == 0
     3'd3: begin
-      mask_cond0  = (((i0_sym  + j0_sym ) % 3) == 0);
-      mask_cond1  = (((i1_sym  + j1_sym ) % 3) == 0);
-      mask_cond2  = (((i2_sym  + j2_sym ) % 3) == 0);
-      mask_cond3  = (((i3_sym  + j3_sym ) % 3) == 0);
-      mask_cond4  = (((i4_sym  + j4_sym ) % 3) == 0);
-      mask_cond5  = (((i5_sym  + j5_sym ) % 3) == 0);
-      mask_cond6  = (((i6_sym  + j6_sym ) % 3) == 0);
-      mask_cond7  = (((i7_sym  + j7_sym ) % 3) == 0);
-      mask_cond8  = (((i8_sym  + j8_sym ) % 3) == 0);
-      mask_cond9  = (((i9_sym  + j9_sym ) % 3) == 0);
-      mask_cond10 = (((i10_sym + j10_sym) % 3) == 0);
-      mask_cond11 = (((i11_sym + j11_sym) % 3) == 0);
-      mask_cond12 = (((i12_sym + j12_sym) % 3) == 0);
-      mask_cond13 = (((i13_sym + j13_sym) % 3) == 0);
-      mask_cond14 = (((i14_sym + j14_sym) % 3) == 0);
-      mask_cond15 = (((i15_sym + j15_sym) % 3) == 0);
+      mask_cond0  = (((i0_mask  + j0_mask ) % 3) == 0);
+      mask_cond1  = (((i1_mask  + j1_mask ) % 3) == 0);
+      mask_cond2  = (((i2_mask  + j2_mask ) % 3) == 0);
+      mask_cond3  = (((i3_mask  + j3_mask ) % 3) == 0);
+      mask_cond4  = (((i4_mask  + j4_mask ) % 3) == 0);
+      mask_cond5  = (((i5_mask  + j5_mask ) % 3) == 0);
+      mask_cond6  = (((i6_mask  + j6_mask ) % 3) == 0);
+      mask_cond7  = (((i7_mask  + j7_mask ) % 3) == 0);
+      mask_cond8  = (((i8_mask  + j8_mask ) % 3) == 0);
+      mask_cond9  = (((i9_mask  + j9_mask ) % 3) == 0);
+      mask_cond10 = (((i10_mask + j10_mask) % 3) == 0);
+      mask_cond11 = (((i11_mask + j11_mask) % 3) == 0);
+      mask_cond12 = (((i12_mask + j12_mask) % 3) == 0);
+      mask_cond13 = (((i13_mask + j13_mask) % 3) == 0);
+      mask_cond14 = (((i14_mask + j14_mask) % 3) == 0);
+      mask_cond15 = (((i15_mask + j15_mask) % 3) == 0);
     end
     // 4: ((i/2) + (j/3)) % 2 == 0
     3'd4: begin
-      mask_cond0  = ((((i0_sym  >> 1) + (j0_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond1  = ((((i1_sym  >> 1) + (j1_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond2  = ((((i2_sym  >> 1) + (j2_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond3  = ((((i3_sym  >> 1) + (j3_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond4  = ((((i4_sym  >> 1) + (j4_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond5  = ((((i5_sym  >> 1) + (j5_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond6  = ((((i6_sym  >> 1) + (j6_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond7  = ((((i7_sym  >> 1) + (j7_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond8  = ((((i8_sym  >> 1) + (j8_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond9  = ((((i9_sym  >> 1) + (j9_sym  / 3)) & 1'b1) == 1'b0);
-      mask_cond10 = ((((i10_sym >> 1) + (j10_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond11 = ((((i11_sym >> 1) + (j11_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond12 = ((((i12_sym >> 1) + (j12_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond13 = ((((i13_sym >> 1) + (j13_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond14 = ((((i14_sym >> 1) + (j14_sym / 3)) & 1'b1) == 1'b0);
-      mask_cond15 = ((((i15_sym >> 1) + (j15_sym / 3)) & 1'b1) == 1'b0);
+      mask_cond0  = ((((i0_mask  >> 1) + (j0_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond1  = ((((i1_mask  >> 1) + (j1_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond2  = ((((i2_mask  >> 1) + (j2_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond3  = ((((i3_mask  >> 1) + (j3_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond4  = ((((i4_mask  >> 1) + (j4_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond5  = ((((i5_mask  >> 1) + (j5_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond6  = ((((i6_mask  >> 1) + (j6_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond7  = ((((i7_mask  >> 1) + (j7_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond8  = ((((i8_mask  >> 1) + (j8_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond9  = ((((i9_mask  >> 1) + (j9_mask  / 3)) & 1'b1) == 1'b0);
+      mask_cond10 = ((((i10_mask >> 1) + (j10_mask / 3)) & 1'b1) == 1'b0);
+      mask_cond11 = ((((i11_mask >> 1) + (j11_mask / 3)) & 1'b1) == 1'b0);
+      mask_cond12 = ((((i12_mask >> 1) + (j12_mask / 3)) & 1'b1) == 1'b0);
+      mask_cond13 = ((((i13_mask >> 1) + (j13_mask / 3)) & 1'b1) == 1'b0);
+      mask_cond14 = ((((i14_mask >> 1) + (j14_mask / 3)) & 1'b1) == 1'b0);
+      mask_cond15 = ((((i15_mask >> 1) + (j15_mask / 3)) & 1'b1) == 1'b0);
     end
     // 5: (i*j)%2 + (i*j)%3 == 0  <=> even(p) && (p%3==0)
     3'd5: begin
@@ -2254,22 +2307,22 @@ always @* begin
     end
     // 7: (parity(i+j) XOR parity((i*j)%3)) == 0
     3'd7: begin
-      mask_cond0  = ((((i0_sym  ^ j0_sym ) & 1'b1) ^ p0m3[0])  == 1'b0);
-      mask_cond1  = ((((i1_sym  ^ j1_sym ) & 1'b1) ^ p1m3[0])  == 1'b0);
-      mask_cond2  = ((((i2_sym  ^ j2_sym ) & 1'b1) ^ p2m3[0])  == 1'b0);
-      mask_cond3  = ((((i3_sym  ^ j3_sym ) & 1'b1) ^ p3m3[0])  == 1'b0);
-      mask_cond4  = ((((i4_sym  ^ j4_sym ) & 1'b1) ^ p4m3[0])  == 1'b0);
-      mask_cond5  = ((((i5_sym  ^ j5_sym ) & 1'b1) ^ p5m3[0])  == 1'b0);
-      mask_cond6  = ((((i6_sym  ^ j6_sym ) & 1'b1) ^ p6m3[0])  == 1'b0);
-      mask_cond7  = ((((i7_sym  ^ j7_sym ) & 1'b1) ^ p7m3[0])  == 1'b0);
-      mask_cond8  = ((((i8_sym  ^ j8_sym ) & 1'b1) ^ p8m3[0])  == 1'b0);
-      mask_cond9  = ((((i9_sym  ^ j9_sym ) & 1'b1) ^ p9m3[0])  == 1'b0);
-      mask_cond10 = ((((i10_sym ^ j10_sym) & 1'b1) ^ p10m3[0]) == 1'b0);
-      mask_cond11 = ((((i11_sym ^ j11_sym) & 1'b1) ^ p11m3[0]) == 1'b0);
-      mask_cond12 = ((((i12_sym ^ j12_sym) & 1'b1) ^ p12m3[0]) == 1'b0);
-      mask_cond13 = ((((i13_sym ^ j13_sym) & 1'b1) ^ p13m3[0]) == 1'b0);
-      mask_cond14 = ((((i14_sym ^ j14_sym) & 1'b1) ^ p14m3[0]) == 1'b0);
-      mask_cond15 = ((((i15_sym ^ j15_sym) & 1'b1) ^ p15m3[0]) == 1'b0);
+      mask_cond0  = ((((i0_mask  ^ j0_mask ) & 1'b1) ^ p0m3[0])  == 1'b0);
+      mask_cond1  = ((((i1_mask  ^ j1_mask ) & 1'b1) ^ p1m3[0])  == 1'b0);
+      mask_cond2  = ((((i2_mask  ^ j2_mask ) & 1'b1) ^ p2m3[0])  == 1'b0);
+      mask_cond3  = ((((i3_mask  ^ j3_mask ) & 1'b1) ^ p3m3[0])  == 1'b0);
+      mask_cond4  = ((((i4_mask  ^ j4_mask ) & 1'b1) ^ p4m3[0])  == 1'b0);
+      mask_cond5  = ((((i5_mask  ^ j5_mask ) & 1'b1) ^ p5m3[0])  == 1'b0);
+      mask_cond6  = ((((i6_mask  ^ j6_mask ) & 1'b1) ^ p6m3[0])  == 1'b0);
+      mask_cond7  = ((((i7_mask  ^ j7_mask ) & 1'b1) ^ p7m3[0])  == 1'b0);
+      mask_cond8  = ((((i8_mask  ^ j8_mask ) & 1'b1) ^ p8m3[0])  == 1'b0);
+      mask_cond9  = ((((i9_mask  ^ j9_mask ) & 1'b1) ^ p9m3[0])  == 1'b0);
+      mask_cond10 = ((((i10_mask ^ j10_mask) & 1'b1) ^ p10m3[0]) == 1'b0);
+      mask_cond11 = ((((i11_mask ^ j11_mask) & 1'b1) ^ p11m3[0]) == 1'b0);
+      mask_cond12 = ((((i12_mask ^ j12_mask) & 1'b1) ^ p12m3[0]) == 1'b0);
+      mask_cond13 = ((((i13_mask ^ j13_mask) & 1'b1) ^ p13m3[0]) == 1'b0);
+      mask_cond14 = ((((i14_mask ^ j14_mask) & 1'b1) ^ p14m3[0]) == 1'b0);
+      mask_cond15 = ((((i15_mask ^ j15_mask) & 1'b1) ^ p15m3[0]) == 1'b0);
     end
   endcase
 end
@@ -2479,8 +2532,11 @@ always @(*) begin
       end else if (jump1) begin
         decode_addr = corner5_block_addr;
         decode_state_n = DECODE_DECODE2;
-      end else if (check_bound_cnt_n == 2) begin
+      end else if (check_bound_cnt_n == 2 && !large_qrcode_flag) begin
         decode_addr = sram_raddr; // do not enable write fifo
+        decode_state_n = DECODE_DECODE1;
+      end else if (check_bound_cnt_n == 3 && large_qrcode_flag) begin
+        decode_addr = sram_raddr;
         decode_state_n = DECODE_DECODE1;
       end else if (bound1_check) begin
         decode_addr = sram_raddr_jump1;
@@ -2607,7 +2663,7 @@ end
 always @(*) begin
   if ((bound1_check && decode_state == DECODE_SWAP1_UP) | (bound2_check && decode_state == DECODE_SWAP2_UP)) begin
     check_bound_cnt_n = check_bound_cnt + 1;
-  end else if (check_bound_cnt == 2) begin
+  end else if (decode_state != DECODE_SWAP1_UP && decode_state != DECODE_SWAP2_UP) begin
     check_bound_cnt_n = 0;
   end else begin
     check_bound_cnt_n = check_bound_cnt;
@@ -3594,6 +3650,99 @@ assign decode_type = {loc_y[1:0], loc_x[1:0]};
 // |1 |7' |6' |0 |
 // 8-bit word A: {line0, line3, line8, line11, line4, line7, line12, line15}
 // 8-bit word B: {line13, line14, line5, line6, line9, line10, line1, line2}
+localparam [3:0] type00_large_A0 = 4'd15;
+localparam [3:0] type00_large_A1 = 4'd12;
+localparam [3:0] type00_large_A2 = 4'd7;
+localparam [3:0] type00_large_A3 = 4'd4;
+localparam [3:0] type00_large_A4 = 4'd11;
+localparam [3:0] type00_large_A5 = 4'd8;
+localparam [3:0] type00_large_A6 = 4'd3;
+localparam [3:0] type00_large_A7 = 4'd0;
+
+localparam [3:0] type00_large_B0 = 4'd2;
+localparam [3:0] type00_large_B1 = 4'd1;
+localparam [3:0] type00_large_B2 = 4'd10;
+localparam [3:0] type00_large_B3 = 4'd9;
+localparam [3:0] type00_large_B4 = 4'd6;
+localparam [3:0] type00_large_B5 = 4'd5;
+localparam [3:0] type00_large_B6 = 4'd14;
+localparam [3:0] type00_large_B7 = 4'd13;
+
+// rotation 90, type (0, 0) = (y, x)
+// |7  |3  |5  |1  |
+// |6  |2  |4  |0  |
+// |0' |4' |2' |6' |
+// |1' |5' |3' |7' |
+// 8-bit word A: {line0, line4, line2, line6, line1, line5, line3, line7}
+// 8-bit word B: {line15, line11, line13, line9, line14, line10, line12, line8}
+localparam [3:0] type90_large_A0 = 4'd7;
+localparam [3:0] type90_large_A1 = 4'd3;
+localparam [3:0] type90_large_A2 = 4'd5;
+localparam [3:0] type90_large_A3 = 4'd1;
+localparam [3:0] type90_large_A4 = 4'd6;
+localparam [3:0] type90_large_A5 = 4'd2;
+localparam [3:0] type90_large_A6 = 4'd4;
+localparam [3:0] type90_large_A7 = 4'd0;
+
+localparam [3:0] type90_large_B0 = 4'd8;
+localparam [3:0] type90_large_B1 = 4'd12;
+localparam [3:0] type90_large_B2 = 4'd10;
+localparam [3:0] type90_large_B3 = 4'd14;
+localparam [3:0] type90_large_B4 = 4'd9;
+localparam [3:0] type90_large_B5 = 4'd13;
+localparam [3:0] type90_large_B6 = 4'd11;
+localparam [3:0] type90_large_B7 = 4'd15;
+
+// rotation 180, type (0, 0) = (y, x)
+// |7  |6  |0' |1' |
+// |1  |0  |6' |7' |
+// |5  |4  |2' |3' |
+// |3  |2  |4' |5' |
+// 8-bit word A: {line0, line1, line8, line9, line12, line13, line4, line5}
+// 8-bit word B: {line7, line6, line15, line14, line11, line10, line3, line2}
+localparam [3:0] type180_large_A0 = 4'd5;
+localparam [3:0] type180_large_A1 = 4'd4;
+localparam [3:0] type180_large_A2 = 4'd13;
+localparam [3:0] type180_large_A3 = 4'd12;
+localparam [3:0] type180_large_A4 = 4'd9;
+localparam [3:0] type180_large_A5 = 4'd8;
+localparam [3:0] type180_large_A6 = 4'd1;
+localparam [3:0] type180_large_A7 = 4'd0;
+
+localparam [3:0] type180_large_B0 = 4'd2;
+localparam [3:0] type180_large_B1 = 4'd3;
+localparam [3:0] type180_large_B2 = 4'd10;
+localparam [3:0] type180_large_B3 = 4'd11;
+localparam [3:0] type180_large_B4 = 4'd14;
+localparam [3:0] type180_large_B5 = 4'd15;
+localparam [3:0] type180_large_B6 = 4'd6;
+localparam [3:0] type180_large_B7 = 4'd7;
+
+// rotation 270, type (0, 0) = (y, x)
+// |7  |1  |5  |3  |
+// |1' |7' |3' |5' |
+// |0' |6' |2' |4' |
+// |6  |0  |4  |2  |
+// 8-bit word A: {line0, line12, line2, line14, line3, line15, line1, line13}
+// 8-bit word B: {line5, line9, line7, line11, line6, line10, line4, line8}
+// rotation 270
+localparam [3:0] type270_large_A0 = 4'd13;
+localparam [3:0] type270_large_A1 = 4'd1;
+localparam [3:0] type270_large_A2 = 4'd15;
+localparam [3:0] type270_large_A3 = 4'd3;
+localparam [3:0] type270_large_A4 = 4'd14;
+localparam [3:0] type270_large_A5 = 4'd2;
+localparam [3:0] type270_large_A6 = 4'd12;
+localparam [3:0] type270_large_A7 = 4'd0;
+
+localparam [3:0] type270_large_B0 = 4'd8;
+localparam [3:0] type270_large_B1 = 4'd4;
+localparam [3:0] type270_large_B2 = 4'd10;
+localparam [3:0] type270_large_B3 = 4'd6;
+localparam [3:0] type270_large_B4 = 4'd11;
+localparam [3:0] type270_large_B5 = 4'd7;
+localparam [3:0] type270_large_B6 = 4'd9;
+localparam [3:0] type270_large_B7 = 4'd5;
 
 // ----- region 2 ----- //
 // rotation 0, type (0, 0) = (y, x)
@@ -3604,6 +3753,103 @@ assign decode_type = {loc_y[1:0], loc_x[1:0]};
 // 8-bit word A: {line8, line11, line0, line3, line12, line15, line4, line7}
 // 8-bit word B: {line5, line6, line13, line14, line1, line2, line9, line10}
 // ----- new define for 42x42 qrcode end ----- //
+// rotation 0
+localparam [3:0] type00_large_R2A0 = 4'd7;
+localparam [3:0] type00_large_R2A1 = 4'd4;
+localparam [3:0] type00_large_R2A2 = 4'd15;
+localparam [3:0] type00_large_R2A3 = 4'd12;
+localparam [3:0] type00_large_R2A4 = 4'd3;
+localparam [3:0] type00_large_R2A5 = 4'd0;
+localparam [3:0] type00_large_R2A6 = 4'd11;
+localparam [3:0] type00_large_R2A7 = 4'd8;
+
+localparam [3:0] type00_large_R2B0 = 4'd10;
+localparam [3:0] type00_large_R2B1 = 4'd9;
+localparam [3:0] type00_large_R2B2 = 4'd2;
+localparam [3:0] type00_large_R2B3 = 4'd1;
+localparam [3:0] type00_large_R2B4 = 4'd14;
+localparam [3:0] type00_large_R2B5 = 4'd13;
+localparam [3:0] type00_large_R2B6 = 4'd6;
+localparam [3:0] type00_large_R2B7 = 4'd5;
+
+// rotation 90, type (0, 0) = (y, x)
+// |7  |3  |5  |1  |
+// |6  |2  |4  |0  |
+// |0' |4' |2' |6' |
+// |1' |5' |3' |7' |
+// 8-bit word A: {line0, line4, line2, line6, line1, line5, line3, line7}
+// 8-bit word B: {line15, line11, line13, line9, line14, line10, line12, line8}
+
+// rotation 90
+localparam [3:0] type90_large_R2A0 = 4'd7;
+localparam [3:0] type90_large_R2A1 = 4'd3;
+localparam [3:0] type90_large_R2A2 = 4'd5;
+localparam [3:0] type90_large_R2A3 = 4'd1;
+localparam [3:0] type90_large_R2A4 = 4'd6;
+localparam [3:0] type90_large_R2A5 = 4'd2;
+localparam [3:0] type90_large_R2A6 = 4'd4;
+localparam [3:0] type90_large_R2A7 = 4'd0;
+
+localparam [3:0] type90_large_R2B0 = 4'd8;
+localparam [3:0] type90_large_R2B1 = 4'd12;
+localparam [3:0] type90_large_R2B2 = 4'd10;
+localparam [3:0] type90_large_R2B3 = 4'd14;
+localparam [3:0] type90_large_R2B4 = 4'd9;
+localparam [3:0] type90_large_R2B5 = 4'd13;
+localparam [3:0] type90_large_R2B6 = 4'd11;
+localparam [3:0] type90_large_R2B7 = 4'd15;
+
+// rotation 180, type (0, 0) = (y, x)
+// |5  |4  |2' |3' |
+// |3  |2  |4' |5' |
+// |7  |6  |0' |1' |
+// |1  |0  |6' |7' |
+// 8-bit word A: {line8, line9, line0, line1, line4, line5, line12, line13}
+// 8-bit word B: {line15, line14, line7, line6, line3, line2, line11, line10}
+
+localparam [3:0] type180_large_R2A0 = 4'd13;
+localparam [3:0] type180_large_R2A1 = 4'd12;
+localparam [3:0] type180_large_R2A2 = 4'd5;
+localparam [3:0] type180_large_R2A3 = 4'd4;
+localparam [3:0] type180_large_R2A4 = 4'd1;
+localparam [3:0] type180_large_R2A5 = 4'd0;
+localparam [3:0] type180_large_R2A6 = 4'd9;
+localparam [3:0] type180_large_R2A7 = 4'd8;
+
+localparam [3:0] type180_large_R2B0 = 4'd10;
+localparam [3:0] type180_large_R2B1 = 4'd11;
+localparam [3:0] type180_large_R2B2 = 4'd2;
+localparam [3:0] type180_large_R2B3 = 4'd3;
+localparam [3:0] type180_large_R2B4 = 4'd6;
+localparam [3:0] type180_large_R2B5 = 4'd7;
+localparam [3:0] type180_large_R2B6 = 4'd14;
+localparam [3:0] type180_large_R2B7 = 4'd15;
+
+// rotation 270, type (0, 0) = (y, x)
+// |5  |3  |7  |1  |
+// |3' |5' |1' |7' |
+// |2' |4' |0' |6' |
+// |4  |2  |6  |0  |
+// 8-bit word A: {line2, line14, line0, line12, line1, line13, line3, line15}
+// 8-bit word B: {line7, line11, line5, line9, line4, line8, line6, line10}
+
+localparam [3:0] type270_large_R2A0 = 4'd15;
+localparam [3:0] type270_large_R2A1 = 4'd3;
+localparam [3:0] type270_large_R2A2 = 4'd13;
+localparam [3:0] type270_large_R2A3 = 4'd1;
+localparam [3:0] type270_large_R2A4 = 4'd12;
+localparam [3:0] type270_large_R2A5 = 4'd0;
+localparam [3:0] type270_large_R2A6 = 4'd14;
+localparam [3:0] type270_large_R2A7 = 4'd2;
+
+localparam [3:0] type270_large_R2B0 = 4'd10;
+localparam [3:0] type270_large_R2B1 = 4'd6;
+localparam [3:0] type270_large_R2B2 = 4'd8;
+localparam [3:0] type270_large_R2B3 = 4'd4;
+localparam [3:0] type270_large_R2B4 = 4'd9;
+localparam [3:0] type270_large_R2B5 = 4'd5;
+localparam [3:0] type270_large_R2B6 = 4'd11;
+localparam [3:0] type270_large_R2B7 = 4'd7;
 
 // ----- 21x21 qrcode ----- //
 // ----- region 1 ----- //
@@ -3910,73 +4156,143 @@ wire [3:0] R2_sel_line7 = use_A_now_r2 ? R2A_sel7 : R2B_sel7;
 // ----- region 2 ----- //
 
 always @(*) begin
-  case (rot_state)
-    ROT_0: begin
-      base_A0 = type00_A0; base_A1 = type00_A1; base_A2 = type00_A2; base_A3 = type00_A3;
-      base_A4 = type00_A4; base_A5 = type00_A5; base_A6 = type00_A6; base_A7 = type00_A7;
+  if (large_qrcode_flag) begin
+    case (rot_state)
+      ROT_0: begin
+        base_A0 = type00_large_A0; base_A1 = type00_large_A1; base_A2 = type00_large_A2; base_A3 = type00_large_A3;
+        base_A4 = type00_large_A4; base_A5 = type00_large_A5; base_A6 = type00_large_A6; base_A7 = type00_large_A7;
 
-      base_B0 = type00_B0; base_B1 = type00_B1; base_B2 = type00_B2; base_B3 = type00_B3;
-      base_B4 = type00_B4; base_B5 = type00_B5; base_B6 = type00_B6; base_B7 = type00_B7;
+        base_B0 = type00_large_B0; base_B1 = type00_large_B1; base_B2 = type00_large_B2; base_B3 = type00_large_B3;
+        base_B4 = type00_large_B4; base_B5 = type00_large_B5; base_B6 = type00_large_B6; base_B7 = type00_large_B7;
 
-      base_R2A0 = type00_R2A0; base_R2A1 = type00_R2A1; base_R2A2 = type00_R2A2; base_R2A3 = type00_R2A3;
-      base_R2A4 = type00_R2A4; base_R2A5 = type00_R2A5; base_R2A6 = type00_R2A6; base_R2A7 = type00_R2A7;
+        base_R2A0 = type00_large_R2A0; base_R2A1 = type00_large_R2A1; base_R2A2 = type00_large_R2A2; base_R2A3 = type00_large_R2A3;
+        base_R2A4 = type00_large_R2A4; base_R2A5 = type00_large_R2A5; base_R2A6 = type00_large_R2A6; base_R2A7 = type00_large_R2A7;
 
-      base_R2B0 = type00_R2B0; base_R2B1 = type00_R2B1; base_R2B2 = type00_R2B2; base_R2B3 = type00_R2B3;
-      base_R2B4 = type00_R2B4; base_R2B5 = type00_R2B5; base_R2B6 = type00_R2B6; base_R2B7 = type00_R2B7;
-    end
-    ROT_90: begin
-      base_A0 = type90_A0; base_A1 = type90_A1; base_A2 = type90_A2; base_A3 = type90_A3;
-      base_A4 = type90_A4; base_A5 = type90_A5; base_A6 = type90_A6; base_A7 = type90_A7;
+        base_R2B0 = type00_large_R2B0; base_R2B1 = type00_large_R2B1; base_R2B2 = type00_large_R2B2; base_R2B3 = type00_large_R2B3;
+        base_R2B4 = type00_large_R2B4; base_R2B5 = type00_large_R2B5; base_R2B6 = type00_large_R2B6; base_R2B7 = type00_large_R2B7;
+      end
+      ROT_90: begin
+        base_A0 = type90_large_A0; base_A1 = type90_large_A1; base_A2 = type90_large_A2; base_A3 = type90_large_A3;
+        base_A4 = type90_large_A4; base_A5 = type90_large_A5; base_A6 = type90_large_A6; base_A7 = type90_large_A7;
 
-      base_B0 = type90_B0; base_B1 = type90_B1; base_B2 = type90_B2; base_B3 = type90_B3;
-      base_B4 = type90_B4; base_B5 = type90_B5; base_B6 = type90_B6; base_B7 = type90_B7;
+        base_B0 = type90_large_B0; base_B1 = type90_large_B1; base_B2 = type90_large_B2; base_B3 = type90_large_B3;
+        base_B4 = type90_large_B4; base_B5 = type90_large_B5; base_B6 = type90_large_B6; base_B7 = type90_large_B7;
 
-      base_R2A0 = type90_R2A0; base_R2A1 = type90_R2A1; base_R2A2 = type90_R2A2; base_R2A3 = type90_R2A3;
-      base_R2A4 = type90_R2A4; base_R2A5 = type90_R2A5; base_R2A6 = type90_R2A6; base_R2A7 = type90_R2A7;
+        base_R2A0 = type90_large_R2A0; base_R2A1 = type90_large_R2A1; base_R2A2 = type90_large_R2A2; base_R2A3 = type90_large_R2A3;
+        base_R2A4 = type90_large_R2A4; base_R2A5 = type90_large_R2A5; base_R2A6 = type90_large_R2A6; base_R2A7 = type90_large_R2A7;
 
-      base_R2B0 = type90_R2B0; base_R2B1 = type90_R2B1; base_R2B2 = type90_R2B2; base_R2B3 = type90_R2B3;
-      base_R2B4 = type90_R2B4; base_R2B5 = type90_R2B5; base_R2B6 = type90_R2B6; base_R2B7 = type90_R2B7;
-    end
-    ROT_180: begin
-      base_A0 = type180_A0; base_A1 = type180_A1; base_A2 = type180_A2; base_A3 = type180_A3;
-      base_A4 = type180_A4; base_A5 = type180_A5; base_A6 = type180_A6; base_A7 = type180_A7;
+        base_R2B0 = type90_large_R2B0; base_R2B1 = type90_large_R2B1; base_R2B2 = type90_large_R2B2; base_R2B3 = type90_large_R2B3;
+        base_R2B4 = type90_large_R2B4; base_R2B5 = type90_large_R2B5; base_R2B6 = type90_large_R2B6; base_R2B7 = type90_large_R2B7;
+      end
+      ROT_180: begin
+        base_A0 = type180_large_A0; base_A1 = type180_large_A1; base_A2 = type180_large_A2; base_A3 = type180_large_A3;
+        base_A4 = type180_large_A4; base_A5 = type180_large_A5; base_A6 = type180_large_A6; base_A7 = type180_large_A7;
 
-      base_B0 = type180_B0; base_B1 = type180_B1; base_B2 = type180_B2; base_B3 = type180_B3;
-      base_B4 = type180_B4; base_B5 = type180_B5; base_B6 = type180_B6; base_B7 = type180_B7;
+        base_B0 = type180_large_B0; base_B1 = type180_large_B1; base_B2 = type180_large_B2; base_B3 = type180_large_B3;
+        base_B4 = type180_large_B4; base_B5 = type180_large_B5; base_B6 = type180_large_B6; base_B7 = type180_large_B7;
 
-      base_R2A0 = type180_R2A0; base_R2A1 = type180_R2A1; base_R2A2 = type180_R2A2; base_R2A3 = type180_R2A3;
-      base_R2A4 = type180_R2A4; base_R2A5 = type180_R2A5; base_R2A6 = type180_R2A6; base_R2A7 = type180_R2A7;
+        base_R2A0 = type180_large_R2A0; base_R2A1 = type180_large_R2A1; base_R2A2 = type180_large_R2A2; base_R2A3 = type180_large_R2A3;
+        base_R2A4 = type180_large_R2A4; base_R2A5 = type180_large_R2A5; base_R2A6 = type180_large_R2A6; base_R2A7 = type180_large_R2A7;
 
-      base_R2B0 = type180_R2B0; base_R2B1 = type180_R2B1; base_R2B2 = type180_R2B2; base_R2B3 = type180_R2B3;
-      base_R2B4 = type180_R2B4; base_R2B5 = type180_R2B5; base_R2B6 = type180_R2B6; base_R2B7 = type180_R2B7;
-    end
-    ROT_270: begin
-      base_A0 = type270_A0; base_A1 = type270_A1; base_A2 = type270_A2; base_A3 = type270_A3;
-      base_A4 = type270_A4; base_A5 = type270_A5; base_A6 = type270_A6; base_A7 = type270_A7;
+        base_R2B0 = type180_large_R2B0; base_R2B1 = type180_large_R2B1; base_R2B2 = type180_large_R2B2; base_R2B3 = type180_large_R2B3;
+        base_R2B4 = type180_large_R2B4; base_R2B5 = type180_large_R2B5; base_R2B6 = type180_large_R2B6; base_R2B7 = type180_large_R2B7;
+      end
+      ROT_270: begin
+        base_A0 = type270_large_A0; base_A1 = type270_large_A1; base_A2 = type270_large_A2; base_A3 = type270_large_A3;
+        base_A4 = type270_large_A4; base_A5 = type270_large_A5; base_A6 = type270_large_A6; base_A7 = type270_large_A7;
 
-      base_B0 = type270_B0; base_B1 = type270_B1; base_B2 = type270_B2; base_B3 = type270_B3;
-      base_B4 = type270_B4; base_B5 = type270_B5; base_B6 = type270_B6; base_B7 = type270_B7;
+        base_B0 = type270_large_B0; base_B1 = type270_large_B1; base_B2 = type270_large_B2; base_B3 = type270_large_B3;
+        base_B4 = type270_large_B4; base_B5 = type270_large_B5; base_B6 = type270_large_B6; base_B7 = type270_large_B7;
 
-      base_R2A0 = type270_R2A0; base_R2A1 = type270_R2A1; base_R2A2 = type270_R2A2; base_R2A3 = type270_R2A3;
-      base_R2A4 = type270_R2A4; base_R2A5 = type270_R2A5; base_R2A6 = type270_R2A6; base_R2A7 = type270_R2A7;
+        base_R2A0 = type270_large_R2A0; base_R2A1 = type270_large_R2A1; base_R2A2 = type270_large_R2A2; base_R2A3 = type270_large_R2A3;
+        base_R2A4 = type270_large_R2A4; base_R2A5 = type270_large_R2A5; base_R2A6 = type270_large_R2A6; base_R2A7 = type270_large_R2A7;
 
-      base_R2B0 = type270_R2B0; base_R2B1 = type270_R2B1; base_R2B2 = type270_R2B2; base_R2B3 = type270_R2B3;
-      base_R2B4 = type270_R2B4; base_R2B5 = type270_R2B5; base_R2B6 = type270_R2B6; base_R2B7 = type270_R2B7;
-    end
-    default: begin
-      base_A0 = type00_A0; base_A1 = type00_A1; base_A2 = type00_A2; base_A3 = type00_A3;
-      base_A4 = type00_A4; base_A5 = type00_A5; base_A6 = type00_A6; base_A7 = type00_A7;
+        base_R2B0 = type270_large_R2B0; base_R2B1 = type270_large_R2B1; base_R2B2 = type270_large_R2B2; base_R2B3 = type270_large_R2B3;
+        base_R2B4 = type270_large_R2B4; base_R2B5 = type270_large_R2B5; base_R2B6 = type270_large_R2B6; base_R2B7 = type270_large_R2B7;
+      end
+      default: begin
+        base_A0 = type00_large_A0; base_A1 = type00_large_A1; base_A2 = type00_large_A2; base_A3 = type00_large_A3;
+        base_A4 = type00_large_A4; base_A5 = type00_large_A5; base_A6 = type00_large_A6; base_A7 = type00_large_A7;
 
-      base_B0 = type00_B0; base_B1 = type00_B1; base_B2 = type00_B2; base_B3 = type00_B3;
-      base_B4 = type00_B4; base_B5 = type00_B5; base_B6 = type00_B6; base_B7 = type00_B7;
+        base_B0 = type00_large_B0; base_B1 = type00_large_B1; base_B2 = type00_large_B2; base_B3 = type00_large_B3;
+        base_B4 = type00_large_B4; base_B5 = type00_large_B5; base_B6 = type00_large_B6; base_B7 = type00_large_B7;
 
-      base_R2A0 = type00_R2A0; base_R2A1 = type00_R2A1; base_R2A2 = type00_R2A2; base_R2A3 = type00_R2A3;
-      base_R2A4 = type00_R2A4; base_R2A5 = type00_R2A5; base_R2A6 = type00_R2A6; base_R2A7 = type00_R2A7;
-      
-      base_R2B0 = type00_R2B0; base_R2B1 = type00_R2B1; base_R2B2 = type00_R2B2; base_R2B3 = type00_R2B3;
-      base_R2B4 = type00_R2B4; base_R2B5 = type00_R2B5; base_R2B6 = type00_R2B6; base_R2B7 = type00_R2B7;
-    end
-  endcase
+        base_R2A0 = type00_large_R2A0; base_R2A1 = type00_large_R2A1; base_R2A2 = type00_large_R2A2; base_R2A3 = type00_large_R2A3;
+        base_R2A4 = type00_large_R2A4; base_R2A5 = type00_large_R2A5; base_R2A6 = type00_large_R2A6; base_R2A7 = type00_large_R2A7;
+        
+        base_R2B0 = type00_large_R2B0; base_R2B1 = type00_large_R2B1; base_R2B2 = type00_large_R2B2; base_R2B3 = type00_large_R2B3;
+        base_R2B4 = type00_large_R2B4; base_R2B5 = type00_large_R2B5; base_R2B6 = type00_large_R2B6; base_R2B7 = type00_large_R2B7;
+      end
+    endcase
+  end else begin
+    case (rot_state)
+      ROT_0: begin
+        base_A0 = type00_A0; base_A1 = type00_A1; base_A2 = type00_A2; base_A3 = type00_A3;
+        base_A4 = type00_A4; base_A5 = type00_A5; base_A6 = type00_A6; base_A7 = type00_A7;
+
+        base_B0 = type00_B0; base_B1 = type00_B1; base_B2 = type00_B2; base_B3 = type00_B3;
+        base_B4 = type00_B4; base_B5 = type00_B5; base_B6 = type00_B6; base_B7 = type00_B7;
+
+        base_R2A0 = type00_R2A0; base_R2A1 = type00_R2A1; base_R2A2 = type00_R2A2; base_R2A3 = type00_R2A3;
+        base_R2A4 = type00_R2A4; base_R2A5 = type00_R2A5; base_R2A6 = type00_R2A6; base_R2A7 = type00_R2A7;
+
+        base_R2B0 = type00_R2B0; base_R2B1 = type00_R2B1; base_R2B2 = type00_R2B2; base_R2B3 = type00_R2B3;
+        base_R2B4 = type00_R2B4; base_R2B5 = type00_R2B5; base_R2B6 = type00_R2B6; base_R2B7 = type00_R2B7;
+      end
+      ROT_90: begin
+        base_A0 = type90_A0; base_A1 = type90_A1; base_A2 = type90_A2; base_A3 = type90_A3;
+        base_A4 = type90_A4; base_A5 = type90_A5; base_A6 = type90_A6; base_A7 = type90_A7;
+
+        base_B0 = type90_B0; base_B1 = type90_B1; base_B2 = type90_B2; base_B3 = type90_B3;
+        base_B4 = type90_B4; base_B5 = type90_B5; base_B6 = type90_B6; base_B7 = type90_B7;
+
+        base_R2A0 = type90_R2A0; base_R2A1 = type90_R2A1; base_R2A2 = type90_R2A2; base_R2A3 = type90_R2A3;
+        base_R2A4 = type90_R2A4; base_R2A5 = type90_R2A5; base_R2A6 = type90_R2A6; base_R2A7 = type90_R2A7;
+
+        base_R2B0 = type90_R2B0; base_R2B1 = type90_R2B1; base_R2B2 = type90_R2B2; base_R2B3 = type90_R2B3;
+        base_R2B4 = type90_R2B4; base_R2B5 = type90_R2B5; base_R2B6 = type90_R2B6; base_R2B7 = type90_R2B7;
+      end
+      ROT_180: begin
+        base_A0 = type180_A0; base_A1 = type180_A1; base_A2 = type180_A2; base_A3 = type180_A3;
+        base_A4 = type180_A4; base_A5 = type180_A5; base_A6 = type180_A6; base_A7 = type180_A7;
+
+        base_B0 = type180_B0; base_B1 = type180_B1; base_B2 = type180_B2; base_B3 = type180_B3;
+        base_B4 = type180_B4; base_B5 = type180_B5; base_B6 = type180_B6; base_B7 = type180_B7;
+
+        base_R2A0 = type180_R2A0; base_R2A1 = type180_R2A1; base_R2A2 = type180_R2A2; base_R2A3 = type180_R2A3;
+        base_R2A4 = type180_R2A4; base_R2A5 = type180_R2A5; base_R2A6 = type180_R2A6; base_R2A7 = type180_R2A7;
+
+        base_R2B0 = type180_R2B0; base_R2B1 = type180_R2B1; base_R2B2 = type180_R2B2; base_R2B3 = type180_R2B3;
+        base_R2B4 = type180_R2B4; base_R2B5 = type180_R2B5; base_R2B6 = type180_R2B6; base_R2B7 = type180_R2B7;
+      end
+      ROT_270: begin
+        base_A0 = type270_A0; base_A1 = type270_A1; base_A2 = type270_A2; base_A3 = type270_A3;
+        base_A4 = type270_A4; base_A5 = type270_A5; base_A6 = type270_A6; base_A7 = type270_A7;
+
+        base_B0 = type270_B0; base_B1 = type270_B1; base_B2 = type270_B2; base_B3 = type270_B3;
+        base_B4 = type270_B4; base_B5 = type270_B5; base_B6 = type270_B6; base_B7 = type270_B7;
+
+        base_R2A0 = type270_R2A0; base_R2A1 = type270_R2A1; base_R2A2 = type270_R2A2; base_R2A3 = type270_R2A3;
+        base_R2A4 = type270_R2A4; base_R2A5 = type270_R2A5; base_R2A6 = type270_R2A6; base_R2A7 = type270_R2A7;
+
+        base_R2B0 = type270_R2B0; base_R2B1 = type270_R2B1; base_R2B2 = type270_R2B2; base_R2B3 = type270_R2B3;
+        base_R2B4 = type270_R2B4; base_R2B5 = type270_R2B5; base_R2B6 = type270_R2B6; base_R2B7 = type270_R2B7;
+      end
+      default: begin
+        base_A0 = type00_A0; base_A1 = type00_A1; base_A2 = type00_A2; base_A3 = type00_A3;
+        base_A4 = type00_A4; base_A5 = type00_A5; base_A6 = type00_A6; base_A7 = type00_A7;
+
+        base_B0 = type00_B0; base_B1 = type00_B1; base_B2 = type00_B2; base_B3 = type00_B3;
+        base_B4 = type00_B4; base_B5 = type00_B5; base_B6 = type00_B6; base_B7 = type00_B7;
+
+        base_R2A0 = type00_R2A0; base_R2A1 = type00_R2A1; base_R2A2 = type00_R2A2; base_R2A3 = type00_R2A3;
+        base_R2A4 = type00_R2A4; base_R2A5 = type00_R2A5; base_R2A6 = type00_R2A6; base_R2A7 = type00_R2A7;
+        
+        base_R2B0 = type00_R2B0; base_R2B1 = type00_R2B1; base_R2B2 = type00_R2B2; base_R2B3 = type00_R2B3;
+        base_R2B4 = type00_R2B4; base_R2B5 = type00_R2B5; base_R2B6 = type00_R2B6; base_R2B7 = type00_R2B7;
+      end
+    endcase
+  end
 end
 
 
