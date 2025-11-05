@@ -2344,7 +2344,7 @@ always @(*) begin
     loc_y_decode_corner2_addr = (!large_qrcode_flag)? loc_y + 9: loc_y + 18;
 
     loc_x_decode_corner3_addr = (!large_qrcode_flag)? loc_x + 11: loc_x + 22;
-    loc_y_decode_corner3_addr = (!large_qrcode_flag)? loc_y + 20: loc_x + 41;
+    loc_y_decode_corner3_addr = (!large_qrcode_flag)? loc_y + 20: loc_y + 41;
 
     loc_x_decode_corner4_addr = (!large_qrcode_flag)? loc_x + 11: loc_x + 22;
     loc_y_decode_corner4_addr = (!large_qrcode_flag)? loc_y + 9: loc_y + 18;
@@ -2419,7 +2419,7 @@ always @(*) begin
   ROT_270: begin
     // ----- region 1 ----- //
     loc_x_decode_corner1_addr = (!large_qrcode_flag)? loc_x - 20: loc_x - 41;
-    loc_y_decode_corner1_addr = (!large_qrcode_flag)? loc_y + 20: loc_x + 41;
+    loc_y_decode_corner1_addr = (!large_qrcode_flag)? loc_y + 20: loc_y + 41;
 
     loc_x_decode_corner2_addr = (!large_qrcode_flag)? loc_x - 9: loc_x - 18;
     loc_y_decode_corner2_addr = (!large_qrcode_flag)? loc_y + 20: loc_y + 41;
