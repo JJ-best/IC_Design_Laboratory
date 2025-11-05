@@ -593,8 +593,7 @@ end
 always @(*) begin
   if (rot_cnt == 14 && state == CHECK_42) begin
     addr_n = addr_pointer;
-  end
-  if (rot_cnt == 8 && state == CHECK) begin // if didnt find rotation in 8 cycle
+  end else if (rot_cnt == 8 && state == CHECK) begin // if didnt find rotation in 8 cycle
     addr_n = addr_pointer;
   end else if (check) begin // rotation state for 21x21 qrcode
     if (up_direction) begin
@@ -1077,58 +1076,574 @@ always @(*) begin
         // region1
         line0_dat = demask_data0;
       end
-      line0_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data0;
-      line1_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data1;
-      line2_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data2; 
-      line3_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data3;
-      line4_dat  = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data4;
-      line5_dat  = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data5;
-      line6_dat  = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data6;
-      line7_dat  = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data7;
-      line8_dat  = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data8;
-      line9_dat  = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data9;
-      line10_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data10;
-      line11_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data11;
-      line12_dat = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data12;
-      line13_dat = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data13;
-      line14_dat = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data14;
-      line15_dat = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data15;
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift9_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line1_dat = demask_data9;
+      end else if (shift5_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line1_dat = demask_data5;
+      end else begin
+        // region1
+        line1_dat = demask_data1;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift10_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line2_dat = demask_data10;
+      end else if (shift6_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line2_dat = demask_data6;
+      end else begin
+        // region1
+        line2_dat = demask_data2;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift11_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line3_dat = demask_data11;
+      end else if (shift7_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line3_dat = demask_data7;
+      end else begin
+        // region1
+        line3_dat = demask_data3;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift12_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line4_dat = demask_data12;
+      end else if (shift8_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line4_dat = demask_data8;
+      end else begin
+        // region1
+        line4_dat = demask_data4;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift13_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line5_dat = demask_data13;
+      end else if (shift9_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line5_dat = demask_data9;
+      end else begin
+        // region1
+        line5_dat = demask_data5;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift14_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line6_dat = demask_data14;
+      end else if (shift10_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line6_dat = demask_data10;
+      end else begin
+        // region1
+        line6_dat = demask_data6;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift15_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line7_dat = demask_data15;
+      end else if (shift11_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line7_dat = demask_data11;
+      end else begin
+        // region1
+        line7_dat = demask_data7;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift0_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line8_dat = demask_data0;
+      end else if (shift12_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line8_dat = demask_data12;
+      end else begin
+        // region1
+        line8_dat = demask_data8;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift1_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line9_dat = demask_data1;
+      end else if (shift13_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line9_dat = demask_data13;
+      end else begin
+        // region1
+        line9_dat = demask_data9;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift2_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line10_dat = demask_data2;
+      end else if (shift14_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line10_dat = demask_data14;
+      end else begin
+        // region1
+        line10_dat = demask_data10;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift3_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line11_dat = demask_data3;
+      end else if (shift15_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line11_dat = demask_data15;
+      end else begin
+        // region1
+        line11_dat = demask_data11;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift4_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line12_dat = demask_data4;
+      end else if (shift0_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line12_dat = demask_data0;
+      end else begin
+        // region1
+        line12_dat = demask_data12;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift5_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line13_dat = demask_data5;
+      end else if (shift1_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line13_dat = demask_data1;
+      end else begin
+        // region1
+        line13_dat = demask_data13;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift6_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line14_dat = demask_data6;
+      end else if (shift2_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line14_dat = demask_data2;
+      end else begin
+        // region1
+        line14_dat = demask_data14;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift7_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line15_dat = demask_data7;
+      end else if (shift3_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line15_dat = demask_data3;
+      end else begin
+        // region1
+        line15_dat = demask_data15;
+      end
+
+      //line0_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data0;
+      //line1_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data1;
+      //line2_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data2; 
+      //line3_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data3;
+      //line4_dat  = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data4;
+      //line5_dat  = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data5;
+      //line6_dat  = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data6;
+      //line7_dat  = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data7;
+      //line8_dat  = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data8;
+      //line9_dat  = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data9;
+      //line10_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data10;
+      //line11_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data11;
+      //line12_dat = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data12;
+      //line13_dat = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data13;
+      //line14_dat = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data14;
+      //line15_dat = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data15;
     end
     ROT_90: begin
-      line0_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data0;
-      line1_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data1;
-      line2_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data2;
-      line3_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data3;
-      line4_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data4;
-      line5_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data5;
-      line6_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data6;
-      line7_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data7;
-      line8_dat  = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data8;
-      line9_dat  = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data9;
-      line10_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data10;
-      line11_dat = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data11;
-      line12_dat = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data12;
-      line13_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data13;
-      line14_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data14;
-      line15_dat = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data15;
+      if ((decode_state == DECODE_SWAP2_UP) && shift2_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line0_dat = demask_data2;
+      end else if (shift1_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line0_dat = demask_data1;
+      end else begin
+        // region1
+        line0_dat = demask_data0;
+      end
+//coo
+      if ((decode_state == DECODE_SWAP2_UP) && shift3_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line1_dat = demask_data3;
+      end else if (shift2_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line1_dat = demask_data2;
+      end else begin
+        // region1
+        line1_dat = demask_data1;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift0_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line2_dat = demask_data0;
+      end else if (shift3_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line2_dat = demask_data3;
+      end else begin
+        // region1
+        line2_dat = demask_data2;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift1_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line3_dat = demask_data1;
+      end else if (shift0_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line3_dat = demask_data0;
+      end else begin
+        // region1
+        line3_dat = demask_data3;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift6_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line4_dat = demask_data6;
+      end else if (shift5_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line4_dat = demask_data5;
+      end else begin
+        // region1
+        line4_dat = demask_data4;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift7_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line5_dat = demask_data7;
+      end else if (shift6_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line5_dat = demask_data6;
+      end else begin
+        // region1
+        line5_dat = demask_data5;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift4_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line6_dat = demask_data4;
+      end else if (shift7_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line6_dat = demask_data7;
+      end else begin
+        // region1
+        line6_dat = demask_data6;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift5_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line7_dat = demask_data5;
+      end else if (shift4_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line7_dat = demask_data4;
+      end else begin
+        // region1
+        line7_dat = demask_data7;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift10_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line8_dat = demask_data10;
+      end else if (shift9_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line8_dat = demask_data9;
+      end else begin
+        // region1
+        line8_dat = demask_data8;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift11_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line9_dat = demask_data11;
+      end else if (shift10_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line9_dat = demask_data10;
+      end else begin
+        // region1
+        line9_dat = demask_data9;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift8_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line10_dat = demask_data8;
+      end else if (shift11_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line10_dat = demask_data11;
+      end else begin
+        // region1
+        line10_dat = demask_data10;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift9_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line11_dat = demask_data9;
+      end else if (shift8_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line11_dat = demask_data8;
+      end else begin
+        // region1
+        line11_dat = demask_data11;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift14_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line12_dat = demask_data14;
+      end else if (shift13_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line12_dat = demask_data13;
+      end else begin
+        // region1
+        line12_dat = demask_data12;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift15_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line13_dat = demask_data15;
+      end else if (shift14_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line13_dat = demask_data14;
+      end else begin
+        // region1
+        line13_dat = demask_data13;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift12_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line14_dat = demask_data12;
+      end else if (shift15_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line14_dat = demask_data15;
+      end else begin
+        // region1
+        line14_dat = demask_data14;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift13_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line15_dat = demask_data13;
+      end else if (shift12_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line15_dat = demask_data12;
+      end else begin
+        // region1
+        line15_dat = demask_data15;
+      end
+      // line0_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data0;
+      // line1_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data1;
+      // line2_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data2;
+      // line3_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data3;
+      // line4_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data4;
+      // line5_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data5;
+      // line6_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data6;
+      // line7_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data7;
+      // line8_dat  = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data8;
+      // line9_dat  = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data9;
+      // line10_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data10;
+      // line11_dat = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data11;
+      // line12_dat = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data12;
+      // line13_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data13;
+      // line14_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data14;
+      // line15_dat = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data15;
     end
     ROT_180: begin
-      line0_dat  = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data0;
-      line1_dat  = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data1;
-      line2_dat  = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data2;
-      line3_dat  = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data3;
-      line4_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data4;
-      line5_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data5;
-      line6_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data6;
-      line7_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data7;
-      line8_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data8;
-      line9_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data9;
-      line10_dat = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data10;
-      line11_dat = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data11;
-      line12_dat = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data12;
-      line13_dat = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data13;
-      line14_dat = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data14;
-      line15_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data15;
+      if ((decode_state == DECODE_SWAP2_UP) && shift8_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line0_dat = demask_data8;
+      end else if (shift12_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line0_dat = demask_data12;
+      end else begin
+        // region1
+        line0_dat = demask_data0;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift9_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line1_dat = demask_data9;
+      end else if (shift13_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line1_dat = demask_data13;
+      end else begin
+        // region1
+        line1_dat = demask_data1;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift10_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line2_dat = demask_data10;
+      end else if (shift14_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line2_dat = demask_data14;
+      end else begin
+        // region1
+        line2_dat = demask_data2;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift11_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line3_dat = demask_data11;
+      end else if (shift15_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line3_dat = demask_data15;
+      end else begin
+        // region1
+        line3_dat = demask_data3;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift12_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line4_dat = demask_data12;
+      end else if (shift0_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line4_dat = demask_data0;
+      end else begin
+        // region1
+        line4_dat = demask_data4;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift13_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line5_dat = demask_data13;
+      end else if (shift1_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line5_dat = demask_data1;
+      end else begin
+        // region1
+        line5_dat = demask_data5;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift14_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line6_dat = demask_data14;
+      end else if (shift2_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line6_dat = demask_data2;
+      end else begin
+        // region1
+        line6_dat = demask_data6;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift15_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line7_dat = demask_data15;
+      end else if (shift3_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line7_dat = demask_data3;
+      end else begin
+        // region1
+        line7_dat = demask_data7;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift0_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line8_dat = demask_data0;
+      end else if (shift4_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line8_dat = demask_data4;
+      end else begin
+        // region1
+        line8_dat = demask_data8;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift1_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line9_dat = demask_data1;
+      end else if (shift5_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line9_dat = demask_data5;
+      end else begin
+        // region1
+        line9_dat = demask_data9;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift2_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line10_dat = demask_data2;
+      end else if (shift6_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line10_dat = demask_data6;
+      end else begin
+        // region1
+        line10_dat = demask_data10;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift3_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line11_dat = demask_data3;
+      end else if (shift7_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line11_dat = demask_data7;
+      end else begin
+        // region1
+        line11_dat = demask_data11;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift4_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line12_dat = demask_data4;
+      end else if (shift8_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line12_dat = demask_data8;
+      end else begin
+        // region1
+        line12_dat = demask_data12;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift5_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line13_dat = demask_data5;
+      end else if (shift9_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line13_dat = demask_data9;
+      end else begin
+        // region1
+        line13_dat = demask_data13;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift6_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line14_dat = demask_data6;
+      end else if (shift10_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line14_dat = demask_data10;
+      end else begin
+        // region1
+        line14_dat = demask_data14;
+      end
+
+      if ((decode_state == DECODE_SWAP2_UP) && shift7_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line15_dat = demask_data7;
+      end else if (shift11_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line15_dat = demask_data11;
+      end else begin
+        // region1
+        line15_dat = demask_data15;
+      end
+      // line0_dat  = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data0;
+      // line1_dat  = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data1;
+      // line2_dat  = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data2;
+      // line3_dat  = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data3;
+      // line4_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data4;
+      // line5_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data5;
+      // line6_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data6;
+      // line7_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data7;
+      // line8_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data8;
+      // line9_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data9;
+      // line10_dat = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data10;
+      // line11_dat = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data11;
+      // line12_dat = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data12;
+      // line13_dat = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data13;
+      // line14_dat = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data14;
+      // line15_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data15;
     end
     ROT_270: begin
       line0_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data0;
