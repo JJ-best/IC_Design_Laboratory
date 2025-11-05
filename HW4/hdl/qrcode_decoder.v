@@ -44,6 +44,7 @@ localparam CHECK = 3'd2;
 localparam MASK1 = 3'd3;
 localparam MASK2 = 3'd4;
 localparam DECODE = 3'd5;
+localparam CHECK_42 = 3'd6;
 // ----- addr gener ----- //
 reg [9:0]addr;
 reg [9:0]addr_n;
@@ -477,6 +478,8 @@ always @(*) begin
     FIND: begin // find position
       if (check) begin
         state_n = CHECK; 
+      end else if (check_42) begin
+        state_n = CHECK_42;
       end else begin
         state_n = FIND;
       end
@@ -507,6 +510,13 @@ always @(*) begin
         state_n = DECODE;
       end
     end
+    CHECK_42: begin
+      if (rot_cnt == 14) begin
+        state_n = FIND;
+      end else begin
+        state_n = CHECK_42;
+      end
+    end
     default : begin
       state_n = FIND;
     end
@@ -521,18 +531,29 @@ always @(posedge clk) begin
     addr_pointer <= 0;
   end else if (state != IDLE) begin
     addr <= addr_n;
-    addr_pointer <= (check)? addr - 1: addr_pointer; 
+    addr_pointer <= (check | check_42)? addr - 1: addr_pointer; 
     // remember the addr, after decode this qrcode, jump back.
   end
 end
 always @(*) begin
-  if (rot_cnt == 8) begin // if didnt find rotation in 8 cycle
+  if (rot_cnt == 14 && state == CHECK_42) begin
     addr_n = addr_pointer;
-  end else if (check) begin // rotation state
+  end
+  if (rot_cnt == 8 && state == CHECK) begin // if didnt find rotation in 8 cycle
+    addr_n = addr_pointer;
+  end else if (check) begin // rotation state for 21x21 qrcode
     if (up_direction) begin
       addr_n = addr - 6 - 96;
     end else if (down_direction) begin
       addr_n = addr - 6 + 96;
+    end else begin
+      addr_n = addr;
+    end
+  end else if (check_42) begin // rotation check for 42x42 qrcode
+    if (up_direction_42) begin
+      addr_n = addr - 12 - 160;
+    end else if (down_direction_42) begin
+      addr_n = addr - 12 + 160;
     end else begin
       addr_n = addr;
     end
@@ -594,38 +615,44 @@ end
 always @(*) begin
   case (rot_state)
     ROT_IDLE: begin //0
-      if (check & up_direction) begin
+      if ((check & up_direction) | (check_42 & up_direction_42)) begin
         rot_state_n = ROT_UP;
-      end else if (check & down_direction) begin
+      end else if ((check & down_direction) | (check_42 & down_direction_42)) begin
         rot_state_n = ROT_DOWN;
       end else begin
         rot_state_n = rot_state;
       end
     end
     ROT_UP: begin //1
-      if (rot_cnt == 8) begin
+      if (rot_cnt == 13) begin
         rot_state_n = ROT_IDLE;
-      end else if (rot_left & check_rot) begin
+      end else if ((rot_left & check_rot) | (rot_left42 & check_rot42)) begin
         rot_state_n = ROT_90;
-      end else if (rot_right & check_rot) begin
+      end else if ((rot_right & check_rot) | (rot_right42 & check_rot42)) begin
         rot_state_n = ROT_180;
+      end else if (state == FIND) begin
+        rot_state_n = ROT_IDLE;
       end else begin
         rot_state_n = rot_state;
       end
     end
     ROT_DOWN: begin //2
-      if (rot_cnt == 8) begin
+      if (rot_cnt == 13) begin
         rot_state_n = ROT_IDLE;
-      end else if (rot_left & check_rot) begin
+      end else if ((rot_left & check_rot) | (rot_left42 & check_rot42)) begin
         rot_state_n = ROT_0;
-      end else if (rot_right & check_rot) begin
+      end else if (rot_right & check_rot | (rot_right42 & check_rot42)) begin
         rot_state_n = ROT_270;
+      end else if (state == FIND) begin
+        rot_state_n = ROT_IDLE;
       end else begin
         rot_state_n = rot_state;
       end
     end
     ROT_0: begin //3
       if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        rot_state_n = ROT_IDLE;
+      end else if (state == FIND) begin
         rot_state_n = ROT_IDLE;
       end else begin
         rot_state_n = ROT_0;
@@ -634,6 +661,8 @@ always @(*) begin
     ROT_90: begin //4
       if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         rot_state_n = ROT_IDLE;
+      end else if (state == FIND) begin
+        rot_state_n = ROT_IDLE;
       end else begin
         rot_state_n = ROT_90;
       end
@@ -641,12 +670,16 @@ always @(*) begin
     ROT_180: begin // 5
       if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         rot_state_n = ROT_IDLE;
+      end else if (state == FIND) begin
+        rot_state_n = ROT_IDLE;
       end else begin
         rot_state_n = ROT_180;
       end
     end
     ROT_270: begin // 6
       if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+        rot_state_n = ROT_IDLE;
+      end else if (state == FIND) begin
         rot_state_n = ROT_IDLE;
       end else begin
         rot_state_n = ROT_270;
@@ -667,7 +700,7 @@ end
 always @(posedge clk) begin
   if (!srst_n) begin
     rot_cnt <= 0;
-  end else if (state == CHECK) begin
+  end else if (state == CHECK | state == CHECK_42) begin
     rot_cnt <= rot_cnt + 1;
   end else begin
     rot_cnt <= 0;
@@ -700,7 +733,7 @@ always @(posedge clk) begin
     line4  <= 0; line5  <= 0; line6  <= 0; line7  <= 0;
     line8  <= 0; line9  <= 0; line10 <= 0; line11 <= 0;
     line12 <= 0; line13 <= 0; line14 <= 0; line15 <= 0;
-  end else if (check | (state == DECODE && decode_state == DECODE_IDLE)) begin
+  end else if (check | check_42 | (state == DECODE && decode_state == DECODE_IDLE)) begin
     line0  <= 0; line1  <= 0; line2  <= 0; line3  <= 0;
     line4  <= 0; line5  <= 0; line6  <= 0; line7  <= 0;
     line8  <= 0; line9  <= 0; line10 <= 0; line11 <= 0;
@@ -1487,27 +1520,46 @@ always @(*) begin
   check_zero4_42 = ~|row4_42[47:20];
 // need to add rot_col for 42x42 qrcode
 
-  check_rot_col1_42 = (check_rot21_42 & check_rot31_42) | (check_rot31_42 & check_rot41_42_d) |
-                      (check_rot21_42 & check_rot31_42_d) | (check_rot11_42 & check_rot21_42_d) | 
-                      (check_rot11_42_d & check_rot21_42) | (check_rot21_42_d & check_rot31_42) |
-                      (check_rot31_42_d & (check_rot41_42));
-  check_rot_col2_42 = (check_rot22_42 & check_rot32_42) | (check_rot32_42 & check_rot42_42_d) |
-                      (check_rot22_42 & check_rot32_42_d) | (check_rot12_42 & check_rot22_42_d) | 
-                      (check_rot12_42_d & check_rot22_42) | (check_rot22_42_d & check_rot32_42) |
-                      (check_rot32_42_d & (check_rot42_42));
-  check_rot_col3_42 = (check_rot23_42 & check_rot33_42) | (check_rot33_42 & check_rot43_42_d) |
-                      (check_rot23_42 & check_rot33_42_d) | (check_rot13_42 & check_rot23_42_d) | 
-                      (check_rot13_42_d & check_rot23_42) | (check_rot23_42_d & check_rot33_42) |
-                      (check_rot33_42_d & (check_rot43_42));
-  check_rot_col4_42 = (check_rot24_42 & check_rot34_42) | (check_rot34_42 & check_rot44_42_d) |
-                      (check_rot24_42 & check_rot34_42_d) | (check_rot14_42 & check_rot24_42_d) | 
-                      (check_rot14_42_d & check_rot24_42) | (check_rot24_42_d & check_rot34_42) |
-                      (check_rot34_42_d & (check_rot44_42));
+  check_rot_col1_42 = (check_rot11_42 & check_rot21_42 & check_rot31_42 & check_rot41_42) |
+                      (check_rot11_42 & check_rot21_42 & check_rot31_42 & check_rot41_42_d) |
+                      (check_rot11_42 & check_rot21_42 & check_rot31_42_d & check_rot41_42_d) |
+                      (check_rot11_42 & check_rot21_42_d & check_rot31_42_d) | //upper
+                      (check_rot11_42 & check_rot21_42 & check_rot31_42 & check_rot41_42) |
+                      (check_rot11_42_d & check_rot21_42 & check_rot31_42 & check_rot41_42) |
+                      (check_rot11_42_d & check_rot21_42_d & check_rot31_42 & check_rot41_42) | 
+                      (check_rot21_42_d & check_rot31_42_d & check_rot41_42);
+  
+  check_rot_col2_42 = (check_rot12_42 & check_rot22_42 & check_rot32_42 & check_rot42_42) |
+                      (check_rot12_42 & check_rot22_42 & check_rot32_42 & check_rot42_42_d) |
+                      (check_rot12_42 & check_rot22_42 & check_rot32_42_d & check_rot42_42_d) |
+                      (check_rot12_42 & check_rot22_42_d & check_rot32_42_d) | //upper
+                      (check_rot12_42 & check_rot22_42 & check_rot32_42 & check_rot42_42) |
+                      (check_rot12_42_d & check_rot22_42 & check_rot32_42 & check_rot42_42) |
+                      (check_rot12_42_d & check_rot22_42_d & check_rot32_42 & check_rot42_42) |
+                      (check_rot22_42_d & check_rot32_42_d & check_rot42_42);
+
+  check_rot_col3_42 = (check_rot13_42 & check_rot23_42 & check_rot33_42 & check_rot43_42) |
+                      (check_rot13_42 & check_rot23_42 & check_rot33_42 & check_rot43_42_d) |
+                      (check_rot13_42 & check_rot23_42 & check_rot33_42_d & check_rot43_42_d) |
+                      (check_rot13_42 & check_rot23_42_d & check_rot33_42_d) | //upper
+                      (check_rot13_42 & check_rot23_42 & check_rot33_42 & check_rot43_42) |
+                      (check_rot13_42_d & check_rot23_42 & check_rot33_42 & check_rot43_42) |
+                      (check_rot13_42_d & check_rot23_42_d & check_rot33_42 & check_rot43_42) |
+                      (check_rot23_42_d & check_rot33_42_d & check_rot43_42);
+                      
+  check_rot_col4_42 = (check_rot14_42 & check_rot24_42 & check_rot34_42 & check_rot44_42) |
+                      (check_rot14_42 & check_rot24_42 & check_rot34_42 & check_rot44_42_d) |
+                      (check_rot14_42 & check_rot24_42 & check_rot34_42_d & check_rot44_42_d) |
+                      (check_rot14_42 & check_rot24_42_d & check_rot34_42_d) | //upper
+                      (check_rot14_42 & check_rot24_42 & check_rot34_42 & check_rot44_42) |
+                      (check_rot14_42_d & check_rot24_42 & check_rot34_42 & check_rot44_42) |
+                      (check_rot14_42_d & check_rot24_42_d & check_rot34_42 & check_rot44_42) |
+                      (check_rot24_42_d & check_rot34_42_d & check_rot44_42);
  
 
   check_rot = (check_rot_col1 | check_rot_col2 | check_rot_col3 | check_rot_col4) && (rot_left | rot_right);
 
-  check_rot42 = (check_rot_col1_42 | check_rot_col2_42 | check_rot_col3_42 | check_rot_col4_42);
+  check_rot42 = (check_rot_col1_42 | check_rot_col2_42 | check_rot_col3_42 | check_rot_col4_42) && (rot_right42 | rot_left42);
 
 
   rot_left = (check_rot1 | check_rot2 | check_rot3 | check_rot4) &&
@@ -1522,6 +1574,11 @@ always @(*) begin
 
 end
 
+// find the finder pattern position to find locx locy
+reg [3:0] pos_x_onehot_42;
+reg [3:0] pos_y_onehot_42; 
+reg [1:0] pos_x_binary_42;
+reg [1:0] pos_y_binary_42;
 always @(*) begin
   pos_x_onehot[0] = check_row11_21 | check_row21_21 | check_row31_21 | check_row41_21;
   pos_x_onehot[1] = check_row12_21 | check_row22_21 | check_row32_21 | check_row42_21;
@@ -1533,11 +1590,88 @@ always @(*) begin
   pos_y_onehot[2] = check_row31_21 | check_row32_21 | check_row33_21 | check_row34_21;
   pos_y_onehot[3] = check_row41_21 | check_row42_21 | check_row43_21 | check_row44_21;
 
+  pos_x_onehot_42[0] = (check_row11_42 & check_row21_42 & check_row_31_42_zero)|
+                       (check_row11_42 & check_row21_42_direction)|
+                       (check_row11_42_direction & check_row21_42 & check_row31_42) |
+                       (check_row11_42 & check_row21_42 & check_row31_42_direction) |
+                       (check_row21_42_direction & check_row31_42 & check_row41_42) |
+                       (check_row21_42 & check_row31_42 & check_row41_42_direction) |
+                       (check_row31_42_direction & check_row41_42) |
+                       (check_row_21_42_zero & check_row31_42 & check_row41_42);
+  
+  pos_x_onehot_42[1] = (check_row12_42 & check_row22_42 & check_row_32_42_zero)|
+                       (check_row12_42 & check_row22_42_direction)|
+                       (check_row12_42_direction & check_row22_42 & check_row32_42) |
+                       (check_row12_42 & check_row22_42 & check_row32_42_direction) |
+                       (check_row22_42_direction & check_row32_42 & check_row42_42) |
+                       (check_row22_42 & check_row32_42 & check_row42_42_direction) |
+                       (check_row32_42_direction & check_row42_42) |
+                       (check_row_22_42_zero & check_row32_42 & check_row42_42);
+
+  pos_x_onehot_42[2] = (check_row13_42 & check_row23_42 & check_row_33_42_zero)|
+                       (check_row13_42 & check_row23_42_direction)|
+                       (check_row13_42_direction & check_row23_42 & check_row33_42) |
+                       (check_row13_42 & check_row23_42 & check_row33_42_direction) |
+                       (check_row23_42_direction & check_row33_42 & check_row43_42) |
+                       (check_row23_42 & check_row33_42 & check_row43_42_direction) |
+                       (check_row33_42_direction & check_row43_42) |
+                       (check_row_23_42_zero & check_row33_42 & check_row43_42);
+
+  pos_x_onehot_42[3] = (check_row14_42 & check_row24_42 & check_row_34_42_zero)|
+                       (check_row14_42 & check_row24_42_direction) |
+                       (check_row14_42_direction & check_row24_42 & check_row34_42) |
+                       (check_row14_42 & check_row24_42 & check_row31_42_direction) |
+                       (check_row24_42_direction & check_row34_42 & check_row44_42) |
+                       (check_row24_42 & check_row34_42 & check_row44_42_direction) |
+                       (check_row34_42_direction & check_row44_42) |
+                       (check_row_24_42_zero & check_row34_42 & check_row44_42);
+
+  pos_y_onehot_42[0] = (check_row11_42 & check_row21_42 & check_row_31_42_zero)|
+                       (check_row11_42 & check_row21_42_direction)|
+                       (check_row12_42 & check_row22_42 & check_row_32_42_zero)|
+                       (check_row12_42 & check_row22_42_direction)|
+                       (check_row13_42 & check_row23_42 & check_row_33_42_zero)|
+                       (check_row13_42 & check_row23_42_direction)|
+                       (check_row14_42 & check_row24_42 & check_row_34_42_zero)|
+                       (check_row14_42 & check_row24_42_direction);
+
+  pos_y_onehot_42[1] = (check_row11_42_direction & check_row21_42 & check_row31_42) |
+                        (check_row11_42 & check_row21_42 & check_row31_42_direction) |
+                        (check_row12_42_direction & check_row22_42 & check_row32_42) |
+                        (check_row12_42 & check_row22_42 & check_row32_42_direction) |
+                        (check_row13_42_direction & check_row23_42 & check_row33_42) |
+                        (check_row13_42 & check_row23_42 & check_row33_42_direction) |
+                        (check_row14_42_direction & check_row24_42 & check_row34_42) |
+                        (check_row14_42 & check_row24_42 & check_row31_42_direction);
+
+  pos_y_onehot_42[2] = (check_row21_42_direction & check_row31_42 & check_row41_42) |
+                       (check_row21_42 & check_row31_42 & check_row41_42_direction) |
+                       (check_row22_42_direction & check_row32_42 & check_row42_42) |
+                       (check_row22_42 & check_row32_42 & check_row42_42_direction) |
+                       (check_row23_42_direction & check_row33_42 & check_row43_42) |
+                       (check_row23_42 & check_row33_42 & check_row43_42_direction) |
+                       (check_row24_42_direction & check_row34_42 & check_row44_42) |
+                       (check_row24_42 & check_row34_42 & check_row44_42_direction);
+
+  pos_y_onehot_42[3] = (check_row31_42_direction & check_row41_42) |
+                       (check_row_21_42_zero & check_row31_42 & check_row41_42) | 
+                       (check_row32_42_direction & check_row42_42) |
+                       (check_row_22_42_zero & check_row32_42 & check_row42_42) | 
+                       (check_row33_42_direction & check_row43_42) |
+                       (check_row_23_42_zero & check_row33_42 & check_row43_42) | 
+                       (check_row34_42_direction & check_row44_42) |
+                       (check_row_24_42_zero & check_row34_42 & check_row44_42);
+
   // onehot to binary
   pos_x_binary[1] = pos_x_onehot[2] | pos_x_onehot[3];
   pos_x_binary[0] = pos_x_onehot[1] | pos_x_onehot[3];
   pos_y_binary[1] = pos_y_onehot[2] | pos_y_onehot[3];
   pos_y_binary[0] = pos_y_onehot[1] | pos_y_onehot[3];
+
+  pos_x_binary_42[1] = pos_x_onehot_42[2] | pos_x_onehot_42[3];
+  pos_x_binary_42[0] = pos_x_onehot_42[1] | pos_x_onehot_42[3];
+  pos_y_binary_42[1] = pos_y_onehot_42[2] | pos_y_onehot_42[3];
+  pos_y_binary_42[0] = pos_y_onehot_42[1] | pos_y_onehot_42[3];
 end
 
 reg [1:0]pos_x_binary_reg;
@@ -1549,43 +1683,76 @@ always @(posedge clk) begin
   end else if (check) begin
     pos_x_binary_reg <= pos_x_binary;
     pos_y_binary_reg <= pos_y_binary;
+  end else if (check_42) begin
+    pos_x_binary_reg <= pos_x_binary_42;
+    pos_y_binary_reg <= pos_y_binary_42;
   end
 end
 
+reg [9:0]addr_finder_42;
+reg [6:0]loc_x_finder_42;
+reg [6:0]loc_y_finder_42;
+
+reg [6:0]loc_x_rot0_42;
+reg [6:0]loc_x_rot90_42;
+reg [6:0]loc_x_rot180_42;
+reg [6:0]loc_x_rot270_42;
+
+reg [6:0]loc_y_rot0_42;
+reg [6:0]loc_y_rot90_42;
+reg [6:0]loc_y_rot180_42;
+reg [6:0]loc_y_rot270_42;
 
 always @(*) begin
+  // need to fix for 42x42 qrcode
   addr_finder = addr_pointer - 5;
+  addr_finder_42 = addr_pointer - 11; // some condition may need to - 11, fix latter
+
   loc_x_finder = {3'b0, addr_finder[4:0], 2'b0} + pos_x_binary_reg;
   loc_y_finder = {3'b0, addr_finder[9:5], 2'b0} + pos_y_binary_reg;
+  loc_x_finder_42 = {3'b0, addr_finder_42[4:0], 2'b0} + pos_x_binary_reg;
+  loc_y_finder_42 = {3'b0, addr_finder_42[9:5], 2'b0} + pos_y_binary_reg;
 
   loc_x_rot0 = loc_x_finder;
   loc_y_rot0 = loc_y_finder - 6;
 
+  loc_x_rot0_42 = loc_x_finder_42;
+  loc_y_rot0_42 = loc_y_finder_42 - 12;
+
   loc_x_rot90 = loc_x_finder;
   loc_y_rot90 = loc_y_finder + 6;
+
+  loc_x_rot90_42 = loc_x_finder_42;
+  loc_x_rot90_42 = loc_y_finder_42 + 12;
 
   loc_x_rot180 = loc_x_finder + 20;
   loc_y_rot180 = loc_y_finder + 6;
 
+  loc_x_rot180_42 = loc_x_finder_42 + 41;
+  loc_y_rot180_42 = loc_y_finder_42 + 12;
+
   loc_x_rot270 = loc_x_finder + 20;
   loc_y_rot270 = loc_y_finder - 6;
 
+  loc_x_rot270_42 = loc_x_finder_42 + 41;
+  loc_y_rot270_42 = loc_y_finder_42 - 12;
+
   case (rot_state_n)
   ROT_0: begin
-    loc_x_n = loc_x_rot0;
-    loc_y_n = loc_y_rot0;
+    loc_x_n = (state == CHECK)? loc_x_rot0 : loc_x_rot0_42;
+    loc_y_n = (state == CHECK)? loc_y_rot0 : loc_y_rot0_42;
   end 
   ROT_90: begin
-    loc_x_n = loc_x_rot90;
-    loc_y_n = loc_y_rot90;
+    loc_x_n = (state == CHECK)? loc_x_rot90 : loc_x_rot90_42;
+    loc_y_n = (state == CHECK)? loc_y_rot90 : loc_y_rot90_42;
   end
   ROT_180: begin
-    loc_x_n = loc_x_rot180;
-    loc_y_n = loc_y_rot180;
+    loc_x_n = (state == CHECK)? loc_x_rot180 : loc_x_rot180_42;
+    loc_y_n = (state == CHECK)? loc_y_rot180 : loc_y_rot180_42;
   end
   ROT_270: begin
-    loc_x_n = loc_x_rot270;
-    loc_y_n = loc_y_rot270;
+    loc_x_n = (state == CHECK)? loc_x_rot270 : loc_x_rot270_42;
+    loc_y_n = (state == CHECK)? loc_y_rot270 : loc_y_rot270_42;
   end
   default: begin
     loc_x_n = 0;
@@ -1595,7 +1762,7 @@ always @(*) begin
 end
 
 always @(posedge clk) begin
-  if (check_rot) begin
+  if (check_rot | check_rot42) begin
     loc_x <= loc_x_n;
     loc_y <= loc_y_n;
   end
