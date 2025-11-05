@@ -1792,7 +1792,7 @@ always @(*) begin
   loc_y_rot90 = loc_y_finder + 6;
 
   loc_x_rot90_42 = loc_x_finder_42;
-  loc_x_rot90_42 = loc_y_finder_42 + 12;
+  loc_y_rot90_42 = loc_y_finder_42 + 12;
 
   loc_x_rot180 = loc_x_finder + 20;
   loc_y_rot180 = loc_y_finder + 6;
