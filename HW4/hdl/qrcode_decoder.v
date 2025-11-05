@@ -2743,6 +2743,7 @@ reg dat12_en;
 reg dat13_en;
 reg dat14_en;
 reg dat15_en;
+// ----- debug signal ----- //
 wire tmp;
 wire tmp2;
 wire tmp3;
@@ -2752,9 +2753,107 @@ assign tmp = (sram_dat0_x <= region1_right_x);
 assign tmp2 = (sram_dat0_x >= region1_left_x);
 assign tmp3 = (sram_dat0_y <= region1_up_y);
 assign tmp4 = (sram_dat0_y >= region1_down_y);
+// ----- debug signal ----- //
+
+// ----- 42x42 qrcode mask data ----- //
+// since 42x42 qrcode is 21x21 qrcode scale by two, there is only 1/4 data we need,
+// we can mask other data, so they will not write into fifo(dont push wptr).
+localparam [41:0] SCALE2_ROW_MASK = (128'd1 << 1)  | (128'd1 << 3)  | (128'd1 << 4)  | (128'd1 << 6)  |
+                                      (128'd1 << 9)  | (128'd1 << 11) | (128'd1 << 14) | (128'd1 << 16) |
+                                      (128'd1 << 19) | (128'd1 << 21) | (128'd1 << 22) | (128'd1 << 24) |
+                                      (128'd1 << 27) | (128'd1 << 29) | (128'd1 << 30) | (128'd1 << 32) |
+                                      (128'd1 << 35) | (128'd1 << 37) | (128'd1 << 38) | (128'd1 << 40);
+
+localparam [41:0] SCALE2_COL_MASK = (128'd1 << 18) | (128'd1 << 21) | (128'd1 << 23) | (128'd1 << 24) |
+                                      (128'd1 << 26) | (128'd1 << 29) | (128'd1 << 31) | (128'd1 << 32) |
+                                      (128'd1 << 34) | (128'd1 << 37) | (128'd1 << 39) | (128'd1 << 40);
+wire dat0_scale2;
+wire dat1_scale2;
+wire dat2_scale2;
+wire dat3_scale2;
+wire dat4_scale2;
+wire dat5_scale2;
+wire dat6_scale2;
+wire dat7_scale2;
+wire dat8_scale2;
+wire dat9_scale2;
+wire dat10_scale2;
+wire dat11_scale2;
+wire dat12_scale2;
+wire dat13_scale2;
+wire dat14_scale2;
+wire dat15_scale2;
+// each data comes from the sram need to match the mask condition in i-j coordinate
+// i-j coordinate is the index correspond to (loc_y, loc_x) under each rotation
+assign dat0_scale2  = SCALE2_ROW_MASK[i0_sym]  & SCALE2_COL_MASK[j0_sym];
+assign dat1_scale2  = SCALE2_ROW_MASK[i1_sym]  & SCALE2_COL_MASK[j1_sym];
+assign dat2_scale2  = SCALE2_ROW_MASK[i2_sym]  & SCALE2_COL_MASK[j2_sym];
+assign dat3_scale2  = SCALE2_ROW_MASK[i3_sym]  & SCALE2_COL_MASK[j3_sym];
+assign dat4_scale2  = SCALE2_ROW_MASK[i4_sym]  & SCALE2_COL_MASK[j4_sym];
+assign dat5_scale2  = SCALE2_ROW_MASK[i5_sym]  & SCALE2_COL_MASK[j5_sym];
+assign dat6_scale2  = SCALE2_ROW_MASK[i6_sym]  & SCALE2_COL_MASK[j6_sym];
+assign dat7_scale2  = SCALE2_ROW_MASK[i7_sym]  & SCALE2_COL_MASK[j7_sym];
+assign dat8_scale2  = SCALE2_ROW_MASK[i8_sym]  & SCALE2_COL_MASK[j8_sym];
+assign dat9_scale2  = SCALE2_ROW_MASK[i9_sym]  & SCALE2_COL_MASK[j9_sym];
+assign dat10_scale2 = SCALE2_ROW_MASK[i10_sym] & SCALE2_COL_MASK[j10_sym];
+assign dat11_scale2 = SCALE2_ROW_MASK[i11_sym] & SCALE2_COL_MASK[j11_sym];
+assign dat12_scale2 = SCALE2_ROW_MASK[i12_sym] & SCALE2_COL_MASK[j12_sym];
+assign dat13_scale2 = SCALE2_ROW_MASK[i13_sym] & SCALE2_COL_MASK[j13_sym];
+assign dat14_scale2 = SCALE2_ROW_MASK[i14_sym] & SCALE2_COL_MASK[j14_sym];
+assign dat15_scale2 = SCALE2_ROW_MASK[i15_sym] & SCALE2_COL_MASK[j15_sym];
 
 always @(*) begin
-  if (decode_state == DECODE_SWAP1_UP) begin
+    if (decode_state == DECODE_SWAP1_UP && large_qrcode_flag) begin
+    // if decode the 42x42 qrcode, check the mask condition
+    dat0_en = (sram_dat0_x <= region1_right_x) && (sram_dat0_x >= region1_left_x)
+           && (sram_dat0_y <= region1_up_y)    && (sram_dat0_y >= region1_down_y)
+           && dat0_scale2;
+    dat1_en = (sram_dat1_x <= region1_right_x) && (sram_dat1_x >= region1_left_x)
+           && (sram_dat1_y <= region1_up_y)    && (sram_dat1_y >= region1_down_y)
+           && dat1_scale2;
+    dat2_en = (sram_dat2_x <= region1_right_x) && (sram_dat2_x >= region1_left_x)
+           && (sram_dat2_y <= region1_up_y)    && (sram_dat2_y >= region1_down_y)
+           && dat2_scale2;
+    dat3_en = (sram_dat3_x <= region1_right_x) && (sram_dat3_x >= region1_left_x)
+           && (sram_dat3_y <= region1_up_y)    && (sram_dat3_y >= region1_down_y)
+           && dat3_scale2;
+    dat4_en = (sram_dat4_x <= region1_right_x) && (sram_dat4_x >= region1_left_x)
+           && (sram_dat4_y <= region1_up_y)    && (sram_dat4_y >= region1_down_y)
+           && dat4_scale2;
+    dat5_en = (sram_dat5_x <= region1_right_x) && (sram_dat5_x >= region1_left_x)
+           && (sram_dat5_y <= region1_up_y)    && (sram_dat5_y >= region1_down_y)
+           && dat5_scale2;
+    dat6_en = (sram_dat6_x <= region1_right_x) && (sram_dat6_x >= region1_left_x)
+           && (sram_dat6_y <= region1_up_y)    && (sram_dat6_y >= region1_down_y)
+           && dat6_scale2;
+    dat7_en = (sram_dat7_x <= region1_right_x) && (sram_dat7_x >= region1_left_x)
+           && (sram_dat7_y <= region1_up_y)    && (sram_dat7_y >= region1_down_y)
+           && dat7_scale2;
+    dat8_en = (sram_dat8_x <= region1_right_x) && (sram_dat8_x >= region1_left_x)
+           && (sram_dat8_y <= region1_up_y)    && (sram_dat8_y >= region1_down_y)
+           && dat8_scale2;
+    dat9_en = (sram_dat9_x <= region1_right_x) && (sram_dat9_x >= region1_left_x)
+           && (sram_dat9_y <= region1_up_y)    && (sram_dat9_y >= region1_down_y)
+           && dat9_scale2;
+    dat10_en = (sram_dat10_x <= region1_right_x) && (sram_dat10_x >= region1_left_x)
+            && (sram_dat10_y <= region1_up_y)    && (sram_dat10_y >= region1_down_y)
+            && dat10_scale2;
+    dat11_en = (sram_dat11_x <= region1_right_x) && (sram_dat11_x >= region1_left_x)
+            && (sram_dat11_y <= region1_up_y)    && (sram_dat11_y >= region1_down_y)
+            && dat11_scale2;
+    dat12_en = (sram_dat12_x <= region1_right_x) && (sram_dat12_x >= region1_left_x)
+            && (sram_dat12_y <= region1_up_y)    && (sram_dat12_y >= region1_down_y)
+            && dat12_scale2;
+    dat13_en = (sram_dat13_x <= region1_right_x) && (sram_dat13_x >= region1_left_x)
+            && (sram_dat13_y <= region1_up_y)    && (sram_dat13_y >= region1_down_y)
+            && dat13_scale2;
+    dat14_en = (sram_dat14_x <= region1_right_x) && (sram_dat14_x >= region1_left_x)
+            && (sram_dat14_y <= region1_up_y)    && (sram_dat14_y >= region1_down_y)
+            && dat14_scale2;
+    dat15_en = (sram_dat15_x <= region1_right_x) && (sram_dat15_x >= region1_left_x)
+            && (sram_dat15_y <= region1_up_y)    && (sram_dat15_y >= region1_down_y)
+            && dat15_scale2;
+  end else if (decode_state == DECODE_SWAP1_UP) begin
     dat0_en = (sram_dat0_x <= region1_right_x) && (sram_dat0_x >= region1_left_x)
            && (sram_dat0_y <= region1_up_y)    && (sram_dat0_y >= region1_down_y);
     dat1_en = (sram_dat1_x <= region1_right_x) && (sram_dat1_x >= region1_left_x)
@@ -3478,10 +3577,35 @@ always @(posedge clk) begin
   end
 end
 
+
+// ===== read pointer control ===== //
 wire [3:0] decode_type;
 // didnt implement rotation
 assign decode_type = {loc_y[1:0], loc_x[1:0]};
 
+// ----- new define for 42x42 qrcode begin ----- //
+// if large_qrcode_flag, use these decode format
+// still need to implement rot90, rot180, rot270 later
+// ----- region 1 ----- //
+// rotation 0, type (0, 0) = (y, x)
+// |7 |1' |0' |6 |
+// |3 |5' |4' |2 |
+// |5 |3' |2' |4 |
+// |1 |7' |6' |0 |
+// 8-bit word A: {line0, line3, line8, line11, line4, line7, line12, line15}
+// 8-bit word B: {line13, line14, line5, line6, line9, line10, line1, line2}
+
+// ----- region 2 ----- //
+// rotation 0, type (0, 0) = (y, x)
+// |5 |3' |2' |4 |
+// |1 |7' |6' |0 |
+// |7 |1' |0' |6 |
+// |3 |5' |4' |2 |
+// 8-bit word A: {line8, line11, line0, line3, line12, line15, line4, line7}
+// 8-bit word B: {line5, line6, line13, line14, line1, line2, line9, line10}
+// ----- new define for 42x42 qrcode end ----- //
+
+// ----- 21x21 qrcode ----- //
 // ----- region 1 ----- //
 // 1 word is 8 bit
 // 2 type , each decode we read 6 word, read by rptr to fifo
