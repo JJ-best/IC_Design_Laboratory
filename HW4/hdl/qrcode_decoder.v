@@ -540,7 +540,7 @@ always @(*) begin
       end
     end
     CHECK: begin // check rotation
-      if (rot_cnt == 8) begin
+      if (rot_cnt == 8) begin // refresh line
         state_n = FIND;
       end else if (check_rot) begin
         state_n = MASK1;
@@ -566,7 +566,7 @@ always @(*) begin
       end
     end
     CHECK_42: begin // 6
-      if (rot_cnt == 14) begin
+      if (rot_cnt == 14) begin //refresh line
         state_n = FIND;
       end else if (check_rot42) begin
         state_n = MASK1;
@@ -588,7 +588,7 @@ always @(posedge clk) begin
     addr_pointer <= 0;
   end else if (state != IDLE) begin
     addr <= addr_n;
-    addr_pointer <= (check | check_42)? addr - 1: addr_pointer; 
+    addr_pointer <= ((state == FIND && check) | (state == FIND && check_42))? addr - 1: addr_pointer; 
     // remember the addr, after decode this qrcode, jump back.
   end
 end
@@ -789,7 +789,7 @@ always @(posedge clk) begin
     line4  <= 0; line5  <= 0; line6  <= 0; line7  <= 0;
     line8  <= 0; line9  <= 0; line10 <= 0; line11 <= 0;
     line12 <= 0; line13 <= 0; line14 <= 0; line15 <= 0;
-  end else if (check | check_42 | (state == DECODE && decode_state == DECODE_IDLE)) begin
+  end else if (check | check_42 | (state == DECODE && decode_state == DECODE_IDLE)| (state == CHECK_42 && rot_cnt == 14) | (state == CHECK && rot_cnt == 8)) begin
     line0  <= 0; line1  <= 0; line2  <= 0; line3  <= 0;
     line4  <= 0; line5  <= 0; line6  <= 0; line7  <= 0;
     line8  <= 0; line9  <= 0; line10 <= 0; line11 <= 0;
