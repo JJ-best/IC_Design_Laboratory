@@ -5278,31 +5278,31 @@ localparam [3:0] type00_large_R2B6 = 4'd6;
 localparam [3:0] type00_large_R2B7 = 4'd5;
 
 // rotation 90, type (0, 0) = (y, x)
-// |7  |3  |5  |1  |
-// |6  |2  |4  |0  |
-// |0' |4' |2' |6' |
-// |1' |5' |3' |7' |
-// 8-bit word A: {line0, line4, line2, line6, line1, line5, line3, line7}
-// 8-bit word B: {line15, line11, line13, line9, line14, line10, line12, line8}
+// |5  |1  |7  |3  |
+// |4  |0  |6  |2  |
+// |2' |6' |0' |4' |
+// |3' |7' |1' |5' |
+// 8-bit word A: {line2, line6, line0, line4, line3, line7, line1, line5}
+// 8-bit word B: {line13, line9, line15, line11, line12, line8, line14, line10}
 
 // rotation 90
-localparam [3:0] type90_large_R2A0 = 4'd7;
-localparam [3:0] type90_large_R2A1 = 4'd3;
-localparam [3:0] type90_large_R2A2 = 4'd5;
-localparam [3:0] type90_large_R2A3 = 4'd1;
-localparam [3:0] type90_large_R2A4 = 4'd6;
-localparam [3:0] type90_large_R2A5 = 4'd2;
-localparam [3:0] type90_large_R2A6 = 4'd4;
-localparam [3:0] type90_large_R2A7 = 4'd0;
+localparam [3:0] type90_large_R2A0 = 4'd5;
+localparam [3:0] type90_large_R2A1 = 4'd1;
+localparam [3:0] type90_large_R2A2 = 4'd7;
+localparam [3:0] type90_large_R2A3 = 4'd3;
+localparam [3:0] type90_large_R2A4 = 4'd4;
+localparam [3:0] type90_large_R2A5 = 4'd0;
+localparam [3:0] type90_large_R2A6 = 4'd6;
+localparam [3:0] type90_large_R2A7 = 4'd2;
 
-localparam [3:0] type90_large_R2B0 = 4'd8;
-localparam [3:0] type90_large_R2B1 = 4'd12;
-localparam [3:0] type90_large_R2B2 = 4'd10;
-localparam [3:0] type90_large_R2B3 = 4'd14;
-localparam [3:0] type90_large_R2B4 = 4'd9;
-localparam [3:0] type90_large_R2B5 = 4'd13;
-localparam [3:0] type90_large_R2B6 = 4'd11;
-localparam [3:0] type90_large_R2B7 = 4'd15;
+localparam [3:0] type90_large_R2B0 = 4'd10;
+localparam [3:0] type90_large_R2B1 = 4'd14;
+localparam [3:0] type90_large_R2B2 = 4'd8;
+localparam [3:0] type90_large_R2B3 = 4'd12;
+localparam [3:0] type90_large_R2B4 = 4'd11;
+localparam [3:0] type90_large_R2B5 = 4'd15;
+localparam [3:0] type90_large_R2B6 = 4'd9;
+localparam [3:0] type90_large_R2B7 = 4'd13;
 
 // rotation 180, type (0, 0) = (y, x)
 // |5  |4  |2' |3' |
