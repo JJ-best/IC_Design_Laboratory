@@ -1,4 +1,4 @@
-// ===== RANK D ===== //
+// ===== RANK A ===== //
 
 module qrcode_decoder(
     input clk,                           // clock input
@@ -606,7 +606,7 @@ always @(*) begin
   end else if (rot_cnt == 8 && state == CHECK) begin // if didnt find rotation in 8 cycle
     addr_n = addr_pointer;
   end else if (check) begin // rotation state for 21x21 qrcode
-    if (up_direction && addr > 102) begin
+    if (up_direction && addr) begin
       addr_n = addr - 6 - 96;
     end else if (down_direction) begin
       addr_n = addr - 6 + 96;
@@ -6321,8 +6321,7 @@ end
 
 
 assign decode_text = decode_text_n2;
-assign valid       = decode_valid_r;
-
+assign valid       = (loc_x==53 && loc_y==9)? 0 : decode_valid_r;
 //wire in_decode_pop = (state==DECODE) && (decode_state==DECODE_DECODE1);
 always @(posedge clk) begin
   if (!srst_n) begin
