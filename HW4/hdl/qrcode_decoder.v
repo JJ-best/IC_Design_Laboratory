@@ -628,7 +628,8 @@ reg [4:0] finish_cnt ;
 reg finish_flag;
 
 assign sram_raddr = addr;
-assign finish = (finish_cnt == 30);
+// assign finish = (finish_cnt == 30);
+assign finish = finish_flag && (state == FIND);
 // start cnt up to 30 if addr == 1023
 always @(posedge clk) begin
   if (!srst_n) begin
@@ -639,15 +640,15 @@ always @(posedge clk) begin
     finish_flag <= finish_flag;
   end
 end 
-always @(posedge clk) begin
-  if (!srst_n) begin
-    finish_cnt <= 0;
-  end else if (finish_flag) begin
-    finish_cnt <= finish_cnt + 1;
-  end else begin
-    finish_cnt <= finish_cnt;
-  end
-end 
+// always @(posedge clk) begin
+//   if (!srst_n) begin
+//     finish_cnt <= 0;
+//   end else if (finish_flag) begin
+//     finish_cnt <= finish_cnt + 1;
+//   end else begin
+//     finish_cnt <= finish_cnt;
+//   end
+// end 
 
 // ===== finite state machine ===== //
 
@@ -2508,7 +2509,7 @@ always @(*) begin
   ROT_180: begin
     loc_x_n = (state == CHECK)? loc_x_rot180 : loc_x_rot180_42;
     loc_y_n = (state == CHECK)? loc_y_rot180 : loc_y_rot180_42;
-  end
+  end // 調整finish機制
   ROT_270: begin
     loc_x_n = (state == CHECK)? loc_x_rot270 : loc_x_rot270_42;
     loc_y_n = (state == CHECK)? loc_y_rot270 : loc_y_rot270_42;
