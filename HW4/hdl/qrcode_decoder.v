@@ -967,26 +967,26 @@ assign demask_data15 = sram_rdata[15] ^ mask_cond15;
 
 always @(*) begin
   case (rot_state)
-    ROT_0: begin
-      shift0_en  = (!large_qrcode_flag)? (sram_dat0_y  > loc_y_finder): (sram_dat0_y  > loc_y_finder_42);
-      shift1_en  = (!large_qrcode_flag)? (sram_dat1_y  > loc_y_finder): (sram_dat1_y  > loc_y_finder_42);
-      shift2_en  = (!large_qrcode_flag)? (sram_dat2_y  > loc_y_finder): (sram_dat2_y  > loc_y_finder_42);
-      shift3_en  = (!large_qrcode_flag)? (sram_dat3_y  > loc_y_finder): (sram_dat3_y  > loc_y_finder_42);
-      shift4_en  = (!large_qrcode_flag)? (sram_dat4_y  > loc_y_finder): (sram_dat4_y  > loc_y_finder_42);
-      shift5_en  = (!large_qrcode_flag)? (sram_dat5_y  > loc_y_finder): (sram_dat5_y  > loc_y_finder_42);
-      shift6_en  = (!large_qrcode_flag)? (sram_dat6_y  > loc_y_finder): (sram_dat6_y  > loc_y_finder_42);
-      shift7_en  = (!large_qrcode_flag)? (sram_dat7_y  > loc_y_finder): (sram_dat7_y  > loc_y_finder_42);
-      shift8_en  = (!large_qrcode_flag)? (sram_dat8_y  > loc_y_finder): (sram_dat8_y  > loc_y_finder_42);
-      shift9_en  = (!large_qrcode_flag)? (sram_dat9_y  > loc_y_finder): (sram_dat9_y  > loc_y_finder_42);
-      shift10_en = (!large_qrcode_flag)? (sram_dat10_y > loc_y_finder): (sram_dat10_y  > loc_y_finder_42);
-      shift11_en = (!large_qrcode_flag)? (sram_dat11_y > loc_y_finder): (sram_dat11_y  > loc_y_finder_42);
-      shift12_en = (!large_qrcode_flag)? (sram_dat12_y > loc_y_finder): (sram_dat12_y  > loc_y_finder_42);
-      shift13_en = (!large_qrcode_flag)? (sram_dat13_y > loc_y_finder): (sram_dat13_y  > loc_y_finder_42);
-      shift14_en = (!large_qrcode_flag)? (sram_dat14_y > loc_y_finder): (sram_dat14_y  > loc_y_finder_42);
-      shift15_en = (!large_qrcode_flag)? (sram_dat15_y > loc_y_finder): (sram_dat15_y  > loc_y_finder_42);
+    ROT_0: begin // NOTE: here may be loc_y_finder_42 + 1, fix later
+      shift0_en  = (!large_qrcode_flag)? (sram_dat0_y  > loc_y_finder): (sram_dat0_y  > loc_y_finder_42 + 1);
+      shift1_en  = (!large_qrcode_flag)? (sram_dat1_y  > loc_y_finder): (sram_dat1_y  > loc_y_finder_42 + 1);
+      shift2_en  = (!large_qrcode_flag)? (sram_dat2_y  > loc_y_finder): (sram_dat2_y  > loc_y_finder_42 + 1);
+      shift3_en  = (!large_qrcode_flag)? (sram_dat3_y  > loc_y_finder): (sram_dat3_y  > loc_y_finder_42 + 1);
+      shift4_en  = (!large_qrcode_flag)? (sram_dat4_y  > loc_y_finder): (sram_dat4_y  > loc_y_finder_42 + 1);
+      shift5_en  = (!large_qrcode_flag)? (sram_dat5_y  > loc_y_finder): (sram_dat5_y  > loc_y_finder_42 + 1);
+      shift6_en  = (!large_qrcode_flag)? (sram_dat6_y  > loc_y_finder): (sram_dat6_y  > loc_y_finder_42 + 1);
+      shift7_en  = (!large_qrcode_flag)? (sram_dat7_y  > loc_y_finder): (sram_dat7_y  > loc_y_finder_42 + 1);
+      shift8_en  = (!large_qrcode_flag)? (sram_dat8_y  > loc_y_finder): (sram_dat8_y  > loc_y_finder_42 + 1);
+      shift9_en  = (!large_qrcode_flag)? (sram_dat9_y  > loc_y_finder): (sram_dat9_y  > loc_y_finder_42 + 1);
+      shift10_en = (!large_qrcode_flag)? (sram_dat10_y > loc_y_finder): (sram_dat10_y  > loc_y_finder_42 + 1);
+      shift11_en = (!large_qrcode_flag)? (sram_dat11_y > loc_y_finder): (sram_dat11_y  > loc_y_finder_42 + 1);
+      shift12_en = (!large_qrcode_flag)? (sram_dat12_y > loc_y_finder): (sram_dat12_y  > loc_y_finder_42 + 1);
+      shift13_en = (!large_qrcode_flag)? (sram_dat13_y > loc_y_finder): (sram_dat13_y  > loc_y_finder_42 + 1);
+      shift14_en = (!large_qrcode_flag)? (sram_dat14_y > loc_y_finder): (sram_dat14_y  > loc_y_finder_42 + 1);
+      shift15_en = (!large_qrcode_flag)? (sram_dat15_y > loc_y_finder): (sram_dat15_y  > loc_y_finder_42 + 1);
     end
     ROT_90: begin
-      // need implement here
+      // may be loc_x_finder + 13?
       shift0_en  = (!large_qrcode_flag)? (sram_dat0_x  > loc_x_finder + 6) : (sram_dat0_x  > loc_x_finder_42 + 12);
       shift1_en  = (!large_qrcode_flag)? (sram_dat1_x  > loc_x_finder + 6) : (sram_dat1_x  > loc_x_finder_42 + 12);
       shift2_en  = (!large_qrcode_flag)? (sram_dat2_x  > loc_x_finder + 6) : (sram_dat2_x  > loc_x_finder_42 + 12);
@@ -2016,22 +2016,22 @@ always @(*) begin
   check_42 = (check_row11_42 & check_row21_42) | (check_row11_42_direction & check_row21_42 & check_row31_42) |
              (check_row21_42_direction & check_row31_42 & check_row41_42) | (check_row31_42_direction & check_row41_42) | 
              (check_row11_42 & check_row21_42_direction) | (check_row21_42 & check_row31_42_direction) |
-             (check_row31_42 & check_row41_42_direction) | 
+             (check_row31_42 & check_row41_42_direction) | (check_row31_42 & check_row41_42 & check_row_21_42_zero) |
 
              (check_row12_42 & check_row22_42) | (check_row12_42_direction & check_row22_42 & check_row32_42) |
              (check_row22_42_direction & check_row32_42 & check_row42_42) | (check_row32_42_direction & check_row42_42) | 
              (check_row12_42 & check_row22_42_direction) | (check_row22_42 & check_row32_42_direction) |
-             (check_row32_42 & check_row42_42_direction) |
+             (check_row32_42 & check_row42_42_direction) | (check_row32_42 & check_row42_42 & check_row_22_42_zero) |
 
              (check_row13_42 & check_row23_42) | (check_row13_42_direction & check_row23_42 & check_row33_42) |
              (check_row23_42_direction & check_row33_42 & check_row43_42) | (check_row33_42_direction & check_row43_42) | 
              (check_row13_42 & check_row23_42_direction) | (check_row23_42 & check_row33_42_direction) |
-             (check_row33_42 & check_row43_42_direction) |
+             (check_row33_42 & check_row43_42_direction) | (check_row33_42 & check_row43_42 & check_row_23_42_zero) |
 
              (check_row14_42 & check_row24_42) | (check_row14_42_direction & check_row24_42 & check_row34_42) |
              (check_row24_42_direction & check_row34_42 & check_row44_42) | (check_row34_42_direction & check_row44_42) | 
              (check_row14_42 & check_row24_42_direction) | (check_row24_42 & check_row34_42_direction) |
-             (check_row34_42 & check_row44_42_direction);
+             (check_row34_42 & check_row44_42_direction) | (check_row34_42 & check_row44_42 & check_row_24_42_zero);
 
   // check_42 = check_row11_42 | check_row12_42 | check_row13_42 | check_row14_42 |
   //            check_row21_42 | check_row22_42 | check_row23_42 | check_row24_42 |
@@ -2066,13 +2066,13 @@ always @(*) begin
                       (check_row34_42 & check_row24_42_direction) | (check_row44_42 & check_row34_42_direction);
 
   up_direction_42 = (check_row11_42 & check_row21_42_direction) | (check_row21_42 & check_row31_42_direction) |
-                    (check_row31_42 & check_row41_42_direction) | (check_row_31_42_zero & check_row41_42) |
+                    (check_row31_42 & check_row41_42_direction) | (check_row_21_42_zero & check_row31_42 & check_row41_42) |
                     (check_row12_42 & check_row22_42_direction) | (check_row22_42 & check_row32_42_direction) |
-                    (check_row32_42 & check_row42_42_direction) | (check_row_32_42_zero & check_row42_42) |
+                    (check_row32_42 & check_row42_42_direction) | (check_row_22_42_zero & check_row32_42 & check_row42_42) |
                     (check_row13_42 & check_row23_42_direction) | (check_row23_42 & check_row33_42_direction) |
-                    (check_row33_42 & check_row43_42_direction) | (check_row_33_42_zero & check_row43_42) |
+                    (check_row33_42 & check_row43_42_direction) | (check_row_23_42_zero & check_row33_42 & check_row43_42) |
                     (check_row14_42 & check_row24_42_direction) | (check_row24_42 & check_row34_42_direction) |
-                    (check_row34_42 & check_row44_42_direction) | (check_row_34_42_zero & check_row44_42);
+                    (check_row34_42 & check_row44_42_direction) | (check_row_24_42_zero & check_row34_42 & check_row44_42);
 end
 
 // find rotation: check 1011101 pattern position
