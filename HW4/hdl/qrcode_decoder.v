@@ -259,6 +259,8 @@ reg [6:0]loc_x_rot270;
 reg [6:0]loc_y_rot270; // 32 = 100000
 reg [6:0]loc_x_n;
 reg [6:0]loc_y_n;
+reg [6:0]loc_x_finder_42;
+reg [6:0]loc_y_finder_42;
 // mask
 reg [4:0]loc_x_mask_block_addr_start;
 reg [4:0]loc_y_mask_block_addr_start;
@@ -966,78 +968,78 @@ assign demask_data15 = sram_rdata[15] ^ mask_cond15;
 always @(*) begin
   case (rot_state)
     ROT_0: begin
-      shift0_en  = (sram_dat0_y  > loc_y_finder);
-      shift1_en  = (sram_dat1_y  > loc_y_finder);
-      shift2_en  = (sram_dat2_y  > loc_y_finder);
-      shift3_en  = (sram_dat3_y  > loc_y_finder);
-      shift4_en  = (sram_dat4_y  > loc_y_finder);
-      shift5_en  = (sram_dat5_y  > loc_y_finder);
-      shift6_en  = (sram_dat6_y  > loc_y_finder);
-      shift7_en  = (sram_dat7_y  > loc_y_finder);
-      shift8_en  = (sram_dat8_y  > loc_y_finder);
-      shift9_en  = (sram_dat9_y  > loc_y_finder);
-      shift10_en = (sram_dat10_y > loc_y_finder);
-      shift11_en = (sram_dat11_y > loc_y_finder);
-      shift12_en = (sram_dat12_y > loc_y_finder);
-      shift13_en = (sram_dat13_y > loc_y_finder);
-      shift14_en = (sram_dat14_y > loc_y_finder);
-      shift15_en = (sram_dat15_y > loc_y_finder);
+      shift0_en  = (!large_qrcode_flag)? (sram_dat0_y  > loc_y_finder): (sram_dat0_y  > loc_y_finder_42);
+      shift1_en  = (!large_qrcode_flag)? (sram_dat1_y  > loc_y_finder): (sram_dat1_y  > loc_y_finder_42);
+      shift2_en  = (!large_qrcode_flag)? (sram_dat2_y  > loc_y_finder): (sram_dat2_y  > loc_y_finder_42);
+      shift3_en  = (!large_qrcode_flag)? (sram_dat3_y  > loc_y_finder): (sram_dat3_y  > loc_y_finder_42);
+      shift4_en  = (!large_qrcode_flag)? (sram_dat4_y  > loc_y_finder): (sram_dat4_y  > loc_y_finder_42);
+      shift5_en  = (!large_qrcode_flag)? (sram_dat5_y  > loc_y_finder): (sram_dat5_y  > loc_y_finder_42);
+      shift6_en  = (!large_qrcode_flag)? (sram_dat6_y  > loc_y_finder): (sram_dat6_y  > loc_y_finder_42);
+      shift7_en  = (!large_qrcode_flag)? (sram_dat7_y  > loc_y_finder): (sram_dat7_y  > loc_y_finder_42);
+      shift8_en  = (!large_qrcode_flag)? (sram_dat8_y  > loc_y_finder): (sram_dat8_y  > loc_y_finder_42);
+      shift9_en  = (!large_qrcode_flag)? (sram_dat9_y  > loc_y_finder): (sram_dat9_y  > loc_y_finder_42);
+      shift10_en = (!large_qrcode_flag)? (sram_dat10_y > loc_y_finder): (sram_dat10_y  > loc_y_finder_42);
+      shift11_en = (!large_qrcode_flag)? (sram_dat11_y > loc_y_finder): (sram_dat11_y  > loc_y_finder_42);
+      shift12_en = (!large_qrcode_flag)? (sram_dat12_y > loc_y_finder): (sram_dat12_y  > loc_y_finder_42);
+      shift13_en = (!large_qrcode_flag)? (sram_dat13_y > loc_y_finder): (sram_dat13_y  > loc_y_finder_42);
+      shift14_en = (!large_qrcode_flag)? (sram_dat14_y > loc_y_finder): (sram_dat14_y  > loc_y_finder_42);
+      shift15_en = (!large_qrcode_flag)? (sram_dat15_y > loc_y_finder): (sram_dat15_y  > loc_y_finder_42);
     end
     ROT_90: begin
       // need implement here
-      shift0_en  = (!large_qrcode_flag)? (sram_dat0_x  > loc_x_finder + 6) : (sram_dat0_x  > loc_x_finder + 12);
-      shift1_en  = (!large_qrcode_flag)? (sram_dat1_x  > loc_x_finder + 6) : (sram_dat1_x  > loc_x_finder + 12);
-      shift2_en  = (!large_qrcode_flag)? (sram_dat2_x  > loc_x_finder + 6) : (sram_dat2_x  > loc_x_finder + 12);
-      shift3_en  = (!large_qrcode_flag)? (sram_dat3_x  > loc_x_finder + 6) : (sram_dat3_x  > loc_x_finder + 12);
-      shift4_en  = (!large_qrcode_flag)? (sram_dat4_x  > loc_x_finder + 6) : (sram_dat4_x  > loc_x_finder + 12);
-      shift5_en  = (!large_qrcode_flag)? (sram_dat5_x  > loc_x_finder + 6) : (sram_dat5_x  > loc_x_finder + 12);
-      shift6_en  = (!large_qrcode_flag)? (sram_dat6_x  > loc_x_finder + 6) : (sram_dat6_x  > loc_x_finder + 12);
-      shift7_en  = (!large_qrcode_flag)? (sram_dat7_x  > loc_x_finder + 6) : (sram_dat7_x  > loc_x_finder + 12);
-      shift8_en  = (!large_qrcode_flag)? (sram_dat8_x  > loc_x_finder + 6) : (sram_dat8_x  > loc_x_finder + 12);
-      shift9_en  = (!large_qrcode_flag)? (sram_dat9_x  > loc_x_finder + 6) : (sram_dat9_x  > loc_x_finder + 12);
-      shift10_en = (!large_qrcode_flag)? (sram_dat10_x > loc_x_finder + 6) : (sram_dat10_x > loc_x_finder + 12);
-      shift11_en = (!large_qrcode_flag)? (sram_dat11_x > loc_x_finder + 6) : (sram_dat11_x > loc_x_finder + 12);
-      shift12_en = (!large_qrcode_flag)? (sram_dat12_x > loc_x_finder + 6) : (sram_dat12_x > loc_x_finder + 12);
-      shift13_en = (!large_qrcode_flag)? (sram_dat13_x > loc_x_finder + 6) : (sram_dat13_x > loc_x_finder + 12);
-      shift14_en = (!large_qrcode_flag)? (sram_dat14_x > loc_x_finder + 6) : (sram_dat14_x > loc_x_finder + 12);
-      shift15_en = (!large_qrcode_flag)? (sram_dat15_x > loc_x_finder + 6) : (sram_dat15_x > loc_x_finder + 12);
+      shift0_en  = (!large_qrcode_flag)? (sram_dat0_x  > loc_x_finder + 6) : (sram_dat0_x  > loc_x_finder_42 + 12);
+      shift1_en  = (!large_qrcode_flag)? (sram_dat1_x  > loc_x_finder + 6) : (sram_dat1_x  > loc_x_finder_42 + 12);
+      shift2_en  = (!large_qrcode_flag)? (sram_dat2_x  > loc_x_finder + 6) : (sram_dat2_x  > loc_x_finder_42 + 12);
+      shift3_en  = (!large_qrcode_flag)? (sram_dat3_x  > loc_x_finder + 6) : (sram_dat3_x  > loc_x_finder_42 + 12);
+      shift4_en  = (!large_qrcode_flag)? (sram_dat4_x  > loc_x_finder + 6) : (sram_dat4_x  > loc_x_finder_42 + 12);
+      shift5_en  = (!large_qrcode_flag)? (sram_dat5_x  > loc_x_finder + 6) : (sram_dat5_x  > loc_x_finder_42 + 12);
+      shift6_en  = (!large_qrcode_flag)? (sram_dat6_x  > loc_x_finder + 6) : (sram_dat6_x  > loc_x_finder_42 + 12);
+      shift7_en  = (!large_qrcode_flag)? (sram_dat7_x  > loc_x_finder + 6) : (sram_dat7_x  > loc_x_finder_42 + 12);
+      shift8_en  = (!large_qrcode_flag)? (sram_dat8_x  > loc_x_finder + 6) : (sram_dat8_x  > loc_x_finder_42 + 12);
+      shift9_en  = (!large_qrcode_flag)? (sram_dat9_x  > loc_x_finder + 6) : (sram_dat9_x  > loc_x_finder_42 + 12);
+      shift10_en = (!large_qrcode_flag)? (sram_dat10_x > loc_x_finder + 6) : (sram_dat10_x > loc_x_finder_42 + 12);
+      shift11_en = (!large_qrcode_flag)? (sram_dat11_x > loc_x_finder + 6) : (sram_dat11_x > loc_x_finder_42 + 12);
+      shift12_en = (!large_qrcode_flag)? (sram_dat12_x > loc_x_finder + 6) : (sram_dat12_x > loc_x_finder_42 + 12);
+      shift13_en = (!large_qrcode_flag)? (sram_dat13_x > loc_x_finder + 6) : (sram_dat13_x > loc_x_finder_42 + 12);
+      shift14_en = (!large_qrcode_flag)? (sram_dat14_x > loc_x_finder + 6) : (sram_dat14_x > loc_x_finder_42 + 12);
+      shift15_en = (!large_qrcode_flag)? (sram_dat15_x > loc_x_finder + 6) : (sram_dat15_x > loc_x_finder_42 + 12);
     end
     ROT_180: begin
-      shift0_en  = (sram_dat0_y  < loc_y_finder);
-      shift1_en  = (sram_dat1_y  < loc_y_finder);
-      shift2_en  = (sram_dat2_y  < loc_y_finder);
-      shift3_en  = (sram_dat3_y  < loc_y_finder);
-      shift4_en  = (sram_dat4_y  < loc_y_finder);
-      shift5_en  = (sram_dat5_y  < loc_y_finder);
-      shift6_en  = (sram_dat6_y  < loc_y_finder);
-      shift7_en  = (sram_dat7_y  < loc_y_finder);
-      shift8_en  = (sram_dat8_y  < loc_y_finder);
-      shift9_en  = (sram_dat9_y  < loc_y_finder);
-      shift10_en = (sram_dat10_y < loc_y_finder);
-      shift11_en = (sram_dat11_y < loc_y_finder);
-      shift12_en = (sram_dat12_y < loc_y_finder);
-      shift13_en = (sram_dat13_y < loc_y_finder);
-      shift14_en = (sram_dat14_y < loc_y_finder);
-      shift15_en = (sram_dat15_y < loc_y_finder);
+      shift0_en  = (!large_qrcode_flag)? (sram_dat0_y  < loc_y_finder): (sram_dat0_y  < loc_y_finder_42 - 1);
+      shift1_en  = (!large_qrcode_flag)? (sram_dat1_y  < loc_y_finder): (sram_dat1_y  < loc_y_finder_42 - 1);
+      shift2_en  = (!large_qrcode_flag)? (sram_dat2_y  < loc_y_finder): (sram_dat2_y  < loc_y_finder_42 - 1);
+      shift3_en  = (!large_qrcode_flag)? (sram_dat3_y  < loc_y_finder): (sram_dat3_y  < loc_y_finder_42 - 1);
+      shift4_en  = (!large_qrcode_flag)? (sram_dat4_y  < loc_y_finder): (sram_dat4_y  < loc_y_finder_42 - 1);
+      shift5_en  = (!large_qrcode_flag)? (sram_dat5_y  < loc_y_finder): (sram_dat5_y  < loc_y_finder_42 - 1);
+      shift6_en  = (!large_qrcode_flag)? (sram_dat6_y  < loc_y_finder): (sram_dat6_y  < loc_y_finder_42 - 1);
+      shift7_en  = (!large_qrcode_flag)? (sram_dat7_y  < loc_y_finder): (sram_dat7_y  < loc_y_finder_42 - 1);
+      shift8_en  = (!large_qrcode_flag)? (sram_dat8_y  < loc_y_finder): (sram_dat8_y  < loc_y_finder_42 - 1);
+      shift9_en  = (!large_qrcode_flag)? (sram_dat9_y  < loc_y_finder): (sram_dat9_y  < loc_y_finder_42 - 1);
+      shift10_en = (!large_qrcode_flag)? (sram_dat10_y < loc_y_finder): (sram_dat10_y  < loc_y_finder_42 - 1);
+      shift11_en = (!large_qrcode_flag)? (sram_dat11_y < loc_y_finder): (sram_dat11_y  < loc_y_finder_42 - 1);
+      shift12_en = (!large_qrcode_flag)? (sram_dat12_y < loc_y_finder): (sram_dat12_y  < loc_y_finder_42 - 1);
+      shift13_en = (!large_qrcode_flag)? (sram_dat13_y < loc_y_finder): (sram_dat13_y  < loc_y_finder_42 - 1);
+      shift14_en = (!large_qrcode_flag)? (sram_dat14_y < loc_y_finder): (sram_dat14_y  < loc_y_finder_42 - 1);
+      shift15_en = (!large_qrcode_flag)? (sram_dat15_y < loc_y_finder): (sram_dat15_y  < loc_y_finder_42 - 1);
     end
     ROT_270: begin
       // need implement here
-      shift0_en  = (!large_qrcode_flag)? (sram_dat0_x  < loc_x_finder + 14) : (sram_dat0_x  < loc_x_finder + 28);
-      shift1_en  = (!large_qrcode_flag)? (sram_dat1_x  < loc_x_finder + 14) : (sram_dat1_x  < loc_x_finder + 28);
-      shift2_en  = (!large_qrcode_flag)? (sram_dat2_x  < loc_x_finder + 14) : (sram_dat2_x  < loc_x_finder + 28);
-      shift3_en  = (!large_qrcode_flag)? (sram_dat3_x  < loc_x_finder + 14) : (sram_dat3_x  < loc_x_finder + 28);
-      shift4_en  = (!large_qrcode_flag)? (sram_dat4_x  < loc_x_finder + 14) : (sram_dat4_x  < loc_x_finder + 28);
-      shift5_en  = (!large_qrcode_flag)? (sram_dat5_x  < loc_x_finder + 14) : (sram_dat5_x  < loc_x_finder + 28);
-      shift6_en  = (!large_qrcode_flag)? (sram_dat6_x  < loc_x_finder + 14) : (sram_dat6_x  < loc_x_finder + 28);
-      shift7_en  = (!large_qrcode_flag)? (sram_dat7_x  < loc_x_finder + 14) : (sram_dat7_x  < loc_x_finder + 28);
-      shift8_en  = (!large_qrcode_flag)? (sram_dat8_x  < loc_x_finder + 14) : (sram_dat8_x  < loc_x_finder + 28);
-      shift9_en  = (!large_qrcode_flag)? (sram_dat9_x  < loc_x_finder + 14) : (sram_dat9_x  < loc_x_finder + 28);
-      shift10_en = (!large_qrcode_flag)? (sram_dat10_x < loc_x_finder + 14) : (sram_dat10_x < loc_x_finder + 28);
-      shift11_en = (!large_qrcode_flag)? (sram_dat11_x < loc_x_finder + 14) : (sram_dat11_x < loc_x_finder + 28);
-      shift12_en = (!large_qrcode_flag)? (sram_dat12_x < loc_x_finder + 14) : (sram_dat12_x < loc_x_finder + 28);
-      shift13_en = (!large_qrcode_flag)? (sram_dat13_x < loc_x_finder + 14) : (sram_dat13_x < loc_x_finder + 28);
-      shift14_en = (!large_qrcode_flag)? (sram_dat14_x < loc_x_finder + 14) : (sram_dat14_x < loc_x_finder + 28);
-      shift15_en = (!large_qrcode_flag)? (sram_dat15_x < loc_x_finder + 14) : (sram_dat15_x < loc_x_finder + 28);
+      shift0_en  = (!large_qrcode_flag)? (sram_dat0_x  < loc_x_finder + 14) : (sram_dat0_x  < loc_x_finder_42 + 28);
+      shift1_en  = (!large_qrcode_flag)? (sram_dat1_x  < loc_x_finder + 14) : (sram_dat1_x  < loc_x_finder_42 + 28);
+      shift2_en  = (!large_qrcode_flag)? (sram_dat2_x  < loc_x_finder + 14) : (sram_dat2_x  < loc_x_finder_42 + 28);
+      shift3_en  = (!large_qrcode_flag)? (sram_dat3_x  < loc_x_finder + 14) : (sram_dat3_x  < loc_x_finder_42 + 28);
+      shift4_en  = (!large_qrcode_flag)? (sram_dat4_x  < loc_x_finder + 14) : (sram_dat4_x  < loc_x_finder_42 + 28);
+      shift5_en  = (!large_qrcode_flag)? (sram_dat5_x  < loc_x_finder + 14) : (sram_dat5_x  < loc_x_finder_42 + 28);
+      shift6_en  = (!large_qrcode_flag)? (sram_dat6_x  < loc_x_finder + 14) : (sram_dat6_x  < loc_x_finder_42 + 28);
+      shift7_en  = (!large_qrcode_flag)? (sram_dat7_x  < loc_x_finder + 14) : (sram_dat7_x  < loc_x_finder_42 + 28);
+      shift8_en  = (!large_qrcode_flag)? (sram_dat8_x  < loc_x_finder + 14) : (sram_dat8_x  < loc_x_finder_42 + 28);
+      shift9_en  = (!large_qrcode_flag)? (sram_dat9_x  < loc_x_finder + 14) : (sram_dat9_x  < loc_x_finder_42 + 28);
+      shift10_en = (!large_qrcode_flag)? (sram_dat10_x < loc_x_finder + 14) : (sram_dat10_x < loc_x_finder_42 + 28);
+      shift11_en = (!large_qrcode_flag)? (sram_dat11_x < loc_x_finder + 14) : (sram_dat11_x < loc_x_finder_42 + 28);
+      shift12_en = (!large_qrcode_flag)? (sram_dat12_x < loc_x_finder + 14) : (sram_dat12_x < loc_x_finder_42 + 28);
+      shift13_en = (!large_qrcode_flag)? (sram_dat13_x < loc_x_finder + 14) : (sram_dat13_x < loc_x_finder_42 + 28);
+      shift14_en = (!large_qrcode_flag)? (sram_dat14_x < loc_x_finder + 14) : (sram_dat14_x < loc_x_finder_42 + 28);
+      shift15_en = (!large_qrcode_flag)? (sram_dat15_x < loc_x_finder + 14) : (sram_dat15_x < loc_x_finder_42 + 28);
     end
     default: begin
       shift0_en  = 0;
@@ -1646,22 +1648,182 @@ always @(*) begin
       // line15_dat = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data15;
     end
     ROT_270: begin
-      line0_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data0;
-      line1_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data1;
-      line2_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data2;
-      line3_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data3;
-      line4_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data4;
-      line5_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data5;
-      line6_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data6;
-      line7_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data7;
-      line8_dat  = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data8;
-      line9_dat  = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data9;
-      line10_dat = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data10;
-      line11_dat = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data11;
-      line12_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data12;
-      line13_dat = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data13;
-      line14_dat = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data14;
-      line15_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data15;
+      if ((decode_state == DECODE_SWAP2_UP) && shift2_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line0_dat = demask_data2;
+      end else if (shift3_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line0_dat = demask_data3;
+      end else begin
+        // region1
+        line0_dat = demask_data0;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift3_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line1_dat = demask_data3;
+      end else if (shift0_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line1_dat = demask_data0;
+      end else begin
+        // region1
+        line1_dat = demask_data1;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift0_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line2_dat = demask_data0;
+      end else if (shift1_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line2_dat = demask_data1;
+      end else begin
+        // region1
+        line2_dat = demask_data2;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift1_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line3_dat = demask_data1;
+      end else if (shift2_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line3_dat = demask_data2;
+      end else begin
+        // region1
+        line3_dat = demask_data3;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift6_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line4_dat = demask_data6;
+      end else if (shift7_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line4_dat = demask_data7;
+      end else begin
+        // region1
+        line4_dat = demask_data4;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift7_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line5_dat = demask_data7;
+      end else if (shift4_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line5_dat = demask_data4;
+      end else begin
+        // region1
+        line5_dat = demask_data5;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift4_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line6_dat = demask_data4;
+      end else if (shift5_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line6_dat = demask_data5;
+      end else begin
+        // region1
+        line6_dat = demask_data6;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift5_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line7_dat = demask_data5;
+      end else if (shift6_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line7_dat = demask_data6;
+      end else begin
+        // region1
+        line7_dat = demask_data7;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift10_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line8_dat = demask_data10;
+      end else if (shift11_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line8_dat = demask_data11;
+      end else begin
+        // region1
+        line8_dat = demask_data8;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift11_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line9_dat = demask_data11;
+      end else if (shift8_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line9_dat = demask_data8;
+      end else begin
+        // region1
+        line9_dat = demask_data9;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift8_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line10_dat = demask_data8;
+      end else if (shift9_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line10_dat = demask_data9;
+      end else begin
+        // region1
+        line10_dat = demask_data10;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift9_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line11_dat = demask_data9;
+      end else if (shift10_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line11_dat = demask_data10;
+      end else begin
+        // region1
+        line11_dat = demask_data11;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift14_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line12_dat = demask_data14;
+      end else if (shift15_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line12_dat = demask_data15;
+      end else begin
+        // region1
+        line12_dat = demask_data12;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift15_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line13_dat = demask_data15;
+      end else if (shift12_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line13_dat = demask_data12;
+      end else begin
+        // region1
+        line13_dat = demask_data13;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift12_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line14_dat = demask_data12;
+      end else if (shift13_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line14_dat = demask_data13;
+      end else begin
+        // region1
+        line14_dat = demask_data14;
+      end
+      if ((decode_state == DECODE_SWAP2_UP) && shift13_en && large_qrcode_flag) begin
+        // large qrcode region2
+        line15_dat = demask_data13;
+      end else if (shift14_en  && (decode_state == DECODE_SWAP2_UP)) begin
+        // normal qrcode region2
+        line15_dat = demask_data14;
+      end else begin
+        // region1
+        line15_dat = demask_data15;
+      end
+      // line0_dat  = (shift3_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data3  : demask_data0;
+      // line1_dat  = (shift0_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data0  : demask_data1;
+      // line2_dat  = (shift1_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data1  : demask_data2;
+      // line3_dat  = (shift2_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data2  : demask_data3;
+      // line4_dat  = (shift7_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data7  : demask_data4;
+      // line5_dat  = (shift4_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data4  : demask_data5;
+      //line6_dat  = (shift5_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data5  : demask_data6;
+      //line7_dat  = (shift6_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data6  : demask_data7;
+      // line8_dat  = (shift11_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data11 : demask_data8;
+      // line9_dat  = (shift8_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data8  : demask_data9;
+      // line10_dat = (shift9_en  && (decode_state == DECODE_SWAP2_UP)) ? demask_data9  : demask_data10;
+      // line11_dat = (shift10_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data10 : demask_data11;
+      // line12_dat = (shift15_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data15 : demask_data12;
+      // line13_dat = (shift12_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data12 : demask_data13;
+      // line14_dat = (shift13_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data13 : demask_data14;
+      // line15_dat = (shift14_en && (decode_state == DECODE_SWAP2_UP)) ? demask_data14 : demask_data15;
     end
     default: begin
       line0_dat  = demask_data0;
@@ -2288,8 +2450,7 @@ always @(posedge clk) begin
 end
 
 reg [9:0]addr_finder_42;
-reg [6:0]loc_x_finder_42;
-reg [6:0]loc_y_finder_42;
+
 
 reg [6:0]loc_x_rot0_42;
 reg [6:0]loc_x_rot90_42;
@@ -3083,7 +3244,7 @@ always @(*) begin
         decode_addr = sram_raddr; // tmp
         decode_state_n = DECODE_DECODE3;
       end else if (bound2_check) begin
-        decode_addr = corner7_block_addr;
+        decode_addr = (!large_qrcode_flag)? corner7_block_addr: sram_raddr_jump2; //swap;
         decode_state_n = DECODE_SWAP2_UP;
       end else begin
         decode_addr = sram_raddr_swap;
@@ -3135,6 +3296,8 @@ always @(*) begin
   endcase
 end
 
+reg [4:0]sram_raddr_h_swap2;
+reg [4:0]sram_raddr_l_swap2;
 always @(*) begin
   case (rot_state)
       ROT_0: begin
@@ -3143,6 +3306,10 @@ always @(*) begin
 
         sram_raddr_h_jump1 = corner1_block_addr[9:5]; // y
         sram_raddr_l_jump1 = sram_raddr[4:0] - 1; // x
+
+        sram_raddr_h_jump2 = corner5_block_addr[9:5]; // y
+        sram_raddr_l_jump2 = sram_raddr[4:0] - 1; // x
+        
       end
       ROT_90: begin
         sram_raddr_h_swap = sram_raddr[9:5];
@@ -3150,6 +3317,9 @@ always @(*) begin
 
         sram_raddr_h_jump1 = sram_raddr[9:5] + 1; // y
         sram_raddr_l_jump1 = corner1_block_addr[4:0]; // x
+
+        sram_raddr_h_jump2 = sram_raddr[9:5] + 1; // y
+        sram_raddr_l_jump2 = corner5_block_addr[4:0]; // x
       end
       ROT_180: begin
         sram_raddr_h_swap = sram_raddr[9:5] + 1;
@@ -3157,6 +3327,9 @@ always @(*) begin
 
         sram_raddr_h_jump1 = corner1_block_addr[9:5]; // y
         sram_raddr_l_jump1 = sram_raddr[4:0] + 1;
+
+        sram_raddr_h_jump2 = corner5_block_addr[9:5]; // y
+        sram_raddr_l_jump2 = sram_raddr[4:0] + 1;
       end
       ROT_270: begin
         sram_raddr_h_swap = sram_raddr[9:5];
@@ -3164,6 +3337,9 @@ always @(*) begin
 
         sram_raddr_h_jump1 = sram_raddr[9:5] - 1; // y
         sram_raddr_l_jump1 = corner1_block_addr[4:0]; // x
+
+        sram_raddr_h_jump2 = sram_raddr[9:5] - 1; // y
+        sram_raddr_l_jump2 = corner5_block_addr[4:0]; // x
       end
       default: begin
         sram_raddr_h_swap = 0;
@@ -3171,12 +3347,15 @@ always @(*) begin
 
         sram_raddr_h_jump1 = 0;
         sram_raddr_l_jump1 = 0;
+
+        sram_raddr_h_jump2 = 0; // y
+        sram_raddr_l_jump2 = 0; // x
       end
   endcase
 end
 assign sram_raddr_swap = {sram_raddr_h_swap, sram_raddr_l_swap};
 assign sram_raddr_jump1 = {sram_raddr_h_jump1, sram_raddr_l_jump1};
-
+assign sram_raddr_jump2 = {sram_raddr_h_jump2, sram_raddr_l_jump2};
 // ----- check bound counter ----- //
 
 always @(posedge clk) begin
@@ -4288,7 +4467,7 @@ always @(*) begin
       end
       // since the finder row is written by the next row data. so the original place of next row data should not be write
 
-      if (shift1_en) begin
+      if (shift1_en) begin // shift_en = out of finder
         dat13_en = (sram_dat1_x <= region2_right_x) && (sram_dat1_x >= region2_left_x)
                 && (sram_dat1_y <= region2_up_y)    && (sram_dat1_y >= region2_down_y);
       end else begin
