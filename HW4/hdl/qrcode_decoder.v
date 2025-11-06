@@ -598,7 +598,7 @@ always @(*) begin
   end else if (rot_cnt == 8 && state == CHECK) begin // if didnt find rotation in 8 cycle
     addr_n = addr_pointer;
   end else if (check) begin // rotation state for 21x21 qrcode
-    if (up_direction) begin
+    if (up_direction && addr > 102) begin
       addr_n = addr - 6 - 96;
     end else if (down_direction) begin
       addr_n = addr - 6 + 96;
@@ -3634,6 +3634,7 @@ always @(*) begin
           end else begin
             dat8_en = (sram_dat8_x <= region2_right_x) && (sram_dat8_x >= region2_left_x)
                     && (sram_dat8_y <= region2_up_y)    && (sram_dat8_y >= region2_down_y) 
+                    && dat8_scale2
                     && (sram_dat8_y != loc_y + 12) && (sram_dat8_y != loc_y + 13) 
                     && (sram_dat8_y != loc_y + 14) && (sram_dat8_y != loc_y + 15);
           end
