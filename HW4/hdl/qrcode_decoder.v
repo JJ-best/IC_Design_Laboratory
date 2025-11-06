@@ -434,6 +434,7 @@ wire bound1_check; // check 2_4 bound
 wire jump1;
 wire jump2;
 
+
 // bit address of sram_rdata
 reg [6:0] sram_dat0_x;
 reg [6:0] sram_dat1_x;
@@ -475,6 +476,11 @@ reg [4:0] global_word_idx;
 reg [3:0] local_word_idx;  // 6 word per decode
 reg [4:0] data_len;
 
+reg [7:0] decode_text_r;
+reg       decode_valid_r;
+
+reg [7:0] decode_text_n2;
+reg       decode_valid_n2;
 // ----- region2 decode data ----- //
 reg line0_dat;
 reg line1_dat;
@@ -559,7 +565,9 @@ always @(*) begin
       state_n = DECODE;
     end
     DECODE: begin // 5
-      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        state_n = FIND;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         state_n = FIND;
       end else begin
         state_n = DECODE;
@@ -681,7 +689,9 @@ always @(*) begin
       end
     end
     ROT_UP: begin //1
-      if (rot_cnt == 13) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        rot_state_n = ROT_IDLE;
+      end else if (rot_cnt == 13) begin
         rot_state_n = ROT_IDLE;
       end else if ((rot_left & check_rot) | (rot_left42 & check_rot42)) begin
         rot_state_n = ROT_90;
@@ -694,7 +704,9 @@ always @(*) begin
       end
     end
     ROT_DOWN: begin //2
-      if (rot_cnt == 13) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        rot_state_n = ROT_IDLE;
+      end else if (rot_cnt == 13) begin
         rot_state_n = ROT_IDLE;
       end else if ((rot_left & check_rot) | (rot_left42 & check_rot42)) begin
         rot_state_n = ROT_0;
@@ -707,7 +719,9 @@ always @(*) begin
       end
     end
     ROT_0: begin //3
-      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        rot_state_n = ROT_IDLE;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         rot_state_n = ROT_IDLE;
       end else if (state == FIND) begin
         rot_state_n = ROT_IDLE;
@@ -716,7 +730,9 @@ always @(*) begin
       end
     end
     ROT_90: begin //4
-      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        rot_state_n = ROT_IDLE;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         rot_state_n = ROT_IDLE;
       end else if (state == FIND) begin
         rot_state_n = ROT_IDLE;
@@ -725,7 +741,9 @@ always @(*) begin
       end
     end
     ROT_180: begin // 5
-      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        rot_state_n = ROT_IDLE;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         rot_state_n = ROT_IDLE;
       end else if (state == FIND) begin
         rot_state_n = ROT_IDLE;
@@ -734,7 +752,9 @@ always @(*) begin
       end
     end
     ROT_270: begin // 6
-      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin
+        rot_state_n = ROT_IDLE;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         rot_state_n = ROT_IDLE;
       end else if (state == FIND) begin
         rot_state_n = ROT_IDLE;
@@ -3253,7 +3273,10 @@ always @(*) begin
       end
     end
     DECODE_DECODE1: begin // decode 6+6 word of region1
-      if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
+      if (global_word_idx == 2 && decode_text_n2 == 0) begin // data_len = 0 qrcode, skip
+        decode_addr = addr_pointer;
+        decode_state_n = DECODE_IDLE;
+      end else if (global_word_idx == data_len + 2 && (global_word_idx != 2)) begin
         decode_addr = addr_pointer;
         decode_state_n = DECODE_IDLE;
       end else if (local_word_idx == 3'd5) begin
@@ -6294,11 +6317,7 @@ always @(*) begin
 end
 
 // ----- decode ----- //
-reg [7:0] decode_text_r;
-reg       decode_valid_r;
 
-reg [7:0] decode_text_n2;
-reg       decode_valid_n2;
 
 
 assign decode_text = decode_text_n2;
@@ -6317,7 +6336,7 @@ always @(posedge clk) begin
     data_len        <= 0;
   end else if (in_decode_pop) begin
     decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
-    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
+    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2) | (global_word_idx == 2 && decode_text_n2 == 0))? 0 : 1; // first word the length
     local_word_idx <= (local_word_idx == 3'd5)? 0 : local_word_idx + 3'd1;
     global_word_idx   <= global_word_idx + 6'd1;
 
@@ -6326,7 +6345,7 @@ always @(posedge clk) begin
     data_len <= (global_word_idx == 2)? decode_text_n2 : data_len;
   end else if (in_decode_pop2) begin
     decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
-    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
+    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2) | (global_word_idx == 2 && decode_text_n2 == 0))? 0 : 1; // first word the length
     local_word_idx <= (local_word_idx == 8)? 0 : local_word_idx + 3'd1;
     global_word_idx   <= global_word_idx + 6'd1;
 
@@ -6335,7 +6354,7 @@ always @(posedge clk) begin
     data_len <= (global_word_idx == 2)? decode_text_n2 : data_len;
   end else if (in_decode_pop3) begin
     decode_text_r  <= {bit7_sel, bit6_sel, bit5_sel, bit4_sel, bit3_sel, bit2_sel, bit1_sel, bit0_sel};
-    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2))? 0 : 1; // first word the length
+    decode_valid_r <= (global_word_idx == 6'd0 || global_word_idx == 6'd1 || (global_word_idx == data_len + 2 && global_word_idx != 2) | (global_word_idx == 2 && decode_text_n2 == 0))? 0 : 1; // first word the length
     local_word_idx <= (local_word_idx == 4)? 0 : local_word_idx + 3'd1;
     global_word_idx   <= global_word_idx + 6'd1;
 
@@ -6355,6 +6374,7 @@ always @(posedge clk) begin
     data_len <= 0;
     decode_text_r <= 0;
     decode_text_n2 <= 0;
+    decode_valid_r <= 0;
   end
 end
 
