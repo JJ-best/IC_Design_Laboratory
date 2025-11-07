@@ -1,0 +1,108 @@
+ 
+****************************************
+Report : area
+Design : qrcode_decoder
+Version: R-2020.09-SP5
+Date   : Thu Nov  6 19:54:57 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                          248
+Number of nets:                         16458
+Number of cells:                        15500
+Number of combinational cells:          14865
+Number of sequential cells:               570
+Number of macros/black boxes:               0
+Number of buf/inv:                       2447
+Number of references:                     166
+
+Combinational area:              23465.988523
+Buf/Inv area:                     1791.738040
+Noncombinational area:            4915.908110
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 28381.896633
+Total area:                      28381.896633
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-  Black-
+                                  Total       Total    national    national   boxes   Design
+--------------------------------  ----------  -------  ----------  ---------  ------  -----------------------------------------------
+qrcode_decoder                    28381.8966    100.0  23377.0685  4560.2281  0.0000  qrcode_decoder
+clk_gate_addr_pointer_reg             6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_60
+clk_gate_addr_reg                     6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_0
+clk_gate_addr_reg_0                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_61
+clk_gate_data_len_reg                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_64
+clk_gate_decode_text_n2_reg           6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_62
+clk_gate_decode_text_n2_reg_0         6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_63
+clk_gate_fifo_rptr0_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_38
+clk_gate_fifo_rptr10_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_28
+clk_gate_fifo_rptr11_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_27
+clk_gate_fifo_rptr12_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_26
+clk_gate_fifo_rptr13_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_25
+clk_gate_fifo_rptr14_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_24
+clk_gate_fifo_rptr15_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_39
+clk_gate_fifo_rptr1_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_37
+clk_gate_fifo_rptr2_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_36
+clk_gate_fifo_rptr3_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_35
+clk_gate_fifo_rptr4_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_34
+clk_gate_fifo_rptr5_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_33
+clk_gate_fifo_rptr6_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_32
+clk_gate_fifo_rptr7_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_31
+clk_gate_fifo_rptr8_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_30
+clk_gate_fifo_rptr9_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_29
+clk_gate_fifo_wptr0_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_40
+clk_gate_fifo_wptr10_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_50
+clk_gate_fifo_wptr11_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_51
+clk_gate_fifo_wptr12_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_52
+clk_gate_fifo_wptr13_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_53
+clk_gate_fifo_wptr14_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_54
+clk_gate_fifo_wptr15_reg              6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_55
+clk_gate_fifo_wptr1_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_41
+clk_gate_fifo_wptr2_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_42
+clk_gate_fifo_wptr3_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_43
+clk_gate_fifo_wptr4_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_44
+clk_gate_fifo_wptr5_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_45
+clk_gate_fifo_wptr6_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_46
+clk_gate_fifo_wptr7_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_47
+clk_gate_fifo_wptr8_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_48
+clk_gate_fifo_wptr9_reg               6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_49
+clk_gate_line0_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_23
+clk_gate_line0_reg_0                  6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_22
+clk_gate_line10_reg                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_9
+clk_gate_line10_reg_0                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_8
+clk_gate_line11_reg                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_7
+clk_gate_line12_reg                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_6
+clk_gate_line12_reg_0                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_5
+clk_gate_line13_reg                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_4
+clk_gate_line14_reg                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_3
+clk_gate_line14_reg_0                 6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_2
+clk_gate_line15_reg                   6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_1
+clk_gate_line1_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_21
+clk_gate_line2_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_20
+clk_gate_line2_reg_0                  6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_19
+clk_gate_line3_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_18
+clk_gate_line4_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_17
+clk_gate_line5_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_16
+clk_gate_line5_reg_0                  6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_15
+clk_gate_line6_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_14
+clk_gate_line7_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_13
+clk_gate_line7_reg_0                  6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_12
+clk_gate_line8_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_11
+clk_gate_line9_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_10
+clk_gate_loc_x_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_58
+clk_gate_loc_y_reg                    6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_57
+clk_gate_mask_id_reg                  6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_56
+clk_gate_pos_y_binary_reg_reg         6.8400      0.0      1.3680     5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_59
+--------------------------------  ----------  -------  ----------  ---------  ------  -----------------------------------------------
+Total                                                  23465.9885  4915.9081  0.0000
+
+1

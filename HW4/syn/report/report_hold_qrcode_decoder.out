@@ -1,0 +1,151 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : qrcode_decoder
+Version: R-2020.09-SP5
+Date   : Thu Nov  6 19:54:57 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: clk_gate_addr_reg/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_addr_reg/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  qrcode_decoder     Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_0
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_addr_reg/latch/GN (TLATNXL)                    0.00       2.50 f
+  clk_gate_addr_reg/latch/Q (TLATNXL)                     0.11       2.61 r
+  clk_gate_addr_reg/main_gate/A (AND2XL)                  0.01       2.62 r
+  data arrival time                                                  2.62
+
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_addr_reg/main_gate/B (AND2XL)                  0.00       2.50 f
+  clock gating hold time                                  0.00       2.50
+  data required time                                                 2.50
+  --------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -2.62
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: clk_gate_addr_reg_0/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_addr_reg_0/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  qrcode_decoder     Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_61
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_addr_reg_0/latch/GN (TLATNXL)                  0.00       2.50 f
+  clk_gate_addr_reg_0/latch/Q (TLATNXL)                   0.11       2.61 r
+  clk_gate_addr_reg_0/main_gate/A (AND2XL)                0.01       2.62 r
+  data arrival time                                                  2.62
+
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_addr_reg_0/main_gate/B (AND2XL)                0.00       2.50 f
+  clock gating hold time                                  0.00       2.50
+  data required time                                                 2.50
+  --------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -2.62
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: clk_gate_addr_pointer_reg/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_addr_pointer_reg/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  qrcode_decoder     Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_60
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_addr_pointer_reg/latch/GN (TLATNXL)            0.00       2.50 f
+  clk_gate_addr_pointer_reg/latch/Q (TLATNXL)             0.11       2.61 r
+  clk_gate_addr_pointer_reg/main_gate/A (AND2XL)          0.01       2.62 r
+  data arrival time                                                  2.62
+
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_addr_pointer_reg/main_gate/B (AND2XL)          0.00       2.50 f
+  clock gating hold time                                  0.00       2.50
+  data required time                                                 2.50
+  --------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -2.62
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+  Startpoint: clk_gate_data_len_reg/latch
+              (negative level-sensitive latch clocked by clk)
+  Endpoint: clk_gate_data_len_reg/main_gate
+            (gating element for clock clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  qrcode_decoder     Large                 slow_vdd1v2
+  SNPS_CLOCK_GATE_HIGH_qrcode_decoder_mydesign_64
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_data_len_reg/latch/GN (TLATNXL)                0.00       2.50 f
+  clk_gate_data_len_reg/latch/Q (TLATNXL)                 0.11       2.61 r
+  clk_gate_data_len_reg/main_gate/A (AND2XL)              0.01       2.62 r
+  data arrival time                                                  2.62
+
+  clock clk (fall edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clk_gate_data_len_reg/main_gate/B (AND2XL)              0.00       2.50 f
+  clock gating hold time                                  0.00       2.50
+  data required time                                                 2.50
+  --------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -2.62
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.12
+
+
+1

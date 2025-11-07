@@ -1,0 +1,2 @@
+current_design qrcode_decoder
+clock -name clk -period 10 
