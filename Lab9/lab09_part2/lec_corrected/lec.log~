@@ -1,0 +1,191 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2016 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN my_div
+Set variable 'TOP_DESIGN' as 'my_div'
+// Command: add notranslate module dsram -library -both
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../source/inverse_table_corrected.v ...
+// Parsing file ../source/mul_and_shift.v ...
+// Parsing file ../source/my_div.v ...
+// Golden root module is set to 'my_div'
+// Warning: (RTL14.1) Fanout load of the signal is removed (occurrence:17)
+// Warning: (HRC3.15) Parameter positional association occurs in an instantiation (occurrence:2)
+// Note: Read VERILOG design successfully
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../netlist/my_div_syn.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'my_div'
+// Warning: (RTL14) Signal has input but it has no output (occurrence:2)
+// Note: Read VERILOG design successfully
+CPU time     : 0.22    seconds
+Elapse time  : 1       seconds
+Memory usage : 254.70  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules         4               3
+Library-cells          3             770
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT               22                   22
+OUTPUT              16                   16
+--------------------------------------------
+AND        *      1300                  830
+DFF                 16                   16
+INV        *        37                  678
+MUX        *       165                    0
+NOR        *        47                    0
+OR         *       303                  456
+WIRE       *        16                    0
+XOR        *       496                  191
+------ word-level --------------------------
+MULT       *         1                    0
+SRL        *         1                    0
+WSEL       *         2                    0
+--------------------------------------------
+Total             2380                 2171
+
+// Command: report black box -detail
+// Command: add renaming rule rule1 "%w_mydesign_%d$" "@1" -module -revised
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 0 module(s)
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'my_div'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'my_div'
+// Command: dofile 1_lec_hier_compare.do
+// Command: write hier_compare dofile hier.do \
+//              -prepend_string "analyze setup -verbose; \
+//                               analyze multiplier -cdp_info; \
+//                               analyze datapath -merge -share -effort medium -verbose;" \
+//              -append_string "analyze abort -compare" -replace
+// Warning: Module 'VDW_mult_nbw_u16_u17_33' exists in Golden only. Skip it for hierarchical comparison
+// Note: Writing hierarchical compare dofile ...
+// Warning: Golden module 'inverse_table_DIVISOR_WIDTH5_WIDTH_INVERSE17_WIDTH_SHIFT5' has extra pin(s)
+// Warning: Revised module 'inverse_table_DIVISOR_WIDTH5_WIDTH_INVERSE17_WIDTH_SHIFT5' has extra pin(s)
+// Warning: Module 'inverse_table_DIVISOR_WIDTH5_WIDTH_INVERSE17_WIDTH_SHIFT5' and 'inverse_table_DIVISOR_WIDTH5_WIDTH_INVERSE17_WIDTH_SHIFT5' have mis-match ports
+// Warning: Golden module 'mul_and_shift_DIVIDEND_WIDTH16_WIDTH_INVERSE17_WIDTH_SHIFT5' has extra pin(s)
+// Warning: Revised module 'mul_and_shift_DIVIDEND_WIDTH16_WIDTH_INVERSE17_WIDTH_SHIFT5' has extra pin(s)
+// Warning: Module 'mul_and_shift_DIVIDEND_WIDTH16_WIDTH_INVERSE17_WIDTH_SHIFT5' and 'mul_and_shift_DIVIDEND_WIDTH16_WIDTH_INVERSE17_WIDTH_SHIFT5' have mis-match ports
+2 modules are not output for hierarchical compare due to mis-match ports 
+1 modules are output for hierarchical compare
+// Command: run hier_compare hier.do
+// Running Module my_div and my_div
+// Command: set root module my_div -Golden
+// Warning: Golden root module is already at 'my_div'
+// Command: set root module my_div -Revised
+// Warning: Revised root module is already at 'my_div'
+// Command: set module property -instance / -Golden
+// Command: set module property -instance / -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 32 out of 32 DFF/DLATs
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            22     16     16        54      
+--------------------------------------------------------------------------------
+Revised           22     16     16        54      
+================================================================================
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+// Remodeling sequential constants...
+// Remodeling Golden ...
+// Remodeling Revised ...
+// Note: mult_16: quality evaluated 5% success
+CPU time     : 0.59    seconds
+Elapse time  : 1       seconds
+Memory usage : 294.07  M bytes
+// Command: add compared points -all
+// 32 compared points added to compare list
+// Command: compare -noneq_stop 1  -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+Multi-threaded processing stopped due to non-equivalent points.                 
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           16     1         17      
+--------------------------------------------------------------------------------
+Non-equivalent       0      1         1       
+--------------------------------------------------------------------------------
+Not-compared         0      14        14      
+================================================================================
+CPU time     : 6.51    seconds
+Elapse time  : 13      seconds
+Memory usage : 374.07  M bytes
+// Command: add compared points -all
+// 32 compared points added to compare list
+// Command: compare -threads 1,1
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           16     4         20      
+--------------------------------------------------------------------------------
+Non-equivalent       0      12        12      
+================================================================================
+CPU time     : 25.11   seconds
+Elapse time  : 38      seconds
+Memory usage : 374.07  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+Processed 1 out of 1 module pairs	EQ: 0	NEQ: 1	ABORT: 0
+
+--------------------------------------------------------------------------------
+Status          Golden                            Revised                         
+--------------------------------------------------------------------------------
+Non-equivalent: my_div                            my_div                          
+Total Non-equivalent modules   = 1
+
+================================================================================
+Module Comparison Results
+--------------------------------------------------------------------------------
+Non-equivalent                 1
+--------------------------------------------------------------------------------
+Total                          1
+--------------------------------------------------------------------------------
+Hierarchical compare : Non-equivalent 
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                  FAIL:NONEQ
+================================================================================
+// Command: exit -force
