@@ -1,0 +1,35 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2016 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN my_div
+Set variable 'TOP_DESIGN' as 'my_div'
+// Command: add notranslate module dsram -library -both
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../source/inverse_table.v ...
+// Parsing file ../source/mul_and_shift.v ...
+// Parsing file ../source/my_div.v ...
+// Golden root module is set to 'my_div'
+// Warning: (RTL14.1) Fanout load of the signal is removed (occurrence:17)
+// Warning: (HRC3.15) Parameter positional association occurs in an instantiation (occurrence:2)
+// Note: Read VERILOG design successfully
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Error: Cannot open file '../netlist/top_pipe_syn.v'.
+// Error: FIL1.2: Failed to open file
+//  Design file not found
+// Error: No root module found.
+// Error: Total 1 error(s) of fail to open file found during read design. Please review parsing message.
+// 'dofile /home/u110/u110022124/ICLAB/lab09/lab09_part2/lec/0_lec_setup.do' is aborted at line 15
+// 'dofile /home/u110/u110022124/ICLAB/lab09/lab09_part2/lec/1_lec_hier_all.do' is aborted at line 2
+// Command: exit

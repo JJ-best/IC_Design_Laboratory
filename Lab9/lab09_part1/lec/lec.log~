@@ -1,0 +1,238 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2016 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN top_pipe
+Set variable 'TOP_DESIGN' as 'top_pipe'
+// Command: add notranslate module dsram -library -both
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../source/CPU_define.v ...
+// Parsing file ../source/top.v ...
+// Parsing file ../source/top_pipe.v ...
+// Parsing file ../source/IF_stage.v ...
+// Parsing file ../source/IF_ID.v ...
+// Parsing file ../source/ID_stage.v ...
+// Parsing file ../source/controller.v ...
+// Parsing file ../source/regfile.v ...
+// Parsing file ../source/ID_EXE.v ...
+// Parsing file ../source/EXE_stage.v ...
+// Parsing file ../source/alu.v ...
+// Parsing file ../source/PC.v ...
+// Parsing file ../model/dsram.v ...
+// Golden root module is set to 'top_pipe'
+// Warning: (RTL1.5b) Potential loss of RHS msb or carry-out bit (occurrence:6)
+// Warning: (RTL7.11b) Unsigned reference with index/part selection to a signed variable (occurrence:7)
+// Warning: (RTL14) Signal has input but it has no output (occurrence:326)
+// Warning: (RTL14.1) Fanout load of the signal is removed (occurrence:16)
+// Note: (VLG9.2) The `define macro is used (occurrence:16)
+// Warning: (DIR3.1) synthesis/translate/compile on/off directive is detected (occurrence:2)
+// Warning: (DIR4.2) Design includes one or more HDL directives or pragmas that Conformal supports (occurrence:2)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:33)
+// Warning: (HRC3.16) A wire is declared, but not used in the module (occurrence:21)
+// Warning: Total black box modules referenced in Golden = 1
+// Note: Read VERILOG design successfully
+CPU time     : 1.27    seconds
+Elapse time  : 35      seconds
+Memory usage : 273.32  M bytes
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../netlist/top_pipe_syn.v ...
+// Parsing file ../model/dsram.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'top_pipe'
+// Warning: (RTL14) Signal has input but it has no output (occurrence:11)
+// Note: (HRC3.5b) Open output port connection is detected (occurrence:2296)
+// Warning: (HRC4) Multiple root modules/entities found (occurrence:1)
+// Warning: Total black box modules referenced in Revised = 1
+// Note: Read VERILOG design successfully
+CPU time     : 2.98    seconds
+Elapse time  : 39      seconds
+Memory usage : 304.99  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules        14             143
+Library-cells         97            4905
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT               44                   44
+OUTPUT              33                   33
+--------------------------------------------
+AND        *      2708                 3962
+BUF        *        11                  137
+DFF               1319                 1319
+DLAT       *         0                  132
+INV        *       137                 3538
+MUX        *      2022                    0
+NAND       *         1                    0
+NOR        *        63                    0
+OR         *       290                 2283
+WIRE       *       126                    0
+XNOR       *        30                    0
+XOR        *       266                   81
+------ word-level --------------------------
+ADD        *         4                    0
+EQ         *         1                    0
+LT         *         1                    0
+SLL        *         1                    0
+SRA        *         1                    0
+SUBTRACT   *         1                    0
+WAND       *         1                    0
+WINV       *         1                    0
+WMUX       *        71                    0
+WOR        *         1                    0
+WSEL       *        14                    0
+WXOR       *         1                    0
+BBOX                 2                    2
+--------------------------------------------
+Total             6975                11454
+
+// Command: report black box -detail
+SYSTEM (notranslate): (G R) dsram
+// Command: add renaming rule rule1 "%w_mydesign_%d$" "@1" -module -revised
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 0 module(s)
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'top_pipe'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'top_pipe'
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 2638 out of 2770 DFF/DLATs
+// (F14) Remodeled 1053 gated-clock DFF/DLAT(s)
+CPU time     : 3.60    seconds
+Elapse time  : 91      seconds
+Memory usage : 341.47  M bytes
+// Warning: Golden and Revised have different numbers of key points:
+// Golden  key points = 1398
+// Revised key points = 1530
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            44     33     1284   2         1363    
+--------------------------------------------------------------------------------
+Revised           44     33     1284   2         1363    
+================================================================================
+Unmapped points:
+================================================================================
+Golden:
+--------------------------------------------------------------------------------
+Unmapped points   DFF       Total   
+--------------------------------------------------------------------------------
+Unreachable       35        35      
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DFF    DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       35     132       167     
+================================================================================
+// Command: dofile /home/u110/u110022124/ICLAB/lab09/lab09_part1/lec/0_lec_compare.do
+// Command: set system mode lec
+CPU time     : 4.61    seconds
+Elapse time  : 498     seconds
+Memory usage : 341.98  M bytes
+// Command: map key point
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            44     33     1284   2         1363    
+--------------------------------------------------------------------------------
+Revised           44     33     1284   2         1363    
+================================================================================
+Unmapped points:
+================================================================================
+Golden:
+--------------------------------------------------------------------------------
+Unmapped points   DFF       Total   
+--------------------------------------------------------------------------------
+Unreachable       35        35      
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DFF    DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       35     132       167     
+================================================================================
+// Command: analyze setup -verbose
+CPU time     : 5.02    seconds
+Elapse time  : 501     seconds
+Memory usage : 341.98  M bytes
+// Command: analyze multiplier -cdp_info
+// Command: analyze datapath -merge -share -effort medium -verbose
+CPU time     : 5.25    seconds
+Elapse time  : 502     seconds
+Memory usage : 341.98  M bytes
+// Command: add compare point -all
+// 1319 compared points added to compare list
+// Command: compare
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           33     1284   2         1319    
+================================================================================
+CPU time     : 14.16   seconds
+Elapse time  : 520     seconds
+Memory usage : 423.98  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: report unmap point -notmapped 
+
+0 unmapped points reported
+// Command: report compare data -nonequivalent
+0 Non-equivalent point(s) reported
+0 compared point(s) reported
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           33     1284   2         1319    
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                        PASS
+================================================================================
+// Command: reset
+// Warning: Reset the system and deleting all design data
+// Command: dofile /home/u110/u110022124/ICLAB/lab09/lab09_part1/lec/0_lec_setup.do
+// Command: set system mode setup
+CPU time     : 15.61   seconds
+Elapse time  : 659     seconds
+Memory usage : 422.72  M bytes
+// Command: set log file lec.log -replace

@@ -46,7 +46,7 @@ always@* begin
 	  5'd28 : div_inverse = 17'd74899 ;
 	  5'd29 : div_inverse = 17'd72316 ;
 	  5'd30 : div_inverse = 17'd69906 ;
-	  5'd31 : div_inverse = 17'd67652 ;
+	  5'd31 : div_inverse = 17'd67651 ;
 	default : div_inverse = 17'd65536 ;  
   endcase
 end

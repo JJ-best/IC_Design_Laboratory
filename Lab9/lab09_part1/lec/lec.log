@@ -1,0 +1,680 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2016 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN top_pipe
+Set variable 'TOP_DESIGN' as 'top_pipe'
+// Command: add notranslate module dsram -library -both
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../source/CPU_define.v ...
+// Parsing file ../source/top.v ...
+// Parsing file ../source/top_pipe.v ...
+// Parsing file ../source/IF_stage.v ...
+// Parsing file ../source/IF_ID.v ...
+// Parsing file ../source/ID_stage.v ...
+// Parsing file ../source/controller.v ...
+// Parsing file ../source/regfile.v ...
+// Parsing file ../source/ID_EXE.v ...
+// Parsing file ../source/EXE_stage.v ...
+// Parsing file ../source/alu.v ...
+// Parsing file ../source/PC.v ...
+// Parsing file ../model/dsram.v ...
+// Golden root module is set to 'top_pipe'
+// Warning: (RTL1.5b) Potential loss of RHS msb or carry-out bit (occurrence:6)
+// Warning: (RTL7.11b) Unsigned reference with index/part selection to a signed variable (occurrence:7)
+// Warning: (RTL14) Signal has input but it has no output (occurrence:326)
+// Warning: (RTL14.1) Fanout load of the signal is removed (occurrence:16)
+// Note: (VLG9.2) The `define macro is used (occurrence:16)
+// Warning: (DIR3.1) synthesis/translate/compile on/off directive is detected (occurrence:2)
+// Warning: (DIR4.2) Design includes one or more HDL directives or pragmas that Conformal supports (occurrence:2)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:33)
+// Warning: (HRC3.16) A wire is declared, but not used in the module (occurrence:21)
+// Warning: Total black box modules referenced in Golden = 1
+// Note: Read VERILOG design successfully
+CPU time     : 16.03   seconds
+Elapse time  : 668     seconds
+Memory usage : 422.72  M bytes
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../netlist/top_pipe_syn.v ...
+// Parsing file ../model/dsram.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'top_pipe'
+// Warning: (RTL14) Signal has input but it has no output (occurrence:11)
+// Note: (HRC3.5b) Open output port connection is detected (occurrence:2296)
+// Warning: (HRC4) Multiple root modules/entities found (occurrence:1)
+// Warning: Total black box modules referenced in Revised = 1
+// Note: Read VERILOG design successfully
+CPU time     : 18.10   seconds
+Elapse time  : 679     seconds
+Memory usage : 430.72  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules        14             143
+Library-cells         97            4905
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT               44                   44
+OUTPUT              33                   33
+--------------------------------------------
+AND        *      2708                 3962
+BUF        *        11                  137
+DFF               1319                 1319
+DLAT       *         0                  132
+INV        *       137                 3538
+MUX        *      2022                    0
+NAND       *         1                    0
+NOR        *        63                    0
+OR         *       290                 2283
+WIRE       *       126                    0
+XNOR       *        30                    0
+XOR        *       266                   81
+------ word-level --------------------------
+ADD        *         4                    0
+EQ         *         1                    0
+LT         *         1                    0
+SLL        *         1                    0
+SRA        *         1                    0
+SUBTRACT   *         1                    0
+WAND       *         1                    0
+WINV       *         1                    0
+WMUX       *        71                    0
+WOR        *         1                    0
+WSEL       *        14                    0
+WXOR       *         1                    0
+BBOX                 2                    2
+--------------------------------------------
+Total             6975                11454
+
+// Command: report black box -detail
+SYSTEM (notranslate): (G R) dsram
+// Command: add renaming rule rule1 "%w_mydesign_%d$" "@1" -module -revised
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 0 module(s)
+CPU time     : 18.35   seconds
+Elapse time  : 686     seconds
+Memory usage : 432.72  M bytes
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'top_pipe'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'top_pipe'
+// Command: dofile /home/u110/u110022124/ICLAB/lab09/lab09_part1/lec/1_lec_hier_compare.do
+// Command: write hier_compare dofile hier.do \
+//              -prepend_string "analyze setup -verbose; \
+//                               analyze multiplier -cdp_info; \
+//                               analyze datapath -merge -share -effort medium -verbose;" \
+//              -append_string "analyze abort -compare" -replace
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_PC_mydesign_1' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_PC_mydesign_0' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_IF_ID_mydesign_1' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_IF_ID_mydesign_0' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_1' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_2' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_3' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_4' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_5' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_6' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_7' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_8' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_9' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_10' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_11' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_12' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_13' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_14' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_15' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_16' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_17' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_18' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_19' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_20' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_21' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_22' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_23' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_24' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_25' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_26' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_27' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_28' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_29' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_30' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_31' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_32' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_33' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_34' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_35' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_36' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_37' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_38' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_39' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_40' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_41' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_42' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_43' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_44' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_45' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_46' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_47' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_48' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_49' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_50' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_51' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_52' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_53' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_54' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_55' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_56' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_57' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_58' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_59' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_60' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_61' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_62' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_63' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_64' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_65' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_66' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_67' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_68' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_69' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_70' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_71' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_72' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_73' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_74' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_75' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_76' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_77' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_78' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_79' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_80' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_81' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_82' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_83' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_84' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_85' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_86' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_87' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_88' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_89' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_90' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_91' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_92' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_93' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_94' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_95' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_96' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_97' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_98' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_99' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_100' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_101' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_102' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_103' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_104' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_105' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_106' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_107' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_108' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_109' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_110' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_111' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_112' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_113' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_114' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_115' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_116' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_117' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_118' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_119' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_120' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_121' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_122' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_123' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_124' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_125' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_126' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_127' exists in Revised only. Skip it for hierarchical comparison
+// Warning: Module 'SNPS_CLOCK_GATE_HIGH_regfile_mydesign_0' exists in Revised only. Skip it for hierarchical comparison
+// Note: Writing hierarchical compare dofile ...
+// Warning: Golden module 'regfile' has extra pin(s)
+// Warning: Module 'regfile' and 'regfile' have mis-match ports
+// Warning: Golden module 'controller' has extra pin(s)
+// Warning: Revised module 'controller' has extra pin(s)
+// Warning: Module 'controller' and 'controller' have mis-match ports
+// Warning: Golden module 'ID_stage' has extra pin(s)
+// Warning: Module 'ID_stage' and 'ID_stage' have mis-match ports
+// Warning: Golden module 'alu' has extra pin(s)
+// Warning: Module 'alu' and 'alu' have mis-match ports
+// Warning: Golden module 'EXE_stage' has extra pin(s)
+// Warning: Module 'EXE_stage' and 'EXE_stage' have mis-match ports
+5 modules are not output for hierarchical compare due to mis-match ports 
+6 modules are output for hierarchical compare
+CPU time     : 19.53   seconds
+Elapse time  : 729     seconds
+Memory usage : 432.72  M bytes
+// Command: run hier_compare hier.do
+// Running Module PC and PC
+// Command: set root module PC -Golden
+CPU time     : 19.77   seconds
+Elapse time  : 735     seconds
+Memory usage : 432.72  M bytes
+// Command: set root module PC -Revised
+CPU time     : 20.05   seconds
+Elapse time  : 742     seconds
+Memory usage : 432.72  M bytes
+// Command: set module property -instance /top0/IF_stage/PC -Golden
+// Command: set module property -instance /top0/IF_stage/PC -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 36 out of 38 DFF/DLATs
+// (F14) Remodeled 13 gated-clock DFF/DLAT(s)
+CPU time     : 20.23   seconds
+Elapse time  : 746     seconds
+Memory usage : 432.72  M bytes
+// Warning: Golden and Revised have different numbers of key points:
+// Golden  key points = 55
+// Revised key points = 57
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            20     17     18        55      
+--------------------------------------------------------------------------------
+Revised           20     17     18        55      
+================================================================================
+Unmapped points:
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       2         2       
+================================================================================
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+// Command: add compared points -all
+// 35 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           17     18        35      
+================================================================================
+CPU time     : 21.31   seconds
+Elapse time  : 757     seconds
+Memory usage : 432.72  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box PC -module -hier -Golden
+CPU time     : 21.43   seconds
+Elapse time  : 759     seconds
+Memory usage : 438.72  M bytes
+// Command: add black box PC -module -hier -Revised
+CPU time     : 21.58   seconds
+Elapse time  : 762     seconds
+Memory usage : 438.72  M bytes
+Processed 1 out of 6 module pairs	EQ: 1	NEQ: 0	ABORT: 0
+// Running Module IF_stage and IF_stage
+// Command: set root module IF_stage -Golden
+// Warning: Total black box modules referenced in Golden = 2
+CPU time     : 21.85   seconds
+Elapse time  : 770     seconds
+Memory usage : 439.72  M bytes
+// Command: set root module IF_stage -Revised
+// Warning: Total black box modules referenced in Revised = 2
+CPU time     : 22.14   seconds
+Elapse time  : 777     seconds
+Memory usage : 441.72  M bytes
+// Command: set module property -instance /top0/IF_stage -Golden
+// Command: set module property -instance /top0/IF_stage -Revised
+// Command: report black box -NOHidden
+SYSTEM: (G R) dsram
+HIER: (G R) PC
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            61     49     2         112     
+--------------------------------------------------------------------------------
+Revised           61     49     2         112     
+================================================================================
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+// Command: add compared points -all
+// 51 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           49     2         51      
+================================================================================
+CPU time     : 23.23   seconds
+Elapse time  : 791     seconds
+Memory usage : 441.72  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box IF_stage -module -hier -Golden
+CPU time     : 23.38   seconds
+Elapse time  : 794     seconds
+Memory usage : 441.72  M bytes
+// Command: add black box IF_stage -module -hier -Revised
+CPU time     : 23.53   seconds
+Elapse time  : 797     seconds
+Memory usage : 441.72  M bytes
+Processed 2 out of 6 module pairs	EQ: 2	NEQ: 0	ABORT: 0
+// Running Module IF_ID and IF_ID
+// Command: set root module IF_ID -Golden
+CPU time     : 23.79   seconds
+Elapse time  : 805     seconds
+Memory usage : 441.72  M bytes
+// Command: set root module IF_ID -Revised
+CPU time     : 24.07   seconds
+Elapse time  : 812     seconds
+Memory usage : 441.72  M bytes
+// Command: set module property -instance /top0/IF_ID -Golden
+// Command: set module property -instance /top0/IF_ID -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 96 out of 98 DFF/DLATs
+// (F14) Remodeled 16 gated-clock DFF/DLAT(s)
+// Warning: Golden and Revised have different numbers of key points:
+// Golden  key points = 147
+// Revised key points = 149
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            51     48     48        147     
+--------------------------------------------------------------------------------
+Revised           51     48     48        147     
+================================================================================
+Unmapped points:
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       2         2       
+================================================================================
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+// Command: add compared points -all
+// 96 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           48     48        96      
+================================================================================
+CPU time     : 25.22   seconds
+Elapse time  : 825     seconds
+Memory usage : 441.72  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box IF_ID -module -hier -Golden
+CPU time     : 25.34   seconds
+Elapse time  : 828     seconds
+Memory usage : 441.72  M bytes
+// Command: add black box IF_ID -module -hier -Revised
+CPU time     : 25.49   seconds
+Elapse time  : 831     seconds
+Memory usage : 441.72  M bytes
+Processed 3 out of 6 module pairs	EQ: 3	NEQ: 0	ABORT: 0
+// Running Module ID_EXE and ID_EXE
+// Command: set root module ID_EXE -Golden
+CPU time     : 25.75   seconds
+Elapse time  : 837     seconds
+Memory usage : 441.72  M bytes
+// Command: set root module ID_EXE -Revised
+CPU time     : 26.02   seconds
+Elapse time  : 843     seconds
+Memory usage : 441.72  M bytes
+// Command: set module property -instance /top0/ID_EXE -Golden
+// Command: set module property -instance /top0/ID_EXE -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 178 out of 178 DFF/DLATs
+CPU time     : 26.18   seconds
+Elapse time  : 847     seconds
+Memory usage : 441.72  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            91     89     89        269     
+--------------------------------------------------------------------------------
+Revised           91     89     89        269     
+================================================================================
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+// Command: add compared points -all
+// 178 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           89     89        178     
+================================================================================
+CPU time     : 26.88   seconds
+Elapse time  : 855     seconds
+Memory usage : 441.72  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box ID_EXE -module -hier -Golden
+CPU time     : 27.00   seconds
+Elapse time  : 857     seconds
+Memory usage : 441.72  M bytes
+// Command: add black box ID_EXE -module -hier -Revised
+CPU time     : 27.14   seconds
+Elapse time  : 861     seconds
+Memory usage : 441.72  M bytes
+Processed 4 out of 6 module pairs	EQ: 4	NEQ: 0	ABORT: 0
+// Running Module top and top
+// Command: set root module top -Golden
+// Warning: Total black box modules referenced in Golden = 5
+CPU time     : 27.40   seconds
+Elapse time  : 867     seconds
+Memory usage : 441.72  M bytes
+// Command: set root module top -Revised
+// Warning: Total black box modules referenced in Revised = 5
+CPU time     : 27.70   seconds
+Elapse time  : 875     seconds
+Memory usage : 441.72  M bytes
+// Command: set module property -instance /top0 -Golden
+// Command: set module property -instance /top0 -Revised
+// Command: report black box -NOHidden
+SYSTEM: (G R) dsram
+HIER: (G R) ID_EXE
+HIER: (G R) IF_ID
+HIER: (G R) IF_stage
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 2176 out of 2304 DFF/DLATs
+// (F14) Remodeled 1024 gated-clock DFF/DLAT(s)
+CPU time     : 28.15   seconds
+Elapse time  : 880     seconds
+Memory usage : 444.72  M bytes
+// Warning: Golden and Revised have different numbers of key points:
+// Golden  key points = 1169
+// Revised key points = 1297
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            44     33     1088   4         1169    
+--------------------------------------------------------------------------------
+Revised           44     33     1088   4         1169    
+================================================================================
+Unmapped points:
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       128       128     
+================================================================================
+CPU time     : 28.29   seconds
+Elapse time  : 881     seconds
+Memory usage : 444.72  M bytes
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+CPU time     : 28.78   seconds
+Elapse time  : 883     seconds
+Memory usage : 444.72  M bytes
+// Command: add compared points -all
+// 1125 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           33     1088   4         1125    
+================================================================================
+CPU time     : 36.57   seconds
+Elapse time  : 900     seconds
+Memory usage : 444.72  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box top -module -hier -Golden
+CPU time     : 36.71   seconds
+Elapse time  : 903     seconds
+Memory usage : 444.72  M bytes
+// Command: add black box top -module -hier -Revised
+CPU time     : 36.85   seconds
+Elapse time  : 907     seconds
+Memory usage : 444.72  M bytes
+Processed 5 out of 6 module pairs	EQ: 5	NEQ: 0	ABORT: 0
+// Running Module top_pipe and top_pipe
+// Command: set root module top_pipe -Golden
+// Warning: Total black box modules referenced in Golden = 6
+CPU time     : 37.13   seconds
+Elapse time  : 913     seconds
+Memory usage : 444.72  M bytes
+// Command: set root module top_pipe -Revised
+// Warning: Total black box modules referenced in Revised = 6
+CPU time     : 37.43   seconds
+Elapse time  : 921     seconds
+Memory usage : 444.72  M bytes
+// Command: set module property -instance / -Golden
+// Command: set module property -instance / -Revised
+// Command: report black box -NOHidden
+HIER: (G R) top
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 152 out of 152 DFF/DLATs
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            44     33     76     1         154     
+--------------------------------------------------------------------------------
+Revised           44     33     76     1         154     
+================================================================================
+// Command: analyze setup -verbose;                      analyze multiplier -cdp_info;                      analyze datapath -merge -share -effort medium -verbose;
+// Command: add compared points -all
+// 110 compared points added to compare list
+// Command: compare -noneq_stop 1  -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           33     76     1         110     
+================================================================================
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+Processed 6 out of 6 module pairs	EQ: 6	NEQ: 0	ABORT: 0
+
+================================================================================
+Module Comparison Results
+--------------------------------------------------------------------------------
+Equivalent                     6
+--------------------------------------------------------------------------------
+Total                          6
+--------------------------------------------------------------------------------
+Hierarchical compare : Equivalent 
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                        PASS
+================================================================================
