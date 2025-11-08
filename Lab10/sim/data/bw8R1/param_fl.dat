@@ -1,0 +1,16 @@
+   8    // conv_head.conv.weight                              8
+   9    // conv_head.conv.bias                                9
+   9    // conv_body.0.body.0.weight                          9
+   9    // conv_body.0.body.0.bias                            9
+   9    // conv_body.1.body.0.weight                          9
+   a    // conv_body.1.body.0.bias                            10
+   9    // conv_body.2.body.0.weight                          9
+   a    // conv_body.2.body.0.bias                            10
+   9    // conv_body.3.body.0.weight                          9
+   a    // conv_body.3.body.0.bias                            10
+   a    // conv_body.4.body.0.weight                          10
+   a    // conv_body.4.body.0.bias                            10
+   a    // conv_body.5.body.0.weight                          10
+   a    // conv_body.5.body.0.bias                            10
+   9    // conv_tail.body.0.weight                            9
+   a    // conv_tail.body.0.bias                              10

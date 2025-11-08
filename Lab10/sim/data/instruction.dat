@@ -1,0 +1,9 @@
+// ISA: (ReLU)_(PixelShufflex4)_(srcSRAM)_(resSRAM"f:non")_(dstSRAM)_(CHout)_(CHin)
+0_0_f_1_10_03 //conv1
+1_1_f_2_10_10 //resblock.0
+1_2_f_0_10_10 //resblock.0
+1_0_f_1_10_10 //resblock.1
+1_1_f_2_10_10 //resblock.1
+1_2_f_1_10_10 //resblock.2
+1_1_f_0_10_10 //resblock.2
+0_0_f_3_30_10 //conv2 with pixel shuffle

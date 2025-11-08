@@ -1,0 +1,16 @@
+   8    // conv_head.SRAM_input           8
+   7    // conv_head.SRAM_output          7
+   7    // conv_body.0.SRAM_input         7
+   7    // conv_body.0.SRAM_output        7
+   7    // conv_body.1.SRAM_input         7
+   6    // conv_body.1.SRAM_output        6
+   6    // conv_body.2.SRAM_input         6
+   6    // conv_body.2.SRAM_output        6
+   6    // conv_body.3.SRAM_input         6
+   6    // conv_body.3.SRAM_output        6
+   6    // conv_body.4.SRAM_input         6
+   6    // conv_body.4.SRAM_output        6
+   6    // conv_body.5.SRAM_input         6
+   6    // conv_body.5.SRAM_output        6
+   6    // conv_tail.SRAM_input           6
+   8    // conv_tail.SRAM_out             8
