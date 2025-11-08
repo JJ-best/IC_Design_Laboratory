@@ -1,0 +1,431 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 4
+Design : conv_top
+Version: R-2020.09-SP5
+Date   : Mon Aug 28 17:40:37 2023
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: ftr_ff_reg_200_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: conv3x3_U0/conv3x3_4chout_reg_48_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  conv_top           Large                 slow_vdd1v2
+  matmul_BW_MATMUL18_mydesign_28
+                     Small                 slow_vdd1v2
+  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+                     Small                 slow_vdd1v2
+  conv3x3_16to4ch_BW_BIAS25
+                     Small                 slow_vdd1v2
+  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ftr_ff_reg_200_/CK (DFFQXL)                             0.00 #     0.00 r
+  ftr_ff_reg_200_/Q (DFFQXL)                              0.16       0.16 f
+  conv3x3_U0/feature[200] (conv3x3_16to4ch_BW_BIAS25)     0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/feature[16] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/mm_U3/feature[16] (matmul_BW_MATMUL18_mydesign_28)
+                                                          0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U254/Y (INVXL)              0.14       0.30 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U463/Y (INVXL)              0.13       0.43 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U1395/Y (NAND2XL)           0.07       0.51 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U105/Y (AOI32XL)            0.13       0.64 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U1414/S (ADDFX1)            0.24       0.87 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1398/Y (INVXL)             0.04       0.91 f
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_655_U5/S (ADDFX1)
+                                                          0.20       1.12 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U9/CO (ADDFX1)
+                                                          0.15       1.27 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U8/CO (ADDFX1)
+                                                          0.13       1.39 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U7/CO (ADDFX1)
+                                                          0.13       1.52 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U6/CO (ADDFX1)
+                                                          0.13       1.64 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U5/CO (ADDFX1)
+                                                          0.13       1.77 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U2199/CO (ADDFX1)           0.13       1.90 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U2198/CO (ADDFX1)           0.13       2.02 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U2/CO (ADDFX1)
+                                                          0.12       2.14 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1384/Y (INVXL)             0.04       2.18 f
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_643_U2/CO (ADDFX1)
+                                                          0.14       2.32 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U2197/S (ADDFX1)            0.20       2.52 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1377/Y (INVXL)             0.04       2.56 f
+  conv3x3_U0/conv1x1_u1/mm_U3/matmul_out[28] (matmul_BW_MATMUL18_mydesign_28)
+                                                          0.00       2.56 f
+  conv3x3_U0/conv1x1_u1/U14/S (ADDFX1)                    0.20       2.76 r
+  conv3x3_U0/conv1x1_u1/U13/S (ADDFX1)                    0.18       2.94 f
+  conv3x3_U0/conv1x1_u1/intadd_5_U10/S (ADDFX1)           0.20       3.14 r
+  conv3x3_U0/conv1x1_u1/conv1x1_4chout[30] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       3.14 r
+  conv3x3_U0/kernel_adder_U2/add_in[150] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1)
+                                                          0.00       3.14 r
+  conv3x3_U0/kernel_adder_U2/U141/S (ADDFX1)              0.21       3.35 f
+  conv3x3_U0/kernel_adder_U2/U98/S (ADDFX1)               0.19       3.54 r
+  conv3x3_U0/kernel_adder_U2/U186/S (ADDFX1)              0.21       3.74 f
+  conv3x3_U0/kernel_adder_U2/U226/S (ADDFX1)              0.20       3.94 r
+  conv3x3_U0/kernel_adder_U2/U185/CO (ADDFX1)             0.15       4.09 r
+  conv3x3_U0/kernel_adder_U2/intadd_82_U13/CO (ADDFX1)
+                                                          0.13       4.22 r
+  conv3x3_U0/kernel_adder_U2/U184/CO (ADDFX1)             0.13       4.34 r
+  conv3x3_U0/kernel_adder_U2/U183/CO (ADDFX1)             0.13       4.47 r
+  conv3x3_U0/kernel_adder_U2/U182/CO (ADDFX1)             0.13       4.60 r
+  conv3x3_U0/kernel_adder_U2/U181/CO (ADDFX1)             0.13       4.72 r
+  conv3x3_U0/kernel_adder_U2/U180/CO (ADDFX1)             0.13       4.85 r
+  conv3x3_U0/kernel_adder_U2/U179/CO (ADDFX1)             0.13       4.97 r
+  conv3x3_U0/kernel_adder_U2/U178/CO (ADDFX1)             0.13       5.10 r
+  conv3x3_U0/kernel_adder_U2/U177/CO (ADDFX1)             0.13       5.22 r
+  conv3x3_U0/kernel_adder_U2/U176/CO (ADDFX1)             0.13       5.35 r
+  conv3x3_U0/kernel_adder_U2/U175/CO (ADDFX1)             0.13       5.48 r
+  conv3x3_U0/kernel_adder_U2/U217/CO (ADDFX1)             0.12       5.60 r
+  conv3x3_U0/kernel_adder_U2/U18/Y (INVXL)                0.03       5.63 f
+  conv3x3_U0/kernel_adder_U2/U19/Y (BUFX2)                0.05       5.68 f
+  conv3x3_U0/kernel_adder_U2/add_out[23] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1)
+                                                          0.00       5.68 f
+  conv3x3_U0/conv3x3_4chout_reg_48_/D (DFFQXL)            0.01       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   6.00       6.00
+  clock network delay (ideal)                             0.00       6.00
+  conv3x3_U0/conv3x3_4chout_reg_48_/CK (DFFQXL)           0.00       6.00 r
+  library setup time                                     -0.03       5.97
+  data required time                                                 5.97
+  --------------------------------------------------------------------------
+  data required time                                                 5.97
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.27
+
+
+  Startpoint: ftr_ff_reg_200_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: conv3x3_U0/conv3x3_4chout_reg_47_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  conv_top           Large                 slow_vdd1v2
+  matmul_BW_MATMUL18_mydesign_28
+                     Small                 slow_vdd1v2
+  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+                     Small                 slow_vdd1v2
+  conv3x3_16to4ch_BW_BIAS25
+                     Small                 slow_vdd1v2
+  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ftr_ff_reg_200_/CK (DFFQXL)                             0.00 #     0.00 r
+  ftr_ff_reg_200_/Q (DFFQXL)                              0.16       0.16 f
+  conv3x3_U0/feature[200] (conv3x3_16to4ch_BW_BIAS25)     0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/feature[16] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/mm_U3/feature[16] (matmul_BW_MATMUL18_mydesign_28)
+                                                          0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U254/Y (INVXL)              0.14       0.30 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U463/Y (INVXL)              0.13       0.43 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U1395/Y (NAND2XL)           0.07       0.51 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U105/Y (AOI32XL)            0.13       0.64 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U1414/S (ADDFX1)            0.24       0.87 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1398/Y (INVXL)             0.04       0.91 f
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_655_U5/S (ADDFX1)
+                                                          0.20       1.12 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U9/CO (ADDFX1)
+                                                          0.15       1.27 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U8/CO (ADDFX1)
+                                                          0.13       1.39 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U7/CO (ADDFX1)
+                                                          0.13       1.52 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U6/CO (ADDFX1)
+                                                          0.13       1.64 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U5/CO (ADDFX1)
+                                                          0.13       1.77 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U2199/CO (ADDFX1)           0.13       1.90 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U2198/CO (ADDFX1)           0.13       2.02 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U2/CO (ADDFX1)
+                                                          0.12       2.14 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1384/Y (INVXL)             0.04       2.18 f
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_643_U2/CO (ADDFX1)
+                                                          0.14       2.32 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U2197/S (ADDFX1)            0.20       2.52 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1377/Y (INVXL)             0.04       2.56 f
+  conv3x3_U0/conv1x1_u1/mm_U3/matmul_out[28] (matmul_BW_MATMUL18_mydesign_28)
+                                                          0.00       2.56 f
+  conv3x3_U0/conv1x1_u1/U14/S (ADDFX1)                    0.20       2.76 r
+  conv3x3_U0/conv1x1_u1/U13/S (ADDFX1)                    0.18       2.94 f
+  conv3x3_U0/conv1x1_u1/intadd_5_U10/S (ADDFX1)           0.20       3.14 r
+  conv3x3_U0/conv1x1_u1/conv1x1_4chout[30] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       3.14 r
+  conv3x3_U0/kernel_adder_U2/add_in[150] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1)
+                                                          0.00       3.14 r
+  conv3x3_U0/kernel_adder_U2/U141/S (ADDFX1)              0.21       3.35 f
+  conv3x3_U0/kernel_adder_U2/U98/S (ADDFX1)               0.19       3.54 r
+  conv3x3_U0/kernel_adder_U2/U186/S (ADDFX1)              0.21       3.74 f
+  conv3x3_U0/kernel_adder_U2/U226/S (ADDFX1)              0.20       3.94 r
+  conv3x3_U0/kernel_adder_U2/U185/CO (ADDFX1)             0.15       4.09 r
+  conv3x3_U0/kernel_adder_U2/intadd_82_U13/CO (ADDFX1)
+                                                          0.13       4.22 r
+  conv3x3_U0/kernel_adder_U2/U184/CO (ADDFX1)             0.13       4.34 r
+  conv3x3_U0/kernel_adder_U2/U183/CO (ADDFX1)             0.13       4.47 r
+  conv3x3_U0/kernel_adder_U2/U182/CO (ADDFX1)             0.13       4.60 r
+  conv3x3_U0/kernel_adder_U2/U181/CO (ADDFX1)             0.13       4.72 r
+  conv3x3_U0/kernel_adder_U2/U180/CO (ADDFX1)             0.13       4.85 r
+  conv3x3_U0/kernel_adder_U2/U179/CO (ADDFX1)             0.13       4.97 r
+  conv3x3_U0/kernel_adder_U2/U178/CO (ADDFX1)             0.13       5.10 r
+  conv3x3_U0/kernel_adder_U2/U177/CO (ADDFX1)             0.13       5.22 r
+  conv3x3_U0/kernel_adder_U2/U176/CO (ADDFX1)             0.13       5.35 r
+  conv3x3_U0/kernel_adder_U2/U175/CO (ADDFX1)             0.13       5.48 r
+  conv3x3_U0/kernel_adder_U2/U217/S (ADDFX1)              0.16       5.64 r
+  conv3x3_U0/kernel_adder_U2/add_out[22] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1)
+                                                          0.00       5.64 r
+  conv3x3_U0/conv3x3_4chout_reg_47_/D (DFFQXL)            0.01       5.65 r
+  data arrival time                                                  5.65
+
+  clock clk (rise edge)                                   6.00       6.00
+  clock network delay (ideal)                             0.00       6.00
+  conv3x3_U0/conv3x3_4chout_reg_47_/CK (DFFQXL)           0.00       6.00 r
+  library setup time                                     -0.06       5.94
+  data required time                                                 5.94
+  --------------------------------------------------------------------------
+  data required time                                                 5.94
+  data arrival time                                                 -5.65
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.29
+
+
+  Startpoint: ftr_ff_reg_200_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: conv3x3_U0/conv3x3_4chout_reg_49_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  conv_top           Large                 slow_vdd1v2
+  matmul_BW_MATMUL18_mydesign_28
+                     Small                 slow_vdd1v2
+  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+                     Small                 slow_vdd1v2
+  conv3x3_16to4ch_BW_BIAS25
+                     Small                 slow_vdd1v2
+  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ftr_ff_reg_200_/CK (DFFQXL)                             0.00 #     0.00 r
+  ftr_ff_reg_200_/Q (DFFQXL)                              0.16       0.16 f
+  conv3x3_U0/feature[200] (conv3x3_16to4ch_BW_BIAS25)     0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/feature[16] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/mm_U3/feature[16] (matmul_BW_MATMUL18_mydesign_28)
+                                                          0.00       0.16 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U254/Y (INVXL)              0.14       0.30 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U463/Y (INVXL)              0.13       0.43 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U1395/Y (NAND2XL)           0.07       0.51 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U105/Y (AOI32XL)            0.13       0.64 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U1414/S (ADDFX1)            0.24       0.87 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1398/Y (INVXL)             0.04       0.91 f
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_655_U5/S (ADDFX1)
+                                                          0.20       1.12 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U9/CO (ADDFX1)
+                                                          0.15       1.27 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U8/CO (ADDFX1)
+                                                          0.13       1.39 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U7/CO (ADDFX1)
+                                                          0.13       1.52 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U6/CO (ADDFX1)
+                                                          0.13       1.64 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U5/CO (ADDFX1)
+                                                          0.13       1.77 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U2199/CO (ADDFX1)           0.13       1.90 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U2198/CO (ADDFX1)           0.13       2.02 r
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_614_U2/CO (ADDFX1)
+                                                          0.12       2.14 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1384/Y (INVXL)             0.04       2.18 f
+  conv3x3_U0/conv1x1_u1/mm_U3/intadd_643_U2/CO (ADDFX1)
+                                                          0.14       2.32 f
+  conv3x3_U0/conv1x1_u1/mm_U3/U2197/S (ADDFX1)            0.20       2.52 r
+  conv3x3_U0/conv1x1_u1/mm_U3/U1377/Y (INVXL)             0.04       2.56 f
+  conv3x3_U0/conv1x1_u1/mm_U3/matmul_out[28] (matmul_BW_MATMUL18_mydesign_28)
+                                                          0.00       2.56 f
+  conv3x3_U0/conv1x1_u1/U14/S (ADDFX1)                    0.20       2.76 r
+  conv3x3_U0/conv1x1_u1/U13/S (ADDFX1)                    0.18       2.94 f
+  conv3x3_U0/conv1x1_u1/intadd_5_U10/S (ADDFX1)           0.20       3.14 r
+  conv3x3_U0/conv1x1_u1/conv1x1_4chout[30] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       3.14 r
+  conv3x3_U0/kernel_adder_U2/add_in[150] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1)
+                                                          0.00       3.14 r
+  conv3x3_U0/kernel_adder_U2/U141/S (ADDFX1)              0.21       3.35 f
+  conv3x3_U0/kernel_adder_U2/U98/S (ADDFX1)               0.19       3.54 r
+  conv3x3_U0/kernel_adder_U2/U186/S (ADDFX1)              0.21       3.74 f
+  conv3x3_U0/kernel_adder_U2/U226/S (ADDFX1)              0.20       3.94 r
+  conv3x3_U0/kernel_adder_U2/U185/CO (ADDFX1)             0.15       4.09 r
+  conv3x3_U0/kernel_adder_U2/intadd_82_U13/CO (ADDFX1)
+                                                          0.13       4.22 r
+  conv3x3_U0/kernel_adder_U2/U184/CO (ADDFX1)             0.13       4.34 r
+  conv3x3_U0/kernel_adder_U2/U183/CO (ADDFX1)             0.13       4.47 r
+  conv3x3_U0/kernel_adder_U2/U182/CO (ADDFX1)             0.13       4.60 r
+  conv3x3_U0/kernel_adder_U2/U181/CO (ADDFX1)             0.13       4.72 r
+  conv3x3_U0/kernel_adder_U2/U180/CO (ADDFX1)             0.13       4.85 r
+  conv3x3_U0/kernel_adder_U2/U179/CO (ADDFX1)             0.13       4.97 r
+  conv3x3_U0/kernel_adder_U2/U178/CO (ADDFX1)             0.13       5.10 r
+  conv3x3_U0/kernel_adder_U2/U177/CO (ADDFX1)             0.13       5.22 r
+  conv3x3_U0/kernel_adder_U2/U176/CO (ADDFX1)             0.13       5.35 r
+  conv3x3_U0/kernel_adder_U2/U175/CO (ADDFX1)             0.13       5.48 r
+  conv3x3_U0/kernel_adder_U2/U217/CO (ADDFX1)             0.12       5.60 r
+  conv3x3_U0/kernel_adder_U2/U18/Y (INVXL)                0.03       5.63 f
+  conv3x3_U0/kernel_adder_U2/add_out[24] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1)
+                                                          0.00       5.63 f
+  conv3x3_U0/conv3x3_4chout_reg_49_/D (DFFQXL)            0.01       5.64 f
+  data arrival time                                                  5.64
+
+  clock clk (rise edge)                                   6.00       6.00
+  clock network delay (ideal)                             0.00       6.00
+  conv3x3_U0/conv3x3_4chout_reg_49_/CK (DFFQXL)           0.00       6.00 r
+  library setup time                                     -0.04       5.96
+  data required time                                                 5.96
+  --------------------------------------------------------------------------
+  data required time                                                 5.96
+  data arrival time                                                 -5.64
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.32
+
+
+  Startpoint: ftr_ff_reg_1064_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: conv3x3_U0/conv3x3_4chout_reg_73_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  conv_top           Large                 slow_vdd1v2
+  matmul_BW_MATMUL18_mydesign_31
+                     Small                 slow_vdd1v2
+  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+                     Small                 slow_vdd1v2
+  conv3x3_16to4ch_BW_BIAS25
+                     Small                 slow_vdd1v2
+  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ftr_ff_reg_1064_/CK (DFFQXL)                            0.00 #     0.00 r
+  ftr_ff_reg_1064_/Q (DFFQXL)                             0.16       0.16 r
+  conv3x3_U0/feature[1064] (conv3x3_16to4ch_BW_BIAS25)
+                                                          0.00       0.16 r
+  conv3x3_U0/conv1x1_u1/feature[112] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       0.16 r
+  conv3x3_U0/conv1x1_u1/mm_U0/feature[16] (matmul_BW_MATMUL18_mydesign_31)
+                                                          0.00       0.16 r
+  conv3x3_U0/conv1x1_u1/mm_U0/U259/Y (INVXL)              0.15       0.31 f
+  conv3x3_U0/conv1x1_u1/mm_U0/U280/Y (INVXL)              0.12       0.43 r
+  conv3x3_U0/conv1x1_u1/mm_U0/U1148/Y (NAND2XL)           0.09       0.52 f
+  conv3x3_U0/conv1x1_u1/mm_U0/U1149/Y (INVXL)             0.05       0.57 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_415_U8/CO (ADDFX1)
+                                                          0.15       0.73 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_415_U7/S (ADDFX1)
+                                                          0.17       0.90 f
+  conv3x3_U0/conv1x1_u1/mm_U0/U1135/Y (INVXL)             0.04       0.93 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_458_U5/S (ADDFX1)
+                                                          0.20       1.14 f
+  conv3x3_U0/conv1x1_u1/mm_U0/U1098/Y (INVXL)             0.04       1.17 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_426_U3/S (ADDFX1)
+                                                          0.21       1.38 f
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_427_U2/S (ADDFX1)
+                                                          0.20       1.58 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_411_U4/CO (ADDFX1)
+                                                          0.15       1.73 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_411_U3/CO (ADDFX1)
+                                                          0.13       1.86 r
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_411_U2/CO (ADDFX1)
+                                                          0.12       1.98 r
+  conv3x3_U0/conv1x1_u1/mm_U0/U1042/Y (INVXL)             0.04       2.02 f
+  conv3x3_U0/conv1x1_u1/mm_U0/intadd_404_U10/S (ADDFX1)
+                                                          0.20       2.22 r
+  conv3x3_U0/conv1x1_u1/mm_U0/U1033/Y (INVXL)             0.04       2.26 f
+  conv3x3_U0/conv1x1_u1/mm_U0/matmul_out[44] (matmul_BW_MATMUL18_mydesign_31)
+                                                          0.00       2.26 f
+  conv3x3_U0/conv1x1_u1/U69/S (ADDFX1)                    0.20       2.45 r
+  conv3x3_U0/conv1x1_u1/U70/S (ADDFX1)                    0.18       2.63 f
+  conv3x3_U0/conv1x1_u1/U172/S (ADDFX1)                   0.20       2.84 r
+  conv3x3_U0/conv1x1_u1/conv1x1_4chout[48] (conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7)
+                                                          0.00       2.84 r
+  conv3x3_U0/kernel_adder_U1/add_in[148] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2)
+                                                          0.00       2.84 r
+  conv3x3_U0/kernel_adder_U1/U148/S (ADDFX1)              0.21       3.04 f
+  conv3x3_U0/kernel_adder_U1/U98/S (ADDFX1)               0.19       3.23 r
+  conv3x3_U0/kernel_adder_U1/U182/S (ADDFX1)              0.21       3.44 f
+  conv3x3_U0/kernel_adder_U1/U209/S (ADDFX1)              0.20       3.64 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U16/CO (ADDFX1)
+                                                          0.15       3.79 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U15/CO (ADDFX1)
+                                                          0.13       3.91 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U14/CO (ADDFX1)
+                                                          0.13       4.04 r
+  conv3x3_U0/kernel_adder_U1/U181/CO (ADDFX1)             0.13       4.16 r
+  conv3x3_U0/kernel_adder_U1/U180/CO (ADDFX1)             0.13       4.29 r
+  conv3x3_U0/kernel_adder_U1/U179/CO (ADDFX1)             0.13       4.42 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U10/CO (ADDFX1)
+                                                          0.13       4.54 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U9/CO (ADDFX1)     0.13       4.67 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U8/CO (ADDFX1)     0.13       4.79 r
+  conv3x3_U0/kernel_adder_U1/intadd_59_U7/CO (ADDFX1)     0.13       4.92 r
+  conv3x3_U0/kernel_adder_U1/U178/CO (ADDFX1)             0.13       5.05 r
+  conv3x3_U0/kernel_adder_U1/U177/CO (ADDFX1)             0.13       5.17 r
+  conv3x3_U0/kernel_adder_U1/U176/CO (ADDFX1)             0.13       5.30 r
+  conv3x3_U0/kernel_adder_U1/U175/CO (ADDFX1)             0.13       5.42 r
+  conv3x3_U0/kernel_adder_U1/U198/CO (ADDFX1)             0.12       5.55 r
+  conv3x3_U0/kernel_adder_U1/U17/Y (INVXL)                0.03       5.58 f
+  conv3x3_U0/kernel_adder_U1/U18/Y (BUFX2)                0.05       5.63 f
+  conv3x3_U0/kernel_adder_U1/add_out[23] (kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2)
+                                                          0.00       5.63 f
+  conv3x3_U0/conv3x3_4chout_reg_73_/D (DFFQXL)            0.01       5.64 f
+  data arrival time                                                  5.64
+
+  clock clk (rise edge)                                   6.00       6.00
+  clock network delay (ideal)                             0.00       6.00
+  conv3x3_U0/conv3x3_4chout_reg_73_/CK (DFFQXL)           0.00       6.00 r
+  library setup time                                     -0.03       5.97
+  data required time                                                 5.97
+  --------------------------------------------------------------------------
+  data required time                                                 5.97
+  data arrival time                                                 -5.64
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.33
+
+
+1

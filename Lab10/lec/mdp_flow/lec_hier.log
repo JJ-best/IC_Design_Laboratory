@@ -1,0 +1,3229 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2016 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN conv_top
+Set variable 'TOP_DESIGN' as 'conv_top'
+// Command: setenv RESRC_FILE ../../syn/report/report_resources_conv_top.out
+Set variable 'RESRC_FILE' as '../../syn/report/report_resources_conv_top.out'
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../../hdl/conv_define.v ...
+// Parsing file ../../hdl/conv_top.v ...
+// Parsing file ../../hdl/conv3x3_16to4ch.v ...
+// Parsing file ../../hdl/conv1x1_16to4ch.v ...
+// Parsing file ../../hdl/matmul.v ...
+// Parsing file ../../hdl/kernel_adder.v ...
+// Parsing file ../../hdl/postproc.v ...
+// Parsing file ../../hdl/shifter_decoder.v ...
+// Parsing file ../../hdl/ReLU.v ...
+// Parsing file ../../hdl/quantization_1ch.v ...
+// Golden root module is set to 'conv_top'
+// Warning: (RTL1.4) Assignment with LHS bit width is greater than RHS bit width (occurrence:8)
+// Warning: (RTL1.5b) Potential loss of RHS msb or carry-out bit (occurrence:15)
+// Warning: (RTL7.11b) Unsigned reference with index/part selection to a signed variable (occurrence:1)
+// Note: (RTL8.1) Multiple multipliers/dividers are in module/entity (occurrence:1)
+// Note: (VLG6.4) Supported system datapath function call (occurrence:3)
+// Note: (VLG9.2) The `define macro is used (occurrence:5)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:17)
+// Warning: (HRC3.16) A wire is declared, but not used in the module (occurrence:4)
+// Note: Read VERILOG design successfully
+CPU time     : 0.29    seconds
+Elapse time  : 1       seconds
+Memory usage : 269.80  M bytes
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../../syn/netlist/conv_top_syn.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'conv_top'
+// Warning: (RTL14) Signal has input but it has no output (occurrence:1)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:1)
+// Note: Read VERILOG design successfully
+CPU time     : 3.70    seconds
+Elapse time  : 4       seconds
+Memory usage : 369.16  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules      1222              58
+Library-cells         60          102651
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT             5836                 5836
+OUTPUT              33                   33
+--------------------------------------------
+AND        *    153804               146212
+BUF        *         4                  124
+DFF               5968                 5968
+INV        *      9560                73178
+MUX        *      1680                    0
+NOR        *      8064                    0
+OR         *     39368                75880
+WIRE       *     30505                    0
+XNOR       *       272                    0
+XOR        *     86100                23608
+------ word-level --------------------------
+ADD        *       588                    0
+GT         *         4                    0
+LT         *         8                    0
+MULT       *       576                    0
+SLL        *        16                    0
+SUBTRACT   *        12                    0
+WMUX       *        16                    0
+WSEL       *         4                    0
+--------------------------------------------
+Total           335325               324970
+
+// Command: report black box -detail
+// Command: add renaming rule rule1 "%w_mydesign_%d$" "@1" -module -revised
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 4 instance(s) referring to module 'quantization_1ch_GROUP_CHANNEL16_BW_RELU34' in Golden
+Uniquified 4 instance(s) referring to module 'kernel_adder_BW_CONV1x120_BW_BIAS25' in Golden
+Uniquified 9 instance(s) referring to module 'conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120' in Golden
+Uniquified 36 instance(s) referring to module 'matmul_BW_MATMUL18' in Golden
+Uniquified 4 module(s)
+CPU time     : 3.99    seconds
+Elapse time  : 5       seconds
+Memory usage : 387.29  M bytes
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'conv_top'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'conv_top'
+// Command: dofile lec_hier_compare.do
+// Command: write hier_compare dofile hier.do \
+//              -prepend_string "analyze setup -verbose; \
+//              analyze datapath -module -resourcefile $RESRC_FILE -effort medium -verbose; \
+//              analyze datapath -flowgraph -verbose;" \
+//              -append_string "analyze abort -compare" -replace
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_35 in Golden and module matmul_BW_MATMUL18_mydesign_35 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_34 in Golden and module matmul_BW_MATMUL18_mydesign_34 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_33 in Golden and module matmul_BW_MATMUL18_mydesign_33 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_32 in Golden and module matmul_BW_MATMUL18_mydesign_32 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_31 in Golden and module matmul_BW_MATMUL18_mydesign_31 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_30 in Golden and module matmul_BW_MATMUL18_mydesign_30 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_29 in Golden and module matmul_BW_MATMUL18_mydesign_29 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_28 in Golden and module matmul_BW_MATMUL18_mydesign_28 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_27 in Golden and module matmul_BW_MATMUL18_mydesign_27 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_26 in Golden and module matmul_BW_MATMUL18_mydesign_26 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_25 in Golden and module matmul_BW_MATMUL18_mydesign_25 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_24 in Golden and module matmul_BW_MATMUL18_mydesign_24 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_23 in Golden and module matmul_BW_MATMUL18_mydesign_23 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_22 in Golden and module matmul_BW_MATMUL18_mydesign_22 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_21 in Golden and module matmul_BW_MATMUL18_mydesign_21 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_20 in Golden and module matmul_BW_MATMUL18_mydesign_20 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_19 in Golden and module matmul_BW_MATMUL18_mydesign_19 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_18 in Golden and module matmul_BW_MATMUL18_mydesign_18 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_17 in Golden and module matmul_BW_MATMUL18_mydesign_17 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_16 in Golden and module matmul_BW_MATMUL18_mydesign_16 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_15 in Golden and module matmul_BW_MATMUL18_mydesign_15 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_14 in Golden and module matmul_BW_MATMUL18_mydesign_14 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_13 in Golden and module matmul_BW_MATMUL18_mydesign_13 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_12 in Golden and module matmul_BW_MATMUL18_mydesign_12 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_11 in Golden and module matmul_BW_MATMUL18_mydesign_11 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_10 in Golden and module matmul_BW_MATMUL18_mydesign_10 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_9 in Golden and module matmul_BW_MATMUL18_mydesign_9 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_8 in Golden and module matmul_BW_MATMUL18_mydesign_8 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_7 in Golden and module matmul_BW_MATMUL18_mydesign_7 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_6 in Golden and module matmul_BW_MATMUL18_mydesign_6 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_5 in Golden and module matmul_BW_MATMUL18_mydesign_5 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_4 in Golden and module matmul_BW_MATMUL18_mydesign_4 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_3 in Golden and module matmul_BW_MATMUL18_mydesign_3 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_2 in Golden and module matmul_BW_MATMUL18_mydesign_2 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_1 in Golden and module matmul_BW_MATMUL18_mydesign_1 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module matmul_BW_MATMUL18_mydesign_0 in Golden and module matmul_BW_MATMUL18_mydesign_0 (renamed as matmul_BW_MATMUL18) in Revised
+// Warning: Pairing module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 in Golden and module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 (renamed as conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120) in Revised
+// Warning: Pairing module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 in Golden and module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 (renamed as kernel_adder_BW_CONV1x120_BW_BIAS25) in Revised
+// Warning: Pairing module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 in Golden and module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 (renamed as kernel_adder_BW_CONV1x120_BW_BIAS25) in Revised
+// Warning: Pairing module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 in Golden and module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 (renamed as kernel_adder_BW_CONV1x120_BW_BIAS25) in Revised
+// Warning: Pairing module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 in Golden and module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 (renamed as kernel_adder_BW_CONV1x120_BW_BIAS25) in Revised
+// Warning: Pairing module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 in Golden and module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 (renamed as quantization_1ch_GROUP_CHANNEL16_BW_RELU34) in Revised
+// Warning: Pairing module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 in Golden and module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 (renamed as quantization_1ch_GROUP_CHANNEL16_BW_RELU34) in Revised
+// Warning: Pairing module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 in Golden and module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 (renamed as quantization_1ch_GROUP_CHANNEL16_BW_RELU34) in Revised
+// Warning: Pairing module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 in Golden and module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 (renamed as quantization_1ch_GROUP_CHANNEL16_BW_RELU34) in Revised
+// Warning: Module 'VDW_mult_nbw_s8_s8_16' exists in Golden only. Skip it for hierarchical comparison
+// Note: Writing hierarchical compare dofile ...
+// Warning: Golden module 'shifter_decoder' has extra pin(s)
+// Warning: Module 'shifter_decoder' and 'shifter_decoder' have mis-match ports
+// Warning: Golden module 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34' has extra pin(s)
+// Warning: Module 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34' and 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34' have mis-match ports
+2 modules are not output for hierarchical compare due to mis-match ports 
+56 modules are output for hierarchical compare
+// Command: run hier_compare hier.do
+// Running Module matmul_BW_MATMUL18_mydesign_35 and matmul_BW_MATMUL18_mydesign_35
+// Command: set root module matmul_BW_MATMUL18_mydesign_35 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_35 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 4.19    seconds
+Elapse time  : 5       seconds
+Memory usage : 391.78  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 15.80   seconds
+Elapse time  : 17      seconds
+Memory usage : 516.66  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 20.06   seconds
+Elapse time  : 28      seconds
+Memory usage : 596.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_35 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_35 -module -hier -Revised
+Processed 1 out of 56 module pairs	EQ: 1	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_34 and matmul_BW_MATMUL18_mydesign_34
+// Command: set root module matmul_BW_MATMUL18_mydesign_34 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_34 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 20.18   seconds
+Elapse time  : 28      seconds
+Memory usage : 554.57  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 31.68   seconds
+Elapse time  : 39      seconds
+Memory usage : 600.77  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 36.18   seconds
+Elapse time  : 50      seconds
+Memory usage : 600.77  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_34 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_34 -module -hier -Revised
+Processed 2 out of 56 module pairs	EQ: 2	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_33 and matmul_BW_MATMUL18_mydesign_33
+// Command: set root module matmul_BW_MATMUL18_mydesign_33 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_33 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 36.30   seconds
+Elapse time  : 50      seconds
+Memory usage : 554.57  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 48.01   seconds
+Elapse time  : 62      seconds
+Memory usage : 604.55  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 52.13   seconds
+Elapse time  : 72      seconds
+Memory usage : 604.55  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_33 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_33 -module -hier -Revised
+Processed 3 out of 56 module pairs	EQ: 3	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_32 and matmul_BW_MATMUL18_mydesign_32
+// Command: set root module matmul_BW_MATMUL18_mydesign_32 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_32 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 52.25   seconds
+Elapse time  : 72      seconds
+Memory usage : 559.01  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 63.77   seconds
+Elapse time  : 83      seconds
+Memory usage : 608.89  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 67.32   seconds
+Elapse time  : 94      seconds
+Memory usage : 608.89  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_32 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_32 -module -hier -Revised
+Processed 4 out of 56 module pairs	EQ: 4	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u0 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_32 matmul_BW_MATMUL18_mydesign_33 matmul_BW_MATMUL18_mydesign_34
+      matmul_BW_MATMUL18_mydesign_35
+HIER: (G) matmul_BW_MATMUL18_mydesign_32
+HIER: (G) matmul_BW_MATMUL18_mydesign_33
+HIER: (G) matmul_BW_MATMUL18_mydesign_34
+HIER: (G) matmul_BW_MATMUL18_mydesign_35
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 68.39   seconds
+Elapse time  : 95      seconds
+Memory usage : 554.57  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 69.12   seconds
+Elapse time  : 100     seconds
+Memory usage : 554.57  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8 -module -hier -Revised
+Processed 5 out of 56 module pairs	EQ: 5	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_31 and matmul_BW_MATMUL18_mydesign_31
+// Command: set root module matmul_BW_MATMUL18_mydesign_31 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_31 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 69.24   seconds
+Elapse time  : 100     seconds
+Memory usage : 554.57  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 80.87   seconds
+Elapse time  : 112     seconds
+Memory usage : 609.63  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 86.13   seconds
+Elapse time  : 124     seconds
+Memory usage : 609.63  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_31 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_31 -module -hier -Revised
+Processed 6 out of 56 module pairs	EQ: 6	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_30 and matmul_BW_MATMUL18_mydesign_30
+// Command: set root module matmul_BW_MATMUL18_mydesign_30 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_30 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 86.26   seconds
+Elapse time  : 124     seconds
+Memory usage : 554.57  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 97.72   seconds
+Elapse time  : 135     seconds
+Memory usage : 613.41  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 102.42  seconds
+Elapse time  : 147     seconds
+Memory usage : 613.41  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_30 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_30 -module -hier -Revised
+Processed 7 out of 56 module pairs	EQ: 7	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_29 and matmul_BW_MATMUL18_mydesign_29
+// Command: set root module matmul_BW_MATMUL18_mydesign_29 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_29 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 102.54  seconds
+Elapse time  : 147     seconds
+Memory usage : 554.57  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 114.02  seconds
+Elapse time  : 159     seconds
+Memory usage : 613.43  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 117.97  seconds
+Elapse time  : 169     seconds
+Memory usage : 613.43  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_29 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_29 -module -hier -Revised
+Processed 8 out of 56 module pairs	EQ: 8	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_28 and matmul_BW_MATMUL18_mydesign_28
+// Command: set root module matmul_BW_MATMUL18_mydesign_28 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_28 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 118.09  seconds
+Elapse time  : 169     seconds
+Memory usage : 554.57  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 129.62  seconds
+Elapse time  : 180     seconds
+Memory usage : 617.73  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 133.64  seconds
+Elapse time  : 191     seconds
+Memory usage : 617.73  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_28 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_28 -module -hier -Revised
+Processed 9 out of 56 module pairs	EQ: 9	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u1 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_28 matmul_BW_MATMUL18_mydesign_29 matmul_BW_MATMUL18_mydesign_30
+      matmul_BW_MATMUL18_mydesign_31
+HIER: (G) matmul_BW_MATMUL18_mydesign_28
+HIER: (G) matmul_BW_MATMUL18_mydesign_29
+HIER: (G) matmul_BW_MATMUL18_mydesign_30
+HIER: (G) matmul_BW_MATMUL18_mydesign_31
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 134.72  seconds
+Elapse time  : 192     seconds
+Memory usage : 559.34  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 135.59  seconds
+Elapse time  : 197     seconds
+Memory usage : 559.34  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7 -module -hier -Revised
+Processed 10 out of 56 module pairs	EQ: 10	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_27 and matmul_BW_MATMUL18_mydesign_27
+// Command: set root module matmul_BW_MATMUL18_mydesign_27 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_27 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 135.71  seconds
+Elapse time  : 197     seconds
+Memory usage : 559.34  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 147.29  seconds
+Elapse time  : 209     seconds
+Memory usage : 622.40  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 150.79  seconds
+Elapse time  : 219     seconds
+Memory usage : 622.40  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_27 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_27 -module -hier -Revised
+Processed 11 out of 56 module pairs	EQ: 11	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_26 and matmul_BW_MATMUL18_mydesign_26
+// Command: set root module matmul_BW_MATMUL18_mydesign_26 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_26 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 150.91  seconds
+Elapse time  : 219     seconds
+Memory usage : 577.02  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 162.44  seconds
+Elapse time  : 230     seconds
+Memory usage : 622.50  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 167.41  seconds
+Elapse time  : 242     seconds
+Memory usage : 622.50  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_26 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_26 -module -hier -Revised
+Processed 12 out of 56 module pairs	EQ: 12	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_25 and matmul_BW_MATMUL18_mydesign_25
+// Command: set root module matmul_BW_MATMUL18_mydesign_25 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_25 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 167.53  seconds
+Elapse time  : 242     seconds
+Memory usage : 577.05  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 179.10  seconds
+Elapse time  : 253     seconds
+Memory usage : 626.29  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 184.39  seconds
+Elapse time  : 267     seconds
+Memory usage : 626.29  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_25 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_25 -module -hier -Revised
+Processed 13 out of 56 module pairs	EQ: 13	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_24 and matmul_BW_MATMUL18_mydesign_24
+// Command: set root module matmul_BW_MATMUL18_mydesign_24 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_24 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 184.51  seconds
+Elapse time  : 267     seconds
+Memory usage : 581.23  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 196.13  seconds
+Elapse time  : 278     seconds
+Memory usage : 626.59  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 200.04  seconds
+Elapse time  : 289     seconds
+Memory usage : 626.59  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_24 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_24 -module -hier -Revised
+Processed 14 out of 56 module pairs	EQ: 14	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u2 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_24 matmul_BW_MATMUL18_mydesign_25 matmul_BW_MATMUL18_mydesign_26
+      matmul_BW_MATMUL18_mydesign_27
+HIER: (G) matmul_BW_MATMUL18_mydesign_24
+HIER: (G) matmul_BW_MATMUL18_mydesign_25
+HIER: (G) matmul_BW_MATMUL18_mydesign_26
+HIER: (G) matmul_BW_MATMUL18_mydesign_27
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 201.12  seconds
+Elapse time  : 290     seconds
+Memory usage : 581.27  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 201.83  seconds
+Elapse time  : 295     seconds
+Memory usage : 581.27  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 -module -hier -Revised
+Processed 15 out of 56 module pairs	EQ: 15	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_23 and matmul_BW_MATMUL18_mydesign_23
+// Command: set root module matmul_BW_MATMUL18_mydesign_23 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_23 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 201.95  seconds
+Elapse time  : 295     seconds
+Memory usage : 581.27  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 213.54  seconds
+Elapse time  : 307     seconds
+Memory usage : 630.93  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 217.12  seconds
+Elapse time  : 318     seconds
+Memory usage : 630.93  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_23 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_23 -module -hier -Revised
+Processed 16 out of 56 module pairs	EQ: 16	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_22 and matmul_BW_MATMUL18_mydesign_22
+// Command: set root module matmul_BW_MATMUL18_mydesign_22 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_22 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 217.25  seconds
+Elapse time  : 318     seconds
+Memory usage : 586.01  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 228.84  seconds
+Elapse time  : 330     seconds
+Memory usage : 631.01  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 232.34  seconds
+Elapse time  : 340     seconds
+Memory usage : 631.01  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_22 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_22 -module -hier -Revised
+Processed 17 out of 56 module pairs	EQ: 17	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_21 and matmul_BW_MATMUL18_mydesign_21
+// Command: set root module matmul_BW_MATMUL18_mydesign_21 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_21 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 232.47  seconds
+Elapse time  : 340     seconds
+Memory usage : 586.02  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 244.18  seconds
+Elapse time  : 352     seconds
+Memory usage : 635.04  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 249.12  seconds
+Elapse time  : 364     seconds
+Memory usage : 635.04  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_21 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_21 -module -hier -Revised
+Processed 18 out of 56 module pairs	EQ: 18	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_20 and matmul_BW_MATMUL18_mydesign_20
+// Command: set root module matmul_BW_MATMUL18_mydesign_20 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_20 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 249.25  seconds
+Elapse time  : 364     seconds
+Memory usage : 590.05  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 260.85  seconds
+Elapse time  : 375     seconds
+Memory usage : 639.32  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 264.79  seconds
+Elapse time  : 386     seconds
+Memory usage : 639.32  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_20 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_20 -module -hier -Revised
+Processed 19 out of 56 module pairs	EQ: 19	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u3 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_20 matmul_BW_MATMUL18_mydesign_21 matmul_BW_MATMUL18_mydesign_22
+      matmul_BW_MATMUL18_mydesign_23
+HIER: (G) matmul_BW_MATMUL18_mydesign_20
+HIER: (G) matmul_BW_MATMUL18_mydesign_21
+HIER: (G) matmul_BW_MATMUL18_mydesign_22
+HIER: (G) matmul_BW_MATMUL18_mydesign_23
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 265.88  seconds
+Elapse time  : 387     seconds
+Memory usage : 593.93  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 267.00  seconds
+Elapse time  : 393     seconds
+Memory usage : 593.93  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5 -module -hier -Revised
+Processed 20 out of 56 module pairs	EQ: 20	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_19 and matmul_BW_MATMUL18_mydesign_19
+// Command: set root module matmul_BW_MATMUL18_mydesign_19 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_19 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 267.13  seconds
+Elapse time  : 393     seconds
+Memory usage : 593.93  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 278.61  seconds
+Elapse time  : 404     seconds
+Memory usage : 639.79  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 282.58  seconds
+Elapse time  : 415     seconds
+Memory usage : 639.79  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_19 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_19 -module -hier -Revised
+Processed 21 out of 56 module pairs	EQ: 21	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_18 and matmul_BW_MATMUL18_mydesign_18
+// Command: set root module matmul_BW_MATMUL18_mydesign_18 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_18 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 282.71  seconds
+Elapse time  : 415     seconds
+Memory usage : 577.95  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 294.28  seconds
+Elapse time  : 426     seconds
+Memory usage : 637.59  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 297.78  seconds
+Elapse time  : 436     seconds
+Memory usage : 637.59  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_18 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_18 -module -hier -Revised
+Processed 22 out of 56 module pairs	EQ: 22	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_17 and matmul_BW_MATMUL18_mydesign_17
+// Command: set root module matmul_BW_MATMUL18_mydesign_17 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_17 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 297.92  seconds
+Elapse time  : 436     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 309.33  seconds
+Elapse time  : 448     seconds
+Memory usage : 643.91  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 314.49  seconds
+Elapse time  : 460     seconds
+Memory usage : 643.91  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_17 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_17 -module -hier -Revised
+Processed 23 out of 56 module pairs	EQ: 23	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_16 and matmul_BW_MATMUL18_mydesign_16
+// Command: set root module matmul_BW_MATMUL18_mydesign_16 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_16 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 314.62  seconds
+Elapse time  : 460     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 326.18  seconds
+Elapse time  : 471     seconds
+Memory usage : 647.91  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 330.26  seconds
+Elapse time  : 482     seconds
+Memory usage : 647.91  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_16 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_16 -module -hier -Revised
+Processed 24 out of 56 module pairs	EQ: 24	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u4 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_16 matmul_BW_MATMUL18_mydesign_17 matmul_BW_MATMUL18_mydesign_18
+      matmul_BW_MATMUL18_mydesign_19
+HIER: (G) matmul_BW_MATMUL18_mydesign_16
+HIER: (G) matmul_BW_MATMUL18_mydesign_17
+HIER: (G) matmul_BW_MATMUL18_mydesign_18
+HIER: (G) matmul_BW_MATMUL18_mydesign_19
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 331.35  seconds
+Elapse time  : 483     seconds
+Memory usage : 602.96  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 332.61  seconds
+Elapse time  : 489     seconds
+Memory usage : 602.96  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 -module -hier -Revised
+Processed 25 out of 56 module pairs	EQ: 25	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_15 and matmul_BW_MATMUL18_mydesign_15
+// Command: set root module matmul_BW_MATMUL18_mydesign_15 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_15 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 332.74  seconds
+Elapse time  : 489     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 344.30  seconds
+Elapse time  : 500     seconds
+Memory usage : 652.53  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 348.58  seconds
+Elapse time  : 512     seconds
+Memory usage : 652.53  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_15 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_15 -module -hier -Revised
+Processed 26 out of 56 module pairs	EQ: 26	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_14 and matmul_BW_MATMUL18_mydesign_14
+// Command: set root module matmul_BW_MATMUL18_mydesign_14 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_14 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 348.72  seconds
+Elapse time  : 512     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 360.23  seconds
+Elapse time  : 523     seconds
+Memory usage : 646.30  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 364.12  seconds
+Elapse time  : 534     seconds
+Memory usage : 646.30  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_14 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_14 -module -hier -Revised
+Processed 27 out of 56 module pairs	EQ: 27	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_13 and matmul_BW_MATMUL18_mydesign_13
+// Command: set root module matmul_BW_MATMUL18_mydesign_13 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_13 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 364.26  seconds
+Elapse time  : 534     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 375.61  seconds
+Elapse time  : 545     seconds
+Memory usage : 656.65  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 380.10  seconds
+Elapse time  : 557     seconds
+Memory usage : 656.65  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_13 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_13 -module -hier -Revised
+Processed 28 out of 56 module pairs	EQ: 28	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_12 and matmul_BW_MATMUL18_mydesign_12
+// Command: set root module matmul_BW_MATMUL18_mydesign_12 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_12 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 380.24  seconds
+Elapse time  : 557     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 391.73  seconds
+Elapse time  : 568     seconds
+Memory usage : 656.74  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 395.20  seconds
+Elapse time  : 578     seconds
+Memory usage : 656.74  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_12 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_12 -module -hier -Revised
+Processed 29 out of 56 module pairs	EQ: 29	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u5 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_12 matmul_BW_MATMUL18_mydesign_13 matmul_BW_MATMUL18_mydesign_14
+      matmul_BW_MATMUL18_mydesign_15
+HIER: (G) matmul_BW_MATMUL18_mydesign_12
+HIER: (G) matmul_BW_MATMUL18_mydesign_13
+HIER: (G) matmul_BW_MATMUL18_mydesign_14
+HIER: (G) matmul_BW_MATMUL18_mydesign_15
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 396.30  seconds
+Elapse time  : 579     seconds
+Memory usage : 611.58  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 397.71  seconds
+Elapse time  : 585     seconds
+Memory usage : 611.58  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3 -module -hier -Revised
+Processed 30 out of 56 module pairs	EQ: 30	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_11 and matmul_BW_MATMUL18_mydesign_11
+// Command: set root module matmul_BW_MATMUL18_mydesign_11 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_11 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 397.85  seconds
+Elapse time  : 585     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 409.46  seconds
+Elapse time  : 596     seconds
+Memory usage : 661.36  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 414.01  seconds
+Elapse time  : 608     seconds
+Memory usage : 661.36  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_11 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_11 -module -hier -Revised
+Processed 31 out of 56 module pairs	EQ: 31	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_10 and matmul_BW_MATMUL18_mydesign_10
+// Command: set root module matmul_BW_MATMUL18_mydesign_10 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_10 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 414.16  seconds
+Elapse time  : 608     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 425.83  seconds
+Elapse time  : 620     seconds
+Memory usage : 661.43  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 429.93  seconds
+Elapse time  : 631     seconds
+Memory usage : 661.43  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_10 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_10 -module -hier -Revised
+Processed 32 out of 56 module pairs	EQ: 32	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_9 and matmul_BW_MATMUL18_mydesign_9
+// Command: set root module matmul_BW_MATMUL18_mydesign_9 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_9 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 430.08  seconds
+Elapse time  : 631     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 441.54  seconds
+Elapse time  : 642     seconds
+Memory usage : 665.45  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 445.11  seconds
+Elapse time  : 653     seconds
+Memory usage : 665.45  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_9 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_9 -module -hier -Revised
+Processed 33 out of 56 module pairs	EQ: 33	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_8 and matmul_BW_MATMUL18_mydesign_8
+// Command: set root module matmul_BW_MATMUL18_mydesign_8 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_8 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 445.25  seconds
+Elapse time  : 653     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 456.86  seconds
+Elapse time  : 664     seconds
+Memory usage : 669.49  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 462.19  seconds
+Elapse time  : 677     seconds
+Memory usage : 669.49  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_8 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_8 -module -hier -Revised
+Processed 34 out of 56 module pairs	EQ: 34	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u6 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_8 matmul_BW_MATMUL18_mydesign_9 matmul_BW_MATMUL18_mydesign_10
+      matmul_BW_MATMUL18_mydesign_11
+HIER: (G) matmul_BW_MATMUL18_mydesign_10
+HIER: (G) matmul_BW_MATMUL18_mydesign_11
+HIER: (G) matmul_BW_MATMUL18_mydesign_8
+HIER: (G) matmul_BW_MATMUL18_mydesign_9
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 463.29  seconds
+Elapse time  : 678     seconds
+Memory usage : 624.54  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 464.01  seconds
+Elapse time  : 684     seconds
+Memory usage : 624.54  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 -module -hier -Revised
+Processed 35 out of 56 module pairs	EQ: 35	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_7 and matmul_BW_MATMUL18_mydesign_7
+// Command: set root module matmul_BW_MATMUL18_mydesign_7 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_7 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 464.15  seconds
+Elapse time  : 684     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 475.80  seconds
+Elapse time  : 696     seconds
+Memory usage : 670.16  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 480.50  seconds
+Elapse time  : 707     seconds
+Memory usage : 670.16  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_7 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_7 -module -hier -Revised
+Processed 36 out of 56 module pairs	EQ: 36	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_6 and matmul_BW_MATMUL18_mydesign_6
+// Command: set root module matmul_BW_MATMUL18_mydesign_6 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_6 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 480.66  seconds
+Elapse time  : 707     seconds
+Memory usage : 562.89  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 492.63  seconds
+Elapse time  : 719     seconds
+Memory usage : 668.02  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 496.91  seconds
+Elapse time  : 730     seconds
+Memory usage : 668.02  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_6 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_6 -module -hier -Revised
+Processed 37 out of 56 module pairs	EQ: 37	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_5 and matmul_BW_MATMUL18_mydesign_5
+// Command: set root module matmul_BW_MATMUL18_mydesign_5 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_5 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 497.06  seconds
+Elapse time  : 730     seconds
+Memory usage : 629.20  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 508.45  seconds
+Elapse time  : 741     seconds
+Memory usage : 674.35  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 512.32  seconds
+Elapse time  : 752     seconds
+Memory usage : 674.35  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_5 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_5 -module -hier -Revised
+Processed 38 out of 56 module pairs	EQ: 38	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_4 and matmul_BW_MATMUL18_mydesign_4
+// Command: set root module matmul_BW_MATMUL18_mydesign_4 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_4 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 512.47  seconds
+Elapse time  : 752     seconds
+Memory usage : 629.40  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 524.04  seconds
+Elapse time  : 763     seconds
+Memory usage : 678.35  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 527.48  seconds
+Elapse time  : 773     seconds
+Memory usage : 678.35  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_4 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_4 -module -hier -Revised
+Processed 39 out of 56 module pairs	EQ: 39	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u7 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_4 matmul_BW_MATMUL18_mydesign_5 matmul_BW_MATMUL18_mydesign_6
+      matmul_BW_MATMUL18_mydesign_7
+HIER: (G) matmul_BW_MATMUL18_mydesign_4
+HIER: (G) matmul_BW_MATMUL18_mydesign_5
+HIER: (G) matmul_BW_MATMUL18_mydesign_6
+HIER: (G) matmul_BW_MATMUL18_mydesign_7
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 528.58  seconds
+Elapse time  : 774     seconds
+Memory usage : 616.67  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 529.30  seconds
+Elapse time  : 780     seconds
+Memory usage : 616.67  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1 -module -hier -Revised
+Processed 40 out of 56 module pairs	EQ: 40	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_3 and matmul_BW_MATMUL18_mydesign_3
+// Command: set root module matmul_BW_MATMUL18_mydesign_3 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_3 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 529.43  seconds
+Elapse time  : 780     seconds
+Memory usage : 616.67  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 540.93  seconds
+Elapse time  : 791     seconds
+Memory usage : 682.97  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 545.12  seconds
+Elapse time  : 802     seconds
+Memory usage : 682.97  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_3 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_3 -module -hier -Revised
+Processed 41 out of 56 module pairs	EQ: 41	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_2 and matmul_BW_MATMUL18_mydesign_2
+// Command: set root module matmul_BW_MATMUL18_mydesign_2 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_2 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 545.27  seconds
+Elapse time  : 802     seconds
+Memory usage : 605.28  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 556.85  seconds
+Elapse time  : 813     seconds
+Memory usage : 683.00  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 561.44  seconds
+Elapse time  : 824     seconds
+Memory usage : 683.00  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_2 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_2 -module -hier -Revised
+Processed 42 out of 56 module pairs	EQ: 42	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_1 and matmul_BW_MATMUL18_mydesign_1
+// Command: set root module matmul_BW_MATMUL18_mydesign_1 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_1 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 561.60  seconds
+Elapse time  : 824     seconds
+Memory usage : 605.28  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 573.08  seconds
+Elapse time  : 835     seconds
+Memory usage : 687.04  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 576.94  seconds
+Elapse time  : 846     seconds
+Memory usage : 687.04  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_1 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_1 -module -hier -Revised
+Processed 43 out of 56 module pairs	EQ: 43	NEQ: 0	ABORT: 0
+// Running Module matmul_BW_MATMUL18_mydesign_0 and matmul_BW_MATMUL18_mydesign_0
+// Command: set root module matmul_BW_MATMUL18_mydesign_0 -Golden
+// Command: set root module matmul_BW_MATMUL18_mydesign_0 -Revised
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8/mm_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+CPU time     : 577.09  seconds
+Elapse time  : 846     seconds
+Memory usage : 622.34  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            160    72        232     
+--------------------------------------------------------------------------------
+Revised           160    72        232     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_33_3: quality evaluated 100% success
+// Note: add_32_3: quality evaluated 100% success
+// Note: add_31_3: quality evaluated 100% success
+// Note: add_30_3: quality evaluated 100% success
+CPU time     : 588.65  seconds
+Elapse time  : 857     seconds
+Memory usage : 687.12  M bytes
+// Command: add compared points -all
+// 72 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           72        72      
+================================================================================
+CPU time     : 592.32  seconds
+Elapse time  : 868     seconds
+Memory usage : 687.12  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box matmul_BW_MATMUL18_mydesign_0 -module -hier -Golden
+// Command: add black box matmul_BW_MATMUL18_mydesign_0 -module -hier -Revised
+Processed 44 out of 56 module pairs	EQ: 44	NEQ: 0	ABORT: 0
+// Running Module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 and conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8 -Golden
+// Command: set module property -instance /conv3x3_U0/conv1x1_u8 -Revised
+// Command: report black box -NOHidden
+HIER: (R) matmul_BW_MATMUL18_mydesign_0 matmul_BW_MATMUL18_mydesign_1 matmul_BW_MATMUL18_mydesign_2
+      matmul_BW_MATMUL18_mydesign_3
+HIER: (G) matmul_BW_MATMUL18_mydesign_0
+HIER: (G) matmul_BW_MATMUL18_mydesign_1
+HIER: (G) matmul_BW_MATMUL18_mydesign_2
+HIER: (G) matmul_BW_MATMUL18_mydesign_3
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            640    80     4         724     
+--------------------------------------------------------------------------------
+Revised           640    80     4         724     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_124_3: quality evaluated 97% success
+// Note: add_123_3: quality evaluated 97% success
+// Note: add_122_3: quality evaluated 97% success
+// Note: add_121_3: quality evaluated 97% success
+CPU time     : 593.43  seconds
+Elapse time  : 869     seconds
+Memory usage : 624.66  M bytes
+// Command: add compared points -all
+// 84 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           80     4         84      
+================================================================================
+CPU time     : 594.21  seconds
+Elapse time  : 874     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 -module -hier -Golden
+// Command: add black box conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 -module -hier -Revised
+Processed 45 out of 56 module pairs	EQ: 45	NEQ: 0	ABORT: 0
+// Running Module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 and kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 -Golden
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 -Revised
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U0 -Golden
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            200    25        225     
+--------------------------------------------------------------------------------
+Revised           200    25        225     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_37: quality evaluated 100% success
+CPU time     : 595.75  seconds
+Elapse time  : 876     seconds
+Memory usage : 624.66  M bytes
+// Command: add compared points -all
+// 25 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           25        25      
+================================================================================
+CPU time     : 598.48  seconds
+Elapse time  : 885     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 -module -hier -Golden
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3 -module -hier -Revised
+Processed 46 out of 56 module pairs	EQ: 46	NEQ: 0	ABORT: 0
+// Running Module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 and kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 -Golden
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 -Revised
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U1 -Golden
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            200    25        225     
+--------------------------------------------------------------------------------
+Revised           200    25        225     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_37: quality evaluated 100% success
+CPU time     : 600.00  seconds
+Elapse time  : 886     seconds
+Memory usage : 624.66  M bytes
+// Command: add compared points -all
+// 25 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           25        25      
+================================================================================
+CPU time     : 602.61  seconds
+Elapse time  : 896     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 -module -hier -Golden
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 -module -hier -Revised
+Processed 47 out of 56 module pairs	EQ: 47	NEQ: 0	ABORT: 0
+// Running Module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 and kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 -Golden
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 -Revised
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U2 -Golden
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            200    25        225     
+--------------------------------------------------------------------------------
+Revised           200    25        225     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_37: quality evaluated 100% success
+CPU time     : 604.21  seconds
+Elapse time  : 897     seconds
+Memory usage : 624.66  M bytes
+// Command: add compared points -all
+// 25 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           25        25      
+================================================================================
+CPU time     : 606.72  seconds
+Elapse time  : 906     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 -module -hier -Golden
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1 -module -hier -Revised
+Processed 48 out of 56 module pairs	EQ: 48	NEQ: 0	ABORT: 0
+// Running Module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 and kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 -Golden
+// Command: set root module kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 -Revised
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U3 -Golden
+// Command: set module property -instance /conv3x3_U0/kernel_adder_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            200    25        225     
+--------------------------------------------------------------------------------
+Revised           200    25        225     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Note: add_37: quality evaluated 100% success
+CPU time     : 608.31  seconds
+Elapse time  : 908     seconds
+Memory usage : 624.66  M bytes
+// Command: add compared points -all
+// 25 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           25        25      
+================================================================================
+CPU time     : 610.77  seconds
+Elapse time  : 918     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 -module -hier -Golden
+// Command: add black box kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 -module -hier -Revised
+Processed 49 out of 56 module pairs	EQ: 49	NEQ: 0	ABORT: 0
+// Running Module conv3x3_16to4ch_BW_BIAS25 and conv3x3_16to4ch_BW_BIAS25
+// Command: set root module conv3x3_16to4ch_BW_BIAS25 -Golden
+// Warning: Total black box modules referenced in Golden = 49
+// Command: set root module conv3x3_16to4ch_BW_BIAS25 -Revised
+// Warning: Total black box modules referenced in Revised = 49
+// Command: set module property -instance /conv3x3_U0 -Golden
+// Command: set module property -instance /conv3x3_U0 -Revised
+// Command: report black box -NOHidden
+HIER: (R) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0 conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1
+      conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2 conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3
+      conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4 conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5
+      conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6 conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+      conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+HIER: (G) conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8
+HIER: (R) kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0 kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+      kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2 kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3
+HIER: (G) kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0
+HIER: (G) kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+HIER: (G) kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2
+HIER: (G) kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 200 out of 200 DFF/DLATs
+CPU time     : 611.02  seconds
+Elapse time  : 918     seconds
+Memory usage : 624.66  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            5817   100    100    13        6030    
+--------------------------------------------------------------------------------
+Revised           5817   100    100    13        6030    
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+CPU time     : 612.00  seconds
+Elapse time  : 919     seconds
+Memory usage : 624.66  M bytes
+// Command: add compared points -all
+// 213 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           100    100    13        213     
+================================================================================
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box conv3x3_16to4ch_BW_BIAS25 -module -hier -Golden
+// Command: add black box conv3x3_16to4ch_BW_BIAS25 -module -hier -Revised
+Processed 50 out of 56 module pairs	EQ: 50	NEQ: 0	ABORT: 0
+// Running Module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 and quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 -Golden
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 -Revised
+// Command: set module property -instance /postproc_U0/quantization_1ch_U0 -Golden
+// Command: set module property -instance /postproc_U0/quantization_1ch_U0 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            38     8         46      
+--------------------------------------------------------------------------------
+Revised           38     8         46      
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: add compared points -all
+// 8 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           8         8       
+================================================================================
+CPU time     : 613.73  seconds
+Elapse time  : 925     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 -module -hier -Golden
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3 -module -hier -Revised
+Processed 51 out of 56 module pairs	EQ: 51	NEQ: 0	ABORT: 0
+// Running Module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 and quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 -Golden
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 -Revised
+// Command: set module property -instance /postproc_U0/quantization_1ch_U1 -Golden
+// Command: set module property -instance /postproc_U0/quantization_1ch_U1 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            38     8         46      
+--------------------------------------------------------------------------------
+Revised           38     8         46      
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: add compared points -all
+// 8 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           8         8       
+================================================================================
+CPU time     : 615.38  seconds
+Elapse time  : 931     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 -module -hier -Golden
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 -module -hier -Revised
+Processed 52 out of 56 module pairs	EQ: 52	NEQ: 0	ABORT: 0
+// Running Module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 and quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 -Golden
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 -Revised
+// Command: set module property -instance /postproc_U0/quantization_1ch_U2 -Golden
+// Command: set module property -instance /postproc_U0/quantization_1ch_U2 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            38     8         46      
+--------------------------------------------------------------------------------
+Revised           38     8         46      
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: add compared points -all
+// 8 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           8         8       
+================================================================================
+CPU time     : 616.46  seconds
+Elapse time  : 936     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 -module -hier -Golden
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1 -module -hier -Revised
+Processed 53 out of 56 module pairs	EQ: 53	NEQ: 0	ABORT: 0
+// Running Module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 and quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 -Golden
+// Command: set root module quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 -Revised
+// Command: set module property -instance /postproc_U0/quantization_1ch_U3 -Golden
+// Command: set module property -instance /postproc_U0/quantization_1ch_U3 -Revised
+// Command: report black box -NOHidden
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO        Total   
+--------------------------------------------------------------------------------
+Golden            38     8         46      
+--------------------------------------------------------------------------------
+Revised           38     8         46      
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: add compared points -all
+// 8 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO        Total   
+--------------------------------------------------------------------------------
+Equivalent           8         8       
+================================================================================
+CPU time     : 617.97  seconds
+Elapse time  : 943     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 -module -hier -Golden
+// Command: add black box quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 -module -hier -Revised
+Processed 54 out of 56 module pairs	EQ: 54	NEQ: 0	ABORT: 0
+// Running Module postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34 and postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34
+// Command: set root module postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34 -Golden
+// Warning: Total black box modules referenced in Golden = 4
+// Command: set root module postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34 -Revised
+// Warning: Total black box modules referenced in Revised = 4
+// Command: set module property -instance /postproc_U0 -Golden
+// Command: set module property -instance /postproc_U0 -Revised
+// Command: report black box -NOHidden
+HIER: (R) quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0 quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1
+      quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2 quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3
+HIER: (G) quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0
+HIER: (G) quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1
+HIER: (G) quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2
+HIER: (G) quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 64 out of 64 DFF/DLATs
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            138    32     32     4         206     
+--------------------------------------------------------------------------------
+Revised           138    32     32     4         206     
+================================================================================
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: add compared points -all
+// 68 compared points added to compare list
+// Command: compare -noneq_stop 1 -abort_stop 1 -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+// Compare will stop on the 1st abort point
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           32     32     4         68      
+================================================================================
+CPU time     : 619.08  seconds
+Elapse time  : 949     seconds
+Memory usage : 624.66  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+// Command: add black box postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34 -module -hier -Golden
+// Command: add black box postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34 -module -hier -Revised
+Processed 55 out of 56 module pairs	EQ: 55	NEQ: 0	ABORT: 0
+// Running Module conv_top and conv_top
+// Command: set root module conv_top -Golden
+// Warning: Total black box modules referenced in Golden = 55
+// Command: set root module conv_top -Revised
+// Warning: Total black box modules referenced in Revised = 55
+// Command: set module property -instance / -Golden
+// Command: set module property -instance / -Revised
+// Command: report black box -NOHidden
+HIER: (G R) conv3x3_16to4ch_BW_BIAS25
+HIER: (G R) postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 11672 out of 11672 DFF/DLATs
+CPU time     : 619.56  seconds
+Elapse time  : 949     seconds
+Memory usage : 625.72  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Golden            5836   33     5836   2         11707   
+--------------------------------------------------------------------------------
+Revised           5836   33     5836   2         11707   
+================================================================================
+CPU time     : 619.96  seconds
+Elapse time  : 949     seconds
+Memory usage : 625.72  M bytes
+// Command: analyze setup -verbose;     analyze datapath -module -resourcefile ../../syn/report/report_resources_conv_top.out -effort medium -verbose;     analyze datapath -flowgraph -verbose;
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+CPU time     : 621.20  seconds
+Elapse time  : 951     seconds
+Memory usage : 659.96  M bytes
+// Command: add compared points -all
+// 5871 compared points added to compare list
+// Command: compare -noneq_stop 1  -threads 1,1
+// Compare will stop on the 1st non-equivalent point
+================================================================================
+Compared points      PO     DFF    BBOX      Total   
+--------------------------------------------------------------------------------
+Equivalent           33     5836   2         5871    
+================================================================================
+CPU time     : 621.49  seconds
+Elapse time  : 951     seconds
+Memory usage : 621.59  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: save hier_compare result
+// Command: set system mode setup
+Processed 56 out of 56 module pairs	EQ: 56	NEQ: 0	ABORT: 0
+
+================================================================================
+Module Comparison Results
+--------------------------------------------------------------------------------
+Equivalent                     56
+--------------------------------------------------------------------------------
+Total                          56
+--------------------------------------------------------------------------------
+Hierarchical compare : Equivalent 
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                        PASS
+================================================================================
+// Command: save session DBS/lec_hier_compare
+// Warning: Save session command only saves design data and will be obsolete in the future. Use the new "checkpoint" command to save complete process data.
+
+// Note: Session saved
+CPU time     : 636.19  seconds
+Elapse time  : 966     seconds
+Memory usage : 634.86  M bytes
+// Command: exit -force

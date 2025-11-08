@@ -1,0 +1,100 @@
+ 
+****************************************
+Report : area
+Design : conv_top
+Version: R-2020.09-SP5
+Date   : Mon Aug 28 17:40:38 2023
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                        28161
+Number of nets:                        154293
+Number of cells:                       102708
+Number of combinational cells:          96683
+Number of sequential cells:              5968
+Number of macros/black boxes:               0
+Number of buf/inv:                      18826
+Number of references:                       3
+
+Combinational area:             235154.417246
+Buf/Inv area:                    13004.208290
+Noncombinational area:           32656.896729
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                267811.313974
+Total area:                     267811.313974
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area              Local cell area
+                                  --------------------  ------------------------------- 
+Hierarchical cell                 Absolute     Percent  Combi-       Noncombi-   Black-
+                                  Total        Total    national     national    boxes   Design
+--------------------------------  -----------  -------  -----------  ----------  ------  -----------------------------------------------------
+conv_top                          267811.3140    100.0       0.0000  31934.5927  0.0000  conv_top
+conv3x3_U0                        234019.6612     87.4       0.0000    547.2000  0.0000  conv3x3_16to4ch_BW_BIAS25
+conv3x3_U0/conv1x1_u0              25466.6886      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_8
+conv3x3_U0/conv1x1_u0/mm_U0         6090.6781      2.3    6090.6781      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_35
+conv3x3_U0/conv1x1_u0/mm_U1         6089.9941      2.3    6089.9941      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_34
+conv3x3_U0/conv1x1_u0/mm_U2         6091.3621      2.3    6091.3621      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_33
+conv3x3_U0/conv1x1_u0/mm_U3         6089.3101      2.3    6089.3101      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_32
+conv3x3_U0/conv1x1_u1              25447.5366      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_7
+conv3x3_U0/conv1x1_u1/mm_U0         6083.1541      2.3    6083.1541      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_31
+conv3x3_U0/conv1x1_u1/mm_U1         6082.8121      2.3    6082.8121      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_30
+conv3x3_U0/conv1x1_u1/mm_U2         6092.3881      2.3    6092.3881      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_29
+conv3x3_U0/conv1x1_u1/mm_U3         6083.8381      2.3    6083.8381      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_28
+conv3x3_U0/conv1x1_u2              25451.9826      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_6
+conv3x3_U0/conv1x1_u2/mm_U0         6083.1541      2.3    6083.1541      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_27
+conv3x3_U0/conv1x1_u2/mm_U1         6091.0201      2.3    6091.0201      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_26
+conv3x3_U0/conv1x1_u2/mm_U2         6086.2321      2.3    6086.2321      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_25
+conv3x3_U0/conv1x1_u2/mm_U3         6086.2321      2.3    6086.2321      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_24
+conv3x3_U0/conv1x1_u3              25448.2206      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_5
+conv3x3_U0/conv1x1_u3/mm_U0         6087.6001      2.3    6087.6001      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_23
+conv3x3_U0/conv1x1_u3/mm_U1         6086.9161      2.3    6086.9161      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_22
+conv3x3_U0/conv1x1_u3/mm_U2         6089.6521      2.3    6089.6521      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_21
+conv3x3_U0/conv1x1_u3/mm_U3         6078.7081      2.3    6078.7081      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_20
+conv3x3_U0/conv1x1_u4              25463.6106      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_4
+conv3x3_U0/conv1x1_u4/mm_U0         6084.8641      2.3    6084.8641      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_19
+conv3x3_U0/conv1x1_u4/mm_U1         6089.6521      2.3    6089.6521      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_18
+conv3x3_U0/conv1x1_u4/mm_U2         6095.1241      2.3    6095.1241      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_17
+conv3x3_U0/conv1x1_u4/mm_U3         6088.6261      2.3    6088.6261      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_16
+conv3x3_U0/conv1x1_u5              25456.7706      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_3
+conv3x3_U0/conv1x1_u5/mm_U0         6078.0241      2.3    6078.0241      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_15
+conv3x3_U0/conv1x1_u5/mm_U1         6094.7821      2.3    6094.7821      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_14
+conv3x3_U0/conv1x1_u5/mm_U2         6092.3881      2.3    6092.3881      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_13
+conv3x3_U0/conv1x1_u5/mm_U3         6086.2321      2.3    6086.2321      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_12
+conv3x3_U0/conv1x1_u6              25453.0086      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_2
+conv3x3_U0/conv1x1_u6/mm_U0         6082.8121      2.3    6082.8121      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_11
+conv3x3_U0/conv1x1_u6/mm_U1         6086.5741      2.3    6086.5741      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_10
+conv3x3_U0/conv1x1_u6/mm_U2         6092.0461      2.3    6092.0461      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_9
+conv3x3_U0/conv1x1_u6/mm_U3         6086.2321      2.3    6086.2321      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_8
+conv3x3_U0/conv1x1_u7              25447.8786      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_1
+conv3x3_U0/conv1x1_u7/mm_U0         6087.9421      2.3    6087.9421      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_7
+conv3x3_U0/conv1x1_u7/mm_U1         6087.2581      2.3    6087.2581      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_6
+conv3x3_U0/conv1x1_u7/mm_U2         6087.6001      2.3    6087.6001      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_5
+conv3x3_U0/conv1x1_u7/mm_U3         6079.7341      2.3    6079.7341      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_4
+conv3x3_U0/conv1x1_u8              25417.7826      9.5    1105.3440      0.0000  0.0000  conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120_mydesign_0
+conv3x3_U0/conv1x1_u8/mm_U0         6072.2101      2.3    6072.2101      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_3
+conv3x3_U0/conv1x1_u8/mm_U1         6083.8381      2.3    6083.8381      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_2
+conv3x3_U0/conv1x1_u8/mm_U2         6082.4701      2.3    6082.4701      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_1
+conv3x3_U0/conv1x1_u8/mm_U3         6073.9201      2.3    6073.9201      0.0000  0.0000  matmul_BW_MATMUL18_mydesign_0
+conv3x3_U0/kernel_adder_U0          1105.0020      0.4    1105.0020      0.0000  0.0000  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_3
+conv3x3_U0/kernel_adder_U1          1104.6600      0.4    1104.6600      0.0000  0.0000  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_2
+conv3x3_U0/kernel_adder_U2          1104.6600      0.4    1104.6600      0.0000  0.0000  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_1
+conv3x3_U0/kernel_adder_U3          1104.6600      0.4    1104.6600      0.0000  0.0000  kernel_adder_BW_CONV1x120_BW_BIAS25_mydesign_0
+postproc_U0                         1857.0600      0.7       1.0260    175.1040  0.0000  postproc_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34
+postproc_U0/ReLU_U0                  184.6800      0.1     184.6800      0.0000  0.0000  ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34
+postproc_U0/quantization_1ch_U0      333.1080      0.1     333.1080      0.0000  0.0000  quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_3
+postproc_U0/quantization_1ch_U1      335.1600      0.1     335.1600      0.0000  0.0000  quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_2
+postproc_U0/quantization_1ch_U2      332.4240      0.1     332.4240      0.0000  0.0000  quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_1
+postproc_U0/quantization_1ch_U3      335.1600      0.1     335.1600      0.0000  0.0000  quantization_1ch_GROUP_CHANNEL16_BW_RELU34_mydesign_0
+postproc_U0/shifter_decoder_U0       160.3980      0.1     160.3980      0.0000  0.0000  shifter_decoder
+--------------------------------  -----------  -------  -----------  ----------  ------  -----------------------------------------------------
+Total                                                   235154.4172  32656.8967  0.0000
+
+1

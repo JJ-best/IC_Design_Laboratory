@@ -1,0 +1,391 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2016 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN conv_top
+Set variable 'TOP_DESIGN' as 'conv_top'
+// Command: setenv RESRC_FILE ../../syn/report/report_resources_conv_top.out
+Set variable 'RESRC_FILE' as '../../syn/report/report_resources_conv_top.out'
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../../hdl/conv_define.v ...
+// Parsing file ../../hdl/conv_top.v ...
+// Parsing file ../../hdl/conv3x3_16to4ch.v ...
+// Parsing file ../../hdl/conv1x1_16to4ch.v ...
+// Parsing file ../../hdl/matmul.v ...
+// Parsing file ../../hdl/kernel_adder.v ...
+// Parsing file ../../hdl/postproc.v ...
+// Parsing file ../../hdl/shifter_decoder.v ...
+// Parsing file ../../hdl/ReLU.v ...
+// Parsing file ../../hdl/quantization_1ch.v ...
+// Golden root module is set to 'conv_top'
+// Warning: (RTL1.4) Assignment with LHS bit width is greater than RHS bit width (occurrence:8)
+// Warning: (RTL1.5b) Potential loss of RHS msb or carry-out bit (occurrence:15)
+// Warning: (RTL7.11b) Unsigned reference with index/part selection to a signed variable (occurrence:1)
+// Note: (RTL8.1) Multiple multipliers/dividers are in module/entity (occurrence:1)
+// Note: (VLG6.4) Supported system datapath function call (occurrence:3)
+// Note: (VLG9.2) The `define macro is used (occurrence:5)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:17)
+// Warning: (HRC3.16) A wire is declared, but not used in the module (occurrence:4)
+// Note: Read VERILOG design successfully
+CPU time     : 0.29    seconds
+Elapse time  : 1       seconds
+Memory usage : 269.80  M bytes
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../../syn/netlist/conv_top_syn.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'conv_top'
+// Warning: (RTL14) Signal has input but it has no output (occurrence:1)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:1)
+// Note: Read VERILOG design successfully
+CPU time     : 3.77    seconds
+Elapse time  : 4       seconds
+Memory usage : 369.16  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules      1222              58
+Library-cells         60          102651
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT             5836                 5836
+OUTPUT              33                   33
+--------------------------------------------
+AND        *    153804               146212
+BUF        *         4                  124
+DFF               5968                 5968
+INV        *      9560                73178
+MUX        *      1680                    0
+NOR        *      8064                    0
+OR         *     39368                75880
+WIRE       *     30505                    0
+XNOR       *       272                    0
+XOR        *     86100                23608
+------ word-level --------------------------
+ADD        *       588                    0
+GT         *         4                    0
+LT         *         8                    0
+MULT       *       576                    0
+SLL        *        16                    0
+SUBTRACT   *        12                    0
+WMUX       *        16                    0
+WSEL       *         4                    0
+--------------------------------------------
+Total           335325               324970
+
+// Command: report black box -detail
+// Command: add renaming rule rule1 "%w_mydesign_%d$" "@1" -module -revised
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 4 instance(s) referring to module 'quantization_1ch_GROUP_CHANNEL16_BW_RELU34' in Golden
+Uniquified 4 instance(s) referring to module 'kernel_adder_BW_CONV1x120_BW_BIAS25' in Golden
+Uniquified 9 instance(s) referring to module 'conv1x1_16to4ch_BW_MATMUL18_BW_CONV1x120' in Golden
+Uniquified 36 instance(s) referring to module 'matmul_BW_MATMUL18' in Golden
+Uniquified 4 module(s)
+CPU time     : 4.08    seconds
+Elapse time  : 5       seconds
+Memory usage : 387.29  M bytes
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'conv_top'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'conv_top'
+// Command: dofile lec_compare.do
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 11936 out of 11936 DFF/DLATs
+CPU time     : 11.28   seconds
+Elapse time  : 12      seconds
+Memory usage : 578.07  M bytes
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            5836   33     5968      11837   
+--------------------------------------------------------------------------------
+Revised           5836   33     5968      11837   
+================================================================================
+CPU time     : 12.29   seconds
+Elapse time  : 13      seconds
+Memory usage : 589.38  M bytes
+// Command: map key point
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            5836   33     5968      11837   
+--------------------------------------------------------------------------------
+Revised           5836   33     5968      11837   
+================================================================================
+CPU time     : 12.84   seconds
+Elapse time  : 13      seconds
+Memory usage : 589.38  M bytes
+// Command: analyze setup -verbose
+CPU time     : 38.22   seconds
+Elapse time  : 39      seconds
+Memory usage : 589.38  M bytes
+// Command: analyze datapath -module -resourcefile $RESRC_FILE -effort medium -verbose
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: analyze datapath -flowgraph -verbose
+// Note: conv3x3_U0/conv1x1_u0/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u0/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u1/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u2/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u3/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u4/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u5/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u6/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u7/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U0/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U1/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U2/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U3/add_33_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/add_124_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U0/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U1/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U2/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U3/add_32_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/add_123_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U0/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U1/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U2/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U3/add_31_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/add_122_3: quality evaluated 97% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U0/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U1/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U2/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/mm_U3/add_30_3: quality evaluated 100% success
+// Note: conv3x3_U0/conv1x1_u8/add_121_3: quality evaluated 97% success
+// Note: conv3x3_U0/kernel_adder_U0/add_37: quality evaluated 100% success
+// Note: conv3x3_U0/kernel_adder_U1/add_37: quality evaluated 100% success
+// Note: conv3x3_U0/kernel_adder_U2/add_37: quality evaluated 100% success
+// Note: conv3x3_U0/kernel_adder_U3/add_37: quality evaluated 100% success
+CPU time     : 1110.81 seconds
+Elapse time  : 1112    seconds
+Memory usage : 3988.07 M bytes
+// Command: add compare point -all
+// 6001 compared points added to compare list
+CPU time     : 1110.92 seconds
+Elapse time  : 1112    seconds
+Memory usage : 3988.07 M bytes
+// Command: compare
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           33     5968      6001    
+================================================================================
+CPU time     : 2254.61 seconds
+Elapse time  : 2156    seconds
+Memory usage : 4068.07 M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: report unmap point -notmapped 
+There is no unmapped point
+// Command: report compare data -nonequivalent
+0 Non-equivalent point(s) reported
+0 compared point(s) reported
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           33     5968      6001    
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                        PASS
+================================================================================
+CPU time     : 2254.75 seconds
+Elapse time  : 2156    seconds
+Memory usage : 4068.07 M bytes
+// Command: save session DBS/lec_compare
+// Warning: Save session command only saves design data and will be obsolete in the future. Use the new "checkpoint" command to save complete process data.
+
+// Note: Session saved
+CPU time     : 2281.67 seconds
+Elapse time  : 2183    seconds
+Memory usage : 4093.55 M bytes
+// Command: exit -force

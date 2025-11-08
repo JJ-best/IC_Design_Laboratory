@@ -1,0 +1,68 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09-SP5
+Date:        Mon Aug 28 17:29:25 2023
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     48
+    Unconnected ports (LINT-28)                                    17
+    Shorted outputs (LINT-31)                                      15
+    Constant outputs (LINT-52)                                     16
+
+Cells                                                               1
+    Cells do not drive (LINT-1)                                     1
+--------------------------------------------------------------------------------
+
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', cell 'B_6' does not drive any nets. (LINT-1)
+Warning: In design 'conv_top', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch0[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch0[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch0[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch0[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch1[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch1[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch1[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch1[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch2[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch2[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch2[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch2[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch3[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch3[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch3[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'ReLU_GROUP_CHANNEL16_BW_BIAS25_BW_RELU34', port 'relu_shift_ch3[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch3[0]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch3[1]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch3[2]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch3[3]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch2[0]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch2[1]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch2[2]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch2[3]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch1[0]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch1[1]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch1[2]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch1[3]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch0[0]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch0[1]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to output port 'relu_shift_ch0[2]'. (LINT-31)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch0[0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch1[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch1[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch1[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch1[0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch2[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch2[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch2[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch2[0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch3[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch3[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch3[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'shifter_decoder', output port 'relu_shift_ch3[0]' is connected directly to 'logic 0'. (LINT-52)
+1
