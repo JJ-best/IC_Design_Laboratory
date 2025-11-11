@@ -52,7 +52,7 @@ module ViT_top #(
     output wire [8-1:0] sram_raddr_weight,
     output wire [7-1:0] sram_raddr_bias,
 
-    // SRAM write enable outputs
+    // SRAM write enable outputs (low active)
     output wire sram_wen_a0,
     output wire sram_wen_a1,
     output wire sram_wen_a2,
@@ -107,6 +107,256 @@ module ViT_top #(
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d3
 );
 
-// Module implementation goes here
+// ===== Top Level Finite State Machine ===== //
+localparam IDLE     = 5'd0;
+localparam R_SRAM_A = 5'd1;
+localparam NORM     = 5'd2;
+localparam W_SRAM_B = 5'd3;
+
+reg [4:0]top_state;
+reg [4:0]top_state_n;
+
+
+always @(posedge clk) begin
+    if (!srst_n) begin
+        top_state <= IDLE;
+    end else begin
+        top_state <= top_state_n;
+    end
+end
+
+always @(*) begin
+    case (top_state)
+        IDLE: begin
+            if (enable) begin
+                top_state_n = R_SRAM_A;
+            end else begin
+                top_state_n = IDLE;
+            end
+        end
+        R_SRAM_A: begin
+            top_state_n = top_state;
+        end
+        default: begin
+           top_state_n = IDLE; 
+        end
+    endcase
+end
+
+// ===== read the patched embedded from SRAM A ===== //
+// SRAM A: 64@16ch
+// addr 0~15: 0~7ch, addr 16~31: 8~15ch
+
+//               token0: {addr0_bank0, addr16_bank0}, 
+//               token1: {addr0_bank1, addr16_bank1}, 
+//               token2: {addr0_bank2, addr16_bank2}, 
+//               token3: {addr0_bank3, addr16_bank3}
+//
+//               token4: {addr1_bank0, addr17_bank0}, 
+//               token5: {addr1_bank1, addr17_bank1}, 
+//               token6: {addr1_bank2, addr17_bank2}, 
+//               token7: {addr1_bank3, addr17_bank3}
+//
+//               token8:  {addr2_bank0, addr18_bank0}, 
+//               token9:  {addr2_bank1, addr18_bank1}, 
+//               token10: {addr2_bank2, addr18_bank2}, 
+//               token11: {addr2_bank3, addr18_bank3}
+// ...
+//               token60:  {addr15_bank0, addr31_bank0}, 
+//               token61:  {addr15_bank1, addr31_bank1}, 
+//               token62:  {addr15_bank2, addr31_bank2}, 
+//               token63:  {addr15_bank3, addr31_bank3}
+
+// SRAM A access:
+// addr0 -> addr(0+16) -> addr1 -> addr(1+16) -> ... -> addr15 -> addr(15+16)
+// 00000 -> 10000 -> 00001 -> 10001 -> ... -> 01111 -> 11111
+// toggle the MSB addr, and increment the LSB addr
+
+// SRAM A addr controller
+reg [4:0] sram_addr_cnt_a;
+// SRAM A is read only
+assign sram_wen_a0 = 1'b1;
+assign sram_wen_a1 = 1'b1;
+assign sram_wen_a2 = 1'b1;
+assign sram_wen_a3 = 1'b1;
+
+always @(posedge clk) begin
+    if (top_state == R_SRAM_A) begin
+        sram_addr_cnt_a <= sram_addr_cnt_a + 1;
+    end else begin
+        sram_addr_cnt_a <= 0;
+    end
+end
+
+assign sram_addr_a0 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+assign sram_addr_a1 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+assign sram_addr_a2 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+assign sram_addr_a3 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+
+// ----- debug signal ----- //
+reg [(BW_PER_ACT-1):0] a_bank0_dat[0:(CH_NUM-1)];
+reg [(BW_PER_ACT-1):0] a_bank1_dat[0:(CH_NUM-1)];
+reg [(BW_PER_ACT-1):0] a_bank2_dat[0:(CH_NUM-1)];
+reg [(BW_PER_ACT-1):0] a_bank3_dat[0:(CH_NUM-1)];
+
+
+always @(*) begin
+    // MSB-first ordering: [79:70], [69:60], ..., [9:0]
+    a_bank0_dat[0] = sram_rdata_a0[79:70]; // ch0
+    a_bank0_dat[1] = sram_rdata_a0[69:60]; // ch1
+    a_bank0_dat[2] = sram_rdata_a0[59:50]; // ch2
+    a_bank0_dat[3] = sram_rdata_a0[49:40]; // ch3
+    a_bank0_dat[4] = sram_rdata_a0[39:30]; // ch4
+    a_bank0_dat[5] = sram_rdata_a0[29:20]; // ch5
+    a_bank0_dat[6] = sram_rdata_a0[19:10]; // ch6
+    a_bank0_dat[7] = sram_rdata_a0[9:0];   // ch7
+
+    a_bank1_dat[0] = sram_rdata_a1[79:70];
+    a_bank1_dat[1] = sram_rdata_a1[69:60];
+    a_bank1_dat[2] = sram_rdata_a1[59:50];
+    a_bank1_dat[3] = sram_rdata_a1[49:40];
+    a_bank1_dat[4] = sram_rdata_a1[39:30];
+    a_bank1_dat[5] = sram_rdata_a1[29:20];
+    a_bank1_dat[6] = sram_rdata_a1[19:10];
+    a_bank1_dat[7] = sram_rdata_a1[9:0];
+
+    a_bank2_dat[0] = sram_rdata_a2[79:70];
+    a_bank2_dat[1] = sram_rdata_a2[69:60];
+    a_bank2_dat[2] = sram_rdata_a2[59:50];
+    a_bank2_dat[3] = sram_rdata_a2[49:40];
+    a_bank2_dat[4] = sram_rdata_a2[39:30];
+    a_bank2_dat[5] = sram_rdata_a2[29:20];
+    a_bank2_dat[6] = sram_rdata_a2[19:10];
+    a_bank2_dat[7] = sram_rdata_a2[9:0];
+
+    a_bank3_dat[0] = sram_rdata_a3[79:70];
+    a_bank3_dat[1] = sram_rdata_a3[69:60];
+    a_bank3_dat[2] = sram_rdata_a3[59:50];
+    a_bank3_dat[3] = sram_rdata_a3[49:40];
+    a_bank3_dat[4] = sram_rdata_a3[39:30];
+    a_bank3_dat[5] = sram_rdata_a3[29:20];
+    a_bank3_dat[6] = sram_rdata_a3[19:10];
+    a_bank3_dat[7] = sram_rdata_a3[9:0];
+end
+
+// since we need 2 cycle to get complete token, so we need to store the 
+// first half cycle data, and connect to next cycle data
+// ===== store data per channel ===== //
+reg [BW_PER_ACT-1:0] a_bank0_reg [0:CH_NUM-1];
+reg [BW_PER_ACT-1:0] a_bank1_reg [0:CH_NUM-1];
+reg [BW_PER_ACT-1:0] a_bank2_reg [0:CH_NUM-1];
+reg [BW_PER_ACT-1:0] a_bank3_reg [0:CH_NUM-1];
+
+// ---- bank0 ---- //
+always @(posedge clk) begin
+    if (sram_addr_a0[4] == 1'b1) begin
+        a_bank0_reg[0] <= a_bank0_dat[0];
+        a_bank0_reg[1] <= a_bank0_dat[1];
+        a_bank0_reg[2] <= a_bank0_dat[2];
+        a_bank0_reg[3] <= a_bank0_dat[3];
+        a_bank0_reg[4] <= a_bank0_dat[4];
+        a_bank0_reg[5] <= a_bank0_dat[5];
+        a_bank0_reg[6] <= a_bank0_dat[6];
+        a_bank0_reg[7] <= a_bank0_dat[7];
+    end
+end
+
+// ---- bank1 ---- //
+always @(posedge clk) begin
+    if (sram_addr_a1[4] == 1'b1) begin
+        a_bank1_reg[0] <= a_bank1_dat[0];
+        a_bank1_reg[1] <= a_bank1_dat[1];
+        a_bank1_reg[2] <= a_bank1_dat[2];
+        a_bank1_reg[3] <= a_bank1_dat[3];
+        a_bank1_reg[4] <= a_bank1_dat[4];
+        a_bank1_reg[5] <= a_bank1_dat[5];
+        a_bank1_reg[6] <= a_bank1_dat[6];
+        a_bank1_reg[7] <= a_bank1_dat[7];
+    end
+end
+
+// ---- bank2 ---- //
+always @(posedge clk) begin
+    if (sram_addr_a2[4] == 1'b1) begin
+        a_bank2_reg[0] <= a_bank2_dat[0];
+        a_bank2_reg[1] <= a_bank2_dat[1];
+        a_bank2_reg[2] <= a_bank2_dat[2];
+        a_bank2_reg[3] <= a_bank2_dat[3];
+        a_bank2_reg[4] <= a_bank2_dat[4];
+        a_bank2_reg[5] <= a_bank2_dat[5];
+        a_bank2_reg[6] <= a_bank2_dat[6];
+        a_bank2_reg[7] <= a_bank2_dat[7];
+    end
+end
+
+// ---- bank3 ---- //
+always @(posedge clk) begin
+    if (sram_addr_a3[4] == 1'b1) begin
+        a_bank3_reg[0] <= a_bank3_dat[0];
+        a_bank3_reg[1] <= a_bank3_dat[1];
+        a_bank3_reg[2] <= a_bank3_dat[2];
+        a_bank3_reg[3] <= a_bank3_dat[3];
+        a_bank3_reg[4] <= a_bank3_dat[4];
+        a_bank3_reg[5] <= a_bank3_dat[5];
+        a_bank3_reg[6] <= a_bank3_dat[6];
+        a_bank3_reg[7] <= a_bank3_dat[7];
+    end
+end
+
+// ===== normalization (computation per token) ===== //
+
+// ----- token mean ----- //
+// token_sum = Σ x_i,  i = 0~15 (8 from _dat + 8 from _reg)
+// token_mean μ = token_sum / 16   // divide by 16
+
+reg [BW_PER_ACT-1:0] token1_sum;
+reg [BW_PER_ACT-1:0] token2_sum;
+reg [BW_PER_ACT-1:0] token3_sum;
+reg [BW_PER_ACT-1:0] token4_sum;
+reg [BW_PER_ACT+3:0] token1_mean;
+reg [BW_PER_ACT+3:0] token2_mean;
+reg [BW_PER_ACT+3:0] token3_mean;
+reg [BW_PER_ACT+3:0] token4_mean;
+
+always @(posedge clk) begin
+    // token1 -> bank0
+    token1_sum <= a_bank0_dat[0] + a_bank0_dat[1] + a_bank0_dat[2] + a_bank0_dat[3]
+                + a_bank0_dat[4] + a_bank0_dat[5] + a_bank0_dat[6] + a_bank0_dat[7]
+                + a_bank0_reg[0] + a_bank0_reg[1] + a_bank0_reg[2] + a_bank0_reg[3]
+                + a_bank0_reg[4] + a_bank0_reg[5] + a_bank0_reg[6] + a_bank0_reg[7];
+
+    // token2 -> bank1
+    token2_sum <= a_bank1_dat[0] + a_bank1_dat[1] + a_bank1_dat[2] + a_bank1_dat[3]
+                + a_bank1_dat[4] + a_bank1_dat[5] + a_bank1_dat[6] + a_bank1_dat[7]
+                + a_bank1_reg[0] + a_bank1_reg[1] + a_bank1_reg[2] + a_bank1_reg[3]
+                + a_bank1_reg[4] + a_bank1_reg[5] + a_bank1_reg[6] + a_bank1_reg[7];
+
+    // token3 -> bank2
+    token3_sum <= a_bank2_dat[0] + a_bank2_dat[1] + a_bank2_dat[2] + a_bank2_dat[3]
+                + a_bank2_dat[4] + a_bank2_dat[5] + a_bank2_dat[6] + a_bank2_dat[7]
+                + a_bank2_reg[0] + a_bank2_reg[1] + a_bank2_reg[2] + a_bank2_reg[3]
+                + a_bank2_reg[4] + a_bank2_reg[5] + a_bank2_reg[6] + a_bank2_reg[7];
+
+    // token4 -> bank3
+    token4_sum <= a_bank3_dat[0] + a_bank3_dat[1] + a_bank3_dat[2] + a_bank3_dat[3]
+                + a_bank3_dat[4] + a_bank3_dat[5] + a_bank3_dat[6] + a_bank3_dat[7]
+                + a_bank3_reg[0] + a_bank3_reg[1] + a_bank3_reg[2] + a_bank3_reg[3]
+                + a_bank3_reg[4] + a_bank3_reg[5] + a_bank3_reg[6] + a_bank3_reg[7];
+end
+
+// mean has 14 bit, 10-bit number + 4-bit accuracy preserve
+always @(*) begin
+    // compute mean (division by 16)
+    token1_mean = {4'b0, token1_sum};
+    token2_mean = {4'b0, token2_sum};
+    token3_mean = {4'b0, token3_sum};
+    token4_mean = {4'b0, token4_sum};
+end
+
+// ----- token MAE ----- //
+// token_mae = Σ |x_i - μ| / 16,  i = 0~15 (8 from _dat + 8 from _reg)
+
+
+// ===== Quantize the result to 10-bit and write the result to SRAM B ===== //
 
 endmodule
