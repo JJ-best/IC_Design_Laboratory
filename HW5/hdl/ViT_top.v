@@ -107,11 +107,20 @@ module ViT_top #(
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d3
 );
 
+
+
+// ===== part1: read the normalize bias out ===== //
+reg [(BW_PER_ACT-1):0] bias_reg [0:15]; // 0->ch0, 15->ch15
+reg [3:0] bias_addr_cnt;
+reg bias_finish;
+reg [4:0] sram_addr_cnt_a; // sram A addr controller
+
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
-localparam R_SRAM_A = 5'd1;
-localparam NORM     = 5'd2;
-localparam W_SRAM_B = 5'd3;
+localparam R_BIAS_A = 5'd1;
+localparam NORMAL   = 5'd2;
+localparam R_SRAM_B = 5'd3;
+
 
 reg [4:0]top_state;
 reg [4:0]top_state_n;
@@ -129,13 +138,27 @@ always @(*) begin
     case (top_state)
         IDLE: begin
             if (enable) begin
-                top_state_n = R_SRAM_A;
+                top_state_n = R_BIAS_A;
             end else begin
                 top_state_n = IDLE;
             end
         end
-        R_SRAM_A: begin
-            top_state_n = top_state;
+        R_BIAS_A: begin
+            if (bias_finish) begin
+                top_state_n = NORMAL;
+            end else begin
+                top_state_n = R_BIAS_A;
+            end
+        end
+        NORMAL: begin
+            if (sram_addr_cnt_a == 5'd31) begin
+                top_state_n = R_SRAM_B;
+            end else begin
+                top_state_n = NORMAL;
+            end
+        end
+        R_SRAM_B: begin
+            top_state_n = R_SRAM_B;
         end
         default: begin
            top_state_n = IDLE; 
@@ -143,7 +166,50 @@ always @(*) begin
     endcase
 end
 
-// ===== read the patched embedded from SRAM A ===== //
+// tmp cnt
+reg [3:0]tmp_cnt;
+always @(posedge clk) begin
+    if (!srst_n) begin
+        tmp_cnt <= 0;
+    end else if (top_state == R_SRAM_B)begin
+        tmp_cnt <= tmp_cnt + 1;
+    end
+end
+assign valid = (tmp_cnt == 4'b1111)? 1:0;
+
+// ===== read the normalize bias out ===== //
+// SRAM-bias: 1 data / addr
+// read from addr 0~15, store the bias for ch0~15 into register
+
+integer i;
+always @(posedge clk) begin
+    if (top_state == R_BIAS_A) begin
+        bias_reg[15] <= sram_rdata_bias;
+        for (i=14; i>=0; i=i-1) begin
+            bias_reg[i] <= bias_reg[i+1];
+        end
+    end
+end
+
+
+always @(posedge clk) begin
+    if (!srst_n) begin
+        bias_finish <= 0;
+    end else begin
+        bias_finish <= (bias_addr_cnt == 4'b1111)? 1:0;
+    end
+end
+
+assign sram_raddr_bias = bias_addr_cnt;
+always @(posedge clk) begin
+    if (top_state == R_BIAS_A) begin
+        bias_addr_cnt <= bias_addr_cnt + 1;
+    end else begin
+        bias_addr_cnt <= 0;
+    end
+end
+
+// ===== 1. read the patched embedded from SRAM A ===== //
 // SRAM A: 64@16ch
 // addr 0~15: 0~7ch, addr 16~31: 8~15ch
 
@@ -172,16 +238,16 @@ end
 // 00000 -> 10000 -> 00001 -> 10001 -> ... -> 01111 -> 11111
 // toggle the MSB addr, and increment the LSB addr
 
-// SRAM A addr controller
-reg [4:0] sram_addr_cnt_a;
+
 // SRAM A is read only
 assign sram_wen_a0 = 1'b1;
 assign sram_wen_a1 = 1'b1;
 assign sram_wen_a2 = 1'b1;
 assign sram_wen_a3 = 1'b1;
 
+// SRAM A addr controller
 always @(posedge clk) begin
-    if (top_state == R_SRAM_A) begin
+    if (top_state == NORMAL) begin
         sram_addr_cnt_a <= sram_addr_cnt_a + 1;
     end else begin
         sram_addr_cnt_a <= 0;
@@ -194,10 +260,10 @@ assign sram_addr_a2 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
 assign sram_addr_a3 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
 
 // ----- debug signal ----- //
-reg [(BW_PER_ACT-1):0] a_bank0_dat[0:(CH_NUM-1)];
-reg [(BW_PER_ACT-1):0] a_bank1_dat[0:(CH_NUM-1)];
-reg [(BW_PER_ACT-1):0] a_bank2_dat[0:(CH_NUM-1)];
-reg [(BW_PER_ACT-1):0] a_bank3_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] a_bank0_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] a_bank1_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] a_bank2_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] a_bank3_dat[0:(CH_NUM-1)];
 
 
 always @(*) begin
@@ -242,14 +308,14 @@ end
 // since we need 2 cycle to get complete token, so we need to store the 
 // first half cycle data, and connect to next cycle data
 // ===== store data per channel ===== //
-reg [BW_PER_ACT-1:0] a_bank0_reg_h [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank1_reg_h [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank2_reg_h [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank3_reg_h [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank0_reg_l [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank1_reg_l [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank2_reg_l [0:CH_NUM-1];
-reg [BW_PER_ACT-1:0] a_bank3_reg_l [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank0_reg_h [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank1_reg_h [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank2_reg_h [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank3_reg_h [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank0_reg_l [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank1_reg_l [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank2_reg_l [0:CH_NUM-1];
+reg signed[BW_PER_ACT-1:0] a_bank3_reg_l [0:CH_NUM-1];
 
 reg valid_1;
 
@@ -351,7 +417,7 @@ always @(posedge clk) begin
     end
 end
 
-// ===== normalization (computation per token) ===== //
+// ===== 2. normalization (computation per token) ===== //
 
 // ----- token mean ----- //
 // token_sum = Σ x_i,  i = 0~15 (8 from _dat + 8 from _reg)
@@ -360,10 +426,10 @@ end
 // in sram A, data(1-bit sign + 3-bit integer + 6-bit fraction)
 // after addition 16 number, the sum is (1-bit sign + 7-bit integer + 6-bit fraction)
 // then to get mean, view the sum as (1-bit sign + 3-bit integer + 10-bit fraction)
-reg [BW_PER_ACT+3:0] token0_mean;
-reg [BW_PER_ACT+3:0] token1_mean;
-reg [BW_PER_ACT+3:0] token2_mean;
-reg [BW_PER_ACT+3:0] token3_mean;
+reg signed[BW_PER_ACT+3:0] token0_mean;
+reg signed[BW_PER_ACT+3:0] token1_mean;
+reg signed[BW_PER_ACT+3:0] token2_mean;
+reg signed[BW_PER_ACT+3:0] token3_mean;
 reg valid_2;
 
 always @(posedge clk) begin
@@ -607,11 +673,15 @@ reg [17:0] token0_mae_abs;
 reg [17:0] token1_mae_abs;
 reg [17:0] token2_mae_abs;
 reg [17:0] token3_mae_abs;
-reg [(BW_PER_ACT-1):0]token0_nor_reg[0:15];
-reg [(BW_PER_ACT-1):0]token1_nor_reg[0:15];
-reg [(BW_PER_ACT-1):0]token2_nor_reg[0:15];
-reg [(BW_PER_ACT-1):0]token3_nor_reg[0:15];
-reg valid_3;
+reg signed [(BW_PER_ACT-1):0]token0_nor_reg[0:15];
+reg signed [(BW_PER_ACT-1):0]token1_nor_reg[0:15];
+reg signed [(BW_PER_ACT-1):0]token2_nor_reg[0:15];
+reg signed [(BW_PER_ACT-1):0]token3_nor_reg[0:15];
+// pull up 2 cycle if valid_2 is high, 
+// since each token need 2 cycle to write into sram B
+reg valid_3;   
+reg valid_2_d; // delay valid_2 1 cycle
+
 always @(*) begin
     token0_mae_abs = (token0_mae[17])? ~token0_mae + 1: token0_mae;
     token1_mae_abs = (token1_mae[17])? ~token1_mae + 1: token1_mae;
@@ -759,13 +829,18 @@ always @(posedge clk) begin
         token3_nor_reg[14] <= (!a_bank3_minus[14][13] && !token3_mae[17]) ? token3_nor[14] : (~token3_nor[14] + 1'b1);
         token3_nor_reg[15] <= (!a_bank3_minus[15][13] && !token3_mae[17]) ? token3_nor[15] : (~token3_nor[15] + 1'b1);
     end
-    valid_3 <= valid_2;
+    valid_2_d <= valid_2;
+    valid_3 <= valid_2 | valid_2_d;
 end
 
 // ----- multiply with parameter and add bias ----- //
 // result = weight * x_nor + bias
 // x_normalize (1-sign + 3-bit integer + 6-bit fraction)
 // weight and bias (1-bit sign + 2-bit integer + 7-bit fraction)
+// weight * x_nor (1-bit sign + 6-bit integer + 13-bit fraction)
+// then add with bias (1-bit sign + 2-bit integer + 7-bit fraction)
+// then quantize the result to (1-bit sign + 3-bit integer + 6-bit fraction)
+
 
 // There are weight-sram and bias-sram
 // 1. weight-sram
@@ -773,7 +848,239 @@ end
 // 2. bias-sram
 // each addr store 1 bias, 10-bit/addr
 
-// ===== Quantize the result to 10-bit and write the result to SRAM B ===== //
+reg signed[(BW_PER_PARAM-1):0] norm_weight_reg [0:15];
+always @(*) begin
+    norm_weight_reg[0]  = sram_rdata_weight[159:150];// ch0 weight
+    norm_weight_reg[1]  = sram_rdata_weight[149:140];// ch1 weight
+    norm_weight_reg[2]  = sram_rdata_weight[139:130];
+    norm_weight_reg[3]  = sram_rdata_weight[129:120];
+    norm_weight_reg[4]  = sram_rdata_weight[119:110];
+    norm_weight_reg[5]  = sram_rdata_weight[109:100];
+    norm_weight_reg[6]  = sram_rdata_weight[99 :90 ];
+    norm_weight_reg[7]  = sram_rdata_weight[89 :80 ];
+    norm_weight_reg[8]  = sram_rdata_weight[79 :70 ];
+    norm_weight_reg[9]  = sram_rdata_weight[69 :60 ];
+    norm_weight_reg[10] = sram_rdata_weight[59 :50 ];
+    norm_weight_reg[11] = sram_rdata_weight[49 :40 ];
+    norm_weight_reg[12] = sram_rdata_weight[39 :30 ];
+    norm_weight_reg[13] = sram_rdata_weight[29 :20 ];
+    norm_weight_reg[14] = sram_rdata_weight[19 :10 ];
+    norm_weight_reg[15] = sram_rdata_weight[9  :0  ];// ch15 weight
+end
+
+assign sram_raddr_weight = 0;
+
+reg signed[19:0] token0_x_nor_weight [0:15];
+reg signed[19:0] token1_x_nor_weight [0:15];
+reg signed[19:0] token2_x_nor_weight [0:15];
+reg signed[19:0] token3_x_nor_weight [0:15];
+// x_normalize (1-sign + 3-bit integer + 6-bit fraction)
+// weight and bias (1-bit sign + 2-bit integer + 7-bit fraction)
+// weight * x_nor (1-bit sign + 6-bit integer + 13-bit fraction)
+integer j;
+always @(*) begin
+    for (j=0; j<16; j=j+1) begin
+        token0_x_nor_weight[j] = token0_nor_reg[j] * norm_weight_reg[j];
+        token1_x_nor_weight[j] = token1_nor_reg[j] * norm_weight_reg[j];
+        token2_x_nor_weight[j] = token2_nor_reg[j] * norm_weight_reg[j];
+        token3_x_nor_weight[j] = token3_nor_reg[j] * norm_weight_reg[j];
+    end
+end
+
+reg [19:0] token0_x_nor_result [0:15];
+reg [19:0] token1_x_nor_result [0:15];
+reg [19:0] token2_x_nor_result [0:15];
+reg [19:0] token3_x_nor_result [0:15];
+// weight * x_nor (1-bit sign + 6-bit integer + 13-bit fraction)
+// then add with bias (1-bit sign + 2-bit integer + 7-bit fraction)
+// the result(accumalated output) is (1-bit sign + 6-bit integer + 13-bit fraction)
+always @(*) begin
+    for (j=0; j<16; j=j+1) begin
+        // sign-extend bias[j] MSB to 4 bits, then concat bias and 6 fractional zeros to match 20-bit width
+        token0_x_nor_result[j] = token0_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
+        token1_x_nor_result[j] = token1_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
+        token2_x_nor_result[j] = token2_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
+        token3_x_nor_result[j] = token3_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
+    end
+end
+// ===== 3. Quantize the result to 10-bit and write the result to SRAM B ===== //
+// since the accumalated output have 13-bit fraction(12-0), but we only want 
+// 6-bit fraction, thus we need to find rounding output. That is, if the 
+// (6-0) fraction bit is > 100_0000 than + 1 to (12-7) fraction
+// to implement this, we add 100_0000 to accumulated output, so if the last 7 bit 
+// of original accumulated output > 100_0000 it will add 1 to (12-7) fraction
+
+reg signed[19:0] token0_rounding_output[0:15];
+reg signed[19:0] token1_rounding_output[0:15];
+reg signed[19:0] token2_rounding_output[0:15];
+reg signed[19:0] token3_rounding_output[0:15];
+// rounding output
+always @(*) begin
+    for (j=0; j<16; j=j+1) begin
+        token0_rounding_output[j] = token0_x_nor_result[j] + 7'b100_0000;
+        token1_rounding_output[j] = token1_x_nor_result[j] + 7'b100_0000;
+        token2_rounding_output[j] = token2_x_nor_result[j] + 7'b100_0000;
+        token3_rounding_output[j] = token3_x_nor_result[j] + 7'b100_0000;
+    end
+end
+
+reg signed[12:0] token0_quan[0:15];
+reg signed[12:0] token1_quan[0:15];
+reg signed[12:0] token2_quan[0:15];
+reg signed[12:0] token3_quan[0:15];
+// quantized output (13-bit)
+always @(*) begin
+    for (j=0; j<16; j=j+1) begin
+        token0_quan[j] = token0_rounding_output[j][19:7];
+        token1_quan[j] = token1_rounding_output[j][19:7];
+        token2_quan[j] = token2_rounding_output[j][19:7];
+        token3_quan[j] = token3_rounding_output[j][19:7];
+    end
+end
+
+// quantize to 10-bit
+// if quantized output > 511 (10-bit sign number max), then quantized output = 511
+// if quantized output < -512(10-bit sign number min), then quantized output = -512
+reg [9:0] token0_quan_10[0:15];
+reg [9:0] token1_quan_10[0:15];
+reg [9:0] token2_quan_10[0:15];
+reg [9:0] token3_quan_10[0:15];
+
+always @(*) begin
+    for (j=0; j<16; j=j+1) begin
+        if (token0_quan[j] > 13'sd511) begin
+            token0_quan_10[j] = 10'sd511;
+        end else if (token0_quan[j] < -13'sd512) begin
+            token0_quan_10[j] = -10'sd512;
+        end else begin
+            token0_quan_10[j] = token0_quan[j][9:0];
+        end
+    end
+
+    for (j=0; j<16; j=j+1) begin
+        if (token1_quan[j] > 13'sd511) begin
+            token1_quan_10[j] = 10'sd511;
+        end else if (token1_quan[j] < -13'sd512) begin
+            token1_quan_10[j] = -10'sd512;
+        end else begin
+            token1_quan_10[j] = token1_quan[j][9:0];
+        end
+    end
+
+    for (j=0; j<16; j=j+1) begin
+        if (token2_quan[j] > 13'sd511) begin
+            token2_quan_10[j] = 10'sd511;
+        end else if (token2_quan[j] < -13'sd512) begin
+            token2_quan_10[j] = -10'sd512;
+        end else begin
+            token2_quan_10[j] = token2_quan[j][9:0];
+        end
+    end
+
+    for (j=0; j<16; j=j+1) begin
+        if (token3_quan[j] > 13'sd511) begin
+            token3_quan_10[j] = 10'sd511;
+        end else if (token3_quan[j] < -13'sd512) begin
+            token3_quan_10[j] = -10'sd512;
+        end else begin
+            token3_quan_10[j] = token3_quan[j][9:0];
+        end
+    end
+end
+
+// concanacated the data to write into sram B
+
+// write into sram B addr 0-15
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank0_h_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank1_h_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank2_h_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank3_h_w;
+// write into sram B addr 16-31
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank0_l_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank1_l_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank2_l_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank3_l_w;
+
+always @(*) begin
+    b_bank0_h_w = { token0_quan_10[0], token0_quan_10[1], token0_quan_10[2], token0_quan_10[3]
+                  , token0_quan_10[4], token0_quan_10[5], token0_quan_10[6], token0_quan_10[7]};
+    b_bank0_l_w = { token0_quan_10[8], token0_quan_10[9], token0_quan_10[10], token0_quan_10[11]
+                  , token0_quan_10[12], token0_quan_10[13], token0_quan_10[14], token0_quan_10[15]};
+
+    b_bank1_h_w = { token1_quan_10[0], token1_quan_10[1], token1_quan_10[2], token1_quan_10[3]
+                  , token1_quan_10[4], token1_quan_10[5], token1_quan_10[6], token1_quan_10[7]};
+    b_bank1_l_w = { token1_quan_10[8], token1_quan_10[9], token1_quan_10[10], token1_quan_10[11]
+                  , token1_quan_10[12], token1_quan_10[13], token1_quan_10[14], token1_quan_10[15]};
+
+    b_bank2_h_w = { token2_quan_10[0], token2_quan_10[1], token2_quan_10[2], token2_quan_10[3]
+                  , token2_quan_10[4], token2_quan_10[5], token2_quan_10[6], token2_quan_10[7]};
+    b_bank2_l_w = { token2_quan_10[8], token2_quan_10[9], token2_quan_10[10], token2_quan_10[11]
+                  , token2_quan_10[12], token2_quan_10[13], token2_quan_10[14], token2_quan_10[15]};
+
+    b_bank3_h_w = { token3_quan_10[0], token3_quan_10[1], token3_quan_10[2], token3_quan_10[3]
+                  , token3_quan_10[4], token3_quan_10[5], token3_quan_10[6], token3_quan_10[7]};
+    b_bank3_l_w = { token3_quan_10[8], token3_quan_10[9], token3_quan_10[10], token3_quan_10[11]
+                  , token3_quan_10[12], token3_quan_10[13], token3_quan_10[14], token3_quan_10[15]};
+end
+
+assign sram_wdata_b0 = (valid_2_d)? b_bank0_h_w: b_bank0_l_w;
+assign sram_wdata_b1 = (valid_2_d)? b_bank1_h_w: b_bank1_l_w;
+assign sram_wdata_b2 = (valid_2_d)? b_bank2_h_w: b_bank2_l_w;
+assign sram_wdata_b3 = (valid_2_d)? b_bank3_h_w: b_bank3_l_w;
+
+// write the result into sram B
+// SRAM B: 64@16ch
+// addr 0~15: 0~7ch, addr 16~31: 8~15ch
+
+//               token0: {addr0_bank0, addr16_bank0}, 
+//               token1: {addr0_bank1, addr16_bank1}, 
+//               token2: {addr0_bank2, addr16_bank2}, 
+//               token3: {addr0_bank3, addr16_bank3}
+//
+//               token4: {addr1_bank0, addr17_bank0}, 
+//               token5: {addr1_bank1, addr17_bank1}, 
+//               token6: {addr1_bank2, addr17_bank2}, 
+//               token7: {addr1_bank3, addr17_bank3}
+//
+//               token8:  {addr2_bank0, addr18_bank0}, 
+//               token9:  {addr2_bank1, addr18_bank1}, 
+//               token10: {addr2_bank2, addr18_bank2}, 
+//               token11: {addr2_bank3, addr18_bank3}
+// ...
+//               token60:  {addr15_bank0, addr31_bank0}, 
+//               token61:  {addr15_bank1, addr31_bank1}, 
+//               token62:  {addr15_bank2, addr31_bank2}, 
+//               token63:  {addr15_bank3, addr31_bank3}
+
+// SRAM B access:
+// addr0 -> addr(0+16) -> addr1 -> addr(1+16) -> ... -> addr15 -> addr(15+16)
+// 00000 -> 10000 -> 00001 -> 10001 -> ... -> 01111 -> 11111
+// toggle the MSB addr, and increment the LSB addr
+
+// SRAM B can be write if valid_3, low active write
+assign sram_wen_b0 = !valid_3;
+assign sram_wen_b1 = !valid_3;
+assign sram_wen_b2 = !valid_3;
+assign sram_wen_b3 = !valid_3;
+
+// SRAM B addr controller
+reg [4:0] sram_addr_cnt_b;
+always @(posedge clk) begin
+    if (valid_3) begin
+        sram_addr_cnt_b <= sram_addr_cnt_b + 1;
+    end else begin
+        sram_addr_cnt_b <= 0;
+    end
+end
+
+assign sram_addr_b0 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+assign sram_addr_b1 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+assign sram_addr_b2 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+assign sram_addr_b3 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+
+
+
+// ===== 4. Read normalized data from SRAM B. ===== //
 
 endmodule
 
