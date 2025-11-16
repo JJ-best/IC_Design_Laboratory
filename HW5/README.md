@@ -77,3 +77,6 @@ For example, addresses 0~15 can store 16x8 element, and consider 4 bank, there i
 Since the attention layer output shape is 64*64(larger them out SRAM group), we should 
 separate them by chunks and calculate sequentially. More details will be mentioned in the 
 Mutli-head self-attention implementation Section. 
+
+
+## implementation architecture of sram a stage
