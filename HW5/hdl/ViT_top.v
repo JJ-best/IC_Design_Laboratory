@@ -114,12 +114,15 @@ reg [(BW_PER_ACT-1):0] bias_reg [0:15]; // 0->ch0, 15->ch15
 reg [3:0] bias_addr_cnt;
 reg bias_finish;
 reg [4:0] sram_addr_cnt_a; // sram A addr controller
-
+reg valid_3; 
 // ===== read sram B ===== //
 // SRAM B addr controller
 reg [4:0] sram_addr_cnt_b;
+reg valid_1;
+reg valid_2;
 
-
+reg [3:0] cnt8; // count 8 cycle
+reg [2:0]sram_b_wen_cnt;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
 localparam R_BIAS_A = 5'd1;
@@ -158,14 +161,14 @@ always @(*) begin
             end
         end
         NORMAL: begin
-            if (sram_addr_cnt_a == 5'd31) begin
+            if (sram_addr_cnt_a == 5'd1 && cnt8==4'd1 && valid_2) begin
                 top_state_n = NORMAL_T;
             end else begin
                 top_state_n = NORMAL;
             end
         end
         NORMAL_T: begin
-            if (sram_addr_cnt_b == 5'd31) begin
+            if (sram_b_wen_cnt == 3'd7) begin
                 top_state_n = PROJ;
             end else begin
                 top_state_n = NORMAL_T;
@@ -267,10 +270,21 @@ assign sram_wen_a1 = 1'b1;
 assign sram_wen_a2 = 1'b1;
 assign sram_wen_a3 = 1'b1;
 
+always @(posedge clk) begin
+    if (!srst_n) begin
+        cnt8 <= 0;
+    end else if (top_state == NORMAL) begin
+        cnt8 <= (cnt8 == 4'd8)? 0 : cnt8 + 1;
+    end
+end 
 // SRAM A addr controller
 always @(posedge clk) begin
     if (top_state == NORMAL) begin
-        sram_addr_cnt_a <= sram_addr_cnt_a + 1;
+        if ((sram_addr_a0[4] == 0) | (sram_addr_a0[4] == 1 && cnt8 == 4'd8)) begin
+            sram_addr_cnt_a <= sram_addr_cnt_a + 1;
+        end else begin
+            sram_addr_cnt_a <= sram_addr_cnt_a;
+        end
     end else begin
         sram_addr_cnt_a <= 0;
     end
@@ -339,11 +353,10 @@ reg signed[BW_PER_ACT-1:0] a_bank1_reg_l [0:CH_NUM-1];
 reg signed[BW_PER_ACT-1:0] a_bank2_reg_l [0:CH_NUM-1];
 reg signed[BW_PER_ACT-1:0] a_bank3_reg_l [0:CH_NUM-1];
 
-reg valid_1;
 
 // ---- bank0 ---- //
 always @(posedge clk) begin
-    if (sram_addr_a0[4] == 1'b1) begin
+    if (cnt8 == 4'd1) begin
         a_bank0_reg_h[0] <= a_bank0_dat[0];
         a_bank0_reg_h[1] <= a_bank0_dat[1];
         a_bank0_reg_h[2] <= a_bank0_dat[2];
@@ -352,9 +365,9 @@ always @(posedge clk) begin
         a_bank0_reg_h[5] <= a_bank0_dat[5];
         a_bank0_reg_h[6] <= a_bank0_dat[6];
         a_bank0_reg_h[7] <= a_bank0_dat[7];
-        valid_1 <= 1;
+        valid_1 <= 0;
     end
-    if (sram_addr_a0[4] == 1'b0) begin
+    if (cnt8 == 4'd2) begin
         a_bank0_reg_l[0] <= a_bank0_dat[0];
         a_bank0_reg_l[1] <= a_bank0_dat[1];
         a_bank0_reg_l[2] <= a_bank0_dat[2];
@@ -363,13 +376,13 @@ always @(posedge clk) begin
         a_bank0_reg_l[5] <= a_bank0_dat[5];
         a_bank0_reg_l[6] <= a_bank0_dat[6];
         a_bank0_reg_l[7] <= a_bank0_dat[7];
-        valid_1 <= 0;
+        valid_1 <= (top_state == NORMAL)? 1:0;
     end
 end
 
 // ---- bank1 ---- //
 always @(posedge clk) begin
-    if (sram_addr_a1[4] == 1'b1) begin
+    if (cnt8 == 4'd1) begin
         a_bank1_reg_h[0] <= a_bank1_dat[0];
         a_bank1_reg_h[1] <= a_bank1_dat[1];
         a_bank1_reg_h[2] <= a_bank1_dat[2];
@@ -379,7 +392,7 @@ always @(posedge clk) begin
         a_bank1_reg_h[6] <= a_bank1_dat[6];
         a_bank1_reg_h[7] <= a_bank1_dat[7];
     end
-    if (sram_addr_a1[4] == 1'b0) begin
+    if (cnt8 == 4'd2) begin
         a_bank1_reg_l[0] <= a_bank1_dat[0];
         a_bank1_reg_l[1] <= a_bank1_dat[1];
         a_bank1_reg_l[2] <= a_bank1_dat[2];
@@ -393,7 +406,7 @@ end
 
 // ---- bank2 ---- //
 always @(posedge clk) begin
-    if (sram_addr_a2[4] == 1'b1) begin
+    if (cnt8 == 4'd1) begin
         a_bank2_reg_h[0] <= a_bank2_dat[0];
         a_bank2_reg_h[1] <= a_bank2_dat[1];
         a_bank2_reg_h[2] <= a_bank2_dat[2];
@@ -403,7 +416,7 @@ always @(posedge clk) begin
         a_bank2_reg_h[6] <= a_bank2_dat[6];
         a_bank2_reg_h[7] <= a_bank2_dat[7];
     end
-    if (sram_addr_a2[4] == 1'b0) begin
+    if (cnt8 == 4'd2) begin
         a_bank2_reg_l[0] <= a_bank2_dat[0];
         a_bank2_reg_l[1] <= a_bank2_dat[1];
         a_bank2_reg_l[2] <= a_bank2_dat[2];
@@ -417,7 +430,7 @@ end
 
 // ---- bank3 ---- //
 always @(posedge clk) begin
-    if (sram_addr_a3[4] == 1'b1) begin
+    if (cnt8 == 4'd1) begin
         a_bank3_reg_h[0] <= a_bank3_dat[0];
         a_bank3_reg_h[1] <= a_bank3_dat[1];
         a_bank3_reg_h[2] <= a_bank3_dat[2];
@@ -427,7 +440,7 @@ always @(posedge clk) begin
         a_bank3_reg_h[6] <= a_bank3_dat[6];
         a_bank3_reg_h[7] <= a_bank3_dat[7];
     end
-    if (sram_addr_a3[4] == 1'b0) begin
+    if (cnt8 == 4'd2) begin
         a_bank3_reg_l[0] <= a_bank3_dat[0];
         a_bank3_reg_l[1] <= a_bank3_dat[1];
         a_bank3_reg_l[2] <= a_bank3_dat[2];
@@ -439,6 +452,13 @@ always @(posedge clk) begin
     end
 end
 
+integer g;
+reg signed [BW_PER_ACT-1:0] a_bank_reg_h_d[0:CH_NUM-1];
+always @(posedge clk) begin
+    for (g=0;g<8;g=g+1) begin
+        a_bank_reg_h_d[g] <= a_bank3_reg_h[g];
+    end
+end
 // ===== 2. normalization (computation per token) ===== //
 
 // ----- token mean ----- //
@@ -452,36 +472,96 @@ reg signed[BW_PER_ACT+3:0] token0_mean;
 reg signed[BW_PER_ACT+3:0] token1_mean;
 reg signed[BW_PER_ACT+3:0] token2_mean;
 reg signed[BW_PER_ACT+3:0] token3_mean;
-reg valid_2;
+reg signed[BW_PER_ACT+3:0] token_mean;
+reg signed[BW_PER_ACT+3:0] token_mean_n;
+reg signed[BW_PER_ACT-1:0] a_bank_dat[0:15];
+
+integer k;
+always @(*) begin
+    case (cnt8)
+        3: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank0_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank0_reg_l[k-8];
+            end
+        end
+        4: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank0_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank0_reg_l[k-8];
+            end
+        end
+        5: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank1_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank1_reg_l[k-8];
+            end
+        end
+        6: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank1_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank1_reg_l[k-8];
+            end
+        end
+        7: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank2_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank2_reg_l[k-8];
+            end
+        end
+        8: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank2_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank2_reg_l[k-8];
+            end
+        end
+        0: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank3_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank3_reg_l[k-8];
+            end
+        end
+        1: begin
+            for (k=0; k<8; k=k+1) begin
+                a_bank_dat[k] = a_bank3_reg_h[k];
+            end
+            for (k=8; k<16; k=k+1) begin
+                a_bank_dat[k] = a_bank3_reg_l[k-8];
+            end
+        end
+        default: begin
+            for (k=0; k<16; k=k+1) begin
+                a_bank_dat[k] = 0;
+            end
+            
+        end
+    endcase
+end
+always @(*) begin
+    token_mean_n = a_bank_dat[0]  + a_bank_dat[1]  + a_bank_dat[2]  + a_bank_dat[3]  + 
+                   a_bank_dat[4]  + a_bank_dat[5]  + a_bank_dat[6]  + a_bank_dat[7]  + 
+                   a_bank_dat[8]  + a_bank_dat[9]  + a_bank_dat[10] + a_bank_dat[11] + 
+                   a_bank_dat[12] + a_bank_dat[13] + a_bank_dat[14] + a_bank_dat[15];
+end
 
 always @(posedge clk) begin
     if (valid_1) begin
-        // token0 -> bank0
-    token0_mean <= a_bank0_dat[0] + a_bank0_dat[1] + a_bank0_dat[2] + a_bank0_dat[3]
-                + a_bank0_dat[4] + a_bank0_dat[5] + a_bank0_dat[6] + a_bank0_dat[7]
-                + a_bank0_reg_h[0] + a_bank0_reg_h[1] + a_bank0_reg_h[2] + a_bank0_reg_h[3]
-                + a_bank0_reg_h[4] + a_bank0_reg_h[5] + a_bank0_reg_h[6] + a_bank0_reg_h[7];
-
-    // token1 -> bank1
-    token1_mean <= a_bank1_dat[0] + a_bank1_dat[1] + a_bank1_dat[2] + a_bank1_dat[3]
-                + a_bank1_dat[4] + a_bank1_dat[5] + a_bank1_dat[6] + a_bank1_dat[7]
-                + a_bank1_reg_h[0] + a_bank1_reg_h[1] + a_bank1_reg_h[2] + a_bank1_reg_h[3]
-                + a_bank1_reg_h[4] + a_bank1_reg_h[5] + a_bank1_reg_h[6] + a_bank1_reg_h[7];
-
-    // token2 -> bank2
-    token2_mean <= a_bank2_dat[0] + a_bank2_dat[1] + a_bank2_dat[2] + a_bank2_dat[3]
-                + a_bank2_dat[4] + a_bank2_dat[5] + a_bank2_dat[6] + a_bank2_dat[7]
-                + a_bank2_reg_h[0] + a_bank2_reg_h[1] + a_bank2_reg_h[2] + a_bank2_reg_h[3]
-                + a_bank2_reg_h[4] + a_bank2_reg_h[5] + a_bank2_reg_h[6] + a_bank2_reg_h[7];
-
-    // token3 -> bank3
-    token3_mean <= a_bank3_dat[0] + a_bank3_dat[1] + a_bank3_dat[2] + a_bank3_dat[3]
-                + a_bank3_dat[4] + a_bank3_dat[5] + a_bank3_dat[6] + a_bank3_dat[7]
-                + a_bank3_reg_h[0] + a_bank3_reg_h[1] + a_bank3_reg_h[2] + a_bank3_reg_h[3]
-                + a_bank3_reg_h[4] + a_bank3_reg_h[5] + a_bank3_reg_h[6] + a_bank3_reg_h[7];
+    token_mean <= token_mean_n;
     end
-    
-    
     valid_2 <= valid_1;
 end
 
@@ -494,174 +574,103 @@ end
 // sum 16 as data so the result may be (1-bit sign + 7-bit integer + 10-bit fraction)
 // then devide by 16, so we view the sum as (1-bit sign + 3-bit integer + 14-bit fraction)
 // to get the MAE
+reg [13:0] a_bank_minus[0:15];
+reg [13:0] a_bank_minux_x[0:15];
+reg [13:0] a_bank_abs[0:15];
+reg [17:0] token_mae;
 
-reg [13:0] a_bank0_minus[0:15];
-reg [13:0] a_bank1_minus[0:15];
-reg [13:0] a_bank2_minus[0:15];
-reg [13:0] a_bank3_minus[0:15];
-reg [13:0] a_bank0_abs[0:15];
-reg [13:0] a_bank1_abs[0:15];
-reg [13:0] a_bank2_abs[0:15];
-reg [13:0] a_bank3_abs[0:15];
-reg [17:0]token0_mae;
-reg [17:0]token1_mae;
-reg [17:0]token2_mae;
-reg [17:0]token3_mae;
 always @(*) begin
-    a_bank0_minus[0]  = {a_bank0_reg_h[0], 4'b0} - token0_mean; // ch0
-    a_bank0_minus[1]  = {a_bank0_reg_h[1], 4'b0} - token0_mean; // ch1
-    a_bank0_minus[2]  = {a_bank0_reg_h[2], 4'b0} - token0_mean; // ch2
-    a_bank0_minus[3]  = {a_bank0_reg_h[3], 4'b0} - token0_mean; // ch3
-    a_bank0_minus[4]  = {a_bank0_reg_h[4], 4'b0} - token0_mean; // ch4
-    a_bank0_minus[5]  = {a_bank0_reg_h[5], 4'b0} - token0_mean; // ch5
-    a_bank0_minus[6]  = {a_bank0_reg_h[6], 4'b0} - token0_mean; // ch6
-    a_bank0_minus[7]  = {a_bank0_reg_h[7], 4'b0} - token0_mean; // ch7
+   case (cnt8)
+    4: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank0_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank0_reg_l[k-8], 4'b0};
+        end
+    end
+    5: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank0_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank0_reg_l[k-8], 4'b0};
+        end
+    end
+    6: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank1_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank1_reg_l[k-8], 4'b0};
+        end
+    end
+    7: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank1_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank1_reg_l[k-8], 4'b0};
+        end
+    end
+    8: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank2_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank2_reg_l[k-8], 4'b0};
+        end
+    end
+    0: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank2_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank2_reg_l[k-8], 4'b0};
+        end
+    end
+    1: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank3_reg_h[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank3_reg_l[k-8], 4'b0};
+        end
+    end
+    2: begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank_reg_h_d[k], 4'b0};
+        end
+        for (k=8; k<16; k=k+1) begin
+            a_bank_minux_x[k] = {a_bank3_reg_l[k-8], 4'b0};
+        end
+    end
+    default: begin
+        for (k=0; k<16; k=k+1) begin
+            a_bank_minux_x[k] = 0;
+        end
+    end
+        
+   endcase 
+end
 
-    a_bank0_minus[8]  = {a_bank0_reg_l[0], 4'b0} - token0_mean; // ch8
-    a_bank0_minus[9]  = {a_bank0_reg_l[1], 4'b0} - token0_mean; // ch9
-    a_bank0_minus[10] = {a_bank0_reg_l[2], 4'b0} - token0_mean; // ch10
-    a_bank0_minus[11] = {a_bank0_reg_l[3], 4'b0} - token0_mean; // ch11
-    a_bank0_minus[12] = {a_bank0_reg_l[4], 4'b0} - token0_mean; // ch12
-    a_bank0_minus[13] = {a_bank0_reg_l[5], 4'b0} - token0_mean; // ch13
-    a_bank0_minus[14] = {a_bank0_reg_l[6], 4'b0} - token0_mean; // ch14
-    a_bank0_minus[15] = {a_bank0_reg_l[7], 4'b0} - token0_mean; // ch15
+always @(*) begin
+    for (k=0; k<16; k=k+1) begin
+        a_bank_minus[k] = a_bank_minux_x[k] - token_mean;
+    end
+end
 
-    a_bank1_minus[0]  = {a_bank1_reg_h[0], 4'b0} - token1_mean;
-    a_bank1_minus[1]  = {a_bank1_reg_h[1], 4'b0} - token1_mean;
-    a_bank1_minus[2]  = {a_bank1_reg_h[2], 4'b0} - token1_mean;
-    a_bank1_minus[3]  = {a_bank1_reg_h[3], 4'b0} - token1_mean;
-    a_bank1_minus[4]  = {a_bank1_reg_h[4], 4'b0} - token1_mean;
-    a_bank1_minus[5]  = {a_bank1_reg_h[5], 4'b0} - token1_mean;
-    a_bank1_minus[6]  = {a_bank1_reg_h[6], 4'b0} - token1_mean;
-    a_bank1_minus[7]  = {a_bank1_reg_h[7], 4'b0} - token1_mean;
-    a_bank1_minus[8]  = {a_bank1_reg_l[0], 4'b0} - token1_mean;
-    a_bank1_minus[9]  = {a_bank1_reg_l[1], 4'b0} - token1_mean;
-    a_bank1_minus[10] = {a_bank1_reg_l[2], 4'b0} - token1_mean;
-    a_bank1_minus[11] = {a_bank1_reg_l[3], 4'b0} - token1_mean;
-    a_bank1_minus[12] = {a_bank1_reg_l[4], 4'b0} - token1_mean;
-    a_bank1_minus[13] = {a_bank1_reg_l[5], 4'b0} - token1_mean;
-    a_bank1_minus[14] = {a_bank1_reg_l[6], 4'b0} - token1_mean;
-    a_bank1_minus[15] = {a_bank1_reg_l[7], 4'b0} - token1_mean;
-
-    a_bank2_minus[0]  = {a_bank2_reg_h[0], 4'b0} - token2_mean;
-    a_bank2_minus[1]  = {a_bank2_reg_h[1], 4'b0} - token2_mean;
-    a_bank2_minus[2]  = {a_bank2_reg_h[2], 4'b0} - token2_mean;
-    a_bank2_minus[3]  = {a_bank2_reg_h[3], 4'b0} - token2_mean;
-    a_bank2_minus[4]  = {a_bank2_reg_h[4], 4'b0} - token2_mean;
-    a_bank2_minus[5]  = {a_bank2_reg_h[5], 4'b0} - token2_mean;
-    a_bank2_minus[6]  = {a_bank2_reg_h[6], 4'b0} - token2_mean;
-    a_bank2_minus[7]  = {a_bank2_reg_h[7], 4'b0} - token2_mean;
-    a_bank2_minus[8]  = {a_bank2_reg_l[0], 4'b0} - token2_mean;
-    a_bank2_minus[9]  = {a_bank2_reg_l[1], 4'b0} - token2_mean;
-    a_bank2_minus[10] = {a_bank2_reg_l[2], 4'b0} - token2_mean;
-    a_bank2_minus[11] = {a_bank2_reg_l[3], 4'b0} - token2_mean;
-    a_bank2_minus[12] = {a_bank2_reg_l[4], 4'b0} - token2_mean;
-    a_bank2_minus[13] = {a_bank2_reg_l[5], 4'b0} - token2_mean;
-    a_bank2_minus[14] = {a_bank2_reg_l[6], 4'b0} - token2_mean;
-    a_bank2_minus[15] = {a_bank2_reg_l[7], 4'b0} - token2_mean;
-
-    a_bank3_minus[0]  = {a_bank3_reg_h[0], 4'b0} - token3_mean;
-    a_bank3_minus[1]  = {a_bank3_reg_h[1], 4'b0} - token3_mean;
-    a_bank3_minus[2]  = {a_bank3_reg_h[2], 4'b0} - token3_mean;
-    a_bank3_minus[3]  = {a_bank3_reg_h[3], 4'b0} - token3_mean;
-    a_bank3_minus[4]  = {a_bank3_reg_h[4], 4'b0} - token3_mean;
-    a_bank3_minus[5]  = {a_bank3_reg_h[5], 4'b0} - token3_mean;
-    a_bank3_minus[6]  = {a_bank3_reg_h[6], 4'b0} - token3_mean;
-    a_bank3_minus[7]  = {a_bank3_reg_h[7], 4'b0} - token3_mean;
-    a_bank3_minus[8]  = {a_bank3_reg_l[0], 4'b0} - token3_mean;
-    a_bank3_minus[9]  = {a_bank3_reg_l[1], 4'b0} - token3_mean;
-    a_bank3_minus[10] = {a_bank3_reg_l[2], 4'b0} - token3_mean;
-    a_bank3_minus[11] = {a_bank3_reg_l[3], 4'b0} - token3_mean;
-    a_bank3_minus[12] = {a_bank3_reg_l[4], 4'b0} - token3_mean;
-    a_bank3_minus[13] = {a_bank3_reg_l[5], 4'b0} - token3_mean;
-    a_bank3_minus[14] = {a_bank3_reg_l[6], 4'b0} - token3_mean;
-    a_bank3_minus[15] = {a_bank3_reg_l[7], 4'b0} - token3_mean;
-
+always @(*) begin
     // absolute value: if the sign bit is 1, get 2's complement
-    a_bank0_abs[0]  = a_bank0_minus[0][13]  ? (~a_bank0_minus[0]  + 1'b1) : a_bank0_minus[0];
-    a_bank0_abs[1]  = a_bank0_minus[1][13]  ? (~a_bank0_minus[1]  + 1'b1) : a_bank0_minus[1];
-    a_bank0_abs[2]  = a_bank0_minus[2][13]  ? (~a_bank0_minus[2]  + 1'b1) : a_bank0_minus[2];
-    a_bank0_abs[3]  = a_bank0_minus[3][13]  ? (~a_bank0_minus[3]  + 1'b1) : a_bank0_minus[3];
-    a_bank0_abs[4]  = a_bank0_minus[4][13]  ? (~a_bank0_minus[4]  + 1'b1) : a_bank0_minus[4];
-    a_bank0_abs[5]  = a_bank0_minus[5][13]  ? (~a_bank0_minus[5]  + 1'b1) : a_bank0_minus[5];
-    a_bank0_abs[6]  = a_bank0_minus[6][13]  ? (~a_bank0_minus[6]  + 1'b1) : a_bank0_minus[6];
-    a_bank0_abs[7]  = a_bank0_minus[7][13]  ? (~a_bank0_minus[7]  + 1'b1) : a_bank0_minus[7];
-    a_bank0_abs[8]  = a_bank0_minus[8][13]  ? (~a_bank0_minus[8]  + 1'b1) : a_bank0_minus[8];
-    a_bank0_abs[9]  = a_bank0_minus[9][13]  ? (~a_bank0_minus[9]  + 1'b1) : a_bank0_minus[9];
-    a_bank0_abs[10] = a_bank0_minus[10][13] ? (~a_bank0_minus[10] + 1'b1) : a_bank0_minus[10];
-    a_bank0_abs[11] = a_bank0_minus[11][13] ? (~a_bank0_minus[11] + 1'b1) : a_bank0_minus[11];
-    a_bank0_abs[12] = a_bank0_minus[12][13] ? (~a_bank0_minus[12] + 1'b1) : a_bank0_minus[12];
-    a_bank0_abs[13] = a_bank0_minus[13][13] ? (~a_bank0_minus[13] + 1'b1) : a_bank0_minus[13];
-    a_bank0_abs[14] = a_bank0_minus[14][13] ? (~a_bank0_minus[14] + 1'b1) : a_bank0_minus[14];
-    a_bank0_abs[15] = a_bank0_minus[15][13] ? (~a_bank0_minus[15] + 1'b1) : a_bank0_minus[15];
+    for (k=0; k<16; k=k+1) begin
+        a_bank_abs[k] = a_bank_minus[k][13]? (~a_bank_minus[k] + 1'b1): a_bank_minus[k];
+    end
 
-    a_bank1_abs[0]  = a_bank1_minus[0][13]  ? (~a_bank1_minus[0]  + 1'b1) : a_bank1_minus[0];
-    a_bank1_abs[1]  = a_bank1_minus[1][13]  ? (~a_bank1_minus[1]  + 1'b1) : a_bank1_minus[1];
-    a_bank1_abs[2]  = a_bank1_minus[2][13]  ? (~a_bank1_minus[2]  + 1'b1) : a_bank1_minus[2];
-    a_bank1_abs[3]  = a_bank1_minus[3][13]  ? (~a_bank1_minus[3]  + 1'b1) : a_bank1_minus[3];
-    a_bank1_abs[4]  = a_bank1_minus[4][13]  ? (~a_bank1_minus[4]  + 1'b1) : a_bank1_minus[4];
-    a_bank1_abs[5]  = a_bank1_minus[5][13]  ? (~a_bank1_minus[5]  + 1'b1) : a_bank1_minus[5];
-    a_bank1_abs[6]  = a_bank1_minus[6][13]  ? (~a_bank1_minus[6]  + 1'b1) : a_bank1_minus[6];
-    a_bank1_abs[7]  = a_bank1_minus[7][13]  ? (~a_bank1_minus[7]  + 1'b1) : a_bank1_minus[7];
-    a_bank1_abs[8]  = a_bank1_minus[8][13]  ? (~a_bank1_minus[8]  + 1'b1) : a_bank1_minus[8];
-    a_bank1_abs[9]  = a_bank1_minus[9][13]  ? (~a_bank1_minus[9]  + 1'b1) : a_bank1_minus[9];
-    a_bank1_abs[10] = a_bank1_minus[10][13] ? (~a_bank1_minus[10] + 1'b1) : a_bank1_minus[10];
-    a_bank1_abs[11] = a_bank1_minus[11][13] ? (~a_bank1_minus[11] + 1'b1) : a_bank1_minus[11];
-    a_bank1_abs[12] = a_bank1_minus[12][13] ? (~a_bank1_minus[12] + 1'b1) : a_bank1_minus[12];
-    a_bank1_abs[13] = a_bank1_minus[13][13] ? (~a_bank1_minus[13] + 1'b1) : a_bank1_minus[13];
-    a_bank1_abs[14] = a_bank1_minus[14][13] ? (~a_bank1_minus[14] + 1'b1) : a_bank1_minus[14];
-    a_bank1_abs[15] = a_bank1_minus[15][13] ? (~a_bank1_minus[15] + 1'b1) : a_bank1_minus[15];
+    token_mae = a_bank_abs[0]  + a_bank_abs[1]  + a_bank_abs[2]  + a_bank_abs[3]  + 
+                a_bank_abs[4]  + a_bank_abs[5]  + a_bank_abs[6]  + a_bank_abs[7]  + 
+                a_bank_abs[8]  + a_bank_abs[9]  + a_bank_abs[10] + a_bank_abs[11] + 
+                a_bank_abs[12] + a_bank_abs[13] + a_bank_abs[14] + a_bank_abs[15];
 
-    a_bank2_abs[0]  = a_bank2_minus[0][13]  ? (~a_bank2_minus[0]  + 1'b1) : a_bank2_minus[0];
-    a_bank2_abs[1]  = a_bank2_minus[1][13]  ? (~a_bank2_minus[1]  + 1'b1) : a_bank2_minus[1];
-    a_bank2_abs[2]  = a_bank2_minus[2][13]  ? (~a_bank2_minus[2]  + 1'b1) : a_bank2_minus[2];
-    a_bank2_abs[3]  = a_bank2_minus[3][13]  ? (~a_bank2_minus[3]  + 1'b1) : a_bank2_minus[3];
-    a_bank2_abs[4]  = a_bank2_minus[4][13]  ? (~a_bank2_minus[4]  + 1'b1) : a_bank2_minus[4];
-    a_bank2_abs[5]  = a_bank2_minus[5][13]  ? (~a_bank2_minus[5]  + 1'b1) : a_bank2_minus[5];
-    a_bank2_abs[6]  = a_bank2_minus[6][13]  ? (~a_bank2_minus[6]  + 1'b1) : a_bank2_minus[6];
-    a_bank2_abs[7]  = a_bank2_minus[7][13]  ? (~a_bank2_minus[7]  + 1'b1) : a_bank2_minus[7];
-    a_bank2_abs[8]  = a_bank2_minus[8][13]  ? (~a_bank2_minus[8]  + 1'b1) : a_bank2_minus[8];
-    a_bank2_abs[9]  = a_bank2_minus[9][13]  ? (~a_bank2_minus[9]  + 1'b1) : a_bank2_minus[9];
-    a_bank2_abs[10] = a_bank2_minus[10][13] ? (~a_bank2_minus[10] + 1'b1) : a_bank2_minus[10];
-    a_bank2_abs[11] = a_bank2_minus[11][13] ? (~a_bank2_minus[11] + 1'b1) : a_bank2_minus[11];
-    a_bank2_abs[12] = a_bank2_minus[12][13] ? (~a_bank2_minus[12] + 1'b1) : a_bank2_minus[12];
-    a_bank2_abs[13] = a_bank2_minus[13][13] ? (~a_bank2_minus[13] + 1'b1) : a_bank2_minus[13];
-    a_bank2_abs[14] = a_bank2_minus[14][13] ? (~a_bank2_minus[14] + 1'b1) : a_bank2_minus[14];
-    a_bank2_abs[15] = a_bank2_minus[15][13] ? (~a_bank2_minus[15] + 1'b1) : a_bank2_minus[15];
-
-    a_bank3_abs[0]  = a_bank3_minus[0][13]  ? (~a_bank3_minus[0]  + 1'b1) : a_bank3_minus[0];
-    a_bank3_abs[1]  = a_bank3_minus[1][13]  ? (~a_bank3_minus[1]  + 1'b1) : a_bank3_minus[1];
-    a_bank3_abs[2]  = a_bank3_minus[2][13]  ? (~a_bank3_minus[2]  + 1'b1) : a_bank3_minus[2];
-    a_bank3_abs[3]  = a_bank3_minus[3][13]  ? (~a_bank3_minus[3]  + 1'b1) : a_bank3_minus[3];
-    a_bank3_abs[4]  = a_bank3_minus[4][13]  ? (~a_bank3_minus[4]  + 1'b1) : a_bank3_minus[4];
-    a_bank3_abs[5]  = a_bank3_minus[5][13]  ? (~a_bank3_minus[5]  + 1'b1) : a_bank3_minus[5];
-    a_bank3_abs[6]  = a_bank3_minus[6][13]  ? (~a_bank3_minus[6]  + 1'b1) : a_bank3_minus[6];
-    a_bank3_abs[7]  = a_bank3_minus[7][13]  ? (~a_bank3_minus[7]  + 1'b1) : a_bank3_minus[7];
-    a_bank3_abs[8]  = a_bank3_minus[8][13]  ? (~a_bank3_minus[8]  + 1'b1) : a_bank3_minus[8];
-    a_bank3_abs[9]  = a_bank3_minus[9][13]  ? (~a_bank3_minus[9]  + 1'b1) : a_bank3_minus[9];
-    a_bank3_abs[10] = a_bank3_minus[10][13] ? (~a_bank3_minus[10] + 1'b1) : a_bank3_minus[10];
-    a_bank3_abs[11] = a_bank3_minus[11][13] ? (~a_bank3_minus[11] + 1'b1) : a_bank3_minus[11];
-    a_bank3_abs[12] = a_bank3_minus[12][13] ? (~a_bank3_minus[12] + 1'b1) : a_bank3_minus[12];
-    a_bank3_abs[13] = a_bank3_minus[13][13] ? (~a_bank3_minus[13] + 1'b1) : a_bank3_minus[13];
-    a_bank3_abs[14] = a_bank3_minus[14][13] ? (~a_bank3_minus[14] + 1'b1) : a_bank3_minus[14];
-    a_bank3_abs[15] = a_bank3_minus[15][13] ? (~a_bank3_minus[15] + 1'b1) : a_bank3_minus[15];
-
-    token0_mae = a_bank0_abs[0]  + a_bank0_abs[1]  + a_bank0_abs[2]  + a_bank0_abs[3]
-                + a_bank0_abs[4]  + a_bank0_abs[5]  + a_bank0_abs[6]  + a_bank0_abs[7]
-                + a_bank0_abs[8]  + a_bank0_abs[9]  + a_bank0_abs[10] + a_bank0_abs[11]
-                + a_bank0_abs[12] + a_bank0_abs[13] + a_bank0_abs[14] + a_bank0_abs[15];
-    token1_mae = a_bank1_abs[0]  + a_bank1_abs[1]  + a_bank1_abs[2]  + a_bank1_abs[3]
-                + a_bank1_abs[4]  + a_bank1_abs[5]  + a_bank1_abs[6]  + a_bank1_abs[7]
-                + a_bank1_abs[8]  + a_bank1_abs[9]  + a_bank1_abs[10] + a_bank1_abs[11]
-                + a_bank1_abs[12] + a_bank1_abs[13] + a_bank1_abs[14] + a_bank1_abs[15];
-    token2_mae = a_bank2_abs[0]  + a_bank2_abs[1]  + a_bank2_abs[2]  + a_bank2_abs[3]
-                + a_bank2_abs[4]  + a_bank2_abs[5]  + a_bank2_abs[6]  + a_bank2_abs[7]
-                + a_bank2_abs[8]  + a_bank2_abs[9]  + a_bank2_abs[10] + a_bank2_abs[11]
-                + a_bank2_abs[12] + a_bank2_abs[13] + a_bank2_abs[14] + a_bank2_abs[15];
-    token3_mae = a_bank3_abs[0]  + a_bank3_abs[1]  + a_bank3_abs[2]  + a_bank3_abs[3]
-                + a_bank3_abs[4]  + a_bank3_abs[5]  + a_bank3_abs[6]  + a_bank3_abs[7]
-                + a_bank3_abs[8]  + a_bank3_abs[9]  + a_bank3_abs[10] + a_bank3_abs[11]
-                + a_bank3_abs[12] + a_bank3_abs[13] + a_bank3_abs[14] + a_bank3_abs[15];
 end
 
 
@@ -687,172 +696,163 @@ end
 // numbers, then perform the division to fraction-bit = 6. If the original answer is negative, we then
 // change the result back to a negative number (i.e. positive divisor and negative dividend, or
 // negative divisor and positive dividend).
-reg [(BW_PER_ACT-1):0]token0_nor[0:15];
-reg [(BW_PER_ACT-1):0]token1_nor[0:15];
-reg [(BW_PER_ACT-1):0]token2_nor[0:15];
-reg [(BW_PER_ACT-1):0]token3_nor[0:15];
-reg [17:0] token0_mae_abs;
-reg [17:0] token1_mae_abs;
-reg [17:0] token2_mae_abs;
-reg [17:0] token3_mae_abs;
-reg signed [(BW_PER_ACT-1):0]token0_nor_reg[0:15];
-reg signed [(BW_PER_ACT-1):0]token1_nor_reg[0:15];
-reg signed [(BW_PER_ACT-1):0]token2_nor_reg[0:15];
-reg signed [(BW_PER_ACT-1):0]token3_nor_reg[0:15];
-// pull up 2 cycle if valid_2 is high, 
-// since each token need 2 cycle to write into sram B
-reg valid_3;   
-reg valid_2_d; // delay valid_2 1 cycle
 
+wire signed[17:0] token_mae_abs;
+wire [23:0] token_nor[0:7];
+reg signed[BW_PER_ACT-1:0] token_nor_t[0:7];
+reg [BW_PER_ACT-1:0] token_nor_reg[0:7];
+reg signed[13:0] a_bank_abs_sel[0:7];
+reg sel_toggle; // this signal toggle when valid_2 is high
+reg valid_2_d1;
+reg valid_2_d2;
+reg valid_2_d3;
+reg a_bank_minus_sign_d1[0:15];
+reg a_bank_minus_sign_d2[0:15];
+reg a_bank_minus_sign_d3[0:15];
+reg token_mae_sign_d1;
+reg token_mae_sign_d2;
+reg token_mae_sign_d3;
+reg sel_toggle_d1;
+reg sel_toggle_d2;
+reg sel_toggle_d3;
+
+always @(posedge clk) begin
+    if (valid_2) begin
+        sel_toggle <= ~sel_toggle;
+    end else begin
+        sel_toggle <= 0;
+    end
+end
+
+// divider pipelien 4-stage, delay 3 cycle
+always @(posedge clk) begin
+    valid_2_d1 <= valid_2;
+    valid_2_d2 <= valid_2_d1;
+    valid_2_d3 <= valid_2_d2;
+    for (k=0; k<16; k=k+1) begin
+        a_bank_minus_sign_d1[k] <= a_bank_minus[k][13];
+        a_bank_minus_sign_d2[k] <= a_bank_minus_sign_d1[k];
+        a_bank_minus_sign_d3[k] <= a_bank_minus_sign_d2[k];
+    end
+    token_mae_sign_d1 <= token_mae[17];
+    token_mae_sign_d2 <= token_mae_sign_d1;
+    token_mae_sign_d3 <= token_mae_sign_d2;
+    sel_toggle_d1 <= sel_toggle;
+    sel_toggle_d2 <= sel_toggle_d1;
+    sel_toggle_d3 <= sel_toggle_d2;
+end
 always @(*) begin
-    token0_mae_abs = (token0_mae[17])? ~token0_mae + 1: token0_mae;
-    token1_mae_abs = (token1_mae[17])? ~token1_mae + 1: token1_mae;
-    token2_mae_abs = (token2_mae[17])? ~token2_mae + 1: token2_mae;
-    token3_mae_abs = (token3_mae[17])? ~token3_mae + 1: token3_mae; 
+    if (!sel_toggle) begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_abs_sel[k] = a_bank_abs[k];
+        end
+    end else begin
+        for (k=0; k<8; k=k+1) begin
+            a_bank_abs_sel[k] = a_bank_abs[k+8];
+        end 
+    end
+end
 
-    token0_nor[0]  = {a_bank0_abs[0],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[1]  = {a_bank0_abs[1],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[2]  = {a_bank0_abs[2],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[3]  = {a_bank0_abs[3],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[4]  = {a_bank0_abs[4],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[5]  = {a_bank0_abs[5],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[6]  = {a_bank0_abs[6],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[7]  = {a_bank0_abs[7],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[8]  = {a_bank0_abs[8],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[9]  = {a_bank0_abs[9],  4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[10] = {a_bank0_abs[10], 4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[11] = {a_bank0_abs[11], 4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[12] = {a_bank0_abs[12], 4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[13] = {a_bank0_abs[13], 4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[14] = {a_bank0_abs[14], 4'b0, 6'b0} / token0_mae_abs;
-    token0_nor[15] = {a_bank0_abs[15], 4'b0, 6'b0} / token0_mae_abs;
+assign token_mae_abs = (token_mae[17])? ~token_mae + 1: token_mae;
 
-    token1_nor[0]  = {a_bank1_abs[0],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[1]  = {a_bank1_abs[1],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[2]  = {a_bank1_abs[2],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[3]  = {a_bank1_abs[3],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[4]  = {a_bank1_abs[4],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[5]  = {a_bank1_abs[5],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[6]  = {a_bank1_abs[6],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[7]  = {a_bank1_abs[7],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[8]  = {a_bank1_abs[8],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[9]  = {a_bank1_abs[9],  4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[10] = {a_bank1_abs[10], 4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[11] = {a_bank1_abs[11], 4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[12] = {a_bank1_abs[12], 4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[13] = {a_bank1_abs[13], 4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[14] = {a_bank1_abs[14], 4'b0, 6'b0} / token1_mae_abs;
-    token1_nor[15] = {a_bank1_abs[15], 4'b0, 6'b0} / token1_mae_abs;
+DW_div_pipe_inst div0(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[0], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[0]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
 
-    token2_nor[0]  = {a_bank2_abs[0],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[1]  = {a_bank2_abs[1],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[2]  = {a_bank2_abs[2],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[3]  = {a_bank2_abs[3],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[4]  = {a_bank2_abs[4],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[5]  = {a_bank2_abs[5],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[6]  = {a_bank2_abs[6],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[7]  = {a_bank2_abs[7],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[8]  = {a_bank2_abs[8],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[9]  = {a_bank2_abs[9],  4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[10] = {a_bank2_abs[10], 4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[11] = {a_bank2_abs[11], 4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[12] = {a_bank2_abs[12], 4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[13] = {a_bank2_abs[13], 4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[14] = {a_bank2_abs[14], 4'b0, 6'b0} / token2_mae_abs;
-    token2_nor[15] = {a_bank2_abs[15], 4'b0, 6'b0} / token2_mae_abs;
+DW_div_pipe_inst div1(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[1], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[1]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
 
-    token3_nor[0]  = {a_bank3_abs[0],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[1]  = {a_bank3_abs[1],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[2]  = {a_bank3_abs[2],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[3]  = {a_bank3_abs[3],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[4]  = {a_bank3_abs[4],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[5]  = {a_bank3_abs[5],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[6]  = {a_bank3_abs[6],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[7]  = {a_bank3_abs[7],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[8]  = {a_bank3_abs[8],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[9]  = {a_bank3_abs[9],  4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[10] = {a_bank3_abs[10], 4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[11] = {a_bank3_abs[11], 4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[12] = {a_bank3_abs[12], 4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[13] = {a_bank3_abs[13], 4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[14] = {a_bank3_abs[14], 4'b0, 6'b0} / token3_mae_abs;
-    token3_nor[15] = {a_bank3_abs[15], 4'b0, 6'b0} / token3_mae_abs;
-end 
+DW_div_pipe_inst div2(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[2], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[2]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
+
+DW_div_pipe_inst div3(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[3], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[3]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
+
+DW_div_pipe_inst div4(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[4], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[4]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
+
+DW_div_pipe_inst div5(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[5], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[5]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
+
+DW_div_pipe_inst div6(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[6], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[6]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
+
+DW_div_pipe_inst div7(
+    .clk(clk), 
+    .inst_rst_n(1'b0),     // non rst mode
+    .inst_en(1'b0),        // non en  mode
+    .inst_a({a_bank_abs_sel[7], 4'b0, 6'b0}), 
+    .inst_b(token_mae_abs),
+    .quotient_inst(token_nor[7]),   
+    .remainder_inst(),  // non used
+    .divide_by_0_inst() // non used
+);
 
 // consider the sign of numerator and denominator, if both positive(0), then 
 // the result preserve, else, take 2's complement
-always @(posedge clk) begin
-    if (valid_2) begin
-        token0_nor_reg[0]  <= (!a_bank0_minus[0][13]  && !token0_mae[17]) ? token0_nor[0]  : (~token0_nor[0]  + 1'b1);
-        token0_nor_reg[1]  <= (!a_bank0_minus[1][13]  && !token0_mae[17]) ? token0_nor[1]  : (~token0_nor[1]  + 1'b1);
-        token0_nor_reg[2]  <= (!a_bank0_minus[2][13]  && !token0_mae[17]) ? token0_nor[2]  : (~token0_nor[2]  + 1'b1);
-        token0_nor_reg[3]  <= (!a_bank0_minus[3][13]  && !token0_mae[17]) ? token0_nor[3]  : (~token0_nor[3]  + 1'b1);
-        token0_nor_reg[4]  <= (!a_bank0_minus[4][13]  && !token0_mae[17]) ? token0_nor[4]  : (~token0_nor[4]  + 1'b1);
-        token0_nor_reg[5]  <= (!a_bank0_minus[5][13]  && !token0_mae[17]) ? token0_nor[5]  : (~token0_nor[5]  + 1'b1);
-        token0_nor_reg[6]  <= (!a_bank0_minus[6][13]  && !token0_mae[17]) ? token0_nor[6]  : (~token0_nor[6]  + 1'b1);
-        token0_nor_reg[7]  <= (!a_bank0_minus[7][13]  && !token0_mae[17]) ? token0_nor[7]  : (~token0_nor[7]  + 1'b1);
-        token0_nor_reg[8]  <= (!a_bank0_minus[8][13]  && !token0_mae[17]) ? token0_nor[8]  : (~token0_nor[8]  + 1'b1);
-        token0_nor_reg[9]  <= (!a_bank0_minus[9][13]  && !token0_mae[17]) ? token0_nor[9]  : (~token0_nor[9]  + 1'b1);
-        token0_nor_reg[10] <= (!a_bank0_minus[10][13] && !token0_mae[17]) ? token0_nor[10] : (~token0_nor[10] + 1'b1);
-        token0_nor_reg[11] <= (!a_bank0_minus[11][13] && !token0_mae[17]) ? token0_nor[11] : (~token0_nor[11] + 1'b1);
-        token0_nor_reg[12] <= (!a_bank0_minus[12][13] && !token0_mae[17]) ? token0_nor[12] : (~token0_nor[12] + 1'b1);
-        token0_nor_reg[13] <= (!a_bank0_minus[13][13] && !token0_mae[17]) ? token0_nor[13] : (~token0_nor[13] + 1'b1);
-        token0_nor_reg[14] <= (!a_bank0_minus[14][13] && !token0_mae[17]) ? token0_nor[14] : (~token0_nor[14] + 1'b1);
-        token0_nor_reg[15] <= (!a_bank0_minus[15][13] && !token0_mae[17]) ? token0_nor[15] : (~token0_nor[15] + 1'b1);
-
-        token1_nor_reg[0]  <= (!a_bank1_minus[0][13]  && !token1_mae[17]) ? token1_nor[0]  : (~token1_nor[0]  + 1'b1);
-        token1_nor_reg[1]  <= (!a_bank1_minus[1][13]  && !token1_mae[17]) ? token1_nor[1]  : (~token1_nor[1]  + 1'b1);
-        token1_nor_reg[2]  <= (!a_bank1_minus[2][13]  && !token1_mae[17]) ? token1_nor[2]  : (~token1_nor[2]  + 1'b1);
-        token1_nor_reg[3]  <= (!a_bank1_minus[3][13]  && !token1_mae[17]) ? token1_nor[3]  : (~token1_nor[3]  + 1'b1);
-        token1_nor_reg[4]  <= (!a_bank1_minus[4][13]  && !token1_mae[17]) ? token1_nor[4]  : (~token1_nor[4]  + 1'b1);
-        token1_nor_reg[5]  <= (!a_bank1_minus[5][13]  && !token1_mae[17]) ? token1_nor[5]  : (~token1_nor[5]  + 1'b1);
-        token1_nor_reg[6]  <= (!a_bank1_minus[6][13]  && !token1_mae[17]) ? token1_nor[6]  : (~token1_nor[6]  + 1'b1);
-        token1_nor_reg[7]  <= (!a_bank1_minus[7][13]  && !token1_mae[17]) ? token1_nor[7]  : (~token1_nor[7]  + 1'b1);
-        token1_nor_reg[8]  <= (!a_bank1_minus[8][13]  && !token1_mae[17]) ? token1_nor[8]  : (~token1_nor[8]  + 1'b1);
-        token1_nor_reg[9]  <= (!a_bank1_minus[9][13]  && !token1_mae[17]) ? token1_nor[9]  : (~token1_nor[9]  + 1'b1);
-        token1_nor_reg[10] <= (!a_bank1_minus[10][13] && !token1_mae[17]) ? token1_nor[10] : (~token1_nor[10] + 1'b1);
-        token1_nor_reg[11] <= (!a_bank1_minus[11][13] && !token1_mae[17]) ? token1_nor[11] : (~token1_nor[11] + 1'b1);
-        token1_nor_reg[12] <= (!a_bank1_minus[12][13] && !token1_mae[17]) ? token1_nor[12] : (~token1_nor[12] + 1'b1);
-        token1_nor_reg[13] <= (!a_bank1_minus[13][13] && !token1_mae[17]) ? token1_nor[13] : (~token1_nor[13] + 1'b1);
-        token1_nor_reg[14] <= (!a_bank1_minus[14][13] && !token1_mae[17]) ? token1_nor[14] : (~token1_nor[14] + 1'b1);
-        token1_nor_reg[15] <= (!a_bank1_minus[15][13] && !token1_mae[17]) ? token1_nor[15] : (~token1_nor[15] + 1'b1);
-
-        token2_nor_reg[0]  <= (!a_bank2_minus[0][13]  && !token2_mae[17]) ? token2_nor[0]  : (~token2_nor[0]  + 1'b1);
-        token2_nor_reg[1]  <= (!a_bank2_minus[1][13]  && !token2_mae[17]) ? token2_nor[1]  : (~token2_nor[1]  + 1'b1);
-        token2_nor_reg[2]  <= (!a_bank2_minus[2][13]  && !token2_mae[17]) ? token2_nor[2]  : (~token2_nor[2]  + 1'b1);
-        token2_nor_reg[3]  <= (!a_bank2_minus[3][13]  && !token2_mae[17]) ? token2_nor[3]  : (~token2_nor[3]  + 1'b1);
-        token2_nor_reg[4]  <= (!a_bank2_minus[4][13]  && !token2_mae[17]) ? token2_nor[4]  : (~token2_nor[4]  + 1'b1);
-        token2_nor_reg[5]  <= (!a_bank2_minus[5][13]  && !token2_mae[17]) ? token2_nor[5]  : (~token2_nor[5]  + 1'b1);
-        token2_nor_reg[6]  <= (!a_bank2_minus[6][13]  && !token2_mae[17]) ? token2_nor[6]  : (~token2_nor[6]  + 1'b1);
-        token2_nor_reg[7]  <= (!a_bank2_minus[7][13]  && !token2_mae[17]) ? token2_nor[7]  : (~token2_nor[7]  + 1'b1);
-        token2_nor_reg[8]  <= (!a_bank2_minus[8][13]  && !token2_mae[17]) ? token2_nor[8]  : (~token2_nor[8]  + 1'b1);
-        token2_nor_reg[9]  <= (!a_bank2_minus[9][13]  && !token2_mae[17]) ? token2_nor[9]  : (~token2_nor[9]  + 1'b1);
-        token2_nor_reg[10] <= (!a_bank2_minus[10][13] && !token2_mae[17]) ? token2_nor[10] : (~token2_nor[10] + 1'b1);
-        token2_nor_reg[11] <= (!a_bank2_minus[11][13] && !token2_mae[17]) ? token2_nor[11] : (~token2_nor[11] + 1'b1);
-        token2_nor_reg[12] <= (!a_bank2_minus[12][13] && !token2_mae[17]) ? token2_nor[12] : (~token2_nor[12] + 1'b1);
-        token2_nor_reg[13] <= (!a_bank2_minus[13][13] && !token2_mae[17]) ? token2_nor[13] : (~token2_nor[13] + 1'b1);
-        token2_nor_reg[14] <= (!a_bank2_minus[14][13] && !token2_mae[17]) ? token2_nor[14] : (~token2_nor[14] + 1'b1);
-        token2_nor_reg[15] <= (!a_bank2_minus[15][13] && !token2_mae[17]) ? token2_nor[15] : (~token2_nor[15] + 1'b1);
-
-        token3_nor_reg[0]  <= (!a_bank3_minus[0][13]  && !token3_mae[17]) ? token3_nor[0]  : (~token3_nor[0]  + 1'b1);
-        token3_nor_reg[1]  <= (!a_bank3_minus[1][13]  && !token3_mae[17]) ? token3_nor[1]  : (~token3_nor[1]  + 1'b1);
-        token3_nor_reg[2]  <= (!a_bank3_minus[2][13]  && !token3_mae[17]) ? token3_nor[2]  : (~token3_nor[2]  + 1'b1);
-        token3_nor_reg[3]  <= (!a_bank3_minus[3][13]  && !token3_mae[17]) ? token3_nor[3]  : (~token3_nor[3]  + 1'b1);
-        token3_nor_reg[4]  <= (!a_bank3_minus[4][13]  && !token3_mae[17]) ? token3_nor[4]  : (~token3_nor[4]  + 1'b1);
-        token3_nor_reg[5]  <= (!a_bank3_minus[5][13]  && !token3_mae[17]) ? token3_nor[5]  : (~token3_nor[5]  + 1'b1);
-        token3_nor_reg[6]  <= (!a_bank3_minus[6][13]  && !token3_mae[17]) ? token3_nor[6]  : (~token3_nor[6]  + 1'b1);
-        token3_nor_reg[7]  <= (!a_bank3_minus[7][13]  && !token3_mae[17]) ? token3_nor[7]  : (~token3_nor[7]  + 1'b1);
-        token3_nor_reg[8]  <= (!a_bank3_minus[8][13]  && !token3_mae[17]) ? token3_nor[8]  : (~token3_nor[8]  + 1'b1);
-        token3_nor_reg[9]  <= (!a_bank3_minus[9][13]  && !token3_mae[17]) ? token3_nor[9]  : (~token3_nor[9]  + 1'b1);
-        token3_nor_reg[10] <= (!a_bank3_minus[10][13] && !token3_mae[17]) ? token3_nor[10] : (~token3_nor[10] + 1'b1);
-        token3_nor_reg[11] <= (!a_bank3_minus[11][13] && !token3_mae[17]) ? token3_nor[11] : (~token3_nor[11] + 1'b1);
-        token3_nor_reg[12] <= (!a_bank3_minus[12][13] && !token3_mae[17]) ? token3_nor[12] : (~token3_nor[12] + 1'b1);
-        token3_nor_reg[13] <= (!a_bank3_minus[13][13] && !token3_mae[17]) ? token3_nor[13] : (~token3_nor[13] + 1'b1);
-        token3_nor_reg[14] <= (!a_bank3_minus[14][13] && !token3_mae[17]) ? token3_nor[14] : (~token3_nor[14] + 1'b1);
-        token3_nor_reg[15] <= (!a_bank3_minus[15][13] && !token3_mae[17]) ? token3_nor[15] : (~token3_nor[15] + 1'b1);
+always @(*) begin
+    for (k=0; k<8; k=k+1) begin
+        if (!sel_toggle_d3) begin
+            token_nor_t[k] = (!a_bank_minus_sign_d3[k] && !token_mae_sign_d3)? token_nor[k]: ~token_nor[k]+1'b1;
+        end else begin
+            token_nor_t[k] = (!a_bank_minus_sign_d3[k+8] && !token_mae_sign_d3)? token_nor[k]: ~token_nor[k]+1'b1;
+        end
     end
-    valid_2_d <= valid_2;
-    valid_3 <= valid_2 | valid_2_d;
 end
 
 // ----- multiply with parameter and add bias ----- //
@@ -890,41 +890,37 @@ always @(*) begin
     weight_reg[15] = sram_rdata_weight[9  :0  ];// ch15 weight
 end
 
-
-
-reg signed[19:0] token0_x_nor_weight [0:15];
-reg signed[19:0] token1_x_nor_weight [0:15];
-reg signed[19:0] token2_x_nor_weight [0:15];
-reg signed[19:0] token3_x_nor_weight [0:15];
 // x_normalize (1-sign + 3-bit integer + 6-bit fraction)
 // weight and bias (1-bit sign + 2-bit integer + 7-bit fraction)
 // weight * x_nor (1-bit sign + 6-bit integer + 13-bit fraction)
-integer j;
+
+// 8 multiplier 
+reg signed [19:0] token_x_nor_weight [0:7];
 always @(*) begin
-    for (j=0; j<16; j=j+1) begin
-        token0_x_nor_weight[j] = token0_nor_reg[j] * weight_reg[j];
-        token1_x_nor_weight[j] = token1_nor_reg[j] * weight_reg[j];
-        token2_x_nor_weight[j] = token2_nor_reg[j] * weight_reg[j];
-        token3_x_nor_weight[j] = token3_nor_reg[j] * weight_reg[j];
+    for (k=0; k<8; k=k+1) begin
+        if (!sel_toggle_d3) begin
+            token_x_nor_weight[k] = token_nor_t[k] * weight_reg[k];
+        end else begin
+            token_x_nor_weight[k] = token_nor_t[k] * weight_reg[k+8];
+        end
     end
 end
 
-reg [19:0] token0_x_nor_result [0:15];
-reg [19:0] token1_x_nor_result [0:15];
-reg [19:0] token2_x_nor_result [0:15];
-reg [19:0] token3_x_nor_result [0:15];
 // weight * x_nor (1-bit sign + 6-bit integer + 13-bit fraction)
 // then add with bias (1-bit sign + 2-bit integer + 7-bit fraction)
 // the result(accumalated output) is (1-bit sign + 6-bit integer + 13-bit fraction)
-always @(*) begin
-    for (j=0; j<16; j=j+1) begin
-        // sign-extend bias[j] MSB to 4 bits, then concat bias and 6 fractional zeros to match 20-bit width
-        token0_x_nor_result[j] = token0_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
-        token1_x_nor_result[j] = token1_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
-        token2_x_nor_result[j] = token2_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
-        token3_x_nor_result[j] = token3_x_nor_weight[j] + {{4{bias_reg[j][BW_PER_ACT-1]}}, bias_reg[j], 6'b0};
+reg signed[19:0] token_x_nor_result[0:7];
+always @(posedge clk) begin
+    for (k=0; k<8; k=k+1) begin
+        if (!sel_toggle_d3) begin
+             token_x_nor_result[k] <= token_x_nor_weight[k] + {{4{bias_reg[k][BW_PER_ACT-1]}}, bias_reg[k], 6'b0};
+        end else begin
+            token_x_nor_result[k] <= token_x_nor_weight[k] + {{4{bias_reg[k+8][BW_PER_ACT-1]}}, bias_reg[k+8], 6'b0};
+        end
     end
+    valid_3 <= valid_2_d3;
 end
+
 // ===== 3. Quantize the result to 10-bit and write the result to SRAM B ===== //
 // since the accumalated output have 13-bit fraction(12-0), but we only want 
 // 6-bit fraction, thus we need to find rounding output. That is, if the 
@@ -932,123 +928,47 @@ end
 // to implement this, we add 100_0000 to accumulated output, so if the last 7 bit 
 // of original accumulated output > 100_0000 it will add 1 to (12-7) fraction
 
-reg signed[19:0] token0_rounding_output[0:15];
-reg signed[19:0] token1_rounding_output[0:15];
-reg signed[19:0] token2_rounding_output[0:15];
-reg signed[19:0] token3_rounding_output[0:15];
-// rounding output
+reg signed [19:0] token_rounding_output[0:7];
 always @(*) begin
-    for (j=0; j<16; j=j+1) begin
-        token0_rounding_output[j] = token0_x_nor_result[j] + 7'b100_0000;
-        token1_rounding_output[j] = token1_x_nor_result[j] + 7'b100_0000;
-        token2_rounding_output[j] = token2_x_nor_result[j] + 7'b100_0000;
-        token3_rounding_output[j] = token3_x_nor_result[j] + 7'b100_0000;
+    for (k=0; k<8; k=k+1) begin
+        token_rounding_output[k] = token_x_nor_result[k] + 7'b100_0000;
     end
 end
-
-reg signed[12:0] token0_quan[0:15];
-reg signed[12:0] token1_quan[0:15];
-reg signed[12:0] token2_quan[0:15];
-reg signed[12:0] token3_quan[0:15];
-// quantized output (13-bit)
+reg signed [12:0] token_quan[0:7];
+// quantize output (13-bit)
 always @(*) begin
-    for (j=0; j<16; j=j+1) begin
-        token0_quan[j] = token0_rounding_output[j][19:7];
-        token1_quan[j] = token1_rounding_output[j][19:7];
-        token2_quan[j] = token2_rounding_output[j][19:7];
-        token3_quan[j] = token3_rounding_output[j][19:7];
+    for (k=0; k<8; k=k+1) begin
+        token_quan[k] = token_rounding_output[k][19:7];
     end
 end
 
 // quantize to 10-bit
 // if quantized output > 511 (10-bit sign number max), then quantized output = 511
 // if quantized output < -512(10-bit sign number min), then quantized output = -512
-reg [9:0] token0_quan_10[0:15];
-reg [9:0] token1_quan_10[0:15];
-reg [9:0] token2_quan_10[0:15];
-reg [9:0] token3_quan_10[0:15];
+reg [9:0] token_quan_10[0:7];
 
 always @(*) begin
-    for (j=0; j<16; j=j+1) begin
-        if (token0_quan[j] > 13'sd511) begin
-            token0_quan_10[j] = 10'sd511;
-        end else if (token0_quan[j] < -13'sd512) begin
-            token0_quan_10[j] = -10'sd512;
+    for (k=0; k<8; k=k+1) begin
+        if (token_quan[k] > 13'sd511) begin
+            token_quan_10[k] = 10'sd511;
+        end else if (token_quan[k] < -13'sd512) begin
+            token_quan_10[k] = -10'sd512;
         end else begin
-            token0_quan_10[j] = token0_quan[j][9:0];
-        end
-    end
-
-    for (j=0; j<16; j=j+1) begin
-        if (token1_quan[j] > 13'sd511) begin
-            token1_quan_10[j] = 10'sd511;
-        end else if (token1_quan[j] < -13'sd512) begin
-            token1_quan_10[j] = -10'sd512;
-        end else begin
-            token1_quan_10[j] = token1_quan[j][9:0];
-        end
-    end
-
-    for (j=0; j<16; j=j+1) begin
-        if (token2_quan[j] > 13'sd511) begin
-            token2_quan_10[j] = 10'sd511;
-        end else if (token2_quan[j] < -13'sd512) begin
-            token2_quan_10[j] = -10'sd512;
-        end else begin
-            token2_quan_10[j] = token2_quan[j][9:0];
-        end
-    end
-
-    for (j=0; j<16; j=j+1) begin
-        if (token3_quan[j] > 13'sd511) begin
-            token3_quan_10[j] = 10'sd511;
-        end else if (token3_quan[j] < -13'sd512) begin
-            token3_quan_10[j] = -10'sd512;
-        end else begin
-            token3_quan_10[j] = token3_quan[j][9:0];
+            token_quan_10[k] = token_quan[k][9:0];
         end
     end
 end
 
 // concanacated the data to write into sram B
-
-// write into sram B addr 0-15
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank0_h_w;
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank1_h_w;
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank2_h_w;
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank3_h_w;
-// write into sram B addr 16-31
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank0_l_w;
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank1_l_w;
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank2_l_w;
-reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank3_l_w;
-
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank_w;
 always @(*) begin
-    b_bank0_h_w = { token0_quan_10[0], token0_quan_10[1], token0_quan_10[2], token0_quan_10[3]
-                  , token0_quan_10[4], token0_quan_10[5], token0_quan_10[6], token0_quan_10[7]};
-    b_bank0_l_w = { token0_quan_10[8], token0_quan_10[9], token0_quan_10[10], token0_quan_10[11]
-                  , token0_quan_10[12], token0_quan_10[13], token0_quan_10[14], token0_quan_10[15]};
-
-    b_bank1_h_w = { token1_quan_10[0], token1_quan_10[1], token1_quan_10[2], token1_quan_10[3]
-                  , token1_quan_10[4], token1_quan_10[5], token1_quan_10[6], token1_quan_10[7]};
-    b_bank1_l_w = { token1_quan_10[8], token1_quan_10[9], token1_quan_10[10], token1_quan_10[11]
-                  , token1_quan_10[12], token1_quan_10[13], token1_quan_10[14], token1_quan_10[15]};
-
-    b_bank2_h_w = { token2_quan_10[0], token2_quan_10[1], token2_quan_10[2], token2_quan_10[3]
-                  , token2_quan_10[4], token2_quan_10[5], token2_quan_10[6], token2_quan_10[7]};
-    b_bank2_l_w = { token2_quan_10[8], token2_quan_10[9], token2_quan_10[10], token2_quan_10[11]
-                  , token2_quan_10[12], token2_quan_10[13], token2_quan_10[14], token2_quan_10[15]};
-
-    b_bank3_h_w = { token3_quan_10[0], token3_quan_10[1], token3_quan_10[2], token3_quan_10[3]
-                  , token3_quan_10[4], token3_quan_10[5], token3_quan_10[6], token3_quan_10[7]};
-    b_bank3_l_w = { token3_quan_10[8], token3_quan_10[9], token3_quan_10[10], token3_quan_10[11]
-                  , token3_quan_10[12], token3_quan_10[13], token3_quan_10[14], token3_quan_10[15]};
+    b_bank_w = {token_quan_10[0], token_quan_10[1], token_quan_10[2], token_quan_10[3], 
+                token_quan_10[4], token_quan_10[5], token_quan_10[6], token_quan_10[7]};
 end
-
-assign sram_wdata_b0 = (valid_2_d)? b_bank0_h_w: b_bank0_l_w;
-assign sram_wdata_b1 = (valid_2_d)? b_bank1_h_w: b_bank1_l_w;
-assign sram_wdata_b2 = (valid_2_d)? b_bank2_h_w: b_bank2_l_w;
-assign sram_wdata_b3 = (valid_2_d)? b_bank3_h_w: b_bank3_l_w;
+assign sram_wdata_b0 = b_bank_w;
+assign sram_wdata_b1 = b_bank_w;
+assign sram_wdata_b2 = b_bank_w;
+assign sram_wdata_b3 = b_bank_w;
 
 // write the result into sram B
 // SRAM B: 64@16ch
@@ -1075,34 +995,79 @@ assign sram_wdata_b3 = (valid_2_d)? b_bank3_h_w: b_bank3_l_w;
 //               token63:  {addr15_bank3, addr31_bank3}
 
 // SRAM B access:
+// The token_quan_10 output sequance
+// token0 ch0-7   -> addr0  write: bank0, mask: bank1,2,3
+// token0 ch8-15  -> addr16 write: bank0, mask: bank1,2,3
+// token1 ch0-7   -> addr0  write: bank1, mask: bank0,2,3
+// token1 ch8-15  -> addr16 write: bank1, mask: bank0,2,3
+// token2 ch0-7   -> addr0  write: bank2, mask: bank0,1,3
+// token2 ch8-15  -> addr16 write: bank2, mask: bank0,1,3
+// token3 ch0-7   -> addr0  write: bank3, mask: bank0,1,2
+// token4 ch8-15  -> addr16 write: bank3, mask: bank0,1,2
+
+// token5 ch0-7   -> addr1  write: bank0, mask: bank1,2,3
+// token5 ch8-15  -> addr17 write: bank0, mask: bank1,2,3
+// token6 ch0-7   -> addr1  write: bank1, mask: bank0,2,3
+// token6 ch8-15  -> addr17 write: bank1, mask: bank0,2,3
+// token7 ch0-7   -> addr1  write: bank2, mask: bank0,1,3
+// token7 ch8-15  -> addr17 write: bank2, mask: bank0,1,3
+// token8 ch0-7   -> addr1  write: bank3, mask: bank0,1,2
+// token8 ch8-15  -> addr17 write: bank3, mask: bank0,1,2
+// ...
+// token62 ch0-7  -> addr15 write: bank2, mask: bank0,1,3
+// token62 ch8-15 -> addr31 write: bank2, mask: bank0,1,3
+// token63 ch0-7  -> addr15 write: bank3, mask: bank0,1,2
+// token63 ch8-15 -> addr31 write: bank3, mask: bank0,1,2
+
 // addr0 -> addr(0+16) -> addr1 -> addr(1+16) -> ... -> addr15 -> addr(15+16)
 // 00000 -> 10000 -> 00001 -> 10001 -> ... -> 01111 -> 11111
 // toggle the MSB addr, and increment the LSB addr
 
+reg [3:0]b_base_addr_cnt_b; // lowest 4-bit counter
+wire b_msb_addr;
+wire [4:0] b_addr_norm;
+assign b_msb_addr = ~sel_toggle_d3;
+always @(posedge clk) begin
+    if (!srst_n) begin
+        b_base_addr_cnt_b <= 0;
+    end else if (!valid_3 && top_state == NORMAL && (sram_addr_cnt_a != 5'd1) && (sram_addr_cnt_a != 5'd0)) begin
+        b_base_addr_cnt_b <= b_base_addr_cnt_b + 1;
+    end else if (top_state == NORMAL | top_state == NORMAL_T) begin
+        b_base_addr_cnt_b <= b_base_addr_cnt_b;
+    end else begin
+        b_base_addr_cnt_b <= 0;
+    end
+end
+assign b_addr_norm = {b_msb_addr, b_base_addr_cnt_b};
+assign sram_addr_b0 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+assign sram_addr_b1 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+assign sram_addr_b2 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+assign sram_addr_b3 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+
 // SRAM B can be write if valid_3, low active write
-assign sram_wen_b0 = !valid_3;
-assign sram_wen_b1 = !valid_3;
-assign sram_wen_b2 = !valid_3;
-assign sram_wen_b3 = !valid_3;
+
+always @(posedge clk) begin
+    if (valid_3) begin
+        sram_b_wen_cnt <= sram_b_wen_cnt + 1;
+    end else begin
+        sram_b_wen_cnt <= 0;
+    end
+end
+assign sram_wen_b0 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b00);
+assign sram_wen_b1 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b01);
+assign sram_wen_b2 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b10);
+assign sram_wen_b3 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b11);
 assign sram_wordmask_b0 = 8'b0;
 assign sram_wordmask_b1 = 8'b0;
 assign sram_wordmask_b2 = 8'b0;
 assign sram_wordmask_b3 = 8'b0;
 
-// SRAM B addr controller
 
-always @(posedge clk) begin
-    if (valid_3 | top_state == PROJ) begin
-        sram_addr_cnt_b <= sram_addr_cnt_b + 1;
-    end else begin
-        sram_addr_cnt_b <= 0;
-    end
-end
 
-assign sram_addr_b0 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-assign sram_addr_b1 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-assign sram_addr_b2 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-assign sram_addr_b3 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+// assign sram_addr_b0 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+// assign sram_addr_b1 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+// assign sram_addr_b2 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+// assign sram_addr_b3 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
 
 
 
@@ -1112,6 +1077,15 @@ reg signed[(BW_PER_ACT-1):0] b_bank1_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] b_bank2_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] b_bank3_dat[0:(CH_NUM-1)];
 
+// SRAM B addr controller
+
+always @(posedge clk) begin
+    if (top_state == PROJ) begin
+        sram_addr_cnt_b <= sram_addr_cnt_b + 1;
+    end else begin
+        sram_addr_cnt_b <= 0;
+    end
+end
 
 always @(*) begin
     // MSB-first ordering: [79:70], [69:60], ..., [9:0]
@@ -1474,7 +1448,7 @@ end
 // ...
 // token60, 61, 62, 63 ch15 -> addr47
 // ----- V projection finish ----- //
-
+// totally need 256 * 3 cycle to finish the linear projection layer
 assign sram_wen_c0 = !valid_5;
 assign sram_wen_c1 = !valid_5;
 assign sram_wen_c2 = !valid_5;
@@ -1605,4 +1579,77 @@ assign sram_wdata_c0 = c_bank0_w;
 assign sram_wdata_c1 = c_bank1_w;
 assign sram_wdata_c2 = c_bank2_w;
 assign sram_wdata_c3 = c_bank3_w;
+
+// ===== 7. Read K projection and Q projection from SRAM C. ===== //
+// In this part, we read the Head0 of Q and K ot to do matrix multiplicaiton
+// Q_0 and K_0 is 64 by 8 matrix, to do Q_0 x K_0^T
+// first we read each token(8 ch) of Q_0 and K_0, then multiply them,
+// then we mulitiply the result by 1 / √chead. 
+
+// SRAM C: 64@8ch x 3
+// addr 0~15: 0~7ch
+//               token0: {addr0_bank0}, 
+//               token1: {addr0_bank1}, 
+//               token2: {addr0_bank2}, 
+//               token3: {addr0_bank3}
+//
+//               token4: {addr1_bank0}, 
+//               token5: {addr1_bank1}, 
+//               token6: {addr1_bank2}, 
+//               token7: {addr1_bank3}
+//
+//               token8:  {addr2_bank0}, 
+//               token9:  {addr2_bank1}, 
+//               token10: {addr2_bank2}, 
+//               token11: {addr2_bank3}
+// ...
+//               token60:  {addr15_bank0}, 
+//               token61:  {addr15_bank1}, 
+//               token62:  {addr15_bank2}, 
+//               token63:  {addr15_bank3}
+
+// each cycle we may read 4 token(32 ch) per matrix
+// so we need 32 multiplier to finish the calculation in 1 cyle
+// or we use less resource and increase ii to solve this problem
+
+// if use 32 multiplier, totally need 64 token /4 token = 16 cycle
+// if we use 8 multiplier, totally need 64 token/1 token = 64 cycle
+
+
+// ===== 8. Implement multiplication of attention head 0 first 16 rows results. ===== //
+// ===== 9. Multiply each result with 1 / √chead ===== //
+// ===== 10. Quantize the result to 10-bits and write the result to SRAM D. ===== //
+
+
+endmodule
+
+
+
+module DW_div_pipe_inst(clk, inst_rst_n, inst_en, inst_a, inst_b,
+                        quotient_inst, remainder_inst, divide_by_0_inst );
+
+  parameter inst_a_width = 24;
+  parameter inst_b_width = 18;
+  parameter inst_tc_mode = 0; // signed: 1 unsigned: 0
+  parameter inst_rem_mode = 1;
+  parameter inst_num_stages = 4;
+  parameter inst_stall_mode = 0;
+  parameter inst_rst_mode = 0;
+  parameter inst_op_iso_mode = 0;
+
+  input clk;
+  input inst_rst_n;
+  input inst_en;
+  input [inst_a_width-1 : 0] inst_a;
+  input [inst_b_width-1 : 0] inst_b;
+  output [inst_a_width-1 : 0] quotient_inst;
+  output [inst_b_width-1 : 0] remainder_inst;
+  output divide_by_0_inst;
+
+  // Instance of DW_div_pipe
+  DW_div_pipe #(inst_a_width,   inst_b_width,   inst_tc_mode,  inst_rem_mode,
+                inst_num_stages,   inst_stall_mode,   inst_rst_mode,   inst_op_iso_mode) 
+    U1 (.clk(clk),   .rst_n(inst_rst_n),   .en(inst_en),
+        .a(inst_a),   .b(inst_b),   .quotient(quotient_inst),
+        .remainder(remainder_inst),   .divide_by_0(divide_by_0_inst) );
 endmodule

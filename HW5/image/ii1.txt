@@ -1,0 +1,31 @@
+
+{signal: [
+  {name: 'clk', wave: 'p.................'},
+  {name: 'raddr',wave: '343434343434343434', data:['0','16','1','17','2','18','3','19','4','20','5','21','6','22','7','23','8','24','9']},
+  {name: 'dat',wave: '034343434343434343', data:['dat0','dat16','dat1','dat17','dat2','dat18','dat3','dat19','dat4','dat20','dat5','dat21','dat6','dat22','dat7','dat23','dat8','dat24'], node:'...d'},
+  {name: 'reg_h',wave: '0.3.3.3.3.3.3.3.3.', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6','dat7'], node:'...b'},
+  {name: 'reg_l',wave: '0..4.4.4.4.4.4.4.4', data:['dat16','dat17','dat18','dat19','dat20','dat21','dat22','dat23']},
+  {name: 'valid_1', wave: '0.1010101010101010'},
+  {name: 'mean', wave: '0..2.2.2.2.2.2.2.2', node:'....m'},
+  {name: 'valid_2', wave: '0..101010101010101'},
+  {name: 'minus',wave: '0..3x3x3x3x3x3x3x3', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6','dat7'], node:'...c'},
+  {name: 'abs',wave: '0..3x3x3x3x3x3x3x3', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6','dat7'], node:'...a'},
+  {name: 'mae',wave: '0..3x3x3x3x3x3x3x3', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6','dat7'], node:'...e'},
+  {name: 'nor',wave: '0..3x3x3x3x3x3x3x3', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6','dat7'], node:'...fh'},
+  {name: 'nor_reg',wave: '0...3.3.3.3.3.3.3.', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6'], node:'....g'},
+  {name: 'valid_2_d', wave: '0...10101010101010'},
+  {name: 'valid_3', wave: '0...1.............'},
+  {name: 'nor_w_quan',wave: '0...3.3.3.3.3.3.3.', data:['dat0','dat1','dat2','dat3','dat4','dat5','dat6'], node:'....k'},
+  {name: 'waddr',wave: '0...34343434343434', data:['0','16','1','17','2','18','3','19','4','20','5','21','6','22']},
+],
+ head:{
+   text:'ii = 1 waveform',
+ 
+ },
+ foot:{
+   text:''
+ },
+  edge: [
+    'd->m', 'b->m', 'd->c', 'b->c','c->a','e->f','h->g'
+  ]
+}

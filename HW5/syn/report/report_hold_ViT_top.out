@@ -1,0 +1,157 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : ViT_top
+Version: R-2020.09-SP5
+Date   : Mon Nov 17 18:44:32 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: div0/U1/clk_r_REG69_S2
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: div0/U1/clk_r_REG70_S3
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ViT_top            Large                 slow_vdd1v2
+  DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_7
+                     Small                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  div0/U1/clk_r_REG69_S2/CK (DFFQXL)       0.00 #     0.00 r
+  div0/U1/clk_r_REG69_S2/Q (DFFQXL)        0.10       0.10 f
+  div0/U1/clk_r_REG70_S3/D (DFFQXL)        0.01       0.11 f
+  data arrival time                                   0.11
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  div0/U1/clk_r_REG70_S3/CK (DFFQXL)       0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.11
+  -----------------------------------------------------------
+  slack (MET)                                         0.11
+
+
+  Startpoint: div0/U1/U_DIV_clk_r_REG219_S2
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: div0/U1/U_DIV_clk_r_REG220_S3
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ViT_top            Large                 slow_vdd1v2
+  DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_7
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  div0/U1/U_DIV_clk_r_REG219_S2/CK (DFFQXL)               0.00 #     0.00 r
+  div0/U1/U_DIV_clk_r_REG219_S2/Q (DFFQXL)                0.10       0.10 f
+  div0/U1/U_DIV_clk_r_REG220_S3/D (DFFQXL)                0.01       0.11 f
+  data arrival time                                                  0.11
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  div0/U1/U_DIV_clk_r_REG220_S3/CK (DFFQXL)               0.00       0.00 r
+  library hold time                                       0.00       0.00
+  data required time                                                 0.00
+  --------------------------------------------------------------------------
+  data required time                                                 0.00
+  data arrival time                                                 -0.11
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.11
+
+
+  Startpoint: div0/U1/clk_r_REG113_S1
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: div0/U1/U_DIV_clk_r_REG114_S2
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ViT_top            Large                 slow_vdd1v2
+  DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_7
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  div0/U1/clk_r_REG113_S1/CK (DFFQXL)                     0.00 #     0.00 r
+  div0/U1/clk_r_REG113_S1/Q (DFFQXL)                      0.10       0.10 f
+  div0/U1/U_DIV_clk_r_REG114_S2/D (DFFQXL)                0.01       0.11 f
+  data arrival time                                                  0.11
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  div0/U1/U_DIV_clk_r_REG114_S2/CK (DFFQXL)               0.00       0.00 r
+  library hold time                                       0.00       0.00
+  data required time                                                 0.00
+  --------------------------------------------------------------------------
+  data required time                                                 0.00
+  data arrival time                                                 -0.11
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.11
+
+
+  Startpoint: div0/U1/U_DIV_u_add_PartRem_0_0_1_clk_r_REG224_S2
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: div0/U1/U_DIV_u_add_PartRem_0_0_1_clk_r_REG225_S3
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ViT_top            Large                 slow_vdd1v2
+  DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_7
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  div0/U1/U_DIV_u_add_PartRem_0_0_1_clk_r_REG224_S2/CK (DFFQXL)
+                                                          0.00 #     0.00 r
+  div0/U1/U_DIV_u_add_PartRem_0_0_1_clk_r_REG224_S2/Q (DFFQXL)
+                                                          0.10       0.10 f
+  div0/U1/U_DIV_u_add_PartRem_0_0_1_clk_r_REG225_S3/D (DFFQXL)
+                                                          0.01       0.11 f
+  data arrival time                                                  0.11
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  div0/U1/U_DIV_u_add_PartRem_0_0_1_clk_r_REG225_S3/CK (DFFQXL)
+                                                          0.00       0.00 r
+  library hold time                                       0.00       0.00
+  data required time                                                 0.00
+  --------------------------------------------------------------------------
+  data required time                                                 0.00
+  data arrival time                                                 -0.11
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.11
+
+
+1

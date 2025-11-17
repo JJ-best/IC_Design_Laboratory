@@ -79,4 +79,48 @@ separate them by chunks and calculate sequentially. More details will be mention
 Mutli-head self-attention implementation Section. 
 
 
-## implementation architecture of sram a stage
+## Layernorm Optimization
+### ii = 1 version
+![figure](image/ii1.png)
+
+|resource|area| timing |
+|--|-|-|
+|adder|||
+|multiplier(10*10=20bit)|0.7k|<3ns|
+|divider(24/18=10bit)|6.5k|9.6ns|
+|DW_pipe_4(24/18=10bit)|7.7k|<3ns|
+
+- calculate mean use 64 adder in 1 cycle.    
+- calculate minus use 64 subtractor in 1 cycle.
+- calculate abs use 64 adder in 1 cycle.
+- calculate mae use 64 adder in 1 cycle.
+- calculate nor use 64 divider in 1 cycle.
+- calculate nor_weight use 64 multiplier in 1 cycle,
+
+Totally use 32 cycle in Layernorm.
+
+To optimize the resouce using, we may increase ii to 8, so the resource using may reduce.
+
+## DesignWare
+```shell
+# open DW
+[u110022124@ws41 doc]$ dc_shell
+# 找 PDF
+[u110022124@ws41 doc]$ sh find $env(DW_ROOT) -maxdepth 6 -iname
+# 看完路徑後，離開DW
+[u110022124@ws41 doc]$ exit
+# 進去剛剛查看到的路徑
+[u110022124@ws41 doc]$ cd /usr/cad/synopsys/synthesis/cur/dw/doc/
+# 用指令下載整包說明文件
+[u110022124@ws41 doc]$ tar czf ~/dw_dwdoc.tar.gz datasheets manuals
+[u110022124@ws41 doc]$ cd ~
+[u110022124@ws41 ~]$ ls dw_dwdoc.tar.gz
+dw_dwdoc.tar.gz
+[u110022124@ws41 ~]$ echo $HOME
+/home/u110/u110022124
+[u110022124@ws41 ~]$ cd ~
+[u110022124@ws41 ~]$ pwd
+/home/u110/u110022124
+
+```
+pwd 回傳目前所在位置
