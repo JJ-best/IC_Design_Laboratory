@@ -123,6 +123,7 @@ reg valid_2;
 
 reg [3:0] cnt8; // count 8 cycle
 reg [2:0]sram_b_wen_cnt;
+wire [5:0] sramc_addr;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
 localparam R_BIAS_A = 5'd1;
@@ -130,6 +131,7 @@ localparam NORMAL   = 5'd2;
 localparam NORMAL_T = 5'd3;
 localparam PROJ     = 5'd4;
 localparam PROJ_T   = 5'd5;
+localparam R_SRAM_C = 5'd6;
 localparam PROJ2= 5'd10;
 
 reg [4:0]top_state;
@@ -182,7 +184,14 @@ always @(*) begin
             end
         end
         PROJ_T: begin
-            top_state_n = PROJ_T;
+            if (sram_wen_c0 == 0) begin
+                top_state_n = R_SRAM_C;
+            end else begin
+                top_state_n = PROJ_T;
+            end
+        end
+        R_SRAM_C: begin
+            top_state_n = R_SRAM_C;
         end
         default: begin
            top_state_n = IDLE; 
@@ -200,7 +209,7 @@ always @(posedge clk) begin
     end
 end
 // should be 1 for correct answer
-assign valid = (tmp_cnt == 4'b1111)? 1:0;
+assign valid = (tmp_cnt == 4'b1111)? 0:0;
 
 // ===== read the normalize bias out ===== //
 // SRAM-bias: 1 data / addr
@@ -706,15 +715,19 @@ reg sel_toggle; // this signal toggle when valid_2 is high
 reg valid_2_d1;
 reg valid_2_d2;
 reg valid_2_d3;
+reg valid_2_d4;
 reg a_bank_minus_sign_d1[0:15];
 reg a_bank_minus_sign_d2[0:15];
 reg a_bank_minus_sign_d3[0:15];
+reg a_bank_minus_sign_d4[0:15];
 reg token_mae_sign_d1;
 reg token_mae_sign_d2;
 reg token_mae_sign_d3;
+reg token_mae_sign_d4;
 reg sel_toggle_d1;
 reg sel_toggle_d2;
 reg sel_toggle_d3;
+reg sel_toggle_d4;
 
 always @(posedge clk) begin
     if (valid_2) begin
@@ -729,17 +742,21 @@ always @(posedge clk) begin
     valid_2_d1 <= valid_2;
     valid_2_d2 <= valid_2_d1;
     valid_2_d3 <= valid_2_d2;
+    valid_2_d4 <= valid_2_d3;
     for (k=0; k<16; k=k+1) begin
         a_bank_minus_sign_d1[k] <= a_bank_minus[k][13];
         a_bank_minus_sign_d2[k] <= a_bank_minus_sign_d1[k];
         a_bank_minus_sign_d3[k] <= a_bank_minus_sign_d2[k];
+        a_bank_minus_sign_d4[k] <= a_bank_minus_sign_d3[k];
     end
     token_mae_sign_d1 <= token_mae[17];
     token_mae_sign_d2 <= token_mae_sign_d1;
     token_mae_sign_d3 <= token_mae_sign_d2;
+    token_mae_sign_d4 <= token_mae_sign_d3;
     sel_toggle_d1 <= sel_toggle;
     sel_toggle_d2 <= sel_toggle_d1;
     sel_toggle_d3 <= sel_toggle_d2;
+    sel_toggle_d4 <= sel_toggle_d3;
 end
 always @(*) begin
     if (!sel_toggle) begin
@@ -843,14 +860,19 @@ DW_div_pipe_inst div7(
     .divide_by_0_inst() // non used
 );
 
+always @(posedge clk) begin
+    for (k=0; k<8; k=k+1) begin
+        token_nor_reg[k] <= token_nor[k];
+    end
+end
 // consider the sign of numerator and denominator, if both positive(0), then 
 // the result preserve, else, take 2's complement
 always @(*) begin
     for (k=0; k<8; k=k+1) begin
-        if (!sel_toggle_d3) begin
-            token_nor_t[k] = (!a_bank_minus_sign_d3[k] && !token_mae_sign_d3)? token_nor[k]: ~token_nor[k]+1'b1;
+        if (!sel_toggle_d4) begin
+            token_nor_t[k] = (!a_bank_minus_sign_d4[k] && !token_mae_sign_d4)? token_nor_reg[k]: ~token_nor_reg[k]+1'b1;
         end else begin
-            token_nor_t[k] = (!a_bank_minus_sign_d3[k+8] && !token_mae_sign_d3)? token_nor[k]: ~token_nor[k]+1'b1;
+            token_nor_t[k] = (!a_bank_minus_sign_d4[k+8] && !token_mae_sign_d4)? token_nor_reg[k]: ~token_nor_reg[k]+1'b1;
         end
     end
 end
@@ -898,7 +920,7 @@ end
 reg signed [19:0] token_x_nor_weight [0:7];
 always @(*) begin
     for (k=0; k<8; k=k+1) begin
-        if (!sel_toggle_d3) begin
+        if (!sel_toggle_d4) begin
             token_x_nor_weight[k] = token_nor_t[k] * weight_reg[k];
         end else begin
             token_x_nor_weight[k] = token_nor_t[k] * weight_reg[k+8];
@@ -912,13 +934,13 @@ end
 reg signed[19:0] token_x_nor_result[0:7];
 always @(posedge clk) begin
     for (k=0; k<8; k=k+1) begin
-        if (!sel_toggle_d3) begin
+        if (!sel_toggle_d4) begin
              token_x_nor_result[k] <= token_x_nor_weight[k] + {{4{bias_reg[k][BW_PER_ACT-1]}}, bias_reg[k], 6'b0};
         end else begin
             token_x_nor_result[k] <= token_x_nor_weight[k] + {{4{bias_reg[k+8][BW_PER_ACT-1]}}, bias_reg[k+8], 6'b0};
         end
     end
-    valid_3 <= valid_2_d3;
+    valid_3 <= valid_2_d4;
 end
 
 // ===== 3. Quantize the result to 10-bit and write the result to SRAM B ===== //
@@ -1026,7 +1048,7 @@ assign sram_wdata_b3 = b_bank_w;
 reg [3:0]b_base_addr_cnt_b; // lowest 4-bit counter
 wire b_msb_addr;
 wire [4:0] b_addr_norm;
-assign b_msb_addr = ~sel_toggle_d3;
+assign b_msb_addr = ~sel_toggle_d4;
 always @(posedge clk) begin
     if (!srst_n) begin
         b_base_addr_cnt_b <= 0;
@@ -1489,10 +1511,10 @@ end
 
 assign sram_addr_cnt_c = sram_c_proj_base + sram_c_block_cnt;
 
-assign sram_addr_c0 = sram_addr_cnt_c;
-assign sram_addr_c1 = sram_addr_cnt_c;
-assign sram_addr_c2 = sram_addr_cnt_c;
-assign sram_addr_c3 = sram_addr_cnt_c;
+assign sram_addr_c0 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
+assign sram_addr_c1 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
+assign sram_addr_c2 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
+assign sram_addr_c3 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
 
 reg [7:0]wordmask_c;
 always @(*) begin
@@ -1584,10 +1606,11 @@ assign sram_wdata_c3 = c_bank3_w;
 // In this part, we read the Head0 of Q and K ot to do matrix multiplicaiton
 // Q_0 and K_0 is 64 by 8 matrix, to do Q_0 x K_0^T
 // first we read each token(8 ch) of Q_0 and K_0, then multiply them,
-// then we mulitiply the result by 1 / √chead. 
+// then we mulitiply the result by 1 / √chead.
+// (000_0101101: 1-bit sign + 2-bit integer + 7-bit fraction) 
 
 // SRAM C: 64@8ch x 3
-// addr 0~15: 0~7ch
+// Q addr 0~15: 0~7ch, K addr 16~31: 0~7ch, V addr 32~47: 0~7ch
 //               token0: {addr0_bank0}, 
 //               token1: {addr0_bank1}, 
 //               token2: {addr0_bank2}, 
@@ -1616,7 +1639,145 @@ assign sram_wdata_c3 = c_bank3_w;
 // if we use 8 multiplier, totally need 64 token/1 token = 64 cycle
 
 
+// in this version, use 32 multiplier, since we can directly 
+// use the 32 multiplier used in linear projection(to do later, now we use another 32 mul)
+
+// since Q(addr 0-15), K(addr 16-32), V(addr 33-47) store in sram C
+// the sram C reading sequence is(fist chunk):
+
+// first 64 cycle
+// Q token0 * K token 0~63
+// addr0 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token1 * K token 0~63
+// addr0 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token2 * K token 0~63
+// addr0 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token3 * K token 0~63
+// addr0 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+
+// second 64 cycle
+// Q token4 * K token 0~63
+// addr1 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token5 * K token 0~63
+// addr1 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token6 * K token 0~63
+// addr1 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token7 * K token 0~63
+// addr1 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+
+// third 64 cycle
+// Q token8  * K token 0~63
+// addr2 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token9  * K token 0~63
+// addr2 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token10 * K token 0~63
+// addr2 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token11 * K token 0~63
+// addr2 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+
+// fourth 64 cycle
+// Q token12 * K token 0~63
+// addr3 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token13 * K token 0~63
+// addr3 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token14 * K token 0~63
+// addr3 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+// Q token15 * K token 0~63
+// addr3 -> addr16 -> addr17 -> addr18 -> ... -> addr32
+
+// Totally 256 cycle finish 1 chunk, we have 4 chunk to finish
+// first chunk (addr0 , 1 , 2 , 3)
+// second chunk(addr4 , 5 , 6 , 7)
+// third chunk (addr8 , 9 , 10, 11)
+// fourth chunk(addr12, 13, 14, 15)
+reg [4:0] sramc_addr_cnt;
+
+always @(posedge clk) begin
+    if (!srst_n) begin
+        sramc_addr_cnt <= 0;
+    end else if (top_state == R_SRAM_C) begin
+        sramc_addr_cnt <= sramc_addr_cnt + 1;
+    end else begin
+        sramc_addr_cnt <= 0;
+    end
+end
+assign sramc_addr = {sramc_addr_cnt[0], sramc_addr_cnt[4:1]};
+
+
+reg signed[(BW_PER_ACT-1):0] c_bank0_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] c_bank1_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] c_bank2_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] c_bank3_dat[0:(CH_NUM-1)];
+
+always @(*) begin
+    // MSB-first ordering: [79:70], [69:60], ..., [9:0]
+    c_bank0_dat[0] = sram_rdata_c0[79:70]; // ch0
+    c_bank0_dat[1] = sram_rdata_c0[69:60]; // ch1
+    c_bank0_dat[2] = sram_rdata_c0[59:50]; // ch2
+    c_bank0_dat[3] = sram_rdata_c0[49:40]; // ch3
+    c_bank0_dat[4] = sram_rdata_c0[39:30]; // ch4
+    c_bank0_dat[5] = sram_rdata_c0[29:20]; // ch5
+    c_bank0_dat[6] = sram_rdata_c0[19:10]; // ch6
+    c_bank0_dat[7] = sram_rdata_c0[9:0];   // ch7
+
+    c_bank1_dat[0] = sram_rdata_c1[79:70];
+    c_bank1_dat[1] = sram_rdata_c1[69:60];
+    c_bank1_dat[2] = sram_rdata_c1[59:50];
+    c_bank1_dat[3] = sram_rdata_c1[49:40];
+    c_bank1_dat[4] = sram_rdata_c1[39:30];
+    c_bank1_dat[5] = sram_rdata_c1[29:20];
+    c_bank1_dat[6] = sram_rdata_c1[19:10];
+    c_bank1_dat[7] = sram_rdata_c1[9:0];
+
+    c_bank2_dat[0] = sram_rdata_c2[79:70];
+    c_bank2_dat[1] = sram_rdata_c2[69:60];
+    c_bank2_dat[2] = sram_rdata_c2[59:50];
+    c_bank2_dat[3] = sram_rdata_c2[49:40];
+    c_bank2_dat[4] = sram_rdata_c2[39:30];
+    c_bank2_dat[5] = sram_rdata_c2[29:20];
+    c_bank2_dat[6] = sram_rdata_c2[19:10];
+    c_bank2_dat[7] = sram_rdata_c2[9:0];
+
+    c_bank3_dat[0] = sram_rdata_c3[79:70];
+    c_bank3_dat[1] = sram_rdata_c3[69:60];
+    c_bank3_dat[2] = sram_rdata_c3[59:50];
+    c_bank3_dat[3] = sram_rdata_c3[49:40];
+    c_bank3_dat[4] = sram_rdata_c3[39:30];
+    c_bank3_dat[5] = sram_rdata_c3[29:20];
+    c_bank3_dat[6] = sram_rdata_c3[19:10];
+    c_bank3_dat[7] = sram_rdata_c3[9:0];
+end
+
 // ===== 8. Implement multiplication of attention head 0 first 16 rows results. ===== //
+reg signed [9:0] c_bank0_dat_reg[0:7];
+reg signed [9:0] c_bank1_dat_reg[0:7];
+reg signed [9:0] c_bank2_dat_reg[0:7];
+reg signed [9:0] c_bank3_dat_reg[0:7];
+always @(posedge clk) begin
+    if (sramc_addr[4]) begin // only store matrix Q
+        for (k=0; k<8; k=k+1) begin
+            c_bank0_dat_reg[k] <= c_bank0_dat[k];
+            c_bank1_dat_reg[k] <= c_bank1_dat[k];
+            c_bank2_dat_reg[k] <= c_bank2_dat[k];
+            c_bank3_dat_reg[k] <= c_bank3_dat[k];
+        end
+    end
+end
+
+reg valid_6;
+reg valid_6_d;
+always @(posedge clk) begin
+    if (top_state == R_SRAM_C) begin
+        valid_6 <= ~valid_6;
+    end else begin
+        valid_6 <= 0;
+    end
+end
+always @(posedge clk) begin
+    valid_6_d <= valid_6;
+end
+
+
 // ===== 9. Multiply each result with 1 / √chead ===== //
 // ===== 10. Quantize the result to 10-bits and write the result to SRAM D. ===== //
 

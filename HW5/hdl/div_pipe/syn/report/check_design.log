@@ -1,0 +1,267 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09-SP5
+Date:        Tue Nov 18 03:13:52 2025
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     24
+    Unconnected ports (LINT-28)                                    24
+
+Cells                                                             114
+    Cells do not drive (LINT-1)                                    48
+    Connected to power or ground (LINT-32)                         42
+    Nets connected to multiple pins on same cell (LINT-33)         24
+
+Nets                                                               41
+    Unloaded nets (LINT-2)                                         41
+--------------------------------------------------------------------------------
+
+Warning: In design 'divider_cell_N41_M18_mydesign_23', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_23', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_0', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_0', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_1', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_1', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_2', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_2', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_3', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_3', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_4', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_4', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_5', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_5', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_6', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_6', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_7', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_7', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_8', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_8', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_9', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_9', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_10', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_10', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_11', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_11', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_12', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_12', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_13', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_13', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_14', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_14', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_15', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_15', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_16', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_16', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_17', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_17', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_18', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_18', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_19', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_19', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_20', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_20', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_21', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_21', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_22', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'divider_cell_N41_M18_mydesign_22', cell 'C250' does not drive any nets. (LINT-1)
+Warning: In design 'div', net 'divisor_t[0][0]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[0]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][1]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[1]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][2]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[2]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][3]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[3]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][4]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[4]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][5]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[5]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][6]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[6]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][7]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[7]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][8]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[8]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][9]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[9]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][10]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[10]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][11]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[11]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][12]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[12]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][13]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[13]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][14]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[14]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][15]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[15]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][16]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[16]' has no loads. (LINT-2)
+Warning: In design 'div', net 'divisor_t[0][17]' driven by pin 'sqrt_stepx[23].u_divider_step/divisor_kp[17]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][0]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[0]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][1]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[1]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][2]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[2]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][3]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[3]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][4]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[4]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][5]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[5]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][6]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[6]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][7]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[7]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][8]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[8]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][9]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[9]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][10]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[10]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][11]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[11]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][12]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[12]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][13]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[13]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][14]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[14]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][15]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[15]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][16]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[16]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][17]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[17]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][18]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[18]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][19]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[19]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][20]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[20]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][21]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[21]' has no loads. (LINT-2)
+Warning: In design 'div', net 'dividend_t[0][22]' driven by pin 'sqrt_stepx[23].u_divider_step/dividend_kp[22]' has no loads. (LINT-2)
+Warning: In design 'divider_cell_N41_M18_mydesign_23', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_0', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_1', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_2', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_3', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_4', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_5', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_6', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_7', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_8', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_9', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_10', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_11', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_12', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_13', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_14', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_15', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_16', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_17', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_18', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_19', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_20', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_21', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'divider_cell_N41_M18_mydesign_22', port 'merchant_ci[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[18]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[17]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[16]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[15]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[14]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[13]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[12]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[11]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[10]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[9]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[8]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[7]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[6]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[5]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[4]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[3]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[2]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'dividend[1]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[23]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[22]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[21]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[20]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[19]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[18]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[17]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[16]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[15]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[14]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[13]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[12]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[11]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[10]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[9]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[8]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[7]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[6]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[5]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[4]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[3]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[2]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[1]' is connected to logic 0. 
+Warning: In design 'div', a pin on submodule 'u_divider_step0' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'merchant_ci[0]' is connected to logic 0. 
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'u_divider_step0'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'dividend[18]', 'dividend[17]'', 'dividend[16]', 'dividend[15]', 'dividend[14]', 'dividend[13]', 'dividend[12]', 'dividend[11]', 'dividend[10]', 'dividend[9]', 'dividend[8]', 'dividend[7]', 'dividend[6]', 'dividend[5]', 'dividend[4]', 'dividend[3]', 'dividend[2]', 'dividend[1]', 'merchant_ci[23]', 'merchant_ci[22]', 'merchant_ci[21]', 'merchant_ci[20]', 'merchant_ci[19]', 'merchant_ci[18]', 'merchant_ci[17]', 'merchant_ci[16]', 'merchant_ci[15]', 'merchant_ci[14]', 'merchant_ci[13]', 'merchant_ci[12]', 'merchant_ci[11]', 'merchant_ci[10]', 'merchant_ci[9]', 'merchant_ci[8]', 'merchant_ci[7]', 'merchant_ci[6]', 'merchant_ci[5]', 'merchant_ci[4]', 'merchant_ci[3]', 'merchant_ci[2]', 'merchant_ci[1]', 'merchant_ci[0]'.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[1].u_divider_step'. (LINT-33)
+   Net 'dividend_t[23][22]' is connected to pins 'dividend[0]', 'dividend_ci[22]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[2].u_divider_step'. (LINT-33)
+   Net 'dividend_t[22][21]' is connected to pins 'dividend[0]', 'dividend_ci[21]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[3].u_divider_step'. (LINT-33)
+   Net 'dividend_t[21][20]' is connected to pins 'dividend[0]', 'dividend_ci[20]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[4].u_divider_step'. (LINT-33)
+   Net 'dividend_t[20][19]' is connected to pins 'dividend[0]', 'dividend_ci[19]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[5].u_divider_step'. (LINT-33)
+   Net 'dividend_t[19][18]' is connected to pins 'dividend[0]', 'dividend_ci[18]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[6].u_divider_step'. (LINT-33)
+   Net 'dividend_t[18][17]' is connected to pins 'dividend[0]', 'dividend_ci[17]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[7].u_divider_step'. (LINT-33)
+   Net 'dividend_t[17][16]' is connected to pins 'dividend[0]', 'dividend_ci[16]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[8].u_divider_step'. (LINT-33)
+   Net 'dividend_t[16][15]' is connected to pins 'dividend[0]', 'dividend_ci[15]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[9].u_divider_step'. (LINT-33)
+   Net 'dividend_t[15][14]' is connected to pins 'dividend[0]', 'dividend_ci[14]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[10].u_divider_step'. (LINT-33)
+   Net 'dividend_t[14][13]' is connected to pins 'dividend[0]', 'dividend_ci[13]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[11].u_divider_step'. (LINT-33)
+   Net 'dividend_t[13][12]' is connected to pins 'dividend[0]', 'dividend_ci[12]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[12].u_divider_step'. (LINT-33)
+   Net 'dividend_t[12][11]' is connected to pins 'dividend[0]', 'dividend_ci[11]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[13].u_divider_step'. (LINT-33)
+   Net 'dividend_t[11][10]' is connected to pins 'dividend[0]', 'dividend_ci[10]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[14].u_divider_step'. (LINT-33)
+   Net 'dividend_t[10][9]' is connected to pins 'dividend[0]', 'dividend_ci[9]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[15].u_divider_step'. (LINT-33)
+   Net 'dividend_t[9][8]' is connected to pins 'dividend[0]', 'dividend_ci[8]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[16].u_divider_step'. (LINT-33)
+   Net 'dividend_t[8][7]' is connected to pins 'dividend[0]', 'dividend_ci[7]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[17].u_divider_step'. (LINT-33)
+   Net 'dividend_t[7][6]' is connected to pins 'dividend[0]', 'dividend_ci[6]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[18].u_divider_step'. (LINT-33)
+   Net 'dividend_t[6][5]' is connected to pins 'dividend[0]', 'dividend_ci[5]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[19].u_divider_step'. (LINT-33)
+   Net 'dividend_t[5][4]' is connected to pins 'dividend[0]', 'dividend_ci[4]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[20].u_divider_step'. (LINT-33)
+   Net 'dividend_t[4][3]' is connected to pins 'dividend[0]', 'dividend_ci[3]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[21].u_divider_step'. (LINT-33)
+   Net 'dividend_t[3][2]' is connected to pins 'dividend[0]', 'dividend_ci[2]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[22].u_divider_step'. (LINT-33)
+   Net 'dividend_t[2][1]' is connected to pins 'dividend[0]', 'dividend_ci[1]''.
+Warning: In design 'div', the same net is connected to more than one pin on submodule 'sqrt_stepx[23].u_divider_step'. (LINT-33)
+   Net 'dividend_t[1][0]' is connected to pins 'dividend[0]', 'dividend_ci[0]''.
+1

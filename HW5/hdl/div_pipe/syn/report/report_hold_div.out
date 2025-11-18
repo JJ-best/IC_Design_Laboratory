@@ -1,0 +1,181 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : div
+Version: R-2020.09-SP5
+Date   : Tue Nov 18 03:16:02 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: sqrt_stepx_4__u_divider_step/rdy_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: sqrt_stepx_5__u_divider_step/merchant_reg_5_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+  divider_cell_N41_M18_mydesign_18
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_4__u_divider_step/rdy_reg/CK (DFFTRXL)       0.00 #     0.00 r
+  sqrt_stepx_4__u_divider_step/rdy_reg/Q (DFFTRXL)        0.12       0.12 f
+  sqrt_stepx_4__u_divider_step/rdy (divider_cell_N41_M18_mydesign_19)
+                                                          0.00       0.12 f
+  sqrt_stepx_5__u_divider_step/en (divider_cell_N41_M18_mydesign_18)
+                                                          0.00       0.12 f
+  sqrt_stepx_5__u_divider_step/U133/Y (AND2XL)            0.05       0.16 f
+  sqrt_stepx_5__u_divider_step/merchant_reg_5_/RN (DFFTRXL)
+                                                          0.01       0.17 f
+  data arrival time                                                  0.17
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_5__u_divider_step/merchant_reg_5_/CK (DFFTRXL)
+                                                          0.00       0.00 r
+  library hold time                                      -0.01      -0.01
+  data required time                                                -0.01
+  --------------------------------------------------------------------------
+  data required time                                                -0.01
+  data arrival time                                                 -0.17
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.18
+
+
+  Startpoint: sqrt_stepx_4__u_divider_step/rdy_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: sqrt_stepx_5__u_divider_step/merchant_reg_4_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+  divider_cell_N41_M18_mydesign_18
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_4__u_divider_step/rdy_reg/CK (DFFTRXL)       0.00 #     0.00 r
+  sqrt_stepx_4__u_divider_step/rdy_reg/Q (DFFTRXL)        0.12       0.12 f
+  sqrt_stepx_4__u_divider_step/rdy (divider_cell_N41_M18_mydesign_19)
+                                                          0.00       0.12 f
+  sqrt_stepx_5__u_divider_step/en (divider_cell_N41_M18_mydesign_18)
+                                                          0.00       0.12 f
+  sqrt_stepx_5__u_divider_step/U132/Y (AND2XL)            0.05       0.16 f
+  sqrt_stepx_5__u_divider_step/merchant_reg_4_/RN (DFFTRXL)
+                                                          0.01       0.17 f
+  data arrival time                                                  0.17
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_5__u_divider_step/merchant_reg_4_/CK (DFFTRXL)
+                                                          0.00       0.00 r
+  library hold time                                      -0.01      -0.01
+  data required time                                                -0.01
+  --------------------------------------------------------------------------
+  data required time                                                -0.01
+  data arrival time                                                 -0.17
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.18
+
+
+  Startpoint: sqrt_stepx_4__u_divider_step/rdy_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: sqrt_stepx_5__u_divider_step/merchant_reg_2_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+  divider_cell_N41_M18_mydesign_18
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_4__u_divider_step/rdy_reg/CK (DFFTRXL)       0.00 #     0.00 r
+  sqrt_stepx_4__u_divider_step/rdy_reg/Q (DFFTRXL)        0.12       0.12 f
+  sqrt_stepx_4__u_divider_step/rdy (divider_cell_N41_M18_mydesign_19)
+                                                          0.00       0.12 f
+  sqrt_stepx_5__u_divider_step/en (divider_cell_N41_M18_mydesign_18)
+                                                          0.00       0.12 f
+  sqrt_stepx_5__u_divider_step/U130/Y (AND2XL)            0.05       0.16 f
+  sqrt_stepx_5__u_divider_step/merchant_reg_2_/RN (DFFTRXL)
+                                                          0.01       0.17 f
+  data arrival time                                                  0.17
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_5__u_divider_step/merchant_reg_2_/CK (DFFTRXL)
+                                                          0.00       0.00 r
+  library hold time                                      -0.01      -0.01
+  data required time                                                -0.01
+  --------------------------------------------------------------------------
+  data required time                                                -0.01
+  data arrival time                                                 -0.17
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.18
+
+
+  Startpoint: u_divider_step0/divisor_kp_reg_14_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: sqrt_stepx_1__u_divider_step/divisor_kp_reg_14_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+  divider_cell_N41_M18_mydesign_22
+                     Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  u_divider_step0/divisor_kp_reg_14_/CK (SMDFFHQX1)       0.00 #     0.00 r
+  u_divider_step0/divisor_kp_reg_14_/Q (SMDFFHQX1)        0.11       0.11 f
+  u_divider_step0/divisor_kp[14] (divider_cell_N41_M18_mydesign_23)
+                                                          0.00       0.11 f
+  sqrt_stepx_1__u_divider_step/divisor[14] (divider_cell_N41_M18_mydesign_22)
+                                                          0.00       0.11 f
+  sqrt_stepx_1__u_divider_step/U101/Y (AND2XL)            0.05       0.17 f
+  sqrt_stepx_1__u_divider_step/divisor_kp_reg_14_/RN (DFFTRXL)
+                                                          0.01       0.18 f
+  data arrival time                                                  0.18
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sqrt_stepx_1__u_divider_step/divisor_kp_reg_14_/CK (DFFTRXL)
+                                                          0.00       0.00 r
+  library hold time                                      -0.01      -0.01
+  data required time                                                -0.01
+  --------------------------------------------------------------------------
+  data required time                                                -0.01
+  data arrival time                                                 -0.18
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.18
+
+
+1

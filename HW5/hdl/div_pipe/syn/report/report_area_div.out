@@ -1,0 +1,67 @@
+ 
+****************************************
+Report : area
+Design : div
+Version: R-2020.09-SP5
+Date   : Tue Nov 18 03:16:02 2025
+****************************************
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+Number of ports:                         3853
+Number of nets:                          9640
+Number of cells:                         5559
+Number of combinational cells:           3682
+Number of sequential cells:              1853
+Number of macros/black boxes:               0
+Number of buf/inv:                        857
+Number of references:                      26
+
+Combinational area:               6693.624149
+Buf/Inv area:                      611.838014
+Noncombinational area:           15040.134336
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 21733.758485
+Total area:                      21733.758485
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-     Noncombi-   Black-
+                                  Total       Total    national   national    boxes   Design
+--------------------------------  ----------  -------  ---------  ----------  ------  --------------------------------
+div                               21733.7585    100.0     2.7360      0.0000  0.0000  div
+sqrt_stepx_10__u_divider_step       980.8560      4.5   300.9600    679.8960  0.0000  divider_cell_N41_M18_mydesign_13
+sqrt_stepx_11__u_divider_step       979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_12
+sqrt_stepx_12__u_divider_step       979.8300      4.5   299.9340    679.8960  0.0000  divider_cell_N41_M18_mydesign_11
+sqrt_stepx_13__u_divider_step       979.8300      4.5   299.9340    679.8960  0.0000  divider_cell_N41_M18_mydesign_10
+sqrt_stepx_14__u_divider_step       979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_9
+sqrt_stepx_15__u_divider_step       980.1720      4.5   300.2760    679.8960  0.0000  divider_cell_N41_M18_mydesign_8
+sqrt_stepx_16__u_divider_step       979.8300      4.5   299.9340    679.8960  0.0000  divider_cell_N41_M18_mydesign_7
+sqrt_stepx_17__u_divider_step       979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_6
+sqrt_stepx_18__u_divider_step       979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_5
+sqrt_stepx_19__u_divider_step       979.8300      4.5   299.9340    679.8960  0.0000  divider_cell_N41_M18_mydesign_4
+sqrt_stepx_1__u_divider_step        603.6300      2.8   143.9820    459.6480  0.0000  divider_cell_N41_M18_mydesign_22
+sqrt_stepx_20__u_divider_step       980.1720      4.5   300.2760    679.8960  0.0000  divider_cell_N41_M18_mydesign_3
+sqrt_stepx_21__u_divider_step       979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_2
+sqrt_stepx_22__u_divider_step       980.1720      4.5   300.2760    679.8960  0.0000  divider_cell_N41_M18_mydesign_1
+sqrt_stepx_23__u_divider_step       981.5400      4.5   301.6440    679.8960  0.0000  divider_cell_N41_M18_mydesign_0
+sqrt_stepx_2__u_divider_step        784.2060      3.6   269.4960    514.7100  0.0000  divider_cell_N41_M18_mydesign_21
+sqrt_stepx_3__u_divider_step        793.4400      3.7   270.8640    522.5760  0.0000  divider_cell_N41_M18_mydesign_20
+sqrt_stepx_4__u_divider_step        803.0160      3.7   272.5740    530.4420  0.0000  divider_cell_N41_M18_mydesign_19
+sqrt_stepx_5__u_divider_step        813.2760      3.7   274.9680    538.3080  0.0000  divider_cell_N41_M18_mydesign_18
+sqrt_stepx_6__u_divider_step        834.8220      3.8   288.6480    546.1740  0.0000  divider_cell_N41_M18_mydesign_17
+sqrt_stepx_7__u_divider_step        980.1720      4.5   300.2760    679.8960  0.0000  divider_cell_N41_M18_mydesign_16
+sqrt_stepx_8__u_divider_step        979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_15
+sqrt_stepx_9__u_divider_step        979.4880      4.5   299.5920    679.8960  0.0000  divider_cell_N41_M18_mydesign_14
+u_divider_step0                     439.8120      2.0    69.7680    370.0440  0.0000  divider_cell_N41_M18_mydesign_23
+--------------------------------  ----------  -------  ---------  ----------  ------  --------------------------------
+Total                                                  6693.6241  15040.1343  0.0000
+
+1
