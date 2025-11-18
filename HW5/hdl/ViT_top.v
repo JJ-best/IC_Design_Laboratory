@@ -83,10 +83,10 @@ module ViT_top #(
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_c1,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_c2,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_c3,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d0,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d1,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d2,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d3,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d0,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d1,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d2,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_d3,
 
     // SRAM write data outputs
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_a0,
@@ -135,6 +135,10 @@ reg signed[(BW_PER_ACT-1):0] c_bank2_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] c_bank3_dat[0:(CH_NUM-1)];
 reg signed [9:0] c_bank_dat_reg[0:7];
 reg sramc_addr_d;
+
+// ===== sram D ===== //
+wire [5:0] sramd_waddr;
+reg [2:0]qk_cnt8;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
 localparam R_BIAS_A = 5'd1;
@@ -143,6 +147,8 @@ localparam NORMAL_T = 5'd3;
 localparam PROJ     = 5'd4;
 localparam PROJ_T   = 5'd5;
 localparam R_SRAM_C = 5'd6;
+localparam R_SRAM_C_T = 5'd7;
+localparam SOFTMAX  = 5'd8;
 localparam PROJ2= 5'd10;
 
 reg [4:0]top_state;
@@ -202,7 +208,21 @@ always @(*) begin
             end
         end
         R_SRAM_C: begin
-            top_state_n = R_SRAM_C;
+            if (sramd_waddr == 6'd63 && qk_cnt8==3'd4) begin
+                top_state_n = R_SRAM_C_T;
+            end else begin
+                top_state_n = R_SRAM_C;
+            end
+        end
+        R_SRAM_C_T: begin
+            if (sramd_waddr == 6'd63 && qk_cnt8==3'd7) begin
+                top_state_n = SOFTMAX;
+            end else begin
+                top_state_n = R_SRAM_C_T;
+            end
+        end
+        SOFTMAX: begin
+            top_state_n = SOFTMAX;
         end
         default: begin
            top_state_n = IDLE; 
@@ -215,12 +235,12 @@ reg [3:0]tmp_cnt;
 always @(posedge clk) begin
     if (!srst_n) begin
         tmp_cnt <= 0;
-    end else if (top_state == R_SRAM_C)begin
+    end else if (top_state == SOFTMAX)begin
         tmp_cnt <= tmp_cnt + 1;
     end
 end
 // should be 1 for correct answer
-assign valid = (tmp_cnt == 4'b1111)? 0:0;
+assign valid = (tmp_cnt == 4'b1111)? 1:0;
 
 // ===== read the normalize bias out ===== //
 // SRAM-bias: 1 data / addr
@@ -1278,15 +1298,15 @@ reg signed [9:0] mul3_in2[0:7];
 always @(*) begin
     for (i=0; i<8; i=i+1) begin
         //                                             Q matrix /  sram B data
-        mul0_in1[i] = (top_state == R_SRAM_C)? c_bank_dat_reg[i]: b_bank0_dat[i];
-        mul1_in1[i] = (top_state == R_SRAM_C)? c_bank_dat_reg[i]: b_bank1_dat[i];
-        mul2_in1[i] = (top_state == R_SRAM_C)? c_bank_dat_reg[i]: b_bank2_dat[i];
-        mul3_in1[i] = (top_state == R_SRAM_C)? c_bank_dat_reg[i]: b_bank3_dat[i];
+        mul0_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank0_dat[i];
+        mul1_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank1_dat[i];
+        mul2_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank2_dat[i];
+        mul3_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank3_dat[i];
         //                                           K^T matrix /  projection weight
-        mul0_in2[i] = (top_state == R_SRAM_C)? c_bank0_dat[i]   : weight_sel[i];
-        mul1_in2[i] = (top_state == R_SRAM_C)? c_bank1_dat[i]   : weight_sel[i];
-        mul2_in2[i] = (top_state == R_SRAM_C)? c_bank2_dat[i]   : weight_sel[i];
-        mul3_in2[i] = (top_state == R_SRAM_C)? c_bank3_dat[i]   : weight_sel[i];
+        mul0_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank0_dat[i]   : weight_sel[i];
+        mul1_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank1_dat[i]   : weight_sel[i];
+        mul2_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank2_dat[i]   : weight_sel[i];
+        mul3_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank3_dat[i]   : weight_sel[i];
     end
 end
 always @(*) begin
@@ -1755,8 +1775,10 @@ always @(posedge clk) begin
         access_k <= 1;
     end else if (sramc_addr[4:0] == 5'b1_1111) begin
         access_k <= 0;
-    end else begin
+    end else if (top_state == R_SRAM_C) begin
         access_k <= access_k;
+    end else begin
+        access_k <= 0;
     end
 end
 always @(posedge clk) begin
@@ -1929,7 +1951,197 @@ always @(*) begin
     end
 end
 
+// ----- write SRAM D ----- //
+// since Q*K^T is a 16 by 64 matrix, we store in the 
+// SRAM D(addr 32~63). one addr have 4 bank, 8ch / bank
+// so a sram addr storage is 4*8=32ch, we need two address(entry)
+// to store 1 row of matrix (64 ch), the memory allocate as following:
 
+// ----- row 1(64 element, ch)
+// addr32: 
+// bank0{ch0 , ch1 , ..., ch7}
+// bank1{ch8 , ch9 , ..., ch15}
+// bank2{ch16, ch17, ..., ch23}
+// bank3{ch24, ch25, ..., ch31}
+// addr33: 
+// bank0{ch32, ch33, ..., ch39}
+// bank1{ch40, ch41, ..., ch47}
+// bank2{ch48, ch49, ..., ch55}
+// bank3{ch56, ch57, ..., ch63}
+// ----- row 2
+// addr34: 
+// bank0{ch0 , ch1 , ..., ch7}
+// bank1{ch8 , ch9 , ..., ch15}
+// bank2{ch16, ch17, ..., ch23}
+// bank3{ch24, ch25, ..., ch31}
+// addr35: 
+// bank0{ch32, ch33, ..., ch39}
+// bank1{ch40, ch41, ..., ch47}
+// bank2{ch48, ch49, ..., ch55}
+// bank3{ch56, ch57, ..., ch63}
+// ...
+// ----- row 16
+// addr62: 
+// bank0{ch0 , ch1 , ..., ch7}
+// bank1{ch8 , ch9 , ..., ch15}
+// bank2{ch16, ch17, ..., ch23}
+// bank3{ch24, ch25, ..., ch31}
+// addr63: 
+// bank0{ch32, ch33, ..., ch39}
+// bank1{ch40, ch41, ..., ch47}
+// bank2{ch48, ch49, ..., ch55}
+// bank3{ch56, ch57, ..., ch63}
+
+// sram D access sequnce
+// since we get 4ch / per cycle, each addr have 32 ch, so we 
+// stall at 1 addr 8 cycle, then increment to next addr:
+// addr32 -> addr33 -> addr34 -> ... -> addr63
+// 10_0000 -> 10_0001 -> 10_0010 -> ... -> 11_1111
+// use {1'b1, 5-bit counter}
+
+// sramwordmask sequnce
+// since only 4ch is valid per cycle, we only write 4 ch into
+// sram every cycle, the other should be block, the sramwordmask
+// is as following: 
+// ----- cycle 1
+// sram_wordmask_d0 00001111 
+// sram_wordmask_d1 11111111
+// sram_wordmask_d2 11111111
+// sram_wordmask_d3 11111111
+// ----- cycle 2
+// sram_wordmask_d0 11110000 
+// sram_wordmask_d1 11111111
+// sram_wordmask_d2 11111111
+// sram_wordmask_d3 11111111
+// ----- cycle 3
+// sram_wordmask_d0 11111111 
+// sram_wordmask_d1 00001111
+// sram_wordmask_d2 11111111
+// sram_wordmask_d3 11111111
+// ----- cycle 4
+// sram_wordmask_d0 11111111 
+// sram_wordmask_d1 11110000
+// sram_wordmask_d2 11111111
+// sram_wordmask_d3 11111111
+// ----- cycle 5
+// sram_wordmask_d0 11111111 
+// sram_wordmask_d1 11111111
+// sram_wordmask_d2 00001111
+// sram_wordmask_d3 11111111
+// ----- cycle 6
+// sram_wordmask_d0 11111111 
+// sram_wordmask_d1 11111111
+// sram_wordmask_d2 11110000
+// sram_wordmask_d3 11111111
+// ----- cycle 7
+// sram_wordmask_d0 11111111 
+// sram_wordmask_d1 11111111
+// sram_wordmask_d2 11111111
+// sram_wordmask_d3 00001111
+// ----- cycle 8
+// sram_wordmask_d0 11111111 
+// sram_wordmask_d1 11111111
+// sram_wordmask_d2 11111111
+// sram_wordmask_d3 11110000
+// and so on ...
+
+always @(posedge clk) begin
+    if (valid_8) begin
+        qk_cnt8 <= qk_cnt8 + 1;
+    end else begin
+        qk_cnt8 <= 0;
+    end
+end
+
+reg [4:0] sram_waddr_cnt_d;
+always @(posedge clk) begin
+    if (qk_cnt8 == 3'd7) begin
+        sram_waddr_cnt_d <= sram_waddr_cnt_d + 1;
+    end else if (top_state == R_SRAM_C | top_state == R_SRAM_C_T) begin
+        sram_waddr_cnt_d <= sram_waddr_cnt_d;
+    end else begin
+        sram_waddr_cnt_d <= 0;
+    end
+end
+
+
+assign sramd_waddr = {1'b1, sram_waddr_cnt_d};
+
+assign sram_addr_d0 = sramd_waddr;
+assign sram_addr_d1 = sramd_waddr;
+assign sram_addr_d2 = sramd_waddr;
+assign sram_addr_d3 = sramd_waddr;
+
+wire [79:0]sramd_wdata_1;
+wire [79:0]sramd_wdata_2;
+assign sramd_wdata_1 = {qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_quan_10[3], 40'b0};
+assign sramd_wdata_2 = {40'b0, qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_quan_10[3]};
+assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+
+localparam demask_h = 8'b0000_1111;
+localparam demask_l = 8'b1111_0000;
+localparam mask_all = 8'b1111_1111;
+
+always @(*) begin
+    case (qk_cnt8)
+    0: begin
+        sram_wordmask_d0 = demask_h;
+        sram_wordmask_d1 = mask_all;
+        sram_wordmask_d2 = mask_all;
+        sram_wordmask_d3 = mask_all;
+    end
+    1: begin
+        sram_wordmask_d0 = demask_l;
+        sram_wordmask_d1 = mask_all;
+        sram_wordmask_d2 = mask_all;
+        sram_wordmask_d3 = mask_all;
+    end
+    2: begin
+        sram_wordmask_d0 = mask_all;
+        sram_wordmask_d1 = demask_h;
+        sram_wordmask_d2 = mask_all;
+        sram_wordmask_d3 = mask_all;
+    end
+    3: begin
+        sram_wordmask_d0 = mask_all;
+        sram_wordmask_d1 = demask_l;
+        sram_wordmask_d2 = mask_all;
+        sram_wordmask_d3 = mask_all;
+    end
+    4: begin
+        sram_wordmask_d0 = mask_all;
+        sram_wordmask_d1 = mask_all;
+        sram_wordmask_d2 = demask_h;
+        sram_wordmask_d3 = mask_all;
+    end
+    5: begin
+        sram_wordmask_d0 = mask_all;
+        sram_wordmask_d1 = mask_all;
+        sram_wordmask_d2 = demask_l;
+        sram_wordmask_d3 = mask_all;
+    end
+    6: begin
+        sram_wordmask_d0 = mask_all;
+        sram_wordmask_d1 = mask_all;
+        sram_wordmask_d2 = mask_all;
+        sram_wordmask_d3 = demask_h;
+    end
+    7: begin
+        sram_wordmask_d0 = mask_all;
+        sram_wordmask_d1 = mask_all;
+        sram_wordmask_d2 = mask_all;
+        sram_wordmask_d3 = demask_l;
+    end
+    endcase
+end
+
+assign sram_wen_d0 = !valid_8;
+assign sram_wen_d1 = !valid_8;
+assign sram_wen_d2 = !valid_8;
+assign sram_wen_d3 = !valid_8;
 
 
 endmodule
