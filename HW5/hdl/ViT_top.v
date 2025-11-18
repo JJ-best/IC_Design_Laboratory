@@ -2143,6 +2143,11 @@ assign sram_wen_d1 = !valid_8;
 assign sram_wen_d2 = !valid_8;
 assign sram_wen_d3 = !valid_8;
 
+// ----- exponential ----- //
+// In the exponential part, since we use the taylor series 
+// expansion around a integer point, we can use LUT for these 
+// integer point of exponential, than use these enponential value
+// to calculate other non-integer fixed point number by taylor expansion
 
 endmodule
 
