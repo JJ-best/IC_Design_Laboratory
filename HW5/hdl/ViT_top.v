@@ -139,6 +139,8 @@ reg sramc_addr_d;
 // ===== sram D ===== //
 wire [5:0] sramd_waddr;
 reg [2:0]qk_cnt8;
+reg [4:0]sramd_raddr_cnt;
+wire [5:0]sramd_raddr;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
 localparam R_BIAS_A = 5'd1;
@@ -240,7 +242,7 @@ always @(posedge clk) begin
     end
 end
 // should be 1 for correct answer
-assign valid = (tmp_cnt == 4'b1111)? 1:0;
+assign valid = (tmp_cnt == 4'b1111)? 0:0;
 
 // ===== read the normalize bias out ===== //
 // SRAM-bias: 1 data / addr
@@ -1793,17 +1795,6 @@ assign sramc_k_addr = {1'b1, sramc_k_addr_cnt_d};
 
 assign sramc_addr = (access_k)? sramc_k_addr: sramc_q_addr;
 
-// always @(posedge clk) begin
-//     if (!srst_n) begin
-//         sramc_addr_cnt <= 0;
-//     end else if (top_state == R_SRAM_C) begin
-//         sramc_addr_cnt <= sramc_addr_cnt + 1;
-//     end else begin
-//         sramc_addr_cnt <= 0;
-//     end
-// end
-// assign sramc_addr = {sramc_addr_cnt[0], sramc_addr_cnt[4:1]};
-
 always @(*) begin
     // MSB-first ordering: [79:70], [69:60], ..., [9:0]
     c_bank0_dat[0] = sram_rdata_c0[79:70]; // ch0
@@ -2067,10 +2058,10 @@ end
 
 assign sramd_waddr = {1'b1, sram_waddr_cnt_d};
 
-assign sram_addr_d0 = sramd_waddr;
-assign sram_addr_d1 = sramd_waddr;
-assign sram_addr_d2 = sramd_waddr;
-assign sram_addr_d3 = sramd_waddr;
+assign sram_addr_d0 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
+assign sram_addr_d1 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
+assign sram_addr_d2 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
+assign sram_addr_d3 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
 
 wire [79:0]sramd_wdata_1;
 wire [79:0]sramd_wdata_2;
@@ -2143,11 +2134,350 @@ assign sram_wen_d1 = !valid_8;
 assign sram_wen_d2 = !valid_8;
 assign sram_wen_d3 = !valid_8;
 
-// ----- exponential ----- //
+// ===== 11. Read the attention data form SRAM D. ===== //
 // In the exponential part, since we use the taylor series 
-// expansion around a integer point, we can use LUT for these 
-// integer point of exponential, than use these enponential value
-// to calculate other non-integer fixed point number by taylor expansion
+// expansion around chosen point(in exp_lut.v), we can use LUT to find
+// the exponential value of these lut point, than use these enponential value
+// to calculate other number by taylor expansion
+
+// for example, if we want to get exp(7.0625), we use LUT to find exp(7)
+// then calculate the taylor series by:
+// exp(7) + (exp(7)/1)*(7.0625-7) + (exp(7)/2!)*(7.0625-7)^2 + ..
+
+// The data store in sram D (1-bit sign + 3-bit integer + 6-bit fraction)
+// so the integer range from -8~+7, we chosen 64 lut point for this exp(lut point)
+// then we use taylor series to get exp(some number around lut point)
+
+// note that we need to determine which lut point we choose in LUT, 
+// the lut point should as close as possible to our sram D data
+// so that the taylor series high order term may converge faster, thus we can 
+// reduce the term we need to calculate (ignore high order term ) if we choose 
+// better lut point.
+
+// The method is, choose lut point to map in LUT, we can choose 
+// ex: 1, 1.25, 1.5, 1.75, 2, ... so the LUT point and the fixed point number 
+// may be closer, the taylor series result may be more precise 
+
+// In this part, we read from sram D to get eack row of 16x64 matrix QK^T
+// then implement the softmax function for each row element (64ch)
+// each cycle we read out 32ch(half of exp), need 2 cycle for a row
+// totally 16 row need to do softmax(32 cycle for read)
+// For the whole process(2 head, each have 4 chunk), we need 256 cycle
+
+// ----- Taylor series re-arrangement ----- //
+// let the lut point call a, the taylor expansion of 
+// exp(x) can be expand around a by
+// exp(x) = exp(a) + exp(a)(x-a) + exp(a)/2*(x-a)^2 + exp(a)/6*(x-a)^3 + exp(a)/24*(x-a)^4 + ... 
+// = exp(a) [1 + (x-a)(1+(x-a)(1/2+(x-a)(1/6+(x-a)*1/24)))]
+// The dataflow is arrange by following(each stage may be pipeline, totally 8 stage):
+// x-a -> *1/24 -> +1/6 -> *(x-a) -> +1/2 -> *(x-a) -> +1 -> *(x-a) -> +1 -> *exp(a) = exp(x)
+// The datapath read 32 data from sram D and compute parallel every cycle
+
+// the sram D access sequence is 
+// addr32 -> addr33 -> addr34 -> addr35 -> .... -> addr62 -> addr63
+// 10_0000 -> 10_0001 -> 10_0010 -> ... -> 11_1111
+
+always @(posedge clk) begin
+    if (top_state == SOFTMAX) begin
+        sramd_raddr_cnt <= sramd_raddr_cnt + 1;
+    end else begin
+        sramd_raddr_cnt <= 0;
+    end
+end
+
+assign sramd_raddr = {1'b1, sramd_raddr_cnt};
+
+reg signed[(BW_PER_ACT-1):0] d_bank0_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] d_bank1_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] d_bank2_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] d_bank3_dat[0:(CH_NUM-1)];
+
+always @(*) begin
+    // MSB-first ordering: [79:70], [69:60], ..., [9:0]
+    d_bank0_dat[0] = sram_rdata_d0[79:70]; // ch0
+    d_bank0_dat[1] = sram_rdata_d0[69:60]; // ch1
+    d_bank0_dat[2] = sram_rdata_d0[59:50]; // ch2
+    d_bank0_dat[3] = sram_rdata_d0[49:40]; // ch3
+    d_bank0_dat[4] = sram_rdata_d0[39:30]; // ch4
+    d_bank0_dat[5] = sram_rdata_d0[29:20]; // ch5
+    d_bank0_dat[6] = sram_rdata_d0[19:10]; // ch6
+    d_bank0_dat[7] = sram_rdata_d0[9:0];   // ch7
+
+    d_bank1_dat[0] = sram_rdata_d1[79:70];
+    d_bank1_dat[1] = sram_rdata_d1[69:60];
+    d_bank1_dat[2] = sram_rdata_d1[59:50];
+    d_bank1_dat[3] = sram_rdata_d1[49:40];
+    d_bank1_dat[4] = sram_rdata_d1[39:30];
+    d_bank1_dat[5] = sram_rdata_d1[29:20];
+    d_bank1_dat[6] = sram_rdata_d1[19:10];
+    d_bank1_dat[7] = sram_rdata_d1[9:0];
+
+    d_bank2_dat[0] = sram_rdata_d2[79:70];
+    d_bank2_dat[1] = sram_rdata_d2[69:60];
+    d_bank2_dat[2] = sram_rdata_d2[59:50];
+    d_bank2_dat[3] = sram_rdata_d2[49:40];
+    d_bank2_dat[4] = sram_rdata_d2[39:30];
+    d_bank2_dat[5] = sram_rdata_d2[29:20];
+    d_bank2_dat[6] = sram_rdata_d2[19:10];
+    d_bank2_dat[7] = sram_rdata_d2[9:0];
+
+    d_bank3_dat[0] = sram_rdata_d3[79:70];
+    d_bank3_dat[1] = sram_rdata_d3[69:60];
+    d_bank3_dat[2] = sram_rdata_d3[59:50];
+    d_bank3_dat[3] = sram_rdata_d3[49:40];
+    d_bank3_dat[4] = sram_rdata_d3[39:30];
+    d_bank3_dat[5] = sram_rdata_d3[29:20];
+    d_bank3_dat[6] = sram_rdata_d3[19:10];
+    d_bank3_dat[7] = sram_rdata_d3[9:0];
+end
+
+reg valid_9;
+always @(posedge clk) begin
+    if (top_state == SOFTMAX) begin
+        valid_9 <= 1;
+    end else begin
+        valid_9 <= 0;
+    end
+end
+
+// lut point {6-bit origin data + 4'b0} < 10-bit original data
+// this is expansion point a
+reg [9:0]d_bank0_lut[0:7];
+reg [9:0]d_bank1_lut[0:7];
+reg [9:0]d_bank2_lut[0:7];
+reg [9:0]d_bank3_lut[0:7];
+
+reg [9:0]d_bank0_lut_d1[0:7];
+reg [9:0]d_bank1_lut_d1[0:7];
+reg [9:0]d_bank2_lut_d1[0:7];
+reg [9:0]d_bank3_lut_d1[0:7];
+
+reg [9:0]d_bank0_lut_d2[0:7];
+reg [9:0]d_bank1_lut_d2[0:7];
+reg [9:0]d_bank2_lut_d2[0:7];
+reg [9:0]d_bank3_lut_d2[0:7];
+
+reg [9:0]d_bank0_lut_d3[0:7];
+reg [9:0]d_bank1_lut_d3[0:7];
+reg [9:0]d_bank2_lut_d3[0:7];
+reg [9:0]d_bank3_lut_d3[0:7];
+
+reg [9:0]d_bank0_lut_d4[0:7];
+reg [9:0]d_bank1_lut_d4[0:7];
+reg [9:0]d_bank2_lut_d4[0:7];
+reg [9:0]d_bank3_lut_d4[0:7];
+
+reg [9:0]d_bank0_lut_d5[0:7];
+reg [9:0]d_bank1_lut_d5[0:7];
+reg [9:0]d_bank2_lut_d5[0:7];
+reg [9:0]d_bank3_lut_d5[0:7];
+
+reg [9:0]d_bank0_lut_d6[0:7];
+reg [9:0]d_bank1_lut_d6[0:7];
+reg [9:0]d_bank2_lut_d6[0:7];
+reg [9:0]d_bank3_lut_d6[0:7];
+
+reg [9:0]d_bank0_lut_d7[0:7];
+reg [9:0]d_bank1_lut_d7[0:7];
+reg [9:0]d_bank2_lut_d7[0:7];
+reg [9:0]d_bank3_lut_d7[0:7];
+
+reg [9:0]d_bank0_lut_d8[0:7];
+reg [9:0]d_bank1_lut_d8[0:7];
+reg [9:0]d_bank2_lut_d8[0:7];
+reg [9:0]d_bank3_lut_d8[0:7];
+// deviation of x_i - x_c
+reg [3:0]d_bank0_dev[0:7];
+reg [3:0]d_bank1_dev[0:7];
+reg [3:0]d_bank2_dev[0:7];
+reg [3:0]d_bank3_dev[0:7];
+reg [3:0]d_bank0_dev_d1[0:7];
+reg [3:0]d_bank1_dev_d1[0:7];
+reg [3:0]d_bank2_dev_d1[0:7];
+reg [3:0]d_bank3_dev_d1[0:7];
+reg [3:0]d_bank0_dev_d2[0:7];
+reg [3:0]d_bank1_dev_d2[0:7];
+reg [3:0]d_bank2_dev_d2[0:7];
+reg [3:0]d_bank3_dev_d2[0:7];
+reg [3:0]d_bank0_dev_d3[0:7];
+reg [3:0]d_bank1_dev_d3[0:7];
+reg [3:0]d_bank2_dev_d3[0:7];
+reg [3:0]d_bank3_dev_d3[0:7];
+reg [3:0]d_bank0_dev_d4[0:7];
+reg [3:0]d_bank1_dev_d4[0:7];
+reg [3:0]d_bank2_dev_d4[0:7];
+reg [3:0]d_bank3_dev_d4[0:7];
+reg [3:0]d_bank0_dev_d5[0:7];
+reg [3:0]d_bank1_dev_d5[0:7];
+reg [3:0]d_bank2_dev_d5[0:7];
+reg [3:0]d_bank3_dev_d5[0:7];
+reg [3:0]d_bank0_dev_d6[0:7];
+reg [3:0]d_bank1_dev_d6[0:7];
+reg [3:0]d_bank2_dev_d6[0:7];
+reg [3:0]d_bank3_dev_d6[0:7];
+reg [3:0]d_bank0_dev_d7[0:7];
+reg [3:0]d_bank1_dev_d7[0:7];
+reg [3:0]d_bank2_dev_d7[0:7];
+reg [3:0]d_bank3_dev_d7[0:7];
+reg [3:0]d_bank0_dev_d8[0:7];
+reg [3:0]d_bank1_dev_d8[0:7];
+reg [3:0]d_bank2_dev_d8[0:7];
+reg [3:0]d_bank3_dev_d8[0:7];
+always @(*) begin
+    for (k=0; k<8; k=k+1) begin
+        d_bank0_lut[k] = {d_bank0_dat[k][9:4], 4'b0};
+        d_bank1_lut[k] = {d_bank1_dat[k][9:4], 4'b0};
+        d_bank2_lut[k] = {d_bank2_dat[k][9:4], 4'b0};
+        d_bank3_lut[k] = {d_bank3_dat[k][9:4], 4'b0};
+        d_bank0_dev[k] = d_bank0_dat[k][3:0];
+        d_bank1_dev[k] = d_bank1_dat[k][3:0];
+        d_bank2_dev[k] = d_bank2_dat[k][3:0];
+        d_bank3_dev[k] = d_bank3_dat[k][3:0];
+    end
+end
+
+// pipeline the lut point (a) of each ch
+// pipeline the deviation (x-a) of each ch
+always @(posedge clk) begin
+    for (k=0; k<8; k=k+1) begin
+        d_bank0_lut_d1[k] <= d_bank0_lut[k];
+        d_bank1_lut_d1[k] <= d_bank1_lut[k];
+        d_bank2_lut_d1[k] <= d_bank2_lut[k];
+        d_bank3_lut_d1[k] <= d_bank3_lut[k];
+        d_bank0_dev_d1[k] <= d_bank0_dev[k];
+        d_bank1_dev_d1[k] <= d_bank1_dev[k];
+        d_bank2_dev_d1[k] <= d_bank2_dev[k];
+        d_bank3_dev_d1[k] <= d_bank3_dev[k];
+
+        d_bank0_lut_d2[k] <= d_bank0_lut_d1[k];
+        d_bank1_lut_d2[k] <= d_bank1_lut_d1[k];
+        d_bank2_lut_d2[k] <= d_bank2_lut_d1[k];
+        d_bank3_lut_d2[k] <= d_bank3_lut_d1[k];
+        d_bank0_dev_d2[k] <= d_bank0_dev_d1[k];
+        d_bank1_dev_d2[k] <= d_bank1_dev_d1[k];
+        d_bank2_dev_d2[k] <= d_bank2_dev_d1[k];
+        d_bank3_dev_d2[k] <= d_bank3_dev_d1[k];
+
+        d_bank0_lut_d3[k] <= d_bank0_lut_d2[k];
+        d_bank1_lut_d3[k] <= d_bank1_lut_d2[k];
+        d_bank2_lut_d3[k] <= d_bank2_lut_d2[k];
+        d_bank3_lut_d3[k] <= d_bank3_lut_d2[k];
+        d_bank0_dev_d3[k] <= d_bank0_dev_d2[k];
+        d_bank1_dev_d3[k] <= d_bank1_dev_d2[k];
+        d_bank2_dev_d3[k] <= d_bank2_dev_d2[k];
+        d_bank3_dev_d3[k] <= d_bank3_dev_d2[k];
+
+        d_bank0_lut_d4[k] <= d_bank0_lut_d3[k];
+        d_bank1_lut_d4[k] <= d_bank1_lut_d3[k];
+        d_bank2_lut_d4[k] <= d_bank2_lut_d3[k];
+        d_bank3_lut_d4[k] <= d_bank3_lut_d3[k];
+        d_bank0_dev_d4[k] <= d_bank0_dev_d3[k];
+        d_bank1_dev_d4[k] <= d_bank1_dev_d3[k];
+        d_bank2_dev_d4[k] <= d_bank2_dev_d3[k];
+        d_bank3_dev_d4[k] <= d_bank3_dev_d3[k];
+
+        d_bank0_lut_d5[k] <= d_bank0_lut_d4[k];
+        d_bank1_lut_d5[k] <= d_bank1_lut_d4[k];
+        d_bank2_lut_d5[k] <= d_bank2_lut_d4[k];
+        d_bank3_lut_d5[k] <= d_bank3_lut_d4[k];
+        d_bank0_dev_d5[k] <= d_bank0_dev_d4[k];
+        d_bank1_dev_d5[k] <= d_bank1_dev_d4[k];
+        d_bank2_dev_d5[k] <= d_bank2_dev_d4[k];
+        d_bank3_dev_d5[k] <= d_bank3_dev_d4[k];
+
+        d_bank0_lut_d6[k] <= d_bank0_lut_d5[k];
+        d_bank1_lut_d6[k] <= d_bank1_lut_d5[k];
+        d_bank2_lut_d6[k] <= d_bank2_lut_d5[k];
+        d_bank3_lut_d6[k] <= d_bank3_lut_d5[k];
+        d_bank0_dev_d6[k] <= d_bank0_dev_d5[k];
+        d_bank1_dev_d6[k] <= d_bank1_dev_d5[k];
+        d_bank2_dev_d6[k] <= d_bank2_dev_d5[k];
+        d_bank3_dev_d6[k] <= d_bank3_dev_d5[k];
+
+        d_bank0_lut_d7[k] <= d_bank0_lut_d6[k];
+        d_bank1_lut_d7[k] <= d_bank1_lut_d6[k];
+        d_bank2_lut_d7[k] <= d_bank2_lut_d6[k];
+        d_bank3_lut_d7[k] <= d_bank3_lut_d6[k];
+        d_bank0_dev_d7[k] <= d_bank0_dev_d6[k];
+        d_bank1_dev_d7[k] <= d_bank1_dev_d6[k];
+        d_bank2_dev_d7[k] <= d_bank2_dev_d6[k];
+        d_bank3_dev_d7[k] <= d_bank3_dev_d6[k];
+
+        d_bank0_lut_d8[k] <= d_bank0_lut_d7[k];
+        d_bank1_lut_d8[k] <= d_bank1_lut_d7[k];
+        d_bank2_lut_d8[k] <= d_bank2_lut_d7[k];
+        d_bank3_lut_d8[k] <= d_bank3_lut_d7[k];
+        d_bank0_dev_d8[k] <= d_bank0_dev_d7[k];
+        d_bank1_dev_d8[k] <= d_bank1_dev_d7[k];
+        d_bank2_dev_d8[k] <= d_bank2_dev_d7[k];
+        d_bank3_dev_d8[k] <= d_bank3_dev_d7[k];
+    end
+end
+
+// ----- dataflow stage 1 ----- //
+// (x-a)*1/24
+// (x-a) is 10-bit(1-bit sign + 3-bit integer + 6-bit fraction)
+// 1/24 is 14-bit fraction 14'b00001010101011
+// the result is 1-bit sign + 3-bit integer + 20-bit fraction
+
+// ----- dataflow stage 2 ----- //
+// 1/6 + (x-a)*1/24
+// 1/6 is 14-bit fraction 14'b00101010101010
+// the result is 1-bit sign + 4-bit integer + 20-bit fraction
+
+// ----- dataflow stage 3 ----- //
+// (x-a)*[1/6 + (x-a)*1/24]
+// (x-a) is 10-bit(1-bit sign + 3-bit integer + 6-bit fraction)
+// 1-bit sign + 
+
+
+
+
+// in this version, I try to use only 30-bit fraction for lut exponential
+// wire [43:0] d_bank0_exp[0:7];
+// wire [43:0] d_bank1_exp[0:7];
+// wire [43:0] d_bank2_exp[0:7];
+// wire [43:0] d_bank3_exp[0:7];
+// genvar f;
+// generate
+//     for (f=0; f<8; f=f+1) begin : EXP_LUT_ARRAY
+//         exp_lut exp_lut_bank0 (
+//             .lut_idx(d_bank0_lut[f]),
+//             .exp_val(d_bank0_exp[f])
+//         );
+//         exp_lut exp_lut_bank1 (
+//             .lut_idx(d_bank1_lut[f]),
+//             .exp_val(d_bank1_exp[f])
+//         );
+//         exp_lut exp_lut_bank2 (
+//             .lut_idx(d_bank2_lut[f]),
+//             .exp_val(d_bank2_exp[f])
+//         );
+//         exp_lut exp_lut_bank3 (
+//             .lut_idx(d_bank3_lut[f]),
+//             .exp_val(d_bank3_exp[f])
+//         );
+//     end
+// endgenerate
+
+
+
+
+
+// ----- other method ----- //
+// implement an 1024 point LUT to map 10-bit fixed point number to exp
+// then calculated the softmax
+// exp (unsigned + 14-bit integer + 50-bit fraction, need to add sign before but in div)
+// (1-bit sign + 14-bit integer + 50-bit fraction)
+// softmax(x_i) = exp(x_i) / Σ exp(x_i)
+// the divide result (1-bit sign + 14-bit integer + 6-bit fraction)
+// since we need to preserve the fraction 6-bit the softmax is implemnet by
+// softmax(x_i) = ({exp(x_i), 6'b0})/Σ exp(x_i)
+
+
+
+// ===== 12. Implement Softmax. ===== //
+// ===== 13. Quantize the result to 10-bits and write the result to SRAM B. ===== //
 
 endmodule
 

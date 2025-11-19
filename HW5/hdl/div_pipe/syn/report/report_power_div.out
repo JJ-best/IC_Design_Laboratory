@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : div
 Version: R-2020.09-SP5
-Date   : Tue Nov 18 03:16:03 2025
+Date   : Tue Nov 18 11:32:11 2025
 ****************************************
 
 
@@ -23,54 +23,6 @@ Wire Load Model Mode: enclosed
 Design        Wire Load Model            Library
 ------------------------------------------------
 div                    Large             slow_vdd1v2
-divider_cell_N41_M18_mydesign_23
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_22
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_21
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_20
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_19
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_18
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_17
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_16
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_15
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_14
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_13
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_12
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_11
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_10
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_9
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_8
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_7
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_6
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_5
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_4
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_3
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_2
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_1
-                       Small             slow_vdd1v2
-divider_cell_N41_M18_mydesign_0
-                       Small             slow_vdd1v2
 
 
 Global Operating Voltage = 1.08 
@@ -86,53 +38,5 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-div                                    3.27e-02    1.528 5.18e+05    1.561 100.0
-  sqrt_stepx_23__u_divider_step (divider_cell_N41_M18_mydesign_0)
-                                       8.53e-04 6.63e-02 2.30e+04 6.71e-02   4.3
-  sqrt_stepx_22__u_divider_step (divider_cell_N41_M18_mydesign_1)
-                                       9.42e-04 6.65e-02 2.32e+04 6.74e-02   4.3
-  sqrt_stepx_21__u_divider_step (divider_cell_N41_M18_mydesign_2)
-                                       9.63e-04 6.65e-02 2.32e+04 6.75e-02   4.3
-  sqrt_stepx_20__u_divider_step (divider_cell_N41_M18_mydesign_3)
-                                       1.00e-03 6.67e-02 2.31e+04 6.77e-02   4.3
-  sqrt_stepx_19__u_divider_step (divider_cell_N41_M18_mydesign_4)
-                                       1.04e-03 6.69e-02 2.32e+04 6.79e-02   4.4
-  sqrt_stepx_18__u_divider_step (divider_cell_N41_M18_mydesign_5)
-                                       1.06e-03 6.70e-02 2.32e+04 6.81e-02   4.4
-  sqrt_stepx_17__u_divider_step (divider_cell_N41_M18_mydesign_6)
-                                       1.11e-03 6.73e-02 2.32e+04 6.84e-02   4.4
-  sqrt_stepx_16__u_divider_step (divider_cell_N41_M18_mydesign_7)
-                                       1.14e-03 6.73e-02 2.32e+04 6.85e-02   4.4
-  sqrt_stepx_15__u_divider_step (divider_cell_N41_M18_mydesign_8)
-                                       1.17e-03 6.74e-02 2.32e+04 6.86e-02   4.4
-  sqrt_stepx_14__u_divider_step (divider_cell_N41_M18_mydesign_9)
-                                       1.22e-03 6.77e-02 2.32e+04 6.90e-02   4.4
-  sqrt_stepx_13__u_divider_step (divider_cell_N41_M18_mydesign_10)
-                                       1.26e-03 6.79e-02 2.32e+04 6.92e-02   4.4
-  sqrt_stepx_12__u_divider_step (divider_cell_N41_M18_mydesign_11)
-                                       1.33e-03 6.82e-02 2.32e+04 6.96e-02   4.5
-  sqrt_stepx_11__u_divider_step (divider_cell_N41_M18_mydesign_12)
-                                       1.43e-03 6.86e-02 2.33e+04 7.01e-02   4.5
-  sqrt_stepx_10__u_divider_step (divider_cell_N41_M18_mydesign_13)
-                                       1.47e-03 6.88e-02 2.32e+04 7.03e-02   4.5
-  sqrt_stepx_9__u_divider_step (divider_cell_N41_M18_mydesign_14)
-                                       1.55e-03 6.92e-02 2.33e+04 7.08e-02   4.5
-  sqrt_stepx_8__u_divider_step (divider_cell_N41_M18_mydesign_15)
-                                       1.64e-03 6.96e-02 2.33e+04 7.12e-02   4.6
-  sqrt_stepx_7__u_divider_step (divider_cell_N41_M18_mydesign_16)
-                                       1.69e-03 6.98e-02 2.33e+04 7.15e-02   4.6
-  sqrt_stepx_6__u_divider_step (divider_cell_N41_M18_mydesign_17)
-                                       1.65e-03 5.75e-02 2.00e+04 5.92e-02   3.8
-  sqrt_stepx_5__u_divider_step (divider_cell_N41_M18_mydesign_18)
-                                       1.76e-03 5.72e-02 1.94e+04 5.90e-02   3.8
-  sqrt_stepx_4__u_divider_step (divider_cell_N41_M18_mydesign_19)
-                                       1.69e-03 5.69e-02 1.93e+04 5.86e-02   3.8
-  sqrt_stepx_3__u_divider_step (divider_cell_N41_M18_mydesign_20)
-                                       1.89e-03 5.66e-02 1.91e+04 5.85e-02   3.7
-  sqrt_stepx_2__u_divider_step (divider_cell_N41_M18_mydesign_21)
-                                       1.97e-03 5.64e-02 1.89e+04 5.84e-02   3.7
-  sqrt_stepx_1__u_divider_step (divider_cell_N41_M18_mydesign_22)
-                                       1.69e-03 4.97e-02 1.48e+04 5.14e-02   3.3
-  u_divider_step0 (divider_cell_N41_M18_mydesign_23)
-                                       1.08e-03 4.19e-02 1.17e+04 4.30e-02   2.8
+div                                    8.34e-02    0.411 1.83e+05    0.494 100.0
 1

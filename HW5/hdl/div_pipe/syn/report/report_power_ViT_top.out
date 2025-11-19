@@ -8,14 +8,13 @@ Report : power
         -analysis_effort low
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Tue Nov 18 17:36:03 2025
+Date   : Tue Nov 18 17:50:40 2025
 ****************************************
 
 
 Library(s) Used:
 
     slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
-    gtech (File: /usr/cad/synopsys/synthesis/cur/libraries/syn/gtech.db)
 
 
 Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
@@ -34,603 +33,216 @@ div_mydesign_1         Small             slow_vdd1v2
 div_mydesign_0         Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
                        Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_3
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_4
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_5
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_6
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_7
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_8
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_9
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_10
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_11
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_12
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_13
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_14
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_15
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_16
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_17
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_18
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_19
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_20
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_21
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_22
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_23
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_24
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_25
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_26
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_27
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_28
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_29
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_30
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_31
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_32
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_33
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_34
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_35
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_36
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_37
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_38
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_39
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_40
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_41
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_42
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_43
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_44
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_45
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_46
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_47
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_48
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_49
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_50
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_51
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_52
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_53
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_54
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_55
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_56
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_57
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_58
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_59
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_60
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_61
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_62
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_63
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_64
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_65
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_66
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_67
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_68
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_69
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_70
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_71
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_72
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_73
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_74
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_75
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_76
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_77
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_78
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_79
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_80
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_81
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_82
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_83
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_84
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_85
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_86
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_87
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_88
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_89
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_90
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_91
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_92
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_93
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_94
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_95
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_96
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_97
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_98
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_99
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_100
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_101
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_102
-                       Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_103
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_104
                        Small             slow_vdd1v2
-SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_103
                        Small             slow_vdd1v2
-*GEQ_UNS_OP_19_18_1    Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-*SUB_UNS_OP_1_18_18    Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-*SUB_UNS_OP_18_18_18   Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
-DW01_cmp2_width19      Small             slow_vdd1v2
-DW01_sub_width18       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_102
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_101
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_100
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_99
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_98
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_97
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_96
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_95
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_94
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_93
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_92
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_91
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_90
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_89
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_88
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_87
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_86
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_85
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_84
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_83
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_82
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_81
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_80
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_79
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_78
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_77
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_76
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_75
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_74
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_73
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_72
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_71
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_70
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_69
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_68
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_67
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_66
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_65
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_64
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_63
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_62
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_61
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_60
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_59
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_58
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_57
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_56
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_55
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_54
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_53
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_52
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_51
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_50
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_49
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_48
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_47
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_46
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_45
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_44
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_43
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_42
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_41
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_40
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_39
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_38
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_37
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_36
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_35
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_34
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_33
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_32
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_31
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_30
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_29
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_28
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_27
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_26
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_25
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_24
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_23
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_22
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_21
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_20
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_19
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_18
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_17
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_16
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_15
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_14
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_13
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_12
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_11
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_10
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_9
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_8
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_7
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_6
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_5
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_4
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_3
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
+                       Small             slow_vdd1v2
 
 
 Global Operating Voltage = 1.08 
@@ -646,589 +258,13 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-ViT_top                                   0.957    2.817 1.43e+06    3.776 100.0
-  div7 (div_mydesign_0)                2.64e-03    0.000    0.000 2.64e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.44e-05    0.000    0.000 3.44e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.32e-05    0.000    0.000 3.32e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.28e-05    0.000    0.000 1.28e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.62e-05    0.000    0.000 3.62e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.53e-05    0.000    0.000 3.53e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.43e-05    0.000    0.000 3.43e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.35e-05    0.000    0.000 1.35e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.86e-05    0.000    0.000 3.86e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.79e-05    0.000    0.000 3.79e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.71e-05    0.000    0.000 3.71e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.45e-05    0.000    0.000 1.45e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.12e-05    0.000    0.000 4.12e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.99e-05    0.000    0.000 3.99e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.83e-05    0.000    0.000 3.83e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.45e-05    0.000    0.000 1.45e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      4.01e-05    0.000    0.000 4.01e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.77e-05    0.000    0.000 3.77e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.48e-05    0.000    0.000 3.48e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.23e-05    0.000    0.000 1.23e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.16e-05    0.000    0.000 3.16e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.61e-05    0.000    0.000 2.61e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.93e-05    0.000    0.000 1.93e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.06e-06    0.000    0.000 4.06e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.57e-05    0.000    0.000 2.57e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.66e-05    0.000    0.000 2.66e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.79e-05    0.000    0.000 2.79e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.77e-05    0.000    0.000 2.77e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.73e-05    0.000    0.000 2.73e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.66e-05    0.000    0.000 2.66e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.22e-05    0.000    0.000 2.22e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.47e-05    0.000    0.000 2.47e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.56e-05    0.000    0.000 2.56e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.64e-05    0.000    0.000 2.64e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.52e-05    0.000    0.000 2.52e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.92e-05    0.000    0.000 1.92e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.40e-05    0.000    0.000 2.40e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.38e-05    0.000    0.000 2.38e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.50e-05    0.000    0.000 2.50e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.54e-05    0.000    0.000 2.54e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.36e-05    0.000    0.000 2.36e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.50e-05    0.000    0.000 1.50e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.31e-05    0.000    0.000 2.31e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     4.00e-05    0.000    0.000 4.00e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.88e-05    0.000    0.000 3.88e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.72e-05    0.000    0.000 3.72e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.23e-05    0.000    0.000 4.23e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.97e-05    0.000    0.000 3.97e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.85e-05    0.000    0.000 3.85e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.44e-05    0.000    0.000 4.44e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.33e-05    0.000    0.000 4.33e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.23e-05    0.000    0.000 4.23e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.14e-05    0.000    0.000 4.14e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.75e-05    0.000    0.000 4.75e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.59e-05    0.000    0.000 4.59e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.44e-05    0.000    0.000 4.44e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.24e-05    0.000    0.000 4.24e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.72e-05    0.000    0.000 4.72e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.45e-05    0.000    0.000 4.45e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.17e-05    0.000    0.000 4.17e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.83e-05    0.000    0.000 3.83e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.99e-05    0.000    0.000 3.99e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.44e-05    0.000    0.000 3.44e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.77e-05    0.000    0.000 2.77e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.83e-05    0.000    0.000 1.83e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.29e-06    0.000    0.000 7.29e-06   0.0
-  div6 (div_mydesign_1)                2.62e-03    0.000    0.000 2.62e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.43e-05    0.000    0.000 3.43e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.31e-05    0.000    0.000 3.31e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.29e-05    0.000    0.000 1.29e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.65e-05    0.000    0.000 3.65e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.54e-05    0.000    0.000 3.54e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.44e-05    0.000    0.000 3.44e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.34e-05    0.000    0.000 1.34e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.82e-05    0.000    0.000 3.82e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.73e-05    0.000    0.000 3.73e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.66e-05    0.000    0.000 3.66e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.42e-05    0.000    0.000 1.42e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.06e-05    0.000    0.000 4.06e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.93e-05    0.000    0.000 3.93e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.77e-05    0.000    0.000 3.77e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.42e-05    0.000    0.000 1.42e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      3.93e-05    0.000    0.000 3.93e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.69e-05    0.000    0.000 3.69e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.41e-05    0.000    0.000 3.41e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.22e-05    0.000    0.000 1.22e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.12e-05    0.000    0.000 3.12e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.59e-05    0.000    0.000 2.59e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.91e-05    0.000    0.000 1.91e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.13e-06    0.000    0.000 4.13e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.56e-05    0.000    0.000 2.56e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.65e-05    0.000    0.000 2.65e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.75e-05    0.000    0.000 2.75e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.73e-05    0.000    0.000 2.73e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.43e-05    0.000    0.000 2.43e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.60e-05    0.000    0.000 2.60e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.70e-05    0.000    0.000 2.70e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.21e-05    0.000    0.000 2.21e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.54e-05    0.000    0.000 2.54e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.49e-05    0.000    0.000 2.49e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.90e-05    0.000    0.000 1.90e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.40e-05    0.000    0.000 2.40e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.38e-05    0.000    0.000 2.38e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.33e-05    0.000    0.000 2.33e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.49e-05    0.000    0.000 1.49e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.31e-05    0.000    0.000 2.31e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     3.99e-05    0.000    0.000 3.99e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.87e-05    0.000    0.000 3.87e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.72e-05    0.000    0.000 3.72e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.24e-05    0.000    0.000 4.24e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.98e-05    0.000    0.000 3.98e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.85e-05    0.000    0.000 3.85e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.41e-05    0.000    0.000 4.41e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.29e-05    0.000    0.000 4.29e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.20e-05    0.000    0.000 4.20e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.68e-05    0.000    0.000 4.68e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.53e-05    0.000    0.000 4.53e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.38e-05    0.000    0.000 4.38e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.19e-05    0.000    0.000 4.19e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.63e-05    0.000    0.000 4.63e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.36e-05    0.000    0.000 4.36e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.76e-05    0.000    0.000 3.76e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.94e-05    0.000    0.000 3.94e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.40e-05    0.000    0.000 3.40e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.72e-05    0.000    0.000 2.72e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.82e-05    0.000    0.000 1.82e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.23e-06    0.000    0.000 7.23e-06   0.0
-  div5 (div_mydesign_2)                2.65e-03    0.000    0.000 2.65e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.45e-05    0.000    0.000 3.45e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.33e-05    0.000    0.000 3.33e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.29e-05    0.000    0.000 1.29e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.63e-05    0.000    0.000 3.63e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.54e-05    0.000    0.000 3.54e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.44e-05    0.000    0.000 3.44e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.35e-05    0.000    0.000 1.35e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.86e-05    0.000    0.000 3.86e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.81e-05    0.000    0.000 3.81e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.73e-05    0.000    0.000 3.73e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.47e-05    0.000    0.000 1.47e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.16e-05    0.000    0.000 4.16e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      4.02e-05    0.000    0.000 4.02e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.86e-05    0.000    0.000 3.86e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.45e-05    0.000    0.000 1.45e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      4.05e-05    0.000    0.000 4.05e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.80e-05    0.000    0.000 3.80e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.52e-05    0.000    0.000 3.52e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.23e-05    0.000    0.000 1.23e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.16e-05    0.000    0.000 3.16e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.62e-05    0.000    0.000 2.62e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.94e-05    0.000    0.000 1.94e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.09e-06    0.000    0.000 4.09e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.56e-05    0.000    0.000 2.56e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.67e-05    0.000    0.000 2.67e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.82e-05    0.000    0.000 2.82e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.79e-05    0.000    0.000 2.79e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.52e-05    0.000    0.000 2.52e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.63e-05    0.000    0.000 2.63e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.74e-05    0.000    0.000 2.74e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.67e-05    0.000    0.000 2.67e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.22e-05    0.000    0.000 2.22e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.57e-05    0.000    0.000 2.57e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.65e-05    0.000    0.000 2.65e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.53e-05    0.000    0.000 2.53e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.92e-05    0.000    0.000 1.92e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.40e-05    0.000    0.000 2.40e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.39e-05    0.000    0.000 2.39e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.52e-05    0.000    0.000 2.52e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.55e-05    0.000    0.000 2.55e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.36e-05    0.000    0.000 2.36e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.50e-05    0.000    0.000 1.50e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.32e-05    0.000    0.000 2.32e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     4.01e-05    0.000    0.000 4.01e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.88e-05    0.000    0.000 3.88e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.72e-05    0.000    0.000 3.72e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.22e-05    0.000    0.000 4.22e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.10e-05    0.000    0.000 4.10e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.98e-05    0.000    0.000 3.98e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.87e-05    0.000    0.000 3.87e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.44e-05    0.000    0.000 4.44e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.34e-05    0.000    0.000 4.34e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.25e-05    0.000    0.000 4.25e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.17e-05    0.000    0.000 4.17e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.80e-05    0.000    0.000 4.80e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.64e-05    0.000    0.000 4.64e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.45e-05    0.000    0.000 4.45e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.28e-05    0.000    0.000 4.28e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.76e-05    0.000    0.000 4.76e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.48e-05    0.000    0.000 4.48e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.20e-05    0.000    0.000 4.20e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.86e-05    0.000    0.000 3.86e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.99e-05    0.000    0.000 3.99e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.45e-05    0.000    0.000 3.45e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.78e-05    0.000    0.000 2.78e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.84e-05    0.000    0.000 1.84e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.23e-06    0.000    0.000 7.23e-06   0.0
-  div4 (div_mydesign_3)                2.62e-03    0.000    0.000 2.62e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.43e-05    0.000    0.000 3.43e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.30e-05    0.000    0.000 3.30e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.28e-05    0.000    0.000 1.28e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.61e-05    0.000    0.000 3.61e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.51e-05    0.000    0.000 3.51e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.42e-05    0.000    0.000 3.42e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.35e-05    0.000    0.000 1.35e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.84e-05    0.000    0.000 3.84e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.76e-05    0.000    0.000 3.76e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.67e-05    0.000    0.000 3.67e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.43e-05    0.000    0.000 1.43e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.05e-05    0.000    0.000 4.05e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.93e-05    0.000    0.000 3.93e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.75e-05    0.000    0.000 3.75e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.41e-05    0.000    0.000 1.41e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      3.92e-05    0.000    0.000 3.92e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.70e-05    0.000    0.000 3.70e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.41e-05    0.000    0.000 3.41e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.21e-05    0.000    0.000 1.21e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.11e-05    0.000    0.000 3.11e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.59e-05    0.000    0.000 2.59e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.92e-05    0.000    0.000 1.92e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.13e-06    0.000    0.000 4.13e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.56e-05    0.000    0.000 2.56e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.66e-05    0.000    0.000 2.66e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.76e-05    0.000    0.000 2.76e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.73e-05    0.000    0.000 2.73e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.43e-05    0.000    0.000 2.43e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.50e-05    0.000    0.000 2.50e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.70e-05    0.000    0.000 2.70e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.19e-05    0.000    0.000 2.19e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.44e-05    0.000    0.000 2.44e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.54e-05    0.000    0.000 2.54e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.49e-05    0.000    0.000 2.49e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.91e-05    0.000    0.000 1.91e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.39e-05    0.000    0.000 2.39e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.37e-05    0.000    0.000 2.37e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.33e-05    0.000    0.000 2.33e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.51e-05    0.000    0.000 1.51e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.31e-05    0.000    0.000 2.31e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     4.00e-05    0.000    0.000 4.00e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.86e-05    0.000    0.000 3.86e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.71e-05    0.000    0.000 3.71e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.21e-05    0.000    0.000 4.21e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.07e-05    0.000    0.000 4.07e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.96e-05    0.000    0.000 3.96e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.83e-05    0.000    0.000 3.83e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.42e-05    0.000    0.000 4.42e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.32e-05    0.000    0.000 4.32e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.20e-05    0.000    0.000 4.20e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.69e-05    0.000    0.000 4.69e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.53e-05    0.000    0.000 4.53e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.35e-05    0.000    0.000 4.35e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.16e-05    0.000    0.000 4.16e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.62e-05    0.000    0.000 4.62e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.37e-05    0.000    0.000 4.37e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.10e-05    0.000    0.000 4.10e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.76e-05    0.000    0.000 3.76e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.92e-05    0.000    0.000 3.92e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.39e-05    0.000    0.000 3.39e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.74e-05    0.000    0.000 2.74e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.83e-05    0.000    0.000 1.83e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.25e-06    0.000    0.000 7.25e-06   0.0
-  div3 (div_mydesign_4)                2.62e-03    0.000    0.000 2.62e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.44e-05    0.000    0.000 3.44e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.32e-05    0.000    0.000 3.32e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.28e-05    0.000    0.000 1.28e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.63e-05    0.000    0.000 3.63e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.54e-05    0.000    0.000 3.54e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.43e-05    0.000    0.000 3.43e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.34e-05    0.000    0.000 1.34e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.84e-05    0.000    0.000 3.84e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.76e-05    0.000    0.000 3.76e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.68e-05    0.000    0.000 3.68e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.42e-05    0.000    0.000 1.42e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.05e-05    0.000    0.000 4.05e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.93e-05    0.000    0.000 3.93e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.76e-05    0.000    0.000 3.76e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.42e-05    0.000    0.000 1.42e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      3.94e-05    0.000    0.000 3.94e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.71e-05    0.000    0.000 3.71e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.43e-05    0.000    0.000 3.43e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.21e-05    0.000    0.000 1.21e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.11e-05    0.000    0.000 3.11e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.57e-05    0.000    0.000 2.57e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.90e-05    0.000    0.000 1.90e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.02e-06    0.000    0.000 4.02e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.57e-05    0.000    0.000 2.57e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.66e-05    0.000    0.000 2.66e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.76e-05    0.000    0.000 2.76e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.74e-05    0.000    0.000 2.74e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.42e-05    0.000    0.000 2.42e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.70e-05    0.000    0.000 2.70e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.19e-05    0.000    0.000 2.19e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.55e-05    0.000    0.000 2.55e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.49e-05    0.000    0.000 2.49e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.89e-05    0.000    0.000 1.89e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.39e-05    0.000    0.000 2.39e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.38e-05    0.000    0.000 2.38e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.33e-05    0.000    0.000 2.33e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.49e-05    0.000    0.000 1.49e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.31e-05    0.000    0.000 2.31e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     4.00e-05    0.000    0.000 4.00e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.86e-05    0.000    0.000 3.86e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.71e-05    0.000    0.000 3.71e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.23e-05    0.000    0.000 4.23e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.97e-05    0.000    0.000 3.97e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.84e-05    0.000    0.000 3.84e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.42e-05    0.000    0.000 4.42e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.31e-05    0.000    0.000 4.31e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.23e-05    0.000    0.000 4.23e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.10e-05    0.000    0.000 4.10e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.68e-05    0.000    0.000 4.68e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.54e-05    0.000    0.000 4.54e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.38e-05    0.000    0.000 4.38e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.20e-05    0.000    0.000 4.20e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.63e-05    0.000    0.000 4.63e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.38e-05    0.000    0.000 4.38e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.11e-05    0.000    0.000 4.11e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.77e-05    0.000    0.000 3.77e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.91e-05    0.000    0.000 3.91e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.38e-05    0.000    0.000 3.38e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.71e-05    0.000    0.000 2.71e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.80e-05    0.000    0.000 1.80e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.23e-06    0.000    0.000 7.23e-06   0.0
-  div2 (div_mydesign_5)                2.62e-03    0.000    0.000 2.62e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.42e-05    0.000    0.000 3.42e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.29e-05    0.000    0.000 3.29e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.28e-05    0.000    0.000 1.28e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.63e-05    0.000    0.000 3.63e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.54e-05    0.000    0.000 3.54e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.44e-05    0.000    0.000 3.44e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.34e-05    0.000    0.000 1.34e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.83e-05    0.000    0.000 3.83e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.74e-05    0.000    0.000 3.74e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.66e-05    0.000    0.000 3.66e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.43e-05    0.000    0.000 1.43e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.05e-05    0.000    0.000 4.05e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.92e-05    0.000    0.000 3.92e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.77e-05    0.000    0.000 3.77e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.41e-05    0.000    0.000 1.41e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      3.91e-05    0.000    0.000 3.91e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.69e-05    0.000    0.000 3.69e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.42e-05    0.000    0.000 3.42e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.21e-05    0.000    0.000 1.21e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.11e-05    0.000    0.000 3.11e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.59e-05    0.000    0.000 2.59e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.92e-05    0.000    0.000 1.92e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.16e-06    0.000    0.000 4.16e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.56e-05    0.000    0.000 2.56e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.66e-05    0.000    0.000 2.66e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.77e-05    0.000    0.000 2.77e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.72e-05    0.000    0.000 2.72e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.42e-05    0.000    0.000 2.42e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.69e-05    0.000    0.000 2.69e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.20e-05    0.000    0.000 2.20e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.54e-05    0.000    0.000 2.54e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.49e-05    0.000    0.000 2.49e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.90e-05    0.000    0.000 1.90e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.38e-05    0.000    0.000 2.38e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.38e-05    0.000    0.000 2.38e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.32e-05    0.000    0.000 2.32e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.50e-05    0.000    0.000 1.50e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.31e-05    0.000    0.000 2.31e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     3.99e-05    0.000    0.000 3.99e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.84e-05    0.000    0.000 3.84e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.71e-05    0.000    0.000 3.71e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.22e-05    0.000    0.000 4.22e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.97e-05    0.000    0.000 3.97e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.84e-05    0.000    0.000 3.84e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.42e-05    0.000    0.000 4.42e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.29e-05    0.000    0.000 4.29e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.19e-05    0.000    0.000 4.19e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.69e-05    0.000    0.000 4.69e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.53e-05    0.000    0.000 4.53e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.36e-05    0.000    0.000 4.36e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.18e-05    0.000    0.000 4.18e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.62e-05    0.000    0.000 4.62e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.36e-05    0.000    0.000 4.36e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.10e-05    0.000    0.000 4.10e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.76e-05    0.000    0.000 3.76e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.92e-05    0.000    0.000 3.92e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.39e-05    0.000    0.000 3.39e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.73e-05    0.000    0.000 2.73e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.83e-05    0.000    0.000 1.83e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.23e-06    0.000    0.000 7.23e-06   0.0
-  div1 (div_mydesign_6)                2.61e-03    0.000    0.000 2.61e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.43e-05    0.000    0.000 3.43e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.32e-05    0.000    0.000 3.32e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.29e-05    0.000    0.000 1.29e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.63e-05    0.000    0.000 3.63e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.53e-05    0.000    0.000 3.53e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.42e-05    0.000    0.000 3.42e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.34e-05    0.000    0.000 1.34e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.82e-05    0.000    0.000 3.82e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.74e-05    0.000    0.000 3.74e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.66e-05    0.000    0.000 3.66e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.43e-05    0.000    0.000 1.43e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.06e-05    0.000    0.000 4.06e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.94e-05    0.000    0.000 3.94e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.76e-05    0.000    0.000 3.76e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.41e-05    0.000    0.000 1.41e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      3.93e-05    0.000    0.000 3.93e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.69e-05    0.000    0.000 3.69e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.40e-05    0.000    0.000 3.40e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.21e-05    0.000    0.000 1.21e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.11e-05    0.000    0.000 3.11e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.56e-05    0.000    0.000 2.56e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.90e-05    0.000    0.000 1.90e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.01e-06    0.000    0.000 4.01e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.56e-05    0.000    0.000 2.56e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.66e-05    0.000    0.000 2.66e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.76e-05    0.000    0.000 2.76e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.73e-05    0.000    0.000 2.73e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.42e-05    0.000    0.000 2.42e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.60e-05    0.000    0.000 2.60e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.70e-05    0.000    0.000 2.70e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.18e-05    0.000    0.000 2.18e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.45e-05    0.000    0.000 2.45e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.53e-05    0.000    0.000 2.53e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.62e-05    0.000    0.000 2.62e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.89e-05    0.000    0.000 1.89e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.39e-05    0.000    0.000 2.39e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.38e-05    0.000    0.000 2.38e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.47e-05    0.000    0.000 2.47e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.32e-05    0.000    0.000 2.32e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.49e-05    0.000    0.000 1.49e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.32e-05    0.000    0.000 2.32e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     3.99e-05    0.000    0.000 3.99e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.88e-05    0.000    0.000 3.88e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.72e-05    0.000    0.000 3.72e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.22e-05    0.000    0.000 4.22e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.97e-05    0.000    0.000 3.97e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.84e-05    0.000    0.000 3.84e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.42e-05    0.000    0.000 4.42e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.29e-05    0.000    0.000 4.29e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.19e-05    0.000    0.000 4.19e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.07e-05    0.000    0.000 4.07e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.68e-05    0.000    0.000 4.68e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.54e-05    0.000    0.000 4.54e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.37e-05    0.000    0.000 4.37e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.17e-05    0.000    0.000 4.17e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.62e-05    0.000    0.000 4.62e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.36e-05    0.000    0.000 4.36e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.08e-05    0.000    0.000 4.08e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.75e-05    0.000    0.000 3.75e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.91e-05    0.000    0.000 3.91e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.36e-05    0.000    0.000 3.36e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.71e-05    0.000    0.000 2.71e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.80e-05    0.000    0.000 1.80e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.26e-06    0.000    0.000 7.26e-06   0.0
-  div0 (div_mydesign_7)                2.61e-03    0.000    0.000 2.61e-03   0.1
-    C604 (*SELECT_OP_2.18_2.1_18)         0.000    0.000    0.000    0.000   0.0
-    C603 (*SELECT_OP_2.18_2.1_18)      3.44e-05    0.000    0.000 3.44e-05   0.0
-    C602 (*SELECT_OP_2.18_2.1_18)      3.31e-05    0.000    0.000 3.31e-05   0.0
-    C601 (*SELECT_OP_2.18_2.1_18)      1.28e-05    0.000    0.000 1.28e-05   0.0
-    C600 (*SELECT_OP_2.18_2.1_18)      3.63e-05    0.000    0.000 3.63e-05   0.0
-    C599 (*SELECT_OP_2.18_2.1_18)      3.54e-05    0.000    0.000 3.54e-05   0.0
-    C598 (*SELECT_OP_2.18_2.1_18)      3.45e-05    0.000    0.000 3.45e-05   0.0
-    C597 (*SELECT_OP_2.18_2.1_18)      1.35e-05    0.000    0.000 1.35e-05   0.0
-    C596 (*SELECT_OP_2.18_2.1_18)      3.85e-05    0.000    0.000 3.85e-05   0.0
-    C595 (*SELECT_OP_2.18_2.1_18)      3.75e-05    0.000    0.000 3.75e-05   0.0
-    C594 (*SELECT_OP_2.18_2.1_18)      3.66e-05    0.000    0.000 3.66e-05   0.0
-    C593 (*SELECT_OP_2.18_2.1_18)      1.43e-05    0.000    0.000 1.43e-05   0.0
-    C592 (*SELECT_OP_2.18_2.1_18)      4.04e-05    0.000    0.000 4.04e-05   0.0
-    C591 (*SELECT_OP_2.18_2.1_18)      3.91e-05    0.000    0.000 3.91e-05   0.0
-    C590 (*SELECT_OP_2.18_2.1_18)      3.76e-05    0.000    0.000 3.76e-05   0.0
-    C589 (*SELECT_OP_2.18_2.1_18)      1.41e-05    0.000    0.000 1.41e-05   0.0
-    C588 (*SELECT_OP_2.18_2.1_18)      3.91e-05    0.000    0.000 3.91e-05   0.0
-    C587 (*SELECT_OP_2.18_2.1_18)      3.68e-05    0.000    0.000 3.68e-05   0.0
-    C586 (*SELECT_OP_2.18_2.1_18)      3.39e-05    0.000    0.000 3.39e-05   0.0
-    C585 (*SELECT_OP_2.18_2.1_18)      1.21e-05    0.000    0.000 1.21e-05   0.0
-    C584 (*SELECT_OP_2.18_2.1_18)      3.10e-05    0.000    0.000 3.10e-05   0.0
-    C583 (*SELECT_OP_2.18_2.1_18)      2.58e-05    0.000    0.000 2.58e-05   0.0
-    C582 (*SELECT_OP_2.18_2.1_18)      1.90e-05    0.000    0.000 1.90e-05   0.0
-    C581 (*SELECT_OP_2.18_2.1_18)      4.07e-06    0.000    0.000 4.07e-06   0.0
-    sub_2268 (*SUB_UNS_OP_18_18_18)    2.57e-05    0.000    0.000 2.57e-05   0.0
-    sub_2220 (*SUB_UNS_OP_18_18_18)    2.67e-05    0.000    0.000 2.67e-05   0.0
-    sub_2172 (*SUB_UNS_OP_18_18_18)    2.76e-05    0.000    0.000 2.76e-05   0.0
-    sub_2124 (*SUB_UNS_OP_18_18_18)    2.73e-05    0.000    0.000 2.73e-05   0.0
-    sub_2076 (*SUB_UNS_OP_18_18_18)    2.42e-05    0.000    0.000 2.42e-05   0.0
-    sub_2256 (*SUB_UNS_OP_18_18_18)    2.51e-05    0.000    0.000 2.51e-05   0.0
-    sub_2208 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2160 (*SUB_UNS_OP_18_18_18)    2.69e-05    0.000    0.000 2.69e-05   0.0
-    sub_2112 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2064 (*SUB_UNS_OP_18_18_18)    2.19e-05    0.000    0.000 2.19e-05   0.0
-    sub_2304 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2244 (*SUB_UNS_OP_18_18_18)    2.46e-05    0.000    0.000 2.46e-05   0.0
-    sub_2196 (*SUB_UNS_OP_18_18_18)    2.55e-05    0.000    0.000 2.55e-05   0.0
-    sub_2148 (*SUB_UNS_OP_18_18_18)    2.61e-05    0.000    0.000 2.61e-05   0.0
-    sub_2100 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2052 (*SUB_UNS_OP_18_18_18)    1.89e-05    0.000    0.000 1.89e-05   0.0
-    sub_2292 (*SUB_UNS_OP_18_18_18)    2.39e-05    0.000    0.000 2.39e-05   0.0
-    sub_2028 (*SUB_UNS_OP_1_18_18)     1.09e-05    0.000    0.000 1.09e-05   0.0
-    sub_2232 (*SUB_UNS_OP_18_18_18)    2.39e-05    0.000    0.000 2.39e-05   0.0
-    sub_2184 (*SUB_UNS_OP_18_18_18)    2.48e-05    0.000    0.000 2.48e-05   0.0
-    sub_2136 (*SUB_UNS_OP_18_18_18)    2.50e-05    0.000    0.000 2.50e-05   0.0
-    sub_2088 (*SUB_UNS_OP_18_18_18)    2.32e-05    0.000    0.000 2.32e-05   0.0
-    sub_2040 (*SUB_UNS_OP_18_18_18)    1.48e-05    0.000    0.000 1.48e-05   0.0
-    sub_2280 (*SUB_UNS_OP_18_18_18)    2.32e-05    0.000    0.000 2.32e-05   0.0
-    gte_2302 (*GEQ_UNS_OP_19_18_1)     4.00e-05    0.000    0.000 4.00e-05   0.0
-    gte_2290 (*GEQ_UNS_OP_19_18_1)     3.86e-05    0.000    0.000 3.86e-05   0.0
-    gte_2278 (*GEQ_UNS_OP_19_18_1)     3.71e-05    0.000    0.000 3.71e-05   0.0
-    gte_2266 (*GEQ_UNS_OP_19_18_1)     4.22e-05    0.000    0.000 4.22e-05   0.0
-    gte_2254 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2242 (*GEQ_UNS_OP_19_18_1)     3.98e-05    0.000    0.000 3.98e-05   0.0
-    gte_2230 (*GEQ_UNS_OP_19_18_1)     3.85e-05    0.000    0.000 3.85e-05   0.0
-    gte_2218 (*GEQ_UNS_OP_19_18_1)     4.43e-05    0.000    0.000 4.43e-05   0.0
-    gte_2206 (*GEQ_UNS_OP_19_18_1)     4.30e-05    0.000    0.000 4.30e-05   0.0
-    gte_2194 (*GEQ_UNS_OP_19_18_1)     4.20e-05    0.000    0.000 4.20e-05   0.0
-    gte_2182 (*GEQ_UNS_OP_19_18_1)     4.09e-05    0.000    0.000 4.09e-05   0.0
-    gte_2170 (*GEQ_UNS_OP_19_18_1)     4.68e-05    0.000    0.000 4.68e-05   0.0
-    gte_2158 (*GEQ_UNS_OP_19_18_1)     4.51e-05    0.000    0.000 4.51e-05   0.0
-    gte_2146 (*GEQ_UNS_OP_19_18_1)     4.36e-05    0.000    0.000 4.36e-05   0.0
-    gte_2134 (*GEQ_UNS_OP_19_18_1)     4.16e-05    0.000    0.000 4.16e-05   0.0
-    gte_2122 (*GEQ_UNS_OP_19_18_1)     4.61e-05    0.000    0.000 4.61e-05   0.0
-    gte_2110 (*GEQ_UNS_OP_19_18_1)     4.35e-05    0.000    0.000 4.35e-05   0.0
-    gte_2098 (*GEQ_UNS_OP_19_18_1)     4.07e-05    0.000    0.000 4.07e-05   0.0
-    gte_2086 (*GEQ_UNS_OP_19_18_1)     3.75e-05    0.000    0.000 3.75e-05   0.0
-    gte_2074 (*GEQ_UNS_OP_19_18_1)     3.90e-05    0.000    0.000 3.90e-05   0.0
-    gte_2062 (*GEQ_UNS_OP_19_18_1)     3.38e-05    0.000    0.000 3.38e-05   0.0
-    gte_2050 (*GEQ_UNS_OP_19_18_1)     2.71e-05    0.000    0.000 2.71e-05   0.0
-    gte_2038 (*GEQ_UNS_OP_19_18_1)     1.80e-05    0.000    0.000 1.80e-05   0.0
-    gte_2026 (*GEQ_UNS_OP_19_18_1)     7.23e-06    0.000    0.000 7.23e-06   0.0
+ViT_top                                   1.373    5.962 2.83e+06    7.338 100.0
+  div7 (div_mydesign_0)                5.96e-02    0.402 1.82e+05    0.462   6.3
+  div6 (div_mydesign_1)                6.11e-02    0.406 1.82e+05    0.467   6.4
+  div5 (div_mydesign_2)                5.94e-02    0.400 1.82e+05    0.460   6.3
+  div4 (div_mydesign_3)                5.95e-02    0.401 1.82e+05    0.461   6.3
+  div3 (div_mydesign_4)                5.90e-02    0.401 1.81e+05    0.460   6.3
+  div2 (div_mydesign_5)                5.90e-02    0.400 1.82e+05    0.459   6.3
+  div1 (div_mydesign_6)                5.97e-02    0.403 1.81e+05    0.463   6.3
+  div0 (div_mydesign_7)                6.00e-02    0.402 1.82e+05    0.463   6.3
 1

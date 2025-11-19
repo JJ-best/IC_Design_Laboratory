@@ -45,7 +45,6 @@ end
         repeat(32)    #10   dividend   = dividend + 1 ;
     end
 
-    //对输入延迟，便于数据结果同周期对比，完成自校验
     reg  [N-1:0]   dividend_ref [N-1:0];
     reg  [M-1:0]   divisor_ref [N-1:0];
     always @(posedge clk) begin
@@ -63,7 +62,6 @@ end
         end
     endgenerate
 
-    //自校验
     reg  error_flag ;
     always @(posedge clk) begin
     # 1 ;

@@ -7,316 +7,250 @@ Report : timing
         -max_paths 4
 Design : div
 Version: R-2020.09-SP5
-Date   : Tue Nov 18 03:16:02 2025
+Date   : Tue Nov 18 11:32:10 2025
 ****************************************
-
- # A fanout number of 1000 was used for high fanout net computations.
 
 Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
 Wire Load Model Mode: enclosed
 
-  Startpoint: sqrt_stepx_3__u_divider_step/divisor_kp_reg_0_
+  Startpoint: divisor_t_reg_20__3_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: sqrt_stepx_4__u_divider_step/remainder_reg_17_
-            (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: remainder[13]
+            (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   div                Large                 slow_vdd1v2
-  divider_cell_N41_M18_mydesign_19
-                     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                 0.0000     0.0000
-  clock network delay (ideal)                           0.0000     0.0000
-  sqrt_stepx_3__u_divider_step/divisor_kp_reg_0_/CK (DFFTRXL)
-                                                        0.0000 #   0.0000 r
-  sqrt_stepx_3__u_divider_step/divisor_kp_reg_0_/Q (DFFTRXL)
-                                                        0.1007     0.1007 r
-  sqrt_stepx_3__u_divider_step/divisor_kp[0] (divider_cell_N41_M18_mydesign_20)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_4__u_divider_step/divisor[0] (divider_cell_N41_M18_mydesign_19)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_4__u_divider_step/U39/Y (INVXL)            0.0529     0.1537 f
-  sqrt_stepx_4__u_divider_step/U24/Y (NOR2XL)           0.0455     0.1992 r
-  sqrt_stepx_4__u_divider_step/U124/CO (ADDFX1)         0.1345     0.3337 r
-  sqrt_stepx_4__u_divider_step/U125/CO (ADDFX1)         0.1275     0.4612 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U15/CO (ADDFX1)
-                                                        0.1223     0.5835 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U14/CO (ADDFX1)
-                                                        0.1258     0.7093 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U13/CO (ADDFX1)
-                                                        0.1258     0.8350 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U12/CO (ADDFX1)
-                                                        0.1258     0.9608 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U11/CO (ADDFX1)
-                                                        0.1258     1.0866 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U10/CO (ADDFX1)
-                                                        0.1258     1.2124 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U9/CO (ADDFX1)
-                                                        0.1258     1.3381 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U8/CO (ADDFX1)
-                                                        0.1258     1.4639 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U7/CO (ADDFX1)
-                                                        0.1258     1.5897 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U6/CO (ADDFX1)
-                                                        0.1258     1.7154 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U5/CO (ADDFX1)
-                                                        0.1258     1.8412 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U4/CO (ADDFX1)
-                                                        0.1258     1.9670 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U3/CO (ADDFX1)
-                                                        0.1258     2.0928 r
-  sqrt_stepx_4__u_divider_step/intadd_3_U2/CO (ADDFX1)
-                                                        0.1232     2.2159 r
-  sqrt_stepx_4__u_divider_step/U56/Y (XNOR2X1)          0.1097     2.3257 f
-  sqrt_stepx_4__u_divider_step/U127/Y (AOI211XL)        0.0521     2.3777 r
-  sqrt_stepx_4__u_divider_step/remainder_reg_17_/RN (DFFTRXL)
-                                                        0.0110     2.3887 r
-  data arrival time                                                2.3887
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  divisor_t_reg_20__3_/CK (DFFQXL)       0.0000     0.0000 r
+  divisor_t_reg_20__3_/Q (DFFQXL)        0.0986     0.0986 r
+  U2226/Y (INVXL)                        0.0473     0.1459 f
+  U1826/Y (NOR2X1)                       0.0726     0.2185 r
+  U2155/Y (OAI21XL)                      0.0859     0.3044 f
+  U3621/Y (AOI21XL)                      0.0751     0.3795 r
+  U3628/Y (OAI21XL)                      0.0879     0.4674 f
+  U3649/Y (INVXL)                        0.0791     0.5465 r
+  U3713/Y (OAI21XL)                      0.0803     0.6268 f
+  U2477/Y (XNOR2XL)                      0.1384     0.7653 r
+  U3714/Y (NAND2XL)                      0.0608     0.8261 f
+  U2710/Y (NAND2XL)                      0.0629     0.8889 r
+  U2709/Y (NOR2XL)                       0.0540     0.9429 f
+  U2153/Y (NOR2XL)                       0.0641     1.0071 r
+  U2166/Y (NAND3BXL)                     0.0908     1.0979 f
+  U2681/Y (NOR2XL)                       0.0732     1.1711 r
+  U2751/Y (OAI31XL)                      0.0784     1.2496 f
+  U2183/Y (NAND2XL)                      0.0699     1.3195 r
+  U2269/Y (AOI22XL)                      0.0807     1.4002 f
+  U2678/Y (OAI21X1)                      0.1402     1.5403 r
+  U4386/Y (NOR2XL)                       0.0834     1.6237 f
+  U2046/Y (NOR2XL)                       0.0907     1.7144 r
+  U4453/Y (AOI211XL)                     0.1093     1.8237 f
+  U1853/Y (AND2X1)                       0.0775     1.9012 f
+  U2694/Y (NOR2XL)                       0.0505     1.9517 r
+  U4464/Y (NAND3XL)                      0.0834     2.0351 f
+  U4465/Y (NOR2BXL)                      0.0726     2.1077 r
+  U2692/Y (NOR2XL)                       0.0671     2.1749 f
+  U2691/Y (OAI21XL)                      0.0608     2.2357 r
+  U4474/Y (BUFX2)                        0.1145     2.3501 r
+  U2705/Y (MX2XL)                        0.1205     2.4706 f
+  remainder[13] (out)                    0.0433     2.5139 f
+  data arrival time                                 2.5139
 
-  clock clk (rise edge)                                 3.0000     3.0000
-  clock network delay (ideal)                           0.0000     3.0000
-  sqrt_stepx_4__u_divider_step/remainder_reg_17_/CK (DFFTRXL)
-                                                        0.0000     3.0000 r
-  library setup time                                   -0.1126     2.8874
-  data required time                                               2.8874
-  --------------------------------------------------------------------------
-  data required time                                               2.8874
-  data arrival time                                               -2.3887
-  --------------------------------------------------------------------------
-  slack (MET)                                                      0.4987
+  clock clk (rise edge)                  3.0000     3.0000
+  clock network delay (ideal)            0.0000     3.0000
+  output external delay                 -0.9000     2.1000
+  data required time                                2.1000
+  -----------------------------------------------------------
+  data required time                                2.1000
+  data arrival time                                -2.5139
+  -----------------------------------------------------------
+  slack (VIOLATED)                                 -0.4139
 
 
-  Startpoint: sqrt_stepx_6__u_divider_step/divisor_kp_reg_0_
+  Startpoint: divisor_t_reg_20__3_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: sqrt_stepx_7__u_divider_step/remainder_reg_17_
-            (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: remainder[11]
+            (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   div                Large                 slow_vdd1v2
-  divider_cell_N41_M18_mydesign_16
-                     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                 0.0000     0.0000
-  clock network delay (ideal)                           0.0000     0.0000
-  sqrt_stepx_6__u_divider_step/divisor_kp_reg_0_/CK (DFFTRXL)
-                                                        0.0000 #   0.0000 r
-  sqrt_stepx_6__u_divider_step/divisor_kp_reg_0_/Q (DFFTRXL)
-                                                        0.1007     0.1007 r
-  sqrt_stepx_6__u_divider_step/divisor_kp[0] (divider_cell_N41_M18_mydesign_17)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_7__u_divider_step/divisor[0] (divider_cell_N41_M18_mydesign_16)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_7__u_divider_step/U43/Y (INVXL)            0.0529     0.1537 f
-  sqrt_stepx_7__u_divider_step/U28/Y (NOR2XL)           0.0455     0.1992 r
-  sqrt_stepx_7__u_divider_step/U127/CO (ADDFX1)         0.1345     0.3337 r
-  sqrt_stepx_7__u_divider_step/U128/CO (ADDFX1)         0.1275     0.4612 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U15/CO (ADDFX1)
-                                                        0.1223     0.5835 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U14/CO (ADDFX1)
-                                                        0.1258     0.7093 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U13/CO (ADDFX1)
-                                                        0.1258     0.8350 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U12/CO (ADDFX1)
-                                                        0.1258     0.9608 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U11/CO (ADDFX1)
-                                                        0.1258     1.0866 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U10/CO (ADDFX1)
-                                                        0.1258     1.2124 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U9/CO (ADDFX1)
-                                                        0.1258     1.3381 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U8/CO (ADDFX1)
-                                                        0.1258     1.4639 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U7/CO (ADDFX1)
-                                                        0.1258     1.5897 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U6/CO (ADDFX1)
-                                                        0.1258     1.7154 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U5/CO (ADDFX1)
-                                                        0.1258     1.8412 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U4/CO (ADDFX1)
-                                                        0.1258     1.9670 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U3/CO (ADDFX1)
-                                                        0.1258     2.0928 r
-  sqrt_stepx_7__u_divider_step/intadd_6_U2/CO (ADDFX1)
-                                                        0.1232     2.2159 r
-  sqrt_stepx_7__u_divider_step/U61/Y (XNOR2X1)          0.1097     2.3257 f
-  sqrt_stepx_7__u_divider_step/U129/Y (AOI211XL)        0.0521     2.3777 r
-  sqrt_stepx_7__u_divider_step/remainder_reg_17_/RN (DFFTRXL)
-                                                        0.0110     2.3887 r
-  data arrival time                                                2.3887
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  divisor_t_reg_20__3_/CK (DFFQXL)       0.0000     0.0000 r
+  divisor_t_reg_20__3_/Q (DFFQXL)        0.0986     0.0986 r
+  U2226/Y (INVXL)                        0.0473     0.1459 f
+  U1826/Y (NOR2X1)                       0.0726     0.2185 r
+  U2155/Y (OAI21XL)                      0.0859     0.3044 f
+  U3621/Y (AOI21XL)                      0.0751     0.3795 r
+  U3628/Y (OAI21XL)                      0.0879     0.4674 f
+  U3649/Y (INVXL)                        0.0791     0.5465 r
+  U3713/Y (OAI21XL)                      0.0803     0.6268 f
+  U2477/Y (XNOR2XL)                      0.1384     0.7653 r
+  U3714/Y (NAND2XL)                      0.0608     0.8261 f
+  U2710/Y (NAND2XL)                      0.0629     0.8889 r
+  U2709/Y (NOR2XL)                       0.0540     0.9429 f
+  U2153/Y (NOR2XL)                       0.0641     1.0071 r
+  U2166/Y (NAND3BXL)                     0.0908     1.0979 f
+  U2681/Y (NOR2XL)                       0.0732     1.1711 r
+  U2751/Y (OAI31XL)                      0.0784     1.2496 f
+  U2183/Y (NAND2XL)                      0.0699     1.3195 r
+  U2269/Y (AOI22XL)                      0.0807     1.4002 f
+  U2678/Y (OAI21X1)                      0.1402     1.5403 r
+  U4386/Y (NOR2XL)                       0.0834     1.6237 f
+  U2046/Y (NOR2XL)                       0.0907     1.7144 r
+  U4453/Y (AOI211XL)                     0.1093     1.8237 f
+  U1853/Y (AND2X1)                       0.0775     1.9012 f
+  U2694/Y (NOR2XL)                       0.0505     1.9517 r
+  U4464/Y (NAND3XL)                      0.0834     2.0351 f
+  U4465/Y (NOR2BXL)                      0.0726     2.1077 r
+  U2692/Y (NOR2XL)                       0.0671     2.1749 f
+  U2691/Y (OAI21XL)                      0.0608     2.2357 r
+  U4474/Y (BUFX2)                        0.1145     2.3501 r
+  U2702/Y (MX2XL)                        0.1205     2.4706 f
+  remainder[11] (out)                    0.0433     2.5139 f
+  data arrival time                                 2.5139
 
-  clock clk (rise edge)                                 3.0000     3.0000
-  clock network delay (ideal)                           0.0000     3.0000
-  sqrt_stepx_7__u_divider_step/remainder_reg_17_/CK (DFFTRXL)
-                                                        0.0000     3.0000 r
-  library setup time                                   -0.1126     2.8874
-  data required time                                               2.8874
-  --------------------------------------------------------------------------
-  data required time                                               2.8874
-  data arrival time                                               -2.3887
-  --------------------------------------------------------------------------
-  slack (MET)                                                      0.4987
+  clock clk (rise edge)                  3.0000     3.0000
+  clock network delay (ideal)            0.0000     3.0000
+  output external delay                 -0.9000     2.1000
+  data required time                                2.1000
+  -----------------------------------------------------------
+  data required time                                2.1000
+  data arrival time                                -2.5139
+  -----------------------------------------------------------
+  slack (VIOLATED)                                 -0.4139
 
 
-  Startpoint: sqrt_stepx_10__u_divider_step/divisor_kp_reg_0_
+  Startpoint: divisor_t_reg_20__3_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: sqrt_stepx_11__u_divider_step/remainder_reg_17_
-            (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: remainder[10]
+            (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   div                Large                 slow_vdd1v2
-  divider_cell_N41_M18_mydesign_12
-                     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                 0.0000     0.0000
-  clock network delay (ideal)                           0.0000     0.0000
-  sqrt_stepx_10__u_divider_step/divisor_kp_reg_0_/CK (DFFTRXL)
-                                                        0.0000 #   0.0000 r
-  sqrt_stepx_10__u_divider_step/divisor_kp_reg_0_/Q (DFFTRXL)
-                                                        0.1007     0.1007 r
-  sqrt_stepx_10__u_divider_step/divisor_kp[0] (divider_cell_N41_M18_mydesign_13)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_11__u_divider_step/divisor[0] (divider_cell_N41_M18_mydesign_12)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_11__u_divider_step/U42/Y (INVXL)           0.0529     0.1537 f
-  sqrt_stepx_11__u_divider_step/U27/Y (NOR2XL)          0.0455     0.1992 r
-  sqrt_stepx_11__u_divider_step/U126/CO (ADDFX1)        0.1345     0.3337 r
-  sqrt_stepx_11__u_divider_step/U127/CO (ADDFX1)        0.1275     0.4612 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U15/CO (ADDFX1)
-                                                        0.1223     0.5835 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U14/CO (ADDFX1)
-                                                        0.1258     0.7093 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U13/CO (ADDFX1)
-                                                        0.1258     0.8350 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U12/CO (ADDFX1)
-                                                        0.1258     0.9608 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U11/CO (ADDFX1)
-                                                        0.1258     1.0866 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U10/CO (ADDFX1)
-                                                        0.1258     1.2124 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U9/CO (ADDFX1)
-                                                        0.1258     1.3381 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U8/CO (ADDFX1)
-                                                        0.1258     1.4639 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U7/CO (ADDFX1)
-                                                        0.1258     1.5897 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U6/CO (ADDFX1)
-                                                        0.1258     1.7154 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U5/CO (ADDFX1)
-                                                        0.1258     1.8412 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U4/CO (ADDFX1)
-                                                        0.1258     1.9670 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U3/CO (ADDFX1)
-                                                        0.1258     2.0928 r
-  sqrt_stepx_11__u_divider_step/intadd_10_U2/CO (ADDFX1)
-                                                        0.1232     2.2159 r
-  sqrt_stepx_11__u_divider_step/U60/Y (XNOR2X1)         0.1097     2.3257 f
-  sqrt_stepx_11__u_divider_step/U129/Y (AOI211XL)       0.0521     2.3777 r
-  sqrt_stepx_11__u_divider_step/remainder_reg_17_/RN (DFFTRXL)
-                                                        0.0110     2.3887 r
-  data arrival time                                                2.3887
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  divisor_t_reg_20__3_/CK (DFFQXL)       0.0000     0.0000 r
+  divisor_t_reg_20__3_/Q (DFFQXL)        0.0986     0.0986 r
+  U2226/Y (INVXL)                        0.0473     0.1459 f
+  U1826/Y (NOR2X1)                       0.0726     0.2185 r
+  U2155/Y (OAI21XL)                      0.0859     0.3044 f
+  U3621/Y (AOI21XL)                      0.0751     0.3795 r
+  U3628/Y (OAI21XL)                      0.0879     0.4674 f
+  U3649/Y (INVXL)                        0.0791     0.5465 r
+  U3713/Y (OAI21XL)                      0.0803     0.6268 f
+  U2477/Y (XNOR2XL)                      0.1384     0.7653 r
+  U3714/Y (NAND2XL)                      0.0608     0.8261 f
+  U2710/Y (NAND2XL)                      0.0629     0.8889 r
+  U2709/Y (NOR2XL)                       0.0540     0.9429 f
+  U2153/Y (NOR2XL)                       0.0641     1.0071 r
+  U2166/Y (NAND3BXL)                     0.0908     1.0979 f
+  U2681/Y (NOR2XL)                       0.0732     1.1711 r
+  U2751/Y (OAI31XL)                      0.0784     1.2496 f
+  U2183/Y (NAND2XL)                      0.0699     1.3195 r
+  U2269/Y (AOI22XL)                      0.0807     1.4002 f
+  U2678/Y (OAI21X1)                      0.1402     1.5403 r
+  U4386/Y (NOR2XL)                       0.0834     1.6237 f
+  U2046/Y (NOR2XL)                       0.0907     1.7144 r
+  U4453/Y (AOI211XL)                     0.1093     1.8237 f
+  U1853/Y (AND2X1)                       0.0775     1.9012 f
+  U2694/Y (NOR2XL)                       0.0505     1.9517 r
+  U4464/Y (NAND3XL)                      0.0834     2.0351 f
+  U4465/Y (NOR2BXL)                      0.0726     2.1077 r
+  U2692/Y (NOR2XL)                       0.0671     2.1749 f
+  U2691/Y (OAI21XL)                      0.0608     2.2357 r
+  U4474/Y (BUFX2)                        0.1145     2.3501 r
+  U2703/Y (MX2XL)                        0.1205     2.4706 f
+  remainder[10] (out)                    0.0433     2.5139 f
+  data arrival time                                 2.5139
 
-  clock clk (rise edge)                                 3.0000     3.0000
-  clock network delay (ideal)                           0.0000     3.0000
-  sqrt_stepx_11__u_divider_step/remainder_reg_17_/CK (DFFTRXL)
-                                                        0.0000     3.0000 r
-  library setup time                                   -0.1126     2.8874
-  data required time                                               2.8874
-  --------------------------------------------------------------------------
-  data required time                                               2.8874
-  data arrival time                                               -2.3887
-  --------------------------------------------------------------------------
-  slack (MET)                                                      0.4987
+  clock clk (rise edge)                  3.0000     3.0000
+  clock network delay (ideal)            0.0000     3.0000
+  output external delay                 -0.9000     2.1000
+  data required time                                2.1000
+  -----------------------------------------------------------
+  data required time                                2.1000
+  data arrival time                                -2.5139
+  -----------------------------------------------------------
+  slack (VIOLATED)                                 -0.4139
 
 
-  Startpoint: sqrt_stepx_18__u_divider_step/divisor_kp_reg_0_
+  Startpoint: divisor_t_reg_20__3_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: sqrt_stepx_19__u_divider_step/remainder_reg_17_
-            (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: remainder[9]
+            (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   div                Large                 slow_vdd1v2
-  divider_cell_N41_M18_mydesign_4
-                     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                 0.0000     0.0000
-  clock network delay (ideal)                           0.0000     0.0000
-  sqrt_stepx_18__u_divider_step/divisor_kp_reg_0_/CK (DFFTRXL)
-                                                        0.0000 #   0.0000 r
-  sqrt_stepx_18__u_divider_step/divisor_kp_reg_0_/Q (DFFTRXL)
-                                                        0.1007     0.1007 r
-  sqrt_stepx_18__u_divider_step/divisor_kp[0] (divider_cell_N41_M18_mydesign_5)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_19__u_divider_step/divisor[0] (divider_cell_N41_M18_mydesign_4)
-                                                        0.0000     0.1007 r
-  sqrt_stepx_19__u_divider_step/U39/Y (INVXL)           0.0529     0.1537 f
-  sqrt_stepx_19__u_divider_step/U24/Y (NOR2XL)          0.0455     0.1992 r
-  sqrt_stepx_19__u_divider_step/U126/CO (ADDFX1)        0.1345     0.3337 r
-  sqrt_stepx_19__u_divider_step/U127/CO (ADDFX1)        0.1275     0.4612 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U15/CO (ADDFX1)
-                                                        0.1223     0.5835 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U14/CO (ADDFX1)
-                                                        0.1258     0.7093 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U13/CO (ADDFX1)
-                                                        0.1258     0.8350 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U12/CO (ADDFX1)
-                                                        0.1258     0.9608 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U11/CO (ADDFX1)
-                                                        0.1258     1.0866 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U10/CO (ADDFX1)
-                                                        0.1258     1.2124 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U9/CO (ADDFX1)
-                                                        0.1258     1.3381 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U8/CO (ADDFX1)
-                                                        0.1258     1.4639 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U7/CO (ADDFX1)
-                                                        0.1258     1.5897 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U6/CO (ADDFX1)
-                                                        0.1258     1.7154 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U5/CO (ADDFX1)
-                                                        0.1258     1.8412 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U4/CO (ADDFX1)
-                                                        0.1258     1.9670 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U3/CO (ADDFX1)
-                                                        0.1258     2.0928 r
-  sqrt_stepx_19__u_divider_step/intadd_18_U2/CO (ADDFX1)
-                                                        0.1232     2.2159 r
-  sqrt_stepx_19__u_divider_step/U57/Y (XNOR2X1)         0.1097     2.3257 f
-  sqrt_stepx_19__u_divider_step/U129/Y (AOI211XL)       0.0521     2.3777 r
-  sqrt_stepx_19__u_divider_step/remainder_reg_17_/RN (DFFTRXL)
-                                                        0.0110     2.3887 r
-  data arrival time                                                2.3887
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  divisor_t_reg_20__3_/CK (DFFQXL)       0.0000     0.0000 r
+  divisor_t_reg_20__3_/Q (DFFQXL)        0.0986     0.0986 r
+  U2226/Y (INVXL)                        0.0473     0.1459 f
+  U1826/Y (NOR2X1)                       0.0726     0.2185 r
+  U2155/Y (OAI21XL)                      0.0859     0.3044 f
+  U3621/Y (AOI21XL)                      0.0751     0.3795 r
+  U3628/Y (OAI21XL)                      0.0879     0.4674 f
+  U3649/Y (INVXL)                        0.0791     0.5465 r
+  U3713/Y (OAI21XL)                      0.0803     0.6268 f
+  U2477/Y (XNOR2XL)                      0.1384     0.7653 r
+  U3714/Y (NAND2XL)                      0.0608     0.8261 f
+  U2710/Y (NAND2XL)                      0.0629     0.8889 r
+  U2709/Y (NOR2XL)                       0.0540     0.9429 f
+  U2153/Y (NOR2XL)                       0.0641     1.0071 r
+  U2166/Y (NAND3BXL)                     0.0908     1.0979 f
+  U2681/Y (NOR2XL)                       0.0732     1.1711 r
+  U2751/Y (OAI31XL)                      0.0784     1.2496 f
+  U2183/Y (NAND2XL)                      0.0699     1.3195 r
+  U2269/Y (AOI22XL)                      0.0807     1.4002 f
+  U2678/Y (OAI21X1)                      0.1402     1.5403 r
+  U4386/Y (NOR2XL)                       0.0834     1.6237 f
+  U2046/Y (NOR2XL)                       0.0907     1.7144 r
+  U4453/Y (AOI211XL)                     0.1093     1.8237 f
+  U1853/Y (AND2X1)                       0.0775     1.9012 f
+  U2694/Y (NOR2XL)                       0.0505     1.9517 r
+  U4464/Y (NAND3XL)                      0.0834     2.0351 f
+  U4465/Y (NOR2BXL)                      0.0726     2.1077 r
+  U2692/Y (NOR2XL)                       0.0671     2.1749 f
+  U2691/Y (OAI21XL)                      0.0608     2.2357 r
+  U4474/Y (BUFX2)                        0.1145     2.3501 r
+  U2704/Y (MX2XL)                        0.1205     2.4706 f
+  remainder[9] (out)                     0.0433     2.5139 f
+  data arrival time                                 2.5139
 
-  clock clk (rise edge)                                 3.0000     3.0000
-  clock network delay (ideal)                           0.0000     3.0000
-  sqrt_stepx_19__u_divider_step/remainder_reg_17_/CK (DFFTRXL)
-                                                        0.0000     3.0000 r
-  library setup time                                   -0.1126     2.8874
-  data required time                                               2.8874
-  --------------------------------------------------------------------------
-  data required time                                               2.8874
-  data arrival time                                               -2.3887
-  --------------------------------------------------------------------------
-  slack (MET)                                                      0.4987
+  clock clk (rise edge)                  3.0000     3.0000
+  clock network delay (ideal)            0.0000     3.0000
+  output external delay                 -0.9000     2.1000
+  data required time                                2.1000
+  -----------------------------------------------------------
+  data required time                                2.1000
+  data arrival time                                -2.5139
+  -----------------------------------------------------------
+  slack (VIOLATED)                                 -0.4139
 
 
 1

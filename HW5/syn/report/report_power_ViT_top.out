@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Mon Nov 17 18:44:40 2025
+Date   : Tue Nov 18 17:50:40 2025
 ****************************************
 
 
@@ -23,23 +23,35 @@ Wire Load Model Mode: enclosed
 Design        Wire Load Model            Library
 ------------------------------------------------
 ViT_top                Large             slow_vdd1v2
-DW_div_pipe_inst_mydesign_7
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_6
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_5
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_4
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_3
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_2
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_1
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0
-                       Small             slow_vdd1v2
+div_mydesign_7         Small             slow_vdd1v2
+div_mydesign_6         Small             slow_vdd1v2
+div_mydesign_5         Small             slow_vdd1v2
+div_mydesign_4         Small             slow_vdd1v2
+div_mydesign_3         Small             slow_vdd1v2
+div_mydesign_2         Small             slow_vdd1v2
+div_mydesign_1         Small             slow_vdd1v2
+div_mydesign_0         Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_104
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_103
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_102
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_101
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_100
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_99
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_98
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_97
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_96
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_95
                        Small             slow_vdd1v2
@@ -231,22 +243,6 @@ SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
                        Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_7
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_6
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_5
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_4
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_3
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_2
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_1
-                       Small             slow_vdd1v2
-DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_0
-                       Small             slow_vdd1v2
 
 
 Global Operating Voltage = 1.08 
@@ -262,29 +258,13 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-ViT_top                                   1.201    4.658 2.19e+06    5.861 100.0
-  div7 (DW_div_pipe_inst_mydesign_0)   5.08e-02    0.292 1.30e+05    0.343   5.9
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_0)
-                                       5.08e-02    0.292 1.30e+05    0.343   5.9
-  div6 (DW_div_pipe_inst_mydesign_1)   5.13e-02    0.283 1.30e+05    0.334   5.7
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_1)
-                                       5.13e-02    0.283 1.30e+05    0.334   5.7
-  div5 (DW_div_pipe_inst_mydesign_2)   5.20e-02    0.297 1.33e+05    0.349   6.0
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_2)
-                                       5.20e-02    0.297 1.33e+05    0.349   6.0
-  div4 (DW_div_pipe_inst_mydesign_3)   4.90e-02    0.296 1.33e+05    0.345   5.9
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_3)
-                                       4.90e-02    0.296 1.33e+05    0.345   5.9
-  div3 (DW_div_pipe_inst_mydesign_4)   5.10e-02    0.291 1.30e+05    0.343   5.8
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_4)
-                                       5.10e-02    0.291 1.30e+05    0.343   5.8
-  div2 (DW_div_pipe_inst_mydesign_5)   5.12e-02    0.287 1.28e+05    0.338   5.8
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_5)
-                                       5.12e-02    0.287 1.28e+05    0.338   5.8
-  div1 (DW_div_pipe_inst_mydesign_6)   5.01e-02    0.292 1.28e+05    0.342   5.8
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_6)
-                                       5.01e-02    0.292 1.28e+05    0.342   5.8
-  div0 (DW_div_pipe_inst_mydesign_7)   4.92e-02    0.288 1.29e+05    0.337   5.8
-    U1 (DW_div_pipe_inst_mydesign_0_DW_div_pipe_J1_0_mydesign_7)
-                                       4.92e-02    0.288 1.29e+05    0.337   5.8
+ViT_top                                   1.373    5.962 2.83e+06    7.338 100.0
+  div7 (div_mydesign_0)                5.96e-02    0.402 1.82e+05    0.462   6.3
+  div6 (div_mydesign_1)                6.11e-02    0.406 1.82e+05    0.467   6.4
+  div5 (div_mydesign_2)                5.94e-02    0.400 1.82e+05    0.460   6.3
+  div4 (div_mydesign_3)                5.95e-02    0.401 1.82e+05    0.461   6.3
+  div3 (div_mydesign_4)                5.90e-02    0.401 1.81e+05    0.460   6.3
+  div2 (div_mydesign_5)                5.90e-02    0.400 1.82e+05    0.459   6.3
+  div1 (div_mydesign_6)                5.97e-02    0.403 1.81e+05    0.463   6.3
+  div0 (div_mydesign_7)                6.00e-02    0.402 1.82e+05    0.463   6.3
 1

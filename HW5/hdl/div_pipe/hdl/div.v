@@ -9,10 +9,8 @@ module div #(
     output [N-1:0] merchant,
     output [M-1:0] remainder
 );
-// 3-stage pipeline divider
+// 5-stage pipeline divider
 // Signed inputs are converted to absolute values for unsigned division
-reg [23:0] unsign_dividend;
-reg [17:0] unsign_divisor;
 
 localparam integer PIPE_DEPTH = N_ACT - M;
 
@@ -21,15 +19,10 @@ reg [M-1:0]       divisor_t  [N_ACT-M:0];
 reg [M-1:0]       remainder_t[N_ACT-M:0];
 reg [N_ACT-M:0]   merchant_t [N_ACT-M:0];
 
-always @(*) begin
-    unsign_dividend = (dividend[23] == 1'b1) ? ~dividend + 1'b1 : dividend;
-    unsign_divisor  = (divisor[17]  == 1'b1) ? ~divisor  + 1'b1 : divisor;
-end
-
-wire [M:0] stage0_dividend = {{(M){1'b0}}, unsign_dividend[N-1]};
-wire [M-1:0] stage0_divisor = unsign_divisor;
+wire [M:0] stage0_dividend = {{(M){1'b0}}, dividend[N-1]};
+wire [M-1:0] stage0_divisor = divisor;
 wire [N_ACT-M:0] stage0_merchant_ci = {(N_ACT-M+1){1'b0}};
-wire [N_ACT-M-1:0] stage0_dividend_ci = unsign_dividend[N_ACT-M-1:0];
+wire [N_ACT-M-1:0] stage0_dividend_ci = dividend[N_ACT-M-1:0];
 
 always @(posedge clk) begin
     divisor_t[0]  <= stage0_divisor;
