@@ -1,0 +1,58 @@
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Changed wire load model for 'alu' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'EXE_stage' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'ID_EXE' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'dsram_mydesign_0' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'controller' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'regfile' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'ID_stage' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'IF_ID' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'dsram_mydesign_1' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'PC' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'IF_stage' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'top' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'alt1' from '(none)' to 'Large'. (OPT-170)
+Information: Changed wire load model for 'astr' from '(none)' to 'Large'. (OPT-170)
+Information: Changed wire load model for 'alt1' from '(none)' to 'Large'. (OPT-170)
+Information: Changed wire load model for 'astr' from '(none)' to 'Large'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width16' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_16_16_16' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_2_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_sub_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*SUB_TC_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_sub_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*SUB_TC_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_sub_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*SUB_TC_OP_32_32_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW_rightsh' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ASHR_TC_UNS_OP_32_5_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW_leftsh' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ASH_UNS_UNS_OP_32_5_32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_cmp2_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*LT_TC_OP_32_32_1' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_cmp6_width32' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*EQ_TC_OP_32_32_1' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width16' from '(none)' to 'Small'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_16_3_16' from '(none)' to 'Small'. (OPT-170)
+Information: Updating design information... (UID-85)
+Warning: Design 'top_pipe' contains 5 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+
+Information: Checking generated_clocks...
+
+Information: Checking loops...
+
+Information: Checking no_input_delay...
+
+Information: Checking unconstrained_endpoints...
+
+Information: Checking pulse_clock_cell_type...
+
+Information: Checking no_driving_cell...
+
+Information: Checking partial_input_delay...
+1

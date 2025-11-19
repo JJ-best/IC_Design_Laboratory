@@ -1,0 +1,219 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : top_pipe
+Version: R-2020.09-SP5
+Date   : Wed Sep 13 21:28:16 2023
+****************************************
+
+
+   max_delay/setup ('clk' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   top0/ID_stage/regfile/gpr_reg_2__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_3__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_5__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_6__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_7__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_9__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_10__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_11__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_13__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_14__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_15__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_16__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_18__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_19__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_20__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_23__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_24__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_25__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_27__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_29__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_30__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_31__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_0__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_1__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_4__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_8__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_12__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_17__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_21__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_22__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_26__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_28__31_/RN
+                                3.90           4.02 r        -0.12  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_0__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_1__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_2__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_3__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_4__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_5__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_6__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_7__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_8__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_9__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_10__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_11__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_12__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_13__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_14__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_15__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_16__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_17__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_18__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_19__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_20__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_21__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_22__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_23__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_24__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_25__30_/RN
+                                3.90           3.96 r        -0.06  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_26__30_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_27__30_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_28__30_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_29__30_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_30__30_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_31__30_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_0__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_1__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_2__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_3__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_4__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_5__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_6__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_7__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_8__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_9__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_10__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_11__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_12__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_13__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_14__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_15__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_16__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_17__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_18__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_19__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_20__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_21__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_22__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_23__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_24__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_25__29_/RN
+                                3.90           3.95 r        -0.05  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_26__29_/RN
+                                3.90           3.94 r        -0.04  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_27__29_/RN
+                                3.90           3.94 r        -0.04  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_28__29_/RN
+                                3.90           3.94 r        -0.04  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_29__29_/RN
+                                3.90           3.94 r        -0.04  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_30__29_/RN
+                                3.90           3.94 r        -0.04  (VIOLATED)
+   top0/ID_stage/regfile/gpr_reg_31__29_/RN
+                                3.90           3.94 r        -0.04  (VIOLATED)
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   top_pipe                     0.00       146348.64      -146348.64
+                                                                    (VIOLATED)
+
+
+1

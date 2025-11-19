@@ -1,0 +1,365 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 4
+Design : top_pipe
+Version: R-2020.09-SP5
+Date   : Wed Sep 13 21:28:13 2023
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: top0/ID_EXE/EXE_ALUSrc_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: top0/ID_stage/regfile/gpr_reg_6__31_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top_pipe           Large                 slow_vdd1v2
+  top                Small                 slow_vdd1v2
+  alu                Small                 slow_vdd1v2
+  regfile            Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  top0/ID_EXE/EXE_ALUSrc_reg/CK (DFFTRX2)                 0.00 #     0.00 r
+  top0/ID_EXE/EXE_ALUSrc_reg/Q (DFFTRX2)                  0.11       0.11 r
+  top0/ID_EXE/EXE_ALUSrc (ID_EXE)                         0.00       0.11 r
+  top0/EXE_stage/ALUSrc (EXE_stage)                       0.00       0.11 r
+  top0/EXE_stage/alu/ALUSrc (alu)                         0.00       0.11 r
+  top0/EXE_stage/alu/U402/Y (BUFX2)                       0.07       0.18 r
+  top0/EXE_stage/alu/U531/Y (NAND2XL)                     0.05       0.23 f
+  top0/EXE_stage/alu/U777/Y (OA21X1)                      0.07       0.29 f
+  top0/EXE_stage/alu/U259/Y (NOR2X1)                      0.05       0.34 r
+  top0/EXE_stage/alu/U601/Y (OAI21XL)                     0.07       0.41 f
+  top0/EXE_stage/alu/U605/Y (AOI21XL)                     0.05       0.47 r
+  top0/EXE_stage/alu/U606/Y (OAI21XL)                     0.06       0.53 f
+  top0/EXE_stage/alu/U607/Y (AOI21XL)                     0.06       0.59 r
+  top0/EXE_stage/alu/U628/Y (OAI21XL)                     0.07       0.65 f
+  top0/EXE_stage/alu/U302/Y (XNOR2XL)                     0.11       0.77 r
+  top0/EXE_stage/alu/U575/Y (NAND2BXL)                    0.05       0.81 f
+  top0/EXE_stage/alu/U406/Y (INVXL)                       0.05       0.87 r
+  top0/EXE_stage/alu/U450/Y (AO22XL)                      0.09       0.96 r
+  top0/EXE_stage/alu/U1041/Y (OR2XL)                      0.05       1.00 r
+  top0/EXE_stage/alu/U354/Y (NOR2BXL)                     0.06       1.06 r
+  top0/EXE_stage/alu/U417/Y (OAI21XL)                     0.06       1.12 f
+  top0/EXE_stage/alu/U416/Y (NOR2XL)                      0.05       1.17 r
+  top0/EXE_stage/alu/U308/Y (NOR2BXL)                     0.04       1.21 f
+  top0/EXE_stage/alu/U305/Y (NOR2BXL)                     0.04       1.25 r
+  top0/EXE_stage/alu/U400/Y (OAI21XL)                     0.05       1.30 f
+  top0/EXE_stage/alu/U1192/Y (OAI21XL)                    0.07       1.37 r
+  top0/EXE_stage/alu/U441/CO (ADDFXL)                     0.13       1.50 r
+  top0/EXE_stage/alu/U438/CO (ADDFXL)                     0.12       1.62 r
+  top0/EXE_stage/alu/U437/CO (ADDFXL)                     0.12       1.74 r
+  top0/EXE_stage/alu/U436/CO (ADDFXL)                     0.12       1.86 r
+  top0/EXE_stage/alu/U435/CO (ADDFXL)                     0.12       1.98 r
+  top0/EXE_stage/alu/U434/CO (ADDFXL)                     0.12       2.10 r
+  top0/EXE_stage/alu/U433/CO (ADDFXL)                     0.12       2.22 r
+  top0/EXE_stage/alu/U432/CO (ADDFXL)                     0.12       2.34 r
+  top0/EXE_stage/alu/U431/CO (ADDFXL)                     0.12       2.46 r
+  top0/EXE_stage/alu/U430/CO (ADDFXL)                     0.12       2.58 r
+  top0/EXE_stage/alu/U429/CO (ADDFXL)                     0.12       2.70 r
+  top0/EXE_stage/alu/U428/CO (ADDFXL)                     0.12       2.82 r
+  top0/EXE_stage/alu/U427/CO (ADDFXL)                     0.12       2.94 r
+  top0/EXE_stage/alu/U426/CO (ADDFXL)                     0.12       3.06 r
+  top0/EXE_stage/alu/U425/CO (ADDFXL)                     0.12       3.18 r
+  top0/EXE_stage/alu/U424/CO (ADDFXL)                     0.12       3.30 r
+  top0/EXE_stage/alu/U423/CO (ADDFXL)                     0.12       3.42 r
+  top0/EXE_stage/alu/U439/CO (ADDFXL)                     0.12       3.54 r
+  top0/EXE_stage/alu/U443/CO (ADDFXL)                     0.12       3.66 r
+  top0/EXE_stage/alu/U442/Y (AOI22XL)                     0.05       3.71 f
+  top0/EXE_stage/alu/U445/Y (XNOR2XL)                     0.10       3.81 f
+  top0/EXE_stage/alu/U495/Y (OAI211XL)                    0.03       3.84 r
+  top0/EXE_stage/alu/alu_result[31] (alu)                 0.00       3.84 r
+  top0/EXE_stage/alu_result[31] (EXE_stage)               0.00       3.84 r
+  top0/U17/Y (MX2XL)                                      0.11       3.94 r
+  top0/ID_stage/write_data[31] (ID_stage)                 0.00       3.94 r
+  top0/ID_stage/regfile/write_data[31] (regfile)          0.00       3.94 r
+  top0/ID_stage/regfile/U1606/Y (BUFX2)                   0.07       4.01 r
+  top0/ID_stage/regfile/gpr_reg_6__31_/RN (DFFTRXL)       0.01       4.02 r
+  data arrival time                                                  4.02
+
+  clock clk (rise edge)                                   4.00       4.00
+  clock network delay (ideal)                             0.00       4.00
+  top0/ID_stage/regfile/gpr_reg_6__31_/CK (DFFTRXL)       0.00       4.00 r
+  library setup time                                     -0.10       3.90
+  data required time                                                 3.90
+  --------------------------------------------------------------------------
+  data required time                                                 3.90
+  data arrival time                                                 -4.02
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.12
+
+
+  Startpoint: top0/ID_EXE/EXE_ALUSrc_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: top0/ID_stage/regfile/gpr_reg_5__31_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top_pipe           Large                 slow_vdd1v2
+  top                Small                 slow_vdd1v2
+  alu                Small                 slow_vdd1v2
+  regfile            Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  top0/ID_EXE/EXE_ALUSrc_reg/CK (DFFTRX2)                 0.00 #     0.00 r
+  top0/ID_EXE/EXE_ALUSrc_reg/Q (DFFTRX2)                  0.11       0.11 r
+  top0/ID_EXE/EXE_ALUSrc (ID_EXE)                         0.00       0.11 r
+  top0/EXE_stage/ALUSrc (EXE_stage)                       0.00       0.11 r
+  top0/EXE_stage/alu/ALUSrc (alu)                         0.00       0.11 r
+  top0/EXE_stage/alu/U402/Y (BUFX2)                       0.07       0.18 r
+  top0/EXE_stage/alu/U531/Y (NAND2XL)                     0.05       0.23 f
+  top0/EXE_stage/alu/U777/Y (OA21X1)                      0.07       0.29 f
+  top0/EXE_stage/alu/U259/Y (NOR2X1)                      0.05       0.34 r
+  top0/EXE_stage/alu/U601/Y (OAI21XL)                     0.07       0.41 f
+  top0/EXE_stage/alu/U605/Y (AOI21XL)                     0.05       0.47 r
+  top0/EXE_stage/alu/U606/Y (OAI21XL)                     0.06       0.53 f
+  top0/EXE_stage/alu/U607/Y (AOI21XL)                     0.06       0.59 r
+  top0/EXE_stage/alu/U628/Y (OAI21XL)                     0.07       0.65 f
+  top0/EXE_stage/alu/U302/Y (XNOR2XL)                     0.11       0.77 r
+  top0/EXE_stage/alu/U575/Y (NAND2BXL)                    0.05       0.81 f
+  top0/EXE_stage/alu/U406/Y (INVXL)                       0.05       0.87 r
+  top0/EXE_stage/alu/U450/Y (AO22XL)                      0.09       0.96 r
+  top0/EXE_stage/alu/U1041/Y (OR2XL)                      0.05       1.00 r
+  top0/EXE_stage/alu/U354/Y (NOR2BXL)                     0.06       1.06 r
+  top0/EXE_stage/alu/U417/Y (OAI21XL)                     0.06       1.12 f
+  top0/EXE_stage/alu/U416/Y (NOR2XL)                      0.05       1.17 r
+  top0/EXE_stage/alu/U308/Y (NOR2BXL)                     0.04       1.21 f
+  top0/EXE_stage/alu/U305/Y (NOR2BXL)                     0.04       1.25 r
+  top0/EXE_stage/alu/U400/Y (OAI21XL)                     0.05       1.30 f
+  top0/EXE_stage/alu/U1192/Y (OAI21XL)                    0.07       1.37 r
+  top0/EXE_stage/alu/U441/CO (ADDFXL)                     0.13       1.50 r
+  top0/EXE_stage/alu/U438/CO (ADDFXL)                     0.12       1.62 r
+  top0/EXE_stage/alu/U437/CO (ADDFXL)                     0.12       1.74 r
+  top0/EXE_stage/alu/U436/CO (ADDFXL)                     0.12       1.86 r
+  top0/EXE_stage/alu/U435/CO (ADDFXL)                     0.12       1.98 r
+  top0/EXE_stage/alu/U434/CO (ADDFXL)                     0.12       2.10 r
+  top0/EXE_stage/alu/U433/CO (ADDFXL)                     0.12       2.22 r
+  top0/EXE_stage/alu/U432/CO (ADDFXL)                     0.12       2.34 r
+  top0/EXE_stage/alu/U431/CO (ADDFXL)                     0.12       2.46 r
+  top0/EXE_stage/alu/U430/CO (ADDFXL)                     0.12       2.58 r
+  top0/EXE_stage/alu/U429/CO (ADDFXL)                     0.12       2.70 r
+  top0/EXE_stage/alu/U428/CO (ADDFXL)                     0.12       2.82 r
+  top0/EXE_stage/alu/U427/CO (ADDFXL)                     0.12       2.94 r
+  top0/EXE_stage/alu/U426/CO (ADDFXL)                     0.12       3.06 r
+  top0/EXE_stage/alu/U425/CO (ADDFXL)                     0.12       3.18 r
+  top0/EXE_stage/alu/U424/CO (ADDFXL)                     0.12       3.30 r
+  top0/EXE_stage/alu/U423/CO (ADDFXL)                     0.12       3.42 r
+  top0/EXE_stage/alu/U439/CO (ADDFXL)                     0.12       3.54 r
+  top0/EXE_stage/alu/U443/CO (ADDFXL)                     0.12       3.66 r
+  top0/EXE_stage/alu/U442/Y (AOI22XL)                     0.05       3.71 f
+  top0/EXE_stage/alu/U445/Y (XNOR2XL)                     0.10       3.81 f
+  top0/EXE_stage/alu/U495/Y (OAI211XL)                    0.03       3.84 r
+  top0/EXE_stage/alu/alu_result[31] (alu)                 0.00       3.84 r
+  top0/EXE_stage/alu_result[31] (EXE_stage)               0.00       3.84 r
+  top0/U17/Y (MX2XL)                                      0.11       3.94 r
+  top0/ID_stage/write_data[31] (ID_stage)                 0.00       3.94 r
+  top0/ID_stage/regfile/write_data[31] (regfile)          0.00       3.94 r
+  top0/ID_stage/regfile/U1605/Y (BUFX2)                   0.07       4.01 r
+  top0/ID_stage/regfile/gpr_reg_5__31_/RN (DFFTRXL)       0.01       4.02 r
+  data arrival time                                                  4.02
+
+  clock clk (rise edge)                                   4.00       4.00
+  clock network delay (ideal)                             0.00       4.00
+  top0/ID_stage/regfile/gpr_reg_5__31_/CK (DFFTRXL)       0.00       4.00 r
+  library setup time                                     -0.10       3.90
+  data required time                                                 3.90
+  --------------------------------------------------------------------------
+  data required time                                                 3.90
+  data arrival time                                                 -4.02
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.12
+
+
+  Startpoint: top0/ID_EXE/EXE_ALUSrc_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: top0/ID_stage/regfile/gpr_reg_3__31_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top_pipe           Large                 slow_vdd1v2
+  top                Small                 slow_vdd1v2
+  alu                Small                 slow_vdd1v2
+  regfile            Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  top0/ID_EXE/EXE_ALUSrc_reg/CK (DFFTRX2)                 0.00 #     0.00 r
+  top0/ID_EXE/EXE_ALUSrc_reg/Q (DFFTRX2)                  0.11       0.11 r
+  top0/ID_EXE/EXE_ALUSrc (ID_EXE)                         0.00       0.11 r
+  top0/EXE_stage/ALUSrc (EXE_stage)                       0.00       0.11 r
+  top0/EXE_stage/alu/ALUSrc (alu)                         0.00       0.11 r
+  top0/EXE_stage/alu/U402/Y (BUFX2)                       0.07       0.18 r
+  top0/EXE_stage/alu/U531/Y (NAND2XL)                     0.05       0.23 f
+  top0/EXE_stage/alu/U777/Y (OA21X1)                      0.07       0.29 f
+  top0/EXE_stage/alu/U259/Y (NOR2X1)                      0.05       0.34 r
+  top0/EXE_stage/alu/U601/Y (OAI21XL)                     0.07       0.41 f
+  top0/EXE_stage/alu/U605/Y (AOI21XL)                     0.05       0.47 r
+  top0/EXE_stage/alu/U606/Y (OAI21XL)                     0.06       0.53 f
+  top0/EXE_stage/alu/U607/Y (AOI21XL)                     0.06       0.59 r
+  top0/EXE_stage/alu/U628/Y (OAI21XL)                     0.07       0.65 f
+  top0/EXE_stage/alu/U302/Y (XNOR2XL)                     0.11       0.77 r
+  top0/EXE_stage/alu/U575/Y (NAND2BXL)                    0.05       0.81 f
+  top0/EXE_stage/alu/U406/Y (INVXL)                       0.05       0.87 r
+  top0/EXE_stage/alu/U450/Y (AO22XL)                      0.09       0.96 r
+  top0/EXE_stage/alu/U1041/Y (OR2XL)                      0.05       1.00 r
+  top0/EXE_stage/alu/U354/Y (NOR2BXL)                     0.06       1.06 r
+  top0/EXE_stage/alu/U417/Y (OAI21XL)                     0.06       1.12 f
+  top0/EXE_stage/alu/U416/Y (NOR2XL)                      0.05       1.17 r
+  top0/EXE_stage/alu/U308/Y (NOR2BXL)                     0.04       1.21 f
+  top0/EXE_stage/alu/U305/Y (NOR2BXL)                     0.04       1.25 r
+  top0/EXE_stage/alu/U400/Y (OAI21XL)                     0.05       1.30 f
+  top0/EXE_stage/alu/U1192/Y (OAI21XL)                    0.07       1.37 r
+  top0/EXE_stage/alu/U441/CO (ADDFXL)                     0.13       1.50 r
+  top0/EXE_stage/alu/U438/CO (ADDFXL)                     0.12       1.62 r
+  top0/EXE_stage/alu/U437/CO (ADDFXL)                     0.12       1.74 r
+  top0/EXE_stage/alu/U436/CO (ADDFXL)                     0.12       1.86 r
+  top0/EXE_stage/alu/U435/CO (ADDFXL)                     0.12       1.98 r
+  top0/EXE_stage/alu/U434/CO (ADDFXL)                     0.12       2.10 r
+  top0/EXE_stage/alu/U433/CO (ADDFXL)                     0.12       2.22 r
+  top0/EXE_stage/alu/U432/CO (ADDFXL)                     0.12       2.34 r
+  top0/EXE_stage/alu/U431/CO (ADDFXL)                     0.12       2.46 r
+  top0/EXE_stage/alu/U430/CO (ADDFXL)                     0.12       2.58 r
+  top0/EXE_stage/alu/U429/CO (ADDFXL)                     0.12       2.70 r
+  top0/EXE_stage/alu/U428/CO (ADDFXL)                     0.12       2.82 r
+  top0/EXE_stage/alu/U427/CO (ADDFXL)                     0.12       2.94 r
+  top0/EXE_stage/alu/U426/CO (ADDFXL)                     0.12       3.06 r
+  top0/EXE_stage/alu/U425/CO (ADDFXL)                     0.12       3.18 r
+  top0/EXE_stage/alu/U424/CO (ADDFXL)                     0.12       3.30 r
+  top0/EXE_stage/alu/U423/CO (ADDFXL)                     0.12       3.42 r
+  top0/EXE_stage/alu/U439/CO (ADDFXL)                     0.12       3.54 r
+  top0/EXE_stage/alu/U443/CO (ADDFXL)                     0.12       3.66 r
+  top0/EXE_stage/alu/U442/Y (AOI22XL)                     0.05       3.71 f
+  top0/EXE_stage/alu/U445/Y (XNOR2XL)                     0.10       3.81 f
+  top0/EXE_stage/alu/U495/Y (OAI211XL)                    0.03       3.84 r
+  top0/EXE_stage/alu/alu_result[31] (alu)                 0.00       3.84 r
+  top0/EXE_stage/alu_result[31] (EXE_stage)               0.00       3.84 r
+  top0/U17/Y (MX2XL)                                      0.11       3.94 r
+  top0/ID_stage/write_data[31] (ID_stage)                 0.00       3.94 r
+  top0/ID_stage/regfile/write_data[31] (regfile)          0.00       3.94 r
+  top0/ID_stage/regfile/U1606/Y (BUFX2)                   0.07       4.01 r
+  top0/ID_stage/regfile/gpr_reg_3__31_/RN (DFFTRXL)       0.01       4.02 r
+  data arrival time                                                  4.02
+
+  clock clk (rise edge)                                   4.00       4.00
+  clock network delay (ideal)                             0.00       4.00
+  top0/ID_stage/regfile/gpr_reg_3__31_/CK (DFFTRXL)       0.00       4.00 r
+  library setup time                                     -0.10       3.90
+  data required time                                                 3.90
+  --------------------------------------------------------------------------
+  data required time                                                 3.90
+  data arrival time                                                 -4.02
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.12
+
+
+  Startpoint: top0/ID_EXE/EXE_ALUSrc_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: top0/ID_stage/regfile/gpr_reg_2__31_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top_pipe           Large                 slow_vdd1v2
+  top                Small                 slow_vdd1v2
+  alu                Small                 slow_vdd1v2
+  regfile            Small                 slow_vdd1v2
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  top0/ID_EXE/EXE_ALUSrc_reg/CK (DFFTRX2)                 0.00 #     0.00 r
+  top0/ID_EXE/EXE_ALUSrc_reg/Q (DFFTRX2)                  0.11       0.11 r
+  top0/ID_EXE/EXE_ALUSrc (ID_EXE)                         0.00       0.11 r
+  top0/EXE_stage/ALUSrc (EXE_stage)                       0.00       0.11 r
+  top0/EXE_stage/alu/ALUSrc (alu)                         0.00       0.11 r
+  top0/EXE_stage/alu/U402/Y (BUFX2)                       0.07       0.18 r
+  top0/EXE_stage/alu/U531/Y (NAND2XL)                     0.05       0.23 f
+  top0/EXE_stage/alu/U777/Y (OA21X1)                      0.07       0.29 f
+  top0/EXE_stage/alu/U259/Y (NOR2X1)                      0.05       0.34 r
+  top0/EXE_stage/alu/U601/Y (OAI21XL)                     0.07       0.41 f
+  top0/EXE_stage/alu/U605/Y (AOI21XL)                     0.05       0.47 r
+  top0/EXE_stage/alu/U606/Y (OAI21XL)                     0.06       0.53 f
+  top0/EXE_stage/alu/U607/Y (AOI21XL)                     0.06       0.59 r
+  top0/EXE_stage/alu/U628/Y (OAI21XL)                     0.07       0.65 f
+  top0/EXE_stage/alu/U302/Y (XNOR2XL)                     0.11       0.77 r
+  top0/EXE_stage/alu/U575/Y (NAND2BXL)                    0.05       0.81 f
+  top0/EXE_stage/alu/U406/Y (INVXL)                       0.05       0.87 r
+  top0/EXE_stage/alu/U450/Y (AO22XL)                      0.09       0.96 r
+  top0/EXE_stage/alu/U1041/Y (OR2XL)                      0.05       1.00 r
+  top0/EXE_stage/alu/U354/Y (NOR2BXL)                     0.06       1.06 r
+  top0/EXE_stage/alu/U417/Y (OAI21XL)                     0.06       1.12 f
+  top0/EXE_stage/alu/U416/Y (NOR2XL)                      0.05       1.17 r
+  top0/EXE_stage/alu/U308/Y (NOR2BXL)                     0.04       1.21 f
+  top0/EXE_stage/alu/U305/Y (NOR2BXL)                     0.04       1.25 r
+  top0/EXE_stage/alu/U400/Y (OAI21XL)                     0.05       1.30 f
+  top0/EXE_stage/alu/U1192/Y (OAI21XL)                    0.07       1.37 r
+  top0/EXE_stage/alu/U441/CO (ADDFXL)                     0.13       1.50 r
+  top0/EXE_stage/alu/U438/CO (ADDFXL)                     0.12       1.62 r
+  top0/EXE_stage/alu/U437/CO (ADDFXL)                     0.12       1.74 r
+  top0/EXE_stage/alu/U436/CO (ADDFXL)                     0.12       1.86 r
+  top0/EXE_stage/alu/U435/CO (ADDFXL)                     0.12       1.98 r
+  top0/EXE_stage/alu/U434/CO (ADDFXL)                     0.12       2.10 r
+  top0/EXE_stage/alu/U433/CO (ADDFXL)                     0.12       2.22 r
+  top0/EXE_stage/alu/U432/CO (ADDFXL)                     0.12       2.34 r
+  top0/EXE_stage/alu/U431/CO (ADDFXL)                     0.12       2.46 r
+  top0/EXE_stage/alu/U430/CO (ADDFXL)                     0.12       2.58 r
+  top0/EXE_stage/alu/U429/CO (ADDFXL)                     0.12       2.70 r
+  top0/EXE_stage/alu/U428/CO (ADDFXL)                     0.12       2.82 r
+  top0/EXE_stage/alu/U427/CO (ADDFXL)                     0.12       2.94 r
+  top0/EXE_stage/alu/U426/CO (ADDFXL)                     0.12       3.06 r
+  top0/EXE_stage/alu/U425/CO (ADDFXL)                     0.12       3.18 r
+  top0/EXE_stage/alu/U424/CO (ADDFXL)                     0.12       3.30 r
+  top0/EXE_stage/alu/U423/CO (ADDFXL)                     0.12       3.42 r
+  top0/EXE_stage/alu/U439/CO (ADDFXL)                     0.12       3.54 r
+  top0/EXE_stage/alu/U443/CO (ADDFXL)                     0.12       3.66 r
+  top0/EXE_stage/alu/U442/Y (AOI22XL)                     0.05       3.71 f
+  top0/EXE_stage/alu/U445/Y (XNOR2XL)                     0.10       3.81 f
+  top0/EXE_stage/alu/U495/Y (OAI211XL)                    0.03       3.84 r
+  top0/EXE_stage/alu/alu_result[31] (alu)                 0.00       3.84 r
+  top0/EXE_stage/alu_result[31] (EXE_stage)               0.00       3.84 r
+  top0/U17/Y (MX2XL)                                      0.11       3.94 r
+  top0/ID_stage/write_data[31] (ID_stage)                 0.00       3.94 r
+  top0/ID_stage/regfile/write_data[31] (regfile)          0.00       3.94 r
+  top0/ID_stage/regfile/U1606/Y (BUFX2)                   0.07       4.01 r
+  top0/ID_stage/regfile/gpr_reg_2__31_/RN (DFFTRXL)       0.01       4.02 r
+  data arrival time                                                  4.02
+
+  clock clk (rise edge)                                   4.00       4.00
+  clock network delay (ideal)                             0.00       4.00
+  top0/ID_stage/regfile/gpr_reg_2__31_/CK (DFFTRXL)       0.00       4.00 r
+  library setup time                                     -0.10       3.90
+  data required time                                                 3.90
+  --------------------------------------------------------------------------
+  data required time                                                 3.90
+  data arrival time                                                 -4.02
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.12
+
+
+1

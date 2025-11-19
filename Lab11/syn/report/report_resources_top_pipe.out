@@ -1,0 +1,180 @@
+ 
+****************************************
+Report : resources
+Design : top_pipe
+Version: R-2020.09-SP5
+Date   : Wed Sep 13 21:28:16 2023
+****************************************
+
+
+No resource sharing information to report.
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : top
+****************************************
+
+No implementations to report
+ 
+****************************************
+Design : EXE_stage
+****************************************
+
+Resource Report for this hierarchy in file ../hdl/EXE_stage.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_2        | DW01_add       | width=16   | add_65 (EXE_stage.v:65)    |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_2            | DW01_add         | apparch (area)     |                |
+===============================================================================
+
+ 
+****************************************
+Design : alu
+****************************************
+
+Resource Report for this hierarchy in file ../hdl/alu.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| eq_x_3         | DW_cmp         | width=32   | eq_74 (alu.v:74)           |
+| lt_x_4         | DW_cmp         | width=32   | lt_107 (alu.v:107)         |
+| ash_5          | DW_leftsh      | A_width=32 | sla_117 (alu.v:117)        |
+|                |                | SH_width=5 |                            |
+| ashr_6         | DW_rightsh     | A_width=32 | sra_121 (alu.v:121)        |
+|                |                | SH_width=5 |                            |
+| sub_x_2        | DW01_sub       | width=32   | sub_153 (alu.v:153)        |
+|                |                |            | sub_73 (alu.v:73)          |
+|                |                |            | sub_91 (alu.v:91)          |
+| DP_OP_55_125_973                |            |                            |
+|                | DP_OP_55_125_973 |          |                            |
+=============================================================================
+
+Datapath Report for DP_OP_55_125_973
+==============================================================================
+| Cell                 | Contained Operations                                |
+==============================================================================
+| DP_OP_55_125_973     | add_68 (alu.v:68) add_87 (alu.v:87)                 |
+|                      | add_154 (alu.v:154)                                 |
+==============================================================================
+
+==============================================================================
+|       |      | Data     |       |                                          |
+| Var   | Type | Class    | Width | Expression                               |
+==============================================================================
+| I1    | PI   | Unsigned | 32    |                                          |
+| I2    | PI   | Unsigned | 32    |                                          |
+| O1    | PO   | Unsigned | 32    | I1 + I2 ( alu.v:68 alu.v:87 alu.v:154 )  |
+==============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| eq_x_3             | DW_cmp           | apparch (area)     |                |
+| lt_x_4             | DW_cmp           | apparch (area)     |                |
+| ash_5              | DW_leftsh        | astr (area)        |                |
+| ashr_6             | DW_rightsh       | astr (area)        |                |
+| sub_x_2            | DW01_sub         | pparch (area,speed)                 |
+| DP_OP_55_125_973   | DP_OP_55_125_973 | str (area,speed)   |                |
+===============================================================================
+
+
+No resource sharing information to report.
+ 
+****************************************
+Design : ID_EXE
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : ID_stage
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : dsram_mydesign_0
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : controller
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : regfile
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : IF_ID
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : IF_stage
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : dsram_mydesign_1
+****************************************
+
+No implementations to report
+ 
+****************************************
+Design : PC
+****************************************
+
+Resource Report for this hierarchy in file ../hdl/PC.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_4        | DW01_add       | width=16   | add_53 (PC.v:53)           |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_4            | DW01_add         | apparch (area)     |                |
+===============================================================================
+
+1

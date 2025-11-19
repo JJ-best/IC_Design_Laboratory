@@ -2325,10 +2325,12 @@ reg [3:0]d_bank2_dev_d8[0:7];
 reg [3:0]d_bank3_dev_d8[0:7];
 always @(*) begin
     for (k=0; k<8; k=k+1) begin
+        // a is 1-bit sign + 3-bit integer + 2-bit fraction
         d_bank0_lut[k] = {d_bank0_dat[k][9:4], 4'b0};
         d_bank1_lut[k] = {d_bank1_dat[k][9:4], 4'b0};
         d_bank2_lut[k] = {d_bank2_dat[k][9:4], 4'b0};
         d_bank3_lut[k] = {d_bank3_dat[k][9:4], 4'b0};
+        // x-a is 4-bit fraction
         d_bank0_dev[k] = d_bank0_dat[k][3:0];
         d_bank1_dev[k] = d_bank1_dat[k][3:0];
         d_bank2_dev[k] = d_bank2_dat[k][3:0];
@@ -2416,19 +2418,22 @@ end
 
 // ----- dataflow stage 1 ----- //
 // (x-a)*1/24
-// (x-a) is 10-bit(1-bit sign + 3-bit integer + 6-bit fraction)
+// (x-a) is 4-bit (4-bit fraction)
 // 1/24 is 14-bit fraction 14'b00001010101011
-// the result is 1-bit sign + 3-bit integer + 20-bit fraction
+// the result is 18-bit fraction
 
 // ----- dataflow stage 2 ----- //
 // 1/6 + (x-a)*1/24
 // 1/6 is 14-bit fraction 14'b00101010101010
-// the result is 1-bit sign + 4-bit integer + 20-bit fraction
+// the result is 15-bit fraction
 
 // ----- dataflow stage 3 ----- //
 // (x-a)*[1/6 + (x-a)*1/24]
-// (x-a) is 10-bit(1-bit sign + 3-bit integer + 6-bit fraction)
-// 1-bit sign + 
+// (x-a) is 4-bit (4-bit fraction)
+// the result is 19-bit fraction
+
+// ----- dataflow stage 4 ----- //
+
 
 
 
