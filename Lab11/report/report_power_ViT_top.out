@@ -1,0 +1,296 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : ViT_top
+Version: R-2020.09-SP5
+Date   : Thu Nov 20 18:19:05 2025
+****************************************
+
+
+Library(s) Used:
+
+    slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
+
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+ViT_top                Large             slow_vdd1v2
+div_mydesign_7         Small             slow_vdd1v2
+div_mydesign_6         Small             slow_vdd1v2
+div_mydesign_5         Small             slow_vdd1v2
+div_mydesign_4         Small             slow_vdd1v2
+div_mydesign_3         Small             slow_vdd1v2
+div_mydesign_2         Small             slow_vdd1v2
+div_mydesign_1         Small             slow_vdd1v2
+div_mydesign_0         Small             slow_vdd1v2
+exp_lut_mydesign_7     Small             slow_vdd1v2
+exp_lut_mydesign_6     Small             slow_vdd1v2
+exp_lut_mydesign_5     Small             slow_vdd1v2
+exp_lut_mydesign_4     Small             slow_vdd1v2
+exp_lut_mydesign_3     Small             slow_vdd1v2
+exp_lut_mydesign_2     Small             slow_vdd1v2
+exp_lut_mydesign_1     Small             slow_vdd1v2
+exp_lut_mydesign_0     Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_106
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_104
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_103
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_102
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_101
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_100
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_99
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_98
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_97
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_96
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_95
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_94
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_93
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_92
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_91
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_90
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_89
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_88
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_87
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_86
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_85
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_84
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_83
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_82
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_81
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_80
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_79
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_78
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_77
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_76
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_75
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_74
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_73
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_72
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_71
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_70
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_69
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_68
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_67
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_66
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_65
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_64
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_63
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_62
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_61
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_60
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_59
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_58
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_57
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_56
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_55
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_54
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_53
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_52
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_51
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_50
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_49
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_48
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_47
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_46
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_45
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_44
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_43
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_42
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_41
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_40
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_39
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_38
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_37
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_36
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_35
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_34
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_33
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_32
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_31
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_30
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_29
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_28
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_27
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_26
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_25
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_24
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_23
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_22
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_21
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_20
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_19
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_18
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_17
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_16
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_15
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_14
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_13
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_12
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_11
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_10
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_9
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_8
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_7
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_6
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_5
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_4
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_3
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
+                       Small             slow_vdd1v2
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+ViT_top                                   3.097   12.410 5.22e+06   15.512 100.0
+  EXP_LUT_ARRAY_7__exp_lut_stage8 (exp_lut_mydesign_0)
+                                       2.96e-03 6.01e-03 1.11e+04 8.97e-03   0.1
+  EXP_LUT_ARRAY_6__exp_lut_stage8 (exp_lut_mydesign_1)
+                                       2.88e-03 5.86e-03 1.10e+04 8.75e-03   0.1
+  EXP_LUT_ARRAY_5__exp_lut_stage8 (exp_lut_mydesign_2)
+                                       2.94e-03 5.96e-03 1.12e+04 8.91e-03   0.1
+  EXP_LUT_ARRAY_4__exp_lut_stage8 (exp_lut_mydesign_3)
+                                       2.88e-03 5.84e-03 1.09e+04 8.73e-03   0.1
+  EXP_LUT_ARRAY_3__exp_lut_stage8 (exp_lut_mydesign_4)
+                                       2.90e-03 5.89e-03 1.11e+04 8.80e-03   0.1
+  EXP_LUT_ARRAY_2__exp_lut_stage8 (exp_lut_mydesign_5)
+                                       2.91e-03 5.89e-03 1.11e+04 8.81e-03   0.1
+  EXP_LUT_ARRAY_1__exp_lut_stage8 (exp_lut_mydesign_6)
+                                       2.85e-03 5.78e-03 1.11e+04 8.64e-03   0.1
+  EXP_LUT_ARRAY_0__exp_lut_stage8 (exp_lut_mydesign_7)
+                                       2.92e-03 5.92e-03 1.11e+04 8.85e-03   0.1
+  div7 (div_mydesign_0)                5.92e-02    0.403 1.81e+05    0.462   3.0
+  div6 (div_mydesign_1)                5.86e-02    0.402 1.81e+05    0.460   3.0
+  div5 (div_mydesign_2)                5.97e-02    0.404 1.82e+05    0.464   3.0
+  div4 (div_mydesign_3)                5.86e-02    0.400 1.82e+05    0.459   3.0
+  div3 (div_mydesign_4)                5.89e-02    0.401 1.83e+05    0.460   3.0
+  div2 (div_mydesign_5)                5.83e-02    0.399 1.82e+05    0.458   2.9
+  div1 (div_mydesign_6)                6.09e-02    0.408 1.81e+05    0.469   3.0
+  div0 (div_mydesign_7)                5.98e-02    0.404 1.81e+05    0.464   3.0
+1

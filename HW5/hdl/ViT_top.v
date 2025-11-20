@@ -141,6 +141,7 @@ wire [5:0] sramd_waddr;
 reg [2:0]qk_cnt8;
 reg [4:0]sramd_raddr_cnt;
 wire [5:0]sramd_raddr;
+reg [68:0] df_stage9_Q50[0:7];
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
 localparam R_BIAS_A = 5'd1;
@@ -2067,10 +2068,16 @@ wire [79:0]sramd_wdata_1;
 wire [79:0]sramd_wdata_2;
 assign sramd_wdata_1 = {qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_quan_10[3], 40'b0};
 assign sramd_wdata_2 = {40'b0, qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_quan_10[3]};
-assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+// assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+// assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+// assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+// assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+
+assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[0]: sramd_wdata_2& df_stage9_Q50[4];
+assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[1]: sramd_wdata_2& df_stage9_Q50[5];
+assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[2]: sramd_wdata_2& df_stage9_Q50[6];
+assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[3]: sramd_wdata_2& df_stage9_Q50[7];
+
 
 localparam demask_h = 8'b0000_1111;
 localparam demask_l = 8'b1111_0000;
@@ -2160,8 +2167,9 @@ assign sram_wen_d3 = !valid_8;
 
 // In this part, we read from sram D to get eack row of 16x64 matrix QK^T
 // then implement the softmax function for each row element (64ch)
-// each cycle we read out 32ch(half of exp), need 2 cycle for a row
-// totally 16 row need to do softmax(32 cycle for read)
+// each cycle we read out 32ch(half of exp), but only compute 8 ch
+// so we need to stall at one addr 8 cycle for a row compute,
+// totally 16 row need to do softmax(8*16 cycle for read)
 // For the whole process(2 head, each have 4 chunk), we need 256 cycle
 
 // ----- Taylor series re-arrangement ----- //
@@ -2171,17 +2179,21 @@ assign sram_wen_d3 = !valid_8;
 // = exp(a) [1 + (x-a)(1+(x-a)(1/2+(x-a)(1/6+(x-a)*1/24)))]
 // The dataflow is arrange by following(each stage may be pipeline, totally 8 stage):
 // x-a -> *1/24 -> +1/6 -> *(x-a) -> +1/2 -> *(x-a) -> +1 -> *(x-a) -> +1 -> *exp(a) = exp(x)
-// The datapath read 32 data from sram D and compute parallel every cycle
+// The datapath read 32 data from sram D and compute 8 parallel every cycle
 
 // the sram D access sequence is 
 // addr32 -> addr33 -> addr34 -> addr35 -> .... -> addr62 -> addr63
 // 10_0000 -> 10_0001 -> 10_0010 -> ... -> 11_1111
+// each addr stall 4 cycle
 
+reg [1:0]sramd_cnt;
 always @(posedge clk) begin
     if (top_state == SOFTMAX) begin
-        sramd_raddr_cnt <= sramd_raddr_cnt + 1;
+        sramd_raddr_cnt <= (sramd_cnt == 2'b11)? sramd_raddr_cnt + 1: sramd_raddr_cnt;
+        sramd_cnt <= sramd_cnt + 1;
     end else begin
         sramd_raddr_cnt <= 0;
+        sramd_cnt <= 0;
     end
 end
 
@@ -2232,6 +2244,15 @@ always @(*) begin
 end
 
 reg valid_9;
+reg valid_9_d1;
+reg valid_9_d2;
+reg valid_9_d3;
+reg valid_9_d4;
+reg valid_9_d5;
+reg valid_9_d6;
+reg valid_9_d7;
+reg valid_9_d8;
+reg valid_9_d9;
 always @(posedge clk) begin
     if (top_state == SOFTMAX) begin
         valid_9 <= 1;
@@ -2247,94 +2268,48 @@ reg [9:0]d_bank1_lut[0:7];
 reg [9:0]d_bank2_lut[0:7];
 reg [9:0]d_bank3_lut[0:7];
 
-reg [9:0]d_bank0_lut_d1[0:7];
-reg [9:0]d_bank1_lut_d1[0:7];
-reg [9:0]d_bank2_lut_d1[0:7];
-reg [9:0]d_bank3_lut_d1[0:7];
+reg [9:0] d_lut_d1[0:7];
+reg [9:0] d_lut_d2[0:7];
+reg [9:0] d_lut_d3[0:7];
+reg [9:0] d_lut_d4[0:7];
+reg [9:0] d_lut_d5[0:7];
+reg [9:0] d_lut_d6[0:7];
+reg [9:0] d_lut_d7[0:7];
+reg [9:0] d_lut_d8[0:7];
+// deviation of x_i - x_c (4-bit fraction)
+localparam BW_DEV = 6;
+reg [(BW_DEV-1):0] d_dev_d1[0:7];
+reg [(BW_DEV-1):0] d_dev_d2[0:7];
+reg [(BW_DEV-1):0] d_dev_d3[0:7];
+reg [(BW_DEV-1):0] d_dev_d4[0:7];
+reg [(BW_DEV-1):0] d_dev_d5[0:7];
+reg [(BW_DEV-1):0] d_dev_d6[0:7];
+reg [(BW_DEV-1):0] d_dev_d7[0:7];
+reg [(BW_DEV-1):0] d_dev_d8[0:7];
 
-reg [9:0]d_bank0_lut_d2[0:7];
-reg [9:0]d_bank1_lut_d2[0:7];
-reg [9:0]d_bank2_lut_d2[0:7];
-reg [9:0]d_bank3_lut_d2[0:7];
 
-reg [9:0]d_bank0_lut_d3[0:7];
-reg [9:0]d_bank1_lut_d3[0:7];
-reg [9:0]d_bank2_lut_d3[0:7];
-reg [9:0]d_bank3_lut_d3[0:7];
-
-reg [9:0]d_bank0_lut_d4[0:7];
-reg [9:0]d_bank1_lut_d4[0:7];
-reg [9:0]d_bank2_lut_d4[0:7];
-reg [9:0]d_bank3_lut_d4[0:7];
-
-reg [9:0]d_bank0_lut_d5[0:7];
-reg [9:0]d_bank1_lut_d5[0:7];
-reg [9:0]d_bank2_lut_d5[0:7];
-reg [9:0]d_bank3_lut_d5[0:7];
-
-reg [9:0]d_bank0_lut_d6[0:7];
-reg [9:0]d_bank1_lut_d6[0:7];
-reg [9:0]d_bank2_lut_d6[0:7];
-reg [9:0]d_bank3_lut_d6[0:7];
-
-reg [9:0]d_bank0_lut_d7[0:7];
-reg [9:0]d_bank1_lut_d7[0:7];
-reg [9:0]d_bank2_lut_d7[0:7];
-reg [9:0]d_bank3_lut_d7[0:7];
-
-reg [9:0]d_bank0_lut_d8[0:7];
-reg [9:0]d_bank1_lut_d8[0:7];
-reg [9:0]d_bank2_lut_d8[0:7];
-reg [9:0]d_bank3_lut_d8[0:7];
-// deviation of x_i - x_c
-reg [3:0]d_bank0_dev[0:7];
-reg [3:0]d_bank1_dev[0:7];
-reg [3:0]d_bank2_dev[0:7];
-reg [3:0]d_bank3_dev[0:7];
-reg [3:0]d_bank0_dev_d1[0:7];
-reg [3:0]d_bank1_dev_d1[0:7];
-reg [3:0]d_bank2_dev_d1[0:7];
-reg [3:0]d_bank3_dev_d1[0:7];
-reg [3:0]d_bank0_dev_d2[0:7];
-reg [3:0]d_bank1_dev_d2[0:7];
-reg [3:0]d_bank2_dev_d2[0:7];
-reg [3:0]d_bank3_dev_d2[0:7];
-reg [3:0]d_bank0_dev_d3[0:7];
-reg [3:0]d_bank1_dev_d3[0:7];
-reg [3:0]d_bank2_dev_d3[0:7];
-reg [3:0]d_bank3_dev_d3[0:7];
-reg [3:0]d_bank0_dev_d4[0:7];
-reg [3:0]d_bank1_dev_d4[0:7];
-reg [3:0]d_bank2_dev_d4[0:7];
-reg [3:0]d_bank3_dev_d4[0:7];
-reg [3:0]d_bank0_dev_d5[0:7];
-reg [3:0]d_bank1_dev_d5[0:7];
-reg [3:0]d_bank2_dev_d5[0:7];
-reg [3:0]d_bank3_dev_d5[0:7];
-reg [3:0]d_bank0_dev_d6[0:7];
-reg [3:0]d_bank1_dev_d6[0:7];
-reg [3:0]d_bank2_dev_d6[0:7];
-reg [3:0]d_bank3_dev_d6[0:7];
-reg [3:0]d_bank0_dev_d7[0:7];
-reg [3:0]d_bank1_dev_d7[0:7];
-reg [3:0]d_bank2_dev_d7[0:7];
-reg [3:0]d_bank3_dev_d7[0:7];
-reg [3:0]d_bank0_dev_d8[0:7];
-reg [3:0]d_bank1_dev_d8[0:7];
-reg [3:0]d_bank2_dev_d8[0:7];
-reg [3:0]d_bank3_dev_d8[0:7];
+reg [9:0]d_bank_lut_sel[0:7];
+reg [(BW_DEV-1):0]d_bank_dev_sel[0:7];
 always @(*) begin
     for (k=0; k<8; k=k+1) begin
-        // a is 1-bit sign + 3-bit integer + 2-bit fraction
-        d_bank0_lut[k] = {d_bank0_dat[k][9:4], 4'b0};
-        d_bank1_lut[k] = {d_bank1_dat[k][9:4], 4'b0};
-        d_bank2_lut[k] = {d_bank2_dat[k][9:4], 4'b0};
-        d_bank3_lut[k] = {d_bank3_dat[k][9:4], 4'b0};
-        // x-a is 4-bit fraction
-        d_bank0_dev[k] = d_bank0_dat[k][3:0];
-        d_bank1_dev[k] = d_bank1_dat[k][3:0];
-        d_bank2_dev[k] = d_bank2_dat[k][3:0];
-        d_bank3_dev[k] = d_bank3_dat[k][3:0];
+        case (sramd_cnt)
+            1: begin
+                d_bank_lut_sel[k] = {d_bank0_dat[k][9:4], 4'b0};
+                d_bank_dev_sel[k] = {2'b0, d_bank0_dat[k][3:0]};
+            end
+            2: begin
+                d_bank_lut_sel[k] = {d_bank1_dat[k][9:4], 4'b0};
+                d_bank_dev_sel[k] = {2'b0, d_bank1_dat[k][3:0]};
+            end
+            3: begin
+                d_bank_lut_sel[k] = {d_bank2_dat[k][9:4], 4'b0};
+                d_bank_dev_sel[k] = {2'b0, d_bank2_dat[k][3:0]};
+            end
+            0: begin
+                d_bank_lut_sel[k] = {d_bank3_dat[k][9:4], 4'b0};
+                d_bank_dev_sel[k] = {2'b0, d_bank3_dat[k][3:0]};
+            end
+        endcase
     end
 end
 
@@ -2342,128 +2317,179 @@ end
 // pipeline the deviation (x-a) of each ch
 always @(posedge clk) begin
     for (k=0; k<8; k=k+1) begin
-        d_bank0_lut_d1[k] <= d_bank0_lut[k];
-        d_bank1_lut_d1[k] <= d_bank1_lut[k];
-        d_bank2_lut_d1[k] <= d_bank2_lut[k];
-        d_bank3_lut_d1[k] <= d_bank3_lut[k];
-        d_bank0_dev_d1[k] <= d_bank0_dev[k];
-        d_bank1_dev_d1[k] <= d_bank1_dev[k];
-        d_bank2_dev_d1[k] <= d_bank2_dev[k];
-        d_bank3_dev_d1[k] <= d_bank3_dev[k];
+        d_lut_d1[k] <= d_bank_lut_sel[k];
+        d_dev_d1[k] <= d_bank_dev_sel[k];
 
-        d_bank0_lut_d2[k] <= d_bank0_lut_d1[k];
-        d_bank1_lut_d2[k] <= d_bank1_lut_d1[k];
-        d_bank2_lut_d2[k] <= d_bank2_lut_d1[k];
-        d_bank3_lut_d2[k] <= d_bank3_lut_d1[k];
-        d_bank0_dev_d2[k] <= d_bank0_dev_d1[k];
-        d_bank1_dev_d2[k] <= d_bank1_dev_d1[k];
-        d_bank2_dev_d2[k] <= d_bank2_dev_d1[k];
-        d_bank3_dev_d2[k] <= d_bank3_dev_d1[k];
+        d_lut_d2[k] <= d_lut_d1[k];
+        d_dev_d2[k] <= d_dev_d1[k];
 
-        d_bank0_lut_d3[k] <= d_bank0_lut_d2[k];
-        d_bank1_lut_d3[k] <= d_bank1_lut_d2[k];
-        d_bank2_lut_d3[k] <= d_bank2_lut_d2[k];
-        d_bank3_lut_d3[k] <= d_bank3_lut_d2[k];
-        d_bank0_dev_d3[k] <= d_bank0_dev_d2[k];
-        d_bank1_dev_d3[k] <= d_bank1_dev_d2[k];
-        d_bank2_dev_d3[k] <= d_bank2_dev_d2[k];
-        d_bank3_dev_d3[k] <= d_bank3_dev_d2[k];
+        d_lut_d3[k] <= d_lut_d2[k];
+        d_dev_d3[k] <= d_dev_d2[k];
 
-        d_bank0_lut_d4[k] <= d_bank0_lut_d3[k];
-        d_bank1_lut_d4[k] <= d_bank1_lut_d3[k];
-        d_bank2_lut_d4[k] <= d_bank2_lut_d3[k];
-        d_bank3_lut_d4[k] <= d_bank3_lut_d3[k];
-        d_bank0_dev_d4[k] <= d_bank0_dev_d3[k];
-        d_bank1_dev_d4[k] <= d_bank1_dev_d3[k];
-        d_bank2_dev_d4[k] <= d_bank2_dev_d3[k];
-        d_bank3_dev_d4[k] <= d_bank3_dev_d3[k];
+        d_lut_d4[k] <= d_lut_d3[k];
+        d_dev_d4[k] <= d_dev_d3[k];
 
-        d_bank0_lut_d5[k] <= d_bank0_lut_d4[k];
-        d_bank1_lut_d5[k] <= d_bank1_lut_d4[k];
-        d_bank2_lut_d5[k] <= d_bank2_lut_d4[k];
-        d_bank3_lut_d5[k] <= d_bank3_lut_d4[k];
-        d_bank0_dev_d5[k] <= d_bank0_dev_d4[k];
-        d_bank1_dev_d5[k] <= d_bank1_dev_d4[k];
-        d_bank2_dev_d5[k] <= d_bank2_dev_d4[k];
-        d_bank3_dev_d5[k] <= d_bank3_dev_d4[k];
+        d_lut_d5[k] <= d_lut_d4[k];
+        d_dev_d5[k] <= d_dev_d4[k];
 
-        d_bank0_lut_d6[k] <= d_bank0_lut_d5[k];
-        d_bank1_lut_d6[k] <= d_bank1_lut_d5[k];
-        d_bank2_lut_d6[k] <= d_bank2_lut_d5[k];
-        d_bank3_lut_d6[k] <= d_bank3_lut_d5[k];
-        d_bank0_dev_d6[k] <= d_bank0_dev_d5[k];
-        d_bank1_dev_d6[k] <= d_bank1_dev_d5[k];
-        d_bank2_dev_d6[k] <= d_bank2_dev_d5[k];
-        d_bank3_dev_d6[k] <= d_bank3_dev_d5[k];
+        d_lut_d6[k] <= d_lut_d5[k];
+        d_dev_d6[k] <= d_dev_d5[k];
 
-        d_bank0_lut_d7[k] <= d_bank0_lut_d6[k];
-        d_bank1_lut_d7[k] <= d_bank1_lut_d6[k];
-        d_bank2_lut_d7[k] <= d_bank2_lut_d6[k];
-        d_bank3_lut_d7[k] <= d_bank3_lut_d6[k];
-        d_bank0_dev_d7[k] <= d_bank0_dev_d6[k];
-        d_bank1_dev_d7[k] <= d_bank1_dev_d6[k];
-        d_bank2_dev_d7[k] <= d_bank2_dev_d6[k];
-        d_bank3_dev_d7[k] <= d_bank3_dev_d6[k];
+        d_lut_d7[k] <= d_lut_d6[k];
+        d_dev_d7[k] <= d_dev_d6[k];
 
-        d_bank0_lut_d8[k] <= d_bank0_lut_d7[k];
-        d_bank1_lut_d8[k] <= d_bank1_lut_d7[k];
-        d_bank2_lut_d8[k] <= d_bank2_lut_d7[k];
-        d_bank3_lut_d8[k] <= d_bank3_lut_d7[k];
-        d_bank0_dev_d8[k] <= d_bank0_dev_d7[k];
-        d_bank1_dev_d8[k] <= d_bank1_dev_d7[k];
-        d_bank2_dev_d8[k] <= d_bank2_dev_d7[k];
-        d_bank3_dev_d8[k] <= d_bank3_dev_d7[k];
+        d_lut_d8[k] <= d_lut_d7[k];
+        d_dev_d8[k] <= d_dev_d7[k];
     end
 end
 
 // ----- dataflow stage 1 ----- //
 // (x-a)*1/24
-// (x-a) is 4-bit (4-bit fraction)
+// (x-a) is 6-bit (4-bit fraction)
 // 1/24 is 14-bit fraction 14'b00001010101011
-// the result is 18-bit fraction
+// the result is 20-bit fraction
+localparam [13:0] FP_ONE_DIV_24 = 14'd683; // Q0.14 representation of 1/24
+reg [19:0] df_stage1_mul[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage1_mul[i] <= d_bank_dev_sel[i] * FP_ONE_DIV_24;
+    end
+    valid_9_d1 <= valid_9;
+end
 
 // ----- dataflow stage 2 ----- //
 // 1/6 + (x-a)*1/24
 // 1/6 is 14-bit fraction 14'b00101010101010
-// the result is 15-bit fraction
+// the result is 1-bit integer + 20-bit fraction
+localparam [13:0] FP_ONE_DIV_6 = 14'd2731;
+reg [21:0] df_stage2_add[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage2_add[i] <= df_stage1_mul[i] + {FP_ONE_DIV_6, 6'b0};
+    end
+    valid_9_d2 <= valid_9_d1;
+end
 
 // ----- dataflow stage 3 ----- //
 // (x-a)*[1/6 + (x-a)*1/24]
-// (x-a) is 4-bit (4-bit fraction)
-// the result is 19-bit fraction
-
+// (x-a) is 6-bit (4-bit fraction)
+// the result is 1-bit integer + 26-bit fraction
+reg [27:0] df_stage3_mul[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage3_mul[i] <= df_stage2_add[i] * d_dev_d2[i];
+    end
+    valid_9_d3 <= valid_9_d2;
+end
 // ----- dataflow stage 4 ----- //
+// 1/2 + (x-a)*[1/6 + (x-a)*1/24]
+// 1/2 is 1-bit fraction 2'b1
+// the result is 2-bit integer + 26-bit fraction
+reg [28:0] df_stage4_add[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage4_add[i] <= df_stage3_mul[i] + {1'b1, 25'b0};
+    end
+    valid_9_d4 <= valid_9_d3;
+end
+// ----- dataflow stage 5 ----- //
+// (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]
+// (x-a) is 6-bit fraction
+// the result is 2-bit integer + 32-bit fraction
+reg [33:0] df_stage5_mul[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage5_mul[i] <= df_stage4_add[i] * d_dev_d4[i];
+    end
+    valid_9_d5 <= valid_9_d4;
+end
+// ----- dataflow stage 6 ----- //
+// 1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]
+// 1 is 1-bit integer
+// the result is 3-bit integer + 32-bit fraction
+reg [34:0] df_stage6_add[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage6_add[i] <= df_stage5_mul[i] + {1'b1, 32'b0};
+    end
+    valid_9_d6 <= valid_9_d5;
+end
+// ----- dataflow stage 7 ----- //
+// (x-a)*[1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]]
+// (x-a) is 6-bit fraction
+// the result is 3-bit integer + 38-bit fraction
+reg [40:0]df_stage7_mul[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage7_mul[i] <= df_stage6_add[i] * d_dev_d6[i];
+    end
+    valid_9_d7 <= valid_9_d6;
+end
+// ----- dataflow stage 8 ----- //
+// 1 + (x-a)*[1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]]
+// 1 is 1-bit integer 
+// the result is 4-bit integer + 38-bit fraction
+reg [43:0]df_stage8_add[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage8_add[i] <= df_stage7_mul[i] + {1'b1, 38'b0};
+    end
+    valid_9_d8 <= valid_9_d7;
+end
+// also calculate the exp(a) by exp_lut at this stage
+// in this version, I try to use only 20-bit fraction for lut exponential
+// use lut_d7 input to exp_lut
+// exp(a): 14-bit integer + 20-bit fraction
+wire [33:0] df_stage8_exp_n[0:7];
+reg  [33:0] df_stage8_exp[0:7];
+
+genvar f;
+generate
+    for (f=0; f<8; f=f+1) begin : EXP_LUT_ARRAY
+        exp_lut exp_lut_stage8 (
+            .lut_idx(d_lut_d7[f]),
+            .exp_val(df_stage8_exp_n[f])
+        );
+    end
+endgenerate
+
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage8_exp[i] <= df_stage8_exp_n[i];
+    end
+end
+
+// ----- dataflow stage 9 ----- //
+// exp(a) * [1 + (x-a)*[1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]]] = exp(x)
+// stage8_add: 4-bit integer + 38-bit fraction
+// exp(a) is 14-bit integer + 20-bit fraction
+// the result is 19-bit integer + 58-bit fraction
+// we got 32 exp(x) at this stage
+reg [76:0] df_stage9_mul[0:7];
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage9_mul[i] <= df_stage8_add[i] * df_stage8_exp[i];
+    end
+    valid_9_d9 <= valid_9_d8;
+end
+
+
+// 19-bit integer + 50bit fraction
+always @(*) begin
+    for (i=0; i<8; i=i+1) begin
+        df_stage9_Q50[i] = df_stage9_mul[i][76:8]; 
+    end
+end
+// ----- dataflow stage 10 ----- //
+// 32 exp(x) is pipe to this stage, we add up this 32 exp(x) and feedback 
+// in this stage to prepare for the summation of softmax 
+// note that we inly add up the feedback result each 2 cyle.
+// the result is "feedback" to this stage.
+// we may get summation of 64 exp(x) in this stage every 2 cycle.
 
 
 
 
-
-// in this version, I try to use only 30-bit fraction for lut exponential
-// wire [43:0] d_bank0_exp[0:7];
-// wire [43:0] d_bank1_exp[0:7];
-// wire [43:0] d_bank2_exp[0:7];
-// wire [43:0] d_bank3_exp[0:7];
-// genvar f;
-// generate
-//     for (f=0; f<8; f=f+1) begin : EXP_LUT_ARRAY
-//         exp_lut exp_lut_bank0 (
-//             .lut_idx(d_bank0_lut[f]),
-//             .exp_val(d_bank0_exp[f])
-//         );
-//         exp_lut exp_lut_bank1 (
-//             .lut_idx(d_bank1_lut[f]),
-//             .exp_val(d_bank1_exp[f])
-//         );
-//         exp_lut exp_lut_bank2 (
-//             .lut_idx(d_bank2_lut[f]),
-//             .exp_val(d_bank2_exp[f])
-//         );
-//         exp_lut exp_lut_bank3 (
-//             .lut_idx(d_bank3_lut[f]),
-//             .exp_val(d_bank3_exp[f])
-//         );
-//     end
-// endgenerate
 
 
 
