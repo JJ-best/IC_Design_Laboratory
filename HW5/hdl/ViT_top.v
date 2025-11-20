@@ -190,7 +190,7 @@ always @(*) begin
             end
         end
         NORMAL_T: begin
-            if (sram_b_wen_cnt == 3'd7) begin
+            if (sram_b_wen_cnt == 3'd7 && sram_addr_b0 == 5'd31) begin
                 top_state_n = PROJ;
             end else begin
                 top_state_n = NORMAL_T;
@@ -709,11 +709,14 @@ always @(*) begin
         a_bank_abs[k] = a_bank_minus[k][13]? (~a_bank_minus[k] + 1'b1): a_bank_minus[k];
     end
 
-    token_mae = a_bank_abs[0]  + a_bank_abs[1]  + a_bank_abs[2]  + a_bank_abs[3]  + 
+
+end
+
+always @(posedge clk) begin
+    token_mae <= a_bank_abs[0]  + a_bank_abs[1]  + a_bank_abs[2]  + a_bank_abs[3]  + 
                 a_bank_abs[4]  + a_bank_abs[5]  + a_bank_abs[6]  + a_bank_abs[7]  + 
                 a_bank_abs[8]  + a_bank_abs[9]  + a_bank_abs[10] + a_bank_abs[11] + 
                 a_bank_abs[12] + a_bank_abs[13] + a_bank_abs[14] + a_bank_abs[15];
-
 end
 
 
@@ -746,6 +749,7 @@ reg signed[BW_PER_ACT-1:0] token_nor_t[0:7];
 reg [BW_PER_ACT-1:0] token_nor_reg[0:7];
 reg [13:0] a_bank_abs_sel[0:7];
 reg sel_toggle; // this signal toggle when valid_2 is high
+reg valid_2_d0;
 reg valid_2_d1;
 reg valid_2_d2;
 reg valid_2_d3;
@@ -753,6 +757,7 @@ reg valid_2_d4;
 reg valid_2_d5;
 reg valid_2_d6;
 reg valid_2_d7;
+reg a_bank_minus_sign_d0[0:15];
 reg a_bank_minus_sign_d1[0:15];
 reg a_bank_minus_sign_d2[0:15];
 reg a_bank_minus_sign_d3[0:15];
@@ -760,6 +765,7 @@ reg a_bank_minus_sign_d4[0:15];
 reg a_bank_minus_sign_d5[0:15];
 reg a_bank_minus_sign_d6[0:15];
 reg a_bank_minus_sign_d7[0:15];
+reg token_mae_sign_d0;
 reg token_mae_sign_d1;
 reg token_mae_sign_d2;
 reg token_mae_sign_d3;
@@ -767,6 +773,7 @@ reg token_mae_sign_d4;
 reg token_mae_sign_d5;
 reg token_mae_sign_d6;
 reg token_mae_sign_d7;
+reg sel_toggle_d0;
 reg sel_toggle_d1;
 reg sel_toggle_d2;
 reg sel_toggle_d3;
@@ -785,7 +792,8 @@ end
 
 // divider pipelien 4-stage, delay 3 cycle
 always @(posedge clk) begin
-    valid_2_d1 <= valid_2;
+    valid_2_d0 <= valid_2;
+    valid_2_d1 <= valid_2_d0;
     valid_2_d2 <= valid_2_d1;
     valid_2_d3 <= valid_2_d2;
     valid_2_d4 <= valid_2_d3;
@@ -793,7 +801,8 @@ always @(posedge clk) begin
     valid_2_d6 <= valid_2_d5;
     valid_2_d7 <= valid_2_d6;
     for (k=0; k<16; k=k+1) begin
-        a_bank_minus_sign_d1[k] <= a_bank_minus[k][13];
+        a_bank_minus_sign_d0[k] <= a_bank_minus[k][13];
+        a_bank_minus_sign_d1[k] <= a_bank_minus_sign_d0[k];
         a_bank_minus_sign_d2[k] <= a_bank_minus_sign_d1[k];
         a_bank_minus_sign_d3[k] <= a_bank_minus_sign_d2[k];
         a_bank_minus_sign_d4[k] <= a_bank_minus_sign_d3[k];
@@ -801,14 +810,15 @@ always @(posedge clk) begin
         a_bank_minus_sign_d6[k] <= a_bank_minus_sign_d5[k];
         a_bank_minus_sign_d7[k] <= a_bank_minus_sign_d6[k];
     end
-    token_mae_sign_d1 <= token_mae[17];
+    token_mae_sign_d1 <= token_mae[17]; // already pipe at token_mae
     token_mae_sign_d2 <= token_mae_sign_d1;
     token_mae_sign_d3 <= token_mae_sign_d2;
     token_mae_sign_d4 <= token_mae_sign_d3;
     token_mae_sign_d5 <= token_mae_sign_d4;
     token_mae_sign_d6 <= token_mae_sign_d5;
     token_mae_sign_d7 <= token_mae_sign_d6;
-    sel_toggle_d1 <= sel_toggle;
+    sel_toggle_d0 <= sel_toggle;
+    sel_toggle_d1 <= sel_toggle_d0;
     sel_toggle_d2 <= sel_toggle_d1;
     sel_toggle_d3 <= sel_toggle_d2;
     sel_toggle_d4 <= sel_toggle_d3;
@@ -828,60 +838,67 @@ always @(*) begin
     end
 end
 
+reg [13:0]a_bank_abs_sel_d1[0:7];
+always @(posedge clk) begin
+    for (k=0; k<8; k=k+1) begin
+        a_bank_abs_sel_d1[k] <= a_bank_abs_sel[k];
+    end
+end
+
 assign token_mae_abs = (token_mae[17])? ~token_mae + 1: token_mae;
 
 div div0(
     .clk(clk),
-    .dividend({a_bank_abs_sel[0], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[0], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[0]),
     .remainder()
 );
 div div1(
     .clk(clk),
-    .dividend({a_bank_abs_sel[1], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[1], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[1]),
     .remainder()
 );
 div div2(
     .clk(clk),
-    .dividend({a_bank_abs_sel[2], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[2], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[2]),
     .remainder()
 );
 div div3(
     .clk(clk),
-    .dividend({a_bank_abs_sel[3], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[3], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[3]),
     .remainder()
 );
 div div4(
     .clk(clk),
-    .dividend({a_bank_abs_sel[4], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[4], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[4]),
     .remainder()
 );
 div div5(
     .clk(clk),
-    .dividend({a_bank_abs_sel[5], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[5], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[5]),
     .remainder()
 );
 div div6(
     .clk(clk),
-    .dividend({a_bank_abs_sel[6], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[6], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[6]),
     .remainder()
 );
 div div7(
     .clk(clk),
-    .dividend({a_bank_abs_sel[7], 4'b0, 6'b0}),
+    .dividend({a_bank_abs_sel_d1[7], 4'b0, 6'b0}),
     .divisor(token_mae_abs),
     .merchant(token_nor[7]),
     .remainder()
@@ -2073,11 +2090,10 @@ assign sramd_wdata_2 = {40'b0, qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_q
 // assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 // assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 
-assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[0]: sramd_wdata_2& df_stage9_Q50[4];
-assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[1]: sramd_wdata_2& df_stage9_Q50[5];
-assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[2]: sramd_wdata_2& df_stage9_Q50[6];
-assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1 & df_stage9_Q50[3]: sramd_wdata_2& df_stage9_Q50[7];
-
+assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 
 localparam demask_h = 8'b0000_1111;
 localparam demask_l = 8'b1111_0000;
@@ -2244,15 +2260,6 @@ always @(*) begin
 end
 
 reg valid_9;
-reg valid_9_d1;
-reg valid_9_d2;
-reg valid_9_d3;
-reg valid_9_d4;
-reg valid_9_d5;
-reg valid_9_d6;
-reg valid_9_d7;
-reg valid_9_d8;
-reg valid_9_d9;
 always @(posedge clk) begin
     if (top_state == SOFTMAX) begin
         valid_9 <= 1;
@@ -2268,218 +2275,82 @@ reg [9:0]d_bank1_lut[0:7];
 reg [9:0]d_bank2_lut[0:7];
 reg [9:0]d_bank3_lut[0:7];
 
-reg [9:0] d_lut_d1[0:7];
-reg [9:0] d_lut_d2[0:7];
-reg [9:0] d_lut_d3[0:7];
-reg [9:0] d_lut_d4[0:7];
-reg [9:0] d_lut_d5[0:7];
-reg [9:0] d_lut_d6[0:7];
-reg [9:0] d_lut_d7[0:7];
-reg [9:0] d_lut_d8[0:7];
-// deviation of x_i - x_c (4-bit fraction)
-localparam BW_DEV = 6;
-reg [(BW_DEV-1):0] d_dev_d1[0:7];
-reg [(BW_DEV-1):0] d_dev_d2[0:7];
-reg [(BW_DEV-1):0] d_dev_d3[0:7];
-reg [(BW_DEV-1):0] d_dev_d4[0:7];
-reg [(BW_DEV-1):0] d_dev_d5[0:7];
-reg [(BW_DEV-1):0] d_dev_d6[0:7];
-reg [(BW_DEV-1):0] d_dev_d7[0:7];
-reg [(BW_DEV-1):0] d_dev_d8[0:7];
-
 
 reg [9:0]d_bank_lut_sel[0:7];
-reg [(BW_DEV-1):0]d_bank_dev_sel[0:7];
 always @(*) begin
     for (k=0; k<8; k=k+1) begin
         case (sramd_cnt)
             1: begin
-                d_bank_lut_sel[k] = {d_bank0_dat[k][9:4], 4'b0};
-                d_bank_dev_sel[k] = {2'b0, d_bank0_dat[k][3:0]};
+                d_bank_lut_sel[k] = d_bank0_dat[k];
             end
             2: begin
-                d_bank_lut_sel[k] = {d_bank1_dat[k][9:4], 4'b0};
-                d_bank_dev_sel[k] = {2'b0, d_bank1_dat[k][3:0]};
+                d_bank_lut_sel[k] = d_bank1_dat[k];
             end
             3: begin
-                d_bank_lut_sel[k] = {d_bank2_dat[k][9:4], 4'b0};
-                d_bank_dev_sel[k] = {2'b0, d_bank2_dat[k][3:0]};
+                d_bank_lut_sel[k] = d_bank2_dat[k];
             end
             0: begin
-                d_bank_lut_sel[k] = {d_bank3_dat[k][9:4], 4'b0};
-                d_bank_dev_sel[k] = {2'b0, d_bank3_dat[k][3:0]};
+                d_bank_lut_sel[k] = d_bank3_dat[k];
             end
         endcase
     end
 end
 
-// pipeline the lut point (a) of each ch
-// pipeline the deviation (x-a) of each ch
-always @(posedge clk) begin
-    for (k=0; k<8; k=k+1) begin
-        d_lut_d1[k] <= d_bank_lut_sel[k];
-        d_dev_d1[k] <= d_bank_dev_sel[k];
-
-        d_lut_d2[k] <= d_lut_d1[k];
-        d_dev_d2[k] <= d_dev_d1[k];
-
-        d_lut_d3[k] <= d_lut_d2[k];
-        d_dev_d3[k] <= d_dev_d2[k];
-
-        d_lut_d4[k] <= d_lut_d3[k];
-        d_dev_d4[k] <= d_dev_d3[k];
-
-        d_lut_d5[k] <= d_lut_d4[k];
-        d_dev_d5[k] <= d_dev_d4[k];
-
-        d_lut_d6[k] <= d_lut_d5[k];
-        d_dev_d6[k] <= d_dev_d5[k];
-
-        d_lut_d7[k] <= d_lut_d6[k];
-        d_dev_d7[k] <= d_dev_d6[k];
-
-        d_lut_d8[k] <= d_lut_d7[k];
-        d_dev_d8[k] <= d_dev_d7[k];
-    end
-end
-
-// ----- dataflow stage 1 ----- //
-// (x-a)*1/24
-// (x-a) is 6-bit (4-bit fraction)
-// 1/24 is 14-bit fraction 14'b00001010101011
-// the result is 20-bit fraction
-localparam [13:0] FP_ONE_DIV_24 = 14'd683; // Q0.14 representation of 1/24
-reg [19:0] df_stage1_mul[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage1_mul[i] <= d_bank_dev_sel[i] * FP_ONE_DIV_24;
-    end
-    valid_9_d1 <= valid_9;
-end
-
-// ----- dataflow stage 2 ----- //
-// 1/6 + (x-a)*1/24
-// 1/6 is 14-bit fraction 14'b00101010101010
-// the result is 1-bit integer + 20-bit fraction
-localparam [13:0] FP_ONE_DIV_6 = 14'd2731;
-reg [21:0] df_stage2_add[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage2_add[i] <= df_stage1_mul[i] + {FP_ONE_DIV_6, 6'b0};
-    end
-    valid_9_d2 <= valid_9_d1;
-end
-
-// ----- dataflow stage 3 ----- //
-// (x-a)*[1/6 + (x-a)*1/24]
-// (x-a) is 6-bit (4-bit fraction)
-// the result is 1-bit integer + 26-bit fraction
-reg [27:0] df_stage3_mul[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage3_mul[i] <= df_stage2_add[i] * d_dev_d2[i];
-    end
-    valid_9_d3 <= valid_9_d2;
-end
-// ----- dataflow stage 4 ----- //
-// 1/2 + (x-a)*[1/6 + (x-a)*1/24]
-// 1/2 is 1-bit fraction 2'b1
-// the result is 2-bit integer + 26-bit fraction
-reg [28:0] df_stage4_add[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage4_add[i] <= df_stage3_mul[i] + {1'b1, 25'b0};
-    end
-    valid_9_d4 <= valid_9_d3;
-end
-// ----- dataflow stage 5 ----- //
-// (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]
-// (x-a) is 6-bit fraction
-// the result is 2-bit integer + 32-bit fraction
-reg [33:0] df_stage5_mul[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage5_mul[i] <= df_stage4_add[i] * d_dev_d4[i];
-    end
-    valid_9_d5 <= valid_9_d4;
-end
-// ----- dataflow stage 6 ----- //
-// 1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]
-// 1 is 1-bit integer
-// the result is 3-bit integer + 32-bit fraction
-reg [34:0] df_stage6_add[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage6_add[i] <= df_stage5_mul[i] + {1'b1, 32'b0};
-    end
-    valid_9_d6 <= valid_9_d5;
-end
-// ----- dataflow stage 7 ----- //
-// (x-a)*[1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]]
-// (x-a) is 6-bit fraction
-// the result is 3-bit integer + 38-bit fraction
-reg [40:0]df_stage7_mul[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage7_mul[i] <= df_stage6_add[i] * d_dev_d6[i];
-    end
-    valid_9_d7 <= valid_9_d6;
-end
-// ----- dataflow stage 8 ----- //
-// 1 + (x-a)*[1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]]
-// 1 is 1-bit integer 
-// the result is 4-bit integer + 38-bit fraction
-reg [43:0]df_stage8_add[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage8_add[i] <= df_stage7_mul[i] + {1'b1, 38'b0};
-    end
-    valid_9_d8 <= valid_9_d7;
-end
-// also calculate the exp(a) by exp_lut at this stage
 // in this version, I try to use only 20-bit fraction for lut exponential
 // use lut_d7 input to exp_lut
-// exp(a): 14-bit integer + 20-bit fraction
-wire [33:0] df_stage8_exp_n[0:7];
-reg  [33:0] df_stage8_exp[0:7];
+// exp(x): 14-bit integer + 20-bit fraction
+wire [33:0] exp_n[0:7];
+reg  [33:0] exp[0:7];
 
 genvar f;
 generate
     for (f=0; f<8; f=f+1) begin : EXP_LUT_ARRAY
         exp_lut exp_lut_stage8 (
-            .lut_idx(d_lut_d7[f]),
-            .exp_val(df_stage8_exp_n[f])
+            .lut_idx(d_bank_lut_sel[f]),
+            .exp_val(exp_n[f])
         );
     end
 endgenerate
 
+reg valid_10;
 always @(posedge clk) begin
     for (i=0; i<8; i=i+1) begin
-        df_stage8_exp[i] <= df_stage8_exp_n[i];
+        exp[i] <= exp_n[i];
+    end
+    valid_10 <= valid_9;
+end
+
+reg [2:0] exp_cnt;
+always @(posedge clk) begin
+    if (valid_10) begin
+        exp_cnt <= exp_cnt + 1;
+    end else begin
+        exp_cnt <= 0;
     end
 end
 
-// ----- dataflow stage 9 ----- //
-// exp(a) * [1 + (x-a)*[1 + (x-a)*[1/2 + (x-a)*[1/6 + (x-a)*1/24]]]] = exp(x)
-// stage8_add: 4-bit integer + 38-bit fraction
-// exp(a) is 14-bit integer + 20-bit fraction
-// the result is 19-bit integer + 58-bit fraction
-// we got 32 exp(x) at this stage
-reg [76:0] df_stage9_mul[0:7];
-always @(posedge clk) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage9_mul[i] <= df_stage8_add[i] * df_stage8_exp[i];
-    end
-    valid_9_d9 <= valid_9_d8;
-end
-
-
-// 19-bit integer + 50bit fraction
+// since we need to sum 64 exponential
+// each exp(x) is 14-bit integer + 20-bit fraction
+// so the sum will be 20-bit integer + 20-bit fraction
+reg [39:0] sum_exp_n;
+reg [39:0] sum_exp;
+wire valid_11;
+reg valid_10_d1;
 always @(*) begin
-    for (i=0; i<8; i=i+1) begin
-        df_stage9_Q50[i] = df_stage9_mul[i][76:8]; 
-    end
+    sum_exp_n = exp[0] + exp[1] + exp[2] + exp[3] + exp[4] + exp[5] + exp[6] + exp[7] + sel_exp;
 end
+
+always @(posedge clk) begin
+    sum_exp <= sum_exp_n;
+    valid_10_d1 <= valid_10;
+end
+assign valid_11 = (valid_10_d1 && exp_cnt == 3'b0)? 1:0;
+
+// feedback the exp_sum of 8 term back to previous stage
+// so we can accumulate 64 term
+wire [39:0]sel_exp; 
+assign sel_exp = (exp_cnt != 0)? sum_exp: 0;
+
 // ----- dataflow stage 10 ----- //
 // 32 exp(x) is pipe to this stage, we add up this 32 exp(x) and feedback 
 // in this stage to prepare for the summation of softmax 

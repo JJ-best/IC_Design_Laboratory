@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Tue Nov 18 17:50:40 2025
+Date   : Fri Nov 21 00:44:14 2025
 ****************************************
 
 
@@ -31,7 +31,19 @@ div_mydesign_3         Small             slow_vdd1v2
 div_mydesign_2         Small             slow_vdd1v2
 div_mydesign_1         Small             slow_vdd1v2
 div_mydesign_0         Small             slow_vdd1v2
+exp_lut_mydesign_7     Small             slow_vdd1v2
+exp_lut_mydesign_6     Small             slow_vdd1v2
+exp_lut_mydesign_5     Small             slow_vdd1v2
+exp_lut_mydesign_4     Small             slow_vdd1v2
+exp_lut_mydesign_3     Small             slow_vdd1v2
+exp_lut_mydesign_2     Small             slow_vdd1v2
+exp_lut_mydesign_1     Small             slow_vdd1v2
+exp_lut_mydesign_0     Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_107
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_106
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
                        Small             slow_vdd1v2
@@ -258,13 +270,29 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-ViT_top                                   1.373    5.962 2.83e+06    7.338 100.0
-  div7 (div_mydesign_0)                5.96e-02    0.402 1.82e+05    0.462   6.3
-  div6 (div_mydesign_1)                6.11e-02    0.406 1.82e+05    0.467   6.4
-  div5 (div_mydesign_2)                5.94e-02    0.400 1.82e+05    0.460   6.3
-  div4 (div_mydesign_3)                5.95e-02    0.401 1.82e+05    0.461   6.3
-  div3 (div_mydesign_4)                5.90e-02    0.401 1.81e+05    0.460   6.3
-  div2 (div_mydesign_5)                5.90e-02    0.400 1.82e+05    0.459   6.3
-  div1 (div_mydesign_6)                5.97e-02    0.403 1.81e+05    0.463   6.3
-  div0 (div_mydesign_7)                6.00e-02    0.402 1.82e+05    0.463   6.3
+ViT_top                                   1.732    6.919 4.00e+06    8.654 100.0
+  EXP_LUT_ARRAY_7__exp_lut_stage8 (exp_lut_mydesign_0)
+                                       2.89e-02 5.83e-02 1.26e+05 8.73e-02   1.0
+  EXP_LUT_ARRAY_6__exp_lut_stage8 (exp_lut_mydesign_1)
+                                       2.89e-02 5.84e-02 1.26e+05 8.74e-02   1.0
+  EXP_LUT_ARRAY_5__exp_lut_stage8 (exp_lut_mydesign_2)
+                                       2.98e-02 6.01e-02 1.26e+05 9.00e-02   1.0
+  EXP_LUT_ARRAY_4__exp_lut_stage8 (exp_lut_mydesign_3)
+                                       2.91e-02 5.88e-02 1.26e+05 8.81e-02   1.0
+  EXP_LUT_ARRAY_3__exp_lut_stage8 (exp_lut_mydesign_4)
+                                       2.92e-02 5.90e-02 1.26e+05 8.83e-02   1.0
+  EXP_LUT_ARRAY_2__exp_lut_stage8 (exp_lut_mydesign_5)
+                                       2.94e-02 5.93e-02 1.26e+05 8.88e-02   1.0
+  EXP_LUT_ARRAY_1__exp_lut_stage8 (exp_lut_mydesign_6)
+                                       2.93e-02 5.92e-02 1.26e+05 8.87e-02   1.0
+  EXP_LUT_ARRAY_0__exp_lut_stage8 (exp_lut_mydesign_7)
+                                       2.90e-02 5.85e-02 1.26e+05 8.77e-02   1.0
+  div7 (div_mydesign_0)                5.82e-02    0.399 1.83e+05    0.457   5.3
+  div6 (div_mydesign_1)                5.79e-02    0.397 1.82e+05    0.455   5.3
+  div5 (div_mydesign_2)                5.78e-02    0.398 1.82e+05    0.456   5.3
+  div4 (div_mydesign_3)                5.94e-02    0.403 1.83e+05    0.462   5.3
+  div3 (div_mydesign_4)                5.84e-02    0.399 1.83e+05    0.457   5.3
+  div2 (div_mydesign_5)                5.86e-02    0.399 1.82e+05    0.458   5.3
+  div1 (div_mydesign_6)                5.90e-02    0.401 1.82e+05    0.461   5.3
+  div0 (div_mydesign_7)                5.74e-02    0.397 1.83e+05    0.454   5.2
 1

@@ -3,7 +3,7 @@
 Report : resources
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Tue Nov 18 17:50:41 2025
+Date   : Fri Nov 21 00:44:18 2025
 ****************************************
 
 
@@ -11,152 +11,178 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| add_x_12       | DW01_inc       | width=4    | add_219 (ViT_top.v:219)    |
-| add_x_13       | DW01_inc       | width=4    | add_251 (ViT_top.v:251)    |
-| add_x_15       | DW01_inc       | width=4    | add_297 (ViT_top.v:297)    |
-| add_x_18       | DW01_inc       | width=5    | add_304 (ViT_top.v:304)    |
-| sub_x_26       | DW01_sub       | width=14   | sub_679 (ViT_top.v:679)    |
-| sub_x_27       | DW01_sub       | width=14   | sub_679_I2 (ViT_top.v:679) |
-| sub_x_28       | DW01_sub       | width=14   | sub_679_I3 (ViT_top.v:679) |
-| sub_x_29       | DW01_sub       | width=14   | sub_679_I4 (ViT_top.v:679) |
-| sub_x_30       | DW01_sub       | width=14   | sub_679_I5 (ViT_top.v:679) |
-| sub_x_31       | DW01_sub       | width=14   | sub_679_I6 (ViT_top.v:679) |
-| sub_x_32       | DW01_sub       | width=14   | sub_679_I7 (ViT_top.v:679) |
-| sub_x_33       | DW01_sub       | width=14   | sub_679_I8 (ViT_top.v:679) |
-| sub_x_34       | DW01_sub       | width=14   | sub_679_I9 (ViT_top.v:679) |
-| sub_x_35       | DW01_sub       | width=14   | sub_679_I10 (ViT_top.v:679) |
-| sub_x_36       | DW01_sub       | width=14   | sub_679_I11 (ViT_top.v:679) |
-| sub_x_37       | DW01_sub       | width=14   | sub_679_I12 (ViT_top.v:679) |
-| sub_x_38       | DW01_sub       | width=14   | sub_679_I13 (ViT_top.v:679) |
-| sub_x_39       | DW01_sub       | width=14   | sub_679_I14 (ViT_top.v:679) |
-| sub_x_40       | DW01_sub       | width=14   | sub_679_I15 (ViT_top.v:679) |
-| sub_x_41       | DW01_sub       | width=14   | sub_679_I16 (ViT_top.v:679) |
-| add_x_42       | DW01_inc       | width=14   | add_686 (ViT_top.v:686)    |
-| add_x_43       | DW01_inc       | width=14   | add_686_I2 (ViT_top.v:686) |
-| add_x_44       | DW01_inc       | width=14   | add_686_I3 (ViT_top.v:686) |
-| add_x_45       | DW01_inc       | width=14   | add_686_I4 (ViT_top.v:686) |
-| add_x_46       | DW01_inc       | width=14   | add_686_I5 (ViT_top.v:686) |
-| add_x_47       | DW01_inc       | width=14   | add_686_I6 (ViT_top.v:686) |
-| add_x_48       | DW01_inc       | width=14   | add_686_I7 (ViT_top.v:686) |
-| add_x_49       | DW01_inc       | width=14   | add_686_I8 (ViT_top.v:686) |
-| add_x_50       | DW01_inc       | width=14   | add_686_I9 (ViT_top.v:686) |
-| add_x_51       | DW01_inc       | width=14   | add_686_I10 (ViT_top.v:686) |
-| add_x_52       | DW01_inc       | width=14   | add_686_I11 (ViT_top.v:686) |
-| add_x_53       | DW01_inc       | width=14   | add_686_I12 (ViT_top.v:686) |
-| add_x_54       | DW01_inc       | width=14   | add_686_I13 (ViT_top.v:686) |
-| add_x_55       | DW01_inc       | width=14   | add_686_I14 (ViT_top.v:686) |
-| add_x_56       | DW01_inc       | width=14   | add_686_I15 (ViT_top.v:686) |
-| add_x_57       | DW01_inc       | width=14   | add_686_I16 (ViT_top.v:686) |
-| add_x_109      | DW01_add       | width=20   | add_960 (ViT_top.v:960)    |
-| add_x_110      | DW01_add       | width=20   | add_960_I2 (ViT_top.v:960) |
-| add_x_111      | DW01_add       | width=20   | add_960_I3 (ViT_top.v:960) |
-| add_x_112      | DW01_add       | width=20   | add_960_I4 (ViT_top.v:960) |
-| add_x_113      | DW01_add       | width=20   | add_960_I5 (ViT_top.v:960) |
-| add_x_114      | DW01_add       | width=20   | add_960_I6 (ViT_top.v:960) |
-| add_x_115      | DW01_add       | width=20   | add_960_I7 (ViT_top.v:960) |
-| add_x_116      | DW01_add       | width=20   | add_960_I8 (ViT_top.v:960) |
-| gt_x_117       | DW_cmp         | width=13   | gt_978 (ViT_top.v:978)     |
-| lt_x_118       | DW_cmp         | width=13   | lt_980 (ViT_top.v:980)     |
-| gt_x_119       | DW_cmp         | width=13   | gt_978_I2 (ViT_top.v:978)  |
-| lt_x_120       | DW_cmp         | width=13   | lt_980_I2 (ViT_top.v:980)  |
-| gt_x_121       | DW_cmp         | width=13   | gt_978_I3 (ViT_top.v:978)  |
-| lt_x_122       | DW_cmp         | width=13   | lt_980_I3 (ViT_top.v:980)  |
-| gt_x_123       | DW_cmp         | width=13   | gt_978_I4 (ViT_top.v:978)  |
-| lt_x_124       | DW_cmp         | width=13   | lt_980_I4 (ViT_top.v:980)  |
-| gt_x_125       | DW_cmp         | width=13   | gt_978_I5 (ViT_top.v:978)  |
-| lt_x_126       | DW_cmp         | width=13   | lt_980_I5 (ViT_top.v:980)  |
-| gt_x_127       | DW_cmp         | width=13   | gt_978_I6 (ViT_top.v:978)  |
-| lt_x_128       | DW_cmp         | width=13   | lt_980_I6 (ViT_top.v:980)  |
-| gt_x_129       | DW_cmp         | width=13   | gt_978_I7 (ViT_top.v:978)  |
-| lt_x_130       | DW_cmp         | width=13   | lt_980_I7 (ViT_top.v:980)  |
-| gt_x_131       | DW_cmp         | width=13   | gt_978_I8 (ViT_top.v:978)  |
-| lt_x_132       | DW_cmp         | width=13   | lt_980_I8 (ViT_top.v:980)  |
-| gt_x_149       | DW_cmp         | width=5    | gt_1059 (ViT_top.v:1059)   |
-| add_x_150      | DW01_inc       | width=4    | add_1060 (ViT_top.v:1060)  |
-| add_x_155      | DW01_inc       | width=3    | add_1077 (ViT_top.v:1077)  |
-| add_x_157      | DW01_inc       | width=5    | add_1110 (ViT_top.v:1110)  |
-| add_x_163      | DW01_inc       | width=5    | add_1222 (ViT_top.v:1222)  |
-| add_x_237      | DW01_add       | width=20   | add_1383 (ViT_top.v:1383)  |
-| add_x_238      | DW01_add       | width=20   | add_1384 (ViT_top.v:1384)  |
-| add_x_239      | DW01_add       | width=20   | add_1385 (ViT_top.v:1385)  |
-| add_x_240      | DW01_add       | width=20   | add_1386 (ViT_top.v:1386)  |
-| gt_x_241       | DW_cmp         | width=13   | gt_1410 (ViT_top.v:1410)   |
-| lt_x_242       | DW_cmp         | width=13   | lt_1412 (ViT_top.v:1412)   |
-| gt_x_243       | DW_cmp         | width=13   | gt_1418 (ViT_top.v:1418)   |
-| lt_x_244       | DW_cmp         | width=13   | lt_1420 (ViT_top.v:1420)   |
-| gt_x_245       | DW_cmp         | width=13   | gt_1426 (ViT_top.v:1426)   |
-| lt_x_246       | DW_cmp         | width=13   | lt_1428 (ViT_top.v:1428)   |
-| gt_x_247       | DW_cmp         | width=13   | gt_1434 (ViT_top.v:1434)   |
-| lt_x_248       | DW_cmp         | width=13   | lt_1436 (ViT_top.v:1436)   |
-| add_x_254      | DW01_inc       | width=4    | add_1535 (ViT_top.v:1535)  |
-| add_x_255      | DW01_inc       | width=3    | add_1536 (ViT_top.v:1536)  |
-| add_x_256      | DW01_inc       | width=2    | add_1537 (ViT_top.v:1537)  |
-| add_x_270      | DW01_inc       | width=4    | add_1731 (ViT_top.v:1731)  |
-| add_x_272      | DW01_inc       | width=2    | add_1741 (ViT_top.v:1741)  |
-| add_x_274      | DW01_inc       | width=4    | add_1764 (ViT_top.v:1764)  |
-| add_x_77       | DW01_inc       | width=10   | add_877 (ViT_top.v:877)    |
-|                |                |            | add_879_2 (ViT_top.v:879)  |
-| add_x_78       | DW01_inc       | width=10   | add_877_I2 (ViT_top.v:877) |
-|                |                |            | add_879_2_I2 (ViT_top.v:879) |
-| add_x_79       | DW01_inc       | width=10   | add_877_I3 (ViT_top.v:877) |
-|                |                |            | add_879_2_I3 (ViT_top.v:879) |
-| add_x_80       | DW01_inc       | width=10   | add_877_I4 (ViT_top.v:877) |
-|                |                |            | add_879_2_I4 (ViT_top.v:879) |
-| add_x_81       | DW01_inc       | width=10   | add_877_I5 (ViT_top.v:877) |
-|                |                |            | add_879_2_I5 (ViT_top.v:879) |
-| add_x_82       | DW01_inc       | width=10   | add_877_I6 (ViT_top.v:877) |
-|                |                |            | add_879_2_I6 (ViT_top.v:879) |
-| add_x_83       | DW01_inc       | width=10   | add_877_I7 (ViT_top.v:877) |
-|                |                |            | add_879_2_I7 (ViT_top.v:879) |
-| add_x_84       | DW01_inc       | width=10   | add_877_I8 (ViT_top.v:877) |
-|                |                |            | add_879_2_I8 (ViT_top.v:879) |
-| add_x_159      | DW01_inc       | width=8    | add_1203 (ViT_top.v:1203)  |
-|                |                |            | add_1210 (ViT_top.v:1210)  |
-| DP_OP_749J1_122_4871            |            |                            |
-|                | DP_OP_749J1_122_4871 |      |                            |
-| DP_OP_750J1_123_1791            |            |                            |
-|                | DP_OP_750J1_123_1791 |      |                            |
-| DP_OP_751J1_124_5797            |            |                            |
-|                | DP_OP_751J1_124_5797 |      |                            |
-| DP_OP_752J1_125_5797            |            |                            |
-|                | DP_OP_752J1_125_5797 |      |                            |
-| DP_OP_753J1_126_5797            |            |                            |
-|                | DP_OP_753J1_126_5797 |      |                            |
-| DP_OP_754J1_127_5797            |            |                            |
-|                | DP_OP_754J1_127_5797 |      |                            |
-| DP_OP_197_151_8445              |            |                            |
-|                | DP_OP_197_151_8445 |        |                            |
-| DP_OP_196_150_180               |            |                            |
-|                | DP_OP_196_150_180 |         |                            |
-| DP_OP_195_149_2935              |            |                            |
-|                | DP_OP_195_149_2935 |        |                            |
-| DP_OP_194_148_6743              |            |                            |
-|                | DP_OP_194_148_6743 |        |                            |
-| DP_OP_193_147_9498              |            |                            |
-|                | DP_OP_193_147_9498 |        |                            |
-| DP_OP_192_146_1233              |            |                            |
-|                | DP_OP_192_146_1233 |        |                            |
-| DP_OP_191_145_3972              |            |                            |
-|                | DP_OP_191_145_3972 |        |                            |
-| DP_OP_190_144_7796              |            |                            |
-|                | DP_OP_190_144_7796 |        |                            |
+| add_x_11       | DW01_inc       | width=4    | add_242 (ViT_top.v:242)    |
+| add_x_12       | DW01_inc       | width=4    | add_274 (ViT_top.v:274)    |
+| add_x_14       | DW01_inc       | width=4    | add_320 (ViT_top.v:320)    |
+| add_x_16       | DW01_inc       | width=5    | add_327 (ViT_top.v:327)    |
+| sub_x_22       | DW01_sub       | width=14   | sub_702 (ViT_top.v:702)    |
+| sub_x_23       | DW01_sub       | width=14   | sub_702_I2 (ViT_top.v:702) |
+| sub_x_24       | DW01_sub       | width=14   | sub_702_I3 (ViT_top.v:702) |
+| sub_x_25       | DW01_sub       | width=14   | sub_702_I4 (ViT_top.v:702) |
+| sub_x_26       | DW01_sub       | width=14   | sub_702_I5 (ViT_top.v:702) |
+| sub_x_27       | DW01_sub       | width=14   | sub_702_I6 (ViT_top.v:702) |
+| sub_x_28       | DW01_sub       | width=14   | sub_702_I7 (ViT_top.v:702) |
+| sub_x_29       | DW01_sub       | width=14   | sub_702_I8 (ViT_top.v:702) |
+| sub_x_30       | DW01_sub       | width=14   | sub_702_I9 (ViT_top.v:702) |
+| sub_x_31       | DW01_sub       | width=14   | sub_702_I10 (ViT_top.v:702) |
+| sub_x_32       | DW01_sub       | width=14   | sub_702_I11 (ViT_top.v:702) |
+| sub_x_33       | DW01_sub       | width=14   | sub_702_I12 (ViT_top.v:702) |
+| sub_x_34       | DW01_sub       | width=14   | sub_702_I13 (ViT_top.v:702) |
+| sub_x_35       | DW01_sub       | width=14   | sub_702_I14 (ViT_top.v:702) |
+| sub_x_36       | DW01_sub       | width=14   | sub_702_I15 (ViT_top.v:702) |
+| sub_x_37       | DW01_sub       | width=14   | sub_702_I16 (ViT_top.v:702) |
+| add_x_38       | DW01_inc       | width=14   | add_709 (ViT_top.v:709)    |
+| add_x_39       | DW01_inc       | width=14   | add_709_I2 (ViT_top.v:709) |
+| add_x_40       | DW01_inc       | width=14   | add_709_I3 (ViT_top.v:709) |
+| add_x_41       | DW01_inc       | width=14   | add_709_I4 (ViT_top.v:709) |
+| add_x_42       | DW01_inc       | width=14   | add_709_I5 (ViT_top.v:709) |
+| add_x_43       | DW01_inc       | width=14   | add_709_I6 (ViT_top.v:709) |
+| add_x_44       | DW01_inc       | width=14   | add_709_I7 (ViT_top.v:709) |
+| add_x_45       | DW01_inc       | width=14   | add_709_I8 (ViT_top.v:709) |
+| add_x_46       | DW01_inc       | width=14   | add_709_I9 (ViT_top.v:709) |
+| add_x_47       | DW01_inc       | width=14   | add_709_I10 (ViT_top.v:709) |
+| add_x_48       | DW01_inc       | width=14   | add_709_I11 (ViT_top.v:709) |
+| add_x_49       | DW01_inc       | width=14   | add_709_I12 (ViT_top.v:709) |
+| add_x_50       | DW01_inc       | width=14   | add_709_I13 (ViT_top.v:709) |
+| add_x_51       | DW01_inc       | width=14   | add_709_I14 (ViT_top.v:709) |
+| add_x_52       | DW01_inc       | width=14   | add_709_I15 (ViT_top.v:709) |
+| add_x_53       | DW01_inc       | width=14   | add_709_I16 (ViT_top.v:709) |
+| add_x_117      | DW01_add       | width=20   | add_1000 (ViT_top.v:1000)  |
+| add_x_118      | DW01_add       | width=20   | add_1000_I2 (ViT_top.v:1000) |
+| add_x_119      | DW01_add       | width=20   | add_1000_I3 (ViT_top.v:1000) |
+| add_x_120      | DW01_add       | width=20   | add_1000_I4 (ViT_top.v:1000) |
+| add_x_121      | DW01_add       | width=20   | add_1000_I5 (ViT_top.v:1000) |
+| add_x_122      | DW01_add       | width=20   | add_1000_I6 (ViT_top.v:1000) |
+| add_x_123      | DW01_add       | width=20   | add_1000_I7 (ViT_top.v:1000) |
+| add_x_124      | DW01_add       | width=20   | add_1000_I8 (ViT_top.v:1000) |
+| gt_x_125       | DW_cmp         | width=13   | gt_1018 (ViT_top.v:1018)   |
+| lt_x_126       | DW_cmp         | width=13   | lt_1020 (ViT_top.v:1020)   |
+| gt_x_127       | DW_cmp         | width=13   | gt_1018_I2 (ViT_top.v:1018) |
+| lt_x_128       | DW_cmp         | width=13   | lt_1020_I2 (ViT_top.v:1020) |
+| gt_x_129       | DW_cmp         | width=13   | gt_1018_I3 (ViT_top.v:1018) |
+| lt_x_130       | DW_cmp         | width=13   | lt_1020_I3 (ViT_top.v:1020) |
+| gt_x_131       | DW_cmp         | width=13   | gt_1018_I4 (ViT_top.v:1018) |
+| lt_x_132       | DW_cmp         | width=13   | lt_1020_I4 (ViT_top.v:1020) |
+| gt_x_133       | DW_cmp         | width=13   | gt_1018_I5 (ViT_top.v:1018) |
+| lt_x_134       | DW_cmp         | width=13   | lt_1020_I5 (ViT_top.v:1020) |
+| gt_x_135       | DW_cmp         | width=13   | gt_1018_I6 (ViT_top.v:1018) |
+| lt_x_136       | DW_cmp         | width=13   | lt_1020_I6 (ViT_top.v:1020) |
+| gt_x_137       | DW_cmp         | width=13   | gt_1018_I7 (ViT_top.v:1018) |
+| lt_x_138       | DW_cmp         | width=13   | lt_1020_I7 (ViT_top.v:1020) |
+| gt_x_139       | DW_cmp         | width=13   | gt_1018_I8 (ViT_top.v:1018) |
+| lt_x_140       | DW_cmp         | width=13   | lt_1020_I8 (ViT_top.v:1020) |
+| gt_x_157       | DW_cmp         | width=5    | gt_1099 (ViT_top.v:1099)   |
+| add_x_158      | DW01_inc       | width=4    | add_1100 (ViT_top.v:1100)  |
+| add_x_163      | DW01_inc       | width=3    | add_1117 (ViT_top.v:1117)  |
+| add_x_165      | DW01_inc       | width=5    | add_1150 (ViT_top.v:1150)  |
+| add_x_171      | DW01_inc       | width=5    | add_1262 (ViT_top.v:1262)  |
+| add_x_245      | DW01_add       | width=20   | add_1423 (ViT_top.v:1423)  |
+| add_x_246      | DW01_add       | width=20   | add_1424 (ViT_top.v:1424)  |
+| add_x_247      | DW01_add       | width=20   | add_1425 (ViT_top.v:1425)  |
+| add_x_248      | DW01_add       | width=20   | add_1426 (ViT_top.v:1426)  |
+| gt_x_249       | DW_cmp         | width=13   | gt_1450 (ViT_top.v:1450)   |
+| lt_x_250       | DW_cmp         | width=13   | lt_1452 (ViT_top.v:1452)   |
+| gt_x_251       | DW_cmp         | width=13   | gt_1458 (ViT_top.v:1458)   |
+| lt_x_252       | DW_cmp         | width=13   | lt_1460 (ViT_top.v:1460)   |
+| gt_x_253       | DW_cmp         | width=13   | gt_1466 (ViT_top.v:1466)   |
+| lt_x_254       | DW_cmp         | width=13   | lt_1468 (ViT_top.v:1468)   |
+| gt_x_255       | DW_cmp         | width=13   | gt_1474 (ViT_top.v:1474)   |
+| lt_x_256       | DW_cmp         | width=13   | lt_1476 (ViT_top.v:1476)   |
+| add_x_262      | DW01_inc       | width=4    | add_1575 (ViT_top.v:1575)  |
+| add_x_263      | DW01_inc       | width=3    | add_1576 (ViT_top.v:1576)  |
+| add_x_264      | DW01_inc       | width=2    | add_1577 (ViT_top.v:1577)  |
+| add_x_278      | DW01_inc       | width=4    | add_1771 (ViT_top.v:1771)  |
+| add_x_280      | DW01_inc       | width=2    | add_1781 (ViT_top.v:1781)  |
+| add_x_282      | DW01_inc       | width=4    | add_1806 (ViT_top.v:1806)  |
+| mult_x_286     | DW_mult_tc     | a_width=20 | mult_1915 (ViT_top.v:1915) |
+|                |                | b_width=7  |                            |
+| mult_x_287     | DW_mult_tc     | a_width=20 | mult_1916 (ViT_top.v:1916) |
+|                |                | b_width=7  |                            |
+| mult_x_288     | DW_mult_tc     | a_width=20 | mult_1917 (ViT_top.v:1917) |
+|                |                | b_width=7  |                            |
+| mult_x_289     | DW_mult_tc     | a_width=20 | mult_1918 (ViT_top.v:1918) |
+|                |                | b_width=7  |                            |
+| add_x_290      | DW01_add       | width=30   | add_1933 (ViT_top.v:1933)  |
+| add_x_291      | DW01_add       | width=30   | add_1933_I2 (ViT_top.v:1933) |
+| add_x_292      | DW01_add       | width=30   | add_1933_I3 (ViT_top.v:1933) |
+| add_x_293      | DW01_add       | width=30   | add_1933_I4 (ViT_top.v:1933) |
+| gt_x_294       | DW_cmp         | width=17   | gt_1953 (ViT_top.v:1953)   |
+| lt_x_295       | DW_cmp         | width=17   | lt_1955 (ViT_top.v:1955)   |
+| gt_x_296       | DW_cmp         | width=17   | gt_1953_I2 (ViT_top.v:1953) |
+| lt_x_297       | DW_cmp         | width=17   | lt_1955_I2 (ViT_top.v:1955) |
+| gt_x_298       | DW_cmp         | width=17   | gt_1953_I3 (ViT_top.v:1953) |
+| lt_x_299       | DW_cmp         | width=17   | lt_1955_I3 (ViT_top.v:1955) |
+| gt_x_300       | DW_cmp         | width=17   | gt_1953_I4 (ViT_top.v:1953) |
+| lt_x_301       | DW_cmp         | width=17   | lt_1955_I4 (ViT_top.v:1955) |
+| add_x_310      | DW01_inc       | width=3    | add_2059 (ViT_top.v:2059)  |
+| add_x_312      | DW01_inc       | width=5    | add_2068 (ViT_top.v:2068)  |
+| add_x_322      | DW01_inc       | width=5    | add_2208 (ViT_top.v:2208)  |
+| add_x_323      | DW01_inc       | width=2    | add_2209 (ViT_top.v:2209)  |
+| add_x_85       | DW01_inc       | width=10   | add_917 (ViT_top.v:917)    |
+|                |                |            | add_919_2 (ViT_top.v:919)  |
+| add_x_86       | DW01_inc       | width=10   | add_917_I2 (ViT_top.v:917) |
+|                |                |            | add_919_2_I2 (ViT_top.v:919) |
+| add_x_87       | DW01_inc       | width=10   | add_917_I3 (ViT_top.v:917) |
+|                |                |            | add_919_2_I3 (ViT_top.v:919) |
+| add_x_88       | DW01_inc       | width=10   | add_917_I4 (ViT_top.v:917) |
+|                |                |            | add_919_2_I4 (ViT_top.v:919) |
+| add_x_89       | DW01_inc       | width=10   | add_917_I5 (ViT_top.v:917) |
+|                |                |            | add_919_2_I5 (ViT_top.v:919) |
+| add_x_90       | DW01_inc       | width=10   | add_917_I6 (ViT_top.v:917) |
+|                |                |            | add_919_2_I6 (ViT_top.v:919) |
+| add_x_91       | DW01_inc       | width=10   | add_917_I7 (ViT_top.v:917) |
+|                |                |            | add_919_2_I7 (ViT_top.v:919) |
+| add_x_92       | DW01_inc       | width=10   | add_917_I8 (ViT_top.v:917) |
+|                |                |            | add_919_2_I8 (ViT_top.v:919) |
+| add_x_167      | DW01_inc       | width=8    | add_1243 (ViT_top.v:1243)  |
+|                |                |            | add_1250 (ViT_top.v:1250)  |
+| DP_OP_855J2_122_4871            |            |                            |
+|                | DP_OP_855J2_122_4871 |      |                            |
+| DP_OP_856J2_123_4875            |            |                            |
+|                | DP_OP_856J2_123_4875 |      |                            |
+| DP_OP_857J2_124_5797            |            |                            |
+|                | DP_OP_857J2_124_5797 |      |                            |
+| DP_OP_858J2_125_5797            |            |                            |
+|                | DP_OP_858J2_125_5797 |      |                            |
+| DP_OP_859J2_126_5797            |            |                            |
+|                | DP_OP_859J2_126_5797 |      |                            |
+| DP_OP_860J2_127_5797            |            |                            |
+|                | DP_OP_860J2_127_5797 |      |                            |
+| sub_x_343      | DW01_sub       | width=18   | add_848_ni (ViT_top.v:848) |
+|                |                |            | sub_add_848 (ViT_top.v:848) |
+| DP_OP_196_151_9962              |            |                            |
+|                | DP_OP_196_151_9962 |        |                            |
+| DP_OP_195_150_1697              |            |                            |
+|                | DP_OP_195_150_1697 |        |                            |
+| DP_OP_194_149_4500              |            |                            |
+|                | DP_OP_194_149_4500 |        |                            |
+| DP_OP_193_148_8260              |            |                            |
+|                | DP_OP_193_148_8260 |        |                            |
+| DP_OP_192_147_1048              |            |                            |
+|                | DP_OP_192_147_1048 |        |                            |
+| DP_OP_191_146_5946              |            |                            |
+|                | DP_OP_191_146_5946 |        |                            |
+| DP_OP_190_145_8701              |            |                            |
+|                | DP_OP_190_145_8701 |        |                            |
+| DP_OP_189_144_436               |            |                            |
+|                | DP_OP_189_144_436 |         |                            |
 =============================================================================
 
-Datapath Report for DP_OP_749J1_122_4871
+Datapath Report for DP_OP_855J2_122_4871
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_749J1_122_4871 | add_575 (ViT_top.v:575) add_575_2 (ViT_top.v:575)   |
-|                      | add_575_3 (ViT_top.v:575) add_575_4 (ViT_top.v:575) |
-|                      | add_575_5 (ViT_top.v:575) add_575_6 (ViT_top.v:575) |
-|                      | add_575_7 (ViT_top.v:575) add_575_8 (ViT_top.v:575) |
-|                      | add_575_9 (ViT_top.v:575)                           |
-|                      | add_575_10 (ViT_top.v:575)                          |
-|                      | add_575_11 (ViT_top.v:575)                          |
-|                      | add_575_12 (ViT_top.v:575)                          |
-|                      | add_575_13 (ViT_top.v:575)                          |
-|                      | add_575_14 (ViT_top.v:575)                          |
-|                      | add_575_15 (ViT_top.v:575)                          |
+| DP_OP_855J2_122_4871 | add_598 (ViT_top.v:598) add_598_2 (ViT_top.v:598)   |
+|                      | add_598_3 (ViT_top.v:598) add_598_4 (ViT_top.v:598) |
+|                      | add_598_5 (ViT_top.v:598) add_598_6 (ViT_top.v:598) |
+|                      | add_598_7 (ViT_top.v:598) add_598_8 (ViT_top.v:598) |
+|                      | add_598_9 (ViT_top.v:598)                           |
+|                      | add_598_10 (ViT_top.v:598)                          |
+|                      | add_598_11 (ViT_top.v:598)                          |
+|                      | add_598_12 (ViT_top.v:598)                          |
+|                      | add_598_13 (ViT_top.v:598)                          |
+|                      | add_598_14 (ViT_top.v:598)                          |
+|                      | add_598_15 (ViT_top.v:598)                          |
 ==============================================================================
 
 ==============================================================================
@@ -179,26 +205,24 @@ Datapath Report for DP_OP_749J1_122_4871
 | I14   | PI   | Signed   | 10    |                                          |
 | I15   | PI   | Signed   | 10    |                                          |
 | I16   | PI   | Signed   | 10    |                                          |
-| O1    | PO   | Signed   | 14    | I1 + I2 + I3 + I4 + I5 + I6 + I7 + I8 + I9 + I10 + I11 + I12 + I13 + I14 + I15 + I16 (ViT_top.v:575) |
+| O1    | PO   | Signed   | 14    | I1 + I2 + I3 + I4 + I5 + I6 + I7 + I8 + I9 + I10 + I11 + I12 + I13 + I14 + I15 + I16 (ViT_top.v:598) |
 ==============================================================================
 
-Datapath Report for DP_OP_750J1_123_1791
+Datapath Report for DP_OP_856J2_123_4875
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_750J1_123_1791 | add_689 (ViT_top.v:689) add_689_2 (ViT_top.v:689)   |
-|                      | add_689_3 (ViT_top.v:689) add_689_4 (ViT_top.v:689) |
-|                      | add_689_5 (ViT_top.v:689) add_689_6 (ViT_top.v:689) |
-|                      | add_689_7 (ViT_top.v:689) add_689_8 (ViT_top.v:689) |
-|                      | add_689_9 (ViT_top.v:689)                           |
-|                      | add_689_10 (ViT_top.v:689)                          |
-|                      | add_689_11 (ViT_top.v:689)                          |
-|                      | add_689_12 (ViT_top.v:689)                          |
-|                      | add_689_13 (ViT_top.v:689)                          |
-|                      | add_689_14 (ViT_top.v:689)                          |
-|                      | add_689_15 (ViT_top.v:689)                          |
-|                      | sub_add_808 (ViT_top.v:808)                         |
-|                      | add_808_ni (ViT_top.v:808)                          |
+| DP_OP_856J2_123_4875 | add_716 (ViT_top.v:716) add_716_2 (ViT_top.v:716)   |
+|                      | add_716_3 (ViT_top.v:716) add_716_4 (ViT_top.v:716) |
+|                      | add_716_5 (ViT_top.v:716) add_716_6 (ViT_top.v:716) |
+|                      | add_716_7 (ViT_top.v:716) add_716_8 (ViT_top.v:716) |
+|                      | add_716_9 (ViT_top.v:716)                           |
+|                      | add_716_10 (ViT_top.v:716)                          |
+|                      | add_716_11 (ViT_top.v:716)                          |
+|                      | add_716_12 (ViT_top.v:716)                          |
+|                      | add_716_13 (ViT_top.v:716)                          |
+|                      | add_716_14 (ViT_top.v:716)                          |
+|                      | add_716_15 (ViT_top.v:716)                          |
 ==============================================================================
 
 ==============================================================================
@@ -221,30 +245,29 @@ Datapath Report for DP_OP_750J1_123_1791
 | I14   | PI   | Unsigned | 14    |                                          |
 | I15   | PI   | Unsigned | 14    |                                          |
 | I16   | PI   | Unsigned | 14    |                                          |
-| O1    | PO   | Unsigned | 18    | I1 + I2 + I3 + I4 + I5 + I6 + I7 + I8 + I9 + I10 + I11 + I12 + I13 + I14 + I15 + I16 (ViT_top.v:689) |
-| O2    | PO   | Signed   | 18    | -O1 + $unsigned(18'b000000000000000000) (ViT_top.v:808) |
+| O1    | PO   | Unsigned | 18    | I1 + I2 + I3 + I4 + I5 + I6 + I7 + I8 + I9 + I10 + I11 + I12 + I13 + I14 + I15 + I16 (ViT_top.v:716) |
 ==============================================================================
 
-Datapath Report for DP_OP_751J1_124_5797
+Datapath Report for DP_OP_857J2_124_5797
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_751J1_124_5797 | mult_1294 (ViT_top.v:1294)                          |
-|                      | add_1305 (ViT_top.v:1305)                           |
-|                      | add_1305_2 (ViT_top.v:1305)                         |
-|                      | add_1305_3 (ViT_top.v:1305)                         |
-|                      | add_1305_4 (ViT_top.v:1305)                         |
-|                      | add_1305_5 (ViT_top.v:1305)                         |
-|                      | add_1305_6 (ViT_top.v:1305)                         |
-|                      | add_1305_7 (ViT_top.v:1305)                         |
-|                      | mult_1294_I2 (ViT_top.v:1294)                       |
-|                      | mult_1294_I3 (ViT_top.v:1294)                       |
-|                      | mult_1294_I4 (ViT_top.v:1294)                       |
-|                      | mult_1294_I5 (ViT_top.v:1294)                       |
-|                      | mult_1294_I6 (ViT_top.v:1294)                       |
-|                      | mult_1294_I7 (ViT_top.v:1294)                       |
-|                      | mult_1294_I8 (ViT_top.v:1294)                       |
-|                      | add_1351 (ViT_top.v:1351)                           |
+| DP_OP_857J2_124_5797 | mult_1334 (ViT_top.v:1334)                          |
+|                      | add_1345 (ViT_top.v:1345)                           |
+|                      | add_1345_2 (ViT_top.v:1345)                         |
+|                      | add_1345_3 (ViT_top.v:1345)                         |
+|                      | add_1345_4 (ViT_top.v:1345)                         |
+|                      | add_1345_5 (ViT_top.v:1345)                         |
+|                      | add_1345_6 (ViT_top.v:1345)                         |
+|                      | add_1345_7 (ViT_top.v:1345)                         |
+|                      | mult_1334_I2 (ViT_top.v:1334)                       |
+|                      | mult_1334_I3 (ViT_top.v:1334)                       |
+|                      | mult_1334_I4 (ViT_top.v:1334)                       |
+|                      | mult_1334_I5 (ViT_top.v:1334)                       |
+|                      | mult_1334_I6 (ViT_top.v:1334)                       |
+|                      | mult_1334_I7 (ViT_top.v:1334)                       |
+|                      | mult_1334_I8 (ViT_top.v:1334)                       |
+|                      | add_1391 (ViT_top.v:1391)                           |
 ==============================================================================
 
 ==============================================================================
@@ -268,38 +291,38 @@ Datapath Report for DP_OP_751J1_124_5797
 | I15   | PI   | Signed   | 10    |                                          |
 | I16   | PI   | Signed   | 10    |                                          |
 | I17   | PI   | Signed   | 20    |                                          |
-| T313  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1294)                 |
-| T317  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1294)                 |
-| T321  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1294)                 |
-| T325  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1294)                 |
-| T329  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1294)                |
-| T333  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1294)               |
-| T337  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1294)               |
-| T341  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1294)               |
-| O1    | PO   | Unsigned | 20    | T313 + T317 + T321 + T325 + T329 + T333 + T337 + T341 (ViT_top.v:1305) |
-| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1351)                |
+| T312  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1334)                 |
+| T316  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1334)                 |
+| T320  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1334)                 |
+| T324  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1334)                 |
+| T328  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1334)                |
+| T332  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1334)               |
+| T336  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1334)               |
+| T340  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1334)               |
+| O1    | PO   | Unsigned | 20    | T312 + T316 + T320 + T324 + T328 + T332 + T336 + T340 (ViT_top.v:1345) |
+| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1391)                |
 ==============================================================================
 
-Datapath Report for DP_OP_752J1_125_5797
+Datapath Report for DP_OP_858J2_125_5797
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_752J1_125_5797 | mult_1295 (ViT_top.v:1295)                          |
-|                      | add_1310 (ViT_top.v:1310)                           |
-|                      | add_1310_2 (ViT_top.v:1310)                         |
-|                      | add_1310_3 (ViT_top.v:1310)                         |
-|                      | add_1310_4 (ViT_top.v:1310)                         |
-|                      | add_1310_5 (ViT_top.v:1310)                         |
-|                      | add_1310_6 (ViT_top.v:1310)                         |
-|                      | add_1310_7 (ViT_top.v:1310)                         |
-|                      | mult_1295_I2 (ViT_top.v:1295)                       |
-|                      | mult_1295_I3 (ViT_top.v:1295)                       |
-|                      | mult_1295_I4 (ViT_top.v:1295)                       |
-|                      | mult_1295_I5 (ViT_top.v:1295)                       |
-|                      | mult_1295_I6 (ViT_top.v:1295)                       |
-|                      | mult_1295_I7 (ViT_top.v:1295)                       |
-|                      | mult_1295_I8 (ViT_top.v:1295)                       |
-|                      | add_1352 (ViT_top.v:1352)                           |
+| DP_OP_858J2_125_5797 | mult_1335 (ViT_top.v:1335)                          |
+|                      | add_1350 (ViT_top.v:1350)                           |
+|                      | add_1350_2 (ViT_top.v:1350)                         |
+|                      | add_1350_3 (ViT_top.v:1350)                         |
+|                      | add_1350_4 (ViT_top.v:1350)                         |
+|                      | add_1350_5 (ViT_top.v:1350)                         |
+|                      | add_1350_6 (ViT_top.v:1350)                         |
+|                      | add_1350_7 (ViT_top.v:1350)                         |
+|                      | mult_1335_I2 (ViT_top.v:1335)                       |
+|                      | mult_1335_I3 (ViT_top.v:1335)                       |
+|                      | mult_1335_I4 (ViT_top.v:1335)                       |
+|                      | mult_1335_I5 (ViT_top.v:1335)                       |
+|                      | mult_1335_I6 (ViT_top.v:1335)                       |
+|                      | mult_1335_I7 (ViT_top.v:1335)                       |
+|                      | mult_1335_I8 (ViT_top.v:1335)                       |
+|                      | add_1392 (ViT_top.v:1392)                           |
 ==============================================================================
 
 ==============================================================================
@@ -323,38 +346,38 @@ Datapath Report for DP_OP_752J1_125_5797
 | I15   | PI   | Signed   | 10    |                                          |
 | I16   | PI   | Signed   | 10    |                                          |
 | I17   | PI   | Signed   | 20    |                                          |
-| T314  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1295)                 |
-| T318  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1295)                 |
-| T322  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1295)                 |
-| T326  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1295)                 |
-| T330  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1295)                |
-| T334  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1295)               |
-| T338  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1295)               |
-| T342  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1295)               |
-| O1    | PO   | Unsigned | 20    | T314 + T318 + T322 + T326 + T330 + T334 + T338 + T342 (ViT_top.v:1310) |
-| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1352)                |
+| T313  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1335)                 |
+| T317  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1335)                 |
+| T321  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1335)                 |
+| T325  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1335)                 |
+| T329  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1335)                |
+| T333  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1335)               |
+| T337  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1335)               |
+| T341  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1335)               |
+| O1    | PO   | Unsigned | 20    | T313 + T317 + T321 + T325 + T329 + T333 + T337 + T341 (ViT_top.v:1350) |
+| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1392)                |
 ==============================================================================
 
-Datapath Report for DP_OP_753J1_126_5797
+Datapath Report for DP_OP_859J2_126_5797
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_753J1_126_5797 | mult_1296 (ViT_top.v:1296)                          |
-|                      | add_1315 (ViT_top.v:1315)                           |
-|                      | add_1315_2 (ViT_top.v:1315)                         |
-|                      | add_1315_3 (ViT_top.v:1315)                         |
-|                      | add_1315_4 (ViT_top.v:1315)                         |
-|                      | add_1315_5 (ViT_top.v:1315)                         |
-|                      | add_1315_6 (ViT_top.v:1315)                         |
-|                      | add_1315_7 (ViT_top.v:1315)                         |
-|                      | mult_1296_I2 (ViT_top.v:1296)                       |
-|                      | mult_1296_I3 (ViT_top.v:1296)                       |
-|                      | mult_1296_I4 (ViT_top.v:1296)                       |
-|                      | mult_1296_I5 (ViT_top.v:1296)                       |
-|                      | mult_1296_I6 (ViT_top.v:1296)                       |
-|                      | mult_1296_I7 (ViT_top.v:1296)                       |
-|                      | mult_1296_I8 (ViT_top.v:1296)                       |
-|                      | add_1353 (ViT_top.v:1353)                           |
+| DP_OP_859J2_126_5797 | mult_1336 (ViT_top.v:1336)                          |
+|                      | add_1355 (ViT_top.v:1355)                           |
+|                      | add_1355_2 (ViT_top.v:1355)                         |
+|                      | add_1355_3 (ViT_top.v:1355)                         |
+|                      | add_1355_4 (ViT_top.v:1355)                         |
+|                      | add_1355_5 (ViT_top.v:1355)                         |
+|                      | add_1355_6 (ViT_top.v:1355)                         |
+|                      | add_1355_7 (ViT_top.v:1355)                         |
+|                      | mult_1336_I2 (ViT_top.v:1336)                       |
+|                      | mult_1336_I3 (ViT_top.v:1336)                       |
+|                      | mult_1336_I4 (ViT_top.v:1336)                       |
+|                      | mult_1336_I5 (ViT_top.v:1336)                       |
+|                      | mult_1336_I6 (ViT_top.v:1336)                       |
+|                      | mult_1336_I7 (ViT_top.v:1336)                       |
+|                      | mult_1336_I8 (ViT_top.v:1336)                       |
+|                      | add_1393 (ViT_top.v:1393)                           |
 ==============================================================================
 
 ==============================================================================
@@ -378,38 +401,38 @@ Datapath Report for DP_OP_753J1_126_5797
 | I15   | PI   | Signed   | 10    |                                          |
 | I16   | PI   | Signed   | 10    |                                          |
 | I17   | PI   | Signed   | 20    |                                          |
-| T315  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1296)                 |
-| T319  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1296)                 |
-| T323  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1296)                 |
-| T327  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1296)                 |
-| T331  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1296)                |
-| T335  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1296)               |
-| T339  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1296)               |
-| T343  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1296)               |
-| O1    | PO   | Unsigned | 20    | T315 + T319 + T323 + T327 + T331 + T335 + T339 + T343 (ViT_top.v:1315) |
-| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1353)                |
+| T314  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1336)                 |
+| T318  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1336)                 |
+| T322  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1336)                 |
+| T326  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1336)                 |
+| T330  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1336)                |
+| T334  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1336)               |
+| T338  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1336)               |
+| T342  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1336)               |
+| O1    | PO   | Unsigned | 20    | T314 + T318 + T322 + T326 + T330 + T334 + T338 + T342 (ViT_top.v:1355) |
+| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1393)                |
 ==============================================================================
 
-Datapath Report for DP_OP_754J1_127_5797
+Datapath Report for DP_OP_860J2_127_5797
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_754J1_127_5797 | mult_1297 (ViT_top.v:1297)                          |
-|                      | add_1320 (ViT_top.v:1320)                           |
-|                      | add_1320_2 (ViT_top.v:1320)                         |
-|                      | add_1320_3 (ViT_top.v:1320)                         |
-|                      | add_1320_4 (ViT_top.v:1320)                         |
-|                      | add_1320_5 (ViT_top.v:1320)                         |
-|                      | add_1320_6 (ViT_top.v:1320)                         |
-|                      | add_1320_7 (ViT_top.v:1320)                         |
-|                      | mult_1297_I2 (ViT_top.v:1297)                       |
-|                      | mult_1297_I3 (ViT_top.v:1297)                       |
-|                      | mult_1297_I4 (ViT_top.v:1297)                       |
-|                      | mult_1297_I5 (ViT_top.v:1297)                       |
-|                      | mult_1297_I6 (ViT_top.v:1297)                       |
-|                      | mult_1297_I7 (ViT_top.v:1297)                       |
-|                      | mult_1297_I8 (ViT_top.v:1297)                       |
-|                      | add_1354 (ViT_top.v:1354)                           |
+| DP_OP_860J2_127_5797 | mult_1337 (ViT_top.v:1337)                          |
+|                      | add_1360 (ViT_top.v:1360)                           |
+|                      | add_1360_2 (ViT_top.v:1360)                         |
+|                      | add_1360_3 (ViT_top.v:1360)                         |
+|                      | add_1360_4 (ViT_top.v:1360)                         |
+|                      | add_1360_5 (ViT_top.v:1360)                         |
+|                      | add_1360_6 (ViT_top.v:1360)                         |
+|                      | add_1360_7 (ViT_top.v:1360)                         |
+|                      | mult_1337_I2 (ViT_top.v:1337)                       |
+|                      | mult_1337_I3 (ViT_top.v:1337)                       |
+|                      | mult_1337_I4 (ViT_top.v:1337)                       |
+|                      | mult_1337_I5 (ViT_top.v:1337)                       |
+|                      | mult_1337_I6 (ViT_top.v:1337)                       |
+|                      | mult_1337_I7 (ViT_top.v:1337)                       |
+|                      | mult_1337_I8 (ViT_top.v:1337)                       |
+|                      | add_1394 (ViT_top.v:1394)                           |
 ==============================================================================
 
 ==============================================================================
@@ -433,26 +456,26 @@ Datapath Report for DP_OP_754J1_127_5797
 | I15   | PI   | Signed   | 10    |                                          |
 | I16   | PI   | Signed   | 10    |                                          |
 | I17   | PI   | Signed   | 20    |                                          |
-| T316  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1297)                 |
-| T320  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1297)                 |
-| T324  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1297)                 |
-| T328  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1297)                 |
-| T332  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1297)                |
-| T336  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1297)               |
-| T340  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1297)               |
-| T344  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1297)               |
-| O1    | PO   | Unsigned | 20    | T316 + T320 + T324 + T328 + T332 + T336 + T340 + T344 (ViT_top.v:1320) |
-| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1354)                |
+| T315  | IFO  | Signed   | 20    | I1 * I2 (ViT_top.v:1337)                 |
+| T319  | IFO  | Signed   | 20    | I3 * I4 (ViT_top.v:1337)                 |
+| T323  | IFO  | Signed   | 20    | I5 * I6 (ViT_top.v:1337)                 |
+| T327  | IFO  | Signed   | 20    | I7 * I8 (ViT_top.v:1337)                 |
+| T331  | IFO  | Signed   | 20    | I9 * I10 (ViT_top.v:1337)                |
+| T335  | IFO  | Signed   | 20    | I11 * I12 (ViT_top.v:1337)               |
+| T339  | IFO  | Signed   | 20    | I13 * I14 (ViT_top.v:1337)               |
+| T343  | IFO  | Signed   | 20    | I15 * I16 (ViT_top.v:1337)               |
+| O1    | PO   | Unsigned | 20    | T315 + T319 + T323 + T327 + T331 + T335 + T339 + T343 (ViT_top.v:1360) |
+| O2    | PO   | Unsigned | 20    | O1 + I17 (ViT_top.v:1394)                |
 ==============================================================================
 
-Datapath Report for DP_OP_197_151_8445
+Datapath Report for DP_OP_196_151_9962
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_197_151_8445   | mult_928_I8 (ViT_top.v:928)                         |
-|                      | mult_930_I8 (ViT_top.v:930)                         |
-|                      | add_942_I8 (ViT_top.v:942)                          |
-|                      | add_944_3_I8 (ViT_top.v:944)                        |
+| DP_OP_196_151_9962   | mult_968_I8 (ViT_top.v:968)                         |
+|                      | mult_970_I8 (ViT_top.v:970)                         |
+|                      | add_982_I8 (ViT_top.v:982)                          |
+|                      | add_984_3_I8 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -462,18 +485,18 @@ Datapath Report for DP_OP_197_151_8445
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T185  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T185 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T184  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T184 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_196_150_180
+Datapath Report for DP_OP_195_150_1697
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_196_150_180    | mult_928_I7 (ViT_top.v:928)                         |
-|                      | mult_930_I7 (ViT_top.v:930)                         |
-|                      | add_942_I7 (ViT_top.v:942)                          |
-|                      | add_944_3_I7 (ViT_top.v:944)                        |
+| DP_OP_195_150_1697   | mult_968_I7 (ViT_top.v:968)                         |
+|                      | mult_970_I7 (ViT_top.v:970)                         |
+|                      | add_982_I7 (ViT_top.v:982)                          |
+|                      | add_984_3_I7 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -483,18 +506,18 @@ Datapath Report for DP_OP_196_150_180
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T184  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T184 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T183  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T183 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_195_149_2935
+Datapath Report for DP_OP_194_149_4500
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_195_149_2935   | mult_928_I6 (ViT_top.v:928)                         |
-|                      | mult_930_I6 (ViT_top.v:930)                         |
-|                      | add_942_I6 (ViT_top.v:942)                          |
-|                      | add_944_3_I6 (ViT_top.v:944)                        |
+| DP_OP_194_149_4500   | mult_968_I6 (ViT_top.v:968)                         |
+|                      | mult_970_I6 (ViT_top.v:970)                         |
+|                      | add_982_I6 (ViT_top.v:982)                          |
+|                      | add_984_3_I6 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -504,18 +527,18 @@ Datapath Report for DP_OP_195_149_2935
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T183  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T183 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T182  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T182 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_194_148_6743
+Datapath Report for DP_OP_193_148_8260
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_194_148_6743   | mult_928_I5 (ViT_top.v:928)                         |
-|                      | mult_930_I5 (ViT_top.v:930)                         |
-|                      | add_942_I5 (ViT_top.v:942)                          |
-|                      | add_944_3_I5 (ViT_top.v:944)                        |
+| DP_OP_193_148_8260   | mult_968_I5 (ViT_top.v:968)                         |
+|                      | mult_970_I5 (ViT_top.v:970)                         |
+|                      | add_982_I5 (ViT_top.v:982)                          |
+|                      | add_984_3_I5 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -525,18 +548,18 @@ Datapath Report for DP_OP_194_148_6743
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T182  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T182 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T181  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T181 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_193_147_9498
+Datapath Report for DP_OP_192_147_1048
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_193_147_9498   | mult_928_I4 (ViT_top.v:928)                         |
-|                      | mult_930_I4 (ViT_top.v:930)                         |
-|                      | add_942_I4 (ViT_top.v:942)                          |
-|                      | add_944_3_I4 (ViT_top.v:944)                        |
+| DP_OP_192_147_1048   | mult_968_I4 (ViT_top.v:968)                         |
+|                      | mult_970_I4 (ViT_top.v:970)                         |
+|                      | add_982_I4 (ViT_top.v:982)                          |
+|                      | add_984_3_I4 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -546,18 +569,18 @@ Datapath Report for DP_OP_193_147_9498
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T181  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T181 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T180  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T180 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_192_146_1233
+Datapath Report for DP_OP_191_146_5946
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_192_146_1233   | mult_928_I3 (ViT_top.v:928)                         |
-|                      | mult_930_I3 (ViT_top.v:930)                         |
-|                      | add_942_I3 (ViT_top.v:942)                          |
-|                      | add_944_3_I3 (ViT_top.v:944)                        |
+| DP_OP_191_146_5946   | mult_968_I3 (ViT_top.v:968)                         |
+|                      | mult_970_I3 (ViT_top.v:970)                         |
+|                      | add_982_I3 (ViT_top.v:982)                          |
+|                      | add_984_3_I3 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -567,18 +590,18 @@ Datapath Report for DP_OP_192_146_1233
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T180  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T180 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T179  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T179 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_191_145_3972
+Datapath Report for DP_OP_190_145_8701
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_191_145_3972   | mult_928_I2 (ViT_top.v:928)                         |
-|                      | mult_930_I2 (ViT_top.v:930)                         |
-|                      | add_942_I2 (ViT_top.v:942)                          |
-|                      | add_944_3_I2 (ViT_top.v:944)                        |
+| DP_OP_190_145_8701   | mult_968_I2 (ViT_top.v:968)                         |
+|                      | mult_970_I2 (ViT_top.v:970)                         |
+|                      | add_982_I2 (ViT_top.v:982)                          |
+|                      | add_984_3_I2 (ViT_top.v:984)                        |
 ==============================================================================
 
 ==============================================================================
@@ -588,16 +611,16 @@ Datapath Report for DP_OP_191_145_3972
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T179  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T179 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T178  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T178 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
-Datapath Report for DP_OP_190_144_7796
+Datapath Report for DP_OP_189_144_436
 ==============================================================================
 | Cell                 | Contained Operations                                |
 ==============================================================================
-| DP_OP_190_144_7796   | mult_928 (ViT_top.v:928) mult_930 (ViT_top.v:930)   |
-|                      | add_942 (ViT_top.v:942) add_944_3 (ViT_top.v:944)   |
+| DP_OP_189_144_436    | mult_968 (ViT_top.v:968) mult_970 (ViT_top.v:970)   |
+|                      | add_982 (ViT_top.v:982) add_984_3 (ViT_top.v:984)   |
 ==============================================================================
 
 ==============================================================================
@@ -607,116 +630,124 @@ Datapath Report for DP_OP_190_144_7796
 | I1    | PI   | Signed   | 10    |                                          |
 | I2    | PI   | Signed   | 10    |                                          |
 | I3    | PI   | Signed   | 16    |                                          |
-| T178  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:928 ViT_top.v:930 )  |
-| O1    | PO   | Signed   | 20    | T178 + I3 ( ViT_top.v:942 ViT_top.v:944 ) |
+| T177  | IFO  | Signed   | 20    | I1 * I2 ( ViT_top.v:968 ViT_top.v:970 )  |
+| O1    | PO   | Signed   | 20    | T177 + I3 ( ViT_top.v:982 ViT_top.v:984 ) |
 ==============================================================================
 
 
 Datapath Extraction Report
 
-Information: Operator associated with resources 'sub_679 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8613 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10270 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I2 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8614 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I2 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10271 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I3 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8615 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I3 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10272 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I4 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8616 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I4 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10273 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I5 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8617 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I5 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10274 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I6 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8618 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I6 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10275 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I7 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8619 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I7 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10276 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I8 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8620 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I8 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10277 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I9 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8621 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I9 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10278 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I10 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8622 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I10 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10279 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I11 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8623 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I11 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10280 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I12 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8624 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I12 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10281 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I13 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8625 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I13 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10282 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I14 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8626 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I14 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10283 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I15 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8627 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I15 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10284 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'sub_679_I16 (ViT_top.v:679)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8628 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'sub_702_I16 (ViT_top.v:702)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10285 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8613 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10270 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I2 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8614 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I2 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10271 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I3 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8615 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I3 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10272 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I4 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8616 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I4 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10273 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I5 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8617 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I5 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10274 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I6 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8618 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I6 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10275 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I7 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8619 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I7 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10276 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I8 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8620 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I8 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10277 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I9 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8621 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I9 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10278 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I10 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8622 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I10 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10279 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I11 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8623 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I11 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10280 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I12 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8624 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I12 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10281 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I13 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8625 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I13 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10282 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I14 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8626 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I14 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10283 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I15 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8627 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I15 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10284 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_686_I16 (ViT_top.v:686)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8628 (ViT_top.v:686)'.  (HDL-120)
+Information: Operator associated with resources 'add_709_I16 (ViT_top.v:709)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10285 (ViT_top.v:709)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877 (ViT_top.v:877) add_879_2 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8632 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917 (ViT_top.v:917) add_919_2 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10289 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I2 (ViT_top.v:877) add_879_2_I2 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8635 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I2 (ViT_top.v:917) add_919_2_I2 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10292 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I3 (ViT_top.v:877) add_879_2_I3 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8638 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I3 (ViT_top.v:917) add_919_2_I3 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10295 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I4 (ViT_top.v:877) add_879_2_I4 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8641 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I4 (ViT_top.v:917) add_919_2_I4 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10298 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I5 (ViT_top.v:877) add_879_2_I5 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8644 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I5 (ViT_top.v:917) add_919_2_I5 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10301 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I6 (ViT_top.v:877) add_879_2_I6 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8647 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I6 (ViT_top.v:917) add_919_2_I6 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10304 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I7 (ViT_top.v:877) add_879_2_I7 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8650 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I7 (ViT_top.v:917) add_919_2_I7 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10307 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'add_877_I8 (ViT_top.v:877) add_879_2_I8 (ViT_top.v:879)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C8653 (ViT_top.v:877)'.  (HDL-120)
+Information: Operator associated with resources 'add_917_I8 (ViT_top.v:917) add_919_2_I8 (ViT_top.v:919)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C10310 (ViT_top.v:917)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I2 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I2 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I2 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I2 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I3 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I3 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I3 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I3 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I4 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I4 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I4 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I4 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I5 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I5 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I5 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I5 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I6 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I6 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I6 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I6 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I7 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I7 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I7 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I7 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_978_I8 (ViT_top.v:978)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_960_I8 (ViT_top.v:960)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1018_I8 (ViT_top.v:1018)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1000_I8 (ViT_top.v:1000)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_1410 (ViT_top.v:1410)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1383 (ViT_top.v:1383)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1450 (ViT_top.v:1450)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1423 (ViT_top.v:1423)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_1418 (ViT_top.v:1418)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1384 (ViT_top.v:1384)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1458 (ViT_top.v:1458)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1424 (ViT_top.v:1424)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_1426 (ViT_top.v:1426)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1385 (ViT_top.v:1385)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1466 (ViT_top.v:1466)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1425 (ViT_top.v:1425)'.  (HDL-120)
 
-Information: Operator associated with resources 'gt_1434 (ViT_top.v:1434)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1386 (ViT_top.v:1386)'.  (HDL-120)
+Information: Operator associated with resources 'gt_1474 (ViT_top.v:1474)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1426 (ViT_top.v:1426)'.  (HDL-120)
+
+Information: Operator associated with resources 'gt_1953 (ViT_top.v:1953)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1933 (ViT_top.v:1933)'.  (HDL-120)
+
+Information: Operator associated with resources 'gt_1953_I2 (ViT_top.v:1953)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1933_I2 (ViT_top.v:1933)'.  (HDL-120)
+
+Information: Operator associated with resources 'gt_1953_I3 (ViT_top.v:1953)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1933_I3 (ViT_top.v:1933)'.  (HDL-120)
+
+Information: Operator associated with resources 'gt_1953_I4 (ViT_top.v:1953)' in design 'ViT_top' breaks the datapath extraction because there is leakage due to truncation on the fanout of its driver 'add_1933_I4 (ViT_top.v:1933)'.  (HDL-120)
 
 
 Implementation Report
@@ -724,10 +755,14 @@ Implementation Report
 |                    |                  | Current            | Set            |
 | Cell               | Module           | Implementation     | Implementation |
 ===============================================================================
+| add_x_11           | DW01_inc         | apparch (area)     |                |
 | add_x_12           | DW01_inc         | apparch (area)     |                |
-| add_x_13           | DW01_inc         | apparch (area)     |                |
-| add_x_15           | DW01_inc         | apparch (area)     |                |
-| add_x_18           | DW01_inc         | apparch (area)     |                |
+| add_x_14           | DW01_inc         | apparch (area)     |                |
+| add_x_16           | DW01_inc         | apparch (area)     |                |
+| sub_x_22           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_23           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_24           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_25           | DW01_sub         | pparch (area,speed)                 |
 | sub_x_26           | DW01_sub         | pparch (area,speed)                 |
 | sub_x_27           | DW01_sub         | pparch (area,speed)                 |
 | sub_x_28           | DW01_sub         | pparch (area,speed)                 |
@@ -740,10 +775,10 @@ Implementation Report
 | sub_x_35           | DW01_sub         | pparch (area,speed)                 |
 | sub_x_36           | DW01_sub         | pparch (area,speed)                 |
 | sub_x_37           | DW01_sub         | pparch (area,speed)                 |
-| sub_x_38           | DW01_sub         | pparch (area,speed)                 |
-| sub_x_39           | DW01_sub         | pparch (area,speed)                 |
-| sub_x_40           | DW01_sub         | pparch (area,speed)                 |
-| sub_x_41           | DW01_sub         | pparch (area,speed)                 |
+| add_x_38           | DW01_inc         | apparch (area)     |                |
+| add_x_39           | DW01_inc         | apparch (area)     |                |
+| add_x_40           | DW01_inc         | apparch (area)     |                |
+| add_x_41           | DW01_inc         | apparch (area)     |                |
 | add_x_42           | DW01_inc         | apparch (area)     |                |
 | add_x_43           | DW01_inc         | apparch (area)     |                |
 | add_x_44           | DW01_inc         | apparch (area)     |                |
@@ -756,26 +791,14 @@ Implementation Report
 | add_x_51           | DW01_inc         | apparch (area)     |                |
 | add_x_52           | DW01_inc         | apparch (area)     |                |
 | add_x_53           | DW01_inc         | apparch (area)     |                |
-| add_x_54           | DW01_inc         | apparch (area)     |                |
-| add_x_55           | DW01_inc         | apparch (area)     |                |
-| add_x_56           | DW01_inc         | apparch (area)     |                |
-| add_x_57           | DW01_inc         | apparch (area)     |                |
-| add_x_109          | DW01_add         | apparch (area)     |                |
-| add_x_110          | DW01_add         | apparch (area)     |                |
-| add_x_111          | DW01_add         | apparch (area)     |                |
-| add_x_112          | DW01_add         | apparch (area)     |                |
-| add_x_113          | DW01_add         | apparch (area)     |                |
-| add_x_114          | DW01_add         | apparch (area)     |                |
-| add_x_115          | DW01_add         | apparch (area)     |                |
-| add_x_116          | DW01_add         | apparch (area)     |                |
-| gt_x_117           | DW_cmp           | apparch (area)     |                |
-| lt_x_118           | DW_cmp           | apparch (area)     |                |
-| gt_x_119           | DW_cmp           | apparch (area)     |                |
-| lt_x_120           | DW_cmp           | apparch (area)     |                |
-| gt_x_121           | DW_cmp           | apparch (area)     |                |
-| lt_x_122           | DW_cmp           | apparch (area)     |                |
-| gt_x_123           | DW_cmp           | apparch (area)     |                |
-| lt_x_124           | DW_cmp           | apparch (area)     |                |
+| add_x_117          | DW01_add         | apparch (area)     |                |
+| add_x_118          | DW01_add         | apparch (area)     |                |
+| add_x_119          | DW01_add         | apparch (area)     |                |
+| add_x_120          | DW01_add         | apparch (area)     |                |
+| add_x_121          | DW01_add         | apparch (area)     |                |
+| add_x_122          | DW01_add         | apparch (area)     |                |
+| add_x_123          | DW01_add         | apparch (area)     |                |
+| add_x_124          | DW01_add         | apparch (area)     |                |
 | gt_x_125           | DW_cmp           | apparch (area)     |                |
 | lt_x_126           | DW_cmp           | apparch (area)     |                |
 | gt_x_127           | DW_cmp           | apparch (area)     |                |
@@ -784,72 +807,165 @@ Implementation Report
 | lt_x_130           | DW_cmp           | apparch (area)     |                |
 | gt_x_131           | DW_cmp           | apparch (area)     |                |
 | lt_x_132           | DW_cmp           | apparch (area)     |                |
-| gt_x_149           | DW_cmp           | apparch (area)     |                |
-| add_x_150          | DW01_inc         | apparch (area)     |                |
-| add_x_155          | DW01_inc         | apparch (area)     |                |
-| add_x_157          | DW01_inc         | apparch (area)     |                |
+| gt_x_133           | DW_cmp           | apparch (area)     |                |
+| lt_x_134           | DW_cmp           | apparch (area)     |                |
+| gt_x_135           | DW_cmp           | apparch (area)     |                |
+| lt_x_136           | DW_cmp           | apparch (area)     |                |
+| gt_x_137           | DW_cmp           | apparch (area)     |                |
+| lt_x_138           | DW_cmp           | apparch (area)     |                |
+| gt_x_139           | DW_cmp           | apparch (area)     |                |
+| lt_x_140           | DW_cmp           | apparch (area)     |                |
+| gt_x_157           | DW_cmp           | apparch (area)     |                |
+| add_x_158          | DW01_inc         | apparch (area)     |                |
 | add_x_163          | DW01_inc         | apparch (area)     |                |
-| add_x_237          | DW01_add         | apparch (area)     |                |
-| add_x_238          | DW01_add         | apparch (area)     |                |
-| add_x_239          | DW01_add         | apparch (area)     |                |
-| add_x_240          | DW01_add         | apparch (area)     |                |
-| gt_x_241           | DW_cmp           | apparch (area)     |                |
-| lt_x_242           | DW_cmp           | apparch (area)     |                |
-| gt_x_243           | DW_cmp           | apparch (area)     |                |
-| lt_x_244           | DW_cmp           | apparch (area)     |                |
-| gt_x_245           | DW_cmp           | apparch (area)     |                |
-| lt_x_246           | DW_cmp           | apparch (area)     |                |
-| gt_x_247           | DW_cmp           | apparch (area)     |                |
-| lt_x_248           | DW_cmp           | apparch (area)     |                |
-| add_x_254          | DW01_inc         | apparch (area)     |                |
-| add_x_255          | DW01_inc         | apparch (area)     |                |
-| add_x_256          | DW01_inc         | apparch (area)     |                |
-| add_x_270          | DW01_inc         | apparch (area)     |                |
-| add_x_272          | DW01_inc         | apparch (area)     |                |
-| add_x_274          | DW01_inc         | apparch (area)     |                |
-| add_x_77           | DW01_inc         | apparch (area)     |                |
-| add_x_78           | DW01_inc         | apparch (area)     |                |
-| add_x_79           | DW01_inc         | apparch (area)     |                |
-| add_x_80           | DW01_inc         | apparch (area)     |                |
-| add_x_81           | DW01_inc         | apparch (area)     |                |
-| add_x_82           | DW01_inc         | apparch (area)     |                |
-| add_x_83           | DW01_inc         | apparch (area)     |                |
-| add_x_84           | DW01_inc         | apparch (area)     |                |
-| add_x_159          | DW01_inc         | apparch (area)     |                |
-| DP_OP_749J1_122_4871                  |                    |                |
-|                    | DP_OP_749J1_122_4871 | str (area)     |                |
-| DP_OP_750J1_123_1791                  |                    |                |
-|                    | DP_OP_750J1_123_1791 | str (area,speed)                |
-| DP_OP_751J1_124_5797                  |                    |                |
-|                    | DP_OP_751J1_124_5797 | str (area,speed)                |
+| add_x_165          | DW01_inc         | apparch (area)     |                |
+| add_x_171          | DW01_inc         | apparch (area)     |                |
+| add_x_245          | DW01_add         | apparch (area)     |                |
+| add_x_246          | DW01_add         | apparch (area)     |                |
+| add_x_247          | DW01_add         | apparch (area)     |                |
+| add_x_248          | DW01_add         | apparch (area)     |                |
+| gt_x_249           | DW_cmp           | apparch (area)     |                |
+| lt_x_250           | DW_cmp           | apparch (area)     |                |
+| gt_x_251           | DW_cmp           | apparch (area)     |                |
+| lt_x_252           | DW_cmp           | apparch (area)     |                |
+| gt_x_253           | DW_cmp           | apparch (area)     |                |
+| lt_x_254           | DW_cmp           | apparch (area)     |                |
+| gt_x_255           | DW_cmp           | apparch (area)     |                |
+| lt_x_256           | DW_cmp           | apparch (area)     |                |
+| add_x_262          | DW01_inc         | apparch (area)     |                |
+| add_x_263          | DW01_inc         | apparch (area)     |                |
+| add_x_264          | DW01_inc         | apparch (area)     |                |
+| add_x_278          | DW01_inc         | apparch (area)     |                |
+| add_x_280          | DW01_inc         | apparch (area)     |                |
+| add_x_282          | DW01_inc         | apparch (area)     |                |
+| mult_x_286         | DW_mult_tc       | apparch (area)     |                |
+| mult_x_287         | DW_mult_tc       | apparch (area)     |                |
+| mult_x_288         | DW_mult_tc       | apparch (area)     |                |
+| mult_x_289         | DW_mult_tc       | apparch (area)     |                |
+| add_x_290          | DW01_add         | apparch (area)     |                |
+| add_x_291          | DW01_add         | apparch (area)     |                |
+| add_x_292          | DW01_add         | apparch (area)     |                |
+| add_x_293          | DW01_add         | apparch (area)     |                |
+| gt_x_294           | DW_cmp           | apparch (area)     |                |
+| lt_x_295           | DW_cmp           | apparch (area)     |                |
+| gt_x_296           | DW_cmp           | apparch (area)     |                |
+| lt_x_297           | DW_cmp           | apparch (area)     |                |
+| gt_x_298           | DW_cmp           | apparch (area)     |                |
+| lt_x_299           | DW_cmp           | apparch (area)     |                |
+| gt_x_300           | DW_cmp           | apparch (area)     |                |
+| lt_x_301           | DW_cmp           | apparch (area)     |                |
+| add_x_310          | DW01_inc         | apparch (area)     |                |
+| add_x_312          | DW01_inc         | apparch (area)     |                |
+| add_x_322          | DW01_inc         | apparch (area)     |                |
+| add_x_323          | DW01_inc         | apparch (area)     |                |
+| add_x_85           | DW01_inc         | apparch (area)     |                |
+| add_x_86           | DW01_inc         | apparch (area)     |                |
+| add_x_87           | DW01_inc         | apparch (area)     |                |
+| add_x_88           | DW01_inc         | apparch (area)     |                |
+| add_x_89           | DW01_inc         | apparch (area)     |                |
+| add_x_90           | DW01_inc         | apparch (area)     |                |
+| add_x_91           | DW01_inc         | apparch (area)     |                |
+| add_x_92           | DW01_inc         | apparch (area)     |                |
+| add_x_167          | DW01_inc         | apparch (area)     |                |
+| sub_x_343          | DW01_sub         | apparch (area)     |                |
+| DP_OP_855J2_122_4871                  |                    |                |
+|                    | DP_OP_855J2_122_4871 | str (area)     |                |
+| DP_OP_856J2_123_4875                  |                    |                |
+|                    | DP_OP_856J2_123_4875 | str (area,speed)                |
+| DP_OP_857J2_124_5797                  |                    |                |
+|                    | DP_OP_857J2_124_5797 | str (area,speed)                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_752J1_125_5797                  |                    |                |
-|                    | DP_OP_752J1_125_5797 | str (area,speed)                |
+| DP_OP_858J2_125_5797                  |                    |                |
+|                    | DP_OP_858J2_125_5797 | str (area,speed)                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_753J1_126_5797                  |                    |                |
-|                    | DP_OP_753J1_126_5797 | str (area,speed)                |
+| DP_OP_859J2_126_5797                  |                    |                |
+|                    | DP_OP_859J2_126_5797 | str (area,speed)                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_754J1_127_5797                  |                    |                |
-|                    | DP_OP_754J1_127_5797 | str (area,speed)                |
+| DP_OP_860J2_127_5797                  |                    |                |
+|                    | DP_OP_860J2_127_5797 | str (area,speed)                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_197_151_8445 | DP_OP_197_151_8445 | str (area,speed) |                |
+| DP_OP_196_151_9962 | DP_OP_196_151_9962 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_196_150_180  | DP_OP_196_150_180 | str (area,speed)  |                |
+| DP_OP_195_150_1697 | DP_OP_195_150_1697 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_195_149_2935 | DP_OP_195_149_2935 | str (area,speed) |                |
+| DP_OP_194_149_4500 | DP_OP_194_149_4500 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_194_148_6743 | DP_OP_194_148_6743 | str (area,speed) |                |
+| DP_OP_193_148_8260 | DP_OP_193_148_8260 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_193_147_9498 | DP_OP_193_147_9498 | str (area,speed) |                |
+| DP_OP_192_147_1048 | DP_OP_192_147_1048 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_192_146_1233 | DP_OP_192_146_1233 | str (area,speed) |                |
+| DP_OP_191_146_5946 | DP_OP_191_146_5946 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_191_145_3972 | DP_OP_191_145_3972 | str (area,speed) |                |
+| DP_OP_190_145_8701 | DP_OP_190_145_8701 | str (area,speed) |                |
 |                    |                  | mult_arch: benc_radix4              |
-| DP_OP_190_144_7796 | DP_OP_190_144_7796 | str (area,speed) |                |
+| DP_OP_189_144_436  | DP_OP_189_144_436 | str (area,speed)  |                |
 |                    |                  | mult_arch: benc_radix4              |
 ===============================================================================
 
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_0
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_1
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_2
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_3
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_4
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_5
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_6
+****************************************
+
+No implementations to report
+
+No resource sharing information to report.
+ 
+****************************************
+Design : exp_lut_mydesign_7
+****************************************
+
+No implementations to report
  
 ****************************************
 Design : div_mydesign_0
@@ -859,54 +975,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -958,9 +1074,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -974,54 +1090,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1073,9 +1189,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -1089,54 +1205,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1188,9 +1304,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -1204,54 +1320,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1303,9 +1419,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -1319,54 +1435,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1418,9 +1534,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -1434,54 +1550,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1533,9 +1649,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -1549,54 +1665,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1648,9 +1764,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================
@@ -1664,54 +1780,54 @@ Resource Report for this hierarchy in file ../hdl/ViT_top.v
 =============================================================================
 | Cell           | Module         | Parameters | Contained Operations       |
 =============================================================================
-| gte_x_1        | DW_cmp         | width=18   | gte_1905 (ViT_top.v:1905)  |
-| sub_x_2        | DW01_sub       | width=18   | sub_1907 (ViT_top.v:1907)  |
-| gte_x_4        | DW_cmp         | width=19   | gte_1917 (ViT_top.v:1917)  |
-| sub_x_5        | DW01_sub       | width=18   | sub_1919 (ViT_top.v:1919)  |
-| gte_x_7        | DW_cmp         | width=19   | gte_1929 (ViT_top.v:1929)  |
-| sub_x_8        | DW01_sub       | width=18   | sub_1931 (ViT_top.v:1931)  |
-| gte_x_10       | DW_cmp         | width=19   | gte_1941 (ViT_top.v:1941)  |
-| sub_x_11       | DW01_sub       | width=18   | sub_1943 (ViT_top.v:1943)  |
-| gte_x_13       | DW_cmp         | width=19   | gte_1953 (ViT_top.v:1953)  |
-| sub_x_14       | DW01_sub       | width=18   | sub_1955 (ViT_top.v:1955)  |
-| gte_x_16       | DW_cmp         | width=19   | gte_1965 (ViT_top.v:1965)  |
-| sub_x_17       | DW01_sub       | width=18   | sub_1967 (ViT_top.v:1967)  |
-| gte_x_19       | DW_cmp         | width=19   | gte_1977 (ViT_top.v:1977)  |
-| sub_x_20       | DW01_sub       | width=18   | sub_1979 (ViT_top.v:1979)  |
-| gte_x_22       | DW_cmp         | width=19   | gte_1989 (ViT_top.v:1989)  |
-| sub_x_23       | DW01_sub       | width=18   | sub_1991 (ViT_top.v:1991)  |
-| gte_x_25       | DW_cmp         | width=19   | gte_2001 (ViT_top.v:2001)  |
-| sub_x_26       | DW01_sub       | width=18   | sub_2003 (ViT_top.v:2003)  |
-| gte_x_28       | DW_cmp         | width=19   | gte_2013 (ViT_top.v:2013)  |
-| sub_x_29       | DW01_sub       | width=18   | sub_2015 (ViT_top.v:2015)  |
-| gte_x_31       | DW_cmp         | width=19   | gte_2025 (ViT_top.v:2025)  |
-| sub_x_32       | DW01_sub       | width=18   | sub_2027 (ViT_top.v:2027)  |
-| gte_x_34       | DW_cmp         | width=19   | gte_2037 (ViT_top.v:2037)  |
-| sub_x_35       | DW01_sub       | width=18   | sub_2039 (ViT_top.v:2039)  |
-| gte_x_37       | DW_cmp         | width=19   | gte_2049 (ViT_top.v:2049)  |
-| sub_x_38       | DW01_sub       | width=18   | sub_2051 (ViT_top.v:2051)  |
-| gte_x_40       | DW_cmp         | width=19   | gte_2061 (ViT_top.v:2061)  |
-| sub_x_41       | DW01_sub       | width=18   | sub_2063 (ViT_top.v:2063)  |
-| gte_x_43       | DW_cmp         | width=19   | gte_2073 (ViT_top.v:2073)  |
-| sub_x_44       | DW01_sub       | width=18   | sub_2075 (ViT_top.v:2075)  |
-| gte_x_46       | DW_cmp         | width=19   | gte_2085 (ViT_top.v:2085)  |
-| sub_x_47       | DW01_sub       | width=18   | sub_2087 (ViT_top.v:2087)  |
-| gte_x_49       | DW_cmp         | width=19   | gte_2097 (ViT_top.v:2097)  |
-| sub_x_50       | DW01_sub       | width=18   | sub_2099 (ViT_top.v:2099)  |
-| gte_x_52       | DW_cmp         | width=19   | gte_2109 (ViT_top.v:2109)  |
-| sub_x_53       | DW01_sub       | width=18   | sub_2111 (ViT_top.v:2111)  |
-| gte_x_55       | DW_cmp         | width=19   | gte_2121 (ViT_top.v:2121)  |
-| sub_x_56       | DW01_sub       | width=18   | sub_2123 (ViT_top.v:2123)  |
-| gte_x_58       | DW_cmp         | width=19   | gte_2133 (ViT_top.v:2133)  |
-| sub_x_59       | DW01_sub       | width=18   | sub_2135 (ViT_top.v:2135)  |
-| gte_x_61       | DW_cmp         | width=19   | gte_2145 (ViT_top.v:2145)  |
-| sub_x_62       | DW01_sub       | width=18   | sub_2147 (ViT_top.v:2147)  |
-| gte_x_64       | DW_cmp         | width=19   | gte_2157 (ViT_top.v:2157)  |
-| sub_x_65       | DW01_sub       | width=18   | sub_2159 (ViT_top.v:2159)  |
-| gte_x_67       | DW_cmp         | width=19   | gte_2169 (ViT_top.v:2169)  |
-| sub_x_68       | DW01_sub       | width=18   | sub_2171 (ViT_top.v:2171)  |
-| gte_x_70       | DW_cmp         | width=19   | gte_2181 (ViT_top.v:2181)  |
-| sub_x_71       | DW01_sub       | width=18   | sub_2183 (ViT_top.v:2183)  |
+| gte_x_1        | DW_cmp         | width=18   | gte_2398 (ViT_top.v:2398)  |
+| sub_x_2        | DW01_sub       | width=18   | sub_2400 (ViT_top.v:2400)  |
+| gte_x_4        | DW_cmp         | width=19   | gte_2410 (ViT_top.v:2410)  |
+| sub_x_5        | DW01_sub       | width=18   | sub_2412 (ViT_top.v:2412)  |
+| gte_x_7        | DW_cmp         | width=19   | gte_2422 (ViT_top.v:2422)  |
+| sub_x_8        | DW01_sub       | width=18   | sub_2424 (ViT_top.v:2424)  |
+| gte_x_10       | DW_cmp         | width=19   | gte_2434 (ViT_top.v:2434)  |
+| sub_x_11       | DW01_sub       | width=18   | sub_2436 (ViT_top.v:2436)  |
+| gte_x_13       | DW_cmp         | width=19   | gte_2446 (ViT_top.v:2446)  |
+| sub_x_14       | DW01_sub       | width=18   | sub_2448 (ViT_top.v:2448)  |
+| gte_x_16       | DW_cmp         | width=19   | gte_2458 (ViT_top.v:2458)  |
+| sub_x_17       | DW01_sub       | width=18   | sub_2460 (ViT_top.v:2460)  |
+| gte_x_19       | DW_cmp         | width=19   | gte_2470 (ViT_top.v:2470)  |
+| sub_x_20       | DW01_sub       | width=18   | sub_2472 (ViT_top.v:2472)  |
+| gte_x_22       | DW_cmp         | width=19   | gte_2482 (ViT_top.v:2482)  |
+| sub_x_23       | DW01_sub       | width=18   | sub_2484 (ViT_top.v:2484)  |
+| gte_x_25       | DW_cmp         | width=19   | gte_2494 (ViT_top.v:2494)  |
+| sub_x_26       | DW01_sub       | width=18   | sub_2496 (ViT_top.v:2496)  |
+| gte_x_28       | DW_cmp         | width=19   | gte_2506 (ViT_top.v:2506)  |
+| sub_x_29       | DW01_sub       | width=18   | sub_2508 (ViT_top.v:2508)  |
+| gte_x_31       | DW_cmp         | width=19   | gte_2518 (ViT_top.v:2518)  |
+| sub_x_32       | DW01_sub       | width=18   | sub_2520 (ViT_top.v:2520)  |
+| gte_x_34       | DW_cmp         | width=19   | gte_2530 (ViT_top.v:2530)  |
+| sub_x_35       | DW01_sub       | width=18   | sub_2532 (ViT_top.v:2532)  |
+| gte_x_37       | DW_cmp         | width=19   | gte_2542 (ViT_top.v:2542)  |
+| sub_x_38       | DW01_sub       | width=18   | sub_2544 (ViT_top.v:2544)  |
+| gte_x_40       | DW_cmp         | width=19   | gte_2554 (ViT_top.v:2554)  |
+| sub_x_41       | DW01_sub       | width=18   | sub_2556 (ViT_top.v:2556)  |
+| gte_x_43       | DW_cmp         | width=19   | gte_2566 (ViT_top.v:2566)  |
+| sub_x_44       | DW01_sub       | width=18   | sub_2568 (ViT_top.v:2568)  |
+| gte_x_46       | DW_cmp         | width=19   | gte_2578 (ViT_top.v:2578)  |
+| sub_x_47       | DW01_sub       | width=18   | sub_2580 (ViT_top.v:2580)  |
+| gte_x_49       | DW_cmp         | width=19   | gte_2590 (ViT_top.v:2590)  |
+| sub_x_50       | DW01_sub       | width=18   | sub_2592 (ViT_top.v:2592)  |
+| gte_x_52       | DW_cmp         | width=19   | gte_2602 (ViT_top.v:2602)  |
+| sub_x_53       | DW01_sub       | width=18   | sub_2604 (ViT_top.v:2604)  |
+| gte_x_55       | DW_cmp         | width=19   | gte_2614 (ViT_top.v:2614)  |
+| sub_x_56       | DW01_sub       | width=18   | sub_2616 (ViT_top.v:2616)  |
+| gte_x_58       | DW_cmp         | width=19   | gte_2626 (ViT_top.v:2626)  |
+| sub_x_59       | DW01_sub       | width=18   | sub_2628 (ViT_top.v:2628)  |
+| gte_x_61       | DW_cmp         | width=19   | gte_2638 (ViT_top.v:2638)  |
+| sub_x_62       | DW01_sub       | width=18   | sub_2640 (ViT_top.v:2640)  |
+| gte_x_64       | DW_cmp         | width=19   | gte_2650 (ViT_top.v:2650)  |
+| sub_x_65       | DW01_sub       | width=18   | sub_2652 (ViT_top.v:2652)  |
+| gte_x_67       | DW_cmp         | width=19   | gte_2662 (ViT_top.v:2662)  |
+| sub_x_68       | DW01_sub       | width=18   | sub_2664 (ViT_top.v:2664)  |
+| gte_x_70       | DW_cmp         | width=19   | gte_2674 (ViT_top.v:2674)  |
+| sub_x_71       | DW01_sub       | width=18   | sub_2676 (ViT_top.v:2676)  |
 =============================================================================
 
 
@@ -1763,9 +1879,9 @@ Implementation Report
 | gte_x_61           | DW_cmp           | apparch (area)     |                |
 | sub_x_62           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_64           | DW_cmp           | apparch (area)     |                |
-| sub_x_65           | DW01_sub         | apparch (area)     |                |
+| sub_x_65           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_67           | DW_cmp           | apparch (area)     |                |
-| sub_x_68           | DW01_sub         | apparch (area)     |                |
+| sub_x_68           | DW01_sub         | pparch (area,speed)                 |
 | gte_x_70           | DW_cmp           | apparch (area)     |                |
 | sub_x_71           | DW01_sub         | apparch (area)     |                |
 ===============================================================================

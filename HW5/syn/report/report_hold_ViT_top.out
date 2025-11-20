@@ -6,7 +6,7 @@ Report : timing
         -max_paths 4
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Tue Nov 18 17:50:34 2025
+Date   : Fri Nov 21 00:43:59 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
