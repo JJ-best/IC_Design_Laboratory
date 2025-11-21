@@ -142,6 +142,17 @@ reg [2:0]qk_cnt8;
 reg [4:0]sramd_raddr_cnt;
 wire [5:0]sramd_raddr;
 reg [68:0] df_stage9_Q50[0:7];
+
+reg [39:0] exp_sum_reg;
+reg [33:0]exp_shift_1[0:7];
+reg [33:0]exp_shift_2[0:7];
+reg [33:0]exp_shift_3[0:7];
+reg [33:0]exp_shift_4[0:7];
+reg [33:0]exp_shift_5[0:7];
+reg [33:0]exp_shift_6[0:7];
+reg [33:0]exp_shift_7[0:7];
+reg [33:0]exp_shift_8[0:7];
+reg [33:0]exp_shift_9[0:7];
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE     = 5'd0;
 localparam R_BIAS_A = 5'd1;
@@ -708,8 +719,6 @@ always @(*) begin
     for (k=0; k<16; k=k+1) begin
         a_bank_abs[k] = a_bank_minus[k][13]? (~a_bank_minus[k] + 1'b1): a_bank_minus[k];
     end
-
-
 end
 
 always @(posedge clk) begin
@@ -846,60 +855,89 @@ always @(posedge clk) begin
 end
 
 assign token_mae_abs = (token_mae[17])? ~token_mae + 1: token_mae;
+localparam N = 24;
+localparam M = 24;
+reg [(N-1):0]dividend[0:7];
+reg [(M-1):0]divisor[0:7];
+reg [(N-1):0] dividend_debug[0:7];
+reg [(M-1):0] divisor_debug[0:7];
+always @(*) begin
+    for (k=0; k<8; k=k+1) begin
+        dividend[k] = (top_state != SOFTMAX)? {a_bank_abs_sel_d1[k], 4'b0, 6'b0}: {exp_shift_9[k][33:16], 6'b0};
+        divisor[k]  = (top_state != SOFTMAX)? {token_mae_abs}: exp_sum_reg[39:16];
+    end
+
+    for (k=0; k<8; k=k+1) begin
+        dividend_debug[k] = {exp_shift_9[k][33:16]}; // exp(x)
+        divisor_debug[k] = {exp_sum_reg[39:16]}; // sum exp(x)
+    end
+
+    // exponent: 14-bit integer + 20-bit fraction
+    // exponent sum: 20-bit integer + 20-bit fraction
+    // the floating point is already align, no need to shift for alignment
+    // to store 6-bit fraction, shift the dividend << 6
+    // dividend = {exp_shift_d9, 6'b0}
+    // divisor  = {exp_sum_reg}
+    // since dividend of divider is 24-bit 
+    // so the dividend can only use 18-bit(14-bit integer + 4-bit fraction + 6'b0)
+    // the divisor use (20-bit integer + 4-bit fraction), align to dividend
+end
+
+
 
 div div0(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[0], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[0]),
+    .divisor(divisor[0]),
     .merchant(token_nor[0]),
     .remainder()
 );
 div div1(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[1], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[1]),
+    .divisor(divisor[1]),
     .merchant(token_nor[1]),
     .remainder()
 );
 div div2(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[2], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[2]),
+    .divisor(divisor[2]),
     .merchant(token_nor[2]),
     .remainder()
 );
 div div3(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[3], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[3]),
+    .divisor(divisor[3]),
     .merchant(token_nor[3]),
     .remainder()
 );
 div div4(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[4], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[4]),
+    .divisor(divisor[4]),
     .merchant(token_nor[4]),
     .remainder()
 );
 div div5(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[5], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[5]),
+    .divisor(divisor[5]),
     .merchant(token_nor[5]),
     .remainder()
 );
 div div6(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[6], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[6]),
+    .divisor(divisor[6]),
     .merchant(token_nor[6]),
     .remainder()
 );
 div div7(
     .clk(clk),
-    .dividend({a_bank_abs_sel_d1[7], 4'b0, 6'b0}),
-    .divisor(token_mae_abs),
+    .dividend(dividend[7]),
+    .divisor(divisor[7]),
     .merchant(token_nor[7]),
     .remainder()
 );
@@ -2312,6 +2350,7 @@ generate
     end
 endgenerate
 
+
 reg valid_10;
 always @(posedge clk) begin
     for (i=0; i<8; i=i+1) begin
@@ -2332,6 +2371,7 @@ end
 // since we need to sum 64 exponential
 // each exp(x) is 14-bit integer + 20-bit fraction
 // so the sum will be 20-bit integer + 20-bit fraction
+wire [39:0]sel_exp; 
 reg [39:0] sum_exp_n;
 reg [39:0] sum_exp;
 wire valid_11;
@@ -2347,19 +2387,61 @@ end
 assign valid_11 = (valid_10_d1 && exp_cnt == 3'b0)? 1:0;
 
 // feedback the exp_sum of 8 term back to previous stage
-// so we can accumulate 64 term
-wire [39:0]sel_exp; 
+// so we can accumulate 64 term every 8 cyle
 assign sel_exp = (exp_cnt != 0)? sum_exp: 0;
 
-// ----- dataflow stage 10 ----- //
-// 32 exp(x) is pipe to this stage, we add up this 32 exp(x) and feedback 
-// in this stage to prepare for the summation of softmax 
-// note that we inly add up the feedback result each 2 cyle.
-// the result is "feedback" to this stage.
-// we may get summation of 64 exp(x) in this stage every 2 cycle.
 
+always @(posedge clk) begin
+    if (valid_11) begin
+        exp_sum_reg <= sum_exp;
+    end
+end
 
+// we may contruct 8 parallel shift register with depth = 10
+// write 8 exponential value in this shift register every cycle
+// since the exp_sum reg is ready every 8 cycle, if correspond to the 
+// first 8 ch exp, it delay 10 cycle write into the exp_sum_reg
+// so if we want divide exp / exp_sum, the exp should be pipeline 10 stage
+// note that exp is one stage
 
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        exp_shift_1[i] <= exp[i];
+        exp_shift_2[i] <= exp_shift_1[i];
+        exp_shift_3[i] <= exp_shift_2[i];
+        exp_shift_4[i] <= exp_shift_3[i];
+        exp_shift_5[i] <= exp_shift_4[i];
+        exp_shift_6[i] <= exp_shift_5[i];
+        exp_shift_7[i] <= exp_shift_6[i];
+        exp_shift_8[i] <= exp_shift_7[i];
+        exp_shift_9[i] <= exp_shift_8[i];
+    end
+end
+
+// The softmax divider re-use the divider we put in Layernorm stage
+reg valid_12;
+reg valid_12_d1;
+reg valid_12_d2;
+reg valid_12_d3;
+reg valid_12_d4;
+reg valid_12_d5;
+reg valid_12_d6;
+always @(posedge clk) begin
+    if (valid_11) begin
+        valid_12 <= 1;
+    end else if (top_state == SOFTMAX) begin
+        valid_12 <= valid_12;
+    end else begin
+        valid_12 <= 0;
+    end
+
+    valid_12_d1 <= valid_12;
+    valid_12_d2 <= valid_12_d1;
+    valid_12_d3 <= valid_12_d2;
+    valid_12_d4 <= valid_12_d3;
+    valid_12_d5 <= valid_12_d4;
+    valid_12_d6 <= valid_12_d5;
+end
 
 
 
@@ -2385,7 +2467,7 @@ endmodule
 
 module div #(
     parameter N = 24,
-    parameter M = 18,
+    parameter M = 24,
     parameter N_ACT = M+N-1
 )(
     input clk,
