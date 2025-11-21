@@ -37,10 +37,10 @@ module ViT_top #(
     output wire [5-1:0] sram_addr_a1,
     output wire [5-1:0] sram_addr_a2,
     output wire [5-1:0] sram_addr_a3,
-    output wire [5-1:0] sram_addr_b0,
-    output wire [5-1:0] sram_addr_b1,
-    output wire [5-1:0] sram_addr_b2,
-    output wire [5-1:0] sram_addr_b3,
+    output reg  [5-1:0] sram_addr_b0,
+    output reg  [5-1:0] sram_addr_b1,
+    output reg  [5-1:0] sram_addr_b2,
+    output reg  [5-1:0] sram_addr_b3,
     output wire [6-1:0] sram_addr_c0,
     output wire [6-1:0] sram_addr_c1,
     output wire [6-1:0] sram_addr_c2,
@@ -57,10 +57,10 @@ module ViT_top #(
     output wire sram_wen_a1,
     output wire sram_wen_a2,
     output wire sram_wen_a3,
-    output wire sram_wen_b0,
-    output wire sram_wen_b1,
-    output wire sram_wen_b2,
-    output wire sram_wen_b3,
+    output reg  sram_wen_b0,
+    output reg  sram_wen_b1,
+    output reg  sram_wen_b2,
+    output reg  sram_wen_b3,
     output wire sram_wen_c0,
     output wire sram_wen_c1,
     output wire sram_wen_c2,
@@ -75,10 +75,10 @@ module ViT_top #(
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_a1,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_a2,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_a3,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b0,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b1,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b2,
-    output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b3,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b0,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b1,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b2,
+    output reg  [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_b3,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_c0,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_c1,
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_c2,
@@ -93,10 +93,10 @@ module ViT_top #(
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_a1,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_a2,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_a3,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b0,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b1,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b2,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b3,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b0,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b1,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b2,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b3,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_c0,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_c1,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_c2,
@@ -153,17 +153,38 @@ reg [33:0]exp_shift_6[0:7];
 reg [33:0]exp_shift_7[0:7];
 reg [33:0]exp_shift_8[0:7];
 reg [33:0]exp_shift_9[0:7];
+
+// ----- softmax ----- //
+reg valid_12;
+reg valid_12_d1;
+reg valid_12_d2;
+reg valid_12_d3;
+reg valid_12_d4;
+reg valid_12_d5;
+reg valid_12_d6;
+reg [1:0] sramb_wcnt;
+reg [4:0] sramb_waddr_softmax;
+reg [1:0]sramd_cnt;
+reg [79:0] softmax_wdata;
+reg [9:0] softmax_wdata_ch[0:7];
 // ===== Top Level Finite State Machine ===== //
-localparam IDLE     = 5'd0;
-localparam R_BIAS_A = 5'd1;
-localparam NORMAL   = 5'd2;
-localparam NORMAL_T = 5'd3;
-localparam PROJ     = 5'd4;
-localparam PROJ_T   = 5'd5;
-localparam R_SRAM_C = 5'd6;
+localparam IDLE       = 5'd0;
+localparam R_BIAS_A   = 5'd1;
+localparam NORMAL     = 5'd2;
+localparam NORMAL_T   = 5'd3;
+localparam PROJ       = 5'd4;
+localparam PROJ_T     = 5'd5;
+localparam R_SRAM_C   = 5'd6;
 localparam R_SRAM_C_T = 5'd7;
-localparam SOFTMAX  = 5'd8;
-localparam PROJ2= 5'd10;
+localparam SOFTMAX    = 5'd8;
+localparam SOFTMAX_T  = 5'd9;
+localparam V_PROJ     = 5'd10;
+localparam PROJ2= 5'd13;
+
+localparam demask_h   = 8'b0000_1111;
+localparam demask_l   = 8'b1111_0000;
+localparam mask_all   = 8'b1111_1111;
+localparam demask_all = 8'b0000_0000;
 
 reg [4:0]top_state;
 reg [4:0]top_state_n;
@@ -236,7 +257,21 @@ always @(*) begin
             end
         end
         SOFTMAX: begin
-            top_state_n = SOFTMAX;
+            if (sram_addr_d0 == 6'd63 && sramd_cnt == 2'b11) begin
+                top_state_n = SOFTMAX_T;
+            end else begin
+                top_state_n = SOFTMAX;
+            end
+        end
+        SOFTMAX_T: begin
+            if (sramb_waddr_softmax == 5'd31 && sramb_wcnt == 2'b11) begin
+                top_state_n = V_PROJ;
+            end else begin
+                top_state_n = SOFTMAX_T;
+            end
+        end
+        V_PROJ: begin
+            top_state_n = V_PROJ;
         end
         default: begin
            top_state_n = IDLE; 
@@ -249,12 +284,12 @@ reg [3:0]tmp_cnt;
 always @(posedge clk) begin
     if (!srst_n) begin
         tmp_cnt <= 0;
-    end else if (top_state == SOFTMAX)begin
+    end else if (top_state == V_PROJ)begin
         tmp_cnt <= tmp_cnt + 1;
     end
 end
 // should be 1 for correct answer
-assign valid = (tmp_cnt == 4'b1111)? 0:0;
+assign valid = (tmp_cnt == 4'b1111)? 1:0;
 
 // ===== read the normalize bias out ===== //
 // SRAM-bias: 1 data / addr
@@ -753,7 +788,7 @@ end
 // negative divisor and positive dividend).
 
 wire [17:0] token_mae_abs;
-wire [25:0] token_nor[0:7];
+wire [29:0] token_nor[0:7];
 reg signed[BW_PER_ACT-1:0] token_nor_t[0:7];
 reg [BW_PER_ACT-1:0] token_nor_reg[0:7];
 reg [13:0] a_bank_abs_sel[0:7];
@@ -855,21 +890,53 @@ always @(posedge clk) begin
 end
 
 assign token_mae_abs = (token_mae[17])? ~token_mae + 1: token_mae;
-localparam N = 26;
-localparam M = 26;
+localparam N = 30;
+localparam M = 30;
 reg [(N-1):0]dividend[0:7];
 reg [(M-1):0]divisor[0:7];
 reg [(N-1):0] dividend_debug[0:7];
 reg [(M-1):0] divisor_debug[0:7];
 always @(*) begin
-    for (k=0; k<8; k=k+1) begin
-        dividend[k] = (top_state != SOFTMAX)? {a_bank_abs_sel_d1[k], 4'b0, 6'b0}: {exp_shift_9[k][33:14], 6'b0};
-        divisor[k]  = (top_state != SOFTMAX)? {token_mae_abs}: exp_sum_reg[39:14];
-    end
+    case (top_state)
+        NORMAL: begin
+            for (k=0; k<8; k=k+1) begin
+                dividend[k] = {a_bank_abs_sel_d1[k], 4'b0, 6'b0};
+                divisor[k]  = {token_mae_abs};
+            end
+        end
+        NORMAL_T: begin
+            for (k=0; k<8; k=k+1) begin
+                dividend[k] = {a_bank_abs_sel_d1[k], 4'b0, 6'b0};
+                divisor[k]  = {token_mae_abs};
+            end
+        end
+        SOFTMAX: begin
+            for (k=0; k<8; k=k+1) begin
+                dividend[k] = {exp_shift_9[k][33:10], 6'b0};
+                divisor[k]  = exp_sum_reg[39:10];
+            end
+        end
+        SOFTMAX_T: begin
+            for (k=0; k<8; k=k+1) begin
+                dividend[k] = {exp_shift_9[k][33:10], 6'b0};
+                divisor[k]  = exp_sum_reg[39:10];
+            end
+        end
+        default: begin
+            for (k=0; k<8; k=k+1) begin
+                dividend[k] = 0;
+                divisor[k]  = 0;
+            end
+        end 
+    endcase
+    // for (k=0; k<8; k=k+1) begin
+    //     dividend[k] = (top_state != SOFTMAX)? {a_bank_abs_sel_d1[k], 4'b0, 6'b0}: {exp_shift_9[k][33:10], 6'b0};
+    //     divisor[k]  = (top_state != SOFTMAX)? {token_mae_abs}: exp_sum_reg[39:10];
+    // end
 
     for (k=0; k<8; k=k+1) begin
-        dividend_debug[k] = {exp_shift_9[k][33:14]}; // exp(x)
-        divisor_debug[k] = {exp_sum_reg[39:14]}; // sum exp(x)
+        dividend_debug[k] = {exp_shift_9[k][33:10]}; // exp(x)
+        divisor_debug[k] = {exp_sum_reg[39:10]}; // sum exp(x)
     end
 
     // exponent: 14-bit integer + 20-bit fraction
@@ -1069,10 +1136,41 @@ always @(*) begin
     b_bank_w = {token_quan_10[0], token_quan_10[1], token_quan_10[2], token_quan_10[3], 
                 token_quan_10[4], token_quan_10[5], token_quan_10[6], token_quan_10[7]};
 end
-assign sram_wdata_b0 = b_bank_w;
-assign sram_wdata_b1 = b_bank_w;
-assign sram_wdata_b2 = b_bank_w;
-assign sram_wdata_b3 = b_bank_w;
+
+always @(*) begin
+    case (top_state)
+        NORMAL: begin
+            sram_wdata_b0 = b_bank_w;
+            sram_wdata_b1 = b_bank_w;
+            sram_wdata_b2 = b_bank_w;
+            sram_wdata_b3 = b_bank_w;
+        end
+        NORMAL_T: begin
+            sram_wdata_b0 = b_bank_w;
+            sram_wdata_b1 = b_bank_w;
+            sram_wdata_b2 = b_bank_w;
+            sram_wdata_b3 = b_bank_w;
+        end
+        SOFTMAX: begin
+            sram_wdata_b0 = softmax_wdata;
+            sram_wdata_b1 = softmax_wdata;
+            sram_wdata_b2 = softmax_wdata;
+            sram_wdata_b3 = softmax_wdata;
+        end
+        SOFTMAX_T: begin
+            sram_wdata_b0 = softmax_wdata;
+            sram_wdata_b1 = softmax_wdata;
+            sram_wdata_b2 = softmax_wdata;
+            sram_wdata_b3 = softmax_wdata;
+        end
+        default: begin
+            sram_wdata_b0 = 0;
+            sram_wdata_b1 = 0;
+            sram_wdata_b2 = 0;
+            sram_wdata_b3 = 0;
+        end 
+    endcase
+end
 
 // write the result into sram B
 // SRAM B: 64@16ch
@@ -1143,11 +1241,47 @@ always @(posedge clk) begin
     end
 end
 assign b_addr_norm = {b_msb_addr, b_base_addr_cnt_b};
-assign sram_addr_b0 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-assign sram_addr_b1 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-assign sram_addr_b2 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-assign sram_addr_b3 = (top_state == NORMAL || top_state == NORMAL_T)? b_addr_norm: {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
-
+always @(*) begin
+    case (top_state)
+        NORMAL: begin
+            sram_addr_b0 = b_addr_norm;
+            sram_addr_b1 = b_addr_norm;
+            sram_addr_b2 = b_addr_norm;
+            sram_addr_b3 = b_addr_norm;
+        end
+        NORMAL_T: begin
+            sram_addr_b0 = b_addr_norm;
+            sram_addr_b1 = b_addr_norm;
+            sram_addr_b2 = b_addr_norm;
+            sram_addr_b3 = b_addr_norm;
+        end
+        PROJ: begin
+            sram_addr_b0 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+            sram_addr_b1 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+            sram_addr_b2 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+            sram_addr_b3 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
+        end
+        SOFTMAX: begin
+            sram_addr_b0 = sramb_waddr_softmax;
+            sram_addr_b1 = sramb_waddr_softmax;
+            sram_addr_b2 = sramb_waddr_softmax;
+            sram_addr_b3 = sramb_waddr_softmax;
+        end
+        SOFTMAX_T: begin
+            sram_addr_b0 = sramb_waddr_softmax;
+            sram_addr_b1 = sramb_waddr_softmax;
+            sram_addr_b2 = sramb_waddr_softmax;
+            sram_addr_b3 = sramb_waddr_softmax;
+        end
+        default: begin
+            sram_addr_b0 = 0;
+            sram_addr_b1 = 0;
+            sram_addr_b2 = 0;
+            sram_addr_b3 = 0;
+        end
+            
+    endcase
+end
 // SRAM B can be write if valid_3, low active write
 
 always @(posedge clk) begin
@@ -1157,14 +1291,62 @@ always @(posedge clk) begin
         sram_b_wen_cnt <= 0;
     end
 end
-assign sram_wen_b0 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b00);
-assign sram_wen_b1 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b01);
-assign sram_wen_b2 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b10);
-assign sram_wen_b3 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b11);
-assign sram_wordmask_b0 = 8'b0;
-assign sram_wordmask_b1 = 8'b0;
-assign sram_wordmask_b2 = 8'b0;
-assign sram_wordmask_b3 = 8'b0;
+always @(*) begin
+    case (top_state)
+        NORMAL: begin
+            sram_wen_b0 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b00);
+            sram_wen_b1 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b01);
+            sram_wen_b2 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b10);
+            sram_wen_b3 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b11);
+            sram_wordmask_b0 = 8'b0;
+            sram_wordmask_b1 = 8'b0;
+            sram_wordmask_b2 = 8'b0;
+            sram_wordmask_b3 = 8'b0;
+        end
+        NORMAL_T: begin
+            sram_wen_b0 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b00);
+            sram_wen_b1 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b01);
+            sram_wen_b2 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b10);
+            sram_wen_b3 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b11);
+            sram_wordmask_b0 = 8'b0;
+            sram_wordmask_b1 = 8'b0;
+            sram_wordmask_b2 = 8'b0;
+            sram_wordmask_b3 = 8'b0;
+        end
+        SOFTMAX: begin
+            sram_wen_b0 = !(valid_12_d6 && sramb_wcnt == 2'b00);
+            sram_wen_b1 = !(valid_12_d6 && sramb_wcnt == 2'b01);
+            sram_wen_b2 = !(valid_12_d6 && sramb_wcnt == 2'b10);
+            sram_wen_b3 = !(valid_12_d6 && sramb_wcnt == 2'b11);
+            sram_wordmask_b0 = 8'b0;
+            sram_wordmask_b1 = 8'b0;
+            sram_wordmask_b2 = 8'b0;
+            sram_wordmask_b3 = 8'b0;
+        end
+        SOFTMAX_T: begin
+            sram_wen_b0 = !(valid_12_d6 && sramb_wcnt == 2'b00);
+            sram_wen_b1 = !(valid_12_d6 && sramb_wcnt == 2'b01);
+            sram_wen_b2 = !(valid_12_d6 && sramb_wcnt == 2'b10);
+            sram_wen_b3 = !(valid_12_d6 && sramb_wcnt == 2'b11);
+            sram_wordmask_b0 = 8'b0;
+            sram_wordmask_b1 = 8'b0;
+            sram_wordmask_b2 = 8'b0;
+            sram_wordmask_b3 = 8'b0;
+        end
+        default: begin
+            // read only
+            sram_wen_b0 = 1'b1;
+            sram_wen_b1 = 1'b1;
+            sram_wen_b2 = 1'b1;
+            sram_wen_b3 = 1'b1;
+            sram_wordmask_b0 = mask_all;
+            sram_wordmask_b1 = mask_all;
+            sram_wordmask_b2 = mask_all;
+            sram_wordmask_b3 = mask_all;
+        end
+    endcase
+end
+
 
 
 
@@ -2133,9 +2315,7 @@ assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 
-localparam demask_h = 8'b0000_1111;
-localparam demask_l = 8'b1111_0000;
-localparam mask_all = 8'b1111_1111;
+
 
 always @(*) begin
     case (qk_cnt8)
@@ -2240,7 +2420,7 @@ assign sram_wen_d3 = !valid_8;
 // 10_0000 -> 10_0001 -> 10_0010 -> ... -> 11_1111
 // each addr stall 4 cycle
 
-reg [1:0]sramd_cnt;
+
 always @(posedge clk) begin
     if (top_state == SOFTMAX) begin
         sramd_raddr_cnt <= (sramd_cnt == 2'b11)? sramd_raddr_cnt + 1: sramd_raddr_cnt;
@@ -2306,13 +2486,13 @@ always @(posedge clk) begin
     end
 end
 
+// ===== 12. Implement Softmax. ===== //
 // lut point {6-bit origin data + 4'b0} < 10-bit original data
 // this is expansion point a
 reg [9:0]d_bank0_lut[0:7];
 reg [9:0]d_bank1_lut[0:7];
 reg [9:0]d_bank2_lut[0:7];
 reg [9:0]d_bank3_lut[0:7];
-
 
 reg [9:0]d_bank_lut_sel[0:7];
 always @(*) begin
@@ -2419,17 +2599,12 @@ always @(posedge clk) begin
 end
 
 // The softmax divider re-use the divider we put in Layernorm stage
-reg valid_12;
-reg valid_12_d1;
-reg valid_12_d2;
-reg valid_12_d3;
-reg valid_12_d4;
-reg valid_12_d5;
-reg valid_12_d6;
 always @(posedge clk) begin
     if (valid_11) begin
         valid_12 <= 1;
-    end else if (top_state == SOFTMAX) begin
+    end else if (top_state == SOFTMAX_T && sramb_waddr_softmax == 5'd30 && sramb_wcnt == 2'b01) begin
+        valid_12 <= 0;
+    end else if (top_state == SOFTMAX || top_state == SOFTMAX_T) begin
         valid_12 <= valid_12;
     end else begin
         valid_12 <= 0;
@@ -2443,8 +2618,42 @@ always @(posedge clk) begin
     valid_12_d6 <= valid_12_d5;
 end
 
+// ===== 13. Quantize the result to 10-bits and write the result to SRAM B. ===== //
+ // since the softmax function output range in 0~1, the fraction bit is cut beforre
+ // data go in the divider, sp we dont need to quantize here, just take the lower 10-bit 
+ // of token_nor[k][9:0] and write into the sram B.
+
+ // The throught put of the softmax is 8 ch / per cycle, that is, we access each
+ // bank one cycle, stall at an sram B entry(address) 4 cycle to write 4 bank.
+ always @(posedge clk) begin
+    if (valid_12_d6) begin
+        sramb_wcnt <= sramb_wcnt + 1;
+    end else begin
+        sramb_wcnt <= 0;
+    end
+ end
+
+ always @(posedge clk) begin
+    if (sramb_wcnt==2'b11 && valid_12_d6) begin
+        sramb_waddr_softmax <= sramb_waddr_softmax + 1;
+    end else if (top_state == SOFTMAX || top_state == SOFTMAX_T) begin
+        sramb_waddr_softmax <= sramb_waddr_softmax;
+    end else begin
+        sramb_waddr_softmax <= 0;
+    end
+ end
 
 
+always @(*) begin
+    for (i=0; i<8; i=i+1) begin
+        softmax_wdata_ch[i] = token_nor[i][9:0];
+    end
+end
+
+always @(*) begin
+    softmax_wdata = {softmax_wdata_ch[0], softmax_wdata_ch[1], softmax_wdata_ch[2], softmax_wdata_ch[3]
+    , softmax_wdata_ch[4], softmax_wdata_ch[5], softmax_wdata_ch[6], softmax_wdata_ch[7]};
+end
 
 
 
@@ -2460,14 +2669,14 @@ end
 
 
 
-// ===== 12. Implement Softmax. ===== //
-// ===== 13. Quantize the result to 10-bits and write the result to SRAM B. ===== //
+
+
 
 endmodule
 
 module div #(
-    parameter N = 26,
-    parameter M = 26,
+    parameter N = 30,
+    parameter M = 30,
     parameter N_ACT = M+N-1
 )(
     input clk,
@@ -2476,8 +2685,7 @@ module div #(
     output [N-1:0] merchant,
     output [M-1:0] remainder
 );
-// 5-stage pipeline divider
-// Signed inputs are converted to absolute values for unsigned division
+// Restoring divider with pipeline registers every 5 iterations
 
 localparam integer PIPE_DEPTH = N_ACT - M;
 
@@ -2539,27 +2747,27 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[4]  <= divisor_t[3];
-    dividend_t[4] <= dividend_t[3];
+always @(*) begin
+    divisor_t[4]  = divisor_t[3];
+    dividend_t[4] = dividend_t[3];
     if ({remainder_t[3], dividend_t[3][N_ACT-M-4]} >= {1'b0, divisor_t[3]}) begin
-        merchant_t[4]  <= {merchant_t[3][N_ACT-M-1:0], 1'b1};
-        remainder_t[4] <= {remainder_t[3], dividend_t[3][N_ACT-M-4]} - {1'b0, divisor_t[3]};
+        merchant_t[4]  = {merchant_t[3][N_ACT-M-1:0], 1'b1};
+        remainder_t[4] = {remainder_t[3], dividend_t[3][N_ACT-M-4]} - {1'b0, divisor_t[3]};
     end else begin
-        merchant_t[4]  <= {merchant_t[3][N_ACT-M-1:0], 1'b0};
-        remainder_t[4] <= {remainder_t[3], dividend_t[3][N_ACT-M-4]};
+        merchant_t[4]  = {merchant_t[3][N_ACT-M-1:0], 1'b0};
+        remainder_t[4] = {remainder_t[3], dividend_t[3][N_ACT-M-4]};
     end
 end
 
-always @(*) begin
-    divisor_t[5]  = divisor_t[4];
-    dividend_t[5] = dividend_t[4];
+always @(posedge clk) begin
+    divisor_t[5]  <= divisor_t[4];
+    dividend_t[5] <= dividend_t[4];
     if ({remainder_t[4], dividend_t[4][N_ACT-M-5]} >= {1'b0, divisor_t[4]}) begin
-        merchant_t[5]  = {merchant_t[4][N_ACT-M-1:0], 1'b1};
-        remainder_t[5] = {remainder_t[4], dividend_t[4][N_ACT-M-5]} - {1'b0, divisor_t[4]};
+        merchant_t[5]  <= {merchant_t[4][N_ACT-M-1:0], 1'b1};
+        remainder_t[5] <= {remainder_t[4], dividend_t[4][N_ACT-M-5]} - {1'b0, divisor_t[4]};
     end else begin
-        merchant_t[5]  = {merchant_t[4][N_ACT-M-1:0], 1'b0};
-        remainder_t[5] = {remainder_t[4], dividend_t[4][N_ACT-M-5]};
+        merchant_t[5]  <= {merchant_t[4][N_ACT-M-1:0], 1'b0};
+        remainder_t[5] <= {remainder_t[4], dividend_t[4][N_ACT-M-5]};
     end
 end
 
@@ -2587,15 +2795,15 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[8]  <= divisor_t[7];
-    dividend_t[8] <= dividend_t[7];
+always @(*) begin
+    divisor_t[8]  = divisor_t[7];
+    dividend_t[8] = dividend_t[7];
     if ({remainder_t[7], dividend_t[7][N_ACT-M-8]} >= {1'b0, divisor_t[7]}) begin
-        merchant_t[8]  <= {merchant_t[7][N_ACT-M-1:0], 1'b1};
-        remainder_t[8] <= {remainder_t[7], dividend_t[7][N_ACT-M-8]} - {1'b0, divisor_t[7]};
+        merchant_t[8]  = {merchant_t[7][N_ACT-M-1:0], 1'b1};
+        remainder_t[8] = {remainder_t[7], dividend_t[7][N_ACT-M-8]} - {1'b0, divisor_t[7]};
     end else begin
-        merchant_t[8]  <= {merchant_t[7][N_ACT-M-1:0], 1'b0};
-        remainder_t[8] <= {remainder_t[7], dividend_t[7][N_ACT-M-8]};
+        merchant_t[8]  = {merchant_t[7][N_ACT-M-1:0], 1'b0};
+        remainder_t[8] = {remainder_t[7], dividend_t[7][N_ACT-M-8]};
     end
 end
 
@@ -2611,15 +2819,15 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[10]  = divisor_t[9];
-    dividend_t[10] = dividend_t[9];
+always @(posedge clk) begin
+    divisor_t[10]  <= divisor_t[9];
+    dividend_t[10] <= dividend_t[9];
     if ({remainder_t[9], dividend_t[9][N_ACT-M-10]} >= {1'b0, divisor_t[9]}) begin
-        merchant_t[10]  = {merchant_t[9][N_ACT-M-1:0], 1'b1};
-        remainder_t[10] = {remainder_t[9], dividend_t[9][N_ACT-M-10]} - {1'b0, divisor_t[9]};
+        merchant_t[10]  <= {merchant_t[9][N_ACT-M-1:0], 1'b1};
+        remainder_t[10] <= {remainder_t[9], dividend_t[9][N_ACT-M-10]} - {1'b0, divisor_t[9]};
     end else begin
-        merchant_t[10]  = {merchant_t[9][N_ACT-M-1:0], 1'b0};
-        remainder_t[10] = {remainder_t[9], dividend_t[9][N_ACT-M-10]};
+        merchant_t[10]  <= {merchant_t[9][N_ACT-M-1:0], 1'b0};
+        remainder_t[10] <= {remainder_t[9], dividend_t[9][N_ACT-M-10]};
     end
 end
 
@@ -2635,15 +2843,15 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[12]  <= divisor_t[11];
-    dividend_t[12] <= dividend_t[11];
+always @(*) begin
+    divisor_t[12]  = divisor_t[11];
+    dividend_t[12] = dividend_t[11];
     if ({remainder_t[11], dividend_t[11][N_ACT-M-12]} >= {1'b0, divisor_t[11]}) begin
-        merchant_t[12]  <= {merchant_t[11][N_ACT-M-1:0], 1'b1};
-        remainder_t[12] <= {remainder_t[11], dividend_t[11][N_ACT-M-12]} - {1'b0, divisor_t[11]};
+        merchant_t[12]  = {merchant_t[11][N_ACT-M-1:0], 1'b1};
+        remainder_t[12] = {remainder_t[11], dividend_t[11][N_ACT-M-12]} - {1'b0, divisor_t[11]};
     end else begin
-        merchant_t[12]  <= {merchant_t[11][N_ACT-M-1:0], 1'b0};
-        remainder_t[12] <= {remainder_t[11], dividend_t[11][N_ACT-M-12]};
+        merchant_t[12]  = {merchant_t[11][N_ACT-M-1:0], 1'b0};
+        remainder_t[12] = {remainder_t[11], dividend_t[11][N_ACT-M-12]};
     end
 end
 
@@ -2671,27 +2879,27 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[15]  = divisor_t[14];
-    dividend_t[15] = dividend_t[14];
+always @(posedge clk) begin
+    divisor_t[15]  <= divisor_t[14];
+    dividend_t[15] <= dividend_t[14];
     if ({remainder_t[14], dividend_t[14][N_ACT-M-15]} >= {1'b0, divisor_t[14]}) begin
-        merchant_t[15]  = {merchant_t[14][N_ACT-M-1:0], 1'b1};
-        remainder_t[15] = {remainder_t[14], dividend_t[14][N_ACT-M-15]} - {1'b0, divisor_t[14]};
+        merchant_t[15]  <= {merchant_t[14][N_ACT-M-1:0], 1'b1};
+        remainder_t[15] <= {remainder_t[14], dividend_t[14][N_ACT-M-15]} - {1'b0, divisor_t[14]};
     end else begin
-        merchant_t[15]  = {merchant_t[14][N_ACT-M-1:0], 1'b0};
-        remainder_t[15] = {remainder_t[14], dividend_t[14][N_ACT-M-15]};
+        merchant_t[15]  <= {merchant_t[14][N_ACT-M-1:0], 1'b0};
+        remainder_t[15] <= {remainder_t[14], dividend_t[14][N_ACT-M-15]};
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[16]  <= divisor_t[15];
-    dividend_t[16] <= dividend_t[15];
+always @(*) begin
+    divisor_t[16]  = divisor_t[15];
+    dividend_t[16] = dividend_t[15];
     if ({remainder_t[15], dividend_t[15][N_ACT-M-16]} >= {1'b0, divisor_t[15]}) begin
-        merchant_t[16]  <= {merchant_t[15][N_ACT-M-1:0], 1'b1};
-        remainder_t[16] <= {remainder_t[15], dividend_t[15][N_ACT-M-16]} - {1'b0, divisor_t[15]};
+        merchant_t[16]  = {merchant_t[15][N_ACT-M-1:0], 1'b1};
+        remainder_t[16] = {remainder_t[15], dividend_t[15][N_ACT-M-16]} - {1'b0, divisor_t[15]};
     end else begin
-        merchant_t[16]  <= {merchant_t[15][N_ACT-M-1:0], 1'b0};
-        remainder_t[16] <= {remainder_t[15], dividend_t[15][N_ACT-M-16]};
+        merchant_t[16]  = {merchant_t[15][N_ACT-M-1:0], 1'b0};
+        remainder_t[16] = {remainder_t[15], dividend_t[15][N_ACT-M-16]};
     end
 end
 
@@ -2731,27 +2939,27 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[20]  = divisor_t[19];
-    dividend_t[20] = dividend_t[19];
+always @(posedge clk) begin
+    divisor_t[20]  <= divisor_t[19];
+    dividend_t[20] <= dividend_t[19];
     if ({remainder_t[19], dividend_t[19][N_ACT-M-20]} >= {1'b0, divisor_t[19]}) begin
-        merchant_t[20]  = {merchant_t[19][N_ACT-M-1:0], 1'b1};
-        remainder_t[20] = {remainder_t[19], dividend_t[19][N_ACT-M-20]} - {1'b0, divisor_t[19]};
+        merchant_t[20]  <= {merchant_t[19][N_ACT-M-1:0], 1'b1};
+        remainder_t[20] <= {remainder_t[19], dividend_t[19][N_ACT-M-20]} - {1'b0, divisor_t[19]};
     end else begin
-        merchant_t[20]  = {merchant_t[19][N_ACT-M-1:0], 1'b0};
-        remainder_t[20] = {remainder_t[19], dividend_t[19][N_ACT-M-20]};
+        merchant_t[20]  <= {merchant_t[19][N_ACT-M-1:0], 1'b0};
+        remainder_t[20] <= {remainder_t[19], dividend_t[19][N_ACT-M-20]};
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[21]  <= divisor_t[20];
-    dividend_t[21] <= dividend_t[20];
+always @(*) begin
+    divisor_t[21]  = divisor_t[20];
+    dividend_t[21] = dividend_t[20];
     if ({remainder_t[20], dividend_t[20][N_ACT-M-21]} >= {1'b0, divisor_t[20]}) begin
-        merchant_t[21]  <= {merchant_t[20][N_ACT-M-1:0], 1'b1};
-        remainder_t[21] <= {remainder_t[20], dividend_t[20][N_ACT-M-21]} - {1'b0, divisor_t[20]};
+        merchant_t[21]  = {merchant_t[20][N_ACT-M-1:0], 1'b1};
+        remainder_t[21] = {remainder_t[20], dividend_t[20][N_ACT-M-21]} - {1'b0, divisor_t[20]};
     end else begin
-        merchant_t[21]  <= {merchant_t[20][N_ACT-M-1:0], 1'b0};
-        remainder_t[21] <= {remainder_t[20], dividend_t[20][N_ACT-M-21]};
+        merchant_t[21]  = {merchant_t[20][N_ACT-M-1:0], 1'b0};
+        remainder_t[21] = {remainder_t[20], dividend_t[20][N_ACT-M-21]};
     end
 end
 
@@ -2791,15 +2999,63 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[25]  = divisor_t[24];
-    dividend_t[25] = dividend_t[24];
+always @(posedge clk) begin
+    divisor_t[25]  <= divisor_t[24];
+    dividend_t[25] <= dividend_t[24];
     if ({remainder_t[24], dividend_t[24][N_ACT-M-25]} >= {1'b0, divisor_t[24]}) begin
-        merchant_t[25]  = {merchant_t[24][N_ACT-M-1:0], 1'b1};
-        remainder_t[25] = {remainder_t[24], dividend_t[24][N_ACT-M-25]} - {1'b0, divisor_t[24]};
+        merchant_t[25]  <= {merchant_t[24][N_ACT-M-1:0], 1'b1};
+        remainder_t[25] <= {remainder_t[24], dividend_t[24][N_ACT-M-25]} - {1'b0, divisor_t[24]};
     end else begin
-        merchant_t[25]  = {merchant_t[24][N_ACT-M-1:0], 1'b0};
-        remainder_t[25] = {remainder_t[24], dividend_t[24][N_ACT-M-25]};
+        merchant_t[25]  <= {merchant_t[24][N_ACT-M-1:0], 1'b0};
+        remainder_t[25] <= {remainder_t[24], dividend_t[24][N_ACT-M-25]};
+    end
+end
+
+always @(*) begin
+    divisor_t[26]  = divisor_t[25];
+    dividend_t[26] = dividend_t[25];
+    if ({remainder_t[25], dividend_t[25][N_ACT-M-26]} >= {1'b0, divisor_t[25]}) begin
+        merchant_t[26]  = {merchant_t[25][N_ACT-M-1:0], 1'b1};
+        remainder_t[26] = {remainder_t[25], dividend_t[25][N_ACT-M-26]} - {1'b0, divisor_t[25]};
+    end else begin
+        merchant_t[26]  = {merchant_t[25][N_ACT-M-1:0], 1'b0};
+        remainder_t[26] = {remainder_t[25], dividend_t[25][N_ACT-M-26]};
+    end
+end
+
+always @(*) begin
+    divisor_t[27]  = divisor_t[26];
+    dividend_t[27] = dividend_t[26];
+    if ({remainder_t[26], dividend_t[26][N_ACT-M-27]} >= {1'b0, divisor_t[26]}) begin
+        merchant_t[27]  = {merchant_t[26][N_ACT-M-1:0], 1'b1};
+        remainder_t[27] = {remainder_t[26], dividend_t[26][N_ACT-M-27]} - {1'b0, divisor_t[26]};
+    end else begin
+        merchant_t[27]  = {merchant_t[26][N_ACT-M-1:0], 1'b0};
+        remainder_t[27] = {remainder_t[26], dividend_t[26][N_ACT-M-27]};
+    end
+end
+
+always @(*) begin
+    divisor_t[28]  = divisor_t[27];
+    dividend_t[28] = dividend_t[27];
+    if ({remainder_t[27], dividend_t[27][N_ACT-M-28]} >= {1'b0, divisor_t[27]}) begin
+        merchant_t[28]  = {merchant_t[27][N_ACT-M-1:0], 1'b1};
+        remainder_t[28] = {remainder_t[27], dividend_t[27][N_ACT-M-28]} - {1'b0, divisor_t[27]};
+    end else begin
+        merchant_t[28]  = {merchant_t[27][N_ACT-M-1:0], 1'b0};
+        remainder_t[28] = {remainder_t[27], dividend_t[27][N_ACT-M-28]};
+    end
+end
+
+always @(*) begin
+    divisor_t[29]  = divisor_t[28];
+    dividend_t[29] = dividend_t[28];
+    if ({remainder_t[28], dividend_t[28][N_ACT-M-29]} >= {1'b0, divisor_t[28]}) begin
+        merchant_t[29]  = {merchant_t[28][N_ACT-M-1:0], 1'b1};
+        remainder_t[29] = {remainder_t[28], dividend_t[28][N_ACT-M-29]} - {1'b0, divisor_t[28]};
+    end else begin
+        merchant_t[29]  = {merchant_t[28][N_ACT-M-1:0], 1'b0};
+        remainder_t[29] = {remainder_t[28], dividend_t[28][N_ACT-M-29]};
     end
 end
 
@@ -2807,4 +3063,8 @@ assign merchant  = merchant_t[PIPE_DEPTH];
 assign remainder = remainder_t[PIPE_DEPTH];
 
 endmodule // div
+
+
+
+
 

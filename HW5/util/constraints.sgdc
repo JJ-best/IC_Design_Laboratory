@@ -1,0 +1,2 @@
+current_design ViT_top
+clock -name clk -period 10 
