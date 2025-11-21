@@ -672,7 +672,7 @@ end
 // negative divisor and positive dividend).
 
 wire [17:0] token_mae_abs;
-wire [29:0] token_nor[0:7];
+wire [33:0] token_nor[0:7];
 reg signed[BW_PER_ACT-1:0] token_nor_t[0:7];
 reg [BW_PER_ACT-1:0] token_nor_reg[0:7];
 reg [13:0] a_bank_abs_sel[0:7];
@@ -774,8 +774,8 @@ always @(posedge clk) begin
 end
 
 assign token_mae_abs = (token_mae[17])? ~token_mae + 1: token_mae;
-localparam N = 30;
-localparam M = 30;
+localparam N = 34;
+localparam M = 34;
 reg [(N-1):0]dividend[0:7];
 reg [(M-1):0]divisor[0:7];
 reg [(N-1):0] dividend_debug[0:7];
@@ -796,14 +796,14 @@ always @(*) begin
         end
         SOFTMAX: begin
             for (k=0; k<8; k=k+1) begin
-                dividend[k] = {exp_shift_9[k][33:10], 6'b0};
-                divisor[k]  = exp_sum_reg[39:10];
+                dividend[k] = {exp_shift_9[k][33:6], 6'b0};
+                divisor[k]  = exp_sum_reg[39:6];
             end
         end
         SOFTMAX_T: begin
             for (k=0; k<8; k=k+1) begin
-                dividend[k] = {exp_shift_9[k][33:10], 6'b0};
-                divisor[k]  = exp_sum_reg[39:10];
+                dividend[k] = {exp_shift_9[k][33:6], 6'b0};
+                divisor[k]  = exp_sum_reg[39:6];
             end
         end
         default: begin
@@ -819,8 +819,8 @@ always @(*) begin
     // end
 
     for (k=0; k<8; k=k+1) begin
-        dividend_debug[k] = {exp_shift_9[k][33:10]}; // exp(x)
-        divisor_debug[k] = {exp_sum_reg[39:10]}; // sum exp(x)
+        dividend_debug[k] = {exp_shift_9[k][33:6]}; // exp(x)
+        divisor_debug[k] = {exp_sum_reg[39:6]}; // sum exp(x)
     end
 
     // exponent: 14-bit integer + 20-bit fraction
@@ -2539,8 +2539,6 @@ always @(*) begin
     , softmax_wdata_ch[4], softmax_wdata_ch[5], softmax_wdata_ch[6], softmax_wdata_ch[7]};
 end
 
-
-
 // ----- other method ----- //
 // implement an 1024 point LUT to map 10-bit fixed point number to exp
 // then calculated the softmax
@@ -2551,16 +2549,30 @@ end
 // since we need to preserve the fraction 6-bit the softmax is implemnet by
 // softmax(x_i) = ({exp(x_i), 6'b0})/Σ exp(x_i)
 
+// 14. Read V projection from SRAM C and softmax result from SRAM B.
+// In this part, we read sram C for matrix V(64x8 matrix)
+// and sram B for sortmax result(16x64 matrix)
 
+// sram B and sram C access
+// addr32: addr0 -> ... -> addr7
+// addr33: addr8 -> ... -> addr15
+// addr34: addr0 -> ... -> addr7
+// addr35: addr8 -> ... -> addr15
+// ...
+// addr62: addr0 -> ... -> addr7
+// addr63: addr8 -> ... -> addr15
+
+
+// 15. Implement multiplication of attention head 0 first 16 rows results.
+// 16. Quantize the result to 10-bits and write the result to SRAM D
 
 
 
 
 endmodule
-
 module div #(
-    parameter N = 30,
-    parameter M = 30,
+    parameter N = 34,
+    parameter M = 34,
     parameter N_ACT = M+N-1
 )(
     input clk,
@@ -2569,7 +2581,7 @@ module div #(
     output [N-1:0] merchant,
     output [M-1:0] remainder
 );
-// Restoring divider with pipeline registers every 5 iterations
+// Restoring divider with pipeline registers arranged as |5|6|6|6|6|5
 
 localparam integer PIPE_DEPTH = N_ACT - M;
 
@@ -2703,27 +2715,27 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[10]  <= divisor_t[9];
-    dividend_t[10] <= dividend_t[9];
+always @(*) begin
+    divisor_t[10]  = divisor_t[9];
+    dividend_t[10] = dividend_t[9];
     if ({remainder_t[9], dividend_t[9][N_ACT-M-10]} >= {1'b0, divisor_t[9]}) begin
-        merchant_t[10]  <= {merchant_t[9][N_ACT-M-1:0], 1'b1};
-        remainder_t[10] <= {remainder_t[9], dividend_t[9][N_ACT-M-10]} - {1'b0, divisor_t[9]};
+        merchant_t[10]  = {merchant_t[9][N_ACT-M-1:0], 1'b1};
+        remainder_t[10] = {remainder_t[9], dividend_t[9][N_ACT-M-10]} - {1'b0, divisor_t[9]};
     end else begin
-        merchant_t[10]  <= {merchant_t[9][N_ACT-M-1:0], 1'b0};
-        remainder_t[10] <= {remainder_t[9], dividend_t[9][N_ACT-M-10]};
+        merchant_t[10]  = {merchant_t[9][N_ACT-M-1:0], 1'b0};
+        remainder_t[10] = {remainder_t[9], dividend_t[9][N_ACT-M-10]};
     end
 end
 
-always @(*) begin
-    divisor_t[11]  = divisor_t[10];
-    dividend_t[11] = dividend_t[10];
+always @(posedge clk) begin
+    divisor_t[11]  <= divisor_t[10];
+    dividend_t[11] <= dividend_t[10];
     if ({remainder_t[10], dividend_t[10][N_ACT-M-11]} >= {1'b0, divisor_t[10]}) begin
-        merchant_t[11]  = {merchant_t[10][N_ACT-M-1:0], 1'b1};
-        remainder_t[11] = {remainder_t[10], dividend_t[10][N_ACT-M-11]} - {1'b0, divisor_t[10]};
+        merchant_t[11]  <= {merchant_t[10][N_ACT-M-1:0], 1'b1};
+        remainder_t[11] <= {remainder_t[10], dividend_t[10][N_ACT-M-11]} - {1'b0, divisor_t[10]};
     end else begin
-        merchant_t[11]  = {merchant_t[10][N_ACT-M-1:0], 1'b0};
-        remainder_t[11] = {remainder_t[10], dividend_t[10][N_ACT-M-11]};
+        merchant_t[11]  <= {merchant_t[10][N_ACT-M-1:0], 1'b0};
+        remainder_t[11] <= {remainder_t[10], dividend_t[10][N_ACT-M-11]};
     end
 end
 
@@ -2763,15 +2775,15 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[15]  <= divisor_t[14];
-    dividend_t[15] <= dividend_t[14];
+always @(*) begin
+    divisor_t[15]  = divisor_t[14];
+    dividend_t[15] = dividend_t[14];
     if ({remainder_t[14], dividend_t[14][N_ACT-M-15]} >= {1'b0, divisor_t[14]}) begin
-        merchant_t[15]  <= {merchant_t[14][N_ACT-M-1:0], 1'b1};
-        remainder_t[15] <= {remainder_t[14], dividend_t[14][N_ACT-M-15]} - {1'b0, divisor_t[14]};
+        merchant_t[15]  = {merchant_t[14][N_ACT-M-1:0], 1'b1};
+        remainder_t[15] = {remainder_t[14], dividend_t[14][N_ACT-M-15]} - {1'b0, divisor_t[14]};
     end else begin
-        merchant_t[15]  <= {merchant_t[14][N_ACT-M-1:0], 1'b0};
-        remainder_t[15] <= {remainder_t[14], dividend_t[14][N_ACT-M-15]};
+        merchant_t[15]  = {merchant_t[14][N_ACT-M-1:0], 1'b0};
+        remainder_t[15] = {remainder_t[14], dividend_t[14][N_ACT-M-15]};
     end
 end
 
@@ -2787,15 +2799,15 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[17]  = divisor_t[16];
-    dividend_t[17] = dividend_t[16];
+always @(posedge clk) begin
+    divisor_t[17]  <= divisor_t[16];
+    dividend_t[17] <= dividend_t[16];
     if ({remainder_t[16], dividend_t[16][N_ACT-M-17]} >= {1'b0, divisor_t[16]}) begin
-        merchant_t[17]  = {merchant_t[16][N_ACT-M-1:0], 1'b1};
-        remainder_t[17] = {remainder_t[16], dividend_t[16][N_ACT-M-17]} - {1'b0, divisor_t[16]};
+        merchant_t[17]  <= {merchant_t[16][N_ACT-M-1:0], 1'b1};
+        remainder_t[17] <= {remainder_t[16], dividend_t[16][N_ACT-M-17]} - {1'b0, divisor_t[16]};
     end else begin
-        merchant_t[17]  = {merchant_t[16][N_ACT-M-1:0], 1'b0};
-        remainder_t[17] = {remainder_t[16], dividend_t[16][N_ACT-M-17]};
+        merchant_t[17]  <= {merchant_t[16][N_ACT-M-1:0], 1'b0};
+        remainder_t[17] <= {remainder_t[16], dividend_t[16][N_ACT-M-17]};
     end
 end
 
@@ -2823,15 +2835,15 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[20]  <= divisor_t[19];
-    dividend_t[20] <= dividend_t[19];
+always @(*) begin
+    divisor_t[20]  = divisor_t[19];
+    dividend_t[20] = dividend_t[19];
     if ({remainder_t[19], dividend_t[19][N_ACT-M-20]} >= {1'b0, divisor_t[19]}) begin
-        merchant_t[20]  <= {merchant_t[19][N_ACT-M-1:0], 1'b1};
-        remainder_t[20] <= {remainder_t[19], dividend_t[19][N_ACT-M-20]} - {1'b0, divisor_t[19]};
+        merchant_t[20]  = {merchant_t[19][N_ACT-M-1:0], 1'b1};
+        remainder_t[20] = {remainder_t[19], dividend_t[19][N_ACT-M-20]} - {1'b0, divisor_t[19]};
     end else begin
-        merchant_t[20]  <= {merchant_t[19][N_ACT-M-1:0], 1'b0};
-        remainder_t[20] <= {remainder_t[19], dividend_t[19][N_ACT-M-20]};
+        merchant_t[20]  = {merchant_t[19][N_ACT-M-1:0], 1'b0};
+        remainder_t[20] = {remainder_t[19], dividend_t[19][N_ACT-M-20]};
     end
 end
 
@@ -2859,15 +2871,15 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[23]  = divisor_t[22];
-    dividend_t[23] = dividend_t[22];
+always @(posedge clk) begin
+    divisor_t[23]  <= divisor_t[22];
+    dividend_t[23] <= dividend_t[22];
     if ({remainder_t[22], dividend_t[22][N_ACT-M-23]} >= {1'b0, divisor_t[22]}) begin
-        merchant_t[23]  = {merchant_t[22][N_ACT-M-1:0], 1'b1};
-        remainder_t[23] = {remainder_t[22], dividend_t[22][N_ACT-M-23]} - {1'b0, divisor_t[22]};
+        merchant_t[23]  <= {merchant_t[22][N_ACT-M-1:0], 1'b1};
+        remainder_t[23] <= {remainder_t[22], dividend_t[22][N_ACT-M-23]} - {1'b0, divisor_t[22]};
     end else begin
-        merchant_t[23]  = {merchant_t[22][N_ACT-M-1:0], 1'b0};
-        remainder_t[23] = {remainder_t[22], dividend_t[22][N_ACT-M-23]};
+        merchant_t[23]  <= {merchant_t[22][N_ACT-M-1:0], 1'b0};
+        remainder_t[23] <= {remainder_t[22], dividend_t[22][N_ACT-M-23]};
     end
 end
 
@@ -2883,15 +2895,15 @@ always @(*) begin
     end
 end
 
-always @(posedge clk) begin
-    divisor_t[25]  <= divisor_t[24];
-    dividend_t[25] <= dividend_t[24];
+always @(*) begin
+    divisor_t[25]  = divisor_t[24];
+    dividend_t[25] = dividend_t[24];
     if ({remainder_t[24], dividend_t[24][N_ACT-M-25]} >= {1'b0, divisor_t[24]}) begin
-        merchant_t[25]  <= {merchant_t[24][N_ACT-M-1:0], 1'b1};
-        remainder_t[25] <= {remainder_t[24], dividend_t[24][N_ACT-M-25]} - {1'b0, divisor_t[24]};
+        merchant_t[25]  = {merchant_t[24][N_ACT-M-1:0], 1'b1};
+        remainder_t[25] = {remainder_t[24], dividend_t[24][N_ACT-M-25]} - {1'b0, divisor_t[24]};
     end else begin
-        merchant_t[25]  <= {merchant_t[24][N_ACT-M-1:0], 1'b0};
-        remainder_t[25] <= {remainder_t[24], dividend_t[24][N_ACT-M-25]};
+        merchant_t[25]  = {merchant_t[24][N_ACT-M-1:0], 1'b0};
+        remainder_t[25] = {remainder_t[24], dividend_t[24][N_ACT-M-25]};
     end
 end
 
@@ -2931,15 +2943,63 @@ always @(*) begin
     end
 end
 
-always @(*) begin
-    divisor_t[29]  = divisor_t[28];
-    dividend_t[29] = dividend_t[28];
+always @(posedge clk) begin
+    divisor_t[29]  <= divisor_t[28];
+    dividend_t[29] <= dividend_t[28];
     if ({remainder_t[28], dividend_t[28][N_ACT-M-29]} >= {1'b0, divisor_t[28]}) begin
-        merchant_t[29]  = {merchant_t[28][N_ACT-M-1:0], 1'b1};
-        remainder_t[29] = {remainder_t[28], dividend_t[28][N_ACT-M-29]} - {1'b0, divisor_t[28]};
+        merchant_t[29]  <= {merchant_t[28][N_ACT-M-1:0], 1'b1};
+        remainder_t[29] <= {remainder_t[28], dividend_t[28][N_ACT-M-29]} - {1'b0, divisor_t[28]};
     end else begin
-        merchant_t[29]  = {merchant_t[28][N_ACT-M-1:0], 1'b0};
-        remainder_t[29] = {remainder_t[28], dividend_t[28][N_ACT-M-29]};
+        merchant_t[29]  <= {merchant_t[28][N_ACT-M-1:0], 1'b0};
+        remainder_t[29] <= {remainder_t[28], dividend_t[28][N_ACT-M-29]};
+    end
+end
+
+always @(*) begin
+    divisor_t[30]  = divisor_t[29];
+    dividend_t[30] = dividend_t[29];
+    if ({remainder_t[29], dividend_t[29][N_ACT-M-30]} >= {1'b0, divisor_t[29]}) begin
+        merchant_t[30]  = {merchant_t[29][N_ACT-M-1:0], 1'b1};
+        remainder_t[30] = {remainder_t[29], dividend_t[29][N_ACT-M-30]} - {1'b0, divisor_t[29]};
+    end else begin
+        merchant_t[30]  = {merchant_t[29][N_ACT-M-1:0], 1'b0};
+        remainder_t[30] = {remainder_t[29], dividend_t[29][N_ACT-M-30]};
+    end
+end
+
+always @(*) begin
+    divisor_t[31]  = divisor_t[30];
+    dividend_t[31] = dividend_t[30];
+    if ({remainder_t[30], dividend_t[30][N_ACT-M-31]} >= {1'b0, divisor_t[30]}) begin
+        merchant_t[31]  = {merchant_t[30][N_ACT-M-1:0], 1'b1};
+        remainder_t[31] = {remainder_t[30], dividend_t[30][N_ACT-M-31]} - {1'b0, divisor_t[30]};
+    end else begin
+        merchant_t[31]  = {merchant_t[30][N_ACT-M-1:0], 1'b0};
+        remainder_t[31] = {remainder_t[30], dividend_t[30][N_ACT-M-31]};
+    end
+end
+
+always @(*) begin
+    divisor_t[32]  = divisor_t[31];
+    dividend_t[32] = dividend_t[31];
+    if ({remainder_t[31], dividend_t[31][N_ACT-M-32]} >= {1'b0, divisor_t[31]}) begin
+        merchant_t[32]  = {merchant_t[31][N_ACT-M-1:0], 1'b1};
+        remainder_t[32] = {remainder_t[31], dividend_t[31][N_ACT-M-32]} - {1'b0, divisor_t[31]};
+    end else begin
+        merchant_t[32]  = {merchant_t[31][N_ACT-M-1:0], 1'b0};
+        remainder_t[32] = {remainder_t[31], dividend_t[31][N_ACT-M-32]};
+    end
+end
+
+always @(*) begin
+    divisor_t[33]  = divisor_t[32];
+    dividend_t[33] = dividend_t[32];
+    if ({remainder_t[32], dividend_t[32][N_ACT-M-33]} >= {1'b0, divisor_t[32]}) begin
+        merchant_t[33]  = {merchant_t[32][N_ACT-M-1:0], 1'b1};
+        remainder_t[33] = {remainder_t[32], dividend_t[32][N_ACT-M-33]} - {1'b0, divisor_t[32]};
+    end else begin
+        merchant_t[33]  = {merchant_t[32][N_ACT-M-1:0], 1'b0};
+        remainder_t[33] = {remainder_t[32], dividend_t[32][N_ACT-M-33]};
     end
 end
 
@@ -2947,8 +3007,3 @@ assign merchant  = merchant_t[PIPE_DEPTH];
 assign remainder = remainder_t[PIPE_DEPTH];
 
 endmodule // div
-
-
-
-
-
