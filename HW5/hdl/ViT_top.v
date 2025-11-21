@@ -567,79 +567,22 @@ reg signed[BW_PER_ACT-1:0] a_bank_dat[0:15];
 
 integer k;
 always @(*) begin
-    case (cnt8)
-        3: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank0_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank0_reg_l[k-8];
-            end
-        end
-        4: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank0_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank0_reg_l[k-8];
-            end
-        end
-        5: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank1_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank1_reg_l[k-8];
-            end
-        end
-        6: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank1_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank1_reg_l[k-8];
-            end
-        end
-        7: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank2_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank2_reg_l[k-8];
-            end
-        end
-        8: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank2_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank2_reg_l[k-8];
-            end
-        end
-        0: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank3_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank3_reg_l[k-8];
-            end
-        end
-        1: begin
-            for (k=0; k<8; k=k+1) begin
-                a_bank_dat[k] = a_bank3_reg_h[k];
-            end
-            for (k=8; k<16; k=k+1) begin
-                a_bank_dat[k] = a_bank3_reg_l[k-8];
-            end
-        end
-        default: begin
-            for (k=0; k<16; k=k+1) begin
-                a_bank_dat[k] = 0;
-            end
-            
-        end
-    endcase
+    for (k = 0; k < 16; k = k + 1) begin
+        case (cnt8)
+            3: begin a_bank_dat[k] = (k < 8) ? a_bank0_reg_h[k] : a_bank0_reg_l[k-8]; end
+            4: begin a_bank_dat[k] = (k < 8) ? a_bank0_reg_h[k] : a_bank0_reg_l[k-8]; end
+            5: begin a_bank_dat[k] = (k < 8) ? a_bank1_reg_h[k] : a_bank1_reg_l[k-8]; end
+            6: begin a_bank_dat[k] = (k < 8) ? a_bank1_reg_h[k] : a_bank1_reg_l[k-8]; end
+            7: begin a_bank_dat[k] = (k < 8) ? a_bank2_reg_h[k] : a_bank2_reg_l[k-8]; end
+            8: begin a_bank_dat[k] = (k < 8) ? a_bank2_reg_h[k] : a_bank2_reg_l[k-8]; end
+            0: begin a_bank_dat[k] = (k < 8) ? a_bank3_reg_h[k] : a_bank3_reg_l[k-8]; end
+            1: begin a_bank_dat[k] = (k < 8) ? a_bank3_reg_h[k] : a_bank3_reg_l[k-8]; end
+            default: begin a_bank_dat[k] = 0; end
+        endcase
+    end
 end
+
+
 always @(*) begin
     token_mean_n = a_bank_dat[0]  + a_bank_dat[1]  + a_bank_dat[2]  + a_bank_dat[3]  + 
                    a_bank_dat[4]  + a_bank_dat[5]  + a_bank_dat[6]  + a_bank_dat[7]  + 
@@ -669,78 +612,19 @@ reg [13:0] a_bank_abs[0:15];
 reg [17:0] token_mae;
 
 always @(*) begin
-   case (cnt8)
-    4: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank0_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank0_reg_l[k-8], 4'b0};
-        end
+    for (k = 0; k < 16; k = k + 1) begin
+        case (cnt8)
+            4: begin a_bank_minux_x[k] = (k < 8) ? {a_bank0_reg_h[k], 4'b0} : {a_bank0_reg_l[k-8], 4'b0}; end
+            5: begin a_bank_minux_x[k] = (k < 8) ? {a_bank0_reg_h[k], 4'b0} : {a_bank0_reg_l[k-8], 4'b0}; end
+            6: begin a_bank_minux_x[k] = (k < 8) ? {a_bank1_reg_h[k], 4'b0} : {a_bank1_reg_l[k-8], 4'b0}; end
+            7: begin a_bank_minux_x[k] = (k < 8) ? {a_bank1_reg_h[k], 4'b0} : {a_bank1_reg_l[k-8], 4'b0}; end
+            8: begin a_bank_minux_x[k] = (k < 8) ? {a_bank2_reg_h[k], 4'b0} : {a_bank2_reg_l[k-8], 4'b0}; end
+            0: begin a_bank_minux_x[k] = (k < 8) ? {a_bank2_reg_h[k], 4'b0} : {a_bank2_reg_l[k-8], 4'b0}; end
+            1: begin a_bank_minux_x[k] = (k < 8) ? {a_bank3_reg_h[k], 4'b0} : {a_bank3_reg_l[k-8], 4'b0}; end
+            2: begin a_bank_minux_x[k] = (k < 8) ? {a_bank_reg_h_d[k], 4'b0} : {a_bank3_reg_l[k-8], 4'b0}; end
+            default: begin a_bank_minux_x[k] = 0; end
+        endcase
     end
-    5: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank0_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank0_reg_l[k-8], 4'b0};
-        end
-    end
-    6: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank1_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank1_reg_l[k-8], 4'b0};
-        end
-    end
-    7: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank1_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank1_reg_l[k-8], 4'b0};
-        end
-    end
-    8: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank2_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank2_reg_l[k-8], 4'b0};
-        end
-    end
-    0: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank2_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank2_reg_l[k-8], 4'b0};
-        end
-    end
-    1: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank3_reg_h[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank3_reg_l[k-8], 4'b0};
-        end
-    end
-    2: begin
-        for (k=0; k<8; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank_reg_h_d[k], 4'b0};
-        end
-        for (k=8; k<16; k=k+1) begin
-            a_bank_minux_x[k] = {a_bank3_reg_l[k-8], 4'b0};
-        end
-    end
-    default: begin
-        for (k=0; k<16; k=k+1) begin
-            a_bank_minux_x[k] = 0;
-        end
-    end
-        
-   endcase 
 end
 
 always @(*) begin
