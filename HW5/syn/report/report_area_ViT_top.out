@@ -3,30 +3,30 @@
 Report : area
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Fri Nov 21 00:43:59 2025
+Date   : Sat Nov 22 17:16:35 2025
 ****************************************
 
 Library(s) Used:
 
     slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
 
-Number of ports:                         4225
-Number of nets:                         85492
-Number of cells:                        80676
-Number of combinational cells:          76357
-Number of sequential cells:              4195
+Number of ports:                         4688
+Number of nets:                        175982
+Number of cells:                       170030
+Number of combinational cells:         161407
+Number of sequential cells:              8494
 Number of macros/black boxes:               0
-Number of buf/inv:                      13121
-Number of references:                     218
+Number of buf/inv:                      34416
+Number of references:                     216
 
-Combinational area:             122216.096726
-Buf/Inv area:                     9270.936207
-Noncombinational area:           26410.608589
+Combinational area:             234567.887233
+Buf/Inv area:                    24634.602550
+Noncombinational area:           53149.537186
 Macro/Black Box area:                0.000000
 Net Interconnect area:               0.000000
 
-Total cell area:                148626.705316
-Total area:                     148626.705316
+Total cell area:                287717.424418
+Total area:                     287717.424418
 
 Hierarchical area distribution
 ------------------------------
@@ -36,132 +36,137 @@ Hierarchical area distribution
 Hierarchical cell                 Absolute     Percent  Combi-       Noncombi-   Black-
                                   Total        Total    national     national    boxes   Design
 --------------------------------  -----------  -------  -----------  ----------  ------  -----------------------------------------
-ViT_top                           148626.7053    100.0   43791.7330  10020.6002  0.0000  ViT_top
-EXP_LUT_ARRAY_0__exp_lut_stage8     4620.0781      3.1    4620.0781      0.0000  0.0000  exp_lut_mydesign_7
-EXP_LUT_ARRAY_1__exp_lut_stage8     4622.1301      3.1    4622.1301      0.0000  0.0000  exp_lut_mydesign_6
-EXP_LUT_ARRAY_2__exp_lut_stage8     4621.4461      3.1    4621.4461      0.0000  0.0000  exp_lut_mydesign_5
-EXP_LUT_ARRAY_3__exp_lut_stage8     4623.1561      3.1    4623.1561      0.0000  0.0000  exp_lut_mydesign_4
-EXP_LUT_ARRAY_4__exp_lut_stage8     4621.4461      3.1    4621.4461      0.0000  0.0000  exp_lut_mydesign_3
-EXP_LUT_ARRAY_5__exp_lut_stage8     4622.4721      3.1    4622.4721      0.0000  0.0000  exp_lut_mydesign_2
-EXP_LUT_ARRAY_6__exp_lut_stage8     4623.4981      3.1    4623.4981      0.0000  0.0000  exp_lut_mydesign_1
-EXP_LUT_ARRAY_7__exp_lut_stage8     4622.8141      3.1    4622.8141      0.0000  0.0000  exp_lut_mydesign_0
-clk_gate_a_bank0_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_81
-clk_gate_a_bank0_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_80
-clk_gate_a_bank0_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_79
-clk_gate_a_bank0_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_78
-clk_gate_a_bank0_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_77
-clk_gate_a_bank0_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_76
-clk_gate_a_bank0_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_75
-clk_gate_a_bank0_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_74
-clk_gate_a_bank0_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_89
-clk_gate_a_bank0_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_88
-clk_gate_a_bank0_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_87
-clk_gate_a_bank0_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_86
-clk_gate_a_bank0_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_85
-clk_gate_a_bank0_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_84
-clk_gate_a_bank0_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_83
-clk_gate_a_bank0_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_82
-clk_gate_a_bank1_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_65
-clk_gate_a_bank1_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_64
-clk_gate_a_bank1_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_63
-clk_gate_a_bank1_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_62
-clk_gate_a_bank1_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_61
-clk_gate_a_bank1_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_60
-clk_gate_a_bank1_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_59
-clk_gate_a_bank1_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_58
-clk_gate_a_bank1_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_73
-clk_gate_a_bank1_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_72
-clk_gate_a_bank1_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_71
-clk_gate_a_bank1_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_70
-clk_gate_a_bank1_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_69
-clk_gate_a_bank1_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_68
-clk_gate_a_bank1_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_67
-clk_gate_a_bank1_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_66
-clk_gate_a_bank2_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_49
-clk_gate_a_bank2_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_48
-clk_gate_a_bank2_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_47
-clk_gate_a_bank2_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_46
-clk_gate_a_bank2_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_45
-clk_gate_a_bank2_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_44
-clk_gate_a_bank2_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_43
-clk_gate_a_bank2_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_42
-clk_gate_a_bank2_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_57
-clk_gate_a_bank2_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_56
-clk_gate_a_bank2_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_55
-clk_gate_a_bank2_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_54
-clk_gate_a_bank2_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_53
-clk_gate_a_bank2_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_52
-clk_gate_a_bank2_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_51
-clk_gate_a_bank2_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_50
-clk_gate_a_bank3_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_33
-clk_gate_a_bank3_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_32
-clk_gate_a_bank3_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_31
-clk_gate_a_bank3_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_30
-clk_gate_a_bank3_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_29
-clk_gate_a_bank3_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_28
-clk_gate_a_bank3_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_27
-clk_gate_a_bank3_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_26
-clk_gate_a_bank3_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_41
-clk_gate_a_bank3_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_40
-clk_gate_a_bank3_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_39
-clk_gate_a_bank3_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_38
-clk_gate_a_bank3_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_37
-clk_gate_a_bank3_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_36
-clk_gate_a_bank3_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_35
-clk_gate_a_bank3_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_34
-clk_gate_b_base_addr_cnt_b_reg         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_23
-clk_gate_bank0_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_17
-clk_gate_bank0_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_16
-clk_gate_bank1_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_15
-clk_gate_bank1_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_14
-clk_gate_bank2_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_21
-clk_gate_bank2_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_20
-clk_gate_bank3_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_19
-clk_gate_bank3_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_18
-clk_gate_bias_reg_reg_0_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_107
-clk_gate_bias_reg_reg_10_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_97
-clk_gate_bias_reg_reg_11_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_96
-clk_gate_bias_reg_reg_12_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_95
-clk_gate_bias_reg_reg_13_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_94
-clk_gate_bias_reg_reg_14_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_93
-clk_gate_bias_reg_reg_15_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_92
-clk_gate_bias_reg_reg_1_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_106
-clk_gate_bias_reg_reg_2_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
-clk_gate_bias_reg_reg_3_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_104
-clk_gate_bias_reg_reg_4_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_103
-clk_gate_bias_reg_reg_5_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_102
-clk_gate_bias_reg_reg_6_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_101
-clk_gate_bias_reg_reg_7_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_100
-clk_gate_bias_reg_reg_8_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_99
-clk_gate_bias_reg_reg_9_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_98
-clk_gate_c_bank_dat_reg_reg_0_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_10
-clk_gate_c_bank_dat_reg_reg_1_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_9
-clk_gate_c_bank_dat_reg_reg_2_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_8
-clk_gate_c_bank_dat_reg_reg_3_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_7
-clk_gate_c_bank_dat_reg_reg_4_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_6
-clk_gate_c_bank_dat_reg_reg_5_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_5
-clk_gate_c_bank_dat_reg_reg_6_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_4
-clk_gate_c_bank_dat_reg_reg_7_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_3
-clk_gate_cnt8_reg                      6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_91
-clk_gate_sram_addr_cnt_a_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_90
-clk_gate_sram_c_ch_cnt_reg             6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_13
-clk_gate_sram_waddr_cnt_d_reg          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
-clk_gate_sramc_k_addr_cnt_reg          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_11
-clk_gate_sramc_q_addr_cnt_reg          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_12
-clk_gate_sramd_raddr_cnt_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
-clk_gate_tmp_cnt_reg                   6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
-clk_gate_token_mean_reg                6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_25
-clk_gate_token_mean_reg_0              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_24
-clk_gate_weight_addr_cnt_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_22
-div0                                7145.7482      4.8    5170.0141   1975.7340  0.0000  div_mydesign_7
-div1                                7120.4402      4.8    5146.4161   1974.0240  0.0000  div_mydesign_6
-div2                                7140.9602      4.8    5166.2521   1974.7080  0.0000  div_mydesign_5
-div3                                7129.3322      4.8    5155.6501   1973.6820  0.0000  div_mydesign_4
-div4                                7148.1422      4.8    5172.7501   1975.3920  0.0000  div_mydesign_3
-div5                                7142.3282      4.8    5166.5941   1975.7340  0.0000  div_mydesign_2
-div6                                7126.9382      4.8    5152.2301   1974.7080  0.0000  div_mydesign_1
-div7                                7144.7222      4.8    5169.6721   1975.0500  0.0000  div_mydesign_0
+ViT_top                           287717.4244    100.0   42106.0149  22198.8785  0.0000  ViT_top
+EXP_LUT_ARRAY_0__exp_lut_stage8     4726.0981      1.6    4726.0981      0.0000  0.0000  exp_lut_mydesign_7
+EXP_LUT_ARRAY_1__exp_lut_stage8     4726.0981      1.6    4726.0981      0.0000  0.0000  exp_lut_mydesign_6
+EXP_LUT_ARRAY_2__exp_lut_stage8     4725.0721      1.6    4725.0721      0.0000  0.0000  exp_lut_mydesign_5
+EXP_LUT_ARRAY_3__exp_lut_stage8     4726.7821      1.6    4726.7821      0.0000  0.0000  exp_lut_mydesign_4
+EXP_LUT_ARRAY_4__exp_lut_stage8     4725.4141      1.6    4725.4141      0.0000  0.0000  exp_lut_mydesign_3
+EXP_LUT_ARRAY_5__exp_lut_stage8     4727.4661      1.6    4727.4661      0.0000  0.0000  exp_lut_mydesign_2
+EXP_LUT_ARRAY_6__exp_lut_stage8     4729.8601      1.6    4729.8601      0.0000  0.0000  exp_lut_mydesign_1
+EXP_LUT_ARRAY_7__exp_lut_stage8     4727.4661      1.6    4727.4661      0.0000  0.0000  exp_lut_mydesign_0
+clk_gate_a_bank0_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_87
+clk_gate_a_bank0_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_86
+clk_gate_a_bank0_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_85
+clk_gate_a_bank0_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_84
+clk_gate_a_bank0_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_83
+clk_gate_a_bank0_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_82
+clk_gate_a_bank0_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_81
+clk_gate_a_bank0_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_80
+clk_gate_a_bank0_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_95
+clk_gate_a_bank0_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_94
+clk_gate_a_bank0_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_93
+clk_gate_a_bank0_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_92
+clk_gate_a_bank0_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_91
+clk_gate_a_bank0_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_90
+clk_gate_a_bank0_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_89
+clk_gate_a_bank0_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_88
+clk_gate_a_bank1_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_71
+clk_gate_a_bank1_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_70
+clk_gate_a_bank1_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_69
+clk_gate_a_bank1_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_68
+clk_gate_a_bank1_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_67
+clk_gate_a_bank1_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_66
+clk_gate_a_bank1_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_65
+clk_gate_a_bank1_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_64
+clk_gate_a_bank1_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_79
+clk_gate_a_bank1_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_78
+clk_gate_a_bank1_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_77
+clk_gate_a_bank1_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_76
+clk_gate_a_bank1_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_75
+clk_gate_a_bank1_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_74
+clk_gate_a_bank1_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_73
+clk_gate_a_bank1_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_72
+clk_gate_a_bank2_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_55
+clk_gate_a_bank2_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_54
+clk_gate_a_bank2_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_53
+clk_gate_a_bank2_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_52
+clk_gate_a_bank2_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_51
+clk_gate_a_bank2_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_50
+clk_gate_a_bank2_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_49
+clk_gate_a_bank2_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_48
+clk_gate_a_bank2_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_63
+clk_gate_a_bank2_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_62
+clk_gate_a_bank2_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_61
+clk_gate_a_bank2_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_60
+clk_gate_a_bank2_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_59
+clk_gate_a_bank2_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_58
+clk_gate_a_bank2_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_57
+clk_gate_a_bank2_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_56
+clk_gate_a_bank3_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_39
+clk_gate_a_bank3_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_38
+clk_gate_a_bank3_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_37
+clk_gate_a_bank3_reg_h_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_36
+clk_gate_a_bank3_reg_h_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_35
+clk_gate_a_bank3_reg_h_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_34
+clk_gate_a_bank3_reg_h_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_33
+clk_gate_a_bank3_reg_h_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_32
+clk_gate_a_bank3_reg_l_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_47
+clk_gate_a_bank3_reg_l_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_46
+clk_gate_a_bank3_reg_l_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_45
+clk_gate_a_bank3_reg_l_reg_3_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_44
+clk_gate_a_bank3_reg_l_reg_4_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_43
+clk_gate_a_bank3_reg_l_reg_5_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_42
+clk_gate_a_bank3_reg_l_reg_6_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_41
+clk_gate_a_bank3_reg_l_reg_7_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_40
+clk_gate_b_base_addr_cnt_b_reg         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_29
+clk_gate_bank0_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_23
+clk_gate_bank0_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_22
+clk_gate_bank1_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_21
+clk_gate_bank1_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_20
+clk_gate_bank2_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_27
+clk_gate_bank2_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_26
+clk_gate_bank3_proj_add_reg            6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_25
+clk_gate_bank3_proj_add_reg_0          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_24
+clk_gate_bias_reg_reg_0_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
+clk_gate_bias_reg_reg_10_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_103
+clk_gate_bias_reg_reg_11_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_102
+clk_gate_bias_reg_reg_12_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_101
+clk_gate_bias_reg_reg_13_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_100
+clk_gate_bias_reg_reg_14_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_99
+clk_gate_bias_reg_reg_15_              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_98
+clk_gate_bias_reg_reg_1_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_112
+clk_gate_bias_reg_reg_2_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_111
+clk_gate_bias_reg_reg_3_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_110
+clk_gate_bias_reg_reg_4_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_109
+clk_gate_bias_reg_reg_5_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_108
+clk_gate_bias_reg_reg_6_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_107
+clk_gate_bias_reg_reg_7_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_106
+clk_gate_bias_reg_reg_8_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_105
+clk_gate_bias_reg_reg_9_               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_104
+clk_gate_c_bank_dat_reg_reg_0_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_16
+clk_gate_c_bank_dat_reg_reg_1_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_15
+clk_gate_c_bank_dat_reg_reg_2_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_14
+clk_gate_c_bank_dat_reg_reg_3_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_13
+clk_gate_c_bank_dat_reg_reg_4_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_12
+clk_gate_c_bank_dat_reg_reg_5_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_11
+clk_gate_c_bank_dat_reg_reg_6_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_10
+clk_gate_c_bank_dat_reg_reg_7_         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_9
+clk_gate_cnt8_reg                      6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_97
+clk_gate_exp_sum_reg_reg               6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_6
+clk_gate_exp_sum_reg_reg_0             6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_5
+clk_gate_exp_sum_reg_reg_1             6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_4
+clk_gate_exp_sum_reg_reg_2             6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_3
+clk_gate_sram_addr_cnt_a_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_96
+clk_gate_sram_c_ch_cnt_reg             6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_19
+clk_gate_sram_waddr_cnt_d_reg          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_8
+clk_gate_sramb_addr_vproj_cnt_reg      6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
+clk_gate_sramb_waddr_softmax_reg       6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
+clk_gate_sramc_k_addr_cnt_reg          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_17
+clk_gate_sramc_q_addr_cnt_reg          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_18
+clk_gate_sramd_raddr_cnt_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_7
+clk_gate_token_mean_reg                6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_31
+clk_gate_token_mean_reg_0              6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_30
+clk_gate_weight_addr_cnt_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_28
+div0                               23103.8105      8.0   19318.8964   3784.9141  0.0000  div_mydesign_7
+div1                               23130.4865      8.0   19334.2864   3796.2001  0.0000  div_mydesign_6
+div2                               23042.2505      8.0   19245.0244   3797.2261  0.0000  div_mydesign_5
+div3                               23056.2725      8.0   19271.0164   3785.2561  0.0000  div_mydesign_4
+div4                               23135.9585      8.0   19344.2044   3791.7541  0.0000  div_mydesign_3
+div5                               23075.0825      8.0   19291.8784   3783.2041  0.0000  div_mydesign_2
+div6                               23130.8285      8.0   19337.0224   3793.8061  0.0000  div_mydesign_1
+div7                               23150.6645      8.0   19350.7024   3799.9621  0.0000  div_mydesign_0
 --------------------------------  -----------  -------  -----------  ----------  ------  -----------------------------------------
-Total                                                   122216.0967  26410.6086  0.0000
+Total                                                   234567.8872  53149.5372  0.0000
 
 1

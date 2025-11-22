@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Fri Nov 21 00:44:14 2025
+Date   : Sat Nov 22 17:17:02 2025
 ****************************************
 
 
@@ -40,6 +40,16 @@ exp_lut_mydesign_2     Small             slow_vdd1v2
 exp_lut_mydesign_1     Small             slow_vdd1v2
 exp_lut_mydesign_0     Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_0
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_112
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_111
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_110
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_109
+                       Small             slow_vdd1v2
+SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_108
                        Small             slow_vdd1v2
 SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_107
                        Small             slow_vdd1v2
@@ -270,29 +280,29 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-ViT_top                                   1.732    6.919 4.00e+06    8.654 100.0
+ViT_top                                   0.786    7.817 7.65e+06    8.611 100.0
   EXP_LUT_ARRAY_7__exp_lut_stage8 (exp_lut_mydesign_0)
-                                       2.89e-02 5.83e-02 1.26e+05 8.73e-02   1.0
+                                       3.05e-02 6.02e-02 1.28e+05 9.08e-02   1.1
   EXP_LUT_ARRAY_6__exp_lut_stage8 (exp_lut_mydesign_1)
-                                       2.89e-02 5.84e-02 1.26e+05 8.74e-02   1.0
+                                       3.05e-02 6.00e-02 1.28e+05 9.07e-02   1.1
   EXP_LUT_ARRAY_5__exp_lut_stage8 (exp_lut_mydesign_2)
-                                       2.98e-02 6.01e-02 1.26e+05 9.00e-02   1.0
+                                       3.06e-02 6.01e-02 1.28e+05 9.09e-02   1.1
   EXP_LUT_ARRAY_4__exp_lut_stage8 (exp_lut_mydesign_3)
-                                       2.91e-02 5.88e-02 1.26e+05 8.81e-02   1.0
+                                       3.07e-02 6.03e-02 1.28e+05 9.11e-02   1.1
   EXP_LUT_ARRAY_3__exp_lut_stage8 (exp_lut_mydesign_4)
-                                       2.92e-02 5.90e-02 1.26e+05 8.83e-02   1.0
+                                       3.06e-02 6.01e-02 1.28e+05 9.09e-02   1.1
   EXP_LUT_ARRAY_2__exp_lut_stage8 (exp_lut_mydesign_5)
-                                       2.94e-02 5.93e-02 1.26e+05 8.88e-02   1.0
+                                       3.08e-02 6.06e-02 1.28e+05 9.15e-02   1.1
   EXP_LUT_ARRAY_1__exp_lut_stage8 (exp_lut_mydesign_6)
-                                       2.93e-02 5.92e-02 1.26e+05 8.87e-02   1.0
+                                       3.05e-02 6.00e-02 1.28e+05 9.07e-02   1.1
   EXP_LUT_ARRAY_0__exp_lut_stage8 (exp_lut_mydesign_7)
-                                       2.90e-02 5.85e-02 1.26e+05 8.77e-02   1.0
-  div7 (div_mydesign_0)                5.82e-02    0.399 1.83e+05    0.457   5.3
-  div6 (div_mydesign_1)                5.79e-02    0.397 1.82e+05    0.455   5.3
-  div5 (div_mydesign_2)                5.78e-02    0.398 1.82e+05    0.456   5.3
-  div4 (div_mydesign_3)                5.94e-02    0.403 1.83e+05    0.462   5.3
-  div3 (div_mydesign_4)                5.84e-02    0.399 1.83e+05    0.457   5.3
-  div2 (div_mydesign_5)                5.86e-02    0.399 1.82e+05    0.458   5.3
-  div1 (div_mydesign_6)                5.90e-02    0.401 1.82e+05    0.461   5.3
-  div0 (div_mydesign_7)                5.74e-02    0.397 1.83e+05    0.454   5.2
+                                       3.07e-02 6.04e-02 1.28e+05 9.13e-02   1.1
+  div7 (div_mydesign_0)                3.29e-02    0.509 5.95e+05    0.543   6.3
+  div6 (div_mydesign_1)                3.28e-02    0.507 5.96e+05    0.541   6.3
+  div5 (div_mydesign_2)                3.31e-02    0.509 5.93e+05    0.543   6.3
+  div4 (div_mydesign_3)                3.39e-02    0.511 5.96e+05    0.546   6.3
+  div3 (div_mydesign_4)                3.39e-02    0.512 5.95e+05    0.547   6.3
+  div2 (div_mydesign_5)                3.30e-02    0.510 5.95e+05    0.543   6.3
+  div1 (div_mydesign_6)                3.26e-02    0.508 5.96e+05    0.542   6.3
+  div0 (div_mydesign_7)                3.39e-02    0.511 5.97e+05    0.545   6.3
 1

@@ -6,7 +6,7 @@ Report : timing
         -max_paths 4
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Fri Nov 21 00:43:59 2025
+Date   : Sat Nov 22 17:16:35 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Fri Nov 21 00:43:59 2025
 Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
 Wire Load Model Mode: enclosed
 
-  Startpoint: div0/dividend_t_reg_0__13_
+  Startpoint: div0/dividend_t_reg_0__9_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div0/dividend_t_reg_4__13_
+  Endpoint: div0/dividend_t_reg_5__9_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -30,14 +30,14 @@ Wire Load Model Mode: enclosed
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_0__13_/CK (DFFQXL)                  0.00 #     0.00 r
-  div0/dividend_t_reg_0__13_/Q (DFFQXL)                   0.10       0.10 f
-  div0/dividend_t_reg_4__13_/D (DFFQXL)                   0.01       0.11 f
+  div0/dividend_t_reg_0__9_/CK (DFFQXL)                   0.00 #     0.00 r
+  div0/dividend_t_reg_0__9_/Q (DFFQXL)                    0.10       0.10 f
+  div0/dividend_t_reg_5__9_/D (DFFQXL)                    0.01       0.11 f
   data arrival time                                                  0.11
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_4__13_/CK (DFFQXL)                  0.00       0.00 r
+  div0/dividend_t_reg_5__9_/CK (DFFQXL)                   0.00       0.00 r
   library hold time                                       0.00       0.00
   data required time                                                 0.00
   --------------------------------------------------------------------------
@@ -47,9 +47,9 @@ Wire Load Model Mode: enclosed
   slack (MET)                                                        0.11
 
 
-  Startpoint: div0/dividend_t_reg_0__12_
+  Startpoint: div0/dividend_t_reg_0__8_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div0/dividend_t_reg_4__12_
+  Endpoint: div0/dividend_t_reg_5__8_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -63,14 +63,14 @@ Wire Load Model Mode: enclosed
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_0__12_/CK (DFFQXL)                  0.00 #     0.00 r
-  div0/dividend_t_reg_0__12_/Q (DFFQXL)                   0.10       0.10 f
-  div0/dividend_t_reg_4__12_/D (DFFQXL)                   0.01       0.11 f
+  div0/dividend_t_reg_0__8_/CK (DFFQXL)                   0.00 #     0.00 r
+  div0/dividend_t_reg_0__8_/Q (DFFQXL)                    0.10       0.10 f
+  div0/dividend_t_reg_5__8_/D (DFFQXL)                    0.01       0.11 f
   data arrival time                                                  0.11
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_4__12_/CK (DFFQXL)                  0.00       0.00 r
+  div0/dividend_t_reg_5__8_/CK (DFFQXL)                   0.00       0.00 r
   library hold time                                       0.00       0.00
   data required time                                                 0.00
   --------------------------------------------------------------------------
@@ -80,9 +80,9 @@ Wire Load Model Mode: enclosed
   slack (MET)                                                        0.11
 
 
-  Startpoint: div0/dividend_t_reg_0__11_
+  Startpoint: div0/dividend_t_reg_0__7_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div0/dividend_t_reg_4__11_
+  Endpoint: div0/dividend_t_reg_5__7_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -96,14 +96,14 @@ Wire Load Model Mode: enclosed
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_0__11_/CK (DFFQXL)                  0.00 #     0.00 r
-  div0/dividend_t_reg_0__11_/Q (DFFQXL)                   0.10       0.10 f
-  div0/dividend_t_reg_4__11_/D (DFFQXL)                   0.01       0.11 f
+  div0/dividend_t_reg_0__7_/CK (DFFQXL)                   0.00 #     0.00 r
+  div0/dividend_t_reg_0__7_/Q (DFFQXL)                    0.10       0.10 f
+  div0/dividend_t_reg_5__7_/D (DFFQXL)                    0.01       0.11 f
   data arrival time                                                  0.11
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_4__11_/CK (DFFQXL)                  0.00       0.00 r
+  div0/dividend_t_reg_5__7_/CK (DFFQXL)                   0.00       0.00 r
   library hold time                                       0.00       0.00
   data required time                                                 0.00
   --------------------------------------------------------------------------
@@ -113,9 +113,9 @@ Wire Load Model Mode: enclosed
   slack (MET)                                                        0.11
 
 
-  Startpoint: div0/dividend_t_reg_0__10_
+  Startpoint: div0/dividend_t_reg_0__6_
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div0/dividend_t_reg_4__10_
+  Endpoint: div0/dividend_t_reg_5__6_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -129,14 +129,14 @@ Wire Load Model Mode: enclosed
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_0__10_/CK (DFFQXL)                  0.00 #     0.00 r
-  div0/dividend_t_reg_0__10_/Q (DFFQXL)                   0.10       0.10 f
-  div0/dividend_t_reg_4__10_/D (DFFQXL)                   0.01       0.11 f
+  div0/dividend_t_reg_0__6_/CK (DFFQXL)                   0.00 #     0.00 r
+  div0/dividend_t_reg_0__6_/Q (DFFQXL)                    0.10       0.10 f
+  div0/dividend_t_reg_5__6_/D (DFFQXL)                    0.01       0.11 f
   data arrival time                                                  0.11
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  div0/dividend_t_reg_4__10_/CK (DFFQXL)                  0.00       0.00 r
+  div0/dividend_t_reg_5__6_/CK (DFFQXL)                   0.00       0.00 r
   library hold time                                       0.00       0.00
   data required time                                                 0.00
   --------------------------------------------------------------------------

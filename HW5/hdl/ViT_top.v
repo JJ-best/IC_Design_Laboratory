@@ -41,10 +41,10 @@ module ViT_top #(
     output reg  [5-1:0] sram_addr_b1,
     output reg  [5-1:0] sram_addr_b2,
     output reg  [5-1:0] sram_addr_b3,
-    output wire [6-1:0] sram_addr_c0,
-    output wire [6-1:0] sram_addr_c1,
-    output wire [6-1:0] sram_addr_c2,
-    output wire [6-1:0] sram_addr_c3,
+    output reg  [6-1:0] sram_addr_c0,
+    output reg  [6-1:0] sram_addr_c1,
+    output reg  [6-1:0] sram_addr_c2,
+    output reg  [6-1:0] sram_addr_c3,
     output wire [6-1:0] sram_addr_d0,
     output wire [6-1:0] sram_addr_d1,
     output wire [6-1:0] sram_addr_d2,
@@ -167,6 +167,15 @@ reg [4:0] sramb_waddr_softmax;
 reg [1:0]sramd_cnt;
 reg [79:0] softmax_wdata;
 reg [9:0] softmax_wdata_ch[0:7];
+
+// ===== step 14 ===== //
+reg [2:0] sramb_rcnt;
+reg [3:0] sramc_addr_vproj_cnt; // last 4-bit addr counter
+wire [5:0] sramc_addr_vproj;    // sram C addr for vproj
+reg [4:0] sramb_addr_vproj_cnt; // last 5-bit addr counter
+wire [4:0] sramb_addr_vproj;    // sram B addr for vproj
+reg [9:0] sramb_dat_vproj[0:3];
+wire [2:0] vproj_cnt8;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE       = 5'd0;
 localparam R_BIAS_A   = 5'd1;
@@ -289,7 +298,7 @@ always @(posedge clk) begin
     end
 end
 // should be 1 for correct answer
-assign valid = (tmp_cnt == 4'b1111)? 1:0;
+assign valid = (tmp_cnt == 4'b1111)? 0:0;
 
 // ===== read the normalize bias out ===== //
 // SRAM-bias: 1 data / addr
@@ -1157,6 +1166,12 @@ always @(*) begin
             sram_addr_b2 = sramb_waddr_softmax;
             sram_addr_b3 = sramb_waddr_softmax;
         end
+        V_PROJ: begin
+            sram_addr_b0 = sramb_addr_vproj;
+            sram_addr_b1 = sramb_addr_vproj;
+            sram_addr_b2 = sramb_addr_vproj;
+            sram_addr_b3 = sramb_addr_vproj;
+        end
         default: begin
             sram_addr_b0 = 0;
             sram_addr_b1 = 0;
@@ -1421,16 +1436,55 @@ reg signed [9:0] mul3_in2[0:7];
 
 always @(*) begin
     for (i=0; i<8; i=i+1) begin
-        //                                             Q matrix /  sram B data
-        mul0_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank0_dat[i];
-        mul1_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank1_dat[i];
-        mul2_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank2_dat[i];
-        mul3_in1[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank_dat_reg[i]: b_bank3_dat[i];
-        //                                           K^T matrix /  projection weight
-        mul0_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank0_dat[i]   : weight_sel[i];
-        mul1_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank1_dat[i]   : weight_sel[i];
-        mul2_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank2_dat[i]   : weight_sel[i];
-        mul3_in2[i] = (top_state == R_SRAM_C || top_state == R_SRAM_C_T)? c_bank3_dat[i]   : weight_sel[i];
+        case (top_state)
+            PROJ, PROJ_T: begin
+                // sram B data
+                mul0_in1[i] = b_bank0_dat[i];
+                mul1_in1[i] = b_bank1_dat[i];
+                mul2_in1[i] = b_bank2_dat[i];
+                mul3_in1[i] = b_bank3_dat[i];
+                // projection weight
+                mul0_in2[i] = weight_sel[i];
+                mul1_in2[i] = weight_sel[i];
+                mul2_in2[i] = weight_sel[i];
+                mul3_in2[i] = weight_sel[i];
+            end
+            R_SRAM_C, R_SRAM_C_T: begin
+                // Q matrix
+                mul0_in1[i] = c_bank_dat_reg[i];
+                mul1_in1[i] = c_bank_dat_reg[i];
+                mul2_in1[i] = c_bank_dat_reg[i];
+                mul3_in1[i] = c_bank_dat_reg[i];
+                // K^T matrix
+                mul0_in2[i] = c_bank0_dat[i];
+                mul1_in2[i] = c_bank1_dat[i];
+                mul2_in2[i] = c_bank2_dat[i];
+                mul3_in2[i] = c_bank3_dat[i];
+            end
+            V_PROJ: begin
+                // softmax matrix 4ch
+                mul0_in1[i] = sramb_dat_vproj[0];
+                mul1_in1[i] = sramb_dat_vproj[1];
+                mul2_in1[i] = sramb_dat_vproj[2];
+                mul3_in1[i] = sramb_dat_vproj[3];
+                // K^T matrix
+                mul0_in2[i] = c_bank0_dat[i]; // token0 ch0-7
+                mul1_in2[i] = c_bank1_dat[i]; // token1 ch0-7
+                mul2_in2[i] = c_bank2_dat[i]; // token2 ch0-7
+                mul3_in2[i] = c_bank3_dat[i]; // token3 ch0-7
+            end
+            default: begin
+                mul0_in1[i] = 0;
+                mul1_in1[i] = 0;
+                mul2_in1[i] = 0;
+                mul3_in1[i] = 0;
+
+                mul0_in2[i] = 0;
+                mul1_in2[i] = 0;
+                mul2_in2[i] = 0;
+                mul3_in2[i] = 0;
+            end 
+        endcase
     end
 end
 always @(*) begin
@@ -1684,10 +1738,47 @@ end
 
 assign sram_addr_cnt_c = sram_c_proj_base + sram_c_block_cnt;
 
-assign sram_addr_c0 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
-assign sram_addr_c1 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
-assign sram_addr_c2 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
-assign sram_addr_c3 = (top_state == PROJ | top_state == PROJ_T)? sram_addr_cnt_c: sramc_addr;
+always @(*) begin
+    case (top_state)
+        PROJ: begin
+            sram_addr_c0 = sram_addr_cnt_c;
+            sram_addr_c1 = sram_addr_cnt_c;
+            sram_addr_c2 = sram_addr_cnt_c;
+            sram_addr_c3 = sram_addr_cnt_c;
+        end
+        PROJ_T: begin
+            sram_addr_c0 = sram_addr_cnt_c;
+            sram_addr_c1 = sram_addr_cnt_c;
+            sram_addr_c2 = sram_addr_cnt_c;
+            sram_addr_c3 = sram_addr_cnt_c;
+        end
+        R_SRAM_C: begin
+            sram_addr_c0 = sramc_addr;
+            sram_addr_c1 = sramc_addr;
+            sram_addr_c2 = sramc_addr;
+            sram_addr_c3 = sramc_addr;
+        end
+        R_SRAM_C_T: begin
+            sram_addr_c0 = sramc_addr;
+            sram_addr_c1 = sramc_addr;
+            sram_addr_c2 = sramc_addr;
+            sram_addr_c3 = sramc_addr;
+        end
+        V_PROJ: begin
+            sram_addr_c0 = sramc_addr_vproj;
+            sram_addr_c1 = sramc_addr_vproj;
+            sram_addr_c2 = sramc_addr_vproj;
+            sram_addr_c3 = sramc_addr_vproj;
+        end
+        default: begin
+            sram_addr_c0 = 0;
+            sram_addr_c1 = 0;
+            sram_addr_c2 = 0;
+            sram_addr_c3 = 0;
+        end
+            
+    endcase
+end
 
 reg [7:0]wordmask_c;
 always @(*) begin
@@ -2539,31 +2630,213 @@ always @(*) begin
     , softmax_wdata_ch[4], softmax_wdata_ch[5], softmax_wdata_ch[6], softmax_wdata_ch[7]};
 end
 
-// ----- other method ----- //
 // implement an 1024 point LUT to map 10-bit fixed point number to exp
 // then calculated the softmax
-// exp (unsigned + 14-bit integer + 50-bit fraction, need to add sign before but in div)
-// (1-bit sign + 14-bit integer + 50-bit fraction)
+// exp (unsigned + 14-bit integer + 14-bit fraction)
+// (14-bit integer + 14-bit fraction)
 // softmax(x_i) = exp(x_i) / Σ exp(x_i)
 // the divide result (1-bit sign + 14-bit integer + 6-bit fraction)
 // since we need to preserve the fraction 6-bit the softmax is implemnet by
 // softmax(x_i) = ({exp(x_i), 6'b0})/Σ exp(x_i)
 
-// 14. Read V projection from SRAM C and softmax result from SRAM B.
+// ===== 14. Read V projection from SRAM C and softmax result from SRAM B. ===== //
 // In this part, we read sram C for matrix V(64x8 matrix)
 // and sram B for sortmax result(16x64 matrix)
 
 // sram B and sram C access
-// addr32: addr0 -> ... -> addr7
-// addr33: addr8 -> ... -> addr15
-// addr34: addr0 -> ... -> addr7
-// addr35: addr8 -> ... -> addr15
+// addr0: addr32 -> ... -> add39
+// addr1: addr40 -> ... -> addr47
+// addr2: addr32 -> ... -> add39
+// addr3: addr40 -> ... -> addr47
 // ...
-// addr62: addr0 -> ... -> addr7
-// addr63: addr8 -> ... -> addr15
+// addr30: addr32 -> ... -> add39
+// addr31: addr40 -> ... -> addr47
 
+// each sram B addr stall 8 cycle
+// sram B:
+// addr32 -> addr33 -> addr34 -> ... -> addr62 -> addr63
+// 0_0000 -> 0_0001 -> 0_0010 -> ... -> 1_1110 -> 1_1111
+// sram C: 
+// addr32 -> addr33 -> ... -> addr47
+// 10_0000 -> 10_0001 -> ... -> 10_1111
+
+reg valid_13;
+always @(posedge clk) begin
+    if (top_state == V_PROJ) begin
+        sramb_rcnt <= sramb_rcnt + 1;
+        valid_13 <= 1;
+    end else begin
+        sramb_rcnt <= 0;
+        valid_13 <= 0;
+    end
+end
+always @(posedge clk) begin
+    if (sramb_rcnt == 3'b111) begin
+        sramb_addr_vproj_cnt <= sramb_addr_vproj_cnt + 1;
+    end else if (top_state == V_PROJ) begin
+        sramb_addr_vproj_cnt <= sramb_addr_vproj_cnt;
+    end else begin
+        sramb_addr_vproj_cnt <= 0;
+    end
+end
+assign sramb_addr_vproj = {sramb_addr_vproj_cnt};
+
+always @(posedge clk) begin
+    if (top_state == V_PROJ) begin
+        sramc_addr_vproj_cnt <= sramc_addr_vproj_cnt + 1;
+    end else begin
+        sramc_addr_vproj_cnt <= 0;
+    end
+end
+assign sramc_addr_vproj = {2'b10, sramc_addr_vproj_cnt};
 
 // 15. Implement multiplication of attention head 0 first 16 rows results.
+// each cycle, sram B(softmax) read out 4-bank, 32 ch, we only sel 4 ch / per cycle
+// bank0 ch0~3 -> bank0 ch4~7 -> bank1 ch0~3 -> bank1 ch4~7 -> ... -> bank3 ch0~3 -> bank3 ch4~7
+// each cycle, sram C(matrix V) read out 4-bank(4 token), each have 8ch
+
+// sramb_addr = 0
+// cycle 1:
+// bank0 ch0 * token0 ch0-7
+// bank0 ch1 * token1 ch0-7
+// bank0 ch2 * token2 ch0-7
+// bank0 ch3 * token3 ch0-7
+// cycle 2:
+// bank0 ch4 * token4 ch0-7
+// bank0 ch5 * token5 ch0-7
+// bank0 ch6 * token6 ch0-7
+// bank0 ch7 * token7 ch0-7
+// cycle 3:
+// bank1 ch0 * token8  ch0-7
+// bank1 ch1 * token9  ch0-7
+// bank1 ch2 * token10 ch0-7
+// bank1 ch3 * token11 ch0-7
+// cycle 4:
+// bank1 ch4 * token12 ch0-7
+// bank1 ch5 * token13 ch0-7
+// bank1 ch6 * token14 ch0-7
+// bank1 ch7 * token15 ch0-7
+// ...
+// cycle 8:
+// bank3 ch4 * token28 ch0-7
+// bank3 ch5 * token29 ch0-7
+// bank3 ch6 * token30 ch0-7
+// bank3 ch7 * token31 ch0-7
+// sramb_addr = 1
+// cycle 9:
+// bank0 ch0 * token32 ch0-7
+// bank0 ch1 * token33 ch0-7
+// bank0 ch2 * token34 ch0-7
+// bank0 ch3 * token35 ch0-7
+// cycle 10:
+// bank0 ch4 * token36 ch0-7
+// bank0 ch5 * token37 ch0-7
+// bank0 ch6 * token38 ch0-7
+// bank0 ch7 * token39 ch0-7
+// cycle 11:
+// bank1 ch0 * token40 ch0-7
+// bank1 ch1 * token41 ch0-7
+// bank1 ch2 * token42 ch0-7
+// bank1 ch3 * token43 ch0-7
+// cycle 12:
+// bank1 ch4 * token44 ch0-7
+// bank1 ch5 * token45 ch0-7
+// bank1 ch6 * token46 ch0-7
+// bank1 ch7 * token47 ch0-7
+// ...
+// cycle 16:
+// bank3 ch4 * token60 ch0-7
+// bank3 ch5 * token61 ch0-7
+// bank3 ch6 * token62 ch0-7
+// bank3 ch7 * token63 ch0-7
+wire [3:0] vproj_cnt16 = sramc_addr_vproj_cnt[3:0];
+assign vproj_cnt8 = sramc_addr_vproj_cnt[2:0];
+always @(*) begin
+    case (vproj_cnt8)
+        3'd1: begin
+            sramb_dat_vproj[0] = b_bank0_dat[0];
+            sramb_dat_vproj[1] = b_bank0_dat[1];
+            sramb_dat_vproj[2] = b_bank0_dat[2];
+            sramb_dat_vproj[3] = b_bank0_dat[3];
+        end
+        3'd2: begin
+            sramb_dat_vproj[0] = b_bank0_dat[4];
+            sramb_dat_vproj[1] = b_bank0_dat[5];
+            sramb_dat_vproj[2] = b_bank0_dat[6];
+            sramb_dat_vproj[3] = b_bank0_dat[7]; 
+        end
+        3'd3: begin
+            sramb_dat_vproj[0] = b_bank1_dat[0];
+            sramb_dat_vproj[1] = b_bank1_dat[1];
+            sramb_dat_vproj[2] = b_bank1_dat[2];
+            sramb_dat_vproj[3] = b_bank1_dat[3];
+        end
+        3'd4: begin
+            sramb_dat_vproj[0] = b_bank1_dat[4];
+            sramb_dat_vproj[1] = b_bank1_dat[5];
+            sramb_dat_vproj[2] = b_bank1_dat[6];
+            sramb_dat_vproj[3] = b_bank1_dat[7];
+        end
+        3'd5: begin
+            sramb_dat_vproj[0] = b_bank2_dat[0];
+            sramb_dat_vproj[1] = b_bank2_dat[1];
+            sramb_dat_vproj[2] = b_bank2_dat[2];
+            sramb_dat_vproj[3] = b_bank2_dat[3];
+        end
+        3'd6: begin
+            sramb_dat_vproj[0] = b_bank2_dat[4];
+            sramb_dat_vproj[1] = b_bank2_dat[5];
+            sramb_dat_vproj[2] = b_bank2_dat[6];
+            sramb_dat_vproj[3] = b_bank2_dat[7];
+        end
+        3'd7: begin
+            sramb_dat_vproj[0] = b_bank3_dat[0];
+            sramb_dat_vproj[1] = b_bank3_dat[1];
+            sramb_dat_vproj[2] = b_bank3_dat[2];
+            sramb_dat_vproj[3] = b_bank3_dat[3];
+        end
+        3'd0: begin
+            sramb_dat_vproj[0] = b_bank3_dat[4];
+            sramb_dat_vproj[1] = b_bank3_dat[5];
+            sramb_dat_vproj[2] = b_bank3_dat[6];
+            sramb_dat_vproj[3] = b_bank3_dat[7];
+        end
+    endcase
+end
+
+// accumulated 64 ch multiply result
+// since the multiply is 
+// (1-bit sign + 3-bit integer + 6-bit fraction) * (1-bit sign + 3-bit integer + 6-bit fraction) 
+// the multiply result is (1-bit sign + 7-bit integer + 12-bit fraction)
+// for addition 64 mul result, the result is:
+// 1-bit sign + 13-bit integer + 12-bit fraction
+reg signed[21:0] vproj_add_n[0:7];
+reg signed[25:0] vproj_add[0:7];
+reg signed[25:0] vproj_add_sel[0:7];
+reg valid_14;
+wire accum_done; // high if accumulation is done, write into sram D
+always @(*) begin
+    for (i=0; i<8; i=i+1) begin
+        vproj_add_n[i] = bank0_proj_mul_n[i] + bank1_proj_mul_n[i] + bank2_proj_mul_n[i] + bank3_proj_mul_n[i] + vproj_add_sel[i];
+    end
+end
+always @(posedge clk) begin
+    for (i=0; i<8; i=i+1) begin
+        if (top_state == V_PROJ && valid_13) begin
+            vproj_add[i] <= vproj_add_n[i];
+        end else begin
+            vproj_add[i] <= 0;
+        end
+    end
+    valid_14 <= valid_13;
+end
+assign accum_done = (valid_14 && vproj_cnt16==1)? 1:0;
+always @(*) begin
+    for (i=0; i<8; i=i+1) begin
+        vproj_add_sel[i] = (accum_done)? 0: vproj_add[i];
+    end
+end
+
 // 16. Quantize the result to 10-bits and write the result to SRAM D
 
 
