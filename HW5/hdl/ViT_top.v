@@ -2838,11 +2838,47 @@ always @(*) begin
 end
 
 // 16. Quantize the result to 10-bits and write the result to SRAM D
+// The accumulation result is 1-bit sign + 13-bit integer + 12-bit fraction
+// we need to quantize to 1-bit sign + 3-bit integer + 6-bit fraction
 
-
+// since the accumalated output have 12-bit fraction(11-0), but we only want 
+// 6-bit fraction, thus we need to find rounding output. That is, if the 
+// (5-0) fraction bit is > 10_0000 than + 1 to (11-6) fraction
+// to implement this, we add 10_0000 to accumulated output, so if the last 6 bit 
+// of original accumulated output > 10_0000 it will add 1 to (12-6) fraction
+reg signed [25:0] vproj_rounding_output [0:7];
+always @(*) begin
+    for (i=0; i<8; i=i+1) begin
+        vproj_rounding_output[i] = vproj_add[i] + 6'b10_0000;
+    end
+end
+reg signed [19:0] vproj_quan[0:7];
+always @(*) begin
+    for (i=0; i<8; i=i+1) begin
+        // truncate last 6-bit after rounding
+        vproj_quan[i] = vproj_rounding_output[i][25:6];
+    end
+end
+// quantize to 10-bit
+// if quantized output > 511 (10-bit sign number max), then quantized output = 511
+// if quantized output < -512(10-bit sign number min), then quantized output = -512
+reg [9:0] vproj_quan_10[0:7];
+always @(*) begin
+    for (k=0; k<8; k=k+1) begin
+        if (vproj_quan[k] > 13'sd511) begin
+            vproj_quan_10[k] = 10'sd511;
+        end else if (vproj_quan[k] < -13'sd512) begin
+            vproj_quan_10[k] = -10'sd512;
+        end else begin
+            vproj_quan_10[k] = vproj_quan[k][9:0];
+        end
+    end
+end
 
 
 endmodule
+
+
 module div #(
     parameter N = 34,
     parameter M = 34,
