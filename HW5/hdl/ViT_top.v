@@ -183,6 +183,7 @@ reg [5:0] vproj_wcnt;
 wire accum_done;
 reg [4:0] vproj_sramd_waddr;
 wire [79:0] vproj_wdata;
+reg head_sel;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE       = 5'd0;
 localparam R_BIAS_A   = 5'd1;
@@ -196,7 +197,7 @@ localparam SOFTMAX    = 5'd8;
 localparam SOFTMAX_T  = 5'd9;
 localparam V_PROJ     = 5'd10;
 localparam V_PROJ_T   = 5'd11;
-localparam PROJ2      = 5'd12;
+localparam DONE      = 5'd12;
 
 localparam demask_h   = 8'b0000_1111;
 localparam demask_l   = 8'b1111_0000;
@@ -246,7 +247,7 @@ always @(*) begin
             end
         end
         PROJ: begin
-            if (sram_raddr_weight == 8'd40 && sram_addr_cnt_b == 5'd31) begin
+            if ((sram_raddr_weight == 8'd40|| sram_raddr_weight == 8'd48)&& sram_addr_cnt_b == 5'd31) begin
                 top_state_n = PROJ_T;
             end else begin
                 top_state_n = PROJ;
@@ -296,15 +297,15 @@ always @(*) begin
         end
         V_PROJ_T: begin
             if (accum_done && vproj_wcnt==6'd63) begin
-                top_state_n = PROJ2;
+                top_state_n = (!head_sel)? R_BIAS_A: DONE;
             end else if (accum_done && vproj_wcnt[3:0]==4'b1111) begin
                 top_state_n = R_SRAM_C;
             end else begin
                 top_state_n = V_PROJ_T;
             end
         end
-        PROJ2: begin
-            top_state_n = PROJ2;
+        DONE: begin
+            top_state_n = DONE;
         end
         default: begin
            top_state_n = IDLE; 
@@ -317,7 +318,7 @@ reg [3:0]tmp_cnt;
 always @(posedge clk) begin
     if (!srst_n) begin
         tmp_cnt <= 0;
-    end else if (top_state == PROJ2)begin
+    end else if (top_state == DONE)begin
         tmp_cnt <= tmp_cnt + 1;
     end
 end
@@ -397,6 +398,8 @@ always @(posedge clk) begin
         cnt8 <= 0;
     end else if (top_state == NORMAL) begin
         cnt8 <= (cnt8 == 4'd8)? 0 : cnt8 + 1;
+    end else if (top_state != NORMAL && top_state != NORMAL_T) begin
+        cnt8 <= 0;
     end
 end 
 // SRAM A addr controller
@@ -1364,6 +1367,14 @@ reg [7:0]weight_addr_cnt_n;
 
 reg [4:0]col_cnt;
 reg phase;
+
+always @(posedge clk) begin
+    if (!srst_n) begin
+        head_sel <= 0;
+    end else if (accum_done && vproj_wcnt==6'd63) begin
+        head_sel <= 1;
+    end
+end
 always @(posedge clk) begin
     if (!srst_n) begin
         weight_addr_cnt <= 1;
@@ -1372,18 +1383,18 @@ always @(posedge clk) begin
     end
 end
 always @(*) begin
-    if (top_state == PROJ) begin
-        case (weight_addr_cnt)
-            8'd8:    weight_addr_cnt_n = 8'd17;
-            8'd24:   weight_addr_cnt_n = 8'd33;
-            8'd40:   weight_addr_cnt_n = 8'd0 ;
-            default: weight_addr_cnt_n = weight_addr_cnt + 1;
-        endcase
-    end else if (top_state == PROJ2) begin
+    if (top_state == PROJ && head_sel) begin
         case (weight_addr_cnt)
             8'd16:   weight_addr_cnt_n = 8'd25;
             8'd32:   weight_addr_cnt_n = 8'd41;
             8'd48:   weight_addr_cnt_n = 8'd0 ;
+            default: weight_addr_cnt_n = weight_addr_cnt + 1;
+        endcase
+    end else if (top_state == PROJ) begin
+        case (weight_addr_cnt)
+            8'd8:    weight_addr_cnt_n = 8'd17;
+            8'd24:   weight_addr_cnt_n = 8'd33;
+            8'd40:   weight_addr_cnt_n = 8'd0 ;
             default: weight_addr_cnt_n = weight_addr_cnt + 1;
         endcase
     end else begin
@@ -1751,6 +1762,10 @@ always @(posedge clk) begin
         sram_c_block_cnt <= (sram_c_block_cnt == 4'd15)? 0 : sram_c_block_cnt + 1;
         sram_c_ch_cnt    <= (sram_c_block_cnt == 4'd15)? sram_c_ch_cnt + 1: sram_c_ch_cnt;
         sram_c_proj_cnt  <= (sram_c_ch_cnt == 3'd7 && sram_c_block_cnt == 4'd15)? sram_c_proj_cnt + 1: sram_c_proj_cnt;
+    end else if (top_state != PROJ && top_state != PROJ_T) begin
+        sram_c_block_cnt <= 0;
+        sram_c_ch_cnt    <= 0;
+        sram_c_proj_cnt  <= 0;
     end
 end
 
