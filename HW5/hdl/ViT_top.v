@@ -45,10 +45,10 @@ module ViT_top #(
     output reg  [6-1:0] sram_addr_c1,
     output reg  [6-1:0] sram_addr_c2,
     output reg  [6-1:0] sram_addr_c3,
-    output wire [6-1:0] sram_addr_d0,
-    output wire [6-1:0] sram_addr_d1,
-    output wire [6-1:0] sram_addr_d2,
-    output wire [6-1:0] sram_addr_d3,
+    output reg  [6-1:0] sram_addr_d0,
+    output reg  [6-1:0] sram_addr_d1,
+    output reg  [6-1:0] sram_addr_d2,
+    output reg  [6-1:0] sram_addr_d3,
     output wire [8-1:0] sram_raddr_weight,
     output wire [7-1:0] sram_raddr_bias,
 
@@ -65,10 +65,10 @@ module ViT_top #(
     output wire sram_wen_c1,
     output wire sram_wen_c2,
     output wire sram_wen_c3,
-    output wire sram_wen_d0,
-    output wire sram_wen_d1,
-    output wire sram_wen_d2,
-    output wire sram_wen_d3,
+    output reg  sram_wen_d0,
+    output reg  sram_wen_d1,
+    output reg  sram_wen_d2,
+    output reg  sram_wen_d3,
 
     // SRAM word mask outputs
     output wire [CH_NUM*ACT_PER_ADDR-1:0] sram_wordmask_a0,
@@ -101,10 +101,10 @@ module ViT_top #(
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_c1,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_c2,
     output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_c3,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d0,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d1,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d2,
-    output wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d3
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d0,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d1,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d2,
+    output reg  [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_d3
 );
 
 
@@ -168,6 +168,7 @@ reg [1:0]sramd_cnt;
 reg [79:0] softmax_wdata;
 reg [9:0] softmax_wdata_ch[0:7];
 
+
 // ===== step 14 ===== //
 reg [2:0] sramb_rcnt;
 reg [3:0] sramc_addr_vproj_cnt; // last 4-bit addr counter
@@ -176,6 +177,12 @@ reg [4:0] sramb_addr_vproj_cnt; // last 5-bit addr counter
 wire [4:0] sramb_addr_vproj;    // sram B addr for vproj
 reg [9:0] sramb_dat_vproj[0:3];
 wire [2:0] vproj_cnt8;
+
+// ----- vproj write sram D ----- //
+reg [5:0] vproj_wcnt; 
+wire accum_done;
+reg [4:0] vproj_sramd_waddr;
+wire [79:0] vproj_wdata;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE       = 5'd0;
 localparam R_BIAS_A   = 5'd1;
@@ -188,7 +195,8 @@ localparam R_SRAM_C_T = 5'd7;
 localparam SOFTMAX    = 5'd8;
 localparam SOFTMAX_T  = 5'd9;
 localparam V_PROJ     = 5'd10;
-localparam PROJ2= 5'd13;
+localparam V_PROJ_T   = 5'd11;
+localparam PROJ2      = 5'd12;
 
 localparam demask_h   = 8'b0000_1111;
 localparam demask_l   = 8'b1111_0000;
@@ -280,7 +288,23 @@ always @(*) begin
             end
         end
         V_PROJ: begin
-            top_state_n = V_PROJ;
+            if (sram_addr_b0 == 5'd31 && sram_addr_c0 == 6'd47) begin
+                top_state_n = V_PROJ_T;
+            end else begin
+                top_state_n = V_PROJ;
+            end
+        end
+        V_PROJ_T: begin
+            if (accum_done && vproj_wcnt==6'd63) begin
+                top_state_n = PROJ2;
+            end else if (accum_done && vproj_wcnt[3:0]==4'b1111) begin
+                top_state_n = R_SRAM_C;
+            end else begin
+                top_state_n = V_PROJ_T;
+            end
+        end
+        PROJ2: begin
+            top_state_n = PROJ2;
         end
         default: begin
            top_state_n = IDLE; 
@@ -293,12 +317,12 @@ reg [3:0]tmp_cnt;
 always @(posedge clk) begin
     if (!srst_n) begin
         tmp_cnt <= 0;
-    end else if (top_state == V_PROJ)begin
+    end else if (top_state == PROJ2)begin
         tmp_cnt <= tmp_cnt + 1;
     end
 end
 // should be 1 for correct answer
-assign valid = (tmp_cnt == 4'b1111)? 0:0;
+assign valid = (tmp_cnt == 4'b1111)? 1:0;
 
 // ===== read the normalize bias out ===== //
 // SRAM-bias: 1 data / addr
@@ -1461,7 +1485,7 @@ always @(*) begin
                 mul2_in2[i] = c_bank2_dat[i];
                 mul3_in2[i] = c_bank3_dat[i];
             end
-            V_PROJ: begin
+            V_PROJ, V_PROJ_T: begin
                 // softmax matrix 4ch
                 mul0_in1[i] = sramb_dat_vproj[0];
                 mul1_in1[i] = sramb_dat_vproj[1];
@@ -1962,11 +1986,11 @@ reg [3:0] sramc_q_addr_cnt;
 wire [4:0] sramc_q_addr;
 reg [1:0] token_cnt;
 always @(posedge clk) begin
-    if (top_state == R_SRAM_C) begin
+    if (!srst_n) begin
+        sramc_q_addr_cnt = 0;
+    end else if (top_state == R_SRAM_C) begin
         sramc_q_addr_cnt <= (sramc_addr == 6'b01_1111 && token_cnt == 2'b11)? sramc_q_addr_cnt + 1: sramc_q_addr_cnt;
-    end else begin
-        sramc_q_addr_cnt <= 0;
-    end
+    end 
 end
 assign sramc_q_addr = {1'b0, sramc_q_addr_cnt};
 
@@ -2271,84 +2295,165 @@ end
 
 assign sramd_waddr = {1'b1, sram_waddr_cnt_d};
 
-assign sram_addr_d0 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
-assign sram_addr_d1 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
-assign sram_addr_d2 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
-assign sram_addr_d3 = (top_state==SOFTMAX)? sramd_raddr: sramd_waddr;
+always @(*) begin
+    case (top_state)
+        R_SRAM_C, R_SRAM_C_T: begin
+            sram_addr_d0 = sramd_waddr;
+            sram_addr_d1 = sramd_waddr;
+            sram_addr_d2 = sramd_waddr;
+            sram_addr_d3 = sramd_waddr;
+        end
+        SOFTMAX: begin
+            sram_addr_d0 = sramd_raddr;
+            sram_addr_d1 = sramd_raddr;
+            sram_addr_d2 = sramd_raddr;
+            sram_addr_d3 = sramd_raddr;
+        end
+        V_PROJ, V_PROJ_T: begin
+            sram_addr_d0 = vproj_sramd_waddr;
+            sram_addr_d1 = vproj_sramd_waddr;
+            sram_addr_d2 = vproj_sramd_waddr;
+            sram_addr_d3 = vproj_sramd_waddr;
+        end
+        default: begin
+            sram_addr_d0 = 0;
+            sram_addr_d1 = 0;
+            sram_addr_d2 = 0;
+            sram_addr_d3 = 0;
+        end
+    endcase
+end
 
 wire [79:0]sramd_wdata_1;
 wire [79:0]sramd_wdata_2;
 assign sramd_wdata_1 = {qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_quan_10[3], 40'b0};
 assign sramd_wdata_2 = {40'b0, qk_quan_10[0], qk_quan_10[1], qk_quan_10[2], qk_quan_10[3]};
-// assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-// assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-// assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-// assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
 
-assign sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-assign sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-assign sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
-assign sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+always @(*) begin
+    case (top_state)
+        R_SRAM_C, R_SRAM_C_T: begin
+            sram_wdata_d0 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+            sram_wdata_d1 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+            sram_wdata_d2 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+            sram_wdata_d3 = (qk_cnt8[0]==0)? sramd_wdata_1: sramd_wdata_2;
+        end
+        V_PROJ, V_PROJ_T: begin
+            sram_wdata_d0 = vproj_wdata;
+            sram_wdata_d1 = vproj_wdata;
+            sram_wdata_d2 = vproj_wdata;
+            sram_wdata_d3 = vproj_wdata;
+        end
+        default: begin
+            sram_wdata_d0 = 0;
+            sram_wdata_d1 = 0;
+            sram_wdata_d2 = 0;
+            sram_wdata_d3 = 0;
+        end
+    endcase
+end
 
+reg [7:0]qk_wordmask_d0;
+reg [7:0]qk_wordmask_d1;
+reg [7:0]qk_wordmask_d2;
+reg [7:0]qk_wordmask_d3;
 
-
+always @(*) begin
+    case (top_state)
+        R_SRAM_C, R_SRAM_C_T: begin
+            sram_wordmask_d0 = qk_wordmask_d0;
+            sram_wordmask_d1 = qk_wordmask_d1;
+            sram_wordmask_d2 = qk_wordmask_d2;
+            sram_wordmask_d3 = qk_wordmask_d3;
+        end
+        V_PROJ, V_PROJ_T: begin
+            sram_wordmask_d0 = demask_all;
+            sram_wordmask_d1 = demask_all;
+            sram_wordmask_d2 = demask_all;
+            sram_wordmask_d3 = demask_all;
+        end
+        default: begin
+            sram_wordmask_d0 = mask_all;
+            sram_wordmask_d1 = mask_all;
+            sram_wordmask_d2 = mask_all;
+            sram_wordmask_d3 = mask_all;
+        end
+    endcase
+end
 always @(*) begin
     case (qk_cnt8)
     0: begin
-        sram_wordmask_d0 = demask_h;
-        sram_wordmask_d1 = mask_all;
-        sram_wordmask_d2 = mask_all;
-        sram_wordmask_d3 = mask_all;
+        qk_wordmask_d0 = demask_h;
+        qk_wordmask_d1 = mask_all;
+        qk_wordmask_d2 = mask_all;
+        qk_wordmask_d3 = mask_all;
     end
     1: begin
-        sram_wordmask_d0 = demask_l;
-        sram_wordmask_d1 = mask_all;
-        sram_wordmask_d2 = mask_all;
-        sram_wordmask_d3 = mask_all;
+        qk_wordmask_d0 = demask_l;
+        qk_wordmask_d1 = mask_all;
+        qk_wordmask_d2 = mask_all;
+        qk_wordmask_d3 = mask_all;
     end
     2: begin
-        sram_wordmask_d0 = mask_all;
-        sram_wordmask_d1 = demask_h;
-        sram_wordmask_d2 = mask_all;
-        sram_wordmask_d3 = mask_all;
+        qk_wordmask_d0 = mask_all;
+        qk_wordmask_d1 = demask_h;
+        qk_wordmask_d2 = mask_all;
+        qk_wordmask_d3 = mask_all;
     end
     3: begin
-        sram_wordmask_d0 = mask_all;
-        sram_wordmask_d1 = demask_l;
-        sram_wordmask_d2 = mask_all;
-        sram_wordmask_d3 = mask_all;
+        qk_wordmask_d0 = mask_all;
+        qk_wordmask_d1 = demask_l;
+        qk_wordmask_d2 = mask_all;
+        qk_wordmask_d3 = mask_all;
     end
     4: begin
-        sram_wordmask_d0 = mask_all;
-        sram_wordmask_d1 = mask_all;
-        sram_wordmask_d2 = demask_h;
-        sram_wordmask_d3 = mask_all;
+        qk_wordmask_d0 = mask_all;
+        qk_wordmask_d1 = mask_all;
+        qk_wordmask_d2 = demask_h;
+        qk_wordmask_d3 = mask_all;
     end
     5: begin
-        sram_wordmask_d0 = mask_all;
-        sram_wordmask_d1 = mask_all;
-        sram_wordmask_d2 = demask_l;
-        sram_wordmask_d3 = mask_all;
+        qk_wordmask_d0 = mask_all;
+        qk_wordmask_d1 = mask_all;
+        qk_wordmask_d2 = demask_l;
+        qk_wordmask_d3 = mask_all;
     end
     6: begin
-        sram_wordmask_d0 = mask_all;
-        sram_wordmask_d1 = mask_all;
-        sram_wordmask_d2 = mask_all;
-        sram_wordmask_d3 = demask_h;
+        qk_wordmask_d0 = mask_all;
+        qk_wordmask_d1 = mask_all;
+        qk_wordmask_d2 = mask_all;
+        qk_wordmask_d3 = demask_h;
     end
     7: begin
-        sram_wordmask_d0 = mask_all;
-        sram_wordmask_d1 = mask_all;
-        sram_wordmask_d2 = mask_all;
-        sram_wordmask_d3 = demask_l;
+        qk_wordmask_d0 = mask_all;
+        qk_wordmask_d1 = mask_all;
+        qk_wordmask_d2 = mask_all;
+        qk_wordmask_d3 = demask_l;
     end
     endcase
 end
 
-assign sram_wen_d0 = !valid_8;
-assign sram_wen_d1 = !valid_8;
-assign sram_wen_d2 = !valid_8;
-assign sram_wen_d3 = !valid_8;
+always @(*) begin
+    case (top_state)
+        R_SRAM_C, R_SRAM_C_T: begin
+            sram_wen_d0 = !valid_8;
+            sram_wen_d1 = !valid_8;
+            sram_wen_d2 = !valid_8;
+            sram_wen_d3 = !valid_8;
+        end
+        V_PROJ, V_PROJ_T: begin
+            sram_wen_d0 = (accum_done && vproj_wcnt[1:0]==2'b00)? 0:1;
+            sram_wen_d1 = (accum_done && vproj_wcnt[1:0]==2'b01)? 0:1;
+            sram_wen_d2 = (accum_done && vproj_wcnt[1:0]==2'b10)? 0:1;
+            sram_wen_d3 = (accum_done && vproj_wcnt[1:0]==2'b11)? 0:1;
+        end
+        default: begin
+            sram_wen_d0 = 1'b1;
+            sram_wen_d1 = 1'b1;
+            sram_wen_d2 = 1'b1;
+            sram_wen_d3 = 1'b1;
+        end
+    endcase
+end
 
 // ===== 11. Read the attention data form SRAM D. ===== //
 // In the exponential part, since we use the taylor series 
@@ -2682,7 +2787,7 @@ end
 assign sramb_addr_vproj = {sramb_addr_vproj_cnt};
 
 always @(posedge clk) begin
-    if (top_state == V_PROJ) begin
+    if (top_state == V_PROJ || top_state == V_PROJ_T) begin
         sramc_addr_vproj_cnt <= sramc_addr_vproj_cnt + 1;
     end else begin
         sramc_addr_vproj_cnt <= 0;
@@ -2814,7 +2919,7 @@ reg signed[21:0] vproj_add_n[0:7];
 reg signed[25:0] vproj_add[0:7];
 reg signed[25:0] vproj_add_sel[0:7];
 reg valid_14;
-wire accum_done; // high if accumulation is done, write into sram D
+
 always @(*) begin
     for (i=0; i<8; i=i+1) begin
         vproj_add_n[i] = bank0_proj_mul_n[i] + bank1_proj_mul_n[i] + bank2_proj_mul_n[i] + bank3_proj_mul_n[i] + vproj_add_sel[i];
@@ -2822,7 +2927,7 @@ always @(*) begin
 end
 always @(posedge clk) begin
     for (i=0; i<8; i=i+1) begin
-        if (top_state == V_PROJ && valid_13) begin
+        if ((top_state == V_PROJ || top_state == V_PROJ_T) && valid_13) begin
             vproj_add[i] <= vproj_add_n[i];
         end else begin
             vproj_add[i] <= 0;
@@ -2830,6 +2935,8 @@ always @(posedge clk) begin
     end
     valid_14 <= valid_13;
 end
+
+// high if accumulation is done, write into sram D
 assign accum_done = (valid_14 && vproj_cnt16==1)? 1:0;
 always @(*) begin
     for (i=0; i<8; i=i+1) begin
@@ -2875,6 +2982,57 @@ always @(*) begin
     end
 end
 
+assign vproj_wdata = {vproj_quan_10[0], vproj_quan_10[1], vproj_quan_10[2], vproj_quan_10[3], 
+                      vproj_quan_10[4], vproj_quan_10[5], vproj_quan_10[6], vproj_quan_10[7]};
+
+
+// ----- write the result into sram D ----- //
+// since the VPROJ state will produce 8 ch(1 token) when 
+// accume_done is high, we write 1 bank every write
+// the sram D access sequence is 
+// chunk1(128 cycle)
+// addr0 : bank0 -> bank1 -> bank2 -> bank3
+// addr1 : bank0 -> bank1 -> bank2 -> bank3
+// addr2 : bank0 -> bank1 -> bank2 -> bank3
+// addr3 : bank0 -> bank1 -> bank2 -> bank3
+// chunk2(128 cycle)
+// addr4 : bank0 -> bank1 -> bank2 -> bank3
+// addr5 : bank0 -> bank1 -> bank2 -> bank3
+// addr6 : bank0 -> bank1 -> bank2 -> bank3
+// addr7 : bank0 -> bank1 -> bank2 -> bank3
+// chunk3(128 cycle)
+// addr8 : bank0 -> bank1 -> bank2 -> bank3
+// addr9 : bank0 -> bank1 -> bank2 -> bank3
+// addr10: bank0 -> bank1 -> bank2 -> bank3
+// addr11: bank0 -> bank1 -> bank2 -> bank3
+// chunk4(128 cycle)
+// addr12: bank0 -> bank1 -> bank2 -> bank3
+// addr13: bank0 -> bank1 -> bank2 -> bank3
+// addr14: bank0 -> bank1 -> bank2 -> bank3
+// addr15: bank0 -> bank1 -> bank2 -> bank3
+// we write sram D only if accum_done is high
+
+// controll write enable of each bank
+always @(posedge clk) begin
+    if (!srst_n) begin
+        vproj_wcnt <= 0;
+    end else if (accum_done) begin
+        vproj_wcnt <= vproj_wcnt + 1;
+    end else if (top_state == V_PROJ || top_state == V_PROJ_T) begin
+        vproj_wcnt <= vproj_wcnt;
+    end 
+end
+
+// sram D addr 0 -> 31
+always @(posedge clk) begin
+    if (!srst_n) begin
+        vproj_sramd_waddr <= 0;
+    end else if (accum_done && vproj_wcnt[1:0] == 2'b11) begin
+        vproj_sramd_waddr <= vproj_sramd_waddr + 1;
+    end else if (top_state == V_PROJ || top_state == V_PROJ_T || top_state == SOFTMAX) begin
+        vproj_sramd_waddr <= vproj_sramd_waddr;
+    end 
+end
 
 endmodule
 
