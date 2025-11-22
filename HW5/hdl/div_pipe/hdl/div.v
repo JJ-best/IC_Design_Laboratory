@@ -1,6 +1,6 @@
 module div #(
-    parameter N = 36,
-    parameter M = 36,
+    parameter N = 39,
+    parameter M = 39,
     parameter N_ACT = M+N-1
 )(
     input clk,
@@ -9,7 +9,8 @@ module div #(
     output [N-1:0] merchant,
     output [M-1:0] remainder
 );
-// Restoring divider with pipeline registers arranged as |6|6|6|6|6|6
+
+// Restoring divider with pipeline registers arranged as |6|7|7|7|6|6
 
 localparam integer PIPE_DEPTH = N_ACT - M;
 
@@ -102,28 +103,28 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_6 = {{remainder_t[5], dividend_t[5][N_ACT-M-6]}} - {1'b0, divisor_t[5]};
-always @(posedge clk) begin
-    divisor_t[6]  <= divisor_t[5];
-    dividend_t[6] <= dividend_t[5];
+always @(*) begin
+    divisor_t[6]  = divisor_t[5];
+    dividend_t[6] = dividend_t[5];
     if (!stage_sub_6[M]) begin
-        merchant_t[6]  <= {merchant_t[5][N_ACT-M-1:0], 1'b1};
-        remainder_t[6] <= stage_sub_6[M-1:0];
+        merchant_t[6]  = {merchant_t[5][N_ACT-M-1:0], 1'b1};
+        remainder_t[6] = stage_sub_6[M-1:0];
     end else begin
-        merchant_t[6]  <= {merchant_t[5][N_ACT-M-1:0], 1'b0};
-        remainder_t[6] <= {remainder_t[5], dividend_t[5][N_ACT-M-6]};
+        merchant_t[6]  = {merchant_t[5][N_ACT-M-1:0], 1'b0};
+        remainder_t[6] = {remainder_t[5], dividend_t[5][N_ACT-M-6]};
     end
 end
 
 wire [M:0] stage_sub_7 = {{remainder_t[6], dividend_t[6][N_ACT-M-7]}} - {1'b0, divisor_t[6]};
-always @(*) begin
-    divisor_t[7]  = divisor_t[6];
-    dividend_t[7] = dividend_t[6];
+always @(posedge clk) begin
+    divisor_t[7]  <= divisor_t[6];
+    dividend_t[7] <= dividend_t[6];
     if (!stage_sub_7[M]) begin
-        merchant_t[7]  = {merchant_t[6][N_ACT-M-1:0], 1'b1};
-        remainder_t[7] = stage_sub_7[M-1:0];
+        merchant_t[7]  <= {merchant_t[6][N_ACT-M-1:0], 1'b1};
+        remainder_t[7] <= stage_sub_7[M-1:0];
     end else begin
-        merchant_t[7]  = {merchant_t[6][N_ACT-M-1:0], 1'b0};
-        remainder_t[7] = {remainder_t[6], dividend_t[6][N_ACT-M-7]};
+        merchant_t[7]  <= {merchant_t[6][N_ACT-M-1:0], 1'b0};
+        remainder_t[7] <= {remainder_t[6], dividend_t[6][N_ACT-M-7]};
     end
 end
 
@@ -180,15 +181,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_12 = {{remainder_t[11], dividend_t[11][N_ACT-M-12]}} - {1'b0, divisor_t[11]};
-always @(posedge clk) begin
-    divisor_t[12]  <= divisor_t[11];
-    dividend_t[12] <= dividend_t[11];
+always @(*) begin
+    divisor_t[12]  = divisor_t[11];
+    dividend_t[12] = dividend_t[11];
     if (!stage_sub_12[M]) begin
-        merchant_t[12]  <= {merchant_t[11][N_ACT-M-1:0], 1'b1};
-        remainder_t[12] <= stage_sub_12[M-1:0];
+        merchant_t[12]  = {merchant_t[11][N_ACT-M-1:0], 1'b1};
+        remainder_t[12] = stage_sub_12[M-1:0];
     end else begin
-        merchant_t[12]  <= {merchant_t[11][N_ACT-M-1:0], 1'b0};
-        remainder_t[12] <= {remainder_t[11], dividend_t[11][N_ACT-M-12]};
+        merchant_t[12]  = {merchant_t[11][N_ACT-M-1:0], 1'b0};
+        remainder_t[12] = {remainder_t[11], dividend_t[11][N_ACT-M-12]};
     end
 end
 
@@ -206,15 +207,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_14 = {{remainder_t[13], dividend_t[13][N_ACT-M-14]}} - {1'b0, divisor_t[13]};
-always @(*) begin
-    divisor_t[14]  = divisor_t[13];
-    dividend_t[14] = dividend_t[13];
+always @(posedge clk) begin
+    divisor_t[14]  <= divisor_t[13];
+    dividend_t[14] <= dividend_t[13];
     if (!stage_sub_14[M]) begin
-        merchant_t[14]  = {merchant_t[13][N_ACT-M-1:0], 1'b1};
-        remainder_t[14] = stage_sub_14[M-1:0];
+        merchant_t[14]  <= {merchant_t[13][N_ACT-M-1:0], 1'b1};
+        remainder_t[14] <= stage_sub_14[M-1:0];
     end else begin
-        merchant_t[14]  = {merchant_t[13][N_ACT-M-1:0], 1'b0};
-        remainder_t[14] = {remainder_t[13], dividend_t[13][N_ACT-M-14]};
+        merchant_t[14]  <= {merchant_t[13][N_ACT-M-1:0], 1'b0};
+        remainder_t[14] <= {remainder_t[13], dividend_t[13][N_ACT-M-14]};
     end
 end
 
@@ -258,15 +259,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_18 = {{remainder_t[17], dividend_t[17][N_ACT-M-18]}} - {1'b0, divisor_t[17]};
-always @(posedge clk) begin
-    divisor_t[18]  <= divisor_t[17];
-    dividend_t[18] <= dividend_t[17];
+always @(*) begin
+    divisor_t[18]  = divisor_t[17];
+    dividend_t[18] = dividend_t[17];
     if (!stage_sub_18[M]) begin
-        merchant_t[18]  <= {merchant_t[17][N_ACT-M-1:0], 1'b1};
-        remainder_t[18] <= stage_sub_18[M-1:0];
+        merchant_t[18]  = {merchant_t[17][N_ACT-M-1:0], 1'b1};
+        remainder_t[18] = stage_sub_18[M-1:0];
     end else begin
-        merchant_t[18]  <= {merchant_t[17][N_ACT-M-1:0], 1'b0};
-        remainder_t[18] <= {remainder_t[17], dividend_t[17][N_ACT-M-18]};
+        merchant_t[18]  = {merchant_t[17][N_ACT-M-1:0], 1'b0};
+        remainder_t[18] = {remainder_t[17], dividend_t[17][N_ACT-M-18]};
     end
 end
 
@@ -297,15 +298,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_21 = {{remainder_t[20], dividend_t[20][N_ACT-M-21]}} - {1'b0, divisor_t[20]};
-always @(*) begin
-    divisor_t[21]  = divisor_t[20];
-    dividend_t[21] = dividend_t[20];
+always @(posedge clk) begin
+    divisor_t[21]  <= divisor_t[20];
+    dividend_t[21] <= dividend_t[20];
     if (!stage_sub_21[M]) begin
-        merchant_t[21]  = {merchant_t[20][N_ACT-M-1:0], 1'b1};
-        remainder_t[21] = stage_sub_21[M-1:0];
+        merchant_t[21]  <= {merchant_t[20][N_ACT-M-1:0], 1'b1};
+        remainder_t[21] <= stage_sub_21[M-1:0];
     end else begin
-        merchant_t[21]  = {merchant_t[20][N_ACT-M-1:0], 1'b0};
-        remainder_t[21] = {remainder_t[20], dividend_t[20][N_ACT-M-21]};
+        merchant_t[21]  <= {merchant_t[20][N_ACT-M-1:0], 1'b0};
+        remainder_t[21] <= {remainder_t[20], dividend_t[20][N_ACT-M-21]};
     end
 end
 
@@ -336,15 +337,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_24 = {{remainder_t[23], dividend_t[23][N_ACT-M-24]}} - {1'b0, divisor_t[23]};
-always @(posedge clk) begin
-    divisor_t[24]  <= divisor_t[23];
-    dividend_t[24] <= dividend_t[23];
+always @(*) begin
+    divisor_t[24]  = divisor_t[23];
+    dividend_t[24] = dividend_t[23];
     if (!stage_sub_24[M]) begin
-        merchant_t[24]  <= {merchant_t[23][N_ACT-M-1:0], 1'b1};
-        remainder_t[24] <= stage_sub_24[M-1:0];
+        merchant_t[24]  = {merchant_t[23][N_ACT-M-1:0], 1'b1};
+        remainder_t[24] = stage_sub_24[M-1:0];
     end else begin
-        merchant_t[24]  <= {merchant_t[23][N_ACT-M-1:0], 1'b0};
-        remainder_t[24] <= {remainder_t[23], dividend_t[23][N_ACT-M-24]};
+        merchant_t[24]  = {merchant_t[23][N_ACT-M-1:0], 1'b0};
+        remainder_t[24] = {remainder_t[23], dividend_t[23][N_ACT-M-24]};
     end
 end
 
@@ -375,15 +376,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_27 = {{remainder_t[26], dividend_t[26][N_ACT-M-27]}} - {1'b0, divisor_t[26]};
-always @(*) begin
-    divisor_t[27]  = divisor_t[26];
-    dividend_t[27] = dividend_t[26];
+always @(posedge clk) begin
+    divisor_t[27]  <= divisor_t[26];
+    dividend_t[27] <= dividend_t[26];
     if (!stage_sub_27[M]) begin
-        merchant_t[27]  = {merchant_t[26][N_ACT-M-1:0], 1'b1};
-        remainder_t[27] = stage_sub_27[M-1:0];
+        merchant_t[27]  <= {merchant_t[26][N_ACT-M-1:0], 1'b1};
+        remainder_t[27] <= stage_sub_27[M-1:0];
     end else begin
-        merchant_t[27]  = {merchant_t[26][N_ACT-M-1:0], 1'b0};
-        remainder_t[27] = {remainder_t[26], dividend_t[26][N_ACT-M-27]};
+        merchant_t[27]  <= {merchant_t[26][N_ACT-M-1:0], 1'b0};
+        remainder_t[27] <= {remainder_t[26], dividend_t[26][N_ACT-M-27]};
     end
 end
 
@@ -414,15 +415,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_30 = {{remainder_t[29], dividend_t[29][N_ACT-M-30]}} - {1'b0, divisor_t[29]};
-always @(posedge clk) begin
-    divisor_t[30]  <= divisor_t[29];
-    dividend_t[30] <= dividend_t[29];
+always @(*) begin
+    divisor_t[30]  = divisor_t[29];
+    dividend_t[30] = dividend_t[29];
     if (!stage_sub_30[M]) begin
-        merchant_t[30]  <= {merchant_t[29][N_ACT-M-1:0], 1'b1};
-        remainder_t[30] <= stage_sub_30[M-1:0];
+        merchant_t[30]  = {merchant_t[29][N_ACT-M-1:0], 1'b1};
+        remainder_t[30] = stage_sub_30[M-1:0];
     end else begin
-        merchant_t[30]  <= {merchant_t[29][N_ACT-M-1:0], 1'b0};
-        remainder_t[30] <= {remainder_t[29], dividend_t[29][N_ACT-M-30]};
+        merchant_t[30]  = {merchant_t[29][N_ACT-M-1:0], 1'b0};
+        remainder_t[30] = {remainder_t[29], dividend_t[29][N_ACT-M-30]};
     end
 end
 
@@ -453,15 +454,15 @@ always @(*) begin
 end
 
 wire [M:0] stage_sub_33 = {{remainder_t[32], dividend_t[32][N_ACT-M-33]}} - {1'b0, divisor_t[32]};
-always @(*) begin
-    divisor_t[33]  = divisor_t[32];
-    dividend_t[33] = dividend_t[32];
+always @(posedge clk) begin
+    divisor_t[33]  <= divisor_t[32];
+    dividend_t[33] <= dividend_t[32];
     if (!stage_sub_33[M]) begin
-        merchant_t[33]  = {merchant_t[32][N_ACT-M-1:0], 1'b1};
-        remainder_t[33] = stage_sub_33[M-1:0];
+        merchant_t[33]  <= {merchant_t[32][N_ACT-M-1:0], 1'b1};
+        remainder_t[33] <= stage_sub_33[M-1:0];
     end else begin
-        merchant_t[33]  = {merchant_t[32][N_ACT-M-1:0], 1'b0};
-        remainder_t[33] = {remainder_t[32], dividend_t[32][N_ACT-M-33]};
+        merchant_t[33]  <= {merchant_t[32][N_ACT-M-1:0], 1'b0};
+        remainder_t[33] <= {remainder_t[32], dividend_t[32][N_ACT-M-33]};
     end
 end
 
@@ -488,6 +489,45 @@ always @(*) begin
     end else begin
         merchant_t[35]  = {merchant_t[34][N_ACT-M-1:0], 1'b0};
         remainder_t[35] = {remainder_t[34], dividend_t[34][N_ACT-M-35]};
+    end
+end
+
+wire [M:0] stage_sub_36 = {{remainder_t[35], dividend_t[35][N_ACT-M-36]}} - {1'b0, divisor_t[35]};
+always @(*) begin
+    divisor_t[36]  = divisor_t[35];
+    dividend_t[36] = dividend_t[35];
+    if (!stage_sub_36[M]) begin
+        merchant_t[36]  = {merchant_t[35][N_ACT-M-1:0], 1'b1};
+        remainder_t[36] = stage_sub_36[M-1:0];
+    end else begin
+        merchant_t[36]  = {merchant_t[35][N_ACT-M-1:0], 1'b0};
+        remainder_t[36] = {remainder_t[35], dividend_t[35][N_ACT-M-36]};
+    end
+end
+
+wire [M:0] stage_sub_37 = {{remainder_t[36], dividend_t[36][N_ACT-M-37]}} - {1'b0, divisor_t[36]};
+always @(*) begin
+    divisor_t[37]  = divisor_t[36];
+    dividend_t[37] = dividend_t[36];
+    if (!stage_sub_37[M]) begin
+        merchant_t[37]  = {merchant_t[36][N_ACT-M-1:0], 1'b1};
+        remainder_t[37] = stage_sub_37[M-1:0];
+    end else begin
+        merchant_t[37]  = {merchant_t[36][N_ACT-M-1:0], 1'b0};
+        remainder_t[37] = {remainder_t[36], dividend_t[36][N_ACT-M-37]};
+    end
+end
+
+wire [M:0] stage_sub_38 = {{remainder_t[37], dividend_t[37][N_ACT-M-38]}} - {1'b0, divisor_t[37]};
+always @(*) begin
+    divisor_t[38]  = divisor_t[37];
+    dividend_t[38] = dividend_t[37];
+    if (!stage_sub_38[M]) begin
+        merchant_t[38]  = {merchant_t[37][N_ACT-M-1:0], 1'b1};
+        remainder_t[38] = stage_sub_38[M-1:0];
+    end else begin
+        merchant_t[38]  = {merchant_t[37][N_ACT-M-1:0], 1'b0};
+        remainder_t[38] = {remainder_t[37], dividend_t[37][N_ACT-M-38]};
     end
 end
 
