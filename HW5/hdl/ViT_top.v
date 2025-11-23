@@ -192,6 +192,15 @@ reg signed[(BW_PER_ACT-1):0] d_bank0_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] d_bank1_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] d_bank2_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] d_bank3_dat[0:(CH_NUM-1)];
+
+// ----- residual ----- //
+reg [4:0] sramb_addr_res;
+wire sramb_wen_res;
+reg [7:0] sramb_wordmask_res;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank0_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank1_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank2_w;
+reg [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] b_bank3_w;
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE       = 5'd0;
 localparam R_BIAS_A   = 5'd1;
@@ -207,7 +216,7 @@ localparam V_PROJ     = 5'd10;
 localparam V_PROJ_T   = 5'd11;
 localparam O_PROJ     = 5'd12;
 localparam O_PROJ_T   = 5'd13;
-localparam RESIDUAL   = 5'd14;
+localparam DONE   = 5'd14;
 
 localparam demask_h   = 8'b0000_1111;
 localparam demask_l   = 8'b1111_0000;
@@ -321,15 +330,15 @@ always @(*) begin
                 top_state_n = O_PROJ;
             end
         end
-        O_PROJ_T: begin
-            if (sram_wen_c0 == 0) begin
-                top_state_n = RESIDUAL;
+        O_PROJ_T: begin // TODO: O_PROJ_T 不要換那麼快
+            if (sram_addr_b0 == 5'd0) begin
+                top_state_n = DONE;
             end else begin
                 top_state_n = O_PROJ_T;
             end
         end
-        RESIDUAL: begin
-            top_state_n = RESIDUAL;
+        DONE: begin
+            top_state_n = DONE;
         end
         default: begin
            top_state_n = IDLE; 
@@ -342,7 +351,7 @@ reg [3:0]tmp_cnt;
 always @(posedge clk) begin
     if (!srst_n) begin
         tmp_cnt <= 0;
-    end else if (top_state == RESIDUAL)begin
+    end else if (top_state == DONE)begin
         tmp_cnt <= tmp_cnt + 1;
     end
 end
@@ -1095,29 +1104,23 @@ end
 
 always @(*) begin
     case (top_state)
-        NORMAL: begin
+        NORMAL, NORMAL_T: begin
             sram_wdata_b0 = b_bank_w;
             sram_wdata_b1 = b_bank_w;
             sram_wdata_b2 = b_bank_w;
             sram_wdata_b3 = b_bank_w;
         end
-        NORMAL_T: begin
-            sram_wdata_b0 = b_bank_w;
-            sram_wdata_b1 = b_bank_w;
-            sram_wdata_b2 = b_bank_w;
-            sram_wdata_b3 = b_bank_w;
-        end
-        SOFTMAX: begin
+        SOFTMAX, SOFTMAX_T: begin
             sram_wdata_b0 = softmax_wdata;
             sram_wdata_b1 = softmax_wdata;
             sram_wdata_b2 = softmax_wdata;
             sram_wdata_b3 = softmax_wdata;
         end
-        SOFTMAX_T: begin
-            sram_wdata_b0 = softmax_wdata;
-            sram_wdata_b1 = softmax_wdata;
-            sram_wdata_b2 = softmax_wdata;
-            sram_wdata_b3 = softmax_wdata;
+        O_PROJ, O_PROJ_T: begin
+            sram_wdata_b0 = b_bank0_w;
+            sram_wdata_b1 = b_bank1_w;
+            sram_wdata_b2 = b_bank2_w;
+            sram_wdata_b3 = b_bank3_w;
         end
         default: begin
             sram_wdata_b0 = 0;
@@ -1199,13 +1202,7 @@ end
 assign b_addr_norm = {b_msb_addr, b_base_addr_cnt_b};
 always @(*) begin
     case (top_state)
-        NORMAL: begin
-            sram_addr_b0 = b_addr_norm;
-            sram_addr_b1 = b_addr_norm;
-            sram_addr_b2 = b_addr_norm;
-            sram_addr_b3 = b_addr_norm;
-        end
-        NORMAL_T: begin
+        NORMAL, NORMAL_T: begin
             sram_addr_b0 = b_addr_norm;
             sram_addr_b1 = b_addr_norm;
             sram_addr_b2 = b_addr_norm;
@@ -1217,13 +1214,7 @@ always @(*) begin
             sram_addr_b2 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
             sram_addr_b3 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};
         end
-        SOFTMAX: begin
-            sram_addr_b0 = sramb_waddr_softmax;
-            sram_addr_b1 = sramb_waddr_softmax;
-            sram_addr_b2 = sramb_waddr_softmax;
-            sram_addr_b3 = sramb_waddr_softmax;
-        end
-        SOFTMAX_T: begin
+        SOFTMAX, SOFTMAX_T: begin
             sram_addr_b0 = sramb_waddr_softmax;
             sram_addr_b1 = sramb_waddr_softmax;
             sram_addr_b2 = sramb_waddr_softmax;
@@ -1234,6 +1225,12 @@ always @(*) begin
             sram_addr_b1 = sramb_addr_vproj;
             sram_addr_b2 = sramb_addr_vproj;
             sram_addr_b3 = sramb_addr_vproj;
+        end
+        O_PROJ, O_PROJ_T: begin
+            sram_addr_b0 = sramb_addr_res;
+            sram_addr_b1 = sramb_addr_res;
+            sram_addr_b2 = sramb_addr_res;
+            sram_addr_b3 = sramb_addr_res;
         end
         default: begin
             sram_addr_b0 = 0;
@@ -1255,7 +1252,7 @@ always @(posedge clk) begin
 end
 always @(*) begin
     case (top_state)
-        NORMAL: begin
+        NORMAL, NORMAL_T: begin
             sram_wen_b0 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b00);
             sram_wen_b1 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b01);
             sram_wen_b2 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b10);
@@ -1265,17 +1262,7 @@ always @(*) begin
             sram_wordmask_b2 = 8'b0;
             sram_wordmask_b3 = 8'b0;
         end
-        NORMAL_T: begin
-            sram_wen_b0 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b00);
-            sram_wen_b1 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b01);
-            sram_wen_b2 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b10);
-            sram_wen_b3 = !(valid_3 && sram_b_wen_cnt[2:1]==2'b11);
-            sram_wordmask_b0 = 8'b0;
-            sram_wordmask_b1 = 8'b0;
-            sram_wordmask_b2 = 8'b0;
-            sram_wordmask_b3 = 8'b0;
-        end
-        SOFTMAX: begin
+        SOFTMAX, SOFTMAX_T: begin
             sram_wen_b0 = !(valid_12_d6 && sramb_wcnt == 2'b00);
             sram_wen_b1 = !(valid_12_d6 && sramb_wcnt == 2'b01);
             sram_wen_b2 = !(valid_12_d6 && sramb_wcnt == 2'b10);
@@ -1285,15 +1272,15 @@ always @(*) begin
             sram_wordmask_b2 = 8'b0;
             sram_wordmask_b3 = 8'b0;
         end
-        SOFTMAX_T: begin
-            sram_wen_b0 = !(valid_12_d6 && sramb_wcnt == 2'b00);
-            sram_wen_b1 = !(valid_12_d6 && sramb_wcnt == 2'b01);
-            sram_wen_b2 = !(valid_12_d6 && sramb_wcnt == 2'b10);
-            sram_wen_b3 = !(valid_12_d6 && sramb_wcnt == 2'b11);
-            sram_wordmask_b0 = 8'b0;
-            sram_wordmask_b1 = 8'b0;
-            sram_wordmask_b2 = 8'b0;
-            sram_wordmask_b3 = 8'b0;
+        O_PROJ, O_PROJ_T: begin
+            sram_wen_b0 = sramb_wen_res;
+            sram_wen_b1 = sramb_wen_res;
+            sram_wen_b2 = sramb_wen_res;
+            sram_wen_b3 = sramb_wen_res;
+            sram_wordmask_b0 = sramb_wordmask_res;
+            sram_wordmask_b1 = sramb_wordmask_res;
+            sram_wordmask_b2 = sramb_wordmask_res;
+            sram_wordmask_b3 = sramb_wordmask_res;
         end
         default: begin
             // read only
@@ -3175,7 +3162,7 @@ always @(*) begin
         add_in1[i] = o_proj_wdat_d1[i];
     end
 end
-
+// 23. Implement residual add 
 always @(*) begin
     case (sram_c_ch_cnt_d1)
         3'd0: begin
@@ -3239,6 +3226,9 @@ always @(*) begin
         add_result[i] = add_in1[i] + add_in2[i];
     end
 end
+// 24. Quantize the result to 10-bit and store the result to SRAM B. 
+// the write address and enable can get from the pipeline control signal of sram C
+
 always @(*) begin
     for (i=0; i<4; i=i+1) begin
         residual_quan_10[i] = add_result[i][9:0];
@@ -3251,10 +3241,73 @@ always @(posedge clk) begin
         valid_15 <= 0;
     end
 end
+always @(posedge clk) begin
+    sramb_addr_res <= sram_addr_cnt_c;
+    sramb_wordmask_res <= wordmask_c;
+end
+assign sramb_wen_res = (valid_15)? 0:1; // low active write enable
+
+always @(*) begin
+    // the token_proj_quan10 will locate at different location
+    case (sram_c_ch_cnt_d1)
+        0: begin
+            b_bank0_w = {residual_quan_10[0], 70'b0};
+            b_bank1_w = {residual_quan_10[1], 70'b0};
+            b_bank2_w = {residual_quan_10[2], 70'b0};
+            b_bank3_w = {residual_quan_10[3], 70'b0};
+        end
+        1: begin
+            b_bank0_w = {10'b0, residual_quan_10[0], 60'b0};
+            b_bank1_w = {10'b0, residual_quan_10[1], 60'b0};
+            b_bank2_w = {10'b0, residual_quan_10[2], 60'b0};
+            b_bank3_w = {10'b0, residual_quan_10[3], 60'b0};
+        end
+        2: begin
+            b_bank0_w = {20'b0, residual_quan_10[0], 50'b0};
+            b_bank1_w = {20'b0, residual_quan_10[1], 50'b0};
+            b_bank2_w = {20'b0, residual_quan_10[2], 50'b0};
+            b_bank3_w = {20'b0, residual_quan_10[3], 50'b0};
+        end
+        3: begin
+            b_bank0_w = {30'b0, residual_quan_10[0], 40'b0};
+            b_bank1_w = {30'b0, residual_quan_10[1], 40'b0};
+            b_bank2_w = {30'b0, residual_quan_10[2], 40'b0};
+            b_bank3_w = {30'b0, residual_quan_10[3], 40'b0};
+        end
+        4: begin
+            b_bank0_w = {40'b0, residual_quan_10[0], 30'b0};
+            b_bank1_w = {40'b0, residual_quan_10[1], 30'b0};
+            b_bank2_w = {40'b0, residual_quan_10[2], 30'b0};
+            b_bank3_w = {40'b0, residual_quan_10[3], 30'b0};
+        end
+        5: begin
+            b_bank0_w = {50'b0, residual_quan_10[0], 20'b0};
+            b_bank1_w = {50'b0, residual_quan_10[1], 20'b0};
+            b_bank2_w = {50'b0, residual_quan_10[2], 20'b0};
+            b_bank3_w = {50'b0, residual_quan_10[3], 20'b0};
+        end
+        6: begin
+            b_bank0_w = {60'b0, residual_quan_10[0], 10'b0};
+            b_bank1_w = {60'b0, residual_quan_10[1], 10'b0};
+            b_bank2_w = {60'b0, residual_quan_10[2], 10'b0};
+            b_bank3_w = {60'b0, residual_quan_10[3], 10'b0};
+        end
+        7: begin
+            b_bank0_w = {70'b0, residual_quan_10[0]};
+            b_bank1_w = {70'b0, residual_quan_10[1]};
+            b_bank2_w = {70'b0, residual_quan_10[2]};
+            b_bank3_w = {70'b0, residual_quan_10[3]};
+        end
+        default: begin
+            b_bank0_w = 80'b0;
+            b_bank1_w = 80'b0;
+            b_bank2_w = 80'b0;
+            b_bank3_w = 80'b0;
+        end
+    endcase
+end
 
 
-// 23. Implement residual add 
-// 24. Quantize the result to 10-bit and store the result to SRAM B. 
 
 endmodule
 
