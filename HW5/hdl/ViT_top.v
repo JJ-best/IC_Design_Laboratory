@@ -1394,11 +1394,11 @@ always @(*) begin
         case (weight_addr_cnt)
             8'd8:    weight_addr_cnt_n = 8'd17;
             8'd24:   weight_addr_cnt_n = 8'd33;
-            8'd40:   weight_addr_cnt_n = 8'd0 ;
+            8'd40:   weight_addr_cnt_n = 8'd9 ; // next head addr start from 9
             default: weight_addr_cnt_n = weight_addr_cnt + 1;
         endcase
     end else begin
-        weight_addr_cnt_n = 0;
+        weight_addr_cnt_n = 1;
     end
 end
 
@@ -3042,6 +3042,14 @@ always @(posedge clk) begin
         vproj_sramd_waddr <= vproj_sramd_waddr;
     end 
 end
+
+// 19. Read V softmax multiplication result from SRAM D.
+// V softmax multiplication result is store in sram D(addr0~31, 4-bank, 8ch/bank)
+// Head0(64x8)
+
+// 20. Implement O projection. 
+// 21. Quantize the result to 10-bit and write the result to SRAM C. 
+
 
 endmodule
 module div #(
