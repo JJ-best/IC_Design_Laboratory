@@ -33,10 +33,10 @@ module ViT_top #(
     input wire [BIAS_PER_ADDR*BW_PER_PARAM-1:0] sram_rdata_bias,
 
     // SRAM address outputs
-    output wire [5-1:0] sram_addr_a0,
-    output wire [5-1:0] sram_addr_a1,
-    output wire [5-1:0] sram_addr_a2,
-    output wire [5-1:0] sram_addr_a3,
+    output reg  [5-1:0] sram_addr_a0,
+    output reg  [5-1:0] sram_addr_a1,
+    output reg  [5-1:0] sram_addr_a2,
+    output reg  [5-1:0] sram_addr_a3,
     output reg  [5-1:0] sram_addr_b0,
     output reg  [5-1:0] sram_addr_b1,
     output reg  [5-1:0] sram_addr_b2,
@@ -124,6 +124,8 @@ reg valid_2;
 reg [3:0] cnt8; // count 8 cycle
 reg [2:0]sram_b_wen_cnt;
 wire [5:0] sramc_addr;
+
+wire[5:0] sram_addr_cnt_c;
 // ===== read sram C ===== //
 reg [3:0] sramc_k_addr_cnt;
 reg [3:0] sramc_k_addr_cnt_d;
@@ -437,10 +439,28 @@ always @(posedge clk) begin
     end
 end
 
-assign sram_addr_a0 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
-assign sram_addr_a1 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
-assign sram_addr_a2 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
-assign sram_addr_a3 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+always @(*) begin
+    case (top_state)
+        NORMAL, NORMAL_T: begin
+            sram_addr_a0 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+            sram_addr_a1 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+            sram_addr_a2 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+            sram_addr_a3 = {sram_addr_cnt_a[0], sram_addr_cnt_a[4:1]};
+        end
+        O_PROJ, O_PROJ_T: begin
+            sram_addr_a0 = sram_addr_cnt_c;
+            sram_addr_a1 = sram_addr_cnt_c;
+            sram_addr_a2 = sram_addr_cnt_c;
+            sram_addr_a3 = sram_addr_cnt_c;
+        end
+        default: begin
+            sram_addr_a0 = 0;
+            sram_addr_a1 = 0;
+            sram_addr_a2 = 0;
+            sram_addr_a3 = 0;
+        end   
+    endcase
+end
 
 // ----- debug signal ----- //
 reg signed[(BW_PER_ACT-1):0] a_bank0_dat[0:(CH_NUM-1)];
@@ -1782,7 +1802,7 @@ localparam mask_proj_pat7 = 8'b1111_1110;
 wire proj_stage_done;
 wire proj_finish;
 
-wire[5:0] sram_addr_cnt_c;
+
 reg [3:0] sram_c_block_cnt; // token group 0(0,1,2,3)~15(60,61,62,63)
 reg [2:0] sram_c_ch_cnt;    // channel 0~7
 reg [1:0] sram_c_proj_cnt;  // 0:Q, 1:K, 2:V
@@ -3128,14 +3148,116 @@ end
 // each addr stall 2 cycle
 
 // 20. Implement O projection. 
-
 // 21. Quantize the result to 10-bit and write the result to SRAM C. 
-
 // The datapath is implement by the projection datapath
-// we only need to write address generator
 
+// 22. Read O projection from SRAM C and patch embedded data from SRAM A. 
+// In this part, we dont read from SRAM C, we use different datapath.
+// When we write o projection data into sram C, we parallel read sram A and
+// add the residual, so these two process (write sram C and add residual) will 
+// be parallel
+
+// pipeline the o projection wdata result
+reg [9:0] o_proj_wdat_d1[0:3];
+reg [2:0] sram_c_ch_cnt_d1;
+reg signed [9:0] add_in1[0:3];
+reg signed [9:0] add_in2[0:3];
+always @(posedge clk) begin
+    o_proj_wdat_d1[0] <= token0_proj_quan_10;
+    o_proj_wdat_d1[1] <= token1_proj_quan_10;
+    o_proj_wdat_d1[2] <= token2_proj_quan_10;
+    o_proj_wdat_d1[3] <= token3_proj_quan_10;
+    sram_c_ch_cnt_d1 <= sram_c_ch_cnt;
+end
+
+always @(*) begin
+    for (i=0; i<4; i=i+1) begin
+        add_in1[i] = o_proj_wdat_d1[i];
+    end
+end
+
+always @(*) begin
+    case (sram_c_ch_cnt_d1)
+        3'd0: begin
+            add_in2[0] = a_bank0_dat[0];
+            add_in2[1] = a_bank1_dat[0];
+            add_in2[2] = a_bank2_dat[0];
+            add_in2[3] = a_bank3_dat[0];
+        end
+        3'd1: begin
+            add_in2[0] = a_bank0_dat[1];
+            add_in2[1] = a_bank1_dat[1];
+            add_in2[2] = a_bank2_dat[1];
+            add_in2[3] = a_bank3_dat[1];
+        end
+        3'd2: begin
+            add_in2[0] = a_bank0_dat[2];
+            add_in2[1] = a_bank1_dat[2];
+            add_in2[2] = a_bank2_dat[2];
+            add_in2[3] = a_bank3_dat[2];
+        end
+        3'd3: begin
+            add_in2[0] = a_bank0_dat[3];
+            add_in2[1] = a_bank1_dat[3];
+            add_in2[2] = a_bank2_dat[3];
+            add_in2[3] = a_bank3_dat[3];
+        end
+        3'd4: begin
+            add_in2[0] = a_bank0_dat[4];
+            add_in2[1] = a_bank1_dat[4];
+            add_in2[2] = a_bank2_dat[4];
+            add_in2[3] = a_bank3_dat[4];
+        end
+        3'd5: begin
+            add_in2[0] = a_bank0_dat[5];
+            add_in2[1] = a_bank1_dat[5];
+            add_in2[2] = a_bank2_dat[5];
+            add_in2[3] = a_bank3_dat[5];
+        end
+        3'd6: begin
+            add_in2[0] = a_bank0_dat[6];
+            add_in2[1] = a_bank1_dat[6];
+            add_in2[2] = a_bank2_dat[6];
+            add_in2[3] = a_bank3_dat[6];
+        end
+        3'd7: begin
+            add_in2[0] = a_bank0_dat[7];
+            add_in2[1] = a_bank1_dat[7];
+            add_in2[2] = a_bank2_dat[7];
+            add_in2[3] = a_bank3_dat[7];
+        end
+    endcase
+end
+// add_in1(1-bit sign + 3-bit integer + 6-bit fraction)
+// add_in2(1-bit sign + 3-bit integer + 6-bit fraction)
+// result (1-bit sign + 4-bit integer + 6-bit fraction)
+reg [10:0] add_result[0:3];
+reg [9:0]  residual_quan_10[0:3];
+reg valid_15;
+always @(*) begin
+    for (i=0; i<4; i=i+1) begin
+        add_result[i] = add_in1[i] + add_in2[i];
+    end
+end
+always @(*) begin
+    for (i=0; i<4; i=i+1) begin
+        residual_quan_10[i] = add_result[i][9:0];
+    end
+end
+always @(posedge clk) begin
+    if ((top_state == O_PROJ||top_state==O_PROJ_T) && !sram_wen_c0) begin
+        valid_15 <= 1;
+    end else begin
+        valid_15 <= 0;
+    end
+end
+
+
+// 23. Implement residual add 
+// 24. Quantize the result to 10-bit and store the result to SRAM B. 
 
 endmodule
+
 module div #(
     parameter N = 39,
     parameter M = 39,
@@ -3161,8 +3283,8 @@ wire [M:0] stage0_dividend = {{(M){1'b0}}, dividend[N-1]};
 wire [M-1:0] stage0_divisor = divisor;
 wire [N_ACT-M:0] stage0_merchant_ci = {(N_ACT-M+1){1'b0}};
 wire [N_ACT-M-1:0] stage0_dividend_ci = dividend[N_ACT-M-1:0];
-wire [M:0] stage_sub_0 = stage0_dividend - {1'b0, stage0_divisor};
 
+wire [M:0] stage_sub_0 = stage0_dividend - {1'b0, stage0_divisor};
 always @(posedge clk) begin
     divisor_t[0]  <= stage0_divisor;
     dividend_t[0] <= stage0_dividend_ci;
