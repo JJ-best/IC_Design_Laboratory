@@ -184,6 +184,12 @@ wire accum_done;
 reg [4:0] vproj_sramd_waddr;
 wire [79:0] vproj_wdata;
 reg head_sel;
+
+// ----- orpojection ----- //
+reg signed[(BW_PER_ACT-1):0] d_bank0_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] d_bank1_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] d_bank2_dat[0:(CH_NUM-1)];
+reg signed[(BW_PER_ACT-1):0] d_bank3_dat[0:(CH_NUM-1)];
 // ===== Top Level Finite State Machine ===== //
 localparam IDLE       = 5'd0;
 localparam R_BIAS_A   = 5'd1;
@@ -197,7 +203,9 @@ localparam SOFTMAX    = 5'd8;
 localparam SOFTMAX_T  = 5'd9;
 localparam V_PROJ     = 5'd10;
 localparam V_PROJ_T   = 5'd11;
-localparam DONE      = 5'd12;
+localparam O_PROJ     = 5'd12;
+localparam O_PROJ_T   = 5'd13;
+localparam RESIDUAL   = 5'd14;
 
 localparam demask_h   = 8'b0000_1111;
 localparam demask_l   = 8'b1111_0000;
@@ -297,15 +305,29 @@ always @(*) begin
         end
         V_PROJ_T: begin
             if (accum_done && vproj_wcnt==6'd63) begin
-                top_state_n = (!head_sel)? R_BIAS_A: DONE;
+                top_state_n = (!head_sel)? R_BIAS_A: O_PROJ;
             end else if (accum_done && vproj_wcnt[3:0]==4'b1111) begin
                 top_state_n = R_SRAM_C;
             end else begin
                 top_state_n = V_PROJ_T;
             end
         end
-        DONE: begin
-            top_state_n = DONE;
+        O_PROJ: begin
+            if ((sram_raddr_weight == 8'd64)&& sram_addr_cnt_b == 5'd31) begin
+                top_state_n = O_PROJ_T;
+            end else begin
+                top_state_n = O_PROJ;
+            end
+        end
+        O_PROJ_T: begin
+            if (sram_wen_c0 == 0) begin
+                top_state_n = RESIDUAL;
+            end else begin
+                top_state_n = O_PROJ_T;
+            end
+        end
+        RESIDUAL: begin
+            top_state_n = RESIDUAL;
         end
         default: begin
            top_state_n = IDLE; 
@@ -318,7 +340,7 @@ reg [3:0]tmp_cnt;
 always @(posedge clk) begin
     if (!srst_n) begin
         tmp_cnt <= 0;
-    end else if (top_state == DONE)begin
+    end else if (top_state == RESIDUAL)begin
         tmp_cnt <= tmp_cnt + 1;
     end
 end
@@ -1286,7 +1308,7 @@ reg signed[(BW_PER_ACT-1):0] b_bank3_dat[0:(CH_NUM-1)];
 // SRAM B addr controller
 
 always @(posedge clk) begin
-    if (top_state == PROJ) begin
+    if (top_state == PROJ || top_state == O_PROJ) begin
         sram_addr_cnt_b <= sram_addr_cnt_b + 1;
     end else begin
         sram_addr_cnt_b <= 0;
@@ -1364,6 +1386,9 @@ reg [7:0]weight_addr_cnt_n;
 // Q Head 0: 9  -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16
 // K Head 0: 25 -> 26 -> 27 -> 28 -> 29 -> 30 -> 31 -> 32
 // V Head 0: 41 -> 42 -> 43 -> 44 -> 45 -> 46 -> 47 -> 48
+// top_state: O_PROJ
+// the weight addr = 
+// O: 49 -> 50 -> ... -> 64
 
 reg [4:0]col_cnt;
 reg phase;
@@ -1387,16 +1412,18 @@ always @(*) begin
         case (weight_addr_cnt)
             8'd16:   weight_addr_cnt_n = 8'd25;
             8'd32:   weight_addr_cnt_n = 8'd41;
-            8'd48:   weight_addr_cnt_n = 8'd0 ;
+            8'd48:   weight_addr_cnt_n = 8'd49; // jump to o projection weight
             default: weight_addr_cnt_n = weight_addr_cnt + 1;
         endcase
     end else if (top_state == PROJ) begin
         case (weight_addr_cnt)
             8'd8:    weight_addr_cnt_n = 8'd17;
             8'd24:   weight_addr_cnt_n = 8'd33;
-            8'd40:   weight_addr_cnt_n = 8'd9 ; // next head addr start from 9
+            8'd40:   weight_addr_cnt_n = 8'd9 ; // next head1 addr start from 9
             default: weight_addr_cnt_n = weight_addr_cnt + 1;
         endcase
+    end else if (top_state == O_PROJ) begin
+        weight_addr_cnt_n = weight_addr_cnt + 1;
     end else begin
         weight_addr_cnt_n = 1;
     end
@@ -1406,7 +1433,7 @@ end
 always @(posedge clk) begin
     if (!srst_n) begin
         col_cnt <= 0;
-    end else if (top_state == PROJ) begin
+    end else if (top_state == PROJ || top_state == O_PROJ) begin
         col_cnt <= col_cnt + 1;
     end else begin
         col_cnt <= 0;
@@ -1415,13 +1442,13 @@ end
 always @(posedge clk) begin
     if (!srst_n) begin
         phase <= 0;
-    end else if (top_state == PROJ) begin
+    end else if (top_state == PROJ || top_state == O_PROJ) begin
         phase <= ~phase;
     end else begin
         phase <= 0;
     end
 end
-assign sram_raddr_weight = (top_state==PROJ)? weight_addr_cnt:0;
+assign sram_raddr_weight = (top_state==PROJ || top_state == O_PROJ)? weight_addr_cnt:0;
 
 
 
@@ -1501,6 +1528,18 @@ always @(*) begin
                 mul1_in2[i] = c_bank1_dat[i]; // token1 ch0-7
                 mul2_in2[i] = c_bank2_dat[i]; // token2 ch0-7
                 mul3_in2[i] = c_bank3_dat[i]; // token3 ch0-7
+            end
+            O_PROJ, O_PROJ_T: begin
+                // sram D data(softmax V)
+                mul0_in1[i] = d_bank0_dat[i];
+                mul1_in1[i] = d_bank1_dat[i];
+                mul2_in1[i] = d_bank2_dat[i];
+                mul3_in1[i] = d_bank3_dat[i];
+                // O projection weight
+                mul0_in2[i] = weight_sel[i];
+                mul1_in2[i] = weight_sel[i];
+                mul2_in2[i] = weight_sel[i];
+                mul3_in2[i] = weight_sel[i];
             end
             default: begin
                 mul0_in1[i] = 0;
@@ -1762,7 +1801,7 @@ always @(posedge clk) begin
         sram_c_block_cnt <= (sram_c_block_cnt == 4'd15)? 0 : sram_c_block_cnt + 1;
         sram_c_ch_cnt    <= (sram_c_block_cnt == 4'd15)? sram_c_ch_cnt + 1: sram_c_ch_cnt;
         sram_c_proj_cnt  <= (sram_c_ch_cnt == 3'd7 && sram_c_block_cnt == 4'd15)? sram_c_proj_cnt + 1: sram_c_proj_cnt;
-    end else if (top_state != PROJ && top_state != PROJ_T) begin
+    end else if (top_state != PROJ && top_state != PROJ_T && top_state != O_PROJ && top_state != O_PROJ_T) begin
         sram_c_block_cnt <= 0;
         sram_c_ch_cnt    <= 0;
         sram_c_proj_cnt  <= 0;
@@ -1773,25 +1812,13 @@ assign sram_addr_cnt_c = sram_c_proj_base + sram_c_block_cnt;
 
 always @(*) begin
     case (top_state)
-        PROJ: begin
+        PROJ, PROJ_T, O_PROJ, O_PROJ_T: begin
             sram_addr_c0 = sram_addr_cnt_c;
             sram_addr_c1 = sram_addr_cnt_c;
             sram_addr_c2 = sram_addr_cnt_c;
             sram_addr_c3 = sram_addr_cnt_c;
         end
-        PROJ_T: begin
-            sram_addr_c0 = sram_addr_cnt_c;
-            sram_addr_c1 = sram_addr_cnt_c;
-            sram_addr_c2 = sram_addr_cnt_c;
-            sram_addr_c3 = sram_addr_cnt_c;
-        end
-        R_SRAM_C: begin
-            sram_addr_c0 = sramc_addr;
-            sram_addr_c1 = sramc_addr;
-            sram_addr_c2 = sramc_addr;
-            sram_addr_c3 = sramc_addr;
-        end
-        R_SRAM_C_T: begin
+        R_SRAM_C, R_SRAM_C_T: begin
             sram_addr_c0 = sramc_addr;
             sram_addr_c1 = sramc_addr;
             sram_addr_c2 = sramc_addr;
@@ -2324,6 +2351,12 @@ always @(*) begin
             sram_addr_d2 = vproj_sramd_waddr;
             sram_addr_d3 = vproj_sramd_waddr;
         end
+        O_PROJ, O_PROJ_T: begin
+            sram_addr_d0 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};;
+            sram_addr_d1 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};;
+            sram_addr_d2 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};;
+            sram_addr_d3 = {sram_addr_cnt_b[0], sram_addr_cnt_b[4:1]};;
+        end
         default: begin
             sram_addr_d0 = 0;
             sram_addr_d1 = 0;
@@ -2521,11 +2554,6 @@ always @(posedge clk) begin
 end
 
 assign sramd_raddr = {1'b1, sramd_raddr_cnt};
-
-reg signed[(BW_PER_ACT-1):0] d_bank0_dat[0:(CH_NUM-1)];
-reg signed[(BW_PER_ACT-1):0] d_bank1_dat[0:(CH_NUM-1)];
-reg signed[(BW_PER_ACT-1):0] d_bank2_dat[0:(CH_NUM-1)];
-reg signed[(BW_PER_ACT-1):0] d_bank3_dat[0:(CH_NUM-1)];
 
 always @(*) begin
     // MSB-first ordering: [79:70], [69:60], ..., [9:0]
@@ -3045,10 +3073,66 @@ end
 
 // 19. Read V softmax multiplication result from SRAM D.
 // V softmax multiplication result is store in sram D(addr0~31, 4-bank, 8ch/bank)
-// Head0(64x8)
+// Head0(64x8) Head1(64x8)
+// ----- Head0 ----- //
+// addr0
+// bank0: head0-token0
+// bank1: head0-token1
+// bank2: head0-token2
+// bank3: head0-token3
+// addr1
+// bank0: head0-token4
+// bank1: head0-token5
+// bank2: head0-token6
+// bank3: head0-token7
+// ...
+// addr15
+// bank0: head0-token60
+// bank1: head0-token61
+// bank2: head0-token62
+// bank3: head0-token63
+// ----- Head 1 ----- //
+// addr16
+// bank0: head1-token0
+// bank1: head1-token1
+// bank2: head1-token2
+// bank3: head1-token3
+// addr17
+// bank0: head1-token4
+// bank1: head1-token5
+// bank2: head1-token6
+// bank3: head1-token7
+// ...
+// addr31
+// bank0: head1-token60
+// bank1: head1-token61
+// bank2: head1-token62
+// bank3: head1-token63
+
+// The V softmax matrix:
+// token0 : {head0-token0 , head1-token0}
+// token1 : {head0-token1 , head1-token1}
+// token2 : {head0-token2 , head1-token2}
+// ... 
+// token63: {head0-token63, head1-token63}
+// address access sequence:
+// addr0 -> addr16 -> addr1 -> addr17 -> ... -> addr15 -> addr31
+
+// The O projection matrix
+// each column have 4-ch
+// addr0  -> col0 
+// addr1  -> col1
+// ...
+// addr15 -> col15
+// addr0 -> addr1 -> ... -> addr15
+// each addr stall 2 cycle
 
 // 20. Implement O projection. 
+
 // 21. Quantize the result to 10-bit and write the result to SRAM C. 
+
+// The datapath is implement by the projection datapath
+// we only need to write address generator
 
 
 endmodule
