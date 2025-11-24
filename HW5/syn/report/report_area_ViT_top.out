@@ -3,7 +3,7 @@
 Report : area
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Mon Nov 24 15:03:16 2025
+Date   : Mon Nov 24 21:11:21 2025
 ****************************************
 
 Library(s) Used:
@@ -11,22 +11,22 @@ Library(s) Used:
     slow_vdd1v2 (File: /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/db/slow_vdd1v2_basicCells_wl.db)
 
 Number of ports:                         4737
-Number of nets:                        143793
-Number of cells:                       137219
-Number of combinational cells:         127886
-Number of sequential cells:              9201
+Number of nets:                        144881
+Number of cells:                       138956
+Number of combinational cells:         128980
+Number of sequential cells:              9844
 Number of macros/black boxes:               0
-Number of buf/inv:                      25105
-Number of references:                     229
+Number of buf/inv:                      26244
+Number of references:                     249
 
-Combinational area:             195232.072355
-Buf/Inv area:                    17616.078393
-Noncombinational area:           57802.447289
+Combinational area:             192637.660297
+Buf/Inv area:                    18488.862412
+Noncombinational area:           61344.541368
 Macro/Black Box area:                0.000000
 Net Interconnect area:               0.000000
 
-Total cell area:                253034.519645
-Total area:                     253034.519645
+Total cell area:                253982.201666
+Total area:                     253982.201666
 
 Hierarchical area distribution
 ------------------------------
@@ -36,15 +36,15 @@ Hierarchical area distribution
 Hierarchical cell                 Absolute     Percent  Combi-       Noncombi-   Black-
                                   Total        Total    national     national    boxes   Design
 --------------------------------  -----------  -------  -----------  ----------  ------  -----------------------------------------
-ViT_top                           253034.5196    100.0   56586.6373  25618.8786  0.0000  ViT_top
-EXP_LUT_ARRAY_0__exp_lut_stage8     4752.4321      1.9    4752.4321      0.0000  0.0000  exp_lut_mydesign_7
-EXP_LUT_ARRAY_1__exp_lut_stage8     4755.5101      1.9    4755.5101      0.0000  0.0000  exp_lut_mydesign_6
-EXP_LUT_ARRAY_2__exp_lut_stage8     4752.4321      1.9    4752.4321      0.0000  0.0000  exp_lut_mydesign_5
-EXP_LUT_ARRAY_3__exp_lut_stage8     4752.7741      1.9    4752.7741      0.0000  0.0000  exp_lut_mydesign_4
-EXP_LUT_ARRAY_4__exp_lut_stage8     4754.1421      1.9    4754.1421      0.0000  0.0000  exp_lut_mydesign_3
-EXP_LUT_ARRAY_5__exp_lut_stage8     4753.1161      1.9    4753.1161      0.0000  0.0000  exp_lut_mydesign_2
-EXP_LUT_ARRAY_6__exp_lut_stage8     4752.7741      1.9    4752.7741      0.0000  0.0000  exp_lut_mydesign_1
-EXP_LUT_ARRAY_7__exp_lut_stage8     4752.0901      1.9    4752.0901      0.0000  0.0000  exp_lut_mydesign_0
+ViT_top                           253982.2017    100.0   53996.6712  29154.4747  0.0000  ViT_top
+EXP_LUT_ARRAY_0__exp_lut_stage8     4732.5961      1.9    4732.5961      0.0000  0.0000  exp_lut_mydesign_7
+EXP_LUT_ARRAY_1__exp_lut_stage8     4730.5441      1.9    4730.5441      0.0000  0.0000  exp_lut_mydesign_6
+EXP_LUT_ARRAY_2__exp_lut_stage8     4734.3061      1.9    4734.3061      0.0000  0.0000  exp_lut_mydesign_5
+EXP_LUT_ARRAY_3__exp_lut_stage8     4732.2541      1.9    4732.2541      0.0000  0.0000  exp_lut_mydesign_4
+EXP_LUT_ARRAY_4__exp_lut_stage8     4734.6481      1.9    4734.6481      0.0000  0.0000  exp_lut_mydesign_3
+EXP_LUT_ARRAY_5__exp_lut_stage8     4731.2281      1.9    4731.2281      0.0000  0.0000  exp_lut_mydesign_2
+EXP_LUT_ARRAY_6__exp_lut_stage8     4731.9121      1.9    4731.9121      0.0000  0.0000  exp_lut_mydesign_1
+EXP_LUT_ARRAY_7__exp_lut_stage8     4733.6221      1.9    4733.6221      0.0000  0.0000  exp_lut_mydesign_0
 clk_gate_a_bank0_reg_h_reg_0_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_89
 clk_gate_a_bank0_reg_h_reg_1_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_88
 clk_gate_a_bank0_reg_h_reg_2_          6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_87
@@ -161,15 +161,15 @@ clk_gate_token_mean_reg_0              6.8400      0.0       1.3680      5.4720 
 clk_gate_vproj_sramd_waddr_reg         6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_1
 clk_gate_vproj_wcnt_reg                6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_2
 clk_gate_weight_addr_cnt_reg           6.8400      0.0       1.3680      5.4720  0.0000  SNPS_CLOCK_GATE_HIGH_ViT_top_mydesign_30
-div0                               16484.7424      6.5   12541.1403   3943.6021  0.0000  div_mydesign_7
-div1                               16516.8904      6.5   12573.2883   3943.6021  0.0000  div_mydesign_6
-div2                               16503.5524      6.5   12559.9503   3943.6021  0.0000  div_mydesign_5
-div3                               16504.9204      6.5   12561.3183   3943.6021  0.0000  div_mydesign_4
-div4                               16497.3964      6.5   12553.7943   3943.6021  0.0000  div_mydesign_3
-div5                               16501.5004      6.5   12557.8983   3943.6021  0.0000  div_mydesign_2
-div6                               16503.2104      6.5   12559.6083   3943.6021  0.0000  div_mydesign_1
-div7                               16498.0804      6.5   12554.4783   3943.6021  0.0000  div_mydesign_0
+div0                               16532.2804      6.5   12587.6523   3944.6281  0.0000  div_mydesign_7
+div1                               16531.5964      6.5   12586.9683   3944.6281  0.0000  div_mydesign_6
+div2                               16523.3884      6.5   12579.4443   3943.9441  0.0000  div_mydesign_5
+div3                               16514.1544      6.5   12569.5263   3944.6281  0.0000  div_mydesign_4
+div4                               16508.6824      6.5   12565.0803   3943.6021  0.0000  div_mydesign_3
+div5                               16524.4144      6.5   12579.7863   3944.6281  0.0000  div_mydesign_2
+div6                               16525.4404      6.5   12580.8123   3944.6281  0.0000  div_mydesign_1
+div7                               16516.5484      6.5   12571.9203   3944.6281  0.0000  div_mydesign_0
 --------------------------------  -----------  -------  -----------  ----------  ------  -----------------------------------------
-Total                                                   195232.0724  57802.4473  0.0000
+Total                                                   192637.6603  61344.5414  0.0000
 
 1
