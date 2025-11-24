@@ -869,13 +869,7 @@ reg [(N-1):0] dividend_debug[0:7];
 reg [(M-1):0] divisor_debug[0:7];
 always @(*) begin
     case (top_state)
-        NORMAL: begin
-            for (k=0; k<8; k=k+1) begin
-                dividend[k] = {a_bank_abs_sel_d1[k], 4'b0, 6'b0};
-                divisor[k]  = {token_mae_abs};
-            end
-        end
-        NORMAL_T: begin
+        NORMAL, NORMAL_T: begin
             for (k=0; k<8; k=k+1) begin
                 dividend[k] = {a_bank_abs_sel_d1[k], 4'b0, 6'b0};
                 divisor[k]  = {token_mae_abs};
@@ -899,10 +893,10 @@ always @(*) begin
     //     divisor[k]  = (top_state != SOFTMAX)? {token_mae_abs}: exp_sum_reg[39:10];
     // end
 
-    for (k=0; k<8; k=k+1) begin
-        dividend_debug[k] = {exp_shift_9[k][33:1]}; // exp(x)
-        divisor_debug[k] = {exp_sum_reg[39:1]}; // sum exp(x)
-    end
+    // for (k=0; k<8; k=k+1) begin
+    //     dividend_debug[k] = {exp_shift_9[k][33:1]}; // exp(x)
+    //     divisor_debug[k] = {exp_sum_reg[39:1]}; // sum exp(x)
+    // end
 
     // exponent: 14-bit integer + 20-bit fraction
     // exponent sum: 20-bit integer + 20-bit fraction

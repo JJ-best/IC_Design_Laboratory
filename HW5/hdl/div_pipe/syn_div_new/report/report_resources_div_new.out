@@ -1,0 +1,72 @@
+ 
+****************************************
+Report : resources
+Design : div_new
+Version: R-2020.09-SP5
+Date   : Mon Nov 24 15:01:31 2025
+****************************************
+
+
+Resource Report for this hierarchy in file ../hdl/div_new.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| sub_x_1        | DW01_sub       | width=40   | sub_40 (div_new.v:40)      |
+| sub_x_3        | DW01_sub       | width=40   | sub_53 (div_new.v:53)      |
+| sub_x_5        | DW01_sub       | width=40   | sub_65 (div_new.v:65)      |
+| sub_x_7        | DW01_sub       | width=40   | sub_78 (div_new.v:78)      |
+| sub_x_9        | DW01_sub       | width=40   | sub_91 (div_new.v:91)      |
+| sub_x_11       | DW01_sub       | width=40   | sub_104 (div_new.v:104)    |
+| sub_x_13       | DW01_sub       | width=40   | sub_117 (div_new.v:117)    |
+| sub_x_15       | DW01_sub       | width=40   | sub_130 (div_new.v:130)    |
+| sub_x_17       | DW01_sub       | width=40   | sub_143 (div_new.v:143)    |
+| sub_x_19       | DW01_sub       | width=40   | sub_156 (div_new.v:156)    |
+| sub_x_21       | DW01_sub       | width=40   | sub_169 (div_new.v:169)    |
+| sub_x_23       | DW01_sub       | width=40   | sub_182 (div_new.v:182)    |
+| sub_x_25       | DW01_sub       | width=40   | sub_195 (div_new.v:195)    |
+| sub_x_27       | DW01_sub       | width=40   | sub_208 (div_new.v:208)    |
+| sub_x_29       | DW01_sub       | width=40   | sub_221 (div_new.v:221)    |
+| sub_x_31       | DW01_sub       | width=40   | sub_234 (div_new.v:234)    |
+| sub_x_33       | DW01_sub       | width=40   | sub_247 (div_new.v:247)    |
+| sub_x_35       | DW01_sub       | width=40   | sub_260 (div_new.v:260)    |
+| sub_x_37       | DW01_sub       | width=40   | sub_273 (div_new.v:273)    |
+| sub_x_39       | DW01_sub       | width=40   | sub_286 (div_new.v:286)    |
+| sub_x_41       | DW01_sub       | width=40   | sub_299 (div_new.v:299)    |
+| sub_x_43       | DW01_sub       | width=40   | sub_312 (div_new.v:312)    |
+| sub_x_45       | DW01_sub       | width=40   | sub_325 (div_new.v:325)    |
+| sub_x_47       | DW01_sub       | width=40   | sub_338 (div_new.v:338)    |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| sub_x_1            | DW01_sub         | pparch (area,speed)                 |
+| sub_x_3            | DW01_sub         | pparch (area,speed)                 |
+| sub_x_5            | DW01_sub         | pparch (area,speed)                 |
+| sub_x_7            | DW01_sub         | pparch (area,speed)                 |
+| sub_x_9            | DW01_sub         | pparch (area,speed)                 |
+| sub_x_11           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_13           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_15           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_17           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_19           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_21           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_23           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_25           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_27           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_29           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_31           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_33           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_35           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_37           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_39           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_41           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_43           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_45           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_47           | DW01_sub         | pparch (area,speed)                 |
+===============================================================================
+
+1

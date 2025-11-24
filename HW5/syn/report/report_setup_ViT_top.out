@@ -6,7 +6,7 @@ Report : timing
         -max_paths 4
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Sat Nov 22 17:16:35 2025
+Date   : Mon Nov 24 15:03:16 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Sat Nov 22 17:16:35 2025
 Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
 Wire Load Model Mode: enclosed
 
-  Startpoint: div1/remainder_t_reg_11__23_
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div1/remainder_t_reg_17__0_
+  Startpoint: sram_rdata_b1[24]
+              (input port clocked by clk)
+  Endpoint: bank1_proj_reg_reg_19_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -24,94 +24,65 @@ Wire Load Model Mode: enclosed
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   ViT_top            Large                 slow_vdd1v2
-  div_mydesign_6     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                   0.00       0.00
-  clock network delay (ideal)                             0.00       0.00
-  div1/remainder_t_reg_11__23_/CK (SMDFFHQX1)             0.00 #     0.00 r
-  div1/remainder_t_reg_11__23_/Q (SMDFFHQX1)              0.12       0.12 f
-  div1/U6497/Y (INVXL)                                    0.03       0.15 r
-  div1/U6498/Y (NOR2XL)                                   0.03       0.19 f
-  div1/U6501/Y (NOR2XL)                                   0.04       0.23 r
-  div1/U6507/Y (NAND2XL)                                  0.05       0.28 f
-  div1/U6515/Y (NOR2XL)                                   0.06       0.34 r
-  div1/U6536/Y (NAND2XL)                                  0.06       0.40 f
-  div1/U6573/Y (NOR2XL)                                   0.04       0.44 r
-  div1/U1821/Y (AOI2BB2XL)                                0.05       0.49 f
-  div1/U6586/Y (NAND2XL)                                  0.05       0.54 r
-  div1/U157/Y (OR2X1)                                     0.06       0.60 r
-  div1/U6638/Y (INVX2)                                    0.08       0.68 f
-  div1/U1459/Y (MXI2XL)                                   0.09       0.77 f
-  div1/U1071/Y (NOR2XL)                                   0.08       0.85 r
-  div1/U7003/Y (AOI22XL)                                  0.07       0.92 f
-  div1/U7004/Y (OAI21XL)                                  0.05       0.97 r
-  div1/U7005/Y (NAND4XL)                                  0.09       1.06 f
-  div1/U7011/Y (AOI31XL)                                  0.08       1.14 r
-  div1/U1774/Y (NOR2XL)                                   0.04       1.18 f
-  div1/U7015/Y (OAI22XL)                                  0.05       1.22 r
-  div1/U7016/Y (OR2X1)                                    0.07       1.29 r
-  div1/U727/Y (INVX1)                                     0.06       1.36 f
-  div1/U7406/Y (OAI22XL)                                  0.06       1.42 r
-  div1/U204/Y (AOI31XL)                                   0.05       1.47 f
-  div1/U7410/Y (NOR2XL)                                   0.06       1.53 r
-  div1/U7411/Y (NOR2XL)                                   0.04       1.57 f
-  div1/U7417/Y (AOI211XL)                                 0.07       1.64 r
-  div1/U7423/Y (OAI211XL)                                 0.09       1.74 f
-  div1/U7432/Y (AOI211XL)                                 0.09       1.82 r
-  div1/U7471/Y (AOI211XL)                                 0.09       1.92 f
-  div1/U7472/Y (CLKAND2X2)                                0.10       2.02 f
-  div1/U7473/Y (INVX2)                                    0.07       2.09 r
-  div1/U100/Y (MXI2X1)                                    0.09       2.18 r
-  div1/U967/Y (NAND2X1)                                   0.07       2.25 f
-  div1/U7700/Y (NAND2XL)                                  0.05       2.30 r
-  div1/U7719/Y (NOR2XL)                                   0.03       2.33 f
-  div1/U7720/Y (AOI211XL)                                 0.06       2.39 r
-  div1/U7721/Y (OAI21XL)                                  0.07       2.46 f
-  div1/U7788/Y (AOI211XL)                                 0.09       2.54 r
-  div1/U7861/Y (NOR4XL)                                   0.06       2.60 f
-  div1/U7915/Y (OR2X1)                                    0.09       2.70 f
-  div1/U1748/Y (INVX1)                                    0.07       2.77 r
-  div1/U8210/Y (NOR2XL)                                   0.06       2.83 f
-  div1/U8211/Y (AOI211XL)                                 0.08       2.91 r
-  div1/U1555/Y (OAI22XL)                                  0.11       3.02 f
-  div1/U8217/Y (NAND2XL)                                  0.06       3.08 r
-  div1/U8226/Y (AOI211XL)                                 0.07       3.15 f
-  div1/U8238/Y (OAI211XL)                                 0.07       3.22 r
-  div1/U8239/Y (NOR2XL)                                   0.05       3.27 f
-  div1/U8346/Y (OAI31XL)                                  0.08       3.35 r
-  div1/U8382/Y (AND2X1)                                   0.11       3.46 r
-  div1/U12913/Y (INVX2)                                   0.08       3.53 f
-  div1/U1517/Y (MXI2XL)                                   0.07       3.60 r
-  div1/U1872/Y (NAND2BXL)                                 0.06       3.66 r
-  div1/U14424/Y (OAI22XL)                                 0.06       3.71 f
-  div1/U14425/Y (AOI31XL)                                 0.06       3.78 r
-  div1/U110/Y (NAND3BX1)                                  0.06       3.84 r
-  div1/U14432/Y (AOI31XL)                                 0.09       3.93 f
-  div1/U1820/Y (NOR2XL)                                   0.06       3.99 r
-  div1/U14466/Y (OAI31XL)                                 0.08       4.07 f
-  div1/U14502/Y (NOR2XL)                                  0.07       4.14 r
-  div1/U14505/Y (BUFX2)                                   0.09       4.22 r
-  div1/U1871/Y (MXI2XL)                                   0.07       4.29 r
-  div1/remainder_t_reg_17__0_/D (DFFQXL)                  0.01       4.30 r
-  data arrival time                                                  4.30
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     1.20       1.20 f
+  sram_rdata_b1[24] (in)                   0.00       1.20 f
+  U17501/Y (AOI22XL)                       0.07       1.28 r
+  U13818/Y (AND4XL)                        0.21       1.49 r
+  U8610/Y (NAND2X1)                        0.10       1.58 f
+  U22983/Y (XOR2XL)                        0.12       1.70 r
+  U8736/Y (OAI22XL)                        0.10       1.80 f
+  U9084/CO (ADDFXL)                        0.22       2.02 f
+  U8889/Y (OAI21XL)                        0.06       2.08 r
+  U13816/Y (NAND2XL)                       0.08       2.16 f
+  U22379/Y (OAI21XL)                       0.05       2.21 r
+  U22880/Y (NAND2XL)                       0.08       2.30 f
+  U9159/CO (ADDFXL)                        0.18       2.48 f
+  U9140/Y (OA21XL)                         0.07       2.54 f
+  U13815/Y (NOR2XL)                        0.06       2.61 r
+  U13814/Y (XOR2XL)                        0.12       2.72 r
+  U21150/Y (XNOR2XL)                       0.13       2.85 f
+  U14049/Y (XOR3XL)                        0.21       3.06 r
+  U13868/Y (XNOR2XL)                       0.11       3.17 f
+  U13867/Y (XNOR2XL)                       0.13       3.30 r
+  U14030/Y (NAND2XL)                       0.06       3.36 f
+  U25954/Y (INVXL)                         0.05       3.41 r
+  U25955/Y (AOI21XL)                       0.05       3.46 f
+  U25956/Y (OAI21XL)                       0.08       3.54 r
+  U8465/Y (OAI2BB1XL)                      0.09       3.64 r
+  U13364/Y (XNOR2XL)                       0.12       3.76 f
+  U13363/Y (NOR2XL)                        0.05       3.81 r
+  U26878/Y (OAI21XL)                       0.07       3.88 f
+  U26879/Y (AOI21XL)                       0.08       3.96 r
+  U26880/Y (OAI21XL)                       0.08       4.04 f
+  U26881/Y (AOI21XL)                       0.08       4.12 r
+  U26882/Y (OAI21XL)                       0.08       4.20 f
+  U26883/Y (AOI21XL)                       0.08       4.28 r
+  U22064/Y (OAI21XL)                       0.08       4.36 f
+  U8375/Y (AOI22XL)                        0.08       4.43 r
+  U8374/Y (XOR2XL)                         0.14       4.57 r
+  bank1_proj_reg_reg_19_/D (DFFQXL)        0.03       4.60 r
+  data arrival time                                   4.60
 
-  clock clk (rise edge)                                   3.00       3.00
-  clock network delay (ideal)                             0.00       3.00
-  div1/remainder_t_reg_17__0_/CK (DFFQXL)                 0.00       3.00 r
-  library setup time                                     -0.07       2.93
-  data required time                                                 2.93
-  --------------------------------------------------------------------------
-  data required time                                                 2.93
-  data arrival time                                                 -4.30
-  --------------------------------------------------------------------------
-  slack (VIOLATED)                                                  -1.37
+  clock clk (rise edge)                    4.00       4.00
+  clock network delay (ideal)              0.00       4.00
+  bank1_proj_reg_reg_19_/CK (DFFQXL)       0.00       4.00 r
+  library setup time                      -0.06       3.94
+  data required time                                  3.94
+  -----------------------------------------------------------
+  data required time                                  3.94
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.66
 
 
-  Startpoint: div0/divisor_t_reg_5__11_
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div0/remainder_t_reg_11__33_
+  Startpoint: sram_rdata_weight[63]
+              (input port clocked by clk)
+  Endpoint: bank2_proj_reg_reg_19_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -119,92 +90,62 @@ Wire Load Model Mode: enclosed
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   ViT_top            Large                 slow_vdd1v2
-  div_mydesign_7     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                   0.00       0.00
-  clock network delay (ideal)                             0.00       0.00
-  div0/divisor_t_reg_5__11_/CK (DFFQXL)                   0.00 #     0.00 r
-  div0/divisor_t_reg_5__11_/Q (DFFQXL)                    0.11       0.11 f
-  div0/U976/Y (INVXL)                                     0.05       0.16 r
-  div0/U1888/Y (NAND2X1)                                  0.07       0.23 f
-  div0/U4022/Y (INVXL)                                    0.04       0.27 r
-  div0/U4024/Y (OAI22XL)                                  0.07       0.33 f
-  div0/U283/Y (AOI31XL)                                   0.06       0.40 r
-  div0/U4030/Y (AOI2BB1XL)                                0.06       0.46 r
-  div0/U4033/Y (OAI31XL)                                  0.06       0.51 f
-  div0/U4067/Y (NOR3XL)                                   0.08       0.59 r
-  div0/U4068/Y (BUFX2)                                    0.10       0.69 r
-  div0/U4399/Y (MXI2XL)                                   0.07       0.76 r
-  div0/U4400/Y (INVXL)                                    0.05       0.80 f
-  div0/U4401/Y (NOR2XL)                                   0.04       0.84 r
-  div0/U4403/Y (OAI22XL)                                  0.06       0.91 f
-  div0/U4404/Y (AOI31XL)                                  0.06       0.97 r
-  div0/U4407/Y (OR4XL)                                    0.06       1.04 r
-  div0/U4466/Y (AOI31XL)                                  0.09       1.12 f
-  div0/U4488/Y (NOR2XL)                                   0.06       1.19 r
-  div0/U4489/Y (NOR4XL)                                   0.04       1.22 f
-  div0/U4518/Y (OR3X1)                                    0.12       1.35 f
-  div0/U4799/Y (INVX1)                                    0.05       1.40 r
-  div0/U5040/Y (OAI22XL)                                  0.06       1.46 f
-  div0/U262/Y (AOI31XL)                                   0.07       1.53 r
-  div0/U5044/Y (NOR2XL)                                   0.05       1.58 f
-  div0/U5045/Y (NOR2XL)                                   0.05       1.62 r
-  div0/U5046/Y (AOI211XL)                                 0.04       1.67 f
-  div0/U5080/Y (OAI211XL)                                 0.07       1.74 r
-  div0/U1900/Y (OAI2BB1XL)                                0.08       1.82 r
-  div0/U5098/Y (NOR2XL)                                   0.04       1.86 f
-  div0/U5139/Y (AOI211XL)                                 0.08       1.94 r
-  div0/U1822/Y (AND2X2)                                   0.13       2.07 r
-  div0/U1902/Y (INVX2)                                    0.08       2.15 f
-  div0/U1766/Y (MXI2X1)                                   0.09       2.24 f
-  div0/U609/Y (NAND2X1)                                   0.06       2.30 r
-  div0/U146/Y (NAND2XL)                                   0.06       2.36 f
-  div0/U5292/Y (AOI211XL)                                 0.08       2.44 r
-  div0/U5293/Y (NAND2XL)                                  0.07       2.51 f
-  div0/U5562/Y (AOI211XL)                                 0.07       2.58 r
-  div0/U5563/Y (AOI211XL)                                 0.05       2.63 f
-  div0/U5564/Y (NAND2XL)                                  0.05       2.68 r
-  div0/U123/Y (OR2X1)                                     0.07       2.75 r
-  div0/U2058/Y (BUFX2)                                    0.08       2.83 r
-  div0/U7793/Y (MXI2XL)                                   0.10       2.93 f
-  div0/U11342/Y (NOR2XL)                                  0.08       3.01 r
-  div0/U11352/Y (OAI21XL)                                 0.09       3.10 f
-  div0/U11356/Y (AOI21XL)                                 0.06       3.16 r
-  div0/U11357/Y (OAI21XL)                                 0.07       3.23 f
-  div0/U11371/Y (AOI21XL)                                 0.07       3.30 r
-  div0/U1872/Y (INVX1)                                    0.08       3.37 f
-  div0/U11376/Y (AOI21XL)                                 0.07       3.44 r
-  div0/U1689/Y (XOR2XL)                                   0.11       3.55 f
-  div0/U12046/Y (INVXL)                                   0.03       3.58 r
-  div0/U12048/Y (MXI2XL)                                  0.07       3.65 f
-  div0/U12049/Y (NOR2XL)                                  0.07       3.72 r
-  div0/U12165/Y (OAI21XL)                                 0.07       3.79 f
-  div0/U298/Y (AOI21XL)                                   0.07       3.86 r
-  div0/U12173/Y (OAI21XL)                                 0.09       3.95 f
-  div0/U12296/Y (AOI21XL)                                 0.06       4.01 r
-  div0/U12297/Y (OAI21XL)                                 0.07       4.08 f
-  div0/U12300/Y (AOI21XL)                                 0.07       4.15 r
-  div0/U1428/Y (XOR2XL)                                   0.10       4.25 r
-  div0/remainder_t_reg_11__33_/SI (SMDFFHQX1)             0.02       4.27 r
-  data arrival time                                                  4.27
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     1.20       1.20 f
+  sram_rdata_weight[63] (in)               0.01       1.21 f
+  U9543/Y (AOI22X1)                        0.10       1.30 r
+  U21170/Y (OAI2BB1XL)                     0.10       1.40 f
+  U14358/Y (XOR2XL)                        0.13       1.53 r
+  U14130/Y (NAND2X2)                       0.16       1.69 f
+  U9345/Y (OAI22XL)                        0.09       1.78 r
+  U23949/S (ADDFXL)                        0.30       2.08 f
+  U22775/S (ADDFXL)                        0.23       2.31 r
+  U10682/CO (ADDFX1)                       0.23       2.53 r
+  U13506/Y (XOR3XL)                        0.20       2.73 f
+  U23081/Y (NOR2XL)                        0.05       2.77 r
+  U22625/Y (OAI21XL)                       0.09       2.87 f
+  U23755/Y (NAND2BXL)                      0.06       2.92 r
+  U23754/Y (NAND2XL)                       0.08       3.00 f
+  U22595/Y (XOR3XL)                        0.15       3.15 r
+  U19888/Y (OR2XL)                         0.06       3.21 r
+  U22367/Y (AOI21XL)                       0.07       3.28 f
+  U22366/Y (OAI21XL)                       0.08       3.36 r
+  U24933/Y (AOI21XL)                       0.09       3.46 f
+  U22075/Y (OAI21XL)                       0.09       3.54 r
+  U9701/Y (OAI2BB1X1)                      0.10       3.64 r
+  U22230/Y (XNOR2XL)                       0.10       3.75 r
+  U22882/Y (NOR2XL)                        0.05       3.80 f
+  U27828/Y (NOR2XL)                        0.05       3.85 r
+  U27831/Y (AOI21XL)                       0.09       3.93 f
+  U22616/Y (OAI21XL)                       0.08       4.01 r
+  U27832/Y (AOI21XL)                       0.09       4.11 f
+  U27833/Y (OAI21XL)                       0.08       4.19 r
+  U23271/Y (AOI21XL)                       0.09       4.28 f
+  U23269/Y (OAI21XL)                       0.08       4.36 r
+  U27860/Y (AOI22XL)                       0.07       4.43 f
+  U27861/Y (XOR2XL)                        0.14       4.57 r
+  bank2_proj_reg_reg_19_/D (DFFQXL)        0.03       4.60 r
+  data arrival time                                   4.60
 
-  clock clk (rise edge)                                   3.00       3.00
-  clock network delay (ideal)                             0.00       3.00
-  div0/remainder_t_reg_11__33_/CK (SMDFFHQX1)             0.00       3.00 r
-  library setup time                                     -0.10       2.90
-  data required time                                                 2.90
-  --------------------------------------------------------------------------
-  data required time                                                 2.90
-  data arrival time                                                 -4.27
-  --------------------------------------------------------------------------
-  slack (VIOLATED)                                                  -1.37
+  clock clk (rise edge)                    4.00       4.00
+  clock network delay (ideal)              0.00       4.00
+  bank2_proj_reg_reg_19_/CK (DFFQXL)       0.00       4.00 r
+  library setup time                      -0.06       3.94
+  data required time                                  3.94
+  -----------------------------------------------------------
+  data required time                                  3.94
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.66
 
 
-  Startpoint: div4/remainder_t_reg_17__29_
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div4/remainder_t_reg_23__0_
+  Startpoint: sram_rdata_b2[34]
+              (input port clocked by clk)
+  Endpoint: bank0_proj_reg_reg_19_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -212,96 +153,58 @@ Wire Load Model Mode: enclosed
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   ViT_top            Large                 slow_vdd1v2
-  div_mydesign_3     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                   0.00       0.00
-  clock network delay (ideal)                             0.00       0.00
-  div4/remainder_t_reg_17__29_/CK (SMDFFHQX1)             0.00 #     0.00 r
-  div4/remainder_t_reg_17__29_/Q (SMDFFHQX1)              0.11       0.11 f
-  div4/U3994/Y (INVXL)                                    0.03       0.15 r
-  div4/U3995/Y (NOR2XL)                                   0.03       0.18 f
-  div4/U865/Y (NOR2XL)                                    0.06       0.23 r
-  div4/U3998/Y (NAND2XL)                                  0.06       0.29 f
-  div4/U3999/Y (NOR2XL)                                   0.05       0.34 r
-  div4/U4000/Y (NAND2XL)                                  0.06       0.39 f
-  div4/U4037/Y (NOR2XL)                                   0.05       0.44 r
-  div4/U4052/Y (AOI22XL)                                  0.05       0.49 f
-  div4/U4053/Y (NAND2XL)                                  0.05       0.54 r
-  div4/U113/Y (OR2X1)                                     0.06       0.60 r
-  div4/U788/Y (BUFX2)                                     0.08       0.67 r
-  div4/U315/Y (INVX2)                                     0.07       0.75 f
-  div4/U4360/Y (OAI31XL)                                  0.07       0.82 r
-  div4/U4361/Y (AOI211XL)                                 0.05       0.87 f
-  div4/U4363/Y (AOI22XL)                                  0.07       0.94 r
-  div4/U4364/Y (NOR2XL)                                   0.05       0.99 f
-  div4/U4365/Y (AOI211XL)                                 0.06       1.05 r
-  div4/U4366/Y (NOR2XL)                                   0.06       1.10 f
-  div4/U98/Y (OAI31XL)                                    0.06       1.17 r
-  div4/U4507/Y (NAND2XL)                                  0.07       1.23 f
-  div4/U4508/Y (OR2X1)                                    0.09       1.32 f
-  div4/U1725/Y (INVX1)                                    0.06       1.38 r
-  div4/U119/Y (AOI31XL)                                   0.10       1.48 f
-  div4/U4939/Y (NOR2XL)                                   0.07       1.55 r
-  div4/U4940/Y (NOR2XL)                                   0.04       1.59 f
-  div4/U4941/Y (AOI211XL)                                 0.06       1.64 r
-  div4/U4947/Y (OAI211XL)                                 0.11       1.75 f
-  div4/U4955/Y (AOI211XL)                                 0.09       1.84 r
-  div4/U4960/Y (OAI31XL)                                  0.07       1.91 f
-  div4/U1763/Y (CLKAND2X2)                                0.10       2.02 f
-  div4/U5017/Y (INVX2)                                    0.08       2.09 r
-  div4/U5255/Y (NOR2XL)                                   0.05       2.14 f
-  div4/U5256/Y (NOR2XL)                                   0.04       2.18 r
-  div4/U5259/Y (NAND2XL)                                  0.06       2.24 f
-  div4/U5278/Y (NAND2XL)                                  0.04       2.28 r
-  div4/U5279/Y (OAI211XL)                                 0.08       2.35 f
-  div4/U5280/Y (NAND3XL)                                  0.06       2.41 r
-  div4/U5281/Y (NOR4XL)                                   0.04       2.45 f
-  div4/U5284/Y (NOR4XL)                                   0.09       2.54 r
-  div4/U5358/Y (OAI31XL)                                  0.10       2.64 f
-  div4/U5405/Y (AO21X1)                                   0.10       2.74 f
-  div4/U492/Y (INVX1)                                     0.04       2.78 r
-  div4/U269/Y (BUFX3)                                     0.07       2.85 r
-  div4/U1603/Y (OR2XL)                                    0.05       2.89 r
-  div4/U485/Y (OAI21XL)                                   0.08       2.97 f
-  div4/U9918/Y (NOR2XL)                                   0.08       3.05 r
-  div4/U9979/Y (OAI21XL)                                  0.08       3.14 f
-  div4/U9984/Y (AOI21XL)                                  0.06       3.19 r
-  div4/U9985/Y (OAI21XL)                                  0.07       3.27 f
-  div4/U9986/Y (INVXL)                                    0.06       3.33 r
-  div4/U9998/Y (OAI21XL)                                  0.06       3.39 f
-  div4/U9999/Y (AOI21XL)                                  0.06       3.45 r
-  div4/U1610/Y (XOR2XL)                                   0.10       3.55 r
-  div4/U1046/Y (MX2XL)                                    0.09       3.65 r
-  div4/U10135/Y (NOR2XL)                                  0.04       3.69 f
-  div4/U10424/Y (NOR2XL)                                  0.06       3.75 r
-  div4/U14367/Y (INVXL)                                   0.05       3.79 f
-  div4/U205/Y (NOR4XL)                                    0.08       3.87 r
-  div4/U14376/Y (OAI21XL)                                 0.08       3.95 f
-  div4/U14377/Y (AOI22XL)                                 0.06       4.01 r
-  div4/U14412/Y (NAND2XL)                                 0.06       4.07 f
-  div4/U116/Y (NOR2BX1)                                   0.06       4.14 r
-  div4/U14413/Y (BUFX2)                                   0.08       4.22 r
-  div4/U1790/Y (MXI2XL)                                   0.07       4.29 r
-  div4/remainder_t_reg_23__0_/D (DFFQXL)                  0.01       4.30 r
-  data arrival time                                                  4.30
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     1.20       1.20 f
+  sram_rdata_b2[34] (in)                   0.01       1.21 f
+  U24094/Y (AOI22XL)                       0.06       1.27 r
+  U13396/Y (AND4XL)                        0.21       1.48 r
+  U21375/Y (NAND2X1)                       0.10       1.58 f
+  U8600/Y (XNOR2XL)                        0.13       1.71 r
+  U9411/Y (OAI22XL)                        0.10       1.81 f
+  U11288/CO (ADDFX1)                       0.22       2.03 f
+  U8350/CO (ADDFXL)                        0.17       2.20 f
+  U10676/S (ADDFX1)                        0.27       2.47 r
+  U22810/S (ADDFXL)                        0.24       2.71 f
+  U22917/S (ADDFXL)                        0.22       2.93 r
+  U21409/S (ADDFXL)                        0.27       3.20 f
+  U13798/Y (XOR2XL)                        0.10       3.30 r
+  U13797/Y (XOR2XL)                        0.12       3.42 f
+  U22820/Y (NOR2XL)                        0.05       3.48 r
+  U22673/Y (OAI21XL)                       0.08       3.56 f
+  U26267/Y (OAI2BB1XL)                     0.09       3.65 f
+  U8425/Y (XOR2XL)                         0.13       3.77 r
+  U8424/Y (NOR2XL)                         0.05       3.82 f
+  U23853/Y (NOR2XL)                        0.05       3.87 r
+  U21657/Y (AOI21XL)                       0.09       3.96 f
+  U26273/Y (OAI21XL)                       0.08       4.04 r
+  U26274/Y (AOI21XL)                       0.09       4.13 f
+  U26275/Y (OAI21XL)                       0.08       4.21 r
+  U14007/Y (NAND2BXL)                      0.07       4.28 f
+  U14005/Y (OAI21XL)                       0.08       4.36 r
+  U26276/Y (AOI22XL)                       0.08       4.44 f
+  U26277/Y (XOR2XL)                        0.13       4.57 r
+  bank0_proj_reg_reg_19_/D (DFFQXL)        0.03       4.60 r
+  data arrival time                                   4.60
 
-  clock clk (rise edge)                                   3.00       3.00
-  clock network delay (ideal)                             0.00       3.00
-  div4/remainder_t_reg_23__0_/CK (DFFQXL)                 0.00       3.00 r
-  library setup time                                     -0.07       2.93
-  data required time                                                 2.93
-  --------------------------------------------------------------------------
-  data required time                                                 2.93
-  data arrival time                                                 -4.30
-  --------------------------------------------------------------------------
-  slack (VIOLATED)                                                  -1.37
+  clock clk (rise edge)                    4.00       4.00
+  clock network delay (ideal)              0.00       4.00
+  bank0_proj_reg_reg_19_/CK (DFFQXL)       0.00       4.00 r
+  library setup time                      -0.06       3.94
+  data required time                                  3.94
+  -----------------------------------------------------------
+  data required time                                  3.94
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.65
 
 
-  Startpoint: div1/remainder_t_reg_11__23_
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: div1/remainder_t_reg_17__7_
+  Startpoint: sram_rdata_b3[44]
+              (input port clocked by clk)
+  Endpoint: bank3_proj_reg_reg_19_
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -309,88 +212,53 @@ Wire Load Model Mode: enclosed
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
   ViT_top            Large                 slow_vdd1v2
-  div_mydesign_6     Small                 slow_vdd1v2
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                   0.00       0.00
-  clock network delay (ideal)                             0.00       0.00
-  div1/remainder_t_reg_11__23_/CK (SMDFFHQX1)             0.00 #     0.00 r
-  div1/remainder_t_reg_11__23_/Q (SMDFFHQX1)              0.12       0.12 f
-  div1/U6497/Y (INVXL)                                    0.03       0.15 r
-  div1/U6498/Y (NOR2XL)                                   0.03       0.19 f
-  div1/U6501/Y (NOR2XL)                                   0.04       0.23 r
-  div1/U6507/Y (NAND2XL)                                  0.05       0.28 f
-  div1/U6515/Y (NOR2XL)                                   0.06       0.34 r
-  div1/U6536/Y (NAND2XL)                                  0.06       0.40 f
-  div1/U6573/Y (NOR2XL)                                   0.04       0.44 r
-  div1/U1821/Y (AOI2BB2XL)                                0.05       0.49 f
-  div1/U6586/Y (NAND2XL)                                  0.05       0.54 r
-  div1/U157/Y (OR2X1)                                     0.06       0.60 r
-  div1/U6638/Y (INVX2)                                    0.08       0.68 f
-  div1/U1459/Y (MXI2XL)                                   0.09       0.77 f
-  div1/U1071/Y (NOR2XL)                                   0.08       0.85 r
-  div1/U7003/Y (AOI22XL)                                  0.07       0.92 f
-  div1/U7004/Y (OAI21XL)                                  0.05       0.97 r
-  div1/U7005/Y (NAND4XL)                                  0.09       1.06 f
-  div1/U7011/Y (AOI31XL)                                  0.08       1.14 r
-  div1/U1774/Y (NOR2XL)                                   0.04       1.18 f
-  div1/U7015/Y (OAI22XL)                                  0.05       1.22 r
-  div1/U7016/Y (OR2X1)                                    0.07       1.29 r
-  div1/U727/Y (INVX1)                                     0.06       1.36 f
-  div1/U7406/Y (OAI22XL)                                  0.06       1.42 r
-  div1/U204/Y (AOI31XL)                                   0.05       1.47 f
-  div1/U7410/Y (NOR2XL)                                   0.06       1.53 r
-  div1/U7411/Y (NOR2XL)                                   0.04       1.57 f
-  div1/U7417/Y (AOI211XL)                                 0.07       1.64 r
-  div1/U7423/Y (OAI211XL)                                 0.09       1.74 f
-  div1/U7432/Y (AOI211XL)                                 0.09       1.82 r
-  div1/U7471/Y (AOI211XL)                                 0.09       1.92 f
-  div1/U7472/Y (CLKAND2X2)                                0.10       2.02 f
-  div1/U7473/Y (INVX2)                                    0.07       2.09 r
-  div1/U100/Y (MXI2X1)                                    0.09       2.18 r
-  div1/U967/Y (NAND2X1)                                   0.07       2.25 f
-  div1/U7700/Y (NAND2XL)                                  0.05       2.30 r
-  div1/U7719/Y (NOR2XL)                                   0.03       2.33 f
-  div1/U7720/Y (AOI211XL)                                 0.06       2.39 r
-  div1/U7721/Y (OAI21XL)                                  0.07       2.46 f
-  div1/U7788/Y (AOI211XL)                                 0.09       2.54 r
-  div1/U7861/Y (NOR4XL)                                   0.06       2.60 f
-  div1/U7915/Y (OR2X1)                                    0.09       2.70 f
-  div1/U1748/Y (INVX1)                                    0.07       2.77 r
-  div1/U8210/Y (NOR2XL)                                   0.06       2.83 f
-  div1/U8211/Y (AOI211XL)                                 0.08       2.91 r
-  div1/U1555/Y (OAI22XL)                                  0.11       3.02 f
-  div1/U8217/Y (NAND2XL)                                  0.06       3.08 r
-  div1/U8226/Y (AOI211XL)                                 0.07       3.15 f
-  div1/U8238/Y (OAI211XL)                                 0.07       3.22 r
-  div1/U8239/Y (NOR2XL)                                   0.05       3.27 f
-  div1/U8346/Y (OAI31XL)                                  0.08       3.35 r
-  div1/U8382/Y (AND2X1)                                   0.11       3.46 r
-  div1/U12913/Y (INVX2)                                   0.08       3.53 f
-  div1/U1517/Y (MXI2XL)                                   0.08       3.61 f
-  div1/U1872/Y (NAND2BXL)                                 0.07       3.68 f
-  div1/U14424/Y (OAI22XL)                                 0.05       3.73 r
-  div1/U14425/Y (AOI31XL)                                 0.06       3.78 f
-  div1/U110/Y (NAND3BX1)                                  0.10       3.88 f
-  div1/U14432/Y (AOI31XL)                                 0.07       3.95 r
-  div1/U1820/Y (NOR2XL)                                   0.04       3.99 f
-  div1/U14466/Y (OAI31XL)                                 0.08       4.07 r
-  div1/U14502/Y (NOR2XL)                                  0.06       4.13 f
-  div1/U14504/Y (BUFX2)                                   0.09       4.22 f
-  div1/remainder_t_reg_17__7_/SE (SMDFFHQX1)              0.02       4.24 f
-  data arrival time                                                  4.24
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     1.20       1.20 f
+  sram_rdata_b3[44] (in)                   0.01       1.21 f
+  U23942/Y (AOI22XL)                       0.06       1.27 r
+  U14171/Y (AND4XL)                        0.21       1.48 r
+  U21590/Y (NAND4X1)                       0.15       1.63 f
+  U8599/Y (XNOR2XL)                        0.15       1.78 r
+  U9458/Y (OAI22XL)                        0.09       1.87 f
+  U13833/S (ADDFXL)                        0.24       2.11 r
+  U26534/CO (ADDFX1)                       0.18       2.29 r
+  U13430/CO (ADDFXL)                       0.15       2.44 r
+  U26546/S (ADDFX1)                        0.23       2.66 f
+  U26545/CO (ADDFXL)                       0.20       2.86 f
+  U21905/Y (XOR3XL)                        0.21       3.07 r
+  U20943/Y (XOR3XL)                        0.21       3.28 r
+  U20925/Y (XOR2XL)                        0.12       3.40 f
+  U19579/Y (OR2XL)                         0.08       3.48 f
+  U22659/Y (AOI21XL)                       0.07       3.55 r
+  U23941/Y (OAI21XL)                       0.09       3.63 f
+  U9210/Y (OAI2BB1X1)                      0.08       3.72 f
+  U23085/Y (XOR2XL)                        0.12       3.84 r
+  U13750/Y (NOR2XL)                        0.05       3.89 f
+  U23086/Y (NOR2XL)                        0.05       3.94 r
+  U27370/Y (AOI21XL)                       0.09       4.03 f
+  U27371/Y (OAI21XL)                       0.08       4.11 r
+  U27373/Y (AOI21XL)                       0.09       4.20 f
+  U22878/Y (OAI21XL)                       0.08       4.28 r
+  U21544/Y (OAI2BB1XL)                     0.09       4.37 r
+  U27885/Y (AOI22XL)                       0.06       4.43 f
+  U27886/Y (XOR2XL)                        0.14       4.57 r
+  bank3_proj_reg_reg_19_/D (DFFQXL)        0.03       4.60 r
+  data arrival time                                   4.60
 
-  clock clk (rise edge)                                   3.00       3.00
-  clock network delay (ideal)                             0.00       3.00
-  div1/remainder_t_reg_17__7_/CK (SMDFFHQX1)              0.00       3.00 r
-  library setup time                                     -0.13       2.87
-  data required time                                                 2.87
-  --------------------------------------------------------------------------
-  data required time                                                 2.87
-  data arrival time                                                 -4.24
-  --------------------------------------------------------------------------
-  slack (VIOLATED)                                                  -1.37
+  clock clk (rise edge)                    4.00       4.00
+  clock network delay (ideal)              0.00       4.00
+  bank3_proj_reg_reg_19_/CK (DFFQXL)       0.00       4.00 r
+  library setup time                      -0.06       3.94
+  data required time                                  3.94
+  -----------------------------------------------------------
+  data required time                                  3.94
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.65
 
 
 1

@@ -1,0 +1,366 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : div
+Version: R-2020.09-SP5
+Date   : Mon Nov 24 15:09:53 2025
+****************************************
+
+
+   max_delay/setup ('clk' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   remainder_t_reg_21__0_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__4_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__12_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__13_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__18_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__19_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__20_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__21_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__22_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__23_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__24_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__25_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__26_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__27_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__28_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__29_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__30_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__34_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__36_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__38_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__1_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__2_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__3_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__5_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__6_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__7_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__8_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__9_/D     2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__10_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__11_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__14_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__15_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__16_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__17_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__31_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__32_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__33_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__35_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_21__37_/D
+                                2.93           6.19 r        -3.26  (VIOLATED)
+   remainder_t_reg_14__4_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__6_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__14_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__15_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__17_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__19_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__20_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__21_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__22_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__23_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__25_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__26_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__27_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__28_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__29_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__30_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__32_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__33_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__35_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__36_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__0_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__1_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__2_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__3_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__5_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__7_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__8_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__9_/D     2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__10_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__11_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__12_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__13_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__18_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__24_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__31_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__34_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__37_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__38_/D
+                                2.93           6.18 r        -3.25  (VIOLATED)
+   remainder_t_reg_14__16_/D
+                                2.94           6.19 r        -3.25  (VIOLATED)
+   merchant_t_reg_21__0_/D      2.94           6.16 r        -3.22  (VIOLATED)
+   remainder_t_reg_33__13_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__14_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__15_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__16_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__17_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__18_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__19_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__20_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__21_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__22_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__23_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__24_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__25_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__26_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__27_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__28_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__29_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__30_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__31_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__32_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__33_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__34_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__35_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__36_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__37_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__38_/D
+                                2.93           6.12 r        -3.19  (VIOLATED)
+   remainder_t_reg_33__0_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__1_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__2_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__3_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__4_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__5_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__6_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__7_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__8_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__9_/D     2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__10_/D
+                                2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__11_/D
+                                2.93           6.11 r        -3.18  (VIOLATED)
+   remainder_t_reg_33__12_/D
+                                2.93           6.11 r        -3.18  (VIOLATED)
+   merchant_t_reg_14__0_/D      2.94           6.09 r        -3.15  (VIOLATED)
+   remainder_t_reg_27__0_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__1_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__2_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__3_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__4_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__5_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__6_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__7_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__8_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__9_/D     2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__10_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__11_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__12_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__13_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__14_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__15_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__16_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__17_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__18_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__19_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__20_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__21_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__22_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__23_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__24_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__25_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__26_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__27_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__28_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__29_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__30_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__31_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__32_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__33_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__34_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__35_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__36_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__37_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder_t_reg_27__38_/D
+                                2.93           6.06 r        -3.14  (VIOLATED)
+   remainder[0]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[1]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[2]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[3]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[4]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[5]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[6]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[7]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[8]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[9]                 2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[10]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[11]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[12]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[13]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[14]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[15]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[16]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[17]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[18]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[19]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[20]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[21]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[22]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[23]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[24]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[25]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[26]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[27]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[28]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[29]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[30]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[31]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[32]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[33]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[34]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[35]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[36]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[37]                2.10           5.20 r        -3.10  (VIOLATED)
+   remainder[38]                2.10           5.20 r        -3.10  (VIOLATED)
+   merchant_t_reg_33__0_/D      2.94           5.91 r        -2.97  (VIOLATED)
+   merchant_t_reg_27__0_/D      2.94           5.81 r        -2.87  (VIOLATED)
+   merchant[0]                  2.10           4.94 r        -2.84  (VIOLATED)
+   merchant_t_reg_21__1_/D      2.94           5.34 r        -2.40  (VIOLATED)
+   merchant_t_reg_14__1_/D      2.94           5.23 r        -2.29  (VIOLATED)
+   remainder_t_reg_7__6_/D      2.92           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__0_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__1_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__2_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__3_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__4_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__5_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   remainder_t_reg_7__7_/D      2.93           5.03 r        -2.11  (VIOLATED)
+   merchant_t_reg_7__0_/D       2.93           5.01 r        -2.07  (VIOLATED)
+   merchant_t_reg_33__1_/D      2.93           4.88 r        -1.94  (VIOLATED)
+   merchant[1]                  2.10           4.00 f        -1.90  (VIOLATED)
+   merchant_t_reg_27__1_/D      2.93           4.81 r        -1.88  (VIOLATED)
+   merchant_t_reg_21__2_/D      2.94           4.41 r        -1.47  (VIOLATED)
+   merchant_t_reg_14__2_/D      2.94           4.32 r        -1.38  (VIOLATED)
+   merchant_t_reg_7__1_/D       2.93           4.21 r        -1.28  (VIOLATED)
+   merchant[2]                  2.10           3.24 r        -1.14  (VIOLATED)
+   merchant_t_reg_27__2_/D      2.93           3.89 r        -0.96  (VIOLATED)
+   merchant_t_reg_33__2_/D      2.93           3.88 r        -0.94  (VIOLATED)
+   merchant_t_reg_21__3_/D      2.93           3.47 r        -0.54  (VIOLATED)
+   merchant_t_reg_7__2_/D       2.93           3.46 r        -0.52  (VIOLATED)
+   merchant_t_reg_14__3_/D      2.94           3.44 r        -0.50  (VIOLATED)
+   merchant_t_reg_27__3_/D      2.94           3.06 r        -0.12  (VIOLATED)
+
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   div                          0.00       23641.43       -23641.43 (VIOLATED)
+
+
+1

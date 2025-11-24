@@ -1,0 +1,143 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 4
+Design : div
+Version: R-2020.09-SP5
+Date   : Mon Nov 24 15:09:50 2025
+****************************************
+
+Operating Conditions: PVT_1P08V_125C   Library: slow_vdd1v2
+Wire Load Model Mode: enclosed
+
+  Startpoint: divisor_t_reg_0__38_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: divisor_t_reg_7__38_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_0__38_/CK (DFFQXL)         0.00       0.00 r
+  divisor_t_reg_0__38_/Q (DFFQXL)          0.11       0.11 f
+  divisor_t_reg_7__38_/D (DFFQXL)          0.02       0.12 f
+  data arrival time                                   0.12
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_7__38_/CK (DFFQXL)         0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.12
+  -----------------------------------------------------------
+  slack (MET)                                         0.13
+
+
+  Startpoint: divisor_t_reg_0__37_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: divisor_t_reg_7__37_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_0__37_/CK (DFFQXL)         0.00       0.00 r
+  divisor_t_reg_0__37_/Q (DFFQXL)          0.11       0.11 f
+  divisor_t_reg_7__37_/D (DFFQXL)          0.02       0.12 f
+  data arrival time                                   0.12
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_7__37_/CK (DFFQXL)         0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.12
+  -----------------------------------------------------------
+  slack (MET)                                         0.13
+
+
+  Startpoint: divisor_t_reg_0__36_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: divisor_t_reg_7__36_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_0__36_/CK (DFFQXL)         0.00       0.00 r
+  divisor_t_reg_0__36_/Q (DFFQXL)          0.11       0.11 f
+  divisor_t_reg_7__36_/D (DFFQXL)          0.02       0.12 f
+  data arrival time                                   0.12
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_7__36_/CK (DFFQXL)         0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.12
+  -----------------------------------------------------------
+  slack (MET)                                         0.13
+
+
+  Startpoint: divisor_t_reg_21__1_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: divisor_t_reg_27__1_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  div                Large                 slow_vdd1v2
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_21__1_/CK (DFFQXL)         0.00       0.00 r
+  divisor_t_reg_21__1_/Q (DFFQXL)          0.11       0.11 f
+  divisor_t_reg_27__1_/D (DFFQXL)          0.02       0.12 f
+  data arrival time                                   0.12
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  divisor_t_reg_27__1_/CK (DFFQXL)         0.00       0.00 r
+  library hold time                        0.00       0.00
+  data required time                                  0.00
+  -----------------------------------------------------------
+  data required time                                  0.00
+  data arrival time                                  -0.12
+  -----------------------------------------------------------
+  slack (MET)                                         0.13
+
+
+1
