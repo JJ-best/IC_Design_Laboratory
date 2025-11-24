@@ -1,3 +1,4 @@
+// new version
 module ViT_top #(
     parameter CH_NUM = 8,
     parameter ACT_PER_ADDR = 1,
@@ -179,14 +180,14 @@ reg [4:0] sramb_addr_vproj_cnt; // last 5-bit addr counter
 wire [4:0] sramb_addr_vproj;    // sram B addr for vproj
 reg [9:0] sramb_dat_vproj[0:3];
 wire [2:0] vproj_cnt8;
-
+reg valid_13;
 // ----- vproj write sram D ----- //
 reg [5:0] vproj_wcnt; 
 wire accum_done;
 reg [4:0] vproj_sramd_waddr;
 wire [79:0] vproj_wdata;
 reg head_sel;
-
+reg valid_14;
 // ----- orpojection ----- //
 reg signed[(BW_PER_ACT-1):0] d_bank0_dat[0:(CH_NUM-1)];
 reg signed[(BW_PER_ACT-1):0] d_bank1_dat[0:(CH_NUM-1)];
@@ -273,7 +274,7 @@ always @(*) begin
             end
         end
         PROJ_T: begin
-            if (sram_wen_c0 == 0) begin
+            if (sram_wen_c0 == 0 && sram_addr_cnt_c == 6'd47) begin
                 top_state_n = R_SRAM_C;
             end else begin
                 top_state_n = PROJ_T;
@@ -1562,13 +1563,15 @@ always @(*) begin
         endcase
     end
 end
-always @(*) begin
+reg phase_d1;
+always @(posedge clk) begin
     for (i=0; i<8; i=i+1) begin
-        bank0_proj_mul_n[i] = mul0_in1[i] * mul0_in2[i];
-        bank1_proj_mul_n[i] = mul1_in1[i] * mul1_in2[i]; 
-        bank2_proj_mul_n[i] = mul2_in1[i] * mul2_in2[i];
-        bank3_proj_mul_n[i] = mul3_in1[i] * mul3_in2[i];
+        bank0_proj_mul_n[i] <= mul0_in1[i] * mul0_in2[i];
+        bank1_proj_mul_n[i] <= mul1_in1[i] * mul1_in2[i]; 
+        bank2_proj_mul_n[i] <= mul2_in1[i] * mul2_in2[i];
+        bank3_proj_mul_n[i] <= mul3_in1[i] * mul3_in2[i];
     end
+    phase_d1 <= phase;
 end
 reg signed [19:0] bank0_proj_add_n ;
 reg signed [19:0] bank1_proj_add_n ;
@@ -1601,7 +1604,7 @@ reg signed [19:0]bank2_proj_add ;
 reg signed [19:0]bank3_proj_add ;
 reg valid_4;
 always @(posedge clk) begin
-    if (phase) begin
+    if (phase_d1) begin
         bank0_proj_add <= bank0_proj_add_n;
         bank1_proj_add <= bank1_proj_add_n;
         bank2_proj_add <= bank2_proj_add_n;
@@ -1612,7 +1615,7 @@ always @(posedge clk) begin
     if (!srst_n) begin
         valid_4 <= 0;
     end else begin
-        valid_4 <= phase;
+        valid_4 <= phase_d1;
     end
 end
 
@@ -2148,8 +2151,10 @@ always @(posedge clk) begin // onlt store 1 token of matrix Q
 end
 
 reg valid_6; // valid K token
+reg valid_6_d1;
 always @(posedge clk) begin
     valid_6 <= access_k;
+    valid_6_d1 <= valid_6; // wait for pipeline datapath
 end
 
 // Q token0 * K token0,1,2,3,
@@ -2167,7 +2172,7 @@ always @(posedge clk) begin
     qk_result[1] <= bank1_proj_add_n;
     qk_result[2] <= bank2_proj_add_n;
     qk_result[3] <= bank3_proj_add_n;
-    valid_7 <= valid_6;
+    valid_7 <= valid_6_d1;
 end
 // ===== 9. Multiply each result with 1 / √chead ===== //
 // / √chead. (000_0101101: 1-bit sign + 2-bit integer + 7-bit fraction) 
@@ -2810,7 +2815,7 @@ end
 // addr32 -> addr33 -> ... -> addr47
 // 10_0000 -> 10_0001 -> ... -> 10_1111
 
-reg valid_13;
+
 always @(posedge clk) begin
     if (top_state == V_PROJ) begin
         sramb_rcnt <= sramb_rcnt + 1;
@@ -2963,29 +2968,30 @@ end
 reg signed[21:0] vproj_add_n[0:7];
 reg signed[25:0] vproj_add[0:7];
 reg signed[25:0] vproj_add_sel[0:7];
-reg valid_14;
+reg valid_14_d1;
 
 always @(*) begin
-    for (i=0; i<8; i=i+1) begin
+    for (i=0; i<8; i=i+1) begin // the result may delay 1 cycle
         vproj_add_n[i] = bank0_proj_mul_n[i] + bank1_proj_mul_n[i] + bank2_proj_mul_n[i] + bank3_proj_mul_n[i] + vproj_add_sel[i];
     end
 end
 always @(posedge clk) begin
     for (i=0; i<8; i=i+1) begin
-        if ((top_state == V_PROJ || top_state == V_PROJ_T) && valid_13) begin
+        if ((top_state == V_PROJ || top_state == V_PROJ_T) && valid_14) begin
             vproj_add[i] <= vproj_add_n[i];
         end else begin
             vproj_add[i] <= 0;
         end
     end
     valid_14 <= valid_13;
+    valid_14_d1 <= valid_14;
 end
 
 // high if accumulation is done, write into sram D
-assign accum_done = (valid_14 && vproj_cnt16==1)? 1:0;
+assign accum_done = (valid_14_d1 && vproj_cnt16==2)? 1:0;
 always @(*) begin
     for (i=0; i<8; i=i+1) begin
-        vproj_add_sel[i] = (accum_done)? 0: vproj_add[i];
+        vproj_add_sel[i] = (!valid_14 || accum_done)? 0: vproj_add[i];
     end
 end
 
