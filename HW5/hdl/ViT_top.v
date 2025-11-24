@@ -2753,7 +2753,7 @@ always @(posedge clk) begin
         exp_shift_9[i] <= exp_shift_8[i];
     end
 end
-
+reg valid_12_d7;
 // The softmax divider re-use the divider we put in Layernorm stage
 always @(posedge clk) begin
     if (valid_11) begin
@@ -2772,6 +2772,7 @@ always @(posedge clk) begin
     valid_12_d4 <= valid_12_d3;
     valid_12_d5 <= valid_12_d4;
     valid_12_d6 <= valid_12_d5;
+    valid_12_d7 <= valid_12_d6;
 end
 
 // ===== 13. Quantize the result to 10-bits and write the result to SRAM B. ===== //
@@ -2782,7 +2783,7 @@ end
  // The throught put of the softmax is 8 ch / per cycle, that is, we access each
  // bank one cycle, stall at an sram B entry(address) 4 cycle to write 4 bank.
  always @(posedge clk) begin
-    if (valid_12_d6) begin
+    if (valid_12_d7) begin
         sramb_wcnt <= sramb_wcnt + 1;
     end else begin
         sramb_wcnt <= 0;
@@ -2790,7 +2791,7 @@ end
  end
 
  always @(posedge clk) begin
-    if (sramb_wcnt==2'b11 && valid_12_d6) begin
+    if (sramb_wcnt==2'b11 && valid_12_d7) begin
         sramb_waddr_softmax <= sramb_waddr_softmax + 1;
     end else if (top_state == SOFTMAX || top_state == SOFTMAX_T) begin
         sramb_waddr_softmax <= sramb_waddr_softmax;
@@ -2802,7 +2803,7 @@ end
 
 always @(*) begin
     for (i=0; i<8; i=i+1) begin
-        softmax_wdata_ch[i] = token_nor[i][9:0];
+        softmax_wdata_ch[i] = token_nor_reg[i][9:0];
     end
 end
 
