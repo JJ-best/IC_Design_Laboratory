@@ -1,0 +1,44 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09-SP5
+Date:        Wed Nov 26 02:52:39 2025
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     29
+    Shorted outputs (LINT-31)                                      14
+    Constant outputs (LINT-52)                                     15
+--------------------------------------------------------------------------------
+
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[24]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[25]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[26]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[27]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[28]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[29]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[30]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[31]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[32]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[33]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[34]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[35]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[36]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to output port 'merchant[37]'. (LINT-31)
+Warning: In design 'div_v2', output port 'merchant[38]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[37]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[36]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[35]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[34]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[33]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[32]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[31]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[30]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[29]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[28]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[27]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[26]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[25]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'div_v2', output port 'merchant[24]' is connected directly to 'logic 0'. (LINT-52)
+1
