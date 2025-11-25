@@ -218,10 +218,10 @@ def main():
         print(f"{path.name} | label={label} | pred={pred} ({CLASSES[pred]})")
 
     # Also show one sample detail for quick check
-    sample_path = val_items[0][0] if val_items else train_loader.dataset.items[0][0]
-    pred, prob = predict_one(model, sample_path, test_tf, device)
-    print(f"Example sample: {sample_path}")
-    print(f"Predicted class: {pred} ({CLASSES[pred]}) with prob {prob:.2f}")
+    # sample_path = val_items[0][0] if val_items else train_loader.dataset.items[0][0]
+    # pred, prob = predict_one(model, sample_path, test_tf, device)
+    # print(f"Example sample: {sample_path}")
+    # print(f"Predicted class: {pred} ({CLASSES[pred]}) with prob {prob:.2f}")
 
 
 if __name__ == "__main__":
