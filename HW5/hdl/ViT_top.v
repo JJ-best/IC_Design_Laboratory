@@ -1042,13 +1042,11 @@ end
 
 // 8 multiplier 
 reg signed [19:0] token_x_nor_weight [0:7];
+reg signed [9:0] weight_reg_sel[0:7] ;
 always @(*) begin
     for (k=0; k<8; k=k+1) begin
-        if (!sel_toggle_d7) begin
-            token_x_nor_weight[k] = token_nor_t[k] * weight_reg[k];
-        end else begin
-            token_x_nor_weight[k] = token_nor_t[k] * weight_reg[k+8];
-        end
+        weight_reg_sel[k] = (!sel_toggle_d7)? weight_reg[k]: weight_reg[k+8];
+        token_x_nor_weight[k] = token_nor_t[k] * weight_reg_sel[k];
     end
 end
 

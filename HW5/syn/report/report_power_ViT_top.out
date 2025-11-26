@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : ViT_top
 Version: R-2020.09-SP5
-Date   : Wed Nov 26 02:48:20 2025
+Date   : Wed Nov 26 14:32:14 2025
 ****************************************
 
 
@@ -286,29 +286,29 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-ViT_top                                   0.606    7.623 6.23e+06    8.235 100.0
+ViT_top                                   0.579    7.553 6.19e+06    8.138 100.0
   EXP_LUT_ARRAY_7__exp_lut_stage8 (exp_lut_mydesign_0)
-                                       2.72e-02 5.37e-02 1.30e+05 8.10e-02   1.0
+                                       2.66e-02 5.23e-02 1.26e+05 7.90e-02   1.0
   EXP_LUT_ARRAY_6__exp_lut_stage8 (exp_lut_mydesign_1)
-                                       2.72e-02 5.38e-02 1.30e+05 8.11e-02   1.0
+                                       2.66e-02 5.25e-02 1.26e+05 7.93e-02   1.0
   EXP_LUT_ARRAY_5__exp_lut_stage8 (exp_lut_mydesign_2)
-                                       2.75e-02 5.42e-02 1.30e+05 8.18e-02   1.0
+                                       2.67e-02 5.27e-02 1.26e+05 7.96e-02   1.0
   EXP_LUT_ARRAY_4__exp_lut_stage8 (exp_lut_mydesign_3)
-                                       2.71e-02 5.35e-02 1.30e+05 8.07e-02   1.0
+                                       2.70e-02 5.32e-02 1.26e+05 8.03e-02   1.0
   EXP_LUT_ARRAY_3__exp_lut_stage8 (exp_lut_mydesign_4)
-                                       2.70e-02 5.34e-02 1.30e+05 8.05e-02   1.0
+                                       2.66e-02 5.23e-02 1.27e+05 7.90e-02   1.0
   EXP_LUT_ARRAY_2__exp_lut_stage8 (exp_lut_mydesign_5)
-                                       2.72e-02 5.37e-02 1.30e+05 8.09e-02   1.0
+                                       2.66e-02 5.23e-02 1.26e+05 7.91e-02   1.0
   EXP_LUT_ARRAY_1__exp_lut_stage8 (exp_lut_mydesign_6)
-                                       2.73e-02 5.38e-02 1.30e+05 8.12e-02   1.0
+                                       2.64e-02 5.20e-02 1.26e+05 7.86e-02   1.0
   EXP_LUT_ARRAY_0__exp_lut_stage8 (exp_lut_mydesign_7)
-                                       2.73e-02 5.39e-02 1.30e+05 8.14e-02   1.0
-  div7 (div_mydesign_0)                1.92e-02    0.389 3.63e+05    0.408   5.0
-  div6 (div_mydesign_1)                1.92e-02    0.388 3.61e+05    0.408   5.0
-  div5 (div_mydesign_2)                2.04e-02    0.394 3.62e+05    0.414   5.0
-  div4 (div_mydesign_3)                1.91e-02    0.389 3.59e+05    0.409   5.0
-  div3 (div_mydesign_4)                1.86e-02    0.387 3.61e+05    0.405   4.9
-  div2 (div_mydesign_5)                1.85e-02    0.387 3.62e+05    0.405   4.9
-  div1 (div_mydesign_6)                2.00e-02    0.390 3.62e+05    0.411   5.0
-  div0 (div_mydesign_7)                1.89e-02    0.391 3.62e+05    0.410   5.0
+                                       2.68e-02 5.30e-02 1.27e+05 7.99e-02   1.0
+  div7 (div_mydesign_0)                1.66e-02    0.381 3.61e+05    0.398   4.9
+  div6 (div_mydesign_1)                1.71e-02    0.384 3.61e+05    0.401   4.9
+  div5 (div_mydesign_2)                1.80e-02    0.389 3.61e+05    0.407   5.0
+  div4 (div_mydesign_3)                1.78e-02    0.386 3.63e+05    0.404   5.0
+  div3 (div_mydesign_4)                1.64e-02    0.381 3.58e+05    0.398   4.9
+  div2 (div_mydesign_5)                1.69e-02    0.382 3.60e+05    0.399   4.9
+  div1 (div_mydesign_6)                1.71e-02    0.382 3.61e+05    0.399   4.9
+  div0 (div_mydesign_7)                1.72e-02    0.384 3.62e+05    0.402   4.9
 1
