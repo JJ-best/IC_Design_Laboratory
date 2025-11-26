@@ -1,0 +1,42 @@
+catch { setDesignMode -process 45 }
+catch { setAnalysisMode -analysisType bcwc }
+catch { setAnalysisMode -checkType setup }
+catch { setAnalysisMode -clkSrcPath false }
+catch { setAnalysisMode -clockPropagation forcedIdeal }
+catch { setExtractRCMode  -engine preRoute -total_c_th 0 -relative_c_th 1 -coupling_c_th 0.1 }
+catch {setNanoRouteMode -quiet -droutePostRouteSpreadWire "1"}
+catch {setNanoRouteMode -quiet -droutePostRouteWidenWireRule "LEFSpecialRouteSpec"}
+catch {setNanoRouteMode -quiet -extractThirdPartyCompatible false}
+catch {setNanoRouteMode -quiet -timingEngine ""}
+
+catch { setPlaceMode -place_design_floorplan_mode true }
+catch { setPlaceMode -place_detail_check_route false }
+catch { setPlaceMode -place_detail_preserve_routing true }
+catch { setPlaceMode -place_detail_remove_affected_routing false }
+catch { setPlaceMode -place_detail_swap_eeq_cells false }
+catch { setPlaceMode -place_global_clock_gate_aware true }
+catch { setPlaceMode -place_global_ignore_scan true }
+catch { setPlaceMode -place_global_ignore_spare false }
+catch { setPlaceMode -place_global_module_aware_spare false }
+catch { setPlaceMode -place_global_place_io_pins false }
+catch { setPlaceMode -place_global_reorder_scan true }
+catch { setPlaceMode -powerDriven false }
+catch { setPlaceMode -timingDriven true }
+catch { setIlmMode -keepHighFanoutPorts true -keepLoopBack false -keepFlatten true }
+catch { setUsefulSkewMode -maxAllowedDelay 1 }
+catch { setUsefulSkewMode -maxSkew false }
+catch { setUsefulSkewMode -noBoundary false }
+catch { setUsefulSkewMode -useCells {BUFX12 BUFX16 BUFX2 BUFX20 BUFX3 BUFX4 BUFX6 BUFX8 CLKBUFX12 CLKBUFX16 CLKBUFX2 CLKBUFX20 CLKBUFX3 CLKBUFX4 CLKBUFX6 CLKBUFX8 DLY1X1 DLY1X4 DLY2X1 DLY2X4 DLY3X1 DLY3X4 DLY4X1 DLY4X4 CLKINVX1 CLKINVX12 CLKINVX16 CLKINVX2 CLKINVX20 CLKINVX3 CLKINVX4 CLKINVX6 CLKINVX8 INVX1 INVX12 INVX16 INVX2 INVX20 INVX3 INVX4 INVX6 INVX8 INVXL} }
+catch { setDelayCalMode -enable_high_fanout true }
+catch { setDelayCalMode -eng_copyNetPropToNewNet true }
+catch { setDelayCalMode -engine aae }
+catch { setDelayCalMode -ignoreNetLoad false }
+catch { setImportMode -discardFloatingVNets false }
+catch { setImportMode -keepEmptyModule true }
+catch { setSIMode -separate_delta_delay_on_data true }
+catch { setRouteMode -earlyGlobalHonorMsvRouteConstraint false }
+catch { setRouteMode -earlyGlobalRoutePartitionPinGuide true }
+catch { setEndCapMode -boundary_tap false }
+catch { setFPlanMode -defaultTechSite CoreSite }
+catch { setFPlanMode -maxIoHeight false }
+catch { setFPlanMode -powerRailLayer {} }

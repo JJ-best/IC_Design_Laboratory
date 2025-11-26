@@ -2,7 +2,8 @@ set_option enable_save_restore false
 # read file
 read_file -type verilog \
 ../hdl/ViT_top.v \
-../hdl/exp_lut.v
+../hdl/exp_lut.v \
+../hdl/div.v
 # timing constraint
 # read_file -type sgdc ./constraints.sgdc
 

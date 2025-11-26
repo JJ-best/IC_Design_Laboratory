@@ -1,0 +1,1997 @@
+[11/26 22:28:08      0s] 
+[11/26 22:28:08      0s] Cadence Innovus(TM) Implementation System.
+[11/26 22:28:08      0s] Copyright 2020 Cadence Design Systems, Inc. All rights reserved worldwide.
+[11/26 22:28:08      0s] 
+[11/26 22:28:08      0s] Version:	v20.10-p004_1, built Thu May 7 20:02:41 PDT 2020
+[11/26 22:28:08      0s] Options:	
+[11/26 22:28:08      0s] Date:		Wed Nov 26 22:28:08 2025
+[11/26 22:28:08      0s] Host:		ws42 (x86_64 w/Linux 3.10.0-1160.95.1.el7.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5620 @ 2.40GHz 12288KB)
+[11/26 22:28:08      0s] OS:		CentOS Linux release 7.9.2009 (Core)
+[11/26 22:28:08      0s] 
+[11/26 22:28:08      0s] License:
+[11/26 22:28:08      0s] 		invs	Innovus Implementation System	20.1	checkout succeeded
+[11/26 22:28:08      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[11/26 22:28:38     21s] @(#)CDS: Innovus v20.10-p004_1 (64bit) 05/07/2020 20:02 (Linux 2.6.32-431.11.2.el6.x86_64)
+[11/26 22:28:38     21s] @(#)CDS: NanoRoute 20.10-p004_1 NR200413-0234/20_10-UB (database version 18.20.505) {superthreading v1.69}
+[11/26 22:28:38     21s] @(#)CDS: AAE 20.10-p005 (64bit) 05/07/2020 (Linux 2.6.32-431.11.2.el6.x86_64)
+[11/26 22:28:38     21s] @(#)CDS: CTE 20.10-p005_1 () Apr 14 2020 09:14:28 ( )
+[11/26 22:28:38     21s] @(#)CDS: SYNTECH 20.10-b004_1 () Mar 12 2020 22:18:21 ( )
+[11/26 22:28:38     21s] @(#)CDS: CPE v20.10-p006
+[11/26 22:28:38     21s] @(#)CDS: IQuantus/TQuantus 19.1.3-s155 (64bit) Sun Nov 3 18:26:52 PST 2019 (Linux 2.6.32-431.11.2.el6.x86_64)
+[11/26 22:28:38     21s] @(#)CDS: OA 22.60-p028 Tue Dec  3 14:08:48 2019
+[11/26 22:28:38     21s] @(#)CDS: SGN 19.10-d001 (24-May-2019) (64 bit executable, Qt5.9.0)
+[11/26 22:28:38     21s] @(#)CDS: RCDB 11.15.0
+[11/26 22:28:38     21s] @(#)CDS: STYLUS 20.10-p002_1 (03/12/2020 10:11 PDT)
+[11/26 22:28:38     21s] Create and set the environment variable TMPDIR to /tmp/innovus_temp_7197_ws42_u110022124_LsKzJ5.
+
+[11/26 22:28:38     22s] Change the soft stacksize limit to 0.2%RAM (161 mbytes). Set global soft_stack_size_limit to change the value.
+[11/26 22:28:40     23s] 
+[11/26 22:28:40     23s] **INFO:  MMMC transition support version v31-84 
+[11/26 22:28:40     23s] 
+[11/26 22:28:40     23s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[11/26 22:28:40     23s] <CMD> suppressMessage ENCEXT-2799
+[11/26 22:28:40     23s] <CMD> win
+[11/26 22:33:20     53s] <CMD> encMessage warning 0
+[11/26 22:33:20     53s] Suppress "**WARN ..." messages.
+[11/26 22:33:20     53s] <CMD> encMessage debug 0
+[11/26 22:33:20     53s] <CMD> encMessage info 0
+[11/26 22:33:21     53s] **WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_PO', 
+[11/26 22:33:21     53s] **WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_DIFF', 
+[11/26 22:33:21     53s] **WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_PSUB', 
+[11/26 22:33:21     53s] **WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_PIMP', 
+[11/26 22:33:21     53s] **WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_NIMP', 
+[11/26 22:33:21     53s] **WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_NWELL', 
+[11/26 22:33:21     54s] **WARN: (IMPLF-200):	Pin 'A' in macro 'ANTENNA' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[11/26 22:33:21     54s] Loading view definition file from /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/viewDefinition.tcl
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP9'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP8'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP7'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP6'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP5'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP4'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP3'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP2'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP10'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:22     54s] **WARN: (TECHLIB-302):	No function defined for cell 'ANTENNA'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/slow_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP9'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP8'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP7'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP6'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP5'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP4'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP3'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP2'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'DECAP10'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:23     55s] **WARN: (TECHLIB-302):	No function defined for cell 'ANTENNA'. The cell will only be used for analysis. (File /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/lib/fast_vdd1v2_basicCells.lib)
+[11/26 22:33:24     55s] *** End library_loading (cpu=0.03min, real=0.05min, mem=15.9M, fe_cpu=0.93min, fe_real=5.27min, fe_mem=751.9M) ***
+[11/26 22:33:25     56s] *** Netlist is unique.
+[11/26 22:33:25     56s] **WARN: (IMPFP-3961):	The techSite 'CornerSite' has no related standard cells in LEF/OA library. Cannot make calculations for this site type unless standard cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+[11/26 22:33:25     56s] **WARN: (IMPFP-3961):	The techSite 'IOSite' has no related standard cells in LEF/OA library. Cannot make calculations for this site type unless standard cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+[11/26 22:33:25     56s] Loading preference file /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/gui.pref.tcl ...
+[11/26 22:33:25     56s] **WARN: (IMPOPT-3602):	The specified path group name reg2reg is not defined.
+[11/26 22:33:25     56s] **WARN: (IMPOPT-3602):	The specified path group name reg2out is not defined.
+[11/26 22:33:25     56s] **WARN: (IMPOPT-3602):	The specified path group name reg2cgate is not defined.
+[11/26 22:33:25     56s] **WARN: (IMPOPT-3602):	The specified path group name in2reg is not defined.
+[11/26 22:33:25     56s] **WARN: (IMPOPT-3602):	The specified path group name in2out is not defined.
+[11/26 22:33:27     57s] **WARN: (IMPFP-3961):	The techSite 'CornerSite' has no related standard cells in LEF/OA library. Cannot make calculations for this site type unless standard cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+[11/26 22:33:27     57s] **WARN: (IMPFP-3961):	The techSite 'IOSite' has no related standard cells in LEF/OA library. Cannot make calculations for this site type unless standard cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+[11/26 22:33:28     57s] Loading place ...
+[11/26 22:33:33     60s] {RT RC 0 11 11 {8 0} {10 0} 2}
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (IMPCTE-290):	Could not locate cell DFFHQX1 in any library for view AV_min.
+[11/26 22:33:34     61s] **WARN: (EMS-27):	Message (IMPCTE-290) has exceeded the current message display limit of 20.
+[11/26 22:33:34     61s] To increase the message display limit, refer to the product command reference manual.
+[11/26 22:33:34     61s] **WARN: (IMPESI-3505):	setDelayCalMode -eng_copyNetPropToNewNet true (default=false) will be obsoleted along with its sgs2set equivalent.  This parameter will continue to be supported in the current release, but will be removed in the next major release of the software.
+[11/26 22:33:35     62s] **WARN: (IMPCTE-107):	The following globals have been obsoleted since version 20.10-p004_1. They will be removed in the next release. 
+[11/26 22:33:35     62s] timing_enable_default_delay_arc
+[11/26 22:33:42     62s] <CMD> setDrawView place
+[11/26 22:33:47     63s] <CMD> fit
+[11/26 22:33:51     63s] <CMD> selectInst top0/ID_stage/dcache/memory_reg_143__30_
+[11/26 22:33:53     64s] <CMD> zoomIn
+[11/26 22:33:54     64s] <CMD> zoomIn
+[11/26 22:33:54     64s] <CMD> zoomIn
+[11/26 22:33:55     64s] <CMD> zoomIn
+[11/26 22:33:56     64s] <CMD> zoomIn
+[11/26 22:33:59     64s] <CMD> zoomOut
+[11/26 22:34:00     64s] <CMD> zoomOut
+[11/26 22:34:01     64s] <CMD> zoomOut
+[11/26 22:34:02     64s] <CMD> zoomOut
+[11/26 22:34:04     65s] <CMD> zoomOut
+[11/26 22:34:28     67s] <CMD> zoomIn
+[11/26 22:34:30     67s] <CMD> zoomOut
+[11/26 22:34:33     68s] <CMD> zoomIn
+[11/26 22:34:34     68s] <CMD> zoomIn
+[11/26 22:34:35     68s] <CMD> zoomIn
+[11/26 22:34:35     68s] <CMD> zoomIn
+[11/26 22:34:36     68s] <CMD> zoomIn
+[11/26 22:34:38     68s] <CMD> zoomOut
+[11/26 22:34:39     68s] <CMD> zoomOut
+[11/26 22:34:42     69s] <CMD> zoomOut
+[11/26 22:34:44     69s] <CMD> zoomOut
+[11/26 22:34:46     69s] <CMD> zoomOut
+[11/26 22:35:25     74s] <CMD> set_power_analysis_mode -reset
+[11/26 22:35:25     74s] <CMD> set_power_analysis_mode -method static -analysis_view AV_min -corner max -create_binary_db true -write_static_currents true -honor_negative_energy true -ignore_control_signals true
+[11/26 22:37:36     91s] <CMD> set_power_output_dir -reset
+[11/26 22:37:36     91s] <CMD> set_power_output_dir ./
+[11/26 22:37:36     91s] <CMD> set_default_switching_activity -reset
+[11/26 22:37:36     91s] <CMD> set_default_switching_activity -input_activity 0.2 -period 10.0
+[11/26 22:37:36     91s] <CMD> read_activity_file -reset
+[11/26 22:37:36     91s] <CMD> read_activity_file -format FSDB -fsdb_scope test_top/top_pipe_U0 -start {} -end {} -fsdb_block {} ../../sim/gatesim.fsdb
+[11/26 22:37:37     91s] 
+[11/26 22:37:37     91s] Power Net Detected:
+[11/26 22:37:37     91s]         Voltage	    Name
+[11/26 22:37:37     91s]              0V	    VSS
+[11/26 22:37:37     91s]           1.32V	    VDD
+[11/26 22:37:37     91s] #################################################################################
+[11/26 22:37:37     91s] # Design Stage: PreRoute
+[11/26 22:37:37     91s] # Design Name: top_pipe
+[11/26 22:37:37     91s] # Design Mode: 45nm
+[11/26 22:37:37     91s] # Analysis Mode: MMMC Non-OCV 
+[11/26 22:37:37     91s] # Parasitics Mode: No SPEF/RCDB
+[11/26 22:37:37     91s] # Signoff Settings: SI Off 
+[11/26 22:37:37     91s] #################################################################################
+[11/26 22:37:40     94s] *** CDM Built up (cpu=0:00:02.9  real=0:00:03.0  mem= 1281.8M) ***
+[11/26 22:37:42     97s]              0V	    VSS
+[11/26 22:37:42     97s]           1.32V	    VDD
+[11/26 22:37:43     97s] clk(200MHz) <CMD> set_power -reset
+[11/26 22:37:48     98s] <CMD> set_powerup_analysis -reset
+[11/26 22:37:48     98s] <CMD> set_dynamic_power_simulation -reset
+[11/26 22:37:48     98s] <CMD> report_power -rail_analysis_format VS -outfile .//top_pipe.rpt
+[11/26 22:37:48     98s] #################################################################################
+[11/26 22:37:48     98s] # Design Stage: PreRoute
+[11/26 22:37:48     98s] # Design Name: top_pipe
+[11/26 22:37:48     98s] # Design Mode: 45nm
+[11/26 22:37:48     98s] # Analysis Mode: MMMC Non-OCV 
+[11/26 22:37:48     98s] # Parasitics Mode: No SPEF/RCDB
+[11/26 22:37:48     98s] # Signoff Settings: SI Off 
+[11/26 22:37:48     98s] #################################################################################
+[11/26 22:37:48     98s] Extraction called for design 'top_pipe' of instances=51649 and nets=43116 using extraction engine 'preRoute' .
+[11/26 22:37:48     98s] PreRoute RC Extraction called for design top_pipe.
+[11/26 22:37:48     98s] RC Extraction called in multi-corner(1) mode.
+[11/26 22:37:48     98s] RCMode: PreRoute
+[11/26 22:37:48     98s]       RC Corner Indexes            0   
+[11/26 22:37:48     98s] Capacitance Scaling Factor   : 1.00000 
+[11/26 22:37:48     98s] Resistance Scaling Factor    : 1.00000 
+[11/26 22:37:48     98s] Clock Cap. Scaling Factor    : 1.00000 
+[11/26 22:37:48     98s] Clock Res. Scaling Factor    : 1.00000 
+[11/26 22:37:48     98s] Shrink Factor                : 1.00000
+[11/26 22:37:48     98s] PreRoute extraction is honoring NDR/Shielding/ExtraSpace for clock nets.
+[11/26 22:37:48     98s] Using Quantus QRC technology file ...
+[11/26 22:37:48     98s] RC Grid backup saved.
+[11/26 22:37:48     99s] LayerId::1 widthSet size::1
+[11/26 22:37:48     99s] LayerId::2 widthSet size::1
+[11/26 22:37:48     99s] LayerId::3 widthSet size::1
+[11/26 22:37:48     99s] LayerId::4 widthSet size::1
+[11/26 22:37:48     99s] LayerId::5 widthSet size::1
+[11/26 22:37:48     99s] LayerId::6 widthSet size::1
+[11/26 22:37:48     99s] LayerId::7 widthSet size::1
+[11/26 22:37:48     99s] LayerId::8 widthSet size::1
+[11/26 22:37:48     99s] LayerId::9 widthSet size::1
+[11/26 22:37:48     99s] LayerId::10 widthSet size::1
+[11/26 22:37:48     99s] LayerId::11 widthSet size::1
+[11/26 22:37:48     99s] Skipped RC grid update for preRoute extraction.
+[11/26 22:37:48     99s] Initializing multi-corner resistance tables ...
+[11/26 22:37:48     99s] **Info: Trial Route has Max Route Layer 15/11.
+[11/26 22:37:48     99s] {RT RC 0 11 11 {8 0} {10 0} 2}
+[11/26 22:37:48     99s] Preroute length aware model : LLS: 2-3 ; HLS: 3-5 ; rDens: 0.304256 ; uaWl: 0.000000 ; uaWlH: 0.000000 ; aWlH: 0.000000 ; Pmax: 0.852300 ; wcR: 0.772700 ; newSi: 0.095200 ; pMod: 80 ; 
+[11/26 22:37:48     99s] PreRoute RC Extraction DONE (CPU Time: 0:00:00.6  Real Time: 0:00:00.0  MEM: 1323.141M)
+[11/26 22:37:51    102s] Calculate delays in BcWc mode...
+[11/26 22:37:52    102s] Topological Sorting (REAL = 0:00:01.0, MEM = 1337.0M, InitMEM = 1330.4M)
+[11/26 22:37:52    102s] Start delay calculation (fullDC) (1 T). (MEM=1336.98)
+[11/26 22:37:52    102s] *** Calculating scaling factor for lib_min libraries using the default operating condition of each library.
+[11/26 22:37:52    103s] AAE_INFO: Cdb files are: 
+[11/26 22:37:52    103s]  	/home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/libs/mmmc/slow.cdb
+[11/26 22:37:52    103s] 	/home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/libs/mmmc/fast.cdb
+[11/26 22:37:52    103s]  
+[11/26 22:37:52    103s] Start AAE Lib Loading. (MEM=1353.84)
+[11/26 22:37:54    104s] End AAE Lib Loading. (MEM=1433.55 CPU=0:00:01.2 Real=0:00:02.0)
+[11/26 22:37:54    104s] End AAE Lib Interpolated Model. (MEM=1433.55 CPU Time=0:00:00.0, Real Time=0:00:00.0)
+[11/26 22:37:54    104s] First Iteration Infinite Tw... 
+[11/26 22:38:07    117s] Total number of fetched objects 46330
+[11/26 22:38:08    117s] End Timing Check Calculation. (CPU Time=0:00:00.7, Real Time=0:00:01.0)
+[11/26 22:38:08    117s] End delay calculation. (MEM=1456.68 CPU=0:00:11.3 REAL=0:00:12.0)
+[11/26 22:38:08    117s] End delay calculation (fullDC). (MEM=1429.6 CPU=0:00:15.0 REAL=0:00:16.0)
+[11/26 22:38:08    117s] *** CDM Built up (cpu=0:00:18.8  real=0:00:20.0  mem= 1429.6M) ***
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] Begin Power Analysis
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s]              0V	    VSS
+[11/26 22:38:11    120s]           1.32V	    VDD
+[11/26 22:38:11    120s] Begin Processing Timing Library for Power Calculation
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] Begin Processing Timing Library for Power Calculation
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] Begin Processing Power Net/Grid for Power Calculation
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] Ended Processing Power Net/Grid for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1183.47MB/2553.87MB/1183.48MB)
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] Begin Processing Timing Window Data for Power Calculation
+[11/26 22:38:11    120s] 
+[11/26 22:38:11    120s] clk(200MHz) Ended Processing Timing Window Data for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1187.66MB/2553.87MB/1187.66MB)
+[11/26 22:38:12    121s] 
+[11/26 22:38:12    121s] Begin Processing User Attributes
+[11/26 22:38:12    121s] 
+[11/26 22:38:12    121s] Ended Processing User Attributes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1187.70MB/2553.87MB/1187.70MB)
+[11/26 22:38:12    121s] 
+[11/26 22:38:12    121s] Begin Processing Signal Activity
+[11/26 22:38:12    121s] 
+[11/26 22:38:15    124s] Ended Processing Signal Activity: (cpu=0:00:03, real=0:00:03, mem(process/total/peak)=1188.42MB/2553.87MB/1188.42MB)
+[11/26 22:38:15    124s] 
+[11/26 22:38:15    124s] Begin Power Computation
+[11/26 22:38:15    124s] 
+[11/26 22:38:15    124s]       ----------------------------------------------------------
+[11/26 22:38:15    124s]       # of cell(s) missing both power/leakage table: 0
+[11/26 22:38:15    124s]       # of cell(s) missing power table: 1
+[11/26 22:38:15    124s]       # of cell(s) missing leakage table: 0
+[11/26 22:38:15    124s]       # of MSMV cell(s) missing power_level: 0
+[11/26 22:38:15    124s]       ----------------------------------------------------------
+[11/26 22:38:15    124s] CellName                                  Missing Table(s)
+[11/26 22:38:15    124s] TIELO                                     internal power, 
+[11/26 22:38:15    124s] 
+[11/26 22:38:15    124s] 
+[11/26 22:38:23    131s] Ended Power Computation: (cpu=0:00:06, real=0:00:07, mem(process/total/peak)=1188.91MB/2553.87MB/1188.91MB)
+[11/26 22:38:23    131s] 
+[11/26 22:38:23    131s] Begin Processing User Attributes
+[11/26 22:38:23    131s] 
+[11/26 22:38:23    131s] Ended Processing User Attributes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1188.95MB/2553.87MB/1188.98MB)
+[11/26 22:38:23    131s] 
+[11/26 22:38:23    131s] Ended Power Analysis: (cpu=0:00:11, real=0:00:12, mem(process/total/peak)=1188.98MB/2553.87MB/1188.98MB)
+[11/26 22:38:23    131s] 
+[11/26 22:38:24    132s] *
+[11/26 22:38:24    132s] 
+[11/26 22:38:24    132s] 
+[11/26 22:38:24    132s] 
+[11/26 22:38:24    132s] Total Power
+[11/26 22:38:24    132s] -----------------------------------------------------------------------------------------
+[11/26 22:38:24    132s] Total Internal Power:        2.39138141 	   79.7539%%
+[11/26 22:38:24    132s] Total Switching Power:       0.59088245 	   19.7062%%
+[11/26 22:38:24    132s] Total Leakage Power:         0.01618839 	    0.5399%%
+[11/26 22:38:24    132s] Total Power:                 2.99845226
+[11/26 22:38:24    132s] -----------------------------------------------------------------------------------------
+[11/26 22:42:33    178s] <CMD> set_rail_analysis_mode -method era_static -power_switch_eco false -generate_movies false -save_voltage_waveforms false -accuracy xd -process_techgen_em_rules false -enable_rlrp_analysis false -extraction_tech_file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/qrc/qx/gpdk045.tch -vsrc_search_distance 50 -ignore_shorts false -enable_manufacturing_effects false -report_via_current_direction false
+[11/26 22:45:18    202s] <CMD> setDrawView place
+[11/26 22:45:47    206s] <CMD> ::uiSetTool getLocation ::Rda_Power::EditPadLoc::setCoord
+[11/26 22:45:49    207s] <CMD> ::uiSetTool getLocation ::Rda_Power::EditPadLoc::setCoord
+[11/26 22:46:01    208s] <CMD> uiSetTool select
+[11/26 22:46:01    208s] <CMD> deselectAll
+[11/26 22:46:04    208s] <CMD> gui_select -rect {645.84150 -14.88300 552.68800 63.75250}
+[11/26 22:46:07    208s] <CMD> deselectAll
+[11/26 22:46:09    208s] <CMD> zoomIn
+[11/26 22:46:11    209s] <CMD> zoomIn
+[11/26 22:46:12    209s] <CMD> zoomIn
+[11/26 22:46:18    209s] <CMD> fit
+[11/26 22:46:23    210s] <CMD> gui_select -rect {-42.48250 75.87750 140.17400 -19.68400}
+[11/26 22:46:26    210s] <CMD> zoomSelected -margin 50
+[11/26 22:46:28    210s] <CMD> deselectAll
+[11/26 22:46:47    212s] <CMD> ::uiSetTool getLocation ::Rda_Power::EditPadLoc::setCoord
+[11/26 22:46:56    213s] <CMD> uiSetTool select
+[11/26 22:47:24    218s] **WARN: (VOLTUS_ERA-3383):	Command "add_pad_location" will be obsolete in the next major release.
+[11/26 22:47:56    228s] <CMD> create_power_pads -net VDD -vsrc_file VDD.pp
+[11/26 22:47:56    228s] Saving DC sources to file VDD.pp.
+[11/26 22:48:37    234s] <CMD> zoomBox -54.95650 -28.79750 183.34950 100.72150
+[11/26 22:48:55    236s] <CMD> setDrawView place
+[11/26 22:49:08    239s] <CMD> ::uiSetTool getLocation ::Rda_Power::EditPadLoc::setCoord
+[11/26 22:49:11    239s] <CMD> uiSetTool select
+[11/26 22:49:24    242s] **WARN: (VOLTUS_ERA-3383):	Command "add_pad_location" will be obsolete in the next major release.
+[11/26 22:49:33    245s] <CMD> create_power_pads -net VDD -vsrc_file VDD.pp
+[11/26 22:49:33    245s] Saving DC sources to file VDD.pp.
+[11/26 22:49:41    246s] <CMD> ::uiSetTool getLocation ::Rda_Power::EditPadLoc::setCoord
+[11/26 22:49:44    247s] <CMD> uiSetTool select
+[11/26 22:49:56    249s] **WARN: (VOLTUS_ERA-3383):	Command "add_pad_location" will be obsolete in the next major release.
+[11/26 22:50:10    253s] <CMD> create_power_pads -net VSS -vsrc_file VSS.pp
+[11/26 22:50:10    253s] Saving DC sources to file VSS.pp.
+[11/26 22:51:03    265s] <CMD> set_pg_nets -net VDD -voltage 1.2 -threshold 1.08
+[11/26 22:51:03    265s] <CMD> set_pg_nets -net VSS -voltage 0 -threshold 0.12
+[11/26 22:51:03    265s] <CMD> set_rail_analysis_domain -name PD -pwrnets { VDD} -gndnets { VSS}
+[11/26 22:51:03    265s] <CMD> set_power_data -reset
+[11/26 22:51:03    265s] <CMD> set_power_data -format current -scale 1 {static_VDD.ptiavg static_VSS.ptiavg}
+[11/26 22:51:03    265s] <CMD> set_power_pads -reset
+[11/26 22:51:03    265s] <CMD> set_power_pads -net VSS -format xy -file VSS.pp
+[11/26 22:51:03    265s] <CMD> set_power_pads -net VDD -format xy -file VDD.pp
+[11/26 22:51:03    265s] <CMD> set_package -reset
+[11/26 22:51:03    265s] <CMD> set_package -spice {} -mapping {}
+[11/26 22:51:03    265s] <CMD> set_net_group -reset
+[11/26 22:51:03    265s] <CMD> set_advanced_rail_options -reset
+[11/26 22:51:03    265s] <CMD> analyze_rail -type domain -results_directory ./ PD
+[11/26 22:51:19    266s] Started PGV Library Generator at 22:51:03 11/26/2025
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] ** INFO:  (VOLTUS_LGEN-3599): Library generation settings: 
+[11/26 22:51:19    266s] 	Mode: TECH 
+[11/26 22:51:19    266s] 	Capacitance: area_cap 
+[11/26 22:51:19    266s] 	Current Distribution: estimation 
+[11/26 22:51:19    266s] 	Grid Port Definition: LEF 
+[11/26 22:51:19    266s] 	Grid Current Sinks: LEF pin 
+[11/26 22:51:19    266s] 	Power Gate: no
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] ** INFO:  (VOLTUS_LGEN-3598): Processing LEF files: 
+[11/26 22:51:19    266s] /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/libs/lef/gsclib045_tech.lef
+[11/26 22:51:19    266s] /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/libs/lef/gsclib045_macro.lef
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] ** INFO:  (VOLTUS_LGEN-3611): No lef leyarmap specified. Tool has
+[11/26 22:51:19    266s] internally generated the mapping between technology layers and lef layers
+[11/26 22:51:19    266s] using information in technology file and technology lef. To specify your
+[11/26 22:51:19    266s] own layer mapping, use set_pg_library_mode -lef_layermap.
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s]   TECH-LAYER    LEF-LAYER
+[11/26 22:51:19    266s]   METAL_1    Metal1
+[11/26 22:51:19    266s]   VIA_1    Via1
+[11/26 22:51:19    266s]   METAL_2    Metal2
+[11/26 22:51:19    266s]   VIA_2    Via2
+[11/26 22:51:19    266s]   METAL_3    Metal3
+[11/26 22:51:19    266s]   VIA_3    Via3
+[11/26 22:51:19    266s]   METAL_4    Metal4
+[11/26 22:51:19    266s]   VIA_4    Via4
+[11/26 22:51:19    266s]   METAL_5    Metal5
+[11/26 22:51:19    266s]   VIA_5    Via5
+[11/26 22:51:19    266s]   METAL_6    Metal6
+[11/26 22:51:19    266s]   VIA_6    Via6
+[11/26 22:51:19    266s]   METAL_7    Metal7
+[11/26 22:51:19    266s]   VIA_7    Via7
+[11/26 22:51:19    266s]   METAL_8    Metal8
+[11/26 22:51:19    266s]   VIA_8    Via8
+[11/26 22:51:19    266s]   METAL_9    Metal9
+[11/26 22:51:19    266s]   VIA_9    Via9
+[11/26 22:51:19    266s]   METAL_10    Metal10
+[11/26 22:51:19    266s]   VIA_10    Via10
+[11/26 22:51:19    266s]   METAL_11    Metal11
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] ** WARN:  (VOLTUS_LGEN-3106): The following cells do not contain any supply
+[11/26 22:51:19    266s] pins: , SDFF4RX1, SDFF4RX2
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] ** INFO:  (VOLTUS_LGEN-3606): 
+[11/26 22:51:19    266s] Power Grid View Generation Statistics:
+[11/26 22:51:19    266s]         # Total number of cells: 583 
+[11/26 22:51:19    266s]         # TECH view created: 583 (100%)
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] ** WARN:  (VOLTUS_LGEN-3971): The following cells failed to create some of
+[11/26 22:51:19    266s] the PGV views:
+[11/26 22:51:19    266s]  CELL                      				 REASON                    
+[11/26 22:51:19    266s]  ==== 							 ====== 
+[11/26 22:51:19    266s]  SDFF4RX1                  				 No PowerPin found in LEF.
+[11/26 22:51:19    266s]  
+[11/26 22:51:19    266s]  SDFF4RX2                  				 No PowerPin found in LEF.
+[11/26 22:51:19    266s]  
+[11/26 22:51:19    266s] 
+[11/26 22:51:19    266s] Finished PGV Library Generator at 22:51:19 11/26/2025 (cpu=0:00:06, real=0:00:16, peak mem=1224.88MB)
+[11/26 22:51:19    266s] Current Innovus resource usage: (total cpu=0:04:32, real=0:23:12, mem=1224.88MB)
+[11/26 22:51:20    287s] 
+[11/26 22:51:20    287s] Begin ERA Data Preparation
+[11/26 22:51:20    287s] All Virtual Vias and Virtual followpins have been skipped. No incremental def would be generated.
+[11/26 22:51:20    287s] Ended ERA Data Preparation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1175.81MB/2529.94MB/1718.07MB)
+[11/26 22:51:20    287s] 
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 1226000 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal5' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M5_M4_HV' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M4_M3_VH' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M3_M2_HV' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M2_M1_VH' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M4_M3_VH' at ( 1226000 1140400 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M5_M4_HV' at ( 1226000 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal2' at ( 1154200 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal3' at ( 1141800 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M3_M2_HV' at ( 1141800 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M2_M1_VH' at ( 1141800 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M2_M1_VH' at ( 1154200 931190 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Via 'M3_M2_HV' at ( 1154200 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal5' at ( 667940 1126510 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 669940 1061290 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 670740 1054310 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 667940 1078110 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 641940 1088650 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (IMPDF-1012):	Route on layer 'Metal5' at ( 649940 1088650 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:51:21    287s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:51:21    287s] **WARN: (EMS-27):	Message (IMPDF-1012) has exceeded the current message display limit of 20.
+[11/26 22:51:21    287s] To increase the message display limit, refer to the product command reference manual.
+[11/26 22:51:21    288s] -process 45                             # int, default=90, min=3, max=250, user setting
+[11/26 22:51:26    288s] * voltus_rail
+[11/26 22:51:26    288s] *	Version v20.10-p006_1 (04/14/2020 13:12:28)
+[11/26 22:51:26    288s] *	Copyright 2007 - 2017 Cadence Design Systems, Inc.
+[11/26 22:51:26    288s] *
+[11/26 22:51:26    288s] *	Run by u110022124 on Wed Nov 26 22:51:26 2025
+[11/26 22:51:26    288s] 
+[11/26 22:51:26    288s] *	Executing 64 bit version on host: ws42
+[11/26 22:51:26    288s] *
+[11/26 22:51:26    288s] 
+[11/26 22:51:26    288s] 
+[11/26 22:51:26    288s] Started Rail Analysis at 22:51:20 11/26/2025
+[11/26 22:51:26    288s] 
+[11/26 22:51:28    288s] 
+[11/26 22:51:28    288s] Multi-CPU Configuration:
+[11/26 22:51:28    288s] 	#CPU: 1
+[11/26 22:51:28    288s] 	Mode: local
+[11/26 22:51:28    288s] 	Host: ws42
+[11/26 22:51:28    288s] 
+[11/26 22:51:28    288s] 
+[11/26 22:51:28    288s] 
+[11/26 22:51:28    288s] Running OCI  extraction for /tmp/innovus_temp_7197_ws42_u110022124_LsKzJ5/eps_out_7197.def.gz ...
+[11/26 22:51:28    288s] 
+[11/26 22:51:28    288s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler   -nt 1   -usecellid  -session_file ./work/sfe.session    -cmd ./work/voltus_scheduler.cmd" ...
+[11/26 22:51:29    288s] Extraction option setup as:
+[11/26 22:51:29    288s] setenv gray_data NONE
+[11/26 22:51:29    288s] setenv enable_cluster_overhang_via false
+[11/26 22:51:29    288s] setenv enable_dfm_mask_conflict_shape false
+[11/26 22:51:29    288s] Begin Preparing Data for Parasitic Extraction
+[11/26 22:51:34    288s] Extracting following DFM effects:
+[11/26 22:51:34    288s] MetalFill        : n/a
+[11/26 22:51:34    288s] WEE Effects      : n/a
+[11/26 22:51:34    288s] Erosion Effects  : n/a
+[11/26 22:51:34    288s] T/B Enlargements : n/a
+[11/26 22:51:34    288s] R(w) Effects     : n/a
+[11/26 22:51:34    288s] R(w,s) Effects   : n/a
+[11/26 22:51:34    288s] R(sw,st) Effects : n/a
+[11/26 22:51:34    288s] TC(w) Effects    : n/a
+[11/26 22:51:34    288s] Some effects indicate n/a because of non-availability of relevant input data (or) requested to be off.
+[11/26 22:51:34    288s] Ended Preparing Data for Parasitic Extraction: (cpu=0:00:04, real=0:00:04, mem(process/total/peak)=28.43MB/4013.39MB/1777.95MB)
+[11/26 22:51:34    288s] 
+[11/26 22:51:34    288s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler -skip_prep -nt 1 -usecellid -session_file ./work/sfe.session -cmd ./work/voltus_scheduler.cmd -zx /usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_extractor" ...
+[11/26 22:51:34    288s] Extraction option setup as:
+[11/26 22:51:34    288s] setenv gray_data NONE
+[11/26 22:51:34    288s] setenv enable_cluster_overhang_via false
+[11/26 22:51:34    288s] setenv enable_dfm_mask_conflict_shape false
+[11/26 22:51:34    288s] Begin Parasitic Extraction
+[11/26 22:51:34    288s] Extracting Progress:
+[11/26 22:51:34    288s]     0% at 22:51:34 11/26/2025
+[11/26 22:51:55    288s]   100% at 22:51:55 11/26/2025
+[11/26 22:51:55    288s] Ended Parasitic Extraction: (cpu=0:00:12, real=0:00:20, mem(process/total/peak)=9.18MB/3193.97MB/1777.95MB)
+[11/26 22:51:55    288s] 
+[11/26 22:51:55    288s] 
+[11/26 22:51:55    288s] Analyze Rail Settings:
+[11/26 22:51:55    288s] 	Temp directory: /tmp/innovus_temp_7197_ws42_u110022124_LsKzJ5
+[11/26 22:51:55    288s] 	Output directory: ./
+[11/26 22:51:55    288s] 	Run directory: .//PD_25C_avg_1/
+[11/26 22:51:58    288s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_rail_smg -cmd .//PD_25C_avg_1/voltus_rail_smg.VSS.cmd -l .//PD_25C_avg_1/voltus_rail_smg.VSS.log" ...
+[11/26 22:51:58    288s] Begin Merging power grid
+[11/26 22:51:58    288s] Tech reference temperature: 25
+[11/26 22:51:58    288s] Target temperature: 25
+[11/26 22:51:58    288s] 
+[11/26 22:51:58    288s] Grid Statistics of Net VSS:
+[11/26 22:51:58    288s] - NODE
+[11/26 22:51:58    288s]   Total node: 116401
+[11/26 22:51:58    288s]     Top Level grid node: 116401
+[11/26 22:51:58    288s]       Top level interface node: 51649
+[11/26 22:51:58    288s]     Missing interface node: 0
+[11/26 22:51:58    288s]     Cell internal node: 0
+[11/26 22:51:58    288s] - ELEM
+[11/26 22:51:58    288s]   Total element: 132227
+[11/26 22:51:58    288s]     Top Level grid element: 132227
+[11/26 22:51:58    288s]     Cell internal element: 0
+[11/26 22:51:58    288s] - INST
+[11/26 22:51:58    288s]   Instance logically connected: 51649
+[11/26 22:51:58    288s]     Tech: 51649
+[11/26 22:51:58    288s]     StdCell: 0
+[11/26 22:51:58    288s]     Macro:
+[11/26 22:51:58    288s]       Early: 0
+[11/26 22:51:58    288s]       IR: 0
+[11/26 22:51:58    288s]       EM: 0
+[11/26 22:51:58    288s]     Current Region:  0
+[11/26 22:51:58    288s]   Dropped instance due to missing/incomplete cell library: 0
+[11/26 22:51:58    288s] - TAP
+[11/26 22:51:58    288s]   Total tap: 51649
+[11/26 22:51:58    288s] 
+[11/26 22:51:58    288s] Ended Merging power grid: (cpu=0:00:02, real=0:00:02, mem(process/total/peak)=41.18MB/3392.23MB/1777.95MB)
+[11/26 22:51:59    288s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_rail_smg -cmd .//PD_25C_avg_1/voltus_rail_smg.VDD.cmd -l .//PD_25C_avg_1/voltus_rail_smg.VDD.log" ...
+[11/26 22:51:59    288s] Begin Merging power grid
+[11/26 22:51:59    288s] Tech reference temperature: 25
+[11/26 22:51:59    288s] Target temperature: 25
+[11/26 22:51:59    288s] 
+[11/26 22:51:59    288s] Grid Statistics of Net VDD:
+[11/26 22:51:59    288s] - NODE
+[11/26 22:51:59    288s]   Total node: 117202
+[11/26 22:51:59    288s]     Top Level grid node: 117202
+[11/26 22:51:59    288s]       Top level interface node: 51649
+[11/26 22:51:59    288s]     Missing interface node: 0
+[11/26 22:51:59    288s]     Cell internal node: 0
+[11/26 22:51:59    288s] - ELEM
+[11/26 22:51:59    288s]   Total element: 132793
+[11/26 22:51:59    288s]     Top Level grid element: 132793
+[11/26 22:51:59    288s]     Cell internal element: 0
+[11/26 22:51:59    288s] - INST
+[11/26 22:51:59    288s]   Instance logically connected: 51649
+[11/26 22:51:59    288s]     Tech: 51649
+[11/26 22:51:59    288s]     StdCell: 0
+[11/26 22:51:59    288s]     Macro:
+[11/26 22:51:59    288s]       Early: 0
+[11/26 22:51:59    288s]       IR: 0
+[11/26 22:51:59    288s]       EM: 0
+[11/26 22:51:59    288s]     Current Region:  0
+[11/26 22:51:59    288s]   Dropped instance due to missing/incomplete cell library: 0
+[11/26 22:51:59    288s] - TAP
+[11/26 22:51:59    288s]   Total tap: 51649
+[11/26 22:51:59    288s] 
+[11/26 22:51:59    288s] Ended Merging power grid: (cpu=0:00:02, real=0:00:01, mem(process/total/peak)=42.69MB/3392.23MB/1777.95MB)
+[11/26 22:52:00    288s] 
+[11/26 22:52:00    288s] Begin Preparing Data for Rail Analysis
+[11/26 22:52:02    288s] 
+[11/26 22:52:02    288s] Net VSS
+[11/26 22:52:02    288s]   Power Pin Location File: /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/VSS.pp
+[11/26 22:52:02    288s]   # Voltage Source Added/Total (%): 1/1 (100.00%)
+[11/26 22:52:02    288s] 
+[11/26 22:52:02    288s]   Power Database: static_VSS.ptiavg
+[11/26 22:52:02    288s]   # Current Taps Matched/Total (%): 42904/42904 (100.00%)
+[11/26 22:52:02    288s]   # Instances Matched: 42904
+[11/26 22:52:04    288s] 
+[11/26 22:52:04    288s] Net VDD
+[11/26 22:52:04    288s]   Power Pin Location File: /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/VDD.pp
+[11/26 22:52:04    288s]   # Voltage Source Added/Total (%): 1/1 (100.00%)
+[11/26 22:52:04    288s] 
+[11/26 22:52:04    288s]   Power Database: static_VDD.ptiavg
+[11/26 22:52:04    288s]   # Current Taps Matched/Total (%): 42904/42904 (100.00%)
+[11/26 22:52:04    288s]   # Instances Matched: 42904
+[11/26 22:52:04    288s] 
+[11/26 22:52:04    288s] Begin PowerGrid Integrity Analysis
+[11/26 22:52:04    288s] 
+[11/26 22:52:04    288s] Begin Redistribute Disconnected Cap
+[11/26 22:52:04    288s] Ended Redistribute Disconnected Cap: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=132.26MB/3920.78MB/1777.95MB)
+[11/26 22:52:04    288s] 
+[11/26 22:52:04    288s] Ended PowerGrid Integrity Analysis: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=132.88MB/3920.78MB/1777.95MB)
+[11/26 22:52:04    288s] 
+[11/26 22:52:05    288s] Ended Preparing Data for Rail Analysis: (cpu=0:00:02, real=0:00:04, mem(process/total/peak)=127.88MB/3920.78MB/1777.95MB)
+[11/26 22:52:05    288s] 
+[11/26 22:52:05    288s] 
+[11/26 22:52:05    288s] Begin Steady-State Analysis
+[11/26 22:52:07    288s] Ended Steady-State Analysis: (cpu=0:00:01, real=0:00:02, mem(process/total/peak)=193.48MB/4407.66MB/1777.95MB)
+[11/26 22:52:07    288s] 
+[11/26 22:52:07    288s] 
+[11/26 22:52:07    288s] Begin Report Generation
+[11/26 22:52:07    288s] 
+[11/26 22:52:07    288s] 
+[11/26 22:52:07    288s] Net VSS:
+[11/26 22:52:07    288s] 
+[11/26 22:52:07    288s] 
+[11/26 22:52:07    288s] Begin Preparing Database for Report Generation
+[11/26 22:52:09    288s] 
+[11/26 22:52:09    288s] Circuit profile:
+[11/26 22:52:09    288s]                                                       Current    Voltage
+[11/26 22:52:09    288s] Layer Name                       Nodes   Resistors    Sources    Sources
+[11/26 22:52:09    288s] ----- --------------------  ----------  ----------  ---------  ---------
+[11/26 22:52:09    288s] 0     METAL_9                      794         788          0          1
+[11/26 22:52:09    288s] 1     VIA_8                          0         528          0          0
+[11/26 22:52:09    288s] 2     METAL_8                     3792        3558          0          0
+[11/26 22:52:09    288s] 3     VIA_7                          0        2636          0          0
+[11/26 22:52:09    288s] 4     METAL_7                     4187        3053          0          0
+[11/26 22:52:09    288s] 5     VIA_6                          0        3708          0          0
+[11/26 22:52:09    288s] 6     METAL_6                     9728        8786          0          0
+[11/26 22:52:09    288s] 7     VIA_5                          0        7812          0          0
+[11/26 22:52:09    288s] 8     METAL_5                     7812         904          0          0
+[11/26 22:52:09    288s] 9     VIA_4                          0        7812          0          0
+[11/26 22:52:09    288s] 10    METAL_4                     7812         904          0          0
+[11/26 22:52:09    288s] 11    VIA_3                          0        7812          0          0
+[11/26 22:52:09    288s] 12    METAL_3                     7812         904          0          0
+[11/26 22:52:09    288s] 13    VIA_2                          0        7812          0          0
+[11/26 22:52:09    288s] 14    METAL_2                     7812         904          0          0
+[11/26 22:52:09    288s] 15    VIA_1                          0        7812          0          0
+[11/26 22:52:09    288s] 16    METAL_1                    66652       66494      50308          0
+[11/26 22:52:09    288s]                             ----------  ----------  ---------  ---------
+[11/26 22:52:09    288s] 17    Circuit total             116402      132227      50308          1
+[11/26 22:52:09    288s] Ended Preparing Database for Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=606.27MB/4664.85MB/1782.58MB)
+[11/26 22:52:09    288s] 
+[11/26 22:52:09    288s] Initializing Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=606.40MB/4664.85MB/1782.58MB)
+[11/26 22:52:17    288s] 
+[11/26 22:52:17    288s] Begin IR Drop (Linear) Report Generation
+[11/26 22:52:17    288s]   Voltage: 0
+[11/26 22:52:17    288s]   Threshold: 0.12
+[11/26 22:52:17    288s]   Minimum, Average, Maximum IR Drop: 0.000V, 1.030mV, 1.247mV
+[11/26 22:52:17    288s]     Range 1(   1.091mV  -     1.247mV ):     52744 ( 45.31%)
+[11/26 22:52:17    288s]     Range 2(   0.935mV  -     1.091mV ):     37783 ( 32.46%)
+[11/26 22:52:17    288s]     Range 3(   0.779mV  -     0.935mV ):     15911 ( 13.67%)
+[11/26 22:52:17    288s]     Range 4(   0.624mV  -     0.779mV ):      5642 (  4.85%)
+[11/26 22:52:17    288s]     Range 5(   0.468mV  -     0.624mV ):      3245 (  2.79%)
+[11/26 22:52:17    288s]     Range 6(   0.312mV  -     0.468mV ):       977 (  0.84%)
+[11/26 22:52:17    288s]     Range 7(   0.156mV  -     0.312mV ):        62 (  0.05%)
+[11/26 22:52:17    288s]     Range 8(    0.000V  -     0.156mV ):        37 (  0.03%)
+[11/26 22:52:17    288s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:52:17    288s]       METAL_9: 0.0010844 [0 - 0.0010844]
+[11/26 22:52:17    288s]       METAL_8: 0.0010473 [3.7019e-05 - 0.0010844]
+[11/26 22:52:17    288s]       METAL_7: 0.0011744 [4.9349e-05 - 0.0012237]
+[11/26 22:52:17    288s]       METAL_6: 0.0011646 [5.9632e-05 - 0.0012242]
+[11/26 22:52:17    288s]       METAL_5: 0.00080729 [0.00041979 - 0.0012271]
+[11/26 22:52:17    288s]       METAL_4: 0.00081084 [0.0004199 - 0.0012307]
+[11/26 22:52:17    288s]       METAL_3: 0.00081439 [0.00042001 - 0.0012344]
+[11/26 22:52:17    288s]       METAL_2: 0.00081795 [0.00042012 - 0.0012381]
+[11/26 22:52:17    288s]       METAL_1: 0.00082695 [0.00042022 - 0.0012472]
+[11/26 22:52:17    288s]   IR Report: .//PD_25C_avg_1/Reports/VSS/VSS.main.rpt
+[11/26 22:52:17    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/ir_linear.gif
+[11/26 22:52:17    288s] Ended IR Drop (Linear) Report Generation: (cpu=0:00:01, real=0:00:00, mem(process/total/peak)=651.92MB/4664.85MB/1828.11MB)
+[11/26 22:52:17    288s] 
+[11/26 22:52:17    288s] 
+[11/26 22:52:17    288s] Begin IR Drop (Limit) Report Generation
+[11/26 22:52:17    288s]   Voltage: 0
+[11/26 22:52:17    288s]   Threshold: 0.12
+[11/26 22:52:17    288s]   Minimum, Average, Maximum IR Drop: 0.000V, 1.030mV, 1.247mV
+[11/26 22:52:18    288s]     Range 1(    0.120V  -      0.120V ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 2(    0.110V  -      0.120V ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 3( 100.000mV  -      0.110V ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 4(  90.000mV  -   100.000mV ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 5(  80.000mV  -    90.000mV ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 6(  70.000mV  -    80.000mV ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 7(  60.000mV  -    70.000mV ):         0 (  0.00%)
+[11/26 22:52:18    288s]     Range 8(  -1.000uV  -    60.000mV ):    116401 (100.00%)
+[11/26 22:52:18    288s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:52:18    288s]       METAL_9: 0.0010844 [0 - 0.0010844]
+[11/26 22:52:18    288s]       METAL_8: 0.0010473 [3.7019e-05 - 0.0010844]
+[11/26 22:52:18    288s]       METAL_7: 0.0011744 [4.9349e-05 - 0.0012237]
+[11/26 22:52:18    288s]       METAL_6: 0.0011646 [5.9632e-05 - 0.0012242]
+[11/26 22:52:18    288s]       METAL_5: 0.00080729 [0.00041979 - 0.0012271]
+[11/26 22:52:18    288s]       METAL_4: 0.00081084 [0.0004199 - 0.0012307]
+[11/26 22:52:18    288s]       METAL_3: 0.00081439 [0.00042001 - 0.0012344]
+[11/26 22:52:18    288s]       METAL_2: 0.00081795 [0.00042012 - 0.0012381]
+[11/26 22:52:18    288s]       METAL_1: 0.00082695 [0.00042022 - 0.0012472]
+[11/26 22:52:18    288s]   IR Report: .//PD_25C_avg_1/Reports/VSS/VSS.main.rpt
+[11/26 22:52:18    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/ir_limit.gif
+[11/26 22:52:18    288s] Ended IR Drop (Limit) Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=654.27MB/4664.85MB/1830.46MB)
+[11/26 22:52:18    288s] 
+[11/26 22:52:18    288s] 
+[11/26 22:52:18    288s] Begin Tap Current Report Generation
+[11/26 22:52:18    288s]   Minimum, Average, Maximum Tap Current: -2.234uA, -45.153nA, 0.000A
+[11/26 22:52:18    288s]   Total Current: -2.272mA
+[11/26 22:52:19    288s]     Range 1(  -1.000GA  -    -1.000mA ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 2(  -1.000mA  -  -100.000uA ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 3(-100.000uA  -   -10.000uA ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 4( -10.000uA  -    -1.000uA ):        43 (  0.09%)
+[11/26 22:52:19    288s]     Range 5(  -1.000uA  -  -100.000nA ):      4864 (  9.67%)
+[11/26 22:52:19    288s]     Range 6(-100.000nA  -   -10.000nA ):     21389 ( 42.52%)
+[11/26 22:52:19    288s]     Range 7( -10.000nA  -    -1.000nA ):     12418 ( 24.68%)
+[11/26 22:52:19    288s]     Range 8(  -1.000nA  -      0.000A ):     11594 ( 23.05%)
+[11/26 22:52:19    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/tc.gif
+[11/26 22:52:19    288s] Ended Tap Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=654.34MB/4664.85MB/1830.53MB)
+[11/26 22:52:19    288s] 
+[11/26 22:52:19    288s] 
+[11/26 22:52:19    288s] Begin Instance Based IR Drop Report Generation
+[11/26 22:52:19    288s]   Minimum, Average, Maximum Instance Based IR Drop: 0.420mV, 1.071mV, 1.247mV
+[11/26 22:52:19    288s]     Range 1(    0.120V  -      0.120V ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 2(    0.110V  -      0.120V ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 3(    0.100V  -      0.110V ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 4(  90.000mV  -      0.100V ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 5(  80.000mV  -    90.000mV ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 6(  70.000mV  -    80.000mV ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 7(  60.000mV  -    70.000mV ):         0 (  0.00%)
+[11/26 22:52:19    288s]     Range 8(  -1.000uV  -    60.000mV ):     50308 (100.00%)
+[11/26 22:52:19    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/iv.gif
+[11/26 22:52:20    288s] Ended Instance Based IR Drop Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=654.77MB/4664.85MB/1830.98MB)
+[11/26 22:52:20    288s] 
+[11/26 22:52:20    288s] 
+[11/26 22:52:20    288s] Begin Effective Instance Voltage Report Generation
+[11/26 22:52:20    288s] Ended Effective Instance Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=654.80MB/4664.85MB/1830.99MB)
+[11/26 22:52:20    288s] 
+[11/26 22:52:20    288s] 
+[11/26 22:52:20    288s] Begin Voltage Source Current Report Generation
+[11/26 22:52:20    288s]   Minimum, Average, Maximum Voltage Source Current: 2.272mA, 2.272mA, 2.272mA
+[11/26 22:52:20    288s]   Total Current: 2.272mA
+[11/26 22:52:20    288s]     Range 1(   2.272mA  -     2.272mA ):         1 (100.00%)
+[11/26 22:52:20    288s]     Range 2(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]     Range 3(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]     Range 4(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]     Range 5(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]     Range 6(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]     Range 7(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]     Range 8(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:52:20    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/vc.gif
+[11/26 22:52:21    288s] Ended Voltage Source Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=655.92MB/4664.85MB/1832.11MB)
+[11/26 22:52:21    288s] 
+[11/26 22:52:21    288s] 
+[11/26 22:52:21    288s] Begin Resistor Current Report Generation
+[11/26 22:52:21    288s]   Minimum, Average, Maximum Resistor Current: 0.000A, 2.844uA, 2.272mA
+[11/26 22:52:21    288s]     Range 1(   1.000mA  -     1.000GA ):         4 (  0.00%)
+[11/26 22:52:21    288s]     Range 2( 100.000uA  -     1.000mA ):       818 (  0.62%)
+[11/26 22:52:21    288s]     Range 3(  10.000uA  -   100.000uA ):      3468 (  2.62%)
+[11/26 22:52:21    288s]     Range 4(   1.000uA  -    10.000uA ):     38139 ( 28.84%)
+[11/26 22:52:21    288s]     Range 5(   0.100uA  -     1.000uA ):     57837 ( 43.74%)
+[11/26 22:52:21    288s]     Range 6(  10.000nA  -     0.100uA ):     20160 ( 15.25%)
+[11/26 22:52:21    288s]     Range 7(   1.000nA  -    10.000nA ):      7270 (  5.50%)
+[11/26 22:52:21    288s]     Range 8(    0.000A  -     1.000nA ):      4531 (  3.43%)
+[11/26 22:52:21    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/rc.gif
+[11/26 22:52:26    288s] Ended Resistor Current Report Generation: (cpu=0:00:05, real=0:00:05, mem(process/total/peak)=778.83MB/4664.85MB/1955.02MB)
+[11/26 22:52:26    288s] 
+[11/26 22:52:26    288s] 
+[11/26 22:52:26    288s] Begin Resistor Voltage Report Generation
+[11/26 22:52:26    288s]   Minimum, Average, Maximum Resistor Voltage: 0.000V, 1.108uV, 0.205mV
+[11/26 22:52:27    288s]     Range 1(   0.179mV  -     0.205mV ):         2 (  0.00%)
+[11/26 22:52:27    288s]     Range 2(   0.154mV  -     0.179mV ):         1 (  0.00%)
+[11/26 22:52:27    288s]     Range 3(   0.128mV  -     0.154mV ):         1 (  0.00%)
+[11/26 22:52:27    288s]     Range 4(   0.103mV  -     0.128mV ):         2 (  0.00%)
+[11/26 22:52:27    288s]     Range 5(  76.881uV  -     0.103mV ):         5 (  0.00%)
+[11/26 22:52:27    288s]     Range 6(  51.254uV  -    76.881uV ):        17 (  0.01%)
+[11/26 22:52:27    288s]     Range 7(  25.627uV  -    51.254uV ):       164 (  0.12%)
+[11/26 22:52:27    288s]     Range 8(    0.000V  -    25.627uV ):    132035 ( 99.85%)
+[11/26 22:52:27    288s]   GIF plot: .//PD_25C_avg_1/Reports/VSS/rv.gif
+[11/26 22:52:27    288s] Ended Resistor Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=781.76MB/4664.85MB/1957.95MB)
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Begin Power Gate I/Idsat Report Generation
+[11/26 22:52:27    288s]   No data found.
+[11/26 22:52:27    288s] Ended Power Gate I/Idsat Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=781.77MB/4664.85MB/1957.98MB)
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Begin Power Gate Voltage Report Generation
+[11/26 22:52:27    288s]   No data found.
+[11/26 22:52:27    288s] Ended Power Gate Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=781.80MB/4664.85MB/1957.99MB)
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Begin Voltage Across Vias and Contacts Report Generation
+[11/26 22:52:27    288s] Ended Voltage Across Vias and Contacts Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=781.82MB/4664.85MB/1958.01MB)
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Begin Weak Grid Connectivity Report
+[11/26 22:52:27    288s] Ended Weak Grid Connectivity Report: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=781.86MB/4664.85MB/1958.04MB)
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Begin Grid Integrity Report Generation
+[11/26 22:52:27    288s]   # Missing Cell Power-Grid Views: 0
+[11/26 22:52:27    288s]   # Physically Disconnected Instances: 0
+[11/26 22:52:27    288s]   # Instances with Floating Power Pins: 0
+[11/26 22:52:27    288s]   # Disconnected Wire Segments: 0
+[11/26 22:52:27    288s]   # Weakly Connected Metal Segments: 5
+[11/26 22:52:27    288s]   # Dropped Voltage Sources: 0
+[11/26 22:52:27    288s] Ended Grid Integrity Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=781.91MB/4664.85MB/1958.10MB)
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Net VDD:
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] 
+[11/26 22:52:27    288s] Begin Preparing Database for Report Generation
+[11/26 22:52:28    288s] 
+[11/26 22:52:28    288s] Circuit profile:
+[11/26 22:52:28    288s]                                                       Current    Voltage
+[11/26 22:52:28    288s] Layer Name                       Nodes   Resistors    Sources    Sources
+[11/26 22:52:28    288s] ----- --------------------  ----------  ----------  ---------  ---------
+[11/26 22:52:28    288s] 0     METAL_9                      794         788          0          1
+[11/26 22:52:28    288s] 1     VIA_8                          0         528          0          0
+[11/26 22:52:28    288s] 2     METAL_8                     3684        3450          0          0
+[11/26 22:52:28    288s] 3     VIA_7                          0        2562          0          0
+[11/26 22:52:28    288s] 4     METAL_7                     4121        3027          0          0
+[11/26 22:52:28    288s] 5     VIA_6                          0        3640          0          0
+[11/26 22:52:28    288s] 6     METAL_6                     9694        8786          0          0
+[11/26 22:52:28    288s] 7     VIA_5                          0        7782          0          0
+[11/26 22:52:28    288s] 8     METAL_5                     7782         870          0          0
+[11/26 22:52:28    288s] 9     VIA_4                          0        7782          0          0
+[11/26 22:52:28    288s] 10    METAL_4                     7782         870          0          0
+[11/26 22:52:28    288s] 11    VIA_3                          0        7782          0          0
+[11/26 22:52:28    288s] 12    METAL_3                     7782         870          0          0
+[11/26 22:52:28    288s] 13    VIA_2                          0        7782          0          0
+[11/26 22:52:28    288s] 14    METAL_2                     7782         870          0          0
+[11/26 22:52:28    288s] 15    VIA_1                          0        7782          0          0
+[11/26 22:52:28    288s] 16    METAL_1                    67781       67622      50447          0
+[11/26 22:52:28    288s]                             ----------  ----------  ---------  ---------
+[11/26 22:52:28    288s] 17    Circuit total             117203      132793      50447          1
+[11/26 22:52:28    288s] Ended Preparing Database for Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=785.55MB/4664.85MB/1961.74MB)
+[11/26 22:52:28    288s] 
+[11/26 22:52:28    288s] Initializing Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=785.56MB/4664.85MB/1961.74MB)
+[11/26 22:52:36    288s] 
+[11/26 22:52:36    288s] Begin IR Drop (Linear) Report Generation
+[11/26 22:52:36    288s]   Voltage: 1.2
+[11/26 22:52:36    288s]   Threshold: 1.08
+[11/26 22:52:36    288s]   Minimum, Average, Maximum IR Drop: 1.199V, 1.199V, 1.200V
+[11/26 22:52:37    288s]     Range 1(    1.199V  -      1.199V ):     52311 ( 44.63%)
+[11/26 22:52:37    288s]     Range 2(    1.199V  -      1.199V ):     38490 ( 32.84%)
+[11/26 22:52:37    288s]     Range 3(    1.199V  -      1.199V ):     16207 ( 13.83%)
+[11/26 22:52:37    288s]     Range 4(    1.199V  -      1.199V ):      5744 (  4.90%)
+[11/26 22:52:37    288s]     Range 5(    1.199V  -      1.200V ):      3169 (  2.70%)
+[11/26 22:52:37    288s]     Range 6(    1.200V  -      1.200V ):      1188 (  1.01%)
+[11/26 22:52:37    288s]     Range 7(    1.200V  -      1.200V ):        56 (  0.05%)
+[11/26 22:52:37    288s]     Range 8(    1.200V  -      1.200V ):        37 (  0.03%)
+[11/26 22:52:37    288s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:52:37    288s]       METAL_9: 0.0010656 [1.1989 - 1.2]
+[11/26 22:52:37    288s]       METAL_8: 0.0010402 [1.1989 - 1.2]
+[11/26 22:52:37    288s]       METAL_7: 0.0011615 [1.1988 - 1.2]
+[11/26 22:52:37    288s]       METAL_6: 0.0011514 [1.1988 - 1.2]
+[11/26 22:52:37    288s]       METAL_5: 0.0008055 [1.1988 - 1.1996]
+[11/26 22:52:37    288s]       METAL_4: 0.00080884 [1.1988 - 1.1996]
+[11/26 22:52:37    288s]       METAL_3: 0.00081217 [1.1988 - 1.1996]
+[11/26 22:52:37    288s]       METAL_2: 0.00081551 [1.1988 - 1.1996]
+[11/26 22:52:37    288s]       METAL_1: 0.00082493 [1.1988 - 1.1996]
+[11/26 22:52:37    288s]   IR Report: .//PD_25C_avg_1/Reports/VDD/VDD.main.rpt
+[11/26 22:52:37    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/ir_linear.gif
+[11/26 22:52:37    288s] Ended IR Drop (Linear) Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=818.98MB/4664.85MB/1995.16MB)
+[11/26 22:52:37    288s] 
+[11/26 22:52:37    288s] 
+[11/26 22:52:37    288s] Begin IR Drop (Limit) Report Generation
+[11/26 22:52:37    288s]   Voltage: 1.2
+[11/26 22:52:37    288s]   Threshold: 1.08
+[11/26 22:52:37    288s]   Minimum, Average, Maximum IR Drop: 1.199V, 1.199V, 1.200V
+[11/26 22:52:38    288s]     Range 1(    1.080V  -      1.080V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 2(    1.080V  -      1.090V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 3(    1.090V  -      1.100V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 4(    1.100V  -      1.110V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 5(    1.110V  -      1.120V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 6(    1.120V  -      1.130V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 7(    1.130V  -      1.140V ):         0 (  0.00%)
+[11/26 22:52:38    288s]     Range 8(    1.140V  -      1.200V ):    117202 (100.00%)
+[11/26 22:52:38    288s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:52:38    288s]       METAL_9: 0.0010656 [1.1989 - 1.2]
+[11/26 22:52:38    288s]       METAL_8: 0.0010402 [1.1989 - 1.2]
+[11/26 22:52:38    288s]       METAL_7: 0.0011615 [1.1988 - 1.2]
+[11/26 22:52:38    288s]       METAL_6: 0.0011514 [1.1988 - 1.2]
+[11/26 22:52:38    288s]       METAL_5: 0.0008055 [1.1988 - 1.1996]
+[11/26 22:52:38    288s]       METAL_4: 0.00080884 [1.1988 - 1.1996]
+[11/26 22:52:38    288s]       METAL_3: 0.00081217 [1.1988 - 1.1996]
+[11/26 22:52:38    288s]       METAL_2: 0.00081551 [1.1988 - 1.1996]
+[11/26 22:52:38    288s]       METAL_1: 0.00082493 [1.1988 - 1.1996]
+[11/26 22:52:38    288s]   IR Report: .//PD_25C_avg_1/Reports/VDD/VDD.main.rpt
+[11/26 22:52:38    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/ir_limit.gif
+[11/26 22:52:38    288s] Ended IR Drop (Limit) Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=818.99MB/4664.85MB/1995.18MB)
+[11/26 22:52:38    288s] 
+[11/26 22:52:38    288s] 
+[11/26 22:52:38    288s] Begin Tap Current Report Generation
+[11/26 22:52:38    288s]   Minimum, Average, Maximum Tap Current: 0.000A, 45.029nA, 2.234uA
+[11/26 22:52:38    288s]   Total Current: 2.272mA
+[11/26 22:52:39    288s]     Range 1(   1.000mA  -     1.000GA ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 2( 100.000uA  -     1.000mA ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 3(  10.000uA  -   100.000uA ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 4(   1.000uA  -    10.000uA ):        43 (  0.09%)
+[11/26 22:52:39    288s]     Range 5( 100.000nA  -     1.000uA ):      4855 (  9.62%)
+[11/26 22:52:39    288s]     Range 6(  10.000nA  -   100.000nA ):     21459 ( 42.54%)
+[11/26 22:52:39    288s]     Range 7(   1.000nA  -    10.000nA ):     12448 ( 24.68%)
+[11/26 22:52:39    288s]     Range 8(    0.000A  -     1.000nA ):     11642 ( 23.08%)
+[11/26 22:52:39    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/tc.gif
+[11/26 22:52:39    288s] Ended Tap Current Report Generation: (cpu=0:00:00, real=0:00:01, mem(process/total/peak)=818.99MB/4664.85MB/1995.18MB)
+[11/26 22:52:39    288s] 
+[11/26 22:52:39    288s] 
+[11/26 22:52:39    288s] Begin Instance Based IR Drop Report Generation
+[11/26 22:52:39    288s]   Minimum, Average, Maximum Instance Based IR Drop: 1.199V, 1.199V, 1.200V
+[11/26 22:52:39    288s]     Range 1(    1.080V  -      1.080V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 2(    1.080V  -      1.090V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 3(    1.090V  -      1.100V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 4(    1.100V  -      1.110V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 5(    1.110V  -      1.120V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 6(    1.120V  -      1.130V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 7(    1.130V  -      1.140V ):         0 (  0.00%)
+[11/26 22:52:39    288s]     Range 8(    1.140V  -      1.200V ):     50447 (100.00%)
+[11/26 22:52:39    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/iv.gif
+[11/26 22:52:40    288s] Ended Instance Based IR Drop Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.25MB/4664.85MB/1995.43MB)
+[11/26 22:52:40    288s] 
+[11/26 22:52:40    288s] 
+[11/26 22:52:40    288s] Begin Effective Instance Voltage Report Generation
+[11/26 22:52:40    288s] 
+[11/26 22:52:40    288s]  Avg EIV:
+[11/26 22:52:40    288s]   Minimum, Average, Maximum Effective Instance Voltage: 1.198V, 1.198V, 1.199V
+[11/26 22:52:40    288s]     Range 1(    1.198V  -      1.198V ):     16656 ( 32.25%)
+[11/26 22:52:40    288s]     Range 2(    1.198V  -      1.198V ):     19247 ( 37.27%)
+[11/26 22:52:40    288s]     Range 3(    1.198V  -      1.198V ):      7977 ( 15.44%)
+[11/26 22:52:40    288s]     Range 4(    1.198V  -      1.198V ):      4997 (  9.67%)
+[11/26 22:52:40    288s]     Range 5(    1.198V  -      1.199V ):      1776 (  3.44%)
+[11/26 22:52:40    288s]     Range 6(    1.199V  -      1.199V ):       629 (  1.22%)
+[11/26 22:52:40    288s]     Range 7(    1.199V  -      1.199V ):       227 (  0.44%)
+[11/26 22:52:40    288s]     Range 8(    1.199V  -      1.199V ):       140 (  0.27%)
+[11/26 22:52:40    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD_VSS.avg_div.gif
+[11/26 22:52:41    288s]   GIF Limit plot: .//PD_25C_avg_1/Reports/VDD_VSS.avg_limit_div.gif
+[11/26 22:52:41    288s]   **** Note: Histogram and gif file are generated based on elapsed EIV results.
+[11/26 22:52:41    288s] Ended Effective Instance Voltage Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=819.37MB/4664.85MB/1995.56MB)
+[11/26 22:52:41    288s] 
+[11/26 22:52:41    288s] 
+[11/26 22:52:41    288s] Begin Voltage Source Current Report Generation
+[11/26 22:52:41    288s]   Minimum, Average, Maximum Voltage Source Current: -2.272mA, -2.272mA, -2.272mA
+[11/26 22:52:41    288s]   Total Current: -2.272mA
+[11/26 22:52:42    288s]     Range 1(  -2.272mA  -    -2.272mA ):         1 (100.00%)
+[11/26 22:52:42    288s]     Range 2(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]     Range 3(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]     Range 4(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]     Range 5(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]     Range 6(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]     Range 7(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]     Range 8(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:52:42    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/vc.gif
+[11/26 22:52:42    288s] Ended Voltage Source Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.38MB/4664.85MB/1995.56MB)
+[11/26 22:52:42    288s] 
+[11/26 22:52:42    288s] 
+[11/26 22:52:42    288s] Begin Resistor Current Report Generation
+[11/26 22:52:42    288s]   Minimum, Average, Maximum Resistor Current: 0.000A, 2.925uA, 11.921mA
+[11/26 22:52:43    288s]     Range 1(   1.000mA  -     1.000GA ):         8 (  0.01%)
+[11/26 22:52:43    288s]     Range 2( 100.000uA  -     1.000mA ):       774 (  0.58%)
+[11/26 22:52:43    288s]     Range 3(  10.000uA  -   100.000uA ):      3326 (  2.50%)
+[11/26 22:52:43    288s]     Range 4(   1.000uA  -    10.000uA ):     36465 ( 27.46%)
+[11/26 22:52:43    288s]     Range 5(   0.100uA  -     1.000uA ):     57400 ( 43.23%)
+[11/26 22:52:43    288s]     Range 6(  10.000nA  -     0.100uA ):      7946 (  5.98%)
+[11/26 22:52:43    288s]     Range 7(   1.000nA  -    10.000nA ):         0 (  0.00%)
+[11/26 22:52:43    288s]     Range 8(    0.000A  -     1.000nA ):     26874 ( 20.24%)
+[11/26 22:52:43    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/rc.gif
+[11/26 22:52:48    288s] Ended Resistor Current Report Generation: (cpu=0:00:05, real=0:00:05, mem(process/total/peak)=819.70MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Begin Resistor Voltage Report Generation
+[11/26 22:52:48    288s]   Minimum, Average, Maximum Resistor Voltage: 0.000V, 1.077uV, 0.213mV
+[11/26 22:52:48    288s]     Range 1(   0.186mV  -     0.213mV ):         2 (  0.00%)
+[11/26 22:52:48    288s]     Range 2(   0.160mV  -     0.186mV ):         1 (  0.00%)
+[11/26 22:52:48    288s]     Range 3(   0.133mV  -     0.160mV ):         1 (  0.00%)
+[11/26 22:52:48    288s]     Range 4(   0.106mV  -     0.133mV ):         1 (  0.00%)
+[11/26 22:52:48    288s]     Range 5(  79.751uV  -     0.106mV ):         4 (  0.00%)
+[11/26 22:52:48    288s]     Range 6(  53.167uV  -    79.751uV ):        18 (  0.01%)
+[11/26 22:52:48    288s]     Range 7(  26.584uV  -    53.167uV ):        74 (  0.06%)
+[11/26 22:52:48    288s]     Range 8(    0.000V  -    26.584uV ):    132692 ( 99.92%)
+[11/26 22:52:48    288s]   GIF plot: .//PD_25C_avg_1/Reports/VDD/rv.gif
+[11/26 22:52:48    288s] Ended Resistor Voltage Report Generation: (cpu=0:00:01, real=0:00:00, mem(process/total/peak)=819.71MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Begin Power Gate I/Idsat Report Generation
+[11/26 22:52:48    288s]   No data found.
+[11/26 22:52:48    288s] Ended Power Gate I/Idsat Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.71MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Begin Power Gate Voltage Report Generation
+[11/26 22:52:48    288s]   No data found.
+[11/26 22:52:48    288s] Ended Power Gate Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.71MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Begin Voltage Across Vias and Contacts Report Generation
+[11/26 22:52:48    288s] Ended Voltage Across Vias and Contacts Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.71MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Begin Weak Grid Connectivity Report
+[11/26 22:52:48    288s] Ended Weak Grid Connectivity Report: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.71MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Begin Grid Integrity Report Generation
+[11/26 22:52:48    288s]   # Missing Cell Power-Grid Views: 0
+[11/26 22:52:48    288s]   # Physically Disconnected Instances: 0
+[11/26 22:52:48    288s]   # Instances with Floating Power Pins: 0
+[11/26 22:52:48    288s]   # Disconnected Wire Segments: 0
+[11/26 22:52:48    288s]   # Weakly Connected Metal Segments: 5
+[11/26 22:52:48    288s]   # Dropped Voltage Sources: 0
+[11/26 22:52:48    288s] Ended Grid Integrity Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=819.71MB/4664.85MB/1995.89MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Ended Report Generation: (cpu=0:00:38, real=0:00:41, mem(process/total/peak)=819.72MB/4664.85MB/1995.92MB)
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Rail Analysis Statistics:
+[11/26 22:52:48    288s] Warning messages:      0
+[11/26 22:52:48    288s] Error messages:        0
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Rail Analysis completed successfully.
+[11/26 22:52:48    288s] 
+[11/26 22:52:48    288s] Finished Rail Analysis at 22:52:48 11/26/2025 (cpu=0:01:05, real=0:01:28, peak mem=1995.96MB)
+[11/26 22:52:48    288s] Current Innovus resource usage: (total cpu=0:05:17, real=0:24:41, mem=1995.96MB)
+[11/26 22:52:49    350s] <CMD> set_pg_nets -net VDD -voltage 1.2 -threshold 1.08
+[11/26 22:52:49    350s] <CMD> set_pg_nets -net VSS -voltage 0 -threshold 0.12
+[11/26 22:52:49    350s] <CMD> set_rail_analysis_domain -name PD -pwrnets { VDD} -gndnets { VSS}
+[11/26 22:52:49    350s] <CMD> set_power_data -reset
+[11/26 22:52:49    350s] <CMD> set_power_data -format current -scale 1 {static_VDD.ptiavg static_VSS.ptiavg}
+[11/26 22:52:49    350s] <CMD> set_power_pads -reset
+[11/26 22:52:49    350s] <CMD> set_power_pads -net VSS -format xy -file VSS.pp
+[11/26 22:52:49    350s] <CMD> set_power_pads -net VDD -format xy -file VDD.pp
+[11/26 22:52:49    350s] <CMD> set_package -reset
+[11/26 22:52:49    350s] <CMD> set_package -spice {} -mapping {}
+[11/26 22:52:49    350s] <CMD> set_net_group -reset
+[11/26 22:52:49    350s] <CMD> set_advanced_rail_options -reset
+[11/26 22:52:49    350s] <CMD> analyze_rail -type domain -results_directory ./ PD
+[11/26 22:53:03    351s] Started PGV Library Generator at 22:52:49 11/26/2025
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] ** INFO:  (VOLTUS_LGEN-3599): Library generation settings: 
+[11/26 22:53:03    351s] 	Mode: TECH 
+[11/26 22:53:03    351s] 	Capacitance: area_cap 
+[11/26 22:53:03    351s] 	Current Distribution: estimation 
+[11/26 22:53:03    351s] 	Grid Port Definition: LEF 
+[11/26 22:53:03    351s] 	Grid Current Sinks: LEF pin 
+[11/26 22:53:03    351s] 	Power Gate: no
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] ** INFO:  (VOLTUS_LGEN-3598): Processing LEF files: 
+[11/26 22:53:03    351s] /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/libs/lef/gsclib045_tech.lef
+[11/26 22:53:03    351s] /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/DBS/04_placement.enc.dat/libs/lef/gsclib045_macro.lef
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] ** INFO:  (VOLTUS_LGEN-3611): No lef leyarmap specified. Tool has
+[11/26 22:53:03    351s] internally generated the mapping between technology layers and lef layers
+[11/26 22:53:03    351s] using information in technology file and technology lef. To specify your
+[11/26 22:53:03    351s] own layer mapping, use set_pg_library_mode -lef_layermap.
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s]   TECH-LAYER    LEF-LAYER
+[11/26 22:53:03    351s]   METAL_1    Metal1
+[11/26 22:53:03    351s]   VIA_1    Via1
+[11/26 22:53:03    351s]   METAL_2    Metal2
+[11/26 22:53:03    351s]   VIA_2    Via2
+[11/26 22:53:03    351s]   METAL_3    Metal3
+[11/26 22:53:03    351s]   VIA_3    Via3
+[11/26 22:53:03    351s]   METAL_4    Metal4
+[11/26 22:53:03    351s]   VIA_4    Via4
+[11/26 22:53:03    351s]   METAL_5    Metal5
+[11/26 22:53:03    351s]   VIA_5    Via5
+[11/26 22:53:03    351s]   METAL_6    Metal6
+[11/26 22:53:03    351s]   VIA_6    Via6
+[11/26 22:53:03    351s]   METAL_7    Metal7
+[11/26 22:53:03    351s]   VIA_7    Via7
+[11/26 22:53:03    351s]   METAL_8    Metal8
+[11/26 22:53:03    351s]   VIA_8    Via8
+[11/26 22:53:03    351s]   METAL_9    Metal9
+[11/26 22:53:03    351s]   VIA_9    Via9
+[11/26 22:53:03    351s]   METAL_10    Metal10
+[11/26 22:53:03    351s]   VIA_10    Via10
+[11/26 22:53:03    351s]   METAL_11    Metal11
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] ** WARN:  (VOLTUS_LGEN-3106): The following cells do not contain any supply
+[11/26 22:53:03    351s] pins: , SDFF4RX1, SDFF4RX2
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] ** INFO:  (VOLTUS_LGEN-3606): 
+[11/26 22:53:03    351s] Power Grid View Generation Statistics:
+[11/26 22:53:03    351s]         # Total number of cells: 583 
+[11/26 22:53:03    351s]         # TECH view created: 583 (100%)
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] ** WARN:  (VOLTUS_LGEN-3971): The following cells failed to create some of
+[11/26 22:53:03    351s] the PGV views:
+[11/26 22:53:03    351s]  CELL                      				 REASON                    
+[11/26 22:53:03    351s]  ==== 							 ====== 
+[11/26 22:53:03    351s]  SDFF4RX1                  				 No PowerPin found in LEF.
+[11/26 22:53:03    351s]  
+[11/26 22:53:03    351s]  SDFF4RX2                  				 No PowerPin found in LEF.
+[11/26 22:53:03    351s]  
+[11/26 22:53:03    351s] 
+[11/26 22:53:03    351s] Finished PGV Library Generator at 22:53:03 11/26/2025 (cpu=0:00:05, real=0:00:14, peak mem=1225.40MB)
+[11/26 22:53:03    351s] Current Innovus resource usage: (total cpu=0:05:42, real=0:24:56, mem=1225.40MB)
+[11/26 22:53:03    369s] 
+[11/26 22:53:03    369s] Begin ERA Data Preparation
+[11/26 22:53:03    369s] All Virtual Vias and Virtual followpins have been skipped. No incremental def would be generated.
+[11/26 22:53:03    369s] Ended ERA Data Preparation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1177.53MB/2529.94MB/1995.96MB)
+[11/26 22:53:03    369s] 
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 1226000 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal5' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M5_M4_HV' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M4_M3_VH' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M3_M2_HV' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M2_M1_VH' at ( 1153470 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M4_M3_VH' at ( 1226000 1140400 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M5_M4_HV' at ( 1226000 932120 ) on net 'peri_datao[1]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal2' at ( 1154200 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal3' at ( 1141800 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M3_M2_HV' at ( 1141800 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M2_M1_VH' at ( 1141800 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M2_M1_VH' at ( 1154200 931190 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Via 'M3_M2_HV' at ( 1154200 930810 ) on net 'FE_OFN56594_peri_datao_1' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal5' at ( 667940 1126510 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 669940 1061290 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 670740 1054310 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 667940 1078110 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal4' at ( 641940 1088650 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (IMPDF-1012):	Route on layer 'Metal5' at ( 649940 1088650 ) on net 'boot_datai_d[24]' has been found with unknown routing status so it is ignored.
+[11/26 22:53:04    369s] Type 'man IMPDF-1012' for more detail.
+[11/26 22:53:04    369s] **WARN: (EMS-27):	Message (IMPDF-1012) has exceeded the current message display limit of 20.
+[11/26 22:53:04    369s] To increase the message display limit, refer to the product command reference manual.
+[11/26 22:53:04    370s] -process 45                             # int, default=90, min=3, max=250, user setting
+[11/26 22:53:05    370s] * voltus_rail
+[11/26 22:53:05    370s] *	Version v20.10-p006_1 (04/14/2020 13:12:28)
+[11/26 22:53:05    370s] *	Copyright 2007 - 2017 Cadence Design Systems, Inc.
+[11/26 22:53:05    370s] *
+[11/26 22:53:05    370s] *	Run by u110022124 on Wed Nov 26 22:53:05 2025
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] *	Executing 64 bit version on host: ws42
+[11/26 22:53:05    370s] *
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] Started Rail Analysis at 22:53:04 11/26/2025
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] Multi-CPU Configuration:
+[11/26 22:53:05    370s] 	#CPU: 1
+[11/26 22:53:05    370s] 	Mode: local
+[11/26 22:53:05    370s] 	Host: ws42
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] Running OCI  extraction for /tmp/innovus_temp_7197_ws42_u110022124_LsKzJ5/eps_out_7197.def.gz ...
+[11/26 22:53:05    370s] 
+[11/26 22:53:05    370s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler   -nt 1   -usecellid  -session_file ./work/sfe.session  -prev_session_file ./work/sfe.session.prev  -cmd ./work/voltus_scheduler.cmd" ...
+[11/26 22:53:05    370s] Extraction option setup as:
+[11/26 22:53:05    370s] setenv gray_data NONE
+[11/26 22:53:05    370s] setenv enable_cluster_overhang_via false
+[11/26 22:53:05    370s] setenv enable_dfm_mask_conflict_shape false
+[11/26 22:53:05    370s] Begin Preparing Data for Parasitic Extraction
+[11/26 22:53:10    370s] Extracting following DFM effects:
+[11/26 22:53:10    370s] MetalFill        : n/a
+[11/26 22:53:10    370s] WEE Effects      : n/a
+[11/26 22:53:10    370s] Erosion Effects  : n/a
+[11/26 22:53:10    370s] T/B Enlargements : n/a
+[11/26 22:53:10    370s] R(w) Effects     : n/a
+[11/26 22:53:10    370s] R(w,s) Effects   : n/a
+[11/26 22:53:10    370s] R(sw,st) Effects : n/a
+[11/26 22:53:10    370s] TC(w) Effects    : n/a
+[11/26 22:53:10    370s] Some effects indicate n/a because of non-availability of relevant input data (or) requested to be off.
+[11/26 22:53:10    370s] Ended Preparing Data for Parasitic Extraction: (cpu=0:00:04, real=0:00:04, mem(process/total/peak)=28.43MB/4012.39MB/1995.96MB)
+[11/26 22:53:10    370s] 
+[11/26 22:53:10    370s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler -skip_prep -nt 1 -usecellid -session_file ./work/sfe.session -prev_session_file ./work/sfe.session.prev -cmd ./work/voltus_scheduler.cmd -zx /usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_extractor" ...
+[11/26 22:53:10    370s] Extraction option setup as:
+[11/26 22:53:10    370s] setenv gray_data NONE
+[11/26 22:53:10    370s] setenv enable_cluster_overhang_via false
+[11/26 22:53:10    370s] setenv enable_dfm_mask_conflict_shape false
+[11/26 22:53:10    370s] Begin Parasitic Extraction
+[11/26 22:53:10    370s] Extracting Progress:
+[11/26 22:53:10    370s]     0% at 22:53:10 11/26/2025
+[11/26 22:53:29    370s]   100% at 22:53:29 11/26/2025
+[11/26 22:53:29    370s] Ended Parasitic Extraction: (cpu=0:00:12, real=0:00:19, mem(process/total/peak)=5.83MB/3193.96MB/1995.96MB)
+[11/26 22:53:29    370s] 
+[11/26 22:53:29    370s] 
+[11/26 22:53:29    370s] Analyze Rail Settings:
+[11/26 22:53:29    370s] 	Temp directory: /tmp/innovus_temp_7197_ws42_u110022124_LsKzJ5
+[11/26 22:53:29    370s] 	Output directory: ./
+[11/26 22:53:29    370s] 	Run directory: .//PD_25C_avg_2/
+[11/26 22:53:31    370s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_rail_smg -cmd .//PD_25C_avg_2/voltus_rail_smg.VSS.cmd -l .//PD_25C_avg_2/voltus_rail_smg.VSS.log" ...
+[11/26 22:53:31    370s] Begin Merging power grid
+[11/26 22:53:31    370s] Tech reference temperature: 25
+[11/26 22:53:31    370s] Target temperature: 25
+[11/26 22:53:31    370s] 
+[11/26 22:53:31    370s] Grid Statistics of Net VSS:
+[11/26 22:53:31    370s] - NODE
+[11/26 22:53:31    370s]   Total node: 116401
+[11/26 22:53:31    370s]     Top Level grid node: 116401
+[11/26 22:53:31    370s]       Top level interface node: 51649
+[11/26 22:53:31    370s]     Missing interface node: 0
+[11/26 22:53:31    370s]     Cell internal node: 0
+[11/26 22:53:31    370s] - ELEM
+[11/26 22:53:31    370s]   Total element: 132227
+[11/26 22:53:31    370s]     Top Level grid element: 132227
+[11/26 22:53:31    370s]     Cell internal element: 0
+[11/26 22:53:31    370s] - INST
+[11/26 22:53:31    370s]   Instance logically connected: 51649
+[11/26 22:53:31    370s]     Tech: 51649
+[11/26 22:53:31    370s]     StdCell: 0
+[11/26 22:53:31    370s]     Macro:
+[11/26 22:53:31    370s]       Early: 0
+[11/26 22:53:31    370s]       IR: 0
+[11/26 22:53:31    370s]       EM: 0
+[11/26 22:53:31    370s]     Current Region:  0
+[11/26 22:53:31    370s]   Dropped instance due to missing/incomplete cell library: 0
+[11/26 22:53:31    370s] - TAP
+[11/26 22:53:31    370s]   Total tap: 51649
+[11/26 22:53:31    370s] 
+[11/26 22:53:31    370s] Ended Merging power grid: (cpu=0:00:02, real=0:00:01, mem(process/total/peak)=46.01MB/3392.23MB/1995.96MB)
+[11/26 22:53:32    370s] Invoking: "/usr/cad/cadence/INNOVUS/INNOVUS_20.10.000/tools.lnx86/ssvtools/bin/64bit/voltus_rail_smg -cmd .//PD_25C_avg_2/voltus_rail_smg.VDD.cmd -l .//PD_25C_avg_2/voltus_rail_smg.VDD.log" ...
+[11/26 22:53:32    370s] Begin Merging power grid
+[11/26 22:53:32    370s] Tech reference temperature: 25
+[11/26 22:53:32    370s] Target temperature: 25
+[11/26 22:53:32    370s] 
+[11/26 22:53:32    370s] Grid Statistics of Net VDD:
+[11/26 22:53:32    370s] - NODE
+[11/26 22:53:32    370s]   Total node: 117202
+[11/26 22:53:32    370s]     Top Level grid node: 117202
+[11/26 22:53:32    370s]       Top level interface node: 51649
+[11/26 22:53:32    370s]     Missing interface node: 0
+[11/26 22:53:32    370s]     Cell internal node: 0
+[11/26 22:53:32    370s] - ELEM
+[11/26 22:53:32    370s]   Total element: 132793
+[11/26 22:53:32    370s]     Top Level grid element: 132793
+[11/26 22:53:32    370s]     Cell internal element: 0
+[11/26 22:53:32    370s] - INST
+[11/26 22:53:32    370s]   Instance logically connected: 51649
+[11/26 22:53:32    370s]     Tech: 51649
+[11/26 22:53:32    370s]     StdCell: 0
+[11/26 22:53:32    370s]     Macro:
+[11/26 22:53:32    370s]       Early: 0
+[11/26 22:53:32    370s]       IR: 0
+[11/26 22:53:32    370s]       EM: 0
+[11/26 22:53:32    370s]     Current Region:  0
+[11/26 22:53:32    370s]   Dropped instance due to missing/incomplete cell library: 0
+[11/26 22:53:32    370s] - TAP
+[11/26 22:53:32    370s]   Total tap: 51649
+[11/26 22:53:32    370s] 
+[11/26 22:53:32    370s] Ended Merging power grid: (cpu=0:00:02, real=0:00:01, mem(process/total/peak)=42.80MB/3392.23MB/1995.96MB)
+[11/26 22:53:32    370s] 
+[11/26 22:53:32    370s] Begin Preparing Data for Rail Analysis
+[11/26 22:53:34    370s] 
+[11/26 22:53:34    370s] Net VSS
+[11/26 22:53:34    370s]   Power Pin Location File: /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/VSS.pp
+[11/26 22:53:34    370s]   # Voltage Source Added/Total (%): 1/1 (100.00%)
+[11/26 22:53:34    370s] 
+[11/26 22:53:34    370s]   Power Database: static_VSS.ptiavg
+[11/26 22:53:34    370s]   # Current Taps Matched/Total (%): 42904/42904 (100.00%)
+[11/26 22:53:34    370s]   # Instances Matched: 42904
+[11/26 22:53:34    370s] 
+[11/26 22:53:34    370s] Net VDD
+[11/26 22:53:34    370s]   Power Pin Location File: /home/u110/u110022124/ICLAB/lab11/lab11/innovus/run/VDD.pp
+[11/26 22:53:34    370s]   # Voltage Source Added/Total (%): 1/1 (100.00%)
+[11/26 22:53:34    370s] 
+[11/26 22:53:35    370s]   Power Database: static_VDD.ptiavg
+[11/26 22:53:35    370s]   # Current Taps Matched/Total (%): 42904/42904 (100.00%)
+[11/26 22:53:35    370s]   # Instances Matched: 42904
+[11/26 22:53:35    370s] 
+[11/26 22:53:35    370s] Begin PowerGrid Integrity Analysis
+[11/26 22:53:35    370s] 
+[11/26 22:53:35    370s] Begin Redistribute Disconnected Cap
+[11/26 22:53:35    370s] Ended Redistribute Disconnected Cap: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=147.39MB/3920.78MB/1995.96MB)
+[11/26 22:53:35    370s] 
+[11/26 22:53:35    370s] Ended PowerGrid Integrity Analysis: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=148.01MB/3920.78MB/1995.96MB)
+[11/26 22:53:35    370s] 
+[11/26 22:53:35    370s] Ended Preparing Data for Rail Analysis: (cpu=0:00:02, real=0:00:02, mem(process/total/peak)=143.00MB/3920.78MB/1995.96MB)
+[11/26 22:53:35    370s] 
+[11/26 22:53:35    370s] 
+[11/26 22:53:35    370s] Begin Steady-State Analysis
+[11/26 22:53:37    370s] Ended Steady-State Analysis: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=208.59MB/4407.66MB/1995.96MB)
+[11/26 22:53:37    370s] 
+[11/26 22:53:37    370s] 
+[11/26 22:53:37    370s] Begin Report Generation
+[11/26 22:53:38    370s] 
+[11/26 22:53:38    370s] 
+[11/26 22:53:38    370s] Net VSS:
+[11/26 22:53:38    370s] 
+[11/26 22:53:38    370s] 
+[11/26 22:53:38    370s] Begin Preparing Database for Report Generation
+[11/26 22:53:39    370s] 
+[11/26 22:53:39    370s] Circuit profile:
+[11/26 22:53:39    370s]                                                       Current    Voltage
+[11/26 22:53:39    370s] Layer Name                       Nodes   Resistors    Sources    Sources
+[11/26 22:53:39    370s] ----- --------------------  ----------  ----------  ---------  ---------
+[11/26 22:53:39    370s] 0     METAL_9                      794         788          0          1
+[11/26 22:53:39    370s] 1     VIA_8                          0         528          0          0
+[11/26 22:53:39    370s] 2     METAL_8                     3792        3558          0          0
+[11/26 22:53:39    370s] 3     VIA_7                          0        2636          0          0
+[11/26 22:53:39    370s] 4     METAL_7                     4187        3053          0          0
+[11/26 22:53:39    370s] 5     VIA_6                          0        3708          0          0
+[11/26 22:53:39    370s] 6     METAL_6                     9728        8786          0          0
+[11/26 22:53:39    370s] 7     VIA_5                          0        7812          0          0
+[11/26 22:53:39    370s] 8     METAL_5                     7812         904          0          0
+[11/26 22:53:39    370s] 9     VIA_4                          0        7812          0          0
+[11/26 22:53:39    370s] 10    METAL_4                     7812         904          0          0
+[11/26 22:53:39    370s] 11    VIA_3                          0        7812          0          0
+[11/26 22:53:39    370s] 12    METAL_3                     7812         904          0          0
+[11/26 22:53:39    370s] 13    VIA_2                          0        7812          0          0
+[11/26 22:53:39    370s] 14    METAL_2                     7812         904          0          0
+[11/26 22:53:39    370s] 15    VIA_1                          0        7812          0          0
+[11/26 22:53:39    370s] 16    METAL_1                    66652       66494      50308          0
+[11/26 22:53:39    370s]                             ----------  ----------  ---------  ---------
+[11/26 22:53:39    370s] 17    Circuit total             116402      132227      50308          1
+[11/26 22:53:39    370s] Ended Preparing Database for Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=620.51MB/4664.85MB/1995.96MB)
+[11/26 22:53:39    370s] 
+[11/26 22:53:39    370s] Initializing Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=620.70MB/4664.85MB/1995.96MB)
+[11/26 22:53:47    370s] 
+[11/26 22:53:47    370s] Begin IR Drop (Linear) Report Generation
+[11/26 22:53:47    370s]   Voltage: 0
+[11/26 22:53:47    370s]   Threshold: 0.12
+[11/26 22:53:47    370s]   Minimum, Average, Maximum IR Drop: 0.000V, 1.030mV, 1.247mV
+[11/26 22:53:48    370s]     Range 1(   1.091mV  -     1.247mV ):     52744 ( 45.31%)
+[11/26 22:53:48    370s]     Range 2(   0.935mV  -     1.091mV ):     37783 ( 32.46%)
+[11/26 22:53:48    370s]     Range 3(   0.779mV  -     0.935mV ):     15911 ( 13.67%)
+[11/26 22:53:48    370s]     Range 4(   0.624mV  -     0.779mV ):      5642 (  4.85%)
+[11/26 22:53:48    370s]     Range 5(   0.468mV  -     0.624mV ):      3245 (  2.79%)
+[11/26 22:53:48    370s]     Range 6(   0.312mV  -     0.468mV ):       977 (  0.84%)
+[11/26 22:53:48    370s]     Range 7(   0.156mV  -     0.312mV ):        62 (  0.05%)
+[11/26 22:53:48    370s]     Range 8(    0.000V  -     0.156mV ):        37 (  0.03%)
+[11/26 22:53:48    370s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:53:48    370s]       METAL_9: 0.0010844 [0 - 0.0010844]
+[11/26 22:53:48    370s]       METAL_8: 0.0010473 [3.7019e-05 - 0.0010844]
+[11/26 22:53:48    370s]       METAL_7: 0.0011744 [4.9349e-05 - 0.0012237]
+[11/26 22:53:48    370s]       METAL_6: 0.0011646 [5.9632e-05 - 0.0012242]
+[11/26 22:53:48    370s]       METAL_5: 0.00080729 [0.00041979 - 0.0012271]
+[11/26 22:53:48    370s]       METAL_4: 0.00081084 [0.0004199 - 0.0012307]
+[11/26 22:53:48    370s]       METAL_3: 0.00081439 [0.00042001 - 0.0012344]
+[11/26 22:53:48    370s]       METAL_2: 0.00081795 [0.00042012 - 0.0012381]
+[11/26 22:53:48    370s]       METAL_1: 0.00082695 [0.00042022 - 0.0012472]
+[11/26 22:53:48    370s]   IR Report: .//PD_25C_avg_2/Reports/VSS/VSS.main.rpt
+[11/26 22:53:48    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/ir_linear.gif
+[11/26 22:53:48    370s] Ended IR Drop (Linear) Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=666.67MB/4664.85MB/1995.96MB)
+[11/26 22:53:48    370s] 
+[11/26 22:53:48    370s] 
+[11/26 22:53:48    370s] Begin IR Drop (Limit) Report Generation
+[11/26 22:53:48    370s]   Voltage: 0
+[11/26 22:53:48    370s]   Threshold: 0.12
+[11/26 22:53:48    370s]   Minimum, Average, Maximum IR Drop: 0.000V, 1.030mV, 1.247mV
+[11/26 22:53:49    370s]     Range 1(    0.120V  -      0.120V ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 2(    0.110V  -      0.120V ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 3( 100.000mV  -      0.110V ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 4(  90.000mV  -   100.000mV ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 5(  80.000mV  -    90.000mV ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 6(  70.000mV  -    80.000mV ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 7(  60.000mV  -    70.000mV ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 8(  -1.000uV  -    60.000mV ):    116401 (100.00%)
+[11/26 22:53:49    370s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:53:49    370s]       METAL_9: 0.0010844 [0 - 0.0010844]
+[11/26 22:53:49    370s]       METAL_8: 0.0010473 [3.7019e-05 - 0.0010844]
+[11/26 22:53:49    370s]       METAL_7: 0.0011744 [4.9349e-05 - 0.0012237]
+[11/26 22:53:49    370s]       METAL_6: 0.0011646 [5.9632e-05 - 0.0012242]
+[11/26 22:53:49    370s]       METAL_5: 0.00080729 [0.00041979 - 0.0012271]
+[11/26 22:53:49    370s]       METAL_4: 0.00081084 [0.0004199 - 0.0012307]
+[11/26 22:53:49    370s]       METAL_3: 0.00081439 [0.00042001 - 0.0012344]
+[11/26 22:53:49    370s]       METAL_2: 0.00081795 [0.00042012 - 0.0012381]
+[11/26 22:53:49    370s]       METAL_1: 0.00082695 [0.00042022 - 0.0012472]
+[11/26 22:53:49    370s]   IR Report: .//PD_25C_avg_2/Reports/VSS/VSS.main.rpt
+[11/26 22:53:49    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/ir_limit.gif
+[11/26 22:53:49    370s] Ended IR Drop (Limit) Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=669.02MB/4664.85MB/1995.96MB)
+[11/26 22:53:49    370s] 
+[11/26 22:53:49    370s] 
+[11/26 22:53:49    370s] Begin Tap Current Report Generation
+[11/26 22:53:49    370s]   Minimum, Average, Maximum Tap Current: -2.234uA, -45.153nA, 0.000A
+[11/26 22:53:49    370s]   Total Current: -2.272mA
+[11/26 22:53:49    370s]     Range 1(  -1.000GA  -    -1.000mA ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 2(  -1.000mA  -  -100.000uA ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 3(-100.000uA  -   -10.000uA ):         0 (  0.00%)
+[11/26 22:53:49    370s]     Range 4( -10.000uA  -    -1.000uA ):        43 (  0.09%)
+[11/26 22:53:49    370s]     Range 5(  -1.000uA  -  -100.000nA ):      4864 (  9.67%)
+[11/26 22:53:49    370s]     Range 6(-100.000nA  -   -10.000nA ):     21389 ( 42.52%)
+[11/26 22:53:49    370s]     Range 7( -10.000nA  -    -1.000nA ):     12418 ( 24.68%)
+[11/26 22:53:49    370s]     Range 8(  -1.000nA  -      0.000A ):     11594 ( 23.05%)
+[11/26 22:53:49    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/tc.gif
+[11/26 22:53:50    370s] Ended Tap Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=669.09MB/4664.85MB/1995.96MB)
+[11/26 22:53:50    370s] 
+[11/26 22:53:50    370s] 
+[11/26 22:53:50    370s] Begin Instance Based IR Drop Report Generation
+[11/26 22:53:50    370s]   Minimum, Average, Maximum Instance Based IR Drop: 0.420mV, 1.071mV, 1.247mV
+[11/26 22:53:50    370s]     Range 1(    0.120V  -      0.120V ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 2(    0.110V  -      0.120V ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 3(    0.100V  -      0.110V ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 4(  90.000mV  -      0.100V ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 5(  80.000mV  -    90.000mV ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 6(  70.000mV  -    80.000mV ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 7(  60.000mV  -    70.000mV ):         0 (  0.00%)
+[11/26 22:53:50    370s]     Range 8(  -1.000uV  -    60.000mV ):     50308 (100.00%)
+[11/26 22:53:50    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/iv.gif
+[11/26 22:53:51    370s] Ended Instance Based IR Drop Report Generation: (cpu=0:00:01, real=0:00:00, mem(process/total/peak)=669.52MB/4664.85MB/1995.96MB)
+[11/26 22:53:51    370s] 
+[11/26 22:53:51    370s] 
+[11/26 22:53:51    370s] Begin Effective Instance Voltage Report Generation
+[11/26 22:53:51    370s] Ended Effective Instance Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=669.55MB/4664.85MB/1995.96MB)
+[11/26 22:53:51    370s] 
+[11/26 22:53:51    370s] 
+[11/26 22:53:51    370s] Begin Voltage Source Current Report Generation
+[11/26 22:53:51    370s]   Minimum, Average, Maximum Voltage Source Current: 2.272mA, 2.272mA, 2.272mA
+[11/26 22:53:51    370s]   Total Current: 2.272mA
+[11/26 22:53:51    370s]     Range 1(   2.272mA  -     2.272mA ):         1 (100.00%)
+[11/26 22:53:51    370s]     Range 2(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]     Range 3(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]     Range 4(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]     Range 5(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]     Range 6(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]     Range 7(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]     Range 8(   2.272mA  -     2.272mA ):         0 (  0.00%)
+[11/26 22:53:51    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/vc.gif
+[11/26 22:53:51    370s] Ended Voltage Source Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=670.66MB/4664.85MB/1995.96MB)
+[11/26 22:53:51    370s] 
+[11/26 22:53:51    370s] 
+[11/26 22:53:51    370s] Begin Resistor Current Report Generation
+[11/26 22:53:51    370s]   Minimum, Average, Maximum Resistor Current: 0.000A, 2.844uA, 2.272mA
+[11/26 22:53:52    370s]     Range 1(   1.000mA  -     1.000GA ):         4 (  0.00%)
+[11/26 22:53:52    370s]     Range 2( 100.000uA  -     1.000mA ):       818 (  0.62%)
+[11/26 22:53:52    370s]     Range 3(  10.000uA  -   100.000uA ):      3468 (  2.62%)
+[11/26 22:53:52    370s]     Range 4(   1.000uA  -    10.000uA ):     38139 ( 28.84%)
+[11/26 22:53:52    370s]     Range 5(   0.100uA  -     1.000uA ):     57837 ( 43.74%)
+[11/26 22:53:52    370s]     Range 6(  10.000nA  -     0.100uA ):     20160 ( 15.25%)
+[11/26 22:53:52    370s]     Range 7(   1.000nA  -    10.000nA ):      7270 (  5.50%)
+[11/26 22:53:52    370s]     Range 8(    0.000A  -     1.000nA ):      4531 (  3.43%)
+[11/26 22:53:52    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/rc.gif
+[11/26 22:53:57    370s] Ended Resistor Current Report Generation: (cpu=0:00:05, real=0:00:05, mem(process/total/peak)=793.22MB/4664.85MB/1995.96MB)
+[11/26 22:53:57    370s] 
+[11/26 22:53:57    370s] 
+[11/26 22:53:57    370s] Begin Resistor Voltage Report Generation
+[11/26 22:53:57    370s]   Minimum, Average, Maximum Resistor Voltage: 0.000V, 1.108uV, 0.205mV
+[11/26 22:53:58    370s]     Range 1(   0.179mV  -     0.205mV ):         2 (  0.00%)
+[11/26 22:53:58    370s]     Range 2(   0.154mV  -     0.179mV ):         1 (  0.00%)
+[11/26 22:53:58    370s]     Range 3(   0.128mV  -     0.154mV ):         1 (  0.00%)
+[11/26 22:53:58    370s]     Range 4(   0.103mV  -     0.128mV ):         2 (  0.00%)
+[11/26 22:53:58    370s]     Range 5(  76.881uV  -     0.103mV ):         5 (  0.00%)
+[11/26 22:53:58    370s]     Range 6(  51.254uV  -    76.881uV ):        17 (  0.01%)
+[11/26 22:53:58    370s]     Range 7(  25.627uV  -    51.254uV ):       164 (  0.12%)
+[11/26 22:53:58    370s]     Range 8(    0.000V  -    25.627uV ):    132035 ( 99.85%)
+[11/26 22:53:58    370s]   GIF plot: .//PD_25C_avg_2/Reports/VSS/rv.gif
+[11/26 22:53:58    370s] Ended Resistor Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=796.14MB/4664.85MB/1995.96MB)
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Begin Power Gate I/Idsat Report Generation
+[11/26 22:53:58    370s]   No data found.
+[11/26 22:53:58    370s] Ended Power Gate I/Idsat Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=796.15MB/4664.85MB/1995.96MB)
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Begin Power Gate Voltage Report Generation
+[11/26 22:53:58    370s]   No data found.
+[11/26 22:53:58    370s] Ended Power Gate Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=796.18MB/4664.85MB/1995.96MB)
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Begin Voltage Across Vias and Contacts Report Generation
+[11/26 22:53:58    370s] Ended Voltage Across Vias and Contacts Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=796.20MB/4664.85MB/1995.96MB)
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Begin Weak Grid Connectivity Report
+[11/26 22:53:58    370s] Ended Weak Grid Connectivity Report: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=796.24MB/4664.85MB/1995.96MB)
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Begin Grid Integrity Report Generation
+[11/26 22:53:58    370s]   # Missing Cell Power-Grid Views: 0
+[11/26 22:53:58    370s]   # Physically Disconnected Instances: 0
+[11/26 22:53:58    370s]   # Instances with Floating Power Pins: 0
+[11/26 22:53:58    370s]   # Disconnected Wire Segments: 0
+[11/26 22:53:58    370s]   # Weakly Connected Metal Segments: 5
+[11/26 22:53:58    370s]   # Dropped Voltage Sources: 0
+[11/26 22:53:58    370s] Ended Grid Integrity Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=796.30MB/4664.85MB/1995.96MB)
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Net VDD:
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] 
+[11/26 22:53:58    370s] Begin Preparing Database for Report Generation
+[11/26 22:53:59    370s] 
+[11/26 22:53:59    370s] Circuit profile:
+[11/26 22:53:59    370s]                                                       Current    Voltage
+[11/26 22:53:59    370s] Layer Name                       Nodes   Resistors    Sources    Sources
+[11/26 22:53:59    370s] ----- --------------------  ----------  ----------  ---------  ---------
+[11/26 22:53:59    370s] 0     METAL_9                      794         788          0          1
+[11/26 22:53:59    370s] 1     VIA_8                          0         528          0          0
+[11/26 22:53:59    370s] 2     METAL_8                     3684        3450          0          0
+[11/26 22:53:59    370s] 3     VIA_7                          0        2562          0          0
+[11/26 22:53:59    370s] 4     METAL_7                     4121        3027          0          0
+[11/26 22:53:59    370s] 5     VIA_6                          0        3640          0          0
+[11/26 22:53:59    370s] 6     METAL_6                     9694        8786          0          0
+[11/26 22:53:59    370s] 7     VIA_5                          0        7782          0          0
+[11/26 22:53:59    370s] 8     METAL_5                     7782         870          0          0
+[11/26 22:53:59    370s] 9     VIA_4                          0        7782          0          0
+[11/26 22:53:59    370s] 10    METAL_4                     7782         870          0          0
+[11/26 22:53:59    370s] 11    VIA_3                          0        7782          0          0
+[11/26 22:53:59    370s] 12    METAL_3                     7782         870          0          0
+[11/26 22:53:59    370s] 13    VIA_2                          0        7782          0          0
+[11/26 22:53:59    370s] 14    METAL_2                     7782         870          0          0
+[11/26 22:53:59    370s] 15    VIA_1                          0        7782          0          0
+[11/26 22:53:59    370s] 16    METAL_1                    67781       67622      50447          0
+[11/26 22:53:59    370s]                             ----------  ----------  ---------  ---------
+[11/26 22:53:59    370s] 17    Circuit total             117203      132793      50447          1
+[11/26 22:53:59    370s] Ended Preparing Database for Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=799.95MB/4664.85MB/1995.96MB)
+[11/26 22:53:59    370s] 
+[11/26 22:53:59    370s] Initializing Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=799.95MB/4664.85MB/1995.96MB)
+[11/26 22:54:07    370s] 
+[11/26 22:54:07    370s] Begin IR Drop (Linear) Report Generation
+[11/26 22:54:07    370s]   Voltage: 1.2
+[11/26 22:54:07    370s]   Threshold: 1.08
+[11/26 22:54:07    370s]   Minimum, Average, Maximum IR Drop: 1.199V, 1.199V, 1.200V
+[11/26 22:54:08    370s]     Range 1(    1.199V  -      1.199V ):     52311 ( 44.63%)
+[11/26 22:54:08    370s]     Range 2(    1.199V  -      1.199V ):     38490 ( 32.84%)
+[11/26 22:54:08    370s]     Range 3(    1.199V  -      1.199V ):     16207 ( 13.83%)
+[11/26 22:54:08    370s]     Range 4(    1.199V  -      1.199V ):      5744 (  4.90%)
+[11/26 22:54:08    370s]     Range 5(    1.199V  -      1.200V ):      3169 (  2.70%)
+[11/26 22:54:08    370s]     Range 6(    1.200V  -      1.200V ):      1188 (  1.01%)
+[11/26 22:54:08    370s]     Range 7(    1.200V  -      1.200V ):        56 (  0.05%)
+[11/26 22:54:08    370s]     Range 8(    1.200V  -      1.200V ):        37 (  0.03%)
+[11/26 22:54:08    370s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:54:08    370s]       METAL_9: 0.0010656 [1.1989 - 1.2]
+[11/26 22:54:08    370s]       METAL_8: 0.0010402 [1.1989 - 1.2]
+[11/26 22:54:08    370s]       METAL_7: 0.0011615 [1.1988 - 1.2]
+[11/26 22:54:08    370s]       METAL_6: 0.0011514 [1.1988 - 1.2]
+[11/26 22:54:08    370s]       METAL_5: 0.0008055 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_4: 0.00080884 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_3: 0.00081217 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_2: 0.00081551 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_1: 0.00082493 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]   IR Report: .//PD_25C_avg_2/Reports/VDD/VDD.main.rpt
+[11/26 22:54:08    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/ir_linear.gif
+[11/26 22:54:08    370s] Ended IR Drop (Linear) Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.25MB/4664.85MB/2010.78MB)
+[11/26 22:54:08    370s] 
+[11/26 22:54:08    370s] 
+[11/26 22:54:08    370s] Begin IR Drop (Limit) Report Generation
+[11/26 22:54:08    370s]   Voltage: 1.2
+[11/26 22:54:08    370s]   Threshold: 1.08
+[11/26 22:54:08    370s]   Minimum, Average, Maximum IR Drop: 1.199V, 1.199V, 1.200V
+[11/26 22:54:08    370s]     Range 1(    1.080V  -      1.080V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 2(    1.080V  -      1.090V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 3(    1.090V  -      1.100V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 4(    1.100V  -      1.110V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 5(    1.110V  -      1.120V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 6(    1.120V  -      1.130V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 7(    1.130V  -      1.140V ):         0 (  0.00%)
+[11/26 22:54:08    370s]     Range 8(    1.140V  -      1.200V ):    117202 (100.00%)
+[11/26 22:54:08    370s]     Layer with maximum IR Drop:  METAL_7
+[11/26 22:54:08    370s]       METAL_9: 0.0010656 [1.1989 - 1.2]
+[11/26 22:54:08    370s]       METAL_8: 0.0010402 [1.1989 - 1.2]
+[11/26 22:54:08    370s]       METAL_7: 0.0011615 [1.1988 - 1.2]
+[11/26 22:54:08    370s]       METAL_6: 0.0011514 [1.1988 - 1.2]
+[11/26 22:54:08    370s]       METAL_5: 0.0008055 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_4: 0.00080884 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_3: 0.00081217 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_2: 0.00081551 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]       METAL_1: 0.00082493 [1.1988 - 1.1996]
+[11/26 22:54:08    370s]   IR Report: .//PD_25C_avg_2/Reports/VDD/VDD.main.rpt
+[11/26 22:54:08    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/ir_limit.gif
+[11/26 22:54:09    370s] Ended IR Drop (Limit) Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.25MB/4664.85MB/2010.79MB)
+[11/26 22:54:09    370s] 
+[11/26 22:54:09    370s] 
+[11/26 22:54:09    370s] Begin Tap Current Report Generation
+[11/26 22:54:09    370s]   Minimum, Average, Maximum Tap Current: 0.000A, 45.029nA, 2.234uA
+[11/26 22:54:09    370s]   Total Current: 2.272mA
+[11/26 22:54:09    370s]     Range 1(   1.000mA  -     1.000GA ):         0 (  0.00%)
+[11/26 22:54:09    370s]     Range 2( 100.000uA  -     1.000mA ):         0 (  0.00%)
+[11/26 22:54:09    370s]     Range 3(  10.000uA  -   100.000uA ):         0 (  0.00%)
+[11/26 22:54:09    370s]     Range 4(   1.000uA  -    10.000uA ):        43 (  0.09%)
+[11/26 22:54:09    370s]     Range 5( 100.000nA  -     1.000uA ):      4855 (  9.62%)
+[11/26 22:54:09    370s]     Range 6(  10.000nA  -   100.000nA ):     21459 ( 42.54%)
+[11/26 22:54:09    370s]     Range 7(   1.000nA  -    10.000nA ):     12448 ( 24.68%)
+[11/26 22:54:09    370s]     Range 8(    0.000A  -     1.000nA ):     11642 ( 23.08%)
+[11/26 22:54:09    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/tc.gif
+[11/26 22:54:09    370s] Ended Tap Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.25MB/4664.85MB/2010.79MB)
+[11/26 22:54:09    370s] 
+[11/26 22:54:09    370s] 
+[11/26 22:54:09    370s] Begin Instance Based IR Drop Report Generation
+[11/26 22:54:09    370s]   Minimum, Average, Maximum Instance Based IR Drop: 1.199V, 1.199V, 1.200V
+[11/26 22:54:10    370s]     Range 1(    1.080V  -      1.080V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 2(    1.080V  -      1.090V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 3(    1.090V  -      1.100V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 4(    1.100V  -      1.110V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 5(    1.110V  -      1.120V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 6(    1.120V  -      1.130V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 7(    1.130V  -      1.140V ):         0 (  0.00%)
+[11/26 22:54:10    370s]     Range 8(    1.140V  -      1.200V ):     50447 (100.00%)
+[11/26 22:54:10    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/iv.gif
+[11/26 22:54:10    370s] Ended Instance Based IR Drop Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.51MB/4664.85MB/2011.04MB)
+[11/26 22:54:10    370s] 
+[11/26 22:54:10    370s] 
+[11/26 22:54:10    370s] Begin Effective Instance Voltage Report Generation
+[11/26 22:54:10    370s] 
+[11/26 22:54:10    370s]  Avg EIV:
+[11/26 22:54:10    370s]   Minimum, Average, Maximum Effective Instance Voltage: 1.198V, 1.198V, 1.199V
+[11/26 22:54:11    370s]     Range 1(    1.198V  -      1.198V ):     16656 ( 32.25%)
+[11/26 22:54:11    370s]     Range 2(    1.198V  -      1.198V ):     19247 ( 37.27%)
+[11/26 22:54:11    370s]     Range 3(    1.198V  -      1.198V ):      7977 ( 15.44%)
+[11/26 22:54:11    370s]     Range 4(    1.198V  -      1.198V ):      4997 (  9.67%)
+[11/26 22:54:11    370s]     Range 5(    1.198V  -      1.199V ):      1776 (  3.44%)
+[11/26 22:54:11    370s]     Range 6(    1.199V  -      1.199V ):       629 (  1.22%)
+[11/26 22:54:11    370s]     Range 7(    1.199V  -      1.199V ):       227 (  0.44%)
+[11/26 22:54:11    370s]     Range 8(    1.199V  -      1.199V ):       140 (  0.27%)
+[11/26 22:54:11    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD_VSS.avg_div.gif
+[11/26 22:54:11    370s]   GIF Limit plot: .//PD_25C_avg_2/Reports/VDD_VSS.avg_limit_div.gif
+[11/26 22:54:12    370s]   **** Note: Histogram and gif file are generated based on elapsed EIV results.
+[11/26 22:54:12    370s] Ended Effective Instance Voltage Report Generation: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=833.59MB/4664.85MB/2011.12MB)
+[11/26 22:54:12    370s] 
+[11/26 22:54:12    370s] 
+[11/26 22:54:12    370s] Begin Voltage Source Current Report Generation
+[11/26 22:54:12    370s]   Minimum, Average, Maximum Voltage Source Current: -2.272mA, -2.272mA, -2.272mA
+[11/26 22:54:12    370s]   Total Current: -2.272mA
+[11/26 22:54:12    370s]     Range 1(  -2.272mA  -    -2.272mA ):         1 (100.00%)
+[11/26 22:54:12    370s]     Range 2(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]     Range 3(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]     Range 4(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]     Range 5(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]     Range 6(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]     Range 7(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]     Range 8(  -2.272mA  -    -2.272mA ):         0 (  0.00%)
+[11/26 22:54:12    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/vc.gif
+[11/26 22:54:13    370s] Ended Voltage Source Current Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.59MB/4664.85MB/2011.12MB)
+[11/26 22:54:13    370s] 
+[11/26 22:54:13    370s] 
+[11/26 22:54:13    370s] Begin Resistor Current Report Generation
+[11/26 22:54:13    370s]   Minimum, Average, Maximum Resistor Current: 0.000A, 2.925uA, 11.921mA
+[11/26 22:54:13    370s]     Range 1(   1.000mA  -     1.000GA ):         8 (  0.01%)
+[11/26 22:54:13    370s]     Range 2( 100.000uA  -     1.000mA ):       774 (  0.58%)
+[11/26 22:54:13    370s]     Range 3(  10.000uA  -   100.000uA ):      3326 (  2.50%)
+[11/26 22:54:13    370s]     Range 4(   1.000uA  -    10.000uA ):     36465 ( 27.46%)
+[11/26 22:54:13    370s]     Range 5(   0.100uA  -     1.000uA ):     57400 ( 43.23%)
+[11/26 22:54:13    370s]     Range 6(  10.000nA  -     0.100uA ):      7946 (  5.98%)
+[11/26 22:54:13    370s]     Range 7(   1.000nA  -    10.000nA ):         0 (  0.00%)
+[11/26 22:54:13    370s]     Range 8(    0.000A  -     1.000nA ):     26874 ( 20.24%)
+[11/26 22:54:13    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/rc.gif
+[11/26 22:54:18    370s] Ended Resistor Current Report Generation: (cpu=0:00:06, real=0:00:05, mem(process/total/peak)=833.73MB/4664.85MB/2011.26MB)
+[11/26 22:54:18    370s] 
+[11/26 22:54:18    370s] 
+[11/26 22:54:18    370s] Begin Resistor Voltage Report Generation
+[11/26 22:54:18    370s]   Minimum, Average, Maximum Resistor Voltage: 0.000V, 1.077uV, 0.213mV
+[11/26 22:54:18    370s]     Range 1(   0.186mV  -     0.213mV ):         2 (  0.00%)
+[11/26 22:54:18    370s]     Range 2(   0.160mV  -     0.186mV ):         1 (  0.00%)
+[11/26 22:54:18    370s]     Range 3(   0.133mV  -     0.160mV ):         1 (  0.00%)
+[11/26 22:54:18    370s]     Range 4(   0.106mV  -     0.133mV ):         1 (  0.00%)
+[11/26 22:54:18    370s]     Range 5(  79.751uV  -     0.106mV ):         4 (  0.00%)
+[11/26 22:54:18    370s]     Range 6(  53.167uV  -    79.751uV ):        18 (  0.01%)
+[11/26 22:54:18    370s]     Range 7(  26.584uV  -    53.167uV ):        74 (  0.06%)
+[11/26 22:54:18    370s]     Range 8(    0.000V  -    26.584uV ):    132692 ( 99.92%)
+[11/26 22:54:18    370s]   GIF plot: .//PD_25C_avg_2/Reports/VDD/rv.gif
+[11/26 22:54:18    370s] Ended Resistor Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.73MB/4664.85MB/2011.26MB)
+[11/26 22:54:18    370s] 
+[11/26 22:54:18    370s] 
+[11/26 22:54:18    370s] Begin Power Gate I/Idsat Report Generation
+[11/26 22:54:18    370s]   No data found.
+[11/26 22:54:19    370s] Ended Power Gate I/Idsat Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.73MB/4664.85MB/2011.26MB)
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Begin Power Gate Voltage Report Generation
+[11/26 22:54:19    370s]   No data found.
+[11/26 22:54:19    370s] Ended Power Gate Voltage Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.73MB/4664.85MB/2011.26MB)
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Begin Voltage Across Vias and Contacts Report Generation
+[11/26 22:54:19    370s] Ended Voltage Across Vias and Contacts Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.73MB/4664.85MB/2011.26MB)
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Begin Weak Grid Connectivity Report
+[11/26 22:54:19    370s] Ended Weak Grid Connectivity Report: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.73MB/4664.85MB/2011.27MB)
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Begin Grid Integrity Report Generation
+[11/26 22:54:19    370s]   # Missing Cell Power-Grid Views: 0
+[11/26 22:54:19    370s]   # Physically Disconnected Instances: 0
+[11/26 22:54:19    370s]   # Instances with Floating Power Pins: 0
+[11/26 22:54:19    370s]   # Disconnected Wire Segments: 0
+[11/26 22:54:19    370s]   # Weakly Connected Metal Segments: 5
+[11/26 22:54:19    370s]   # Dropped Voltage Sources: 0
+[11/26 22:54:19    370s] Ended Grid Integrity Report Generation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=833.73MB/4664.85MB/2011.27MB)
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Ended Report Generation: (cpu=0:00:38, real=0:00:41, mem(process/total/peak)=833.75MB/4664.85MB/2011.29MB)
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Rail Analysis Statistics:
+[11/26 22:54:19    370s] Warning messages:      0
+[11/26 22:54:19    370s] Error messages:        0
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Rail Analysis completed successfully.
+[11/26 22:54:19    370s] 
+[11/26 22:54:19    370s] Finished Rail Analysis at 22:54:19 11/26/2025 (cpu=0:01:06, real=0:01:15, peak mem=2011.33MB)
+[11/26 22:54:19    370s] Current Innovus resource usage: (total cpu=0:06:08, real=0:26:12, mem=2011.33MB)
+[11/26 22:57:15    459s] <CMD> setLayerPreference powerNet -color {#0000FF #0010DE #0020BD #00319C #00417B #00525A #006239 #007318 #088300 #299400 #4AA400 #6AB400 #8BC500 #ACD500 #CDE600 #EEF600 #FFF900 #FFED00 #FFE200 #FFD600 #FFCB00 #FFBF00 #FFB400 #FFA800 #FF9500 #FF8000 #FF6A00 #FF5500 #FF4000 #FF2A00 #FF1500 #FF0000}
+[11/26 22:57:15    459s] <CMD> set_power_rail_display -plot none
+[11/26 22:57:15    459s] 
+[11/26 22:57:15    459s] <CMD> setLayerPreference powerNet -color {#0000ff #0010de #0020bd #00319c #00417b #00525a #006239 #007318 #088300 #299400 #4aa400 #6ab400 #8bc500 #acd500 #cde600 #eef600 #fff900 #ffed00 #ffe200 #ffd600 #ffcb00 #ffbf00 #ffb400 #ffa800 #ff9500 #ff8000 #ff6a00 #ff5500 #ff4000 #ff2a00 #ff1500 #ff0000}
+[11/26 22:57:15    459s] <CMD> set_power_rail_display -enable_voltage_sources 0
+[11/26 22:57:15    459s] <CMD> set_power_rail_display -enable_percentage_range 0
+[11/26 22:57:15    459s] 
+[11/26 22:57:15    459s] 
+[11/26 22:57:18    459s] <CMD> fit
+[11/26 22:57:39    462s] <CMD> setLayerPreference node_route -isVisible 0
+[11/26 22:58:19    466s] <CMD> set_power_rail_display -plot none
+[11/26 22:58:19    466s] 
+[11/26 22:58:19    466s] <CMD> setLayerPreference powerNet -color {#0000ff #0010de #0020bd #00319c #00417b #00525a #006239 #007318 #088300 #299400 #4aa400 #6ab400 #8bc500 #acd500 #cde600 #eef600 #fff900 #ffed00 #ffe200 #ffd600 #ffcb00 #ffbf00 #ffb400 #ffa800 #ff9500 #ff8000 #ff6a00 #ff5500 #ff4000 #ff2a00 #ff1500 #ff0000}
+[11/26 22:58:55    477s] MGE PGDB.
+[11/26 22:58:55    477s] <CMD> ::read_power_rail_results -power_db power.db -rail_directory PD_25C_avg_1/VDD -instance_voltage_window { timing  whole  } -instance_voltage_method {  worst  best  avg  worstavg }
+[11/26 22:58:55    477s] MGE PGDB.
+[11/26 22:58:55    477s] MGE PGDB.
+[11/26 22:58:55    477s] avg best worst worstavg 
+[11/26 22:58:55    477s] timing whole 
+[11/26 22:58:55    477s] 
+[11/26 22:58:55    477s] Begin Loading State Directory in Local GUI mode
+[11/26 22:58:55    477s] 
+[11/26 22:58:55    477s] 
+[11/26 22:58:55    477s] Begin Initializing Design.
+[11/26 22:58:55    477s] 
+[11/26 22:58:55    477s] No Nets are Specified, will Load All the Nets Automatically.
+[11/26 22:58:55    477s] Nets Number: 1.
+[11/26 22:58:55    477s] Icf Flow Enabled   :  0
+[11/26 22:58:56    478s] Loading CellIdMap Sucessfully.
+[11/26 22:58:56    478s] is multi-die design:  0
+[11/26 22:58:56    478s] start creating net:VDD  die: 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Ended Initializing Design.: (cpu=0:00:00, real=0:00:01, mem(process/total/peak)=1695.09MB/3312.70MB/2011.33MB)
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Begin Building Rail DB.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 117203 Nodes Loaded for VDD.
+[11/26 22:58:56    478s] 132793 Elements Loaded for VDD.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Total Nodes Number: 117203.
+[11/26 22:58:56    478s] Total Elements Number: 132793.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Ended Building Rail DB.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1697.09MB/3312.70MB/2011.33MB)
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Begin Building Instance DB
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Loading Instances from PGDB.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 51649 Instances Loaded for VDD.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Total Instances Number: 51649.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Begin Building Pin Map.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Pin Name List: 4 Pins Loaded.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] End Building Pin Map.
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Ended Building Instance DB: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.33MB/3312.70MB/2011.33MB)
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] 
+[11/26 22:58:56    478s] Begin Loading Plots in Multi-Thread Mode
+[11/26 22:58:56    478s] 
+[11/26 22:58:57    478s] Begin Initializing ir Plot
+[11/26 22:58:57    478s] Ended Initializing ir Plot: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.82MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Initializing ir Plot: (cpu=00:00:00:000, real=00:00:00:016, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing rc Plot
+[11/26 22:58:57    478s] Ended Initializing rc Plot: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.84MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Initializing rc Plot: (cpu=00:00:00:001, real=00:00:00:010, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing tc Plot
+[11/26 22:58:57    478s] Ended Initializing tc Plot: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.84MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Initializing tc Plot: (cpu=00:00:00:000, real=00:00:00:000, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing cap Plot
+[11/26 22:58:57    478s] Ended Initializing cap Plot: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.84MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Initializing cap Plot: (cpu=00:00:00:000, real=00:00:00:000, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing Voltage Source Vu and Vc Plots
+[11/26 22:58:57    478s] Ended Initializing Voltage Source Vu and Vc Plots: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.84MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Initializing Voltage Source Vu and Vc Plots: (cpu=00:00:00:000, real=00:00:00:021, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing unc Plot
+[11/26 22:58:57    478s] Ended Initializing unc Plot: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.84MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Initializing unc Plot: (cpu=00:00:00:000, real=00:00:00:000, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing ivd Plot.
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing ipceiv Plot.
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Initializing thermal Plot.
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading ir Plot for VDD.
+[11/26 22:58:57    478s] 117203 Nodes of ir Loaded for VDD
+[11/26 22:58:57    478s] Ended Loading ir Plot for VDD.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.86MB/3312.70MB/2011.33MB)Ended Loading ir Plot for VDD.: (cpu=00:00:00:005, real=00:00:00:008, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading rc Plot for VDD.
+[11/26 22:58:57    478s] 0 Elements of rc Loaded for VDD
+[11/26 22:58:57    478s] Ended Loading rc Plot for VDD.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1698.91MB/3312.70MB/2011.33MB)Ended Loading rc Plot for VDD.: (cpu=00:00:00:005, real=00:00:00:055, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading tc Plot for VDD.
+[11/26 22:58:57    478s] 50448 Nodes of tc Loaded for VDD
+[11/26 22:58:57    478s] Ended Loading tc Plot for VDD.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.17MB/3312.70MB/2011.33MB)Ended Loading tc Plot for VDD.: (cpu=00:00:00:003, real=00:00:00:085, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading cap Plot for VDD.
+[11/26 22:58:57    478s] 117203 Nodes of cap Loaded for VDD
+[11/26 22:58:57    478s] Ended Loading cap Plot for VDD.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.30MB/3312.70MB/2011.33MB)Ended Loading cap Plot for VDD.: (cpu=00:00:00:002, real=00:00:00:002, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading Voltage Source, Vu and Vc for All Nets.
+[11/26 22:58:57    478s] 1 Nodes of vsrcs Loaded for VDD
+[11/26 22:58:57    478s] 1 Nodes of vc Loaded for VDD
+[11/26 22:58:57    478s] Ended Loading Voltage Source, Vu and Vc for All Nets.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.32MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Loading Voltage Source, Vu and Vc for All Nets.: (cpu=00:00:00:001, real=00:00:00:004, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading unc for All Nets.
+[11/26 22:58:57    478s] 0 Nodes of unc Loaded for VDD
+[11/26 22:58:57    478s] Ended Loading unc for All Nets.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.33MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Ended Loading unc for All Nets.: (cpu=00:00:00:000, real=00:00:00:001, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 51649 Instance Voltage loaded for VDD.
+[11/26 22:58:57    478s] Begin Loading IV for VDD.
+[11/26 22:58:57    478s] 51649 IV Loaded for VDD.
+[11/26 22:58:57    478s] Ended Loading IV for VDD.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.36MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Loading IV for VDD.: (cpu=00:00:00:158, real=00:00:00:172, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] [Warning] Can not get instance peak current and instance switch data under path: PD_25C_avg_1/VDD/Reports/ResultDB/info.json
+[11/26 22:58:57    478s] [Error] No IVDD Nets Pairs for creating Mcyc.
+[11/26 22:58:57    478s] Begin Loading EIV Window instance switch and peak current for All Nets.
+[11/26 22:58:57    478s] Begin Initializing McycDB.
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Ended Loading EIV Window instance switch and peak current for All Nets.: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.38MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] Ended Loading EIV Window instance switch and peak current for All Nets.: (cpu=00:00:00:000, real=00:00:00:044, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Thermal file not found, so no thermal data
+[11/26 22:58:57    478s] Ended Loading ir Plot percentage data.: (cpu=00:00:00:002, real=00:00:00:002, pid=7197, tid=21403)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Ended Loading Plots in Multi-Thread Mode: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1699.39MB/3312.70MB/2011.33MB)
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Loading power.db in main thread.
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s] Begin Power Analysis
+[11/26 22:58:57    478s] 
+[11/26 22:58:57    478s]              0V	    VSS
+[11/26 22:58:57    478s]           1.32V	    VDD
+[11/26 22:58:58    479s] clk(198.953MHz) **WARN: (IMPCTE-291):	WELLTAP_1128 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1129 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1130 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1131 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1132 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1133 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1134 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1135 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1136 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1137 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1138 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1139 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1140 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1141 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1142 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1143 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1144 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1146 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1147 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (IMPCTE-291):	WELLTAP_1148 is a physical only instance and is ignored. This indicates that the instance is physical only (e.g. a filler/decap cell) and is in the database, but not in timing graph since physical cells do not have timing information. Verify the instance is a physical only cell to confirm that this warning can be ignored.
+[11/26 22:58:58    479s] Type 'man IMPCTE-291' for more detail.
+[11/26 22:58:58    479s] **WARN: (EMS-27):	Message (IMPCTE-291) has exceeded the current message display limit of 20.
+[11/26 22:58:58    479s] To increase the message display limit, refer to the product command reference manual.
+[11/26 22:59:05    485s] 
+[11/26 22:59:05    485s] Ended Loading power.db in main thread.: (cpu=0:00:07, real=0:00:08, mem(process/total/peak)=1752.10MB/3835.92MB/2011.33MB)
+[11/26 22:59:05    485s] 
+[11/26 22:59:05    485s] 
+[11/26 22:59:05    485s] Begin Loading power plots in Multi-Thread mode.
+[11/26 22:59:05    485s] 
+[11/26 22:59:05    485s] [Warning] Cannot get decap instances successfully.
+[11/26 22:59:05    485s] Ended Loading ip Plot.: (cpu=00:00:00:194, real=00:00:00:195, pid=7197, tid=21403)
+[11/26 22:59:05    485s] 
+[11/26 22:59:05    486s] Ended Loading ip_i Plot.: (cpu=00:00:00:147, real=00:00:00:148, pid=7197, tid=21403)
+[11/26 22:59:05    486s] 
+[11/26 22:59:06    486s] Ended Loading ip_s Plot.: (cpu=00:00:00:146, real=00:00:00:146, pid=7197, tid=21403)
+[11/26 22:59:06    486s] 
+[11/26 22:59:06    486s] Ended Loading ip_l Plot.: (cpu=00:00:00:160, real=00:00:00:161, pid=7197, tid=21403)
+[11/26 22:59:06    486s] 
+[11/26 22:59:06    486s] Ended Loading ipd Plot.: (cpu=00:00:00:191, real=00:00:00:192, pid=7197, tid=21403)
+[11/26 22:59:06    486s] 
+[11/26 22:59:06    486s] Ended Loading ipd_i Plot.: (cpu=00:00:00:165, real=00:00:00:165, pid=7197, tid=21403)
+[11/26 22:59:06    486s] 
+[11/26 22:59:06    486s] Ended Loading ipd_s Plot.: (cpu=00:00:00:159, real=00:00:00:159, pid=7197, tid=21403)
+[11/26 22:59:06    486s] 
+[11/26 22:59:06    487s] Ended Loading ipd_l Plot.: (cpu=00:00:00:162, real=00:00:00:162, pid=7197, tid=21403)
+[11/26 22:59:06    487s] 
+[11/26 22:59:07    487s] Ended Loading freq Plot.: (cpu=00:00:00:245, real=00:00:00:245, pid=7197, tid=21403)
+[11/26 22:59:07    487s] 
+[11/26 22:59:07    487s] Ended Loading slack Plot.: (cpu=00:00:00:115, real=00:00:00:116, pid=7197, tid=21403)
+[11/26 22:59:07    487s] 
+[11/26 22:59:07    487s] Ended Loading td Plot.: (cpu=00:00:00:250, real=00:00:00:252, pid=7197, tid=21403)
+[11/26 22:59:07    487s] 
+[11/26 22:59:07    487s] Ended Loading load Plot.: (cpu=00:00:00:250, real=00:00:00:253, pid=7197, tid=21403)
+[11/26 22:59:07    487s] 
+[11/26 22:59:07    488s] Ended Loading ip_clk Plot.: (cpu=00:00:00:190, real=00:00:00:193, pid=7197, tid=21403)
+[11/26 22:59:07    488s] 
+[11/26 22:59:08    488s] Ended Loading ip_tr Plot.: (cpu=00:00:00:222, real=00:00:00:222, pid=7197, tid=21403)
+[11/26 22:59:08    488s] 
+[11/26 22:59:08    488s] Ended Loading activity Plot.: (cpu=00:00:00:223, real=00:00:00:224, pid=7197, tid=7197)
+[11/26 22:59:08    488s] 
+[11/26 22:59:08    488s] 
+[11/26 22:59:08    488s] Ended Loading power plots in Multi-Thread mode.: (cpu=0:00:02, real=0:00:02, mem(process/total/peak)=1755.08MB/3835.92MB/2011.33MB)
+[11/26 22:59:08    488s] 
+[11/26 22:59:08    488s] 
+[11/26 22:59:08    488s] Begin reading tpd data from DB
+[11/26 22:59:08    488s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended reading tpd data from DB: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=1756.27MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] calculate sorted Tile based Power Density for reporting
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Building query for Plots in Multi-Thread Mode
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Initializing Node Based Data Query
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Initializing Node Based Data Query: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1756.75MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Build Node Based Data Query
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Build Node Based Data Query: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1756.76MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Set Query for ir
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Set Query for ir: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1756.78MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Initializing Element Based Data Query
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Initializing Element Based Data Query: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.17MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Build Element Based Data Query
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Build Element Based Data Query: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.24MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Set Query for rc
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Set Query for rc: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.24MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Initializing Sparse Node Based Data Query
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Set Query for vc
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Set Query for vc: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.26MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Set Query for tc
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Set Query for tc: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.26MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Set Query for unc
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Set Query for unc: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.26MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Set Query for cap
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Set Query for cap: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.26MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Building query for Plots in Multi-Thread Mode: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1757.26MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Preparing Data for Renders
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Begin Generating Image cache for plots
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Generating Image cache for plots: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1846.33MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Preparing Data for Renders: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1846.47MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] 
+[11/26 22:59:10    490s] Ended Loading State Directory in Local GUI mode: (cpu=0:00:13, real=0:00:15, mem(process/total/peak)=1846.47MB/3835.92MB/2011.33MB)
+[11/26 22:59:10    490s] 
+[11/26 22:59:58    497s] <CMD> set_power_rail_display -plot ir
+[11/26 22:59:58    497s] 
+[11/26 22:59:58    497s] <CMD> setLayerPreference powerNet -color {#0000ff #0010de #0020bd #00319c #00417b #00525a #006239 #007318 #088300 #299400 #4aa400 #6ab400 #8bc500 #acd500 #cde600 #eef600 #fff900 #ffed00 #ffe200 #ffd600 #ffcb00 #ffbf00 #ffb400 #ffa800 #ff9500 #ff8000 #ff6a00 #ff5500 #ff4000 #ff2a00 #ff1500 #ff0000}

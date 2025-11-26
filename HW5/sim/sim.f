@@ -13,5 +13,12 @@ sram_model/sram_weight.v
 sram_model/sram_bias.v
 
 // add your module here
-../hdl/Tiny_ViT.v
+../hdl/ViT_top.v
+../hdl/exp_lut.v
+../hdl/div.v
+
+// /usr/cadtool/cad/synopsys/synthesis/2020.09-sp5/dw/sim_ver/DW_div_pipe.v
+// /usr/cadtool/cad/synopsys/synthesis/2020.09-sp5/dw/sim_ver/DW_div.v
+// +incdir+/usr/cadtool/cad/synopsys/synthesis/2020.09-sp5/dw/sim_ver -y /usr/cadtool/cad/synopsys/synthesis/2020.09-sp5/dw/sim_ver
+
 

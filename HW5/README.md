@@ -131,5 +131,5 @@ pwd 回傳目前所在位置
 ### Layernorm
 In layer norm, we use pipeline-divider, N=24, M=18. The pipeline stage in the divider is |4|4|4|4|4|4.
 
-### Softmax
-In Softmax layer, since all of the divide result < 16, so we use recursive divider(each recursive 16 cycle), it will subtract the divisor from dividend every cycle, if the result-MSB is 0, then we add 1 to quotient. Else, 
+## MUX Area
+An 8-to-1 MUX(20-bit) area=212
