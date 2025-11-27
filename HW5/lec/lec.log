@@ -1,0 +1,354 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2035 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN ViT_top
+Set variable 'TOP_DESIGN' as 'ViT_top'
+// Command: setenv RESRC_FILE ../../syn/report/report_resources_ConvNet_top.out
+Set variable 'RESRC_FILE' as '../../syn/report/report_resources_ConvNet_top.out'
+// Command: read design -file golden.f -golden -verilog2k
+// Note: Process verilog command file golden.f
+// Parsing file ../hdl/ViT_top.v ...
+// Parsing file ../hdl/exp_lut.v ...
+// Parsing file ../hdl/div.v ...
+// Golden root module is set to 'ViT_top'
+// Warning: (RTL1.2) Variable/signal is assigned by multiple non-blocking assignments (occurrence:1)
+// Warning: (RTL1.3) Variable/signal is assigned by both blocking and non-blocking assignments (occurrence:154)
+// Warning: (RTL1.4) Assignment with LHS bit width is greater than RHS bit width (occurrence:50)
+// Warning: (RTL1.5a) Assignment with RHS bit width is greater than LHS bit width (occurrence:41)
+// Warning: (RTL1.5b) Potential loss of RHS msb or carry-out bit (occurrence:121)
+// Warning: (RTL2.13) Undriven pin is detected (occurrence:352)
+// Warning: (RTL5.3) Case expressions/items are resized (occurrence:44)
+// Warning: (RTL7.10b) Ternary branches have different data sizes (occurrence:258)
+// Warning: (RTL7.11) Implicit signed expression is converted to unsigned (occurrence:20)
+// Warning: (RTL7.11b) Unsigned reference with index/part selection to a signed variable (occurrence:8)
+// Note: (RTL8.1) Multiple multipliers/dividers are in module/entity (occurrence:1)
+// Warning: (RTL8.3) Unreachable DFF/DLAT is removed (occurrence:284)
+// Warning: (RTL14.1) Fanout load of the signal is removed (occurrence:1285)
+// Note: (HRC3.5b) Open output port connection is detected (occurrence:8)
+// Warning: (HRC3.16) A wire is declared, but not used in the module (occurrence:17)
+// Warning: There are 352 undriven nets in Golden
+// Warning: There are 352 undriven pins in Golden
+// Note: Read VERILOG design successfully
+CPU time     : 0.76    seconds
+Elapse time  : 1       seconds
+Memory usage : 314.90  M bytes
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../syn/netlist/ViT_top_syn.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'ViT_top'
+// Warning: (RTL2.13) Undriven pin is detected (occurrence:352)
+// Warning: (RTL14) Signal has input but it has no output (occurrence:312)
+// Note: (HRC3.5b) Open output port connection is detected (occurrence:267)
+// Warning: There are 352 undriven nets in Revised
+// Warning: There are 352 undriven pins in Revised
+// Note: Read VERILOG design successfully
+CPU time     : 5.07    seconds
+Elapse time  : 6       seconds
+Memory usage : 413.55  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules       161             133
+Library-cells       1531          126708
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT             1453                 1453
+OUTPUT            1528                 1528
+--------------------------------------------
+AND        *    334556                82274
+BUF        *       281                  598
+DFF        *     12071                10084
+DLAT       *         0                  116
+INV        *      7303               112391
+MUX        *     26966                    0
+NAND       *       330                    0
+NOR        *      5189                    0
+OR         *     14367                56799
+WIRE       *      9657                    0
+XNOR       *       268                    0
+XOR        *     23801                10715
+------ word-level --------------------------
+ADD        *       199                    0
+GT         *        25                    0
+LT         *        24                    0
+MULT       *        44                    0
+SUBTRACT   *       208                    0
+WINV       *        25                    0
+WMUX       *       975                    0
+WSEL       *       175                    0
+--------------------------------------------
+Total           434789               272977
+
+// Command: report black box -detail
+// Command: add renaming rule rule1 "%w_mydesign_%d$" "@1" -module -revised
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 8 instance(s) referring to module 'exp_lut' in Golden
+Uniquified 8 instance(s) referring to module 'div' in Golden
+Uniquified 2 module(s)
+CPU time     : 5.51    seconds
+Elapse time  : 6       seconds
+Memory usage : 454.11  M bytes
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'ViT_top'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'ViT_top'
+// Command: dofile lec_compare.do
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 20168 out of 22271 DFF/DLATs
+// (F18) Converted 1802 DFF/DLAT(s) in (G) to ZERO/ONE
+// (F32) Created 352 Z gate(s) for floating net(s) and floating pin(s)
+// (F14) Remodeled 1088 gated-clock DFF/DLAT(s)
+// (F32) Created 352 Z gate(s) for floating net(s) and floating pin(s)
+CPU time     : 14.64   seconds
+Elapse time  : 15      seconds
+Memory usage : 673.42  M bytes
+// Warning: Golden and Revised have different numbers of key points:
+// Golden  key points = 15404
+// Revised key points = 13533
+// Mapping key points ...
+// Warning: Golden has 64 unmapped key points
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    Z         Total   
+--------------------------------------------------------------------------------
+Golden            1453   1528   9436   352       12769   
+--------------------------------------------------------------------------------
+Revised           1453   1528   9436   352       12769   
+================================================================================
+Unmapped points:
+================================================================================
+Golden:
+--------------------------------------------------------------------------------
+Unmapped points   DFF       Total   
+--------------------------------------------------------------------------------
+Unreachable       2571      2571    
+Not-mapped        64        64      
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DFF    DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       648    116       764     
+================================================================================
+// Warning: Key point mapping is incomplete
+CPU time     : 16.56   seconds
+Elapse time  : 17      seconds
+Memory usage : 682.04  M bytes
+// Command: map key point
+// Mapping key points ...
+// Warning: Golden has 64 unmapped key points
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF    Z         Total   
+--------------------------------------------------------------------------------
+Golden            1453   1528   9436   352       12769   
+--------------------------------------------------------------------------------
+Revised           1453   1528   9436   352       12769   
+================================================================================
+Unmapped points:
+================================================================================
+Golden:
+--------------------------------------------------------------------------------
+Unmapped points   DFF       Total   
+--------------------------------------------------------------------------------
+Unreachable       2571      2571    
+Not-mapped        64        64      
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DFF    DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       648    116       764     
+================================================================================
+// Warning: Key point mapping is incomplete
+CPU time     : 17.10   seconds
+Elapse time  : 18      seconds
+Memory usage : 682.04  M bytes
+// Command: analyze setup -verbose
+// Merged 56 DFF/DLAT(s) in (G)
+// Converted 8 DFF/DLAT(s) in (G) to ZERO/ONE
+CPU time     : 35.81   seconds
+Elapse time  : 36      seconds
+Memory usage : 685.95  M bytes
+// Command: analyze datapath -module -resourcefile $RESRC_FILE -effort medium -verbose
+// Note: Multithreaded module datapath analysis (MDP) is enabled
+// Warning: No eligible datapath module in the design. Skip ...
+// Command: analyze datapath -flowgraph -verbose
+// Note: gt_3051_0: quality evaluated 100% success
+// Note: gt_3051_1: quality evaluated 100% success
+// Note: gt_3051_2: quality evaluated 100% success
+// Note: gt_3051_3: quality evaluated 100% success
+// Note: gt_3051_4: quality evaluated 100% success
+// Note: gt_3051_5: quality evaluated 100% success
+// Note: gt_3051_6: quality evaluated 100% success
+// Note: gt_3051_7: quality evaluated 100% success
+// Note: add_2999_0_4: quality evaluated 10% success
+// Note: add_2999_1_4: quality evaluated 10% success
+// Note: add_2999_2_4: quality evaluated 10% success
+// Note: add_2999_3_4: quality evaluated 10% success
+// Note: add_2999_4_4: quality evaluated 10% success
+// Note: add_2999_5_4: quality evaluated 10% success
+// Note: add_2999_6_4: quality evaluated 10% success
+// Note: add_2999_7_4: quality evaluated 10% success
+// Note: add_2713_8: quality evaluated 100% success
+// Note: gt_2244_0: quality evaluated 100% success
+// Note: gt_2244_2: quality evaluated 100% success
+// Note: gt_2244_3: quality evaluated 100% success
+// Note: mult_2206: quality evaluated 96% success
+// Note: mult_2207: quality evaluated 96% success
+// Note: mult_2208: quality evaluated 96% success
+// Note: mult_2209: quality evaluated 96% success
+// Note: add_1620_2: quality evaluated 100% success
+// Note: add_1615_2: quality evaluated 100% success
+// Note: add_1610_2: quality evaluated 100% success
+// Note: add_1605_2: quality evaluated 100% success
+// Note: mult_1592_0: quality evaluated 100% success
+// Note: mult_1592_1: quality evaluated 98% success
+// Note: mult_1592_2: quality evaluated 98% success
+// Note: mult_1592_3: quality evaluated 100% success
+// Note: mult_1592_4: quality evaluated 100% success
+// Note: mult_1592_5: quality evaluated 100% success
+// Note: mult_1592_6: quality evaluated 98% success
+// Note: mult_1592_7: quality evaluated 100% success
+// Note: mult_1591_0: quality evaluated 100% success
+// Note: mult_1591_1: quality evaluated 100% success
+// Note: mult_1591_2: quality evaluated 98% success
+// Note: mult_1591_3: quality evaluated 100% success
+// Note: mult_1591_4: quality evaluated 100% success
+// Note: mult_1591_5: quality evaluated 100% success
+// Note: mult_1591_6: quality evaluated 100% success
+// Note: mult_1591_7: quality evaluated 100% success
+// Note: mult_1590_0: quality evaluated 100% success
+// Note: mult_1590_1: quality evaluated 98% success
+// Note: mult_1590_2: quality evaluated 100% success
+// Note: mult_1590_3: quality evaluated 100% success
+// Note: mult_1590_4: quality evaluated 100% success
+// Note: mult_1590_5: quality evaluated 98% success
+// Note: mult_1590_6: quality evaluated 100% success
+// Note: mult_1590_7: quality evaluated 100% success
+// Note: mult_1589_0: quality evaluated 100% success
+// Note: mult_1589_1: quality evaluated 100% success
+// Note: mult_1589_2: quality evaluated 100% success
+// Note: mult_1589_3: quality evaluated 100% success
+// Note: mult_1589_4: quality evaluated 100% success
+// Note: mult_1589_5: quality evaluated 100% success
+// Note: mult_1589_6: quality evaluated 100% success
+// Note: mult_1589_7: quality evaluated 100% success
+// Note: add_1050_0: quality evaluated 70% success
+// Note: add_1052_0: quality evaluated 70% success
+// Note: add_1050_1: quality evaluated 70% success
+// Note: add_1052_1: quality evaluated 70% success
+// Note: add_1050_2: quality evaluated 70% success
+// Note: add_1052_2: quality evaluated 70% success
+// Note: add_1050_3: quality evaluated 73% success
+// Note: add_1052_3: quality evaluated 73% success
+// Note: add_1050_4: quality evaluated 70% success
+// Note: add_1052_4: quality evaluated 70% success
+// Note: add_1050_5: quality evaluated 73% success
+// Note: add_1052_5: quality evaluated 73% success
+// Note: add_1050_6: quality evaluated 73% success
+// Note: add_1052_6: quality evaluated 73% success
+// Note: add_1050_7: quality evaluated 70% success
+// Note: add_1052_7: quality evaluated 70% success
+// Note: add_678_3: quality evaluated 91% success
+// Note: lt_3053_0: quality evaluated 100% success
+// Note: lt_3053_1: quality evaluated 100% success
+// Note: lt_3053_2: quality evaluated 100% success
+// Note: lt_3053_3: quality evaluated 100% success
+// Note: lt_3053_4: quality evaluated 100% success
+// Note: lt_3053_5: quality evaluated 100% success
+// Note: lt_3053_6: quality evaluated 100% success
+// Note: lt_3053_7: quality evaluated 100% success
+// Note: lt_2246_3: quality evaluated 100% success
+// Note: add_735_3: quality evaluated 91% success
+CPU time     : 163.56  seconds
+Elapse time  : 164     seconds
+Memory usage : 1214.59 M bytes
+// Command: add compare point -all
+// 10964 compared points added to compare list
+// Command: compare
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           1528   9436      10964   
+================================================================================
+Compare results of instance/output/pin equivalences and/or sequential merge      
+================================================================================
+Compared points      DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           56        56      
+================================================================================
+CPU time     : 446.99  seconds
+Elapse time  : 428     seconds
+Memory usage : 1294.59 M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: report unmap point -notmapped 
+
+0 unmapped points reported
+// Command: report compare data -nonequivalent
+0 Non-equivalent point(s) reported
+0 compared point(s) reported
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           1528   9436      10964   
+================================================================================
+0 Non-equivalent point(s) reported
+0 compared point(s) reported
+Compare results of instance/output/pin equivalences and/or sequential merge      
+================================================================================
+Compared points      DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           56        56      
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                        PASS
+================================================================================
+CPU time     : 447.11  seconds
+Elapse time  : 428     seconds
+Memory usage : 1294.59 M bytes
+// Command: save session DBS/lec_compare
+// Warning: Save session command only saves design data and will be obsolete in the future. Use the new "checkpoint" command to save complete process data.
+
+// Note: Session saved
+CPU time     : 473.71  seconds
+Elapse time  : 455     seconds
+Memory usage : 1330.53 M bytes
+// Command: exit -force
