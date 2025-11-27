@@ -10,13 +10,6 @@ check_timing > ./$RPT_DIR/check_timing.log
 
 set_clock_gating_style -max_fanout 10
 
-# Preserve DesignWare dividers so their internal pipeline stays intact
-set divider_insts [get_cells -hierarchical div?]
-if {[sizeof_collection $divider_insts] > 0} {
-    set_dont_touch $divider_insts
-    set_ungroup $divider_insts false
-}
-
 # Synthesis all design (using : compile_ultra)
 # you can add "-gate_clock" to do gated-clock
 # you can add "-incremental" for higher performance

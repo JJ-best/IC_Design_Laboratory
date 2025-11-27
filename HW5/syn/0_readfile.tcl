@@ -14,7 +14,12 @@ define_design_lib $TOPLEVEL -path ./$TOPLEVEL
 
 # Read Design File (add your files here)
 set HDL_DIR "../hdl"
-analyze -library $TOPLEVEL -format verilog "$HDL_DIR/$TOPLEVEL.v"
+analyze -library $TOPLEVEL -format verilog [list \
+    $HDL_DIR/ViT_top.v \
+    $HDL_DIR/div.v \
+    $HDL_DIR/exp_lut.v \
+    
+]
 
 
 # elaborate your design
