@@ -1,5 +1,8 @@
 # HW5: Vision Transformer
 
+## Performance
+Rank: 4/76
+
 ## Introduction
 Vision Transformers (ViTs) have emerged as a powerful alternative to traditional 
 convolutional approaches for computer vision tasks. The pioneering work on ViT 

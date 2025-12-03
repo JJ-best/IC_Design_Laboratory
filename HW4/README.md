@@ -1,5 +1,8 @@
 # HW4: QRCODE
 
+## Performance
+Rank: 41/76
+
 ## Introduction
 QR Code (Quick Response Code) is a type of matrix barcode used for storing 
 text information in a robust way. 
