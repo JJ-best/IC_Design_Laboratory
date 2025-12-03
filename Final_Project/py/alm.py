@@ -71,6 +71,17 @@ def multiplydtrans(G: np.ndarray) -> np.ndarray:
 
     delGy = Dy @ altGy
     delGx = Gx @ Dx
+    
+    # ---- matrix size ----- #
+    print("G   size: ", G.shape)
+    print("Dyi size: ", Dyi.shape)
+    print("Dy  size: ", Dy.shape)
+    print("Dxi size: ", Dxi.shape)
+    print("Dx  size: ", Dx.shape)
+    print("altGy  size: ", altGy.shape)
+    print("delGy  size: ", delGy.shape)
+    print("delGx  size: ", delGx.shape)
+    
     return delGx + delGy
 
 
@@ -149,7 +160,6 @@ def lime_trial(Ti: np.ndarray, alpha: float, mu0: float, rho: float, k0: int = 5
     k0: iterations
     """
     m, n = Ti.shape
-    print("m=", m, " n=", n)
     k = 0
     mu = mu0
     Z = np.zeros((2 * m, n), dtype=np.float64) # 2m by n matrix
