@@ -1,0 +1,38 @@
+****************************************
+Report : Time Based Power (Cycle Accurate)
+Design : top_pipe
+Version: S-2021.06
+Date   : Thu Dec  4 00:09:26 2025
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network           1.237e-03 7.972e-04 5.149e-07 2.035e-03 (78.62%)  i
+register                2.273e-04 6.368e-06 2.867e-06 2.365e-04 ( 9.14%)  
+combinational           8.610e-05 2.295e-04 1.180e-06 3.168e-04 (12.24%)  
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box               4.530e-12    0.0000 1.016e-13 4.632e-12 ( 0.00%)  
+
+  Net Switching Power          = 1.033e-03   (39.91%)
+  Cell Internal Power          = 1.551e-03   (59.91%)
+  Cell Leakage Power           = 4.562e-06   ( 0.18%)
+                                 ---------
+Total Power                    = 2.588e-03  (100.00%)
+
+X Transition Power             = 2.226e-04
+CAPP Estimated Glitching Power = 2.369e-06
+
+Peak Power                     = 6.199e-03
+Peak Time                      =     10.00
+
+1

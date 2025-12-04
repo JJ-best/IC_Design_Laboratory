@@ -1,0 +1,218 @@
+                          CONFORMAL (R)
+                   Version 20.10-p100 (01-May-2020) (64 bit executable)
+   Copyright (c) Cadence Design Systems, Inc., 1997-2019. All Rights Reserved
+
+
+This program is proprietary and confidential information belonging to
+Cadence Design Systems, Inc., and may be used and disclosed only as authorized
+in a license agreement controlling such use and disclosure.
+
+// Warning: This version is 2041 days old. You can download the latest version from http://downloads.cadence.com.
+
+// Command: set parallel option -threads 1
+// Number of threads is set to 1,1.
+// Command: setenv TOP_DESIGN top_pipe
+Set variable 'TOP_DESIGN' as 'top_pipe'
+// Command: read design -file golden.f -golden
+// Note: Process verilog command file golden.f
+// Parsing file ../../syn/netlist/top_pipe_syn.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Golden root module is set to 'top_pipe'
+// Warning: (RTL14) Signal has input but it has no output (occurrence:11)
+// Note: (HRC3.5b) Open output port connection is detected (occurrence:3384)
+// Note: Read VERILOG design successfully
+CPU time     : 2.08    seconds
+Elapse time  : 2       seconds
+Memory usage : 282.11  M bytes
+// Command: read design -file revised.f -revised
+// Note: Process verilog command file revised.f
+// Parsing file ../../innovus/post_layout/CHIP.v ...
+// Parsing file /usr/cadtool/GPDK45/gsclib045_svt_v4.4/gsclib045/verilog/slow_vdd1v2_basicCells.v ...
+// Revised root module is set to 'top_pipe'
+// Warning: (RTL2.13) Undriven pin is detected (occurrence:74)
+// Warning: (RTL14) Signal has input but it has no output (occurrence:1658)
+// Warning: (RTL14.1) Fanout load of the signal is removed (occurrence:2)
+// Note: (HRC3.5b) Open output port connection is detected (occurrence:3357)
+// Warning: (HRC3.10a) An input port is declared, but it is not completely used in the module (occurrence:65)
+// Warning: (HRC3.16) A wire is declared, but not used in the module (occurrence:34)
+// Warning: Total black box modules referenced in Revised = 1
+// Warning: There are 74 undriven nets in Revised
+// Warning: There are 74 undriven pins in Revised
+// Note: Read VERILOG design successfully
+CPU time     : 4.70    seconds
+Elapse time  : 5       seconds
+Memory usage : 322.67  M bytes
+// Command: report design data
+============================================
+Summary           Golden         Revised
+============================================
+Design-modules      2201            2201
+Library-cells      39161           42306
+============================================
+Primitives      Golden              Revised
+============================================
+INPUT               44                   44
+OUTPUT              33                   33
+--------------------------------------------
+AND        *     25992                24277
+BUF        *      1818                 5266
+DFF        *     17767                17732
+DLAT              2188                 2188
+INV        *     20773                22115
+OR         *     11904                11885
+WIRE       *         0                   32
+XOR        *        79                   71
+------ word-level --------------------------
+BBOX       *         0                    1
+--------------------------------------------
+Total            80521                83567
+
+// Command: report black box -detail
+SYSTEM (empty): (R) ANTENNA
+// Command: uniquify -nolib -all -use_renaming_rule
+Uniquified 0 module(s)
+CPU time     : 4.94    seconds
+Elapse time  : 5       seconds
+Memory usage : 323.67  M bytes
+// Command: set flatten model -gated_clock
+// Command: set flatten model -seq_constant
+// Command: set root module $TOP_DESIGN -golden
+// Warning: Golden root module is already at 'top_pipe'
+// Command: set root module $TOP_DESIGN -revised
+// Warning: Revised root module is already at 'top_pipe'
+// Command: dofile lec_compare.do
+// Command: set system mode lec
+// Processing Golden ...
+// Modeling Golden ...
+// Processing Revised ...
+// Modeling Revised ...
+// Balanced modeling (auto) mapped 39840 out of 39875 DFF/DLATs
+// (F14) Remodeled 17503 gated-clock DFF/DLAT(s)
+// (F14) Remodeled 17487 gated-clock DFF/DLAT(s)
+// (F28) Converted 83 internal output port(s) to inout port(s)
+CPU time     : 8.36    seconds
+Elapse time  : 9       seconds
+Memory usage : 403.24  M bytes
+// Warning: Golden and Revised have different numbers of key points:
+// Golden  key points = 20032
+// Revised key points = 19998
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            44     33     17732     17809   
+--------------------------------------------------------------------------------
+Revised           44     33     17732     17809   
+================================================================================
+Unmapped points:
+================================================================================
+Golden:
+--------------------------------------------------------------------------------
+Unmapped points   DFF    DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       35     2188      2223    
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DLAT   BBOX      Total   
+--------------------------------------------------------------------------------
+Unreachable       2188   1         2189    
+================================================================================
+CPU time     : 10.99   seconds
+Elapse time  : 12      seconds
+Memory usage : 422.59  M bytes
+// Command: map key point
+// Mapping key points ...
+================================================================================
+Mapped points: SYSTEM class
+--------------------------------------------------------------------------------
+Mapped points     PI     PO     DFF       Total   
+--------------------------------------------------------------------------------
+Golden            44     33     17732     17809   
+--------------------------------------------------------------------------------
+Revised           44     33     17732     17809   
+================================================================================
+Unmapped points:
+================================================================================
+Golden:
+--------------------------------------------------------------------------------
+Unmapped points   DFF    DLAT      Total   
+--------------------------------------------------------------------------------
+Unreachable       35     2188      2223    
+================================================================================
+Revised:
+--------------------------------------------------------------------------------
+Unmapped points   DLAT   BBOX      Total   
+--------------------------------------------------------------------------------
+Unreachable       2188   1         2189    
+================================================================================
+CPU time     : 11.35   seconds
+Elapse time  : 12      seconds
+Memory usage : 422.59  M bytes
+// Command: analyze setup -verbose
+CPU time     : 20.43   seconds
+Elapse time  : 21      seconds
+Memory usage : 428.54  M bytes
+// Command: analyze multiplier -cdp_info
+CPU time     : 20.92   seconds
+Elapse time  : 22      seconds
+Memory usage : 432.43  M bytes
+// Command: analyze datapath -merge -share -effort medium -verbose
+CPU time     : 22.04   seconds
+Elapse time  : 23      seconds
+Memory usage : 436.34  M bytes
+// Command: add compare point -all
+// 17765 compared points added to compare list
+// Command: compare
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           33     17732     17765   
+================================================================================
+CPU time     : 30.82   seconds
+Elapse time  : 40      seconds
+Memory usage : 516.34  M bytes
+// Command: analyze abort -compare
+There is no abort/specified point to be analyzed.
+// Command: report unmap point -notmapped 
+
+0 unmapped points reported
+// Command: report compare data -nonequivalent
+0 Non-equivalent point(s) reported
+0 compared point(s) reported
+================================================================================
+Compared points      PO     DFF       Total   
+--------------------------------------------------------------------------------
+Equivalent           33     17732     17765   
+================================================================================
+// Command: report verification
+================================================================================
+                            Verification Report
+--------------------------------------------------------------------------------
+Category                                                                  Count
+--------------------------------------------------------------------------------
+1. Non-standard modeling options used:                                      0
+--------------------------------------------------------------------------------
+2. Incomplete verification:                                                 0
+--------------------------------------------------------------------------------
+3. User modification to design:                                             0
+--------------------------------------------------------------------------------
+4. Conformal Constraint Designer clock domain crossing checks recommended:  0
+--------------------------------------------------------------------------------
+5. Design ambiguity:                                                        0
+--------------------------------------------------------------------------------
+6. Compare Results:                                                        PASS
+================================================================================
+CPU time     : 30.99   seconds
+Elapse time  : 40      seconds
+Memory usage : 516.34  M bytes
+// Command: save session DBS/lec_compare
+// Warning: Save session command only saves design data and will be obsolete in the future. Use the new "checkpoint" command to save complete process data.
+
+// Note: Session saved
+CPU time     : 41.39   seconds
+Elapse time  : 51      seconds
+Memory usage : 531.77  M bytes
+// Command: exit -force

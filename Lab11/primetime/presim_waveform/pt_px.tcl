@@ -15,9 +15,9 @@ current_design  top_pipe
 link
 read_sdc ../../innovus/post_layout/CHIP_layout.sdc
 # read spef here
-read_parasitics ../../innovus/post_layout/???????
+read_parasitics ../../innovus/post_layout/CHIP_layout.gz
 # read waveform
-read_fsdb -rtl ../../sim/???????.fsdb -strip_path test_top/top_pipe_U0 
+read_fsdb -rtl ../../sim/presim.fsdb -strip_path test_top/top_pipe_U0 
 
 check_power
 update_power
