@@ -356,7 +356,7 @@ Provides a "middle-accuracy" power report when post-sim waveform is unavailable.
 |-------------------|---------|---------|---------|
 |Net-Switching Power|1.016e-04|1.095e-03|1.033e-03|
 |Cell Internal Power|1.437e-03|1.603e-03|1.551e-03|
-|Total Power        |1.542e-03|4.563e-06|2.588e-03|
+|Total Power        |1.542e-03|2.703e-03|2.588e-03|
 
 ## 8. Question
 

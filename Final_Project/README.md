@@ -33,3 +33,11 @@ arXiv preprint arXiv:1910.13688, 2019.
 Reference Paper: 
 Mertens, T., Kautz, J. and Van Reeth, F. (2009), Exposure Fusion: A Simple and Practical Alternative to High Dynamic Range Photography. Computer Graphics Forum, 28: 161-171. https://doi.org/10.1111/j.1467-8659.2008.01171.x
 ```
+
+## Python
+
+### 1. Algorithm reference to paper
+
+### 2. Direct Partition the image
+
+### 3. Overlap partition the image
