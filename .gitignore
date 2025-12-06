@@ -1,3 +1,8 @@
 .venv/
 .vscode/
+# Python cache
 **/__pycache__/
+*.py[cod]
+# Generated images from LIME runs
+**/py/**/imgs_lime1/
+**/py/**/imgs_lime2/
