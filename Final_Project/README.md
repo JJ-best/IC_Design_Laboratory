@@ -41,3 +41,25 @@ Mertens, T., Kautz, J. and Van Reeth, F. (2009), Exposure Fusion: A Simple and P
 ### 2. Direct Partition the image
 
 ### 3. Overlap partition the image
+
+
+## 
+```shell
+cd /usr/cadtool/
+ls
+cd synopsys/
+ls
+cd /usr/cadtool/debussy
+ls
+[u110022124@ws42 debussy]$ cd debussy_5.4v6
+[u110022124@ws42 debussy_5.4v6]$ ls
+CIC  bin  demo  doc  etc  font  license  nLint  platform  share
+[u110022124@ws42 debussy_5.4v6]$ cd doc
+[u110022124@ws42 doc]$ ls
+Reusner.pdf         linking.pdf   notes        reference.pdf      verilog_example_for_openkdb.tar.gz
+Symbol_Library.pdf  nCompare.pdf  openkdb.pdf  sync_template.pdf
+installation.pdf    nECO.pdf      q_ref.pdf    tutorial.pdf
+[u110022124@ws42 doc]$ cp /usr/cadtool/debussy/debussy_5.4v6/doc/reference.pdf ~/
+[u110022124@ws42 doc]$ cp /usr/cadtool/debussy/debussy_5.4v6/doc/tutorial.pdf ~/
+
+```

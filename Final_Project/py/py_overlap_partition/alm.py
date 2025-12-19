@@ -23,13 +23,22 @@ def multiplyd(T: np.ndarray) -> np.ndarray:
     Dy = maked_alt(m)
     Dxt = maked_alt(n)
     Dx = Dxt.T
+    
+    # print("Dy: \n", Dy)
+    # print("Dxt: \n", Dxt)
+    # print("Dx: \n", Dx)
 
     # vertical gradient with wrap
     altTy = np.zeros((m + 1, n), dtype=np.float64)
+    # print("altTy: \n", altTy)
     altTy[:m, :n] = T
+    # print("altTy: \n", altTy)
     altTy[m, : n - 1] = T[0, 1:]
+    # print("altTy: \n", altTy)
     altTy[m, n - 1] = T[0, 0]
+    # print("altTy: \n", altTy)
     delTy = Dy @ altTy
+    # print("detTy: \n", delTy)
 
     # horizontal gradient with wrap
     altTx = np.zeros((m, n + 1), dtype=np.float64)
@@ -104,6 +113,19 @@ def Tdenom(m: int, n: int, mu: float) -> np.ndarray:
 
     return 2.0 + mu * (dx_mod + dy_mod)
 
+def Tdenom_no_shift(m: int, n: int, mu: float) -> np.ndarray:
+    """Denominator without fftshift; for use with unshifted spectra."""
+    dxe = np.zeros((m, n), dtype=np.float64)
+    dye = np.zeros((m, n), dtype=np.float64)
+    dxe[1, 1] = -1.0
+    dxe[1, 2 % n] = 1.0
+    dye[1, 1] = -1.0
+    dye[2 % m, 1] = 1.0
+
+    dxf = np.fft.fft2(dxe)
+    dyf = np.fft.fft2(dye)
+    return 2.0 + mu * (np.conj(dxf) * dxf + np.conj(dyf) * dyf)
+
 
 def shrinkage(A: np.ndarray, X: np.ndarray) -> np.ndarray:
     """Soft thresholding."""
@@ -152,6 +174,19 @@ def updateT(Ti: np.ndarray, mu: float, G: np.ndarray, U: np.ndarray) -> np.ndarr
     return np.real(np.fft.ifft2(np.fft.ifftshift(Tnd)))
 
 
+def updateT_no_shift(Ti: np.ndarray, mu: float, G: np.ndarray, U: np.ndarray) -> np.ndarray:
+    """Update T sub-problem without fftshift/ifftshift (Td is unshifted to match)."""
+    X = G - U                 # (G - Z/μ)
+    delX = multiplydtrans(X)  # D^T * (G - Z/μ)
+    Tnum = 2 * Ti + mu * delX # w * T + μ * D^T * (G - Z/μ)
+    Tn = np.fft.fft2(Tnum)    # F{w * T + μ * D^T * (G - Z/μ)}
+
+    m, n = Ti.shape
+    Td = Tdenom_no_shift(m, n, mu)
+    Tnd = Tn / Td
+    return np.real(np.fft.ifft2(Tnd))
+
+
 def lime_trial(Ti: np.ndarray, alpha: float, mu0: float, rho: float, k0: int = 50) -> np.ndarray:
     """
     ADMM/ALM solver.
@@ -163,18 +198,34 @@ def lime_trial(Ti: np.ndarray, alpha: float, mu0: float, rho: float, k0: int = 5
     k = 0
     mu = mu0
     Z = np.zeros((2 * m, n), dtype=np.float64) # 2m by n matrix
+    # print(f"matrix Z: {2 * m} by {n}")
+    # print(Z)
     G = np.zeros((2 * m, n), dtype=np.float64) # 2m by n matrix
+    # print(f"matrix G: {2 * m} by {n}")
+    # print(G)
     W = make_weight_matrix(Ti, ker_size=5)
-
+    # print("matrix W:")
+    # print(W)
+    
     while k < k0:
-        U = Z / mu  # Z / μ
-        A = alpha * W / mu
-        T = updateT(Ti, mu, G, U)
-        delT = multiplyd(T)
-        G = shrinkage(A, delT + U)
-        B = delT - G
-        Z = mu * (B + U)
-        mu *= rho
+        U = Z / mu                  # Z / μ
+        A = alpha * W / mu          # Threshold matrix of each element
+        T = updateT_no_shift(Ti, mu, G, U)   # T(t+1) = ...
+        delT = multiplyd(T)         # ∇T
+        G = shrinkage(A, delT + U)  # G(t+1) = Shrinkage(∇T + Z / μ)
+        B = delT - G                # ∇T - G
+        Z = mu * (B + U)            # Z(t+1) = μ(t) * (∇T - G)
+        mu *= rho                   # μ(t+1) = μ(t)
+        # print(f"===== iteration {k} ===== ")
+        # print("Matrix U: \n", U)
+        # print("Matrix A: \n", A)
+        # print("Matrix T: \n", T)
+        # print("Matrix W: \n", W)
+        # print("delT: \n", delT)
+        # print("Matrix G: \n", G)
+        # print("Matrix B: \n", B)
+        # print("Matrix Z: \n", Z)
+        # print("mu = ", mu)        
         k += 1
 
     return T
