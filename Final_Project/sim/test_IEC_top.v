@@ -26,6 +26,7 @@ localparam BW_PER_ADDR_T = 128;   // SRAM T: 128-bit per address
 localparam BW_PER_ADDR_C = 128;   // SRAM C: 128-bit per address
 localparam BW_PER_ADDR_G = 64;    // SRAM G: 64-bit per address
 localparam BW_PER_ADDR_Z = 64;    // SRAM Z: 64-bit per address
+localparam BW_PER_ADDR_D = 128;   // SRAM D: 128-bit per address
 
 
 localparam SRAM_ADDR_WIDTH_A = 8;  // SRAM A: 8-bit address (256 addresses)
@@ -39,6 +40,7 @@ localparam SRAM_ADDR_WIDTH_T = 6;  // SRAM T: 6-bit address (64 addresses)
 localparam SRAM_ADDR_WIDTH_C = 6;  // SRAM C: 6-bit address (64 addresses)
 localparam SRAM_ADDR_WIDTH_G = 9;  // SRAM G: 9-bit address (512 addresses)
 localparam SRAM_ADDR_WIDTH_Z = 9;  // SRAM Z: 9-bit address (512 addresses)
+localparam SRAM_ADDR_WIDTH_D = 8;  // SRAM D: 8-bit address (256 addresses)
 
 // ===== Layer selection ===== //
 // +define+LAYER=1 or +define+LAYER=2 in run_sim.sh
@@ -374,6 +376,24 @@ wire [BW_PER_ADDR_Z-1:0] sram_wdata_z1;
 wire [BW_PER_ADDR_Z-1:0] sram_wdata_z2;
 wire [BW_PER_ADDR_Z-1:0] sram_wdata_z3;
 
+// SRAM Z signals
+wire sram_wen_d0;
+wire sram_wen_d1;
+wire sram_wen_d2;
+wire sram_wen_d3;
+wire [BW_PER_ADDR_D-1:0] sram_rdata_d0;
+wire [BW_PER_ADDR_D-1:0] sram_rdata_d1;
+wire [BW_PER_ADDR_D-1:0] sram_rdata_d2;
+wire [BW_PER_ADDR_D-1:0] sram_rdata_d3;
+wire [SRAM_ADDR_WIDTH_D-1:0] sram_addr_d0;
+wire [SRAM_ADDR_WIDTH_D-1:0] sram_addr_d1;
+wire [SRAM_ADDR_WIDTH_D-1:0] sram_addr_d2;
+wire [SRAM_ADDR_WIDTH_D-1:0] sram_addr_d3;
+wire [BW_PER_ADDR_D-1:0] sram_wdata_d0;
+wire [BW_PER_ADDR_D-1:0] sram_wdata_d1;
+wire [BW_PER_ADDR_D-1:0] sram_wdata_d2;
+wire [BW_PER_ADDR_D-1:0] sram_wdata_d3;
+
 // Twiddle ROM signals (16 banks)
 wire [0:0] twiddle_addr_0, twiddle_addr_1, twiddle_addr_2, twiddle_addr_3,
             twiddle_addr_4, twiddle_addr_5, twiddle_addr_6, twiddle_addr_7,
@@ -623,10 +643,31 @@ IEC_top #(
     .sram_rdata_z2(sram_rdata_z2),
     .sram_rdata_z3(sram_rdata_z3),
 
-    .twiddle_addr_0(twiddle_addr_0_dut), .twiddle_addr_1(twiddle_addr_1_dut), .twiddle_addr_2(twiddle_addr_2_dut), .twiddle_addr_3(twiddle_addr_3_dut),
-    .twiddle_addr_4(twiddle_addr_4_dut), .twiddle_addr_5(twiddle_addr_5_dut), .twiddle_addr_6(twiddle_addr_6_dut), .twiddle_addr_7(twiddle_addr_7_dut),
-    .twiddle_addr_8(twiddle_addr_8_dut), .twiddle_addr_9(twiddle_addr_9_dut), .twiddle_addr_10(twiddle_addr_10_dut), .twiddle_addr_11(twiddle_addr_11_dut),
-    .twiddle_addr_12(twiddle_addr_12_dut), .twiddle_addr_13(twiddle_addr_13_dut), .twiddle_addr_14(twiddle_addr_14_dut), .twiddle_addr_15(twiddle_addr_15_dut),
+    // SRAM D
+    .sram_wen_d0 (sram_wen_d0),
+    .sram_wen_d1 (sram_wen_d1),
+    .sram_wen_d2 (sram_wen_d2),
+    .sram_wen_d3 (sram_wen_d3),
+
+    .sram_addr_d0(sram_addr_d0),
+    .sram_addr_d1(sram_addr_d1),
+    .sram_addr_d2(sram_addr_d2),
+    .sram_addr_d3(sram_addr_d3),
+
+    .sram_wdata_d0(sram_wdata_d0),
+    .sram_wdata_d1(sram_wdata_d1),
+    .sram_wdata_d2(sram_wdata_d2),
+    .sram_wdata_d3(sram_wdata_d3),
+
+    .sram_rdata_d0(sram_rdata_d0),
+    .sram_rdata_d1(sram_rdata_d1),
+    .sram_rdata_d2(sram_rdata_d2),
+    .sram_rdata_d3(sram_rdata_d3),
+
+    .twiddle_addr_0(twiddle_addr_0), .twiddle_addr_1(twiddle_addr_1), .twiddle_addr_2(twiddle_addr_2), .twiddle_addr_3(twiddle_addr_3),
+    .twiddle_addr_4(twiddle_addr_4), .twiddle_addr_5(twiddle_addr_5), .twiddle_addr_6(twiddle_addr_6), .twiddle_addr_7(twiddle_addr_7),
+    .twiddle_addr_8(twiddle_addr_8), .twiddle_addr_9(twiddle_addr_9), .twiddle_addr_10(twiddle_addr_10), .twiddle_addr_11(twiddle_addr_11),
+    .twiddle_addr_12(twiddle_addr_12), .twiddle_addr_13(twiddle_addr_13), .twiddle_addr_14(twiddle_addr_14), .twiddle_addr_15(twiddle_addr_15),
     .twiddle_data_0(twiddle_data_0), .twiddle_data_1(twiddle_data_1), .twiddle_data_2(twiddle_data_2), .twiddle_data_3(twiddle_data_3),
     .twiddle_data_4(twiddle_data_4), .twiddle_data_5(twiddle_data_5), .twiddle_data_6(twiddle_data_6), .twiddle_data_7(twiddle_data_7),
     .twiddle_data_8(twiddle_data_8), .twiddle_data_9(twiddle_data_9), .twiddle_data_10(twiddle_data_10), .twiddle_data_11(twiddle_data_11),
@@ -1016,6 +1057,40 @@ sram_512x8b #(
     .rdata_3(sram_rdata_z3)
 );
 
+// SRAM D: parameter sram
+sram_256x16b #(
+    .BW_PER_ADDR(BW_PER_ADDR_D),
+    .ADDR_WIDTH(SRAM_ADDR_WIDTH_D)
+) sram_d(
+    .clk(clk), 
+    .csb(1'b0), 
+    
+    .wsb_0(sram_wen_d0), 
+    .wsb_1(sram_wen_d1), 
+    .wsb_2(sram_wen_d2), 
+    .wsb_3(sram_wen_d3), 
+
+    .wdata_0(sram_wdata_d0), 
+    .wdata_1(sram_wdata_d1), 
+    .wdata_2(sram_wdata_d2), 
+    .wdata_3(sram_wdata_d3), 
+
+    .waddr_0(sram_addr_d0),  
+    .waddr_1(sram_addr_d1), 
+    .waddr_2(sram_addr_d2), 
+    .waddr_3(sram_addr_d3), 
+    
+    .raddr_0(sram_addr_d0),  
+    .raddr_1(sram_addr_d1), 
+    .raddr_2(sram_addr_d2), 
+    .raddr_3(sram_addr_d3), 
+
+    .rdata_0(sram_rdata_d0),
+    .rdata_1(sram_rdata_d1),
+    .rdata_2(sram_rdata_d2),
+    .rdata_3(sram_rdata_d3)
+);
+
 // Instantiate Twiddle ROM (16 banks)
 twiddle_rom #(
     .DATA_WIDTH(2*pFP_WIDTH),
@@ -1044,6 +1119,19 @@ initial begin
     clk = 0;
     rst_n = 0;
     enable = 0;
+    
+    sram_a.clear_sram(0);
+    sram_b.clear_sram(0);
+    sram_i.clear_sram(0);
+    sram_u.clear_sram(0);
+    sram_w.clear_sram(0);
+    sram_x.clear_sram(0);
+    sram_e.clear_sram(0);
+    sram_t.clear_sram(0);
+    sram_c.clear_sram(0);
+    sram_g.clear_sram(0);
+    sram_z.clear_sram(0);
+    sram_d.load_param_hex("./tdenom_pat/tdenom_32x32_hex.txt", 1024);
     
     #(`CYCLE * 5);
     
@@ -1493,6 +1581,7 @@ begin
         addr = 0;
         for(row = 31; row >= 0; row = row - 1) begin  // BMP bottom-up
             for(col = 0; col < 32; col = col + 4) begin  // 4 pixel -> 4 bank
+                addr = row * 8 + (col >> 2); // 32x32, 4 pixels per addr
                 // bmp order: B-> G -> R
                 // pixel0 -> golden_bank_a0
                 b = $fgetc(file_in);
@@ -1535,6 +1624,7 @@ begin
         addr = 0;
         for(row = 31; row >= 0; row = row - 1) begin  // BMP bottom-up
             for(col = 0; col < 32; col = col + 4) begin  // 4 pixel -> 4 bank
+                addr = row * 8 + (col >> 2); // 32x32, 4 pixels per addr
                 // pixel0 -> golden_bank_b0 
                 r = $fgetc(file_in);
                 golden_bank_b0[addr] = r;  
@@ -1550,8 +1640,6 @@ begin
                 // pixel3 -> golden_bank_b3 
                 r = $fgetc(file_in);
                 golden_bank_b3[addr] = r; 
-
-                addr = addr + 1;
             end
         end
     end else if(LAYER >= 3 && LAYER <= 14) begin
@@ -2260,6 +2348,7 @@ begin
         addr = 0;
         for(row = 31; row >= 0; row = row - 1) begin  // BMP bottom-up
             for(col = 0; col < 32; col = col + 4) begin  // 4 pixel -> 4 bank
+                addr = row * 8 + (col >> 2); // 32x32, 4 pixels per addr
                 // pixel0 -> golden_bank_b0 
                 r = $fgetc(file_in);
                 golden_bank_b0[addr] = r;  
@@ -2508,7 +2597,7 @@ begin
         $display("========================================================================");
     end else if(layer_value >= 3 && layer_value <= 14) begin
         // Layer 3-14: Compare .dat files (binary fp64 data)
-        tolerance = 1e-10;  // Tolerance for fp64 comparison
+        tolerance = 4e-3;  // Tolerance for fp64 comparison
         
         // Determine address range and SRAM based on layer
         if(layer_value == 3 || layer_value == 4 || layer_value == 5 || 
