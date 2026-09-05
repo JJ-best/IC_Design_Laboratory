@@ -1,5 +1,5 @@
 # IC_Design_Laboratory
-NTHU course - EE 429200 IC Design Laboratory
+NTHU course - EE 429200 IC Design Laboratory (Fall 2025)
 
 ## Lab
 
@@ -35,38 +35,47 @@ NTHU course - EE 429200 IC Design Laboratory
         <tr>
             <th>Lab05</th>
             <th>RTL simulation and debugging</th>
+            <th>1%</th>
         </tr>
         <tr>
             <th>Lab06</th>
-            <th>Design Compiler + Coding for synthesis (I)</th>
+            <th>Design Compiler + Coding for synthesis(I)</th>
+            <th>2%</th>
         </tr>
         <tr>
             <th>Lab07</th>
             <th>Line-based image processing example </th>
+            <th>3%</th>
         </tr>
         <tr>
             <th>Lab08</th>
             <th>Coding for synthesis (II)</th>
+            <th> 0%</th>
         </tr>
         <tr>
             <th>Lab09</th>
-            <th>Logic equivalence checking</th>
+            <th>Conformal check with LEC & ECO</th>
+            <th>2% </th>
         </tr>
         <tr>
             <th>Lab10</th>
             <th>LEC in practice</th>
+            <th> 1%</th>
         </tr>
         <tr>
             <th>Lab11</th>
             <th>Innovus - Floorplan</th>
+            <th>1% </th>
         </tr>
         <tr>
             <th>Lab12</th>
             <th>Innovus - Power plan, placement, CTS and routin</th>
+            <th>1% </th>
         </tr>
         <tr>
             <th>Lab13</th>
             <th>Innovus - CTS, routing, verfication, power analysis </th>
+            <th>1% </th>
         </tr>
     </tbody>
 </table>
@@ -111,3 +120,26 @@ NTHU course - EE 429200 IC Design Laboratory
         </tr>
     </tbody>
 </table>
+
+
+## Final Project
+
+<table border=2 class="dataframe">
+    </thead>
+        <tr>
+            <th>#</th>
+            <th>Content</th>
+            <th>Proportion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>FP</th>
+            <th>Image Exposure Correction</th>
+            <th>30%</th>
+        </tr>
+    </tbody>
+</table>
+
+> The final project is maintained in a separate repository:
+> [Image Exposure Correction](https://github.com/JJ-best/Image_Exposure_Correction)
