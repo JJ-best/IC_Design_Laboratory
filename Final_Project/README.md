@@ -1,4 +1,4 @@
-# Final Project: A Hardware Design for Exposure Correction and Edge-Directed Interpolation
+# Final Project: A Hardware Design for Exposure Correction
 
 Difficulty: Medium to High
 
