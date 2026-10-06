@@ -115,7 +115,7 @@ NTHU course - EE 429200 IC Design Laboratory (Fall 2025)
         </tr>
         <tr>
             <th>HW5</th>
-            <th>Digit classification using CNN</th>
+            <th>Transformer</th>
             <th>15%</th>
         </tr>
     </tbody>
